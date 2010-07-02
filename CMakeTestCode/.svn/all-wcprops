@@ -1,0 +1,167 @@
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svnroot/beagle/!svn/ver/98/beagle/trunk/beagle/CMakeTestCode
+END
+CXX_HAVE_BOOL.cmake.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svnroot/beagle/!svn/ver/49/beagle/trunk/beagle/CMakeTestCode/CXX_HAVE_BOOL.cmake.cpp
+END
+CXX_HAVE_TEMPLATES.cmake.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svnroot/beagle/!svn/ver/49/beagle/trunk/beagle/CMakeTestCode/CXX_HAVE_TEMPLATES.cmake.cpp
+END
+CXX_HAVE_CONST_CAST.cmake.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svnroot/beagle/!svn/ver/49/beagle/trunk/beagle/CMakeTestCode/CXX_HAVE_CONST_CAST.cmake.cpp
+END
+CXX_HAVE_STATIC_CAST.cmake.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svnroot/beagle/!svn/ver/49/beagle/trunk/beagle/CMakeTestCode/CXX_HAVE_STATIC_CAST.cmake.cpp
+END
+CXX_HAVE_UNORDERED_SET.cmake.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svnroot/beagle/!svn/ver/49/beagle/trunk/beagle/CMakeTestCode/CXX_HAVE_UNORDERED_SET.cmake.cpp
+END
+CXX_HAVE_DEFAULT_TEMPLATE_PARAMETERS.cmake.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svnroot/beagle/!svn/ver/49/beagle/trunk/beagle/CMakeTestCode/CXX_HAVE_DEFAULT_TEMPLATE_PARAMETERS.cmake.cpp
+END
+CXX_HAVE_DYN_CAST.cmake.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svnroot/beagle/!svn/ver/49/beagle/trunk/beagle/CMakeTestCode/CXX_HAVE_DYN_CAST.cmake.cpp
+END
+HASHSET_STDEXT.cmake.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svnroot/beagle/!svn/ver/49/beagle/trunk/beagle/CMakeTestCode/HASHSET_STDEXT.cmake.cpp
+END
+HASHSET_GNUCXX.cmake.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svnroot/beagle/!svn/ver/49/beagle/trunk/beagle/CMakeTestCode/HASHSET_GNUCXX.cmake.cpp
+END
+HASHMAP_STD.cmake.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svnroot/beagle/!svn/ver/49/beagle/trunk/beagle/CMakeTestCode/HASHMAP_STD.cmake.cpp
+END
+CXX_HAVE_UNORDERED_MAP_TR1.cmake.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svnroot/beagle/!svn/ver/51/beagle/trunk/beagle/CMakeTestCode/CXX_HAVE_UNORDERED_MAP_TR1.cmake.cpp
+END
+CXX_HAVE_ISFINITE.cmake.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svnroot/beagle/!svn/ver/68/beagle/trunk/beagle/CMakeTestCode/CXX_HAVE_ISFINITE.cmake.cpp
+END
+CXX_HAVE_REINTERPRET_CAST.cmake.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svnroot/beagle/!svn/ver/49/beagle/trunk/beagle/CMakeTestCode/CXX_HAVE_REINTERPRET_CAST.cmake.cpp
+END
+CXX_HAVE_LONG_LONG.cmake.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svnroot/beagle/!svn/ver/49/beagle/trunk/beagle/CMakeTestCode/CXX_HAVE_LONG_LONG.cmake.cpp
+END
+CXX_HAVE_SSTREAM.cmake.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svnroot/beagle/!svn/ver/49/beagle/trunk/beagle/CMakeTestCode/CXX_HAVE_SSTREAM.cmake.cpp
+END
+CXX_HAVE_NAMESPACES.cmake.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svnroot/beagle/!svn/ver/49/beagle/trunk/beagle/CMakeTestCode/CXX_HAVE_NAMESPACES.cmake.cpp
+END
+CXX_HAVE_EXCEPTIONS.cmake.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svnroot/beagle/!svn/ver/49/beagle/trunk/beagle/CMakeTestCode/CXX_HAVE_EXCEPTIONS.cmake.cpp
+END
+CXX_HAVE_TYPENAME.cmake.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svnroot/beagle/!svn/ver/49/beagle/trunk/beagle/CMakeTestCode/CXX_HAVE_TYPENAME.cmake.cpp
+END
+CXX_HAVE_RTTI.cmake.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svnroot/beagle/!svn/ver/49/beagle/trunk/beagle/CMakeTestCode/CXX_HAVE_RTTI.cmake.cpp
+END
+PACC_HAVE_PARALLEL_STL.cmake.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svnroot/beagle/!svn/ver/98/beagle/trunk/beagle/CMakeTestCode/PACC_HAVE_PARALLEL_STL.cmake.cpp
+END
+CXX_HAVE_NUMERIC_LIMITS.cmake.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svnroot/beagle/!svn/ver/67/beagle/trunk/beagle/CMakeTestCode/CXX_HAVE_NUMERIC_LIMITS.cmake.cpp
+END
+CXX_HAVE_TEMPLATE_SCOPED_ARGUMENT_MATCHING.cmake.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svnroot/beagle/!svn/ver/49/beagle/trunk/beagle/CMakeTestCode/CXX_HAVE_TEMPLATE_SCOPED_ARGUMENT_MATCHING.cmake.cpp
+END
+CXX_HAVE_UNORDERED_MAP.cmake.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svnroot/beagle/!svn/ver/49/beagle/trunk/beagle/CMakeTestCode/CXX_HAVE_UNORDERED_MAP.cmake.cpp
+END
+HASHSET_STD.cmake.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svnroot/beagle/!svn/ver/49/beagle/trunk/beagle/CMakeTestCode/HASHSET_STD.cmake.cpp
+END
+HASHMAP_STDEXT.cmake.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svnroot/beagle/!svn/ver/49/beagle/trunk/beagle/CMakeTestCode/HASHMAP_STDEXT.cmake.cpp
+END
+CXX_HAVE_UNORDERED_SET_TR1.cmake.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svnroot/beagle/!svn/ver/51/beagle/trunk/beagle/CMakeTestCode/CXX_HAVE_UNORDERED_SET_TR1.cmake.cpp
+END
+HASHMAP_GNUCXX.cmake.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svnroot/beagle/!svn/ver/49/beagle/trunk/beagle/CMakeTestCode/HASHMAP_GNUCXX.cmake.cpp
+END

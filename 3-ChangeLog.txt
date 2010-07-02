@@ -1,0 +1,1664 @@
+Open BEAGLE Change Log
+
+4.0.0-alpha1:                                                   (16/02/2009)
+
+- Complete rewrite of build system                                      (CG)
+
+  New build system is now based on CMake. This implied drastic changes to
+  files organisation. Version 4.0.0-alpha1 includes only GA and GP
+  frameworks, along with associated examples.
+
+- Bug fix in init for classes derived from ReplacementStrategyOp        (CG)
+
+  Method init of several classes derived from ReplacementStrategyOp didn't
+  properly call it parent's init method. (Thanks to Felix-Antoine Fortin)
+
+- Modified ES genotype initialization operator                          (CG)
+
+  ES genotype initialization operator modified for better behaviour
+  when having lower/upper bound values not centered on zero. (Thanks to
+  narotic_net)
+
+- Bug fix in integer GA initialization and mutation operators      (CG + PK)
+
+  Method Beagle::Randomizer::rollInteger was improperly called with signed
+  integer arguments for the initialization and mutation operators of integer
+  GA. Now corrected for calling this method with unsigned values. (Thanks to
+  Pawan Kumar)
+
+- Redesign of mechanism for restarting evolution from a milestone       (CG)
+
+  Evolver is now completely in charge of reading a milestone for an
+  evolution restart. Operator MilestoneReadOp has been totally removed.
+  Configuration files of examples have been updated accordingly.
+
+- Population reading from file with reflection                          (CG)
+
+  The exact concrete type of the composing types of a population (genotype,
+  fitness, individual, deme, vivarium, hall-of-fame, stats, etc.) are
+  written into the XML files (in attribute "type"). Reading back these
+  files, the instances with the exact type are created thanks to the object
+  factory, and used to read back their value. This is an example of type
+  reflection. Mixing of different type for a given concept is also possible.
+
+- Dynamic members to Individual/Deme/Vivarium                           (CG)
+
+  A concept of members is defined in the Individual, Deme, and Vivarium
+  classes. It includes the standard HallOfFame, Stats, and MigrationBuffer,
+  and also allow adding supplementary members to the population
+  dynamically.
+
+- Modification to various type specification in population structure    (CG)
+
+  Type allocators are removed from the Individual, Deme, and Vivarium
+  classes. Exact types of population structure (genotype, fitness,
+  individual, hall-of-fame, etc.) are specified directly by the concept map
+  of the object factory.
+
+- Removed type allocator from containers                                (CG)
+
+  Type allocator is removed from containers. It means that automatic
+  instantiation of elements in Open BEAGLE is no more available. Containers
+  only contains bunch of heterogeneous objects, which can be instantiated
+  using the object factory.
+
+- Data set classes for regression and classification                    (CG)
+
+  Two new component types, describing data sets for regression
+  (DataSetRegression) and for classification (DataSetClassification) have
+  been used to the core framework. The symbreg and spambase GP examples
+  have been changed accordingly, in order to make use of these components.
+  They should allow an unified and cleaner implementation of applications
+  for evolutionary learning.
+
+- Examples updated according to previous changes                        (CG)
+
+  A thorough review of all examples have been made in order to make them
+  compiling, using the new technique for implementing them based on the
+  package and algorithm mechanisms.
+
+- Specific evolvers, demes, and vivarium classes removed                (CG)
+
+  Specific instances of evolvers, demes, and vivarium classes in specialized
+  GA and GP frameworks are removed, given their obsolescence with the
+  introduction of the package and algorithm mechanisms.
+
+- New algorithm mechanism                                               (CG)
+
+  Algorithms are used to configure an evolver with a given arrangement of
+  operators in the bootstrap and main-loop sets, to define a given
+  evolutionary algorithm.
+
+- New package mechanism                                                 (CG)
+
+  Packages are used to configure a system with all necessary elements
+  (i.e. object allocators and concept types in factory, system components)
+  for a given framework or family of EA. This allow a modular
+  configuration of an application by adding it only the necessary packages.
+
+- New object factory as basic system component                          (CG)
+
+  New class Beagle::Factory is defined as a basic system component. It
+  contains allocators of all types defined in Open BEAGLE. It also holds a
+  map associating concepts to types. This mechanism will allow complete
+  dynamic configuration of applications from configuration file. It also
+  simplify several other mechanisms, make the whole framework simpler and
+  more coherent.
+
+- Modified Beagle::Map to rely on the hash_map template, if available   (CG)
+
+  Class Beagle::Map, holding (std::string,Beagle::Object::Handle)
+  associations, now rely on hash tables when the ext/hash_map STL template
+  (a SGI STL extension) is found on the system. The HashString functor,
+  based on the SuperFastHash function of Paul Hseih, has also been added to
+  hash std::string.
+
+- Rewriting of initialization procedure                                 (MP)
+
+  Complete rewrote of the initialization procedure has been undertaken.
+  Changes should allow a simpler internal mechanism and a more coherence
+  behaviour for the users.
+
+- Added new (1,lambda_adapt) replacement strategy                       (CG)
+
+  Added a new custom adaptative (1,lambda_adapt) replacement strategy
+  operator named "OneCommaLambdaAdaptedOp", which allow an adaptation of
+  the number of children generated at each generation according to the
+  success rate of the underlying variation operators. If there is more than
+  one children with a fitness higher than the parent's fitness for one
+  generation, the number of offsprings (the lambda value) is reduced.
+  Conversely, if there is no children with a fitness better than the
+  parent's fitness for one generation, the number of offsprings generated is
+  increased.
+
+- Added dbrun and dbslave perl scripts for master-slave execution    (RB+SP)
+
+  New perl scripts for execution of master-slave distributed application
+  have been added. These scripts are written by Richard Boisvert and Simon
+  Perreault.
+
+- Added TypeSelector system component                                   (CG)
+
+  The type selector is used to select type allocators for instanciation of
+  genotypes, individuals, fitnesses, demes, vivariums and other similar
+  Open BEAGLE objects. Combined with the package concept, it would simplify
+  greatly the configuration of an Open BEAGLE application and will allow
+  a complete dynamic configuration from a XML configuration file (or such).
+
+- Added successful termination flag to context                     (CG + MW)
+
+  Added a new successful termination flag member to class Context, in order
+  to identify termination of evolutions based on conditions such a target
+  fitness has been achieved. An example if usefulness of this feature is to
+  is to stop distributed island-model evolution once one the island has
+  obtained a satisfying solution to the problem. (In collaboration with
+  Matthew Walker)
+
+- Added ramped GA bit string initialization operator                    (CG)
+
+  Added a new initialization operator for bit string GA, where the number
+  of true bits in the bit strings is uniformly distributed between 0 and
+  the bit string size. This in opposition to the traditionnal bit string
+  GA initialization operator, where the number of true bit is statistically
+  about half the bit string size (when using a true bit initialization
+  probability of 50%).
+
+- Split master-slave and island model in distinct libraries             (CG)
+
+  Master-slave and island model facilites for distributed EC have been
+  splitted into distinct sub-libraries, part of the Beagle::Distrib
+  namespace. Master-slave code goes in namespace Beagle::Distrib::Master
+  with an associated beagle-distrib-master library. Island model stuff
+  goes in the Beagle::Distrib::Island namespace. The content for island
+  model is divided in three libraries, beagle-distrib-island for the
+  general basecode, beagle-distrib-island-tcpip for TCP/IP distribution
+  and beagle-distrib-island-mpi for MPI distribution.
+
+- Improved support for multi-objective optimisation                     (CG)
+
+  Multi-objective support in Open BEAGLE have been slighlty improved by
+  moving some methods from the FitnessMultiObj class into the general
+  Fitness class, allowing the use of multi-objective selection operators
+  (such NSGA2Op and NPGA2Op) for custom made fitness measures, not
+  necessary derived from the specific FitnessMultiObj class.
+
+- New artificial ant GP example                                         (CG)
+
+  Added the classical artificial ant problem to illustrate GP, as presented
+  in Koza's GP1 book (pages 147-162). Widely used as benchmark
+  in GP so allow make comparison of Open BEAGLE's implementation and
+  algorithms with other GP systems/algorithms.
+
+- New Boolean 11-multiplexer GP example                                 (CG)
+
+  Added classical Boolean 11-multiplexer to illustrate GP, as first
+  proposed by Koza in the GP1 book (pages 170-183). Widely used as benchmark
+  in GP so allow make comparison of Open BEAGLE's implementation and
+  algorithms with other GP systems/algorithms.
+
+- New adaptation of variation operations probabilities operator         (CG)
+
+  A new operator have been implemented as class AdaptBreedingProbaOp, to
+  adapt the breeding probabilities of several variation operations. This
+  operator allows a dynamic adaptation of breeding probabilities according
+  to the success of the used variation operators, increasing/decreasing the
+  breeding probability of variation operators that generate offsprings
+  with a better/worse fitness compared to their parents, relatively to the
+  success of the other variation operators used.
+
+- New GP insert mutation operators                                      (CG)
+
+  A standard and constrained operators for GP insert mutation have
+  been added to the GP framework as classes GP::MutationInsertOp and
+  GP::MutationInsertConstrainedOp. These operators mutate a GP tree by
+  inserting a new branch at a random position in a tree, using the
+  original subtree at this position as one argument, and if necessary
+  randomly selecting terminal primitives to complete the arguments of the
+  inserted node. The operator is now used by default in GP applications,
+  replacing the standard GP subtree mutation operator.
+
+- Method insertEntry to add parameters in the register                  (CG)
+
+  The method Register::addEntry has been deprecated in favor of method
+  Register::insertEntry for additing parameters in the register. The
+  insertEntry method allow a simpler addition of parameters as well
+  as some flexibility to set/modify default values.
+
+- Build projects of Beagle examples configured from pkgconfig files     (CG)
+
+  Build projects of examples are now configured from the pkgconfig files
+  of the different libraries. This simplify a lot the structure of the
+  examples autoconf/automake project configuration, while being directly
+  appliable to users' projects.
+
+- Added pkgconfig files for linking configuration on libraries          (CG)
+
+  Added pkgconfig files, which are giving details on how to (automatically)
+  configure projects that are linked against any of the Open BEAGLE, DAGS,
+  or PACC libraries. (Thanks to Alexandre Devert for suggesting it)
+
+- Added SelectBestOp                                                    (MW)
+
+  SelectBestOp is a selection operator that selects the very best
+  individuals. It's intended for use with the migration operators.
+
+- Removed customization of STL memory allocator                         (CG)
+
+  Possibility to customized the STL memory allocator used for data
+  structures has been removed for Beagle. It was obfuscating too much the
+  code and making maintenance more difficult, with virtually no gain for
+  almost every Beagle user. Pre-processor variable BEAGLE_STLALLOCATOR and
+  type Beagle::string have thus been eliminated.
+
+- Added MigrationBuffer, MigrationMapOp, and MigrationRingOp       (MW + CG)
+
+  A new class (MigrationBuffer) has been added to Beagle::Deme; it now
+  stores individuals and their indices. MigrationMapOp is a base class for
+  migration operators that use a generic push/pull strategy.
+  MigrationRingOp (which replaces MigrationRandomRingOp) and
+  MigrationGridOp are such migration operator. Distrib::EnvironmentManager
+  has been updated to use the new MigrationBuffer.
+
+- Added "ec.test.indi"                                                  (MW)
+
+  Thanks to the addition of register parameter "ec.test.indi" it's now
+  possible to evaluate an individual from a standard Beagle program.
+
+- Added selection index counter in Context class                        (CG)
+
+  Added new selection index in the Context class. This might be quite
+  useful to add a special state value, in order to define new selection
+  operators.
+
+- Added recombination operators                                         (CG)
+
+  Added recombination operator, common in evolution strategies. It consists
+  in generating new individuals by averaging several individuals of the
+  population. Two version of this operator (standard averaging and
+  weighted averaging) has been defined for GA real-value and SA-ES
+  representations.
+
+- Added quasi-random components and operators                      (CG + OT)
+
+  Added new component for low-discrepancy sequences generation
+  (quasi-random numbers). Added initialization and mutation operators for
+  GA/ES representations (float vector, SA-ES, CMA-ES, integer vector).
+  (Thanks to Olivier Teytaud.)
+
+- 1/5th ES adaptation rule operator added                               (CG)
+
+  Support for ES with the 1/5th adaptation rule added to Open BEAGLE by
+  a new operator called GA::AdaptOneFifthRuleFltVecOp. This operator
+  adapts the sigma value for the GA float vector's gaussian mutation.
+  Configuration file for illustrating a (1+1)-ES with 1/5th adaptation
+  rule is given in maxfctfloat example.
+
+- Added History component for evolution tracing                         (AD)
+
+  A new component, History, allows to trace, in a fully transparent,
+  non-intrusive way, the individuals over a whole evolution. If the
+  History component is added to a System, all the individuals and their
+  alterations by all the evolution operators will be tracked. This way,
+  the full genealogy could be generated from the milestones files.
+
+- Beagle::Distrib, code for distributed EC                    (CG + MW + MD)
+
+  A new Open BEAGLE framework for distributed EC as been defined in
+  namespace Beagle::Distrib. It includes the old client-side code of the
+  master-slave Distributed BEAGLE from Marc Dubreuil, as well as the new
+  island-model distributed EC code from Matthew Walker.
+
+- Corrected bug when initializing without the command-line              (CG)
+
+  Initialization of components when wrong when initializing the system
+  from a file instead from the command-line. (Thanks to Alexandre Devert)
+
+- Added Communications, Transport operators and new Termination ops     (MW)
+
+  New Communications system component added (including
+  CommunicationsTCPIP). Also added new TransportSendOp and
+  TransportReceiveOp that utilize the new Communications class.
+  Two new termination operators that use the Communications classes have
+  also been added: TermSendOp and TermReceiveOp.
+
+- Modification to ConfigurationDumper so that an Evolver is no longer
+  necessary.                                                            (MW)
+
+3.0.2:                                                          (XX/XX/2007)
+
+- Conditional compilation of code in 'tests' directory                  (CG)
+
+  Compilation of code in 'tests' directory is now disabled. It can be
+  enabled through option '--enable-tests' to the configure script. This
+  should reduce the compilation time for users, which are generally not
+  interested in compiling these various tests.
+
+- Modification to build system for fast compilation on Unix             (CG)
+
+  Heavy use of templates conjugated to division of code in several
+  independent .cpp files generate long compilation time on g++ and similar
+  Unix compilers. The modification allow building library from a single
+  .cpp file that includes other relevant source files used to generate the
+  library such that compilation time is reduced by a factor 5.
+
+- Bug fix in reading method name for class GP::EphemeralT<T>      (CG + JFD)
+
+  A change of reading method name in the interface of class GP::Primitive
+  was not propagated to class GP::EphemeralT<T>. This disabled correct
+  reading of an ephemeral from a file, for example from a milestone.
+  (Thanks to Jean-Francois Dupuis for spotting the bug.)
+
+- Bug fix when reading a Beagle::Matrix from an empty string            (CG)
+
+- Bug fix: OversizeOp's ratio now scales the population                 (MW)
+
+  OversizeOp was previously increasing the deme size by DemeSize*Ratio.
+  Now it makes the deme size equal to DemeSize*Ratio.  Also a special
+  ratio of -1.0 was added that makes the deme size the same size as
+  specified in 'ec.pop.size'.
+
+- Bug fix: Fitness validity in TermMinFitnessOp and TermMaxFitnessOp    (MW)
+
+  The two termination operators TermMinFitnessOp and TermMaxFitnessOp
+  were not testing the validity of the individuals' fitness values.
+  Validity of fitness values are now tested.
+
+- Corrected inconsistance with hall-of-fame computation in knapsack     (CG)
+
+  Configuration of knapsack have been modified for better computation
+  of the Pareto hall-of-fame during the evolution. (Thanks to Bastien)
+
+- Bug Fix: MilestoneWriteOp now handles exceptions during write()       (MW)
+
+- Added commas to uint2ordinal() when num is 10,000 or more             (MW)
+
+- Fix bug in standard STGP mutation operator                            (CG)
+
+  Since the changes done in version 3.0.0, typed standard STGP mutation
+  was not working properly, because of a change in the architecture of the
+  GP initialization operators. (Thanks to Nicolas Navet)
+
+- Altered parity example so that it matched Koza's work in GPII         (MW)
+
+  Function set is now (AND,OR,NAND,NOR), as stated in GPII book.
+
+- Maximum generation termination modified                               (CG)
+
+  Termination of an evolution is no more deactivated with a maximum
+  number of generation set to 0. This parameter value rather stop the
+  evolution after the application of bootstrap operator set.
+
+- Bug fix to support ADF without arguments                              (CG)
+
+  Fixed GP::Invoker::execute to allow ADFs without arguments, without
+  having to use a fake argument primitive.
+
+- Correction to minimal bounds for real-valued GA and ES                (CG)
+
+  Minimal bounds for real-valued GA and ES has been changed from DBL_MIN
+  (1e-308) to -DBL_MAX (-1e308), which make more sense for usual
+  unbounded real-valued optimisation problems.
+
+- Bug correction and improved support for CMA-ES.                       (CG)
+
+  An important  bug as well as some numerical rounding errors has been
+  fixed in CMA-ES implementation. A new termination criterion specific the
+  algorithm has been defined in order to interrupt CMA evolutions that has
+  converged. Function MuWCommaLambdaCMAFltVecOp::operate has been separated
+  into several smaller sub-functions, for modularity purposes. (Thanks to
+  Olivier Teytaud, Sylvain Gelly, Nikolaus Hansen, and Anne Auger)
+
+- Correction of randomizer reading/writing behavior                     (CG)
+
+3.0.1:                                                          (10/10/2005)
+
+- Several fixes to allow compilation on Mac OS X                   (CG + MP)
+
+- Fixes in headers inclusion to allow precompiled headers               (CG)
+
+
+3.0.0:                                                          (04/10/2005)
+
+- Customizable allocator for STL containers                             (CG)
+
+  Allocator used to instantiate elements of STL containers can be
+  customized, in order to use an allocator different from the standard one.
+
+- IndividualSizeFrequencyStatsOp statistics operator                    (CG)
+
+  Statistics computation operator IndividualSizeFrequencyStatsOp has been
+  implemented in order to display the different individual size
+  frequencies over the evolutions. (Thanks to Matthew Walker)
+
+- Methods to read individuals from files                                (CG)
+
+  New convenient methods readFromFile have been added to classes
+  Beagle::Individual and Beagle::IndividualBag in order to read individuals
+  from XML files without having to set-up an evolutionary context.
+
+- GP ephemeral value mutation operators                                 (CG)
+
+  New ephemeral constants mutation templated operator
+  GP::MutationEphemeralOpT, along with a specific instance for Double-typed
+  ephemeral mutation class named GP::MutationEphemeralDoubleOp, have been
+  added to the GP framework. These operators are useful to mutate the
+  values contained in ephemeral random constant primitives.
+
+- TSP example to illustrate integer vector representation               (CG)
+
+  Addition of a new integer vector representation example, that is the
+  Traveling Salesman Problem (TSP) solved by an indexed integer
+  representation GA.
+
+- Integer vectors representation                                        (CG)
+
+  An integer vector representation is now part of the GA framework. Proper
+  initialization, crossover and mutation operators has been defined, along
+  with a genotype and evolver classes. A special case of the integer
+  vector representation to contain a shuffled list of indices from
+  0 to (n-1), where n is the size of the vectors, has been defined.
+  Specific initialization, crossover and mutation operators has also been
+  defined to use the integer vector as a list of indices.
+
+- NSGA2Op modified for a parametrized number of children                (CG)
+
+  The ratio of the number of children generated at each generation over
+  the population size in the NSGA2 multiobjective replacement strategy
+  operator can now be configured by parameter 'ec.mulambda.ratio'. This
+  would allow an adjustment of the selection pressure at each generation.
+  This is a generalization of NSGA2 as a multiobjective (mu+lambda)
+  replacement strategy, common in the evolution strategy paradigm.
+
+- Matrix and Vector classes inherit from their PACC-Math equivalents    (CG)
+
+  Classes Beagle::Matrix and Beagle::Vector have been modified to inherit
+  from their PACC-Math equivalents, PACC::Matrix and PACC::Vector.
+
+- Migration of Beagle's inputs/outputs to PACC-XML facilities           (CG)
+
+  Beagle XML parsing and streaming facilities have been replaced by the
+  PACC-XML ones (which are simply a more mature version of them). The
+  read* and write* methods present in almost every Beagle classes have been
+  modified to comply with PACC-XML type and method names.
+
+- Modified randomizer class                                             (CG)
+
+  Beagle::Randomizer have been modified to inherit from PACC::Randomizer
+  in order to minimize functionality overlaps. PACC::Randomizer is a
+  different encapsulation of the Mersenne Twister random number generator.
+  Beagle::RandomizerMersenne class has been removed and roll* methods
+  have been changed from virtual to inline.
+
+- ArrayT template                                                       (CG)
+
+  New generic array type defined. The template inherits from both
+  Beagle::Object and the std::vector template. Typedefs have been defined
+  for basic C++ types as IntArray, UIntArray, DoubleArray, FloatArray,
+  LongArray, BoolArray, ULongArray, ShortArray and UShortArray. Type
+  IntegerVector have been replaced by the functionally equivalent UIntArray
+  type.
+
+- Whole system written in milestone files                               (CG)
+
+  All system components are now written into milestone files. Register is
+  now written as a part of the system.
+
+- Modification to STGP support                                          (CG)
+
+  STGP support in GP framework has been slightly modified. The typing now
+  use directly the std::type_info information to compare node typing.
+  For efficiency concerns, constrained initialization and crossover
+  operators has been changed to select node of compatible typing instead
+  of blindly trying different nodes. (Thanks to Graham Thomson)
+
+- Dynamic configuration of primitive sets                               (CG)
+
+  Primitive set composition can now be stated dynamically (without
+  recompilation) into the configuration file.
+
+- Evolutionary module acquisition support in GP framework          (MW + CG)
+
+  Evolutionary module acquisition (Angeline and Pollack, 1993) is now
+  supported as a standard GP feature. (Thanks to Matthew Walker)
+
+- Refactored ADF mechanism, generic GP::Invoker class                   (CG)
+
+  The mechanism for ADFs have been completely rewritten in a more generic
+  fashion. Evolvable module acquisition, automatically defined iterations
+  and such can now be relatively easily implemented over the GP::Invoker
+  class.
+
+- Small bug fix in GP::PrimitiveUsageStatsOp                            (CG)
+
+  Primitive usage statistics didn't count the primitives of the first
+  individual of each deme. (Thanks to Graham Thomson)
+
+- Mechanism to interrupt GP individual execution                   (CG + MW)
+
+  A new mechanism based on exception handling has been added to GP
+  framework in order to interrupt the execution of GP individuals after a
+  given number of nodes evaluation or when the time allowed is expired.
+  If one of this criterion is reached, an special exception is thrown and
+  must be caught in the GP fitness evaluation operator. New GP exception
+  operators has been defined for that purpose. The maximum number of nodes
+  and the time allowed is specified in the GP context used for the
+  individual execution. (Thanks to Matthew Walker)
+
+- Migration of project files to KDevelop 3                              (CG)
+
+  KDevelop 3 is now part of the recent Linux distributions, so the
+  different Open BEAGLE KDevelop project files have been migrated this
+  new version.
+
+- Dynamic ADF with variable number of arguments                    (MW + CG)
+
+  Number of ADFs of the GP individuals can now be determined dynamically,
+  by the initialization or mutation operators. ADFs can be added
+  on-the-fly to a GP individual. The number of ADF arguments can also be
+  dynamically stated and can change from an individual to another. A new
+  ADFArgument type has been defined and should be used instead of simple
+  TokenT variable (as it was done before). Constrained operators must
+  also be used in order to generate valid individuals. (Thanks to Matthew
+  Walker)
+
+- Explicit association of GP trees to GP primitive set             (MW + CG)
+
+  The association between GP trees and GP primitive set has been changed.
+  Before, a given GP tree at the ith position in an individual was
+  implicitly associated to the ith primitive set of the primitive super
+  set. Now, the link between the two is explicit and relaxed, stated in
+  an integer member of GP tree. There is no constraints on the associations
+  possible between GP trees and GP primitive sets and there is no need to
+  have as much primitive sets as there is GP trees in an individual (i.e.
+  there could be only one primitive set available while having a variable
+  number of GP trees in the individuals). (Thanks to Matthew Walker)
+
+- Dynamic selection weight in primitive set                        (MW + CG)
+
+  Selection weight of a primitive can now be stated dynamically, depending
+  on the context. Method GP::Primitive::isSelectionWeightStable state
+  whether, for a given number of argument, it is possible that the weight
+  of the primitive can change. Method GP::Primitive::getSelectionWeight is
+  used to generate the selection weight value in itself for the associated
+  primitive, in the given context. (Thanks to Matthew Walker)
+
+- Dynamic number of arguments for GP primitives                    (MW + CG)
+
+  Number of arguments of GP primitives can now be stated dynamically, by
+  properly over-defining method GP::Primitive::giveReference. Selection of a
+  primitive in a primitive set has been changed, only one method
+  (GP::PrimitiveSet::select) do all kind of selection, using special
+  number of arguments values for selecting a primitive into all the branches
+  or all the primitives. (Thanks to Matthew Walker)
+
+- GP primitives: GP::AbsT and GP::IfThenElseT                      (MW + CG)
+
+  Two new GP primitives added, AbsT, which compute the absolute value of its
+  argument, and IfThenElseT, a four-argument conditional primitive.
+  (Thanks to Matthew Walker)
+
+- Stack trace mechanism added to exceptions try/catching           (MW + CG)
+
+  Method call trace mechanism added to follow function calls when Beagle
+  exception is thrown but not caught. To trace a method call, the macros
+  Beagle_StackTraceBeginM and Beagle_StackTraceEndM must be added
+  respectively at the beginning and end of the method implementation. The
+  call stack is displayed along with the error message by calling the
+  method Exception::explain. All class methods of Open BEAGLE have been
+  modified to have the Beagle_StackTraceBeginM/Beagle_StackTraceEndM
+  macros surrounding them. (Thanks to Matthew Walker)
+
+- Miscellaneous warning/error messages addition and improvements        (MW)
+
+  Matthew slightly improved and added warning/error messages he encounters
+  during its developments.
+
+- System components                                                (MW + CG)
+
+  Component map added to the basic evolutionary system (class System).
+  A system component can be added dynamically to the system as a new system
+  composing element with no need to extend/define a class specific to the
+  problem/algorithm at hand. The logger, register and GP primitive super
+  set have been re-defined as system components. (Thanks to Matthew Walker)
+
+- Object::getName() method and NamedObject class                   (MW + CG)
+
+  Method getName() added to class Beagle::Object in order to retrieve the
+  name of any objects. Generic named object class added into the
+  architecture. Several changes made in order to make specific named objects
+  inheriting from the new generic named object class.
+  (Thanks to Matthew Walker)
+
+- Separation of log level parameter for console and file logging   (MW + CG)
+
+  Log level is now separated for console and file logging. Two parameters
+  ('lg.console.level' and 'lg.file.level') are now available to
+  independently set the log level at the console and into a file. Parameter
+  to disable/enable console logging have been removed from the system.
+  (Thanks to Matthew Walker)
+
+- Change format of GA::FloatVector                                 (CG + JS)
+
+  Now use ';' instead of ',' to separate vector components in order to
+  be consistent with Beagle::Matrix format. (Thanks to Jim Shepherd)
+
+- Enhancement of DecimateOp operator                                    (CG)
+
+  If value of parameter 'ec.decimation.ratio' is set to -1.0, DecimateOp
+  operator will resize the population to the real size given in parameter
+  'ec.pop.size'. This fix some problems encountered with the simultaneous
+  use of ES and Distributed BEAGLE.
+
+- Bug fix in GA::ESVector::read                                         (CG)
+
+  Bug fix to allow reading of ES vector. The bug was caused by the use
+  of double instead of float values in ES vector representation.
+
+- Real-valued GA genotype values discretization                    (JS + CG)
+
+  Real-valued GA genotypes values can be discretized by setting an
+  increment on the possible values. For example, setting the increment of
+  0.5 make the domain of possible value equal to ...,-0.5,0.0,0.5,1.0,... .
+  (Thanks to Jim Shepherd)
+
+- MutationGaussianFltVecOp: per-value setting for mu and sigma     (JS + CG)
+
+  Mu and sigma parameters for MutationGaussianFltVecOp operator can now be
+  set on a per-value basis, allowing to modulate the mutation effect
+  for the different parameters composing the float vectors.
+  (Thanks to Jim Shepherd)
+
+- Bug fix in Matrix::tql2                                               (CG)
+
+  Index out-of-bound bug fix in method Matrix::tql2, used to compute
+  eigenvalues and eigenvectors.
+
+- Bug fix in method Matrix::extract                                (CG + MP)
+
+  Bug fix when extracting a sub-matrix from another matrix.
+
+- Added InvalidateFitnessOp class                                       (MW)
+
+  Fitness value for all the individuals of a deme can be invalidated by
+  adding the operator InvalidateFitnessOp to the evolver's main-loop.
+  (Thanks to Matthew Walker)
+
+- Bug fix in GP::MutateSwapSubtreeOp                                    (MW)
+
+  Silly bug in GP::MutateSwapSubtreeOp fixed. (Thanks to Matthew Walker)
+
+- Added GP::ValidateOp class                                            (MW)
+
+  Operator GP::ValidateOp check the validity of constrained GP trees and
+  report any invalid trees, which is useful for debugging.
+  (Thanks to Matthew Walker)
+
+- Added GP::Tree::fixSubTreeSize()                                      (MW)
+
+  Method GP::Tree::fixSubTreeSize() fix the sub-tree member of a GP::Node
+  after a GP::Tree alteration. (Thanks to Matthew Walker)
+
+
+2.2.0:                                                          (28/10/2004)
+
+- Fix to compile with gcc 3.4                                      (LS + CG)
+
+  Bug fix in files AbstractContainerAllocT.hpp and VivariumAllocT.hpp
+  to allow compilation with gcc 3.4. (Thanks to Laurent Steffan)
+
+- SBX float vector crossover added                                      (CG)
+
+  Operator for simulated binary crossover (SBX) (of Deb and Beyer) added
+  for float vector representation.
+
+- CMA-ES implemented for float vectors representation                   (CG)
+
+  CMA-ES (of Nikolaus Hansen et al.), one of the most powerful evolutionary
+  algorithms for real-valued parameters function optimization, has been
+  implemented for float vector representation. The algorithm can be used
+  in any float vector problems, by specifying the use of the
+  GA-MuWCommaLambdaCMAFltVecOp replacement strategy and the
+  GA-MutationCMAFltVecOp mutation. See sample configuration file
+  "maxfctfloat-cmaes.conf" of the maxfctfloat example for an usage
+  illustration.
+
+- Improved replacement strategy operators                               (CG)
+
+  NSGA2Op, MuCommaLambdaOp and MuPlusLambdaOp replacement strategy
+  operators have been improved to be used without evaluation operators in
+  the breeder tree. This will allow to use these replacement strategy
+  operators with special evaluation operators that can't be in a breeder
+  tree, such the ones of Distributed BEAGLE or the co-evolution framework.
+
+- RandomizerNR class removed                                            (CG)
+
+  Due to some concerns on the licensing policies of the code presented in
+  the book "Numerical Recipes in C", the random number generator class
+  RandomizerNR (which correspond to the routine rand1 of NR book) has been
+  removed.
+
+- Improved float vector blend crossover (BLX-alpha)                     (CG)
+
+  Blend crossover for float GA and paired ES has been updated to be conform
+  to BLX-alpha crossover of Eshelman and Schaffer.
+
+- Per-value range limits in GA framework                      (JS + CG + DS)
+
+  Float GA and paired ES now includes a range limit for each parameters
+  composing the individuals, instead of a global minimum and maximum.
+  (Thanks to Jim Shepherd for the code and David Stocks for the suggestion)
+
+- GA individual initialization operations limited to one genotype       (CG)
+
+  To ease the use of the GA framework, initialization operators are now
+  limited to generate individual with one genotype (bit string,
+  float vector or ES-pair vector). GA examples have been updated
+  accordingly.
+
+- New Matrix and Vector classes for basic numerical computations        (CG)
+
+  New classes Matrix and Vector are added with support for basic linear
+  algebra operations plus some special operations for the computation of
+  matrix inverse, determinants, and eigenvalues/eigenvector.
+
+- Bug fix in the autoconf configuration of all examples            (MD + CG)
+
+  (Thanks to Marc Dubreuil)
+
+- Minor bug correction for compiling full debug                         (CG)
+
+  Small bug fix at line 185 of file HierarchicalFairCompetitionOp.cpp to
+  allow compilation in full debug mode. (Thanks to David Stocks)
+
+- Changes in log outputs given by the evolver                           (CG)
+
+  Log outputs given by the evolver such as "Evolving the 1st deme for
+  generation 6" have been changed to avoid writing the generation
+  number. This change is necessary as there was confusion about generation
+  number given by the evolver vs the statistics for Distributed BEAGLE
+  applications.
+
+- Primitive usage statistics operator                              (MW + CG)
+
+  Operator named GP::PrimitiveUsageStatsOp that compute usage statistics
+  of each primitives in GP trees and display the results in the logs.
+  (Thanks to Matthew Walker)
+
+
+2.1.5:                                                          (03/08/2004)
+
+- Re-writing of hierarchical fair competition operator                  (CG)
+
+  The HFC migration operator has been rewritten in order to use adaptive
+  fitness thresholds to migrate individuals from one deme to another,
+  instead of using unconditional migration policy.
+
+- Major change in deme migration mechanism                              (CG)
+
+  A migration buffer has been added to the deme structure. This buffer
+  should now be used by all migration operators to move individuals
+  between demes. The migration buffer in deme is written in milestone
+  files, which allow reproduction of multiple demes evolutions.
+  MigrationRandomRingOp operator updated according to this change.
+
+- Random number generator now initialized with /dev/urandom on Unix     (CG)
+
+  Seed of random number generator is now taken from system device
+  /dev/urandom on Unix, when available.
+
+- Bug fix in Beagle::MigrationRandomRingOp                              (CG)
+
+  Migration buffer in migration random ring operator was not checked to be
+  emptied when starting a new evolution with a given evolver.
+  (Thanks to Michel Fortin and Leila Dridi)
+
+- Bug fix in GA::BitString::convertGray2Bin                             (MF)
+
+  Bug fix in computation for the conversion of Gray code to binary code.
+  (Thanks to Michel Fortin and Leila Dridi)
+
+- Bug fix in statistics computation operator                            (CG)
+
+  Statistics calculation operator now computes vivarium statistics
+  only when all demes of a generation have been processed, with no
+  assumption on the order of the demes. This fix is necessary as
+  Distributed BEAGLE server send demes out-of-order to evolver clients.
+
+- Genotype/phenotype distance measure methods                           (CG)
+
+  Two methods have been added to Beagle::Individual to compute distance
+  between two individuals in genotype and phenotype space:
+  getDistanceGenotype and getDistancePhenotype. These methods are
+  implemented by throwing an exception; they must be over defined by the
+  user for his application. (Suggestion of Jianjun Hu)
+
+
+2.1.4:                                                          (04/07/2004)
+
+- Hierarchical Fair Competition (HFC) operator                          (CG)
+
+  HFC operator inspired by the work of Hu and Goodman. The operator is
+  actually implemented as a migration operator that is at the same time a
+  replacement strategy. The breeder tree of the replacement strategy is
+  called to generate the new individuals.
+
+- InitializationOp now a breeder operator                               (CG)
+
+  Abstract initialization operator now inherits from BreederOp, to enable
+  using it in breeder trees. The operator can be used pretty much like a
+  selection operator, as a leaf in a breeder tree that generate new
+  individuals. The breeding probability is the reproduction probability.
+
+- Comments in XML output of configuration dump or milestone write       (CG)
+
+  Comments in XML files when writing a configuration dump or a
+  milestone.
+
+- Lexicographical parsimony pressure tournament selector operator       (CG)
+
+  New selection operator based on tournaments selection, breaking ties by
+  selecting the smallest individual.
+
+- getSize() methods added to Individual and Genotype classes            (CG)
+
+  getSize() method added to Individual, Genotype, GA::BitString,
+  GA::FloatVector, GA::ESVector and GP::Tree classes. Return length for
+  genotype representation and total length composing an individual.
+
+- Random shuffle deme operator                                          (CG)
+
+  New operator to random shuffle individuals in a deme. Useful for
+  micro GA-like evolution with Distributed BEAGLE.
+
+- Weights to modulate primitives selection in GP primitives sets        (CG)
+
+  Primitives inserted in primitives set now get a weight that module
+  the importance of being selected during initialization and mutation.
+  Higher a weight value, higher chances are for the associated primitive
+  to be selected. Default weight value is 1.0.
+
+- Bug fix in Pareto Hall-of-Fame update methods                         (CG)
+
+  Small index bug made update methods of Pareto hall-of-fame incorrect.
+
+- Coev::TermBroadcastOp termination operator                            (CG)
+
+  Termination criterion to broadcast and receive termination criterion
+  notices between threads when doing co-evolution.
+
+- Enhanced message of casting exception in Individual::operator=        (CG)
+
+  Message thrown when fitness types mismatch during an individual
+  copy has been enhanced to help users figuring out the problem.
+  (Thanks to Matthew Walker)
+
+- Bug fix in Register::interpretArgs                               (CG + MW)
+
+  Remove a test that throw an exception when a parameter value on the
+  command-line is empty. (Thanks to Matthew Walker)
+
+- Bug fix in GP::Tree                                                   (MW)
+
+  Small typo in interpret() method. Only showed up with Beagle configured
+  with --enable-full-debug.
+
+
+2.1.3:                                                          (13/04/2004)
+
+- Bug fix in GA::CrossoverUniformOpT and GA::EvolverES                  (CG)
+
+  Small bug fix in constructors of GA::CrossoverUniformOpT and
+  GA::EvolverES.
+
+
+2.1.2:                                                          (08/04/2004)
+
+- Support for pre-compiled headers on MS Visual C++ .NET                (CG)
+
+  Pre-compiled headers are now generated when compiling the libraries on
+  MS Visual Studio C++ .NET. This can speed-up significantly compilation
+  time.
+
+- New method to get document root tag in XMLParser                      (CG)
+
+  Method XMLParser::getRootTagNode() has been added to conveniently allow
+  the user to get access the document root tag node in one line of code.
+
+- Robust reading of unknown parameters in register file                 (CG)
+
+  When reading a register file, when a unknown parameter is met in a
+  configuration file, the new policy is to log a warning message,
+  instead of throwing an exception.
+
+- Bug fix in Beagle::WrapperT<T>::read                                  (CG)
+
+  Reading a wrapped value from a empty XML node doesn't change the value
+  of the wrapped value. This causes problem for the type Beagle::String,
+  where an empty XML node means an empty string value. The read method
+  is now changed to assign the default constructor value the wrapped value
+  when reading it from an empty XML node. (Thanks to Matthew Walker)
+
+- Functions for searching in XML trees                        (MW + CG + MP)
+
+  Two functions XMLNode::find have been added to search for a given node
+  type and value in an XML tree. (Thanks to Matthew Walker)
+
+- Update of Threading module and XMLNode class                     (MP + CG)
+
+  Module Threading has been updated and several methods to modify XML
+  tree has been added in class XMLNode, according to the changes made in
+  Marc Parizeau's classes.
+
+- CrossoverBlendESVecOp operator added                                  (CG)
+
+  This operator implements a crossover operation for ES vectors where the
+  offsprings are on a random position on the line connecting the values
+  of the parents' values and strategy parameters.
+
+- File renamed when in the way of an Open BEAGLE file                   (CG)
+
+  If a file with the same name of a milestone, configuration or log file
+  that is going to be written to disk, the existing file is renamed by
+  appending an '~' to the filename. This allow some kind of backup
+  mechanism for existing files, avoiding undesired file deletion.
+
+- Support for gzipped milestone / configuration files                   (CG)
+
+  On platforms where a zlib installation is detected (most modern Linux
+  distributions include it), support for reading gzipped milestone /
+  configuration files is provided. Milestones are now gzipped when
+  written on disk. Parameter "ms.write.compress" allows to disable
+  milestone compression. Windows users most have zlib installed on their
+  computer and set preprocessor flag BEAGLE_HAVE_LIBZ in header
+  config.hpp to make use of this feature.
+
+- Method to sort hall-of-fames in the descending order                  (CG)
+
+  Method HallOfFame::sort() has been added to sort hall-of-fames
+  in the descending order.
+
+- Method Logger::terminate() to close logger                            (CG)
+
+  Method Logger::terminate() added to manually close a running logger.
+
+- DecimateOp and OversizeOp operators added.                            (CG)
+
+  Two new operators have been added: DecimateOp and OversizeOp.
+  DecimateOp shrinks the population by resizing to a ratio of the original
+  population size, keeping only the best individuals of the original
+  population. OversizeOp oversizes the population, using a breeder tree
+  to generate the new individuals. These two operators allow 1) a new way
+  to implement (mu+lambda) ES and 2) the implementation of a decimation
+  operation similar to the one described in Koza's GP1 book.
+
+- Aliases for statistics computation of minimization fitnesses          (CG)
+
+  Aliases for statistics computation operators have been defined for
+  minimization fitnesses measure. This allow, for example, to use
+  "StatsCalcFitnessSimpleMinOp" operator (aliased to operator
+  "StatsCalcFitnessSimpleOp") in conjunction of fitnesses of type
+  "FitnessSimpleMinOp".
+
+- Configuration dumper changes                                          (CG)
+
+  Small change to allow parameter "ec.conf.dump" to be in parameter file
+  with no value, without doing a configuration dump.
+
+- Bug fix when parsing of big XML files                                 (CG)
+
+  There was risk of stack overflow during the destruction of big XML trees.
+  The problem was that in the destruction of a XML node, the destructor of
+  the first child and next sibling node is called recursively
+  until the leaves are reached. The destructor is now more intelligent by
+  looping into children and siblings in order to avoid stack overflow.
+
+- Validity attribute added to fitness and stats XML representation      (CG)
+
+  An attribute named "valid" is added to fitness and statistics
+  representation. If the value of the attribute is "no", the fitness or
+  statistics read is considered invalid, and so the content is not read.
+
+- Default constructor for specialized evolvers added                    (CG)
+
+  Default constructors of specialized Evolver classes now have a default
+  constructor that add the flavor-specific operators without setting
+  the bootstrap and main-loop operator sets.
+
+
+2.1.1:                                                          (17/01/2004)
+
+- Several small changes to compile on gcc 2.96.                         (CG)
+
+- StatsCalcFitnessKozaOp class scoped in GP namespace                   (CG)
+
+  This class was misplaced into Beagle namespace while it should be scoped
+  into namespace Beagle::GP.
+
+- Small changes in file format                                          (CG)
+
+  Small changes are made in for file format. More specifically attribute
+  "mutdistribpb" renamed "distribpb" in operator CrossoverUniformOp, and
+  type of genotype for ES, renamed "esvector" instead of "ESVector".
+  Backward compatibility has been retained with old name. Attribute "size"
+  in four standard genotypes is now optional, the same for attribute
+  "depth" of GP tree genotype.
+
+- Bug correction for multiobjective domination computation              (CG)
+
+  Bug fix for Pareto domination computation. When comparing multiobjective
+  fitness measure A with B, fitness A was said not dominated by B in the
+  case where some objective values of A are equal to those of B, but none
+  objective values of A where greater than B.
+
+- Bug correction in spambase example                                    (CG)
+
+  Primitives in spambase example still used symbol as name. This cause
+  problem with new GP tree XML format, especially for LessThan primitive
+  which was using "<" symbol.
+
+
+2.1.0:                                                          (11/12/2003)
+
+- Move to MS Visual .NET 2003 solution and project files                (CG)
+
+  Solution and project files for MS Visual Studio .NET are now generated
+  using version 2003, in opposition to version 2002 which was used
+  previously. Forward compatibility is not a practise at Microsoft, so
+  you probably need to pass to 2003 to use the solution and project files
+  provided. But, it is still possible to regenerate these files for
+  VS.NET 2002. Sorry for the problems that this might cause to Windows
+  users, but the VS.NET installation in my lab is now fully 2003.
+
+- Evolution strategy example: function maximization                     (CG)
+
+  Usual GA function maximization example is implemented with ES as example
+  'maxfctes'.
+
+- Evolution strategy support added to GA framework                      (CG)
+
+  Simple support for Evolution Strategy (ES) is added in the GA framework.
+  ES genotype, implemented in class GA::ESVector, is defined as a vector of
+  (value,strategy) pairs, where 'value' is the real value of the optimized
+  value, and 'strategy' is the mutation strategy parameter. A simple ES
+  mutation operator is defined in class GA::MutationESVecOp along with an
+  ES evolver. Generic GA crossover operators have also been adapted to ES.
+
+- Bug fix in RandomizerMersenne::rollUniform                            (CG)
+
+  There was a bug in method RandomizerMersenne::rollUniform, when the lower
+  bound was not 0. (Thanks to "Graamone")
+
+- Seeding population from file                                     (CG + AM)
+
+  Seeding population from file code added in basic initialization
+  operator. File containing seeds is specified by parameter
+  "ec.init.seedsfile". (Thanks to Andrew Marek)
+
+- New termination criterion operators                                   (CG)
+
+  Three new termination criterion operator classes added. TermMaxEvalsOp:
+  interrupt evolution after the given number of fitness evaluation is done.
+  TermMaxFitnessOp: interrupt evolution when an individual has a fitness
+  value higher or equal to the given value. TermMinFitnessOp: interrupt
+  evolution when an individual has a fitness value less or equal to the
+  given value.
+
+- Pareto front hall-of-fame                                             (CG)
+
+  ParetoFrontHOF, Pareto front hall-of-fame class. Compute the Pareto front
+  of solution for multiobjective EA populations. ParetoFrontCalculateOp:
+  operator to compute Pareto front of population just before milestone
+  writing. This operator must be in evolver's operator set between
+  termination criterion operators and MilestoneWriteOp.
+
+- Co-evolution example: co-evolutionary symbolic regression        (JW + CG)
+
+  A two populations competitive co-evolution example, with a first population
+  of training set samples, and the second population of symbolic expressions.
+  Based on the paper "Methods for Evolving Robust Programs" of Panait and
+  Luke. (Mostly done by Jiachuan Wang)
+
+- Changes in population constructors signatures                         (CG)
+
+  More coherent constructor signatures are used. Classes affected are:
+  Individual, Deme, Vivarium, GP::Individual, GP::Deme, GP::Vivarium,
+  IndividualAlloc, IndividualAllocT, DemeAlloc, DemeAllocT, VivariumAlloc,
+  and VivariumAllocT.
+
+- Real-valued GA example: function maximization                         (CG)
+
+  Usual GA function maximization example is implemented with for real-valued
+  genotypes as example 'maxfctfloat'.
+
+- Support for real-valued GA in GA framework                            (CG)
+
+  Basic real-valued GA fixed length genotype is added to the GA framework.
+  The following classes have been added to the distribution:
+  CrossoverOnePointFltVecOp, CrossoverTwoPointsFltVecOp,
+  CrossoverUniformFltVecOp, CrossoverBlendFltVecOp, EvolverFloatVector,
+  FloatVector, InitFltVecOp, MutationGaussianFltVecOp.
+
+- New GA crossover operators                                            (CG)
+
+  Two generic crossover operators has been added for vector-based EC:
+  two-points crossover and uniform crossover. Generic version of these
+  operators are defined as templates, while specific specialization of these
+  algorithms is defined for bit string and real-valued GA. Generic
+  implementation of one-point crossover, which was already available for
+  bit string GA is also given.
+
+- Major changes in GA framework                                         (CG)
+
+  Major changes happened in GA framework to allow future extension from a
+  simple bit string based GA to a more generic vector-based EA framework,
+  with support for bit string GA, real-valued GA, ES, and possibility to
+  extend to other types of vector-based EAs, including variable-length ones.
+
+  Changes include:
+    CrossoverOp      --> CrossoverOnePointOpT and CrossoverOnePointBitStrOp
+    MutationOp       --> MutationFlipBitStrOp
+    InitializationOp --> InitBitStrOp
+    Evolver          --> EvolverBitString
+    GA::Individual   --> removed
+    GA::Deme         --> removed
+    GA::Vivarium     --> removed
+
+- Default GP fitness class changed                                      (CG)
+
+  Default GP fitness measure changed from the overly complicated
+  GP::FitnessKoza class to the less confusing FitnessSimple class. New
+  computation statistics is added to GP framework, to compute statistics on
+  both simple fitness values and GP trees depth and size. GP examples and
+  configuration files have been updated accordingly.
+
+- Co-evolution example: two-populations iterated prisoner's dilemma     (CG)
+
+  Example two-populations iterated prisoner's dilemma, implemented with
+  3 bits bit strings, is added to illustrate co-evolution and Parizeau's
+  multi-threading classes.
+
+- Multiple populations co-evolution basic support                       (CG)
+
+  Multiple populations co-evolution basic support is added with a
+  multi-thread-ready evaluation operator. The approach used need to
+  associate each co-evolving populations to a specific thread, and to do
+  the evaluation operation by "mating" the evaluation sets of the different
+  populations/threads. The OS specific multi-threading calls are encapsulated
+  by using Marc Parizeau's multi-threading classes, included in the
+  co-evolution framework. Parizeau's threading classes run on Win32 and
+  POSIX compliant Unix flavors, which includes Linux, Mac OS X, and Solaris.
+
+- GA multiobjective example: Multiobjective 0/1 knapsack                (CG)
+
+  Multiobjective 0/1 knapsack example illustrates the use of multiobjective
+  EA with GA.
+
+- Multiobjective fitness and selection methods                          (CG)
+
+  Two multiobjective fitness measures have been added to the framework:
+  FitnessMultiObj and its minimization companion FitnessMultiObjMin. Two
+  multiobjective selection operators have been added: NSGA2Op, implementing
+  the NSGA-II MOEA selection algorithm as a breeder's replacement strategy,
+  and NPGA2Op, implementing the NPGA-II MOEA selection algorithm in a
+  standard selection operator.
+
+- Improved configuration file support with libtool                      (CG)
+
+  The search path has been improved to correctly find configuration
+  files when debugging or executing Open BEAGLE binaries dynamically linked
+  using libtool.
+
+- Example binaries *-debug removed                                      (CG)
+
+  To reduce confusion and disk space, statically linked example binaries
+  (named *-debug) are removed from the autoconf/automake configuration.
+
+- Bug correction in statistics computation operators                    (CG)
+
+  A computation bug with statistics computation operators of demes of
+  size 1 has been fixed. (Thanks to Jianjun Hu)
+
+
+2.0.0:                                                          (24/09/2003)
+
+- LVSN contact address added in license comments of headers/sources     (CG)
+
+- Two new selection operators: SelectRouletteOp and SelectRandomOp      (CG)
+
+  Two new selection operators are added to Open BEAGLE: SelectRouletteOp
+  which is fitness proportional roulette selection, and SelectRandomOp
+  which is uniformly distributed random selection of individuals.
+
+- GP operators supporting constrained trees splitted                    (CG)
+
+  GP operators that supports constrained trees (crossover, mutation,
+  and initialization) have been splitted in two operators, with one simple
+  version not including constraints handling, and a second version, with
+  word "Constrained" added in their name, supporting topological
+  constraints.
+
+- Negative fitness values and higher precision statistics               (CG)
+
+  The classes associated to the fitness measures now support the
+  possibility to use negative fitness value. The statistics are computed
+  using double-precision arithmetics, which allow better precision and
+  limit the effect of overflows.
+
+- Initialization from file, without command-line arguments              (CG)
+
+  It is possible for the user to initialize the whole system directly from
+  a file, without having to give the command-line values (argc/argv of
+  main() routine).
+
+- Configuration files includes evolver structure                        (CG)
+
+  The configuration file (.conf file) now include in addition to the
+  parameters of the register, the possibility to set the configuration
+  of the evolver. The name of the parameters associated to the configuration
+  file have been changed to use the prefix "ec.conf" (i.e. configuration
+  file name: "ec.conf.file", configuration file dump: "ec.conf.dump").
+  The mechanism to read and write configuration has significantly changed.
+
+- Dynamic evolver configuration from XML files                          (CG)
+
+  Operator sets composing evolvers can now be written and read from file
+  directly. A new way of doing things imply that each usable operators
+  are putted into the evolver, are used to compose the operator sets
+  when read from file. The operators have also been modified to be setup
+  dynamically from files.
+
+- Modified operators to comply with breeder model                       (CG)
+
+  Several operators such crossover, mutation, selection, and evaluation
+  have been modified to be usable as breeder operators.
+
+- (Mu,Lambda) and (Mu+Lambda) replacement strategies                    (CG)
+
+  The (Mu,Lambda) and (Mu+Lambda) replacement strategies, common in
+  Evolution Strategy (ES), have been added to the framework. (Mu,Lambda)
+  replacement strategy proceed by generating a new-born set of Lambda
+  individuals from a parent population of Mu individuals (where Lambda >
+  Mu). The Mu best individuals of the new-born population is used to make
+  the next generation of individuals. The (Mu+Lambda) differs from the
+  previous one by choosing the Mu best individuals to compose the new
+  generation from both the populations of Lambda new-borns and Mu parents.
+
+- Breeders and replacement strategies                                   (CG)
+
+  Breeders and replacement strategies concepts have been added to the
+  framework. A breeder operator is an operator that can process individuals
+  instead of demes, allowing a finer control over the evolutionary algorithm.
+  Breeders are structured as trees to generate new-born individuals one at
+  the time. Replacement strategies are the root of the breeder tree, which
+  insert each newly generated individual in the population following a given
+  strategy. Two replacement strategies have been implemented: generational
+  and steady-state.
+
+- New exception class RunTimeException                                  (CG)
+
+  New exception class RunTimeException added. This class covers
+  miscellaneous exception cases related to run time value checking.
+  Changes in different places in the code to throw RunTimeException instead
+  of other Beagle exceptions.
+
+- Read parameter operator removed from standard evolvers                (CG)
+
+  The RegisterReadOp has been removed from the bootstrap and main-loop
+  operator set of the standard evolvers, but still remain available in the
+  EC framework.
+
+- Bug correction in minOf() and maxOf()                                 (CG)
+
+  Bug correction in minOf() and maxOf(), by testing of the function
+  arguments for being Not-a-Number.
+
+- Number of processed individuals added in context                      (CG)
+
+  Basic EC context now has four new members: number of individuals
+  processed (evaluated) in the actual deme for this generation, number of
+  individuals processed in the whole evolution, number of individuals
+  processed in the vivarium for this generation, and number of individuals
+  processed in the vivarium for the whole evolution.
+
+- Changes in statistics mechanism                                       (CG)
+
+  Dynamic addition of statistical element is now possible. The statistics
+  computation for a deme is now done in statistics calculation operator
+  (no more in fitness class). Two new statistics calculation operator
+  added: StatsCalcFitnessSimple, and StatsCalcFitnessKozaOp.
+
+- File format changes                                                   (CG)
+
+  The file format has been changed, using the new XML I/O classes. Among
+  the changes, we note that file format is now completely XML standard
+  compliant, and that the GP trees are now written using a pure XML format.
+
+- New XML reading/writing classes                                  (CG + MP)
+
+  The Open BEAGLE XML input and output classes as been changed for
+  Marc Parizeau's XML parser and streamer. Signature of method Object::read
+  and Object::write has been changed accordingly. This imply that every
+  Open BEAGLE object that can be read and written have been changed to use
+  new XML I/O mechanism.
+
+- Gray code decoding facilities for bit strings                         (CG)
+
+  A new decoding method has been added to the GA framework, to allow the
+  decoding of gray-coded bit string to floating-point vectors. The
+  maxfct example has been changed to use gray-coded strings instead of
+  binary-coded ones.
+
+- Mersenne twister random number generator                              (CG)
+
+  A better (and faster) random number generator is now used in the
+  framework: the mersenne twister. This number generator is now used
+  by default by the framework, and I advice people to use it instead of
+  the old one. The old random number generator, based on rand1 of
+  "Numerical recipes in C", is still available.
+  See http://www.math.keio.ac.jp/~matumoto/emt.html for details on the
+  mersenne twister.
+
+- Post-initialization hooks                                             (CG)
+
+  Post-initialization hooks method called "postInit" has been added to
+  different components (logger, register, randomizer, operators). These
+  hooks provide an entry to a mechanism that is call once, after the system
+  is initialized and the parameters read from the configuration file, but
+  before the evolution is started.
+
+- Changes in fitness classes                                            (CG)
+
+  Some minor changes in fitness classes, to take account of invalid fitness
+  measure in comparison methods, and to enable calculation of statistics
+  for empty demes.
+
+- Changes in Individual::isIdentical                                    (CG)
+
+  The Individual::isIdentical method now tests whether two individuals are
+  equals, in term of their fitness value, before comparing their structural
+  similarity. This change affect the individuals putted in the hall-of-fame
+  as now, two structurally identical individuals, but with a different
+  fitness value, will no more considered as identical.
+
+- New class HallOfFame, hall-of-fame in the vivarium                    (CG)
+
+  The hall-of-fame mechanisms, which is essentially to preserve the
+  best-of-run individuals into a persistent and evolution independent
+  container, is now encapsulated into class HallOfFame. An hall-of-fame
+  has been added to the vivarium. The hall-of-fame size parameter name has
+  been changed for "ec.hof.demesize" for each deme's hall-of-fame size, and
+  "ec.hof.vivasize" for the vivarium's hall-of-fame size. Default size
+  values are now 1 for the vivarium's hall-of-fame, and 0 for the deme's
+  one. The members of the hall-of-fame also includes their associated
+  generation number and deme index of the moment they were put in
+  the hall-of-fame.
+
+- New GP mutation operator: MutationSwapSubtreeOp                 (CG + HJJ)
+
+  New mutation operator added to the GP framework: MutationSwapSubtreeOp.
+  This mutation operator implement a kind of self-crossover operation,
+  where two subtrees of the same individual are exchanged. Two types of
+  swap subtree mutation are possible: external subtree mutation, using two
+  exclusive subtrees, and internal subtree mutation, where one of the
+  swapped subtree is within the other. In the later case, three mutation
+  points are used. (In collaboration with Jianjun Hu)
+
+- Bug fix in method Deme::updateHallOfFame                              (CG)
+
+  Hall-of-fame was not correctly updated when HOF size is > 1.
+  (Thanks to Jianjun Hu)
+
+
+1.1.1:                                                          (28/05/2003)
+
+- Ordinal numbers correctly displayed.                             (MW + CG)
+
+  Ordinal numbers (1st, 2nd, 27th, etc.) are now correctly outputted in logs
+  using new function uint2ordinal. (Thanks to Matthew Walker)
+
+- Minor correction to compile with MS Visual C++ .NET 2003 (7.1).       (CG)
+
+  Some minor code correction to allow compilation with MS Visual C++ .NET
+  2003 (7.1). (Thanks to sashan)
+
+- Bug fix in GP::InitHalfOp.                                            (CG)
+
+  Type mistake for typedef of type GP::InitHalfOp::Bag.
+  (Thanks to Matthew Walker)
+
+- FitnessKoza now inherits from FitnessSimple.                          (CG)
+
+  The class FitnessKoza now inherits from FitnessSimple. The value of the
+  simple fitness is the normalized measure of the Koza's fitness. The
+  interface of the class stay unchanged. This will be useful as
+  selection operators usable with class FitnessSimple will also be usable
+  with class FitnessKoza.
+
+- New GA example: All Zeros.                                            (CG)
+
+  A new GA example is added to the distribution. It consists to discover
+  a bit string made only of zeros. It is expressed as a minimization
+  problem, as the fitness measure is the number of one in the bit string.
+  It also uses the new fitness class, FitnessSimpleMin.
+
+- New fitness class: FitnessSimpleMin.                                  (CG)
+
+  A new fitness class is added to the generic framework. The fitness is
+  similar to FitnessSimple with the exception that smaller values are
+  better. This new class is targeted for minimization problems.
+
+- Bug fix: config.hpp was not correctly installed on Unix               (CG)
+
+  Since version 1.0.3, file config.hpp was not correctly installed on Unix
+  with the command 'make install'.
+
+
+1.1.0:                                                          (30/04/2003)
+
+- Doxygen comments improvements                                         (CG)
+
+  Code comments improved. New section "Modules" in the doxygen
+  documentation, where the classes are regrouped in a human-understandable
+  fashion. This new section is appropriate to get familiar with the
+  framework.
+
+- Milestone file format modified                                        (CG)
+
+  With the class name and in the statistics changes, the milestone file
+  format has been changed. The old format is not recognized by the
+  framework, until someone develop a XSLT to transform them (any
+  volunteer?). Note that the actual new format is transitory
+  and will _NOT_ be compatible with the new format announced with the new
+  XML readers/writers.
+
+- GP tree size and depth measures added to GP::FitnessKoza              (CG)
+
+  Class GP::FitnessKoza now contained two new measures: the number of nodes
+  in the individuals, and the tree depth of the individual. This is
+  appropriate to monitor code growth in the population during evolutions.
+
+- Changes in statistics and fitness classes                             (CG)
+
+  A major revision of statistics classes has been made. Classes
+  MeasureStats and PopulationStats are eliminated. The GenerationStats is
+  renamed Stats, and the Measure struct is now in the same header than this
+  class ("beagle/Stats.hpp"). The members m3rdQuart (third quartile measure),
+  mMedian (median measure), and m1stQuart (first quartile measure) of the
+  Measure struct are eliminated. The mPopSize and mGeneration members
+  are moved into the Stats class and new member called mProcessed
+  (number of individuals processed (evaluated) in actual generation) and
+  mTotalProcessed (total number of individuals processed (evaluated) in the
+  whole evolution) are added to the class Stats. The statistics in the deme
+  are now only for the most recent generation. For the history statistics,
+  the user should consult the logs. A statistics member is added to the
+  vivarium. Class DisplayStatsOp merged into class StatsCalculateOp. The
+  statistics are generated directly by the class StatsCalculateOp and now
+  outputted passing by the logger. The declaration of the prototype of method
+  Fitness::calculateDemeStats is changed for Fitness::calculateStats.
+
+- New logging mechanism                                            (CG + MP)
+
+  A new logging mechanism has been developed. Two new classes are added
+  to the framework: Logger, abstract logging class, and LoggerXML, logger
+  that can write into a file and/or the standard output in a XML format.
+  A logger handle is added to the System class. There is 8 levels of logging
+  available, from level 0 (nothing) to level 7 (debug). High logging levels
+  include all the previous one. Macros are added to facilitate logging.
+  Several parameters for the logging are added in the register. See the
+  manual for more details. Almost half of the framework classes source
+  code, essentially the operators, have been modified to log their
+  operations.
+
+- Some name changes of classes and files                                (CG)
+
+  In order to make the whole organization more coherent, the name of
+  the following classes, with their associated files, has been changed.
+
+  CalculateStatsOp        -> StatsCalculateOp
+  GenerationStats         -> Stats
+  MaxGenerationTermOp     -> TermMaxGenOp
+  RandomRingMigrationOp   -> MigrationRandomRingOp
+  ReadMilestoneOp         -> MilestoneReadOp
+  ReadParametersOp        -> RegisterReadOp
+  SimpleFitness           -> FitnessSimple
+  TournamentSelectionOp   -> SelectTournamentOp
+  WriteMilestoneOp        -> MilestoneReadOp
+  GA::GenerationalEvolver -> GA::EvolverGenerational
+  GA::SteadyStateEvolver  -> GA::EvolverSteadyState
+  GP::GenerationalEvolver -> GP::EvolverGenerational
+  GP::KozaFitness         -> GP::FitnessKoza
+  GP::MaxHitsTermOp       -> GP::TermMaxHitsOp
+  GP::ReadMilestoneOp     -> GP::MilestoneReadOp
+  GP::ShrinkMutationOp    -> GP::MutationShrinkOp
+  GP::StandardMutationOp  -> GP::MutationStandardOp
+  GP::SteadyStateEvolver  -> GP::EvolverSteadyState
+  GP::SwapMutationOp      -> GP::MutationSwapOp
+
+
+1.0.3:                                                          (20/03/2003)
+
+- Prefix BEAGLE_ added to preprocessor flags in file config.hpp         (CG)
+
+  The prefix BEAGLE_ is now used as prefix of all preprocessor flags
+  generated by autoconf in file config.hpp.
+
+- Additional methods to read/write demes                                (CG)
+
+  The methods Deme::read and Deme::write have been cut into fine grained
+  methods to read/write the hall-of-fame and the population.
+
+- New templated functions isNaN, isInfinity, and isFinite to check      (CG)
+  whether a floating-point number is not-a-number, infinite or finite
+
+  These new functions enable the checking of finiteness of floating-point
+  numbers, that is a number is not NaN, infinite, or finite (nor NaN or
+  infinite). These functions are generic, portable replacements to previous
+  calls to the GNU macro isfinite, which is only available on gcc <= 2.95.
+
+- New templated arithmetic functions maxOf, minOf, and pow2Of           (CG)
+
+  These arithmetic functions replace the Beagle_MaxM, Beagle_MinM and
+  Beagle_Pow2M macros to evaluate respectively the maximum of two
+  numbers, the minimum of two numbers, and the square of a number.
+
+- Members mHallOfFame and mStats in Deme changed from value to handle   (CG)
+
+  Type of member Deme::mHallOfFame changed from Individual::Bag to
+  Individual::Bag::Handle. Type of member Deme::mStats changed from
+  PopulationStats to PopulationStats::Handle. This is to allow smart
+  pointing of deme's hall-of-fame and statistics. (Thanks to Jianjun Hu)
+
+- Bug correction in SteadyState::operate                                (CG)
+
+  The steady-state now update the hall-of-fame with the best of run
+  individuals. The method Deme::updateHOFWithIndividual is added in order
+  to update the hall-of-fame with one individual. (Thanks to Jianjun Hu)
+
+- Bug correction in Register::interpretArgs                             (CG)
+
+  Correction of a bug in the command-line parsing routines in the register.
+  When two consecutive arguments starting with -OB were given on the
+  command-line, the second was ignored. (Thanks to Jianjun Hu)
+
+
+1.0.1:                                                          (20/11/2002)
+
+- Autoconf/automake/libtool compilation front-end                       (CG)
+
+  This enable the compilation on different Unix systems using the GNU build
+  tools. It eliminates the manual setting of preprocessing flags to compile
+  on a given target (configure script now sets these flags automatically).
+  The preprocessing flags name are changed to be compliant with autoconf.
+  The user doesn't need anymore to edit the infamous 'beagle.make' and
+  'beagle-debug.make' files.
+
+- Support for MS Visual C++ .NET                                        (CG)
+
+  The framework now compiles under MS Visual C++ .NET. Some changes are
+  made to the code to allow it. Support for Borland C++ Builder is
+  abandoned. (Thanks to Mark Mikulec)
+
+- Modification of the file structure                                    (CG)
+
+  The examples are moved into the folder 'examples' and are now independent
+  projects. The 'make' and 'BCB' folders are eliminated and different
+  autoconf/automake files are added. The folders 'MSVCPP' contains the
+  MS Visual C++ .NET specific project files.
+
+- Complete revision of parameter tags and descriptions             (CG + MP)
+
+  The parameter tags are changed to augment consistency and organization.
+  Some useless and confusing parameters are eliminated. The short and
+  long help about the parameters is completely revised. The '-EC'
+  command-line prefix is changed for '-OB'.
+
+- Code revision of the examples                                    (CG + MP)
+
+  The four examples code are revised for clarity and simplicity.
+
+- Bug correction in SteadyStateOp::operate                              (CG)
+
+  Correction of a bug in the steady-state operator when mating two
+  individuals for crossover. (Thanks to Jianjun Hu)
+
+- Bug correction in symbolic regression example                         (CG)
+
+  The symbolic regression evaluation operator "initialize" method
+  previously called the random number generator. This may cause problems as
+  the random number generator internal state value may be changed after
+  this call. This situation is now corrected by sampling the equation to
+  regress at the first call to the method "evaluate". (Thanks to Brad
+  Pillow)
+
+- Bug correction in MigrationOp::migrate                                (CG)
+
+  Correction of a bug that happen when determining whether migration happens
+  or not, given the migration interval. (Thanks to Mathieu Roy)
+
+
+1.0.0:                                                          (22/07/2002)
+
+ - Modification of statistics classes                                   (CG)
+ - Modification of copy behavior of bags and bag allocators        (CG + MP)
+ - Several minor bug fixes                                              (CG)
+ - Several minor comments revision                                 (CG + MP)
+ - Minor changes to compile with Borland C++ Builder                    (CG)
+
+0.16.2 (BETA):                                                  (13/06/2002)
+
+ - Merge of mixed and uniform bags into unified bags               (CG + MP)
+ - Several class name changes                                      (CG + MP)
+ - Several minor bug fixes                                              (CG)
+ - The GP framework                                                     (CG)
+ - Tree GP test examples                                                (CG)
+
+0.16.1 (ALPHA):                                                 (21/03/2002)
+
+ - The makefiles structure                                              (CG)
+ - The generic OO foundations                                           (CG)
+ - The generic EC framework                                             (CG)
+ - The GA framework                                                     (CG)
+ - A simple GA test example                                             (CG)
+
+
+

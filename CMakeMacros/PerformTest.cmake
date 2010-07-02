@@ -1,0 +1,11 @@
+# Macro used to perform some configuration tests
+include(CheckCXXSourceCompiles)
+macro(PerformTest RESULT_VAR)
+    set(PERF_TEST_FILE "${CMAKE_CURRENT_SOURCE_DIR}/${CMAKE_DIR_TEST}/${RESULT_VAR}${CMAKE_TEST_SUFFIX}")
+    if(EXISTS ${PERF_TEST_FILE})
+	file(READ ${PERF_TEST_FILE} TESTCODE)
+	Check_CXX_Source_Compiles("${TESTCODE}" ${RESULT_VAR})
+    else(EXISTS ${PERF_TEST_FILE})
+	message(SEND_ERROR "## Error : ${PERF_TEST_FILE} not found")
+    endif(EXISTS ${PERF_TEST_FILE})
+endmacro(PerformTest)

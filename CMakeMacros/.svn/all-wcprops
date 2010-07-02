@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svnroot/beagle/!svn/ver/139/beagle/trunk/beagle/CMakeMacros
+END
+AllFilesInOne.cmake
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svnroot/beagle/!svn/ver/97/beagle/trunk/beagle/CMakeMacros/AllFilesInOne.cmake
+END
+PerformTest.cmake
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svnroot/beagle/!svn/ver/94/beagle/trunk/beagle/CMakeMacros/PerformTest.cmake
+END
+MoveConfigFiles.cmake
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svnroot/beagle/!svn/ver/72/beagle/trunk/beagle/CMakeMacros/MoveConfigFiles.cmake
+END
