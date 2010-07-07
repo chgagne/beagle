@@ -20,7 +20,7 @@ if(COMMAND cmake_policy)
 endif(COMMAND cmake_policy)
 
 # Set project variables
-project(OpenBEAGLE C CXX)
+project(OpenBEAGLE CXX)
 set(BEAGLE_PACKAGE OpenBEAGLE)
 set(BEAGLE_VERSION 4.0.0)
 if(APPLE)
@@ -35,19 +35,14 @@ endif(APPLE)
 
 # Define whether we build static or shared libs
 if(NOT DEFINED LIBRARY_TYPE)
-	if(NOT MSVC)
-		message(STATUS "++ Building shared library (default)")
-		option(BUILD_STATIC_LIB "Build static library instead of shared one?" OFF)
-	else(NOT MSVC)
-		message(STATUS "++ Building static library (default on Microsoft Visual C++)")
-		option(BUILD_STATIC_LIB "Build static library instead of shared one?" ON)
-	endif(NOT MSVC)
-elseif(LIBRARY_TYPE MATCHES "static")
-	message(STATUS "++ Building static library")
-	option(BUILD_STATIC_LIB "Build static library instead of shared one?" ON)
+	message(STATUS "++ Building static library (default)")
+	option(BUILD_STATIC_LIB "Build a static library?" ON)
+elseif(LIBRARY_TYPE MATCHES "shared")
+	message(STATUS "++ Building a shared library")
+	option(BUILD_STATIC_LIB "Build a static library?" OFF)
 else(NOT DEFINED LIBRARY_TYPE)
-	message(STATUS "++ Building dynamic library")
-	option(BUILD_STATIC_LIB "Build static library instead of shared one?" OFF)
+	message(STATUS "++ Building a static library (default)")
+	option(BUILD_STATIC_LIB "Build a static library?" ON)
 endif(NOT DEFINED LIBRARY_TYPE)
 if(BUILD_STATIC_LIB)
 	set(BEAGLE_LIBRARY_TYPE "STATIC")
@@ -89,6 +84,7 @@ check_include_files(unistd.h   BEAGLE_HAVE_UNISTD_H)
 
 # Check for /dev/urandom
 if(EXISTS /dev/urandom)
+	message(STATUS "++ /dev/urandom found")
 	set(BEAGLE_HAVE_DEV_URANDOM 1)
 endif(EXISTS /dev/urandom)
 
@@ -324,14 +320,17 @@ endif(NOT DEFINED CMAKE_BUILD_TYPE OR CMAKE_BUILD_TYPE STREQUAL "")
 
 set(BEAGLE_OUTPUT_DIR "${CMAKE_CURRENT_BINARY_DIR}")
 
+# Fast compilation option
+if(NOT DEFINED CMAKE_FAST_COMPILATION)
+	option(CMAKE_FAST_COMPILATION "Do you want to active fast compilation mode?" OFF)
+endif(NOT DEFINED CMAKE_FAST_COMPILATION)
+
 # Check for PACC
 find_package(PACC)
 
 # Check for zlib
 find_package(ZLIB)
 if(ZLIB_FOUND)
-    #add_definitions(-DPACC_ZLIB)
-    #message(STATUS "++ PACC_ZLIB variable set")
     include_directories(${ZLIB_INCLUDE_DIR})
 	install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/src/gzstream.h DESTINATION include)
 	set(BEAGLE_HAVE_LIBZ 1)
@@ -348,15 +347,6 @@ if(BEAGLE_MSVC_NOWARNINGS)
 	add_definitions(/w)
 endif(BEAGLE_MSVC_NOWARNINGS)
 
-# Check for MPI
-# Define following variables if MPI is found:
-#   MPI_INCLUDE_PATH
-#   MPI_LINK_FLAGS
-#   MPI_LIBRARY 
-#   MPI_EXTRA_LIBRARY
-#   MPI_LIBRARIES
-
-#find_package(MPI)
 # Use the fixed FindMPI modified to work under OS X
 find_package(MPI)
 if(MPI_FOUND)
@@ -386,15 +376,17 @@ if(MPI_FOUND)
 	endif(NOT DEFINED BEAGLE_NO_HPC)
 else(MPI_FOUND)
 	message(STATUS "++ MPI not found")
-	message(STATUS "!! OpenBeagle HPC cannot be enabled without MPI; HPC module should not be used.")
-	option(BEAGLE_NO_HPC "Disable Open Beagle HPC?" ON)
+	message(STATUS "!! Open BEAGLE HPC relies on MPI, and thus will not be enabled.")
+	option(BEAGLE_NO_HPC "Disable Open BEAGLE HPC?" ON)
 endif(MPI_FOUND)
 
 # Check for OpenMP
 # BEAGLE_OMP_MODE = DYNAMIC | STATIC | NONE (default = NONE)
-find_package(OpenMP QUIET) 		# FindOpenMP macro is not available in all configurations, so we try to use the "official" package
-mark_as_advanced(OpenMP_DIR) 		
-if(OpenMP_DIR MATCHES OpenMP_DIR-NOTFOUND)	# If CMake fails to locate FindOpenMP, we use our own macro
+# FindOpenMP macro is not available in all configurations, so we try to use the "official" package
+find_package(OpenMP QUIET)
+mark_as_advanced(OpenMP_DIR)
+# If CMake fails to locate FindOpenMP, we use our own macro
+if(OpenMP_DIR MATCHES OpenMP_DIR-NOTFOUND)
 	include(CMakeMacros/FindOpenMP.cmake)
 endif(OpenMP_DIR MATCHES OpenMP_DIR-NOTFOUND)
 
@@ -479,102 +471,80 @@ endif(CMAKE_USE_PTHREADS_INIT)
 # Generate beagle/config.hpp file
 CONFIGURE_FILE("${CMAKE_CURRENT_SOURCE_DIR}/src/beagle/config.hpp.in" "${CMAKE_CURRENT_BINARY_DIR}/include/beagle/config.hpp")
 
-# Fast compilation option
-if(NOT DEFINED CMAKE_FAST_COMPILATION)
-	option(CMAKE_FAST_COMPILATION "Do you want to active fast compilation mode?" OFF)
-endif(NOT DEFINED CMAKE_FAST_COMPILATION)
+# Glob src
+file(GLOB BEAGLE_CORE_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/beagle/Core/*.cpp")
+# file(GLOB BEAGLE_EC_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/beagle/EC/*.cpp")
 
+# Glob headers
+file(GLOB BEAGLE_CORE_HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/src/beagle/macros.hpp src/beagle/Core.hpp" "${CMAKE_CURRENT_SOURCE_DIR}/src/beagle/Core/*.hpp")
+# file(GLOB BEAGLE_EC_HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/src/beagle/EC.hpp" "${CMAKE_CURRENT_SOURCE_DIR}/src/beagle/EC/*.hpp")
+
+# Remove OpenMP files if OpenMP it no used
 if(NOT BEAGLE_USE_OMP_NR AND NOT BEAGLE_USE_OMP_R)
-	set(BEAGLE_OPENMP_FILES "OpenMP.cpp RandomizerMulti.cpp")
-else(NOT BEAGLE_USE_OMP_NR AND NOT BEAGLE_USE_OMP_R)
-	set(BEAGLE_OPENMP_FILES "null")
+#    list(REMOVE_ITEM BEAGLE_EC_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/beagle/Core/OpenMP.cpp" "${CMAKE_CURRENT_SOURCE_DIR}/src/beagle/EC/RandomizerMulti.cpp")
+#    list(REMOVE_ITEM BEAGLE_EC_HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/src/beagle/Core/OpenMP.hpp" "${CMAKE_CURRENT_SOURCE_DIR}/src/beagle/EC/RandomizerMulti.hpp")
 endif(NOT BEAGLE_USE_OMP_NR AND NOT BEAGLE_USE_OMP_R)
 
+# Fast compilation switch
 if(CMAKE_FAST_COMPILATION)
 	message(STATUS "++ Using fast compilation mode...")
-	AllFilesInOne(libopenbeagle.cpp "${CMAKE_CURRENT_SOURCE_DIR}/src/beagle" "${BEAGLE_OPENMP_FILES}")
-#	AllFilesInOne(libopenbeagleGA.cpp "${CMAKE_CURRENT_SOURCE_DIR}/src/beagle/GA" "null")
-#	AllFilesInOne(libopenbeagleGP.cpp "${CMAKE_CURRENT_SOURCE_DIR}/src/beagle/GP" "null")
-#	AllFilesInOne(libopenbeagleHPC.cpp "${CMAKE_CURRENT_SOURCE_DIR}/src/beagle/HPC" "null")
-
-	set(BEAGLE_SRC		src/beagle/libopenbeagle.cpp)
-#	set(BEAGLE_GA_SRC	src/beagle/GA/libopenbeagleGA.cpp)
-#	set(BEAGLE_GP_SRC	src/beagle/GP/libopenbeagleGP.cpp)
-#	set(BEAGLE_HPC_SRC	src/beagle/HPC/libopenbeagleHPC.cpp)
+	AllFilesInOne("${CMAKE_CURRENT_SOURCE_DIR}/src/beagle/Core/libopenbeagle-Core.cpp" ${BEAGLE_CORE_SRC})
+	set(BEAGLE_CORE_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/beagle/Core/libopenbeagle-Core.cpp")
+#    AllFilesInOne("${CMAKE_CURRENT_SOURCE_DIR}/src/beagle/EC/libopenbeagle-EC.cpp" ${BEAGLE_EC_SRC})
+#    set(BEAGLE_EC_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/beagle/EC/libopenbeagle-EC.cpp")
 	message(STATUS "++ Include files generated...")
 else(CMAKE_FAST_COMPILATION)
 	message(STATUS "++ Using normal compilation mode...")
-	file(REMOVE "${CMAKE_CURRENT_SOURCE_DIR}/src/beagle/libopenbeagle.cpp")
-#	file(REMOVE "${CMAKE_CURRENT_SOURCE_DIR}/src/beagle/GA/libopenbeagleGA.cpp")
-#	file(REMOVE "${CMAKE_CURRENT_SOURCE_DIR}/src/beagle/GP/libopenbeagleGP.cpp")
-#	file(REMOVE "${CMAKE_CURRENT_SOURCE_DIR}/src/beagle/HPC/libopenbeagleHPC.cpp")
-	file(GLOB BEAGLE_SRC        src/beagle/*.cpp)
-#	file(GLOB BEAGLE_GA_SRC     src/beagle/GA/*.cpp)
-#	file(GLOB BEAGLE_GP_SRC     src/beagle/GP/*.cpp)
-#	file(GLOB BEAGLE_HPC_SRC    src/beagle/HPC/*.cpp)
-	
-	# Remove OpenMP files if OpenMP it no used
-	if(NOT BEAGLE_USE_OMP_NR AND NOT BEAGLE_USE_OMP_R)
-		list(REMOVE_ITEM BEAGLE_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/beagle/OpenMP.cpp" "${CMAKE_CURRENT_SOURCE_DIR}/src/beagle/RandomizerMulti.cpp")
-	endif(NOT BEAGLE_USE_OMP_NR AND NOT BEAGLE_USE_OMP_R)
+	file(REMOVE "${CMAKE_CURRENT_SOURCE_DIR}/src/beagle/Core/libopenbeagle-Core.cpp")
+#    file(REMOVE "${CMAKE_CURRENT_SOURCE_DIR}/src/beagle/EC/libopenbeagle-EC.cpp")
 endif(CMAKE_FAST_COMPILATION)
-
-# Define targets subdirectories
-file(GLOB BEAGLE_HEADERS    src/beagle/*.hpp)
-# file(GLOB BEAGLE_GA_HEADERS src/beagle/GA/*.hpp)
-# file(GLOB BEAGLE_GP_HEADERS src/beagle/GP/*.hpp)
-# file(GLOB BEAGLE_HPC_HEADERS src/beagle/HPC/*.hpp)
-
-if(NOT BEAGLE_USE_OMP_NR AND NOT BEAGLE_USE_OMP_R)
-	list(REMOVE_ITEM BEAGLE_HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/src/beagle/OpenMP.hpp" "${CMAKE_CURRENT_SOURCE_DIR}/src/beagle/RandomizerMulti.hpp")
-endif(NOT BEAGLE_USE_OMP_NR AND NOT BEAGLE_USE_OMP_R)
 
 # Include headers required
 include_directories("${CMAKE_CURRENT_SOURCE_DIR}/src" "${CMAKE_CURRENT_BINARY_DIR}/include")
 
-# Create library targets
-if(CMAKE_FAST_COMPILATION)
-	add_library(openbeagle ${BEAGLE_LIBRARY_TYPE} ${BEAGLE_SRC})
-else(CMAKE_FAST_COMPILATION)
-	add_library(openbeagle ${BEAGLE_LIBRARY_TYPE} ${BEAGLE_SRC} ${BEAGLE_HEADERS})
-endif(CMAKE_FAST_COMPILATION)
-target_link_libraries(openbeagle pacc)
+# Create openbeagle-Core library target
+add_library(openbeagle-Core ${BEAGLE_LIBRARY_TYPE} ${BEAGLE_CORE_SRC})
+target_link_libraries(openbeagle-Core pacc)
 if(ZLIB_FOUND)
-    target_link_libraries(openbeagle ${ZLIB_LIBRARY})
+    target_link_libraries(openbeagle-Core ${ZLIB_LIBRARY})
 endif(ZLIB_FOUND)
-
-set_target_properties(openbeagle PROPERTIES VERSION ${BEAGLE_VERSION} LIBRARY_OUTPUT_DIRECTORY "${BEAGLE_OUTPUT_DIR}/lib")
-
-# GA framework
-# if(CMAKE_FAST_COMPILATION)
-#	add_library(openbeagle-GA ${BEAGLE_LIBRARY_TYPE} ${BEAGLE_GA_SRC})
-#else(CMAKE_FAST_COMPILATION)
-#	add_library(openbeagle-GA ${BEAGLE_LIBRARY_TYPE} ${BEAGLE_GA_SRC} ${BEAGLE_GA_HEADERS})
-#endif(CMAKE_FAST_COMPILATION)
-#add_dependencies(openbeagle-GA openbeagle)
-#target_link_libraries(openbeagle-GA openbeagle)
-#set_target_properties(openbeagle-GA PROPERTIES VERSION ${BEAGLE_VERSION} LIBRARY_OUTPUT_DIRECTORY "${BEAGLE_OUTPUT_DIR}/lib")
-
-# GP framework
-#if(CMAKE_FAST_COMPILATION)
-#	add_library(openbeagle-GP ${BEAGLE_LIBRARY_TYPE} ${BEAGLE_GP_SRC})
-#else(CMAKE_FAST_COMPILATION)
-#	add_library(openbeagle-GP ${BEAGLE_LIBRARY_TYPE} ${BEAGLE_GP_SRC} ${BEAGLE_GP_HEADERS})
-#endif(CMAKE_FAST_COMPILATION)
-#add_dependencies(openbeagle-GP openbeagle)
-#target_link_libraries(openbeagle-GP openbeagle)
-#set_target_properties(openbeagle-GP PROPERTIES VERSION ${BEAGLE_VERSION} LIBRARY_OUTPUT_DIRECTORY "${BEAGLE_OUTPUT_DIR}/lib")
-
+# Do we want to use C++0x?
 if(BUILD_STATIC_LIB)
-#	set_target_properties(openbeagle openbeagle-GA openbeagle-GP PROPERTIES VERSION ${BEAGLE_VERSION} ARCHIVE_OUTPUT_DIRECTORY "${BEAGLE_OUTPUT_DIR}/lib")
-	set_target_properties(openbeagle PROPERTIES VERSION ${BEAGLE_VERSION} ARCHIVE_OUTPUT_DIRECTORY "${BEAGLE_OUTPUT_DIR}/lib")
+    set_target_properties(openbeagle-Core PROPERTIES VERSION ${BEAGLE_VERSION} ARCHIVE_OUTPUT_DIRECTORY "${BEAGLE_OUTPUT_DIR}/lib")
 else(BUILD_STATIC_LIB)
-#	set_target_properties(openbeagle openbeagle-GA openbeagle-GP PROPERTIES VERSION ${BEAGLE_VERSION} LIBRARY_OUTPUT_DIRECTORY "${BEAGLE_OUTPUT_DIR}/lib")
-	set_target_properties(openbeagle PROPERTIES VERSION ${BEAGLE_VERSION} LIBRARY_OUTPUT_DIRECTORY "${BEAGLE_OUTPUT_DIR}/lib")
+    set_target_properties(openbeagle-Core PROPERTIES VERSION ${BEAGLE_VERSION} LIBRARY_OUTPUT_DIRECTORY "${BEAGLE_OUTPUT_DIR}/lib")
 endif(BUILD_STATIC_LIB)
+if(COMPILER_SUPPORTS_C0X AND BEAGLE_USE_C0x)
+    set_target_properties(openbeagle-Core PROPERTIES COMPILE_FLAGS "-std=c++0x")
+endif(COMPILER_SUPPORTS_C0X AND BEAGLE_USE_C0x)
+MoveConfigFiles("${BEAGLE_CORE_HEADERS}" "${BEAGLE_OUTPUT_DIR}/include/beagle" false)
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/include/beagle/config.hpp DESTINATION "${BEAGLE_OUTPUT_DIR}/include/beagle")
+install(FILES ${BEAGLE_CORE_HEADERS} DESTINATION "${BEAGLE_OUTPUT_DIR}/include/beagle/Core")
+install(TARGETS openbeagle-Core DESTINATION "${BEAGLE_OUTPUT_DIR}/lib")
 
+# Create openbeagle-EC library target
+#add_library(openbeagle-EC ${BEAGLE_LIBRARY_TYPE} ${BEAGLE_EC_SRC})
+#target_link_libraries(openbeagle-EC openbeagle-Core pacc)
+#if(ZLIB_FOUND)
+#    target_link_libraries(openbeagle-EC ${ZLIB_LIBRARY})
+#endif(ZLIB_FOUND)
+#if(BUILD_STATIC_LIB)
+#    set_target_properties(openbeagle-EC PROPERTIES VERSION ${BEAGLE_VERSION} ARCHIVE_OUTPUT_DIRECTORY "${BEAGLE_OUTPUT_DIR}/lib")
+#else(BUILD_STATIC_LIB)
+#    set_target_properties(openbeagle-EC PROPERTIES VERSION ${BEAGLE_VERSION} LIBRARY_OUTPUT_DIRECTORY "${BEAGLE_OUTPUT_DIR}/lib")
+#endif(BUILD_STATIC_LIB)
+#if(COMPILER_SUPPORTS_C0X AND BEAGLE_USE_C0x)
+#    set_target_properties(openbeagle-EC PROPERTIES COMPILE_FLAGS "-std=c++0x")
+#endif(COMPILER_SUPPORTS_C0X AND BEAGLE_USE_C0x)
+#MoveConfigFiles("${BEAGLE_EC_HEADERS}" "${BEAGLE_OUTPUT_DIR}/include/beagle/EC" false)
+#install(FILES ${CMAKE_CURRENT_BINARY_DIR}/include/beagle/config.hpp DESTINATION "${BEAGLE_OUTPUT_DIR}/include/beagle")
+#install(FILES ${BEAGLE_CORE_HEADERS} DESTINATION "${BEAGLE_OUTPUT_DIR}/include/beagle/Core")
+#install(TARGETS openbeagle-Core DESTINATION "${BEAGLE_OUTPUT_DIR}/lib")
+
+
+# Create openbeagle-HPC library target
 #if(NOT BEAGLE_NO_HPC)
-#	if(MPI_FOUND)
+#    if(MPI_FOUND)
 #		if(CMAKE_FAST_COMPILATION)
 #			add_library(openbeagle-HPC ${BEAGLE_LIBRARY_TYPE} ${BEAGLE_HPC_SRC} ${MPI_INCLUDE_PATH})
 #		else(CMAKE_FAST_COMPILATION)
@@ -591,35 +561,6 @@ endif(BUILD_STATIC_LIB)
 #	else(MPI_FOUND)
 #		message(SEND_ERROR "!! Sorry, no MPI found. Open Beagle HPC needs MPI, to compile without HPC, compile with BEAGLE_NO_HPC")	
 #	endif(MPI_FOUND)
-#endif(NOT BEAGLE_NO_HPC)
-
-# Do we want to use C++0x?
-if(COMPILER_SUPPORTS_C0X AND BEAGLE_USE_C0x)
-#	set_target_properties(openbeagle openbeagle-GA openbeagle-GP openbeagle-HPC PROPERTIES COMPILE_FLAGS "-std=c++0x")
-    set_target_properties(openbeagle PROPERTIES COMPILE_FLAGS "-std=c++0x")
-endif(COMPILER_SUPPORTS_C0X AND BEAGLE_USE_C0x)
-
-
-# Install dependencies
-MoveConfigFiles("${BEAGLE_HEADERS}" "${BEAGLE_OUTPUT_DIR}/include/beagle" false)
-#MoveConfigFiles("${BEAGLE_GA_HEADERS}" "${BEAGLE_OUTPUT_DIR}/include/beagle/GA" false)
-#MoveConfigFiles("${BEAGLE_GP_HEADERS}" "${BEAGLE_OUTPUT_DIR}/include/beagle/GP" false)
-#if(NOT BEAGLE_NO_HPC)
-#	MoveConfigFiles("${BEAGLE_HPC_HEADERS}" "${BEAGLE_OUTPUT_DIR}/include/beagle/HPC" false)
-#endif(NOT BEAGLE_NO_HPC)
-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/include/beagle/config.hpp ${BEAGLE_HEADERS} DESTINATION include/beagle)
-#install(FILES ${BEAGLE_GA_HEADERS} DESTINATION include/beagle/GA)
-#install(FILES ${BEAGLE_GP_HEADERS} DESTINATION include/beagle/GP)
-#if(NOT BEAGLE_NO_HPC)
-#	install(FILES ${BEAGLE_HPC_HEADERS} DESTINATION include/beagle/HPC)
-#endif(NOT BEAGLE_NO_HPC)
-
-# Install targets
-install(TARGETS openbeagle    DESTINATION lib)
-#install(TARGETS openbeagle-GA DESTINATION lib)
-#install(TARGETS openbeagle-GP DESTINATION lib)
-#if(NOT BEAGLE_NO_HPC)
-#	install(TARGETS openbeagle-HPC DESTINATION lib)
 #endif(NOT BEAGLE_NO_HPC)
 
 if(BEAGLE_BUILD_EXAMPLES)
@@ -800,8 +741,8 @@ set(CPACK_PACKAGE_NAME OpenBEAGLE)
 set(CPACK_RESOURCE_FILE_README ${CMAKE_CURRENT_SOURCE_DIR}/1-ReadMe.txt)
 set(CPACK_RESOURCE_FILE_LICENSE ${CMAKE_CURRENT_SOURCE_DIR}/2-License.txt)
 set(CPACK_PACKAGE_VERSION ${BEAGLE_VERSION})
-set(CPACK_PACKAGE_CONTACT "marc-andre.gardner.1@ulaval.ca")
-set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Open BEAGLE is a C++ Evolutionary Computation (EC) framework. It provides an high-level software environment to do any kind of EC, with support for tree-based genetic programming; bit string, integer-valued vector, and real-valued vector genetic algorithms; and evolution strategy.")
+set(CPACK_PACKAGE_CONTACT "christian.gagne@gel.ulaval.ca")
+set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Open BEAGLE: A Generic Evolutionary Computation Framework in C++")
 
 if(BEAGLE_CREATE_DMG)
 	if(NOT APPLE)
