@@ -481,8 +481,8 @@ file(GLOB BEAGLE_CORE_HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/src/beagle/macros.hpp
 
 # Remove OpenMP files if OpenMP it no used
 if(NOT BEAGLE_USE_OMP_NR AND NOT BEAGLE_USE_OMP_R)
-#    list(REMOVE_ITEM BEAGLE_EC_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/beagle/Core/OpenMP.cpp" "${CMAKE_CURRENT_SOURCE_DIR}/src/beagle/EC/RandomizerMulti.cpp")
-#    list(REMOVE_ITEM BEAGLE_EC_HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/src/beagle/Core/OpenMP.hpp" "${CMAKE_CURRENT_SOURCE_DIR}/src/beagle/EC/RandomizerMulti.hpp")
+    list(REMOVE_ITEM BEAGLE_CORE_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/beagle/Core/OpenMP.cpp" "${CMAKE_CURRENT_SOURCE_DIR}/src/beagle/Core/RandomizerMulti.cpp")
+    list(REMOVE_ITEM BEAGLE_CORE_HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/src/beagle/Core/OpenMP.hpp" "${CMAKE_CURRENT_SOURCE_DIR}/src/beagle/Core/RandomizerMulti.hpp")
 endif(NOT BEAGLE_USE_OMP_NR AND NOT BEAGLE_USE_OMP_R)
 
 # Fast compilation switch
