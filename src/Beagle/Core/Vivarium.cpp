@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/Vivarium.cpp
+ *  \file   Beagle/Core/Vivarium.cpp
  *  \brief  Source code of class Vivarium.
  *  \author Christian Gagne
  *  \author Marc Parizeau
@@ -33,7 +33,7 @@
  *  $Date: 2007/08/17 18:09:14 $
  */
 
-#include "beagle/Core.hpp"
+#include "Beagle/Core.hpp"
 
 #include <algorithm>
 

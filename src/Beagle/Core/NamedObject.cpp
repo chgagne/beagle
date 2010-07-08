@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/NamedObject.cpp
+ *  \file   Beagle/Core/NamedObject.cpp
  *  \brief  Source code of class NamedObject.
  *  \author Matthew Walker
  *  \author Christian Gagne
@@ -33,7 +33,7 @@
  *  $Date: 2007/08/08 19:26:46 $
  */
 
-#include "beagle/Core.hpp"
+#include "Beagle/Core.hpp"
 
 using namespace Beagle;
 

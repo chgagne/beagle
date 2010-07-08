@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/Vector.hpp
+ *  \file   Beagle/Core/Vector.hpp
  *  \brief  Definition of class Vector.
  *  \author Christian Gagne
  *  \author Marc Parizeau
@@ -39,19 +39,19 @@
 
 #include "PACC/Math.hpp"
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Core/Object.hpp"
-#include "beagle/Core/PointerT.hpp"
-#include "beagle/Core/AllocatorT.hpp"
-#include "beagle/Core/ContainerT.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Object.hpp"
+#include "Beagle/Core/PointerT.hpp"
+#include "Beagle/Core/AllocatorT.hpp"
+#include "Beagle/Core/ContainerT.hpp"
 
 namespace Beagle
 {
 
 
 /*!
- *  \class Vector beagle/Core/Vector.hpp "beagle/Core/Vector.hpp"
+ *  \class Vector Beagle/Core/Vector.hpp "Beagle/Core/Vector.hpp"
  *  \brief Adapt the PACC::Vector class to the Beagle Object interface.
  *  \ingroup Core
  *  \ingroup Adapt

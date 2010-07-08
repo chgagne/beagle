@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/Factory.hpp
+ *  \file   Beagle/Core/Factory.hpp
  *  \brief  Definition of the class Factory.
  *  \author Christian Gagne
  *  $Revision: 1.4 $
@@ -38,14 +38,14 @@
 #include <map>
 #include <string>
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Core/Allocator.hpp"
-#include "beagle/Core/Map.hpp"
-#include "beagle/Core/WrapperT.hpp"
-#include "beagle/Core/Component.hpp"
-#include "beagle/Core/System.hpp"
-#include "beagle/Core/HashString.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Allocator.hpp"
+#include "Beagle/Core/Map.hpp"
+#include "Beagle/Core/WrapperT.hpp"
+#include "Beagle/Core/Component.hpp"
+#include "Beagle/Core/System.hpp"
+#include "Beagle/Core/HashString.hpp"
 
 #ifdef BEAGLE_HAVE_STDTR1_UNORDEREDMAP
   #include <tr1/unordered_map>
@@ -60,7 +60,7 @@ namespace Beagle
 {
 
 /*!
- *  \class Factory beagle/Factory.hpp "beagle/Factory.hpp"
+ *  \class Factory Beagle/Factory.hpp "Beagle/Factory.hpp"
  *  \brief Object factory allowing dynamic types allocation.
  *  \ingroup Core
  *  \ingroup Sys

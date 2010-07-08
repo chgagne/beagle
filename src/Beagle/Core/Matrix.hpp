@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/Matrix.hpp
+ *  \file   Beagle/Core/Matrix.hpp
  *  \brief  Definition of class Matrix.
  *  \author Christian Gagne
  *  \author Marc Parizeau
@@ -39,12 +39,12 @@
 
 #include "PACC/Math.hpp"
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Core/Object.hpp"
-#include "beagle/Core/PointerT.hpp"
-#include "beagle/Core/AllocatorT.hpp"
-#include "beagle/Core/ContainerT.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Object.hpp"
+#include "Beagle/Core/PointerT.hpp"
+#include "Beagle/Core/AllocatorT.hpp"
+#include "Beagle/Core/ContainerT.hpp"
 
 namespace Beagle
 {
@@ -52,7 +52,7 @@ namespace Beagle
 class Vector;
 
 /*!
- *  \class Matrix beagle/Core/Matrix.hpp "beagle/Core/Matrix.hpp"
+ *  \class Matrix Beagle/Core/Matrix.hpp "Beagle/Core/Matrix.hpp"
  *  \brief Adapt the PACC::Matrix class to the Beagle Object interface.
  *  \ingroup Core
  *  \ingroup Adapt

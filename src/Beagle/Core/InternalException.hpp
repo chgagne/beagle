@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/InternalException.hpp
+ *  \file   Beagle/Core/InternalException.hpp
  *  \brief  Definition of class InternalException.
  *  \author Christian Gagne
  *  \author Marc Parizeau
@@ -36,10 +36,10 @@
 #ifndef Beagle_Core_InternalException_hpp
 #define Beagle_Core_InternalException_hpp
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Core/Object.hpp"
-#include "beagle/Core/TargetedException.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Object.hpp"
+#include "Beagle/Core/TargetedException.hpp"
 
 
 /*!
@@ -76,7 +76,7 @@ template <class T, class BaseType> class PointerT;
 template <class T, class BaseType> class ContainerT;
 
 /*!
- *  \class InternalException beagle/Core/InternalException.hpp "beagle/Core/InternalException.hpp"
+ *  \class InternalException Beagle/Core/InternalException.hpp "Beagle/Core/InternalException.hpp"
  *  \brief Indication of an internal Beagle exception.
  *  \ingroup Core
  *  \ingroup Except

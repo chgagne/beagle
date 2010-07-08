@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/WrapperT.hpp
+ *  \file   Beagle/Core/WrapperT.hpp
  *  \brief  Definition and implementation of template WrapperT.
  *  \author Christian Gagne
  *  \author Marc Parizeau
@@ -63,22 +63,22 @@
 
 #include "PACC/XML.hpp"
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Core/Object.hpp"
-#include "beagle/Core/Exception.hpp"
-#include "beagle/Core/castObjectT.hpp"
-#include "beagle/Core/PointerT.hpp"
-#include "beagle/Core/AllocatorT.hpp"
-#include "beagle/Core/ContainerT.hpp"
-#include "beagle/Core/IOException.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Object.hpp"
+#include "Beagle/Core/Exception.hpp"
+#include "Beagle/Core/castObjectT.hpp"
+#include "Beagle/Core/PointerT.hpp"
+#include "Beagle/Core/AllocatorT.hpp"
+#include "Beagle/Core/ContainerT.hpp"
+#include "Beagle/Core/IOException.hpp"
 
 namespace Beagle
 {
 
 
 /*!
- *  \class WrapperT beagle/Core/WrapperT.hpp "beagle/Core/WrapperT.hpp"
+ *  \class WrapperT Beagle/Core/WrapperT.hpp "Beagle/Core/WrapperT.hpp"
  *  \brief Template of an Wrapper that adapt a type to the Beagle Object interface.
  *  \param T The type wrapped.
  *  \ingroup Core

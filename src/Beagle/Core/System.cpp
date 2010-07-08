@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/System.cpp
+ *  \file   Beagle/Core/System.cpp
  *  \brief  Source code of class System.
  *  \author Christian Gagne
  *  \author Marc Parizeau
@@ -36,7 +36,7 @@
 
 #include <cstring>
 
-#include "beagle/Core.hpp"
+#include "Beagle/Core.hpp"
 
 #ifdef BEAGLE_HAVE_LIBZ
 #include "gzstream.h"

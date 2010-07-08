@@ -27,19 +27,19 @@
 #ifndef Beagle_Core_RandomizerMulti_hpp
 #define Beagle_Core_RandomizerMulti_hpp
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Core/Object.hpp"
-#include "beagle/Core/AllocatorT.hpp"
-#include "beagle/Core/PointerT.hpp"
-#include "beagle/Core/ContainerT.hpp"
-#include "beagle/Core/Component.hpp"
-#include "beagle/Core/WrapperT.hpp"
-#include "beagle/Core/ULong.hpp"
-#include "beagle/Core/Randomizer.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Object.hpp"
+#include "Beagle/Core/AllocatorT.hpp"
+#include "Beagle/Core/PointerT.hpp"
+#include "Beagle/Core/ContainerT.hpp"
+#include "Beagle/Core/Component.hpp"
+#include "Beagle/Core/WrapperT.hpp"
+#include "Beagle/Core/ULong.hpp"
+#include "Beagle/Core/Randomizer.hpp"
 
 /*!
- *  \file   beagle/Core/RandomizerMulti.hpp
+ *  \file   Beagle/Core/RandomizerMulti.hpp
  *  \brief  Definition of the class RandomizerMulti.
  *	\author Felix-Antoine Fortin
  *	\author Francois-Michel De Rainville
@@ -52,7 +52,7 @@
 namespace Beagle {
 
 /*!
- *  \class Randomizer beagle/Core/RandomizerMulti.hpp "beagle/Core/RandomizerMulti.hpp"
+ *  \class Randomizer Beagle/Core/RandomizerMulti.hpp "Beagle/Core/RandomizerMulti.hpp"
  *  \brief Multiple random number generator class.
  *  \ingroup Core
  *  \ingroup Sys

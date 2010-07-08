@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/Vector.cpp
+ *  \file   Beagle/Core/Vector.cpp
  *  \brief  Source code of class Vector.
  *  \author Christian Gagne
  *  \author Marc Parizeau
@@ -33,7 +33,7 @@
  *  $Date: 2007/08/17 18:09:14 $
  */
 
-#include "beagle/Core.hpp"
+#include "Beagle/Core.hpp"
 
 using namespace Beagle;
 

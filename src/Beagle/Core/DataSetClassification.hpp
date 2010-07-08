@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/DataSetClassification.hpp
+ *  \file   Beagle/Core/DataSetClassification.hpp
  *  \brief  Definition of the type DataSetClassification.
  *  \author Christian Gagne <cgagne@gmail.com>
  *  $Revision: 1.2 $
@@ -35,17 +35,17 @@
 #ifndef Beagle_Core_DataSetClassification_hpp
 #define Beagle_Core_DataSetClassification_hpp
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Core/Component.hpp"
-#include "beagle/Core/Vector.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Component.hpp"
+#include "Beagle/Core/Vector.hpp"
 #include <vector>
 
 
 namespace Beagle {
 
 /*!
- *  \class DataSetClassification beagle/Core/DataSetClassification.hpp "beagle/Core/DataSetClassification.hpp"
+ *  \class DataSetClassification Beagle/Core/DataSetClassification.hpp "Beagle/Core/DataSetClassification.hpp"
  *  \brief Component of a data set useful for classification problems.
  *  \ingroup Core
  */

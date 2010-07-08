@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/Package.hpp
+ *  \file   Beagle/Core/Package.hpp
  *  \brief  Definition of the class Package.
  *  \author Christian Gagne
  *  $Revision: 1.3 $
@@ -38,16 +38,16 @@
 #include <map>
 #include <string>
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Core/System.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/System.hpp"
 
 
 namespace Beagle
 {
 
 /*!
- *  \class Package beagle/Core/Package.hpp "beagle/Core/Package.hpp"
+ *  \class Package Beagle/Core/Package.hpp "Beagle/Core/Package.hpp"
  *  \brief Abstract package class, used to setup a system.
  *  \ingroup Core
  */

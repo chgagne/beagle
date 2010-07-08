@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/NamedObject.hpp
+ *  \file   Beagle/Core/NamedObject.hpp
  *  \brief  Class NamedObject declaration.
  *  \author Matthew Walker
  *  \author Christian Gagne
@@ -39,22 +39,22 @@
 
 #include <string>
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Core/Object.hpp"
-#include "beagle/Core/Pointer.hpp"
-#include "beagle/Core/PointerT.hpp"
-#include "beagle/Core/Allocator.hpp"
-#include "beagle/Core/AllocatorT.hpp"
-#include "beagle/Core/Container.hpp"
-#include "beagle/Core/ContainerT.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Object.hpp"
+#include "Beagle/Core/Pointer.hpp"
+#include "Beagle/Core/PointerT.hpp"
+#include "Beagle/Core/Allocator.hpp"
+#include "Beagle/Core/AllocatorT.hpp"
+#include "Beagle/Core/Container.hpp"
+#include "Beagle/Core/ContainerT.hpp"
 
 
 namespace Beagle
 {
 
 /*!
- *  \class NamedObject beagle/Core/NamedObject.hpp "beagle/Core/NamedObject.hpp"
+ *  \class NamedObject Beagle/Core/NamedObject.hpp "Beagle/Core/NamedObject.hpp"
  *  \brief An Object with a name.
  *  \ingroup Core
  *  \author Matthew Walker

@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/HistoryID.hpp
+ *  \file   Beagle/Core/HistoryID.hpp
  *  \brief  Definition of the class HistoryID.
  *  \author Christian Gagne
  *  $Revision: 1.2 $
@@ -35,24 +35,24 @@
 #ifndef Beagle_Core_HistoryID_hpp
 #define Beagle_Core_HistoryID_hpp
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Core/Object.hpp"
-#include "beagle/Core/Pointer.hpp"
-#include "beagle/Core/PointerT.hpp"
-#include "beagle/Core/Allocator.hpp"
-#include "beagle/Core/AllocatorT.hpp"
-#include "beagle/Core/Container.hpp"
-#include "beagle/Core/ContainerT.hpp"
-#include "beagle/Core/Individual.hpp"
-#include "beagle/Core/Member.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Object.hpp"
+#include "Beagle/Core/Pointer.hpp"
+#include "Beagle/Core/PointerT.hpp"
+#include "Beagle/Core/Allocator.hpp"
+#include "Beagle/Core/AllocatorT.hpp"
+#include "Beagle/Core/Container.hpp"
+#include "Beagle/Core/ContainerT.hpp"
+#include "Beagle/Core/Individual.hpp"
+#include "Beagle/Core/Member.hpp"
 
 
 namespace Beagle
 {
 
 /*!
- *  \class HistoryID beagle/Core/HistoryID.hpp "beagle/Core/HistoryID.hpp"
+ *  \class HistoryID Beagle/Core/HistoryID.hpp "Beagle/Core/HistoryID.hpp"
  *  \brief A history ID is used as member of an individual for historical tagging.
  *  \ingroup Core
  *  \ingroup History

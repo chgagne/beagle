@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/OpenMP.cpp
+ *  \file   Beagle/Core/OpenMP.cpp
  *  \brief  Source code of class OpenMP.
  *	\author Francois-Michel De Rainville
  *	\author Felix-Antoine Fortin
@@ -35,7 +35,7 @@
  *  $Date: $
  */
 
-#include "beagle/Core.hpp"
+#include "Beagle/Core.hpp"
 
 
 //!	\brief Construct the OpenMP component.

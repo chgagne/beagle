@@ -25,14 +25,14 @@
  */
 
 /*!
- *  \file   beagle/Core/Algorithm.cpp
+ *  \file   Beagle/Core/Algorithm.cpp
  *  \brief  Source code of class Algorithm.
  *  \author Christian Gagne
  *  $Revision: 1.1 $
  *  $Date: 2007/08/08 14:51:36 $
  */
 
-#include "beagle/Core.hpp"
+#include "Beagle/Core.hpp"
 
 using namespace Beagle;
 

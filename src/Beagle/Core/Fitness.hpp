@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/Fitness.hpp
+ *  \file   Beagle/Core/Fitness.hpp
  *  \brief  Definition of the class Fitness.
  *  \author Christian Gagne
  *  \author Marc Parizeau
@@ -82,13 +82,13 @@
 #ifndef Beagle_Core_Fitness_hpp
 #define Beagle_Core_Fitness_hpp
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Core/Object.hpp"
-#include "beagle/Core/AbstractAllocT.hpp"
-#include "beagle/Core/PointerT.hpp"
-#include "beagle/Core/ContainerT.hpp"
-#include "beagle/Core/Stats.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Object.hpp"
+#include "Beagle/Core/AbstractAllocT.hpp"
+#include "Beagle/Core/PointerT.hpp"
+#include "Beagle/Core/ContainerT.hpp"
+#include "Beagle/Core/Stats.hpp"
 
 
 namespace Beagle
@@ -99,7 +99,7 @@ class Deme;
 class Context;
 
 /*!
- *  \class Fitness beagle/Core/Fitness.hpp "beagle/Core/Fitness.hpp"
+ *  \class Fitness Beagle/Core/Fitness.hpp "Beagle/Core/Fitness.hpp"
  *  \brief Abstract individual's fitness class.
  *  \ingroup Core
  *  \ingroup FitStats

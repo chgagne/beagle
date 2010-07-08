@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/Logger.hpp
+ *  \file   Beagle/Core/Logger.hpp
  *  \brief  Definition of the class Logger.
  *  \author Christian Gagne
  *  \author Marc Parizeau
@@ -40,13 +40,13 @@
 #include <string>
 #include <list>
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Core/Object.hpp"
-#include "beagle/Core/Component.hpp"
-#include "beagle/Core/UInt.hpp"
-#include "beagle/Core/String.hpp"
-#include "beagle/Core/Bool.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Object.hpp"
+#include "Beagle/Core/Component.hpp"
+#include "Beagle/Core/UInt.hpp"
+#include "Beagle/Core/String.hpp"
+#include "Beagle/Core/Bool.hpp"
 
 #include "PACC/Util/Date.hpp"
 
@@ -183,7 +183,7 @@ namespace Beagle
 class System;
 
 /*!
- *  \class Logger beagle/Core/Logger.hpp "beagle/Core/Logger.hpp"
+ *  \class Logger Beagle/Core/Logger.hpp "Beagle/Core/Logger.hpp"
  *  \brief Message logger.
  *  \ingroup Core
  *  \ingroup Sys

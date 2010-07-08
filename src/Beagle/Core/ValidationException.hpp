@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/ValidationException.hpp
+ *  \file   Beagle/Core/ValidationException.hpp
  *  \brief  Definition of class ValidationException.
  *  \author Christian Gagne
  *  \author Marc Parizeau
@@ -38,10 +38,10 @@
 
 #include <string>
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Core/Object.hpp"
-#include "beagle/Core/Exception.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Object.hpp"
+#include "Beagle/Core/Exception.hpp"
 
 
 /*!
@@ -71,7 +71,7 @@ template <class T, class BaseType> class PointerT;
 template <class T, class BaseType> class ContainerT;
 
 /*!
- *  \class ValidationException beagle/Core/ValidationException.hpp "beagle/Core/ValidationException.hpp"
+ *  \class ValidationException Beagle/Core/ValidationException.hpp "Beagle/Core/ValidationException.hpp"
  *  \brief Beagle exception indicating that a parameter, or such, is invalid.
  *  \ingroup Core
  *  \ingroup Except

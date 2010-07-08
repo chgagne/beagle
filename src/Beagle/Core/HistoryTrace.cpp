@@ -25,14 +25,14 @@
  */
 
 /*!
- *  \file   beagle/Core/HistoryTrace.cpp
+ *  \file   Beagle/Core/HistoryTrace.cpp
  *  \brief  Source code of class HistoryTrace.
  *  \author Alexandre Devert
  *  $Revision: 1.14 $
  *  $Date: 2007/08/17 20:58:00 $
  */
 
-#include "beagle/Core.hpp"
+#include "Beagle/Core.hpp"
 
 using namespace Beagle;
 

@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/ContainerT.hpp
+ *  \file   Beagle/Core/ContainerT.hpp
  *  \brief  Definition of template ContainerT.
  *  \author Christian Gagne
  *  \author Marc Parizeau
@@ -36,21 +36,21 @@
 #ifndef Beagle_Core_ContainerT_hpp
 #define Beagle_Core_ContainerT_hpp
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Core/Pointer.hpp"
-#include "beagle/Core/PointerT.hpp"
-#include "beagle/Core/Allocator.hpp"
-#include "beagle/Core/AllocatorT.hpp"
-#include "beagle/Core/Container.hpp"
-#include "beagle/Core/RunTimeException.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Pointer.hpp"
+#include "Beagle/Core/PointerT.hpp"
+#include "Beagle/Core/Allocator.hpp"
+#include "Beagle/Core/AllocatorT.hpp"
+#include "Beagle/Core/Container.hpp"
+#include "Beagle/Core/RunTimeException.hpp"
 
 
 namespace Beagle
 {
 
 /*!
- *  \class ContainerT beagle/Core/ContainerT.hpp "beagle/Core/ContainerT.hpp"
+ *  \class ContainerT Beagle/Core/ContainerT.hpp "Beagle/Core/ContainerT.hpp"
  *  \brief Templated class defining a T-type container, inheriting from BaseType container.
  *  \param T Type of the values contained.
  *  \param BaseType Base type from which the actual uniform bag type is derived.

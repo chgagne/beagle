@@ -25,14 +25,14 @@
  */
 
 /*!
- *  \file   beagle/Core/DataSetRegression.cpp
+ *  \file   Beagle/Core/DataSetRegression.cpp
  *  \brief  Implementation of the class DataSetRegression.
  *  \author Christian Gagne <cgagne@gmail.com>
  *  $Revision: 1.3 $
  *  $Date: 2007/08/17 18:09:13 $
  */
 
-#include "beagle/Core.hpp"
+#include "Beagle/Core.hpp"
 
 #include <stdexcept>
 

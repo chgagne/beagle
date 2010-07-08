@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/Allocator.cpp
+ *  \file   Beagle/Core/Allocator.cpp
  *  \brief  Source code of class Allocator.
  *  \author Christian Gagne
  *  \author Marc Parizeau
@@ -33,7 +33,7 @@
  *  $Date: 2007/08/17 18:09:13 $
  */
 
-#include "beagle/Core.hpp"
+#include "Beagle/Core.hpp"
 
 using namespace Beagle;
 

@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/Object.hpp
+ *  \file   Beagle/Core/Object.hpp
  *  \brief  Class Object and related functions/operators.
  *  \author Christian Gagne
  *  \author Marc Parizeau
@@ -134,8 +134,8 @@
 
 #include "PACC/XML.hpp"
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
 
 
 namespace Beagle
@@ -147,7 +147,7 @@ class Pointer;
 class Container;
 
 /*!
- *  \class Object beagle/Core/Object.hpp "beagle/Core/Object.hpp"
+ *  \class Object Beagle/Core/Object.hpp "Beagle/Core/Object.hpp"
  *  \brief Base class for common Beagle objects.
  *  \ingroup Core
  *  \ingroup ObjPt

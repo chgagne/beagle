@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/UChar.hpp
+ *  \file   Beagle/Core/UChar.hpp
  *  \brief  Definition of the type UChar and related operators.
  *  \author Christian Gagne
  *  \author Marc Parizeau
@@ -36,9 +36,9 @@
 #ifndef Beagle_Core_UChar_hpp
 #define Beagle_Core_UChar_hpp
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Core/WrapperT.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/WrapperT.hpp"
 
 
 namespace Beagle

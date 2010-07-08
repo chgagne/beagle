@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/ComponentMap.hpp
+ *  \file   Beagle/Core/ComponentMap.hpp
  *  \brief  Definition of class ComponentMap.
  *  \author Christian Gagne
  *  $Revision: 1.7 $
@@ -38,10 +38,10 @@
 #include <string>
 #include <map>
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Core/Map.hpp"
-#include "beagle/Core/Component.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Map.hpp"
+#include "Beagle/Core/Component.hpp"
 
 
 namespace Beagle
@@ -49,7 +49,7 @@ namespace Beagle
 
 
 /*!
- *  \class ComponentMap beagle/Core/ComponentMap.hpp "beagle/Core/ComponentMap.hpp"
+ *  \class ComponentMap Beagle/Core/ComponentMap.hpp "Beagle/Core/ComponentMap.hpp"
  *  \brief Associative container using a string as key accessors to the
  *    Component::Handle instances.
  *  \ingroup Core

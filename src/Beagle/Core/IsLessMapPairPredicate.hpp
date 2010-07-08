@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/IsLessMapPairPredicate.hpp
+ *  \file   Beagle/Core/IsLessMapPairPredicate.hpp
  *  \brief  Definition of class IsLessMapPredicate.
  *  \author Christian Gagne
  *  \author Marc Parizeau
@@ -39,18 +39,18 @@
 #include <string>
 #include <utility>
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Core/Object.hpp"
-#include "beagle/Core/Pointer.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Object.hpp"
+#include "Beagle/Core/Pointer.hpp"
 
 namespace Beagle
 {
 
 
 /*!
- *  \class IsLessMapPairPredicate beagle/Core/IsLessMapPairPredicate.hpp
- *    "beagle/Core/IsLessMapPairPredicate.hpp"
+ *  \class IsLessMapPairPredicate Beagle/Core/IsLessMapPairPredicate.hpp
+ *    "Beagle/Core/IsLessMapPairPredicate.hpp"
  *  \brief Binary predicate functor testing the ordering of two
  *    std::pair<string,Object::Handle>.
  *  \ingroup Core

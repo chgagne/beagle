@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/Object.cpp
+ *  \file   Beagle/Core/Object.cpp
  *  \brief  Source code of class Object.
  *  \author Christian Gagne
  *  \author Marc Parizeau
@@ -33,7 +33,7 @@
  *  $Date: 2007/09/14 20:19:50 $
  */
 
-#include "beagle/Core.hpp"
+#include "Beagle/Core.hpp"
 
 #include <sstream>
 

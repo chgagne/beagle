@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/HallOfFame.hpp
+ *  \file   Beagle/Core/HallOfFame.hpp
  *  \brief  Definition of the class HallOfFame.
  *  \author Christian Gagne
  *  \author Marc Parizeau
@@ -36,25 +36,25 @@
 #ifndef Beagle_Core_HallOfFame_hpp
 #define Beagle_Core_HallOfFame_hpp
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Core/Object.hpp"
-#include "beagle/Core/Pointer.hpp"
-#include "beagle/Core/PointerT.hpp"
-#include "beagle/Core/Allocator.hpp"
-#include "beagle/Core/AllocatorT.hpp"
-#include "beagle/Core/Container.hpp"
-#include "beagle/Core/ContainerT.hpp"
-#include "beagle/Core/Individual.hpp"
-#include "beagle/Core/Member.hpp"
-#include "beagle/Core/Logger.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Object.hpp"
+#include "Beagle/Core/Pointer.hpp"
+#include "Beagle/Core/PointerT.hpp"
+#include "Beagle/Core/Allocator.hpp"
+#include "Beagle/Core/AllocatorT.hpp"
+#include "Beagle/Core/Container.hpp"
+#include "Beagle/Core/ContainerT.hpp"
+#include "Beagle/Core/Individual.hpp"
+#include "Beagle/Core/Member.hpp"
+#include "Beagle/Core/Logger.hpp"
 
 
 namespace Beagle
 {
 
 /*!
- *  \class HallOfFame beagle/Core/HallOfFame.hpp "beagle/Core/HallOfFame.hpp"
+ *  \class HallOfFame Beagle/Core/HallOfFame.hpp "Beagle/Core/HallOfFame.hpp"
  *  \brief A hall-of-fame is a set containing the best-of-run individuals.
  *  \warning The individuals in the hall-of-fame are not used at all in the evolution process.
  *  \ingroup Core
@@ -66,7 +66,7 @@ class HallOfFame : public Member
 public:
 
 	/*!
-	 *  \struct Entry beagle/HallOfFame.hpp "beagle/HallOfFame.hpp"
+	 *  \struct Entry Beagle/HallOfFame.hpp "Beagle/HallOfFame.hpp"
 	 *  \brief An entry of the hall-of-fame, that is a best-of-run individual.
 	 *  \ingroup Core
 	 *  \ingroup Pop

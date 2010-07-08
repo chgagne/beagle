@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/Stats.cpp
+ *  \file   Beagle/Core/Stats.cpp
  *  \brief  Source code of class Stats.
  *  \author Christian Gagne
  *  \author Marc Parizeau
@@ -33,7 +33,7 @@
  *  $Date: 2007/10/09 15:16:11 $
  */
 
-#include "beagle/Core.hpp"
+#include "Beagle/Core.hpp"
 
 #include <algorithm>
 

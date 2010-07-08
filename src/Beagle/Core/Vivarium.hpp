@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/Vivarium.hpp
+ *  \file   Beagle/Core/Vivarium.hpp
  *  \brief  Definition of the class Vivarium.
  *  \author Christian Gagne
  *  \author Marc Parizeau
@@ -59,26 +59,26 @@
 #ifndef Beagle_Core_Vivarium_hpp
 #define Beagle_Core_Vivarium_hpp
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Core/Object.hpp"
-#include "beagle/Core/Pointer.hpp"
-#include "beagle/Core/PointerT.hpp"
-#include "beagle/Core/Allocator.hpp"
-#include "beagle/Core/AllocatorT.hpp"
-#include "beagle/Core/Container.hpp"
-#include "beagle/Core/ContainerT.hpp"
-#include "beagle/Core/Deme.hpp"
-#include "beagle/Core/Member.hpp"
-#include "beagle/Core/MemberMap.hpp"
-#include "beagle/Core/HallOfFame.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Object.hpp"
+#include "Beagle/Core/Pointer.hpp"
+#include "Beagle/Core/PointerT.hpp"
+#include "Beagle/Core/Allocator.hpp"
+#include "Beagle/Core/AllocatorT.hpp"
+#include "Beagle/Core/Container.hpp"
+#include "Beagle/Core/ContainerT.hpp"
+#include "Beagle/Core/Deme.hpp"
+#include "Beagle/Core/Member.hpp"
+#include "Beagle/Core/MemberMap.hpp"
+#include "Beagle/Core/HallOfFame.hpp"
 
 
 namespace Beagle
 {
 
 /*!
- *  \class Vivarium beagle/Core/Vivarium.hpp "beagle/Core/Vivarium.hpp"
+ *  \class Vivarium Beagle/Core/Vivarium.hpp "Beagle/Core/Vivarium.hpp"
  *  \brief A vivarium is a bag of demes and a map of members.
  *  \ingroup Core
  *  \ingroup Pop

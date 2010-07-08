@@ -25,7 +25,7 @@
  */
 
 /*!
-*  \file   beagle/Core/HistoryTrace.hpp
+*  \file   Beagle/Core/HistoryTrace.hpp
 *  \brief  Definition of the class HistoryTrace.
 *  \author Alexandre Devert
 *  $Revision: 1.12 $
@@ -35,22 +35,22 @@
 #ifndef Beagle_Core_HistoryTrace_hpp
 #define Beagle_Core_HistoryTrace_hpp
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Core/Object.hpp"
-#include "beagle/Core/AllocatorT.hpp"
-#include "beagle/Core/PointerT.hpp"
-#include "beagle/Core/ContainerT.hpp"
-#include "beagle/Core/Component.hpp"
-#include "beagle/Core/WrapperT.hpp"
-#include "beagle/Core/HistoryEntry.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Object.hpp"
+#include "Beagle/Core/AllocatorT.hpp"
+#include "Beagle/Core/PointerT.hpp"
+#include "Beagle/Core/ContainerT.hpp"
+#include "Beagle/Core/Component.hpp"
+#include "Beagle/Core/WrapperT.hpp"
+#include "Beagle/Core/HistoryEntry.hpp"
 
 
 namespace Beagle
 {
 
 /*!
- *  \class HistoryTrace beagle/Core/HistoryTrace.hpp "beagle/Core/HistoryTrace.hpp"
+ *  \class HistoryTrace Beagle/Core/HistoryTrace.hpp "Beagle/Core/HistoryTrace.hpp"
  *  \brief Evolution history storage class.
  *
  *  This class is used internally by the History system component.

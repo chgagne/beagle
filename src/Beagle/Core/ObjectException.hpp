@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/ObjectException.hpp
+ *  \file   Beagle/Core/ObjectException.hpp
  *  \brief  Definition of class ObjectException.
  *  \author Christian Gagne
  *  \author Marc Parizeau
@@ -36,10 +36,10 @@
 #ifndef Beagle_Core_ObjectException_hpp
 #define Beagle_Core_ObjectException_hpp
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Core/Object.hpp"
-#include "beagle/Core/TargetedException.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Object.hpp"
+#include "Beagle/Core/TargetedException.hpp"
 
 
 /*!
@@ -61,7 +61,7 @@ template <class T, class BaseType> class PointerT;
 template <class T, class BaseType> class ContainerT;
 
 /*!
- *  \class ObjectException beagle/Core/ObjectException.hpp "beagle/Core/ObjectException.hpp"
+ *  \class ObjectException Beagle/Core/ObjectException.hpp "Beagle/Core/ObjectException.hpp"
  *  \brief Beagle exception relative to a erroneous state of an Object.
  *  \ingroup Core
  *  \ingroup Except

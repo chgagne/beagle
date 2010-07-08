@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/RouletteT.hpp
+ *  \file   Beagle/Core/RouletteT.hpp
  *  \brief  Definition of class template RouletteT.
  *  \author Matthew Walker
  *  \author Christian Gagne
@@ -38,17 +38,17 @@
 
 #include <vector>
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Core/Object.hpp"
-#include "beagle/Core/Randomizer.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Object.hpp"
+#include "Beagle/Core/Randomizer.hpp"
 
 
 namespace Beagle
 {
 
 /*!
- *  \class RouletteT beagle/Core/RouletteT.hpp "beagle/Core/RouletteT.hpp"
+ *  \class RouletteT Beagle/Core/RouletteT.hpp "Beagle/Core/RouletteT.hpp"
  *  \brief Templated class defining a T-type roulette wheel.
  *  \param T Type of the values in the wheel.
  *  \ingroup Core

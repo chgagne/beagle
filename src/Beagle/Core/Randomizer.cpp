@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/Randomizer.cpp
+ *  \file   Beagle/Core/Randomizer.cpp
  *  \brief  Source code of class Randomizer.
  *  \author Christian Gagne
  *  \author Marc Parizeau
@@ -33,7 +33,7 @@
  *  $Date: 2007/09/13 13:17:43 $
  */
 
-#include "beagle/Core.hpp"
+#include "Beagle/Core.hpp"
 
 #include <cmath>
 

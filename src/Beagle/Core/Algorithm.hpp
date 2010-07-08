@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/Algorithm.hpp
+ *  \file   Beagle/Core/Algorithm.hpp
  *  \brief  Definition of the class Algorithm.
  *  \author Christian Gagne
  *  $Revision: 1.2 $
@@ -38,9 +38,9 @@
 #include <map>
 #include <string>
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Core/System.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/System.hpp"
 
 
 namespace Beagle
@@ -48,7 +48,7 @@ namespace Beagle
 
 
 /*!
- *  \class Algorithm beagle/Core/Algorithm.hpp "beagle/Core/Algorithm.hpp"
+ *  \class Algorithm Beagle/Core/Algorithm.hpp "Beagle/Core/Algorithm.hpp"
  *  \brief Abstract algorithm class, used to setup operators in an evolver.
  *  \ingroup Core
  */

@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/Randomizer.hpp
+ *  \file   Beagle/Core/Randomizer.hpp
  *  \brief  Definition of the class Randomizer.
  *  \author Christian Gagne
  *  \author Marc Parizeau
@@ -38,15 +38,15 @@
 
 #include "PACC/Util.hpp"
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Core/Object.hpp"
-#include "beagle/Core/AllocatorT.hpp"
-#include "beagle/Core/PointerT.hpp"
-#include "beagle/Core/ContainerT.hpp"
-#include "beagle/Core/Component.hpp"
-#include "beagle/Core/WrapperT.hpp"
-#include "beagle/Core/ULong.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Object.hpp"
+#include "Beagle/Core/AllocatorT.hpp"
+#include "Beagle/Core/PointerT.hpp"
+#include "Beagle/Core/ContainerT.hpp"
+#include "Beagle/Core/Component.hpp"
+#include "Beagle/Core/WrapperT.hpp"
+#include "Beagle/Core/ULong.hpp"
 
 #ifdef BEAGLE_HAVE_OPENMP
 #include <omp.h>
@@ -59,7 +59,7 @@ namespace Beagle
 class System;
 
 /*!
- *  \class Randomizer beagle/Randomizer.hpp "beagle/Randomizer.hpp"
+ *  \class Randomizer Beagle/Randomizer.hpp "Beagle/Randomizer.hpp"
  *  \brief Random number generator class.
  *  \note The operator() allow compliance with the STL random number generator interface.
  *  \ingroup Core

@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/String.hpp
+ *  \file   Beagle/Core/String.hpp
  *  \brief  Definition of the type String and related operators.
  *  \author Christian Gagne
  *  \author Marc Parizeau
@@ -38,9 +38,9 @@
 
 #include <string>
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Core/WrapperT.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/WrapperT.hpp"
 
 
 namespace Beagle

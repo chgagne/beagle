@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/QuasiRandom.hpp
+ *  \file   Beagle/Core/QuasiRandom.hpp
  *  \brief  Definition of the class QuasiRandom.
  *  \author Christian Gagne
  *  $Revision: 1.6 $
@@ -38,22 +38,22 @@
 #include "PACC/Util.hpp"
 #include "PACC/Math.hpp"
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Core/Object.hpp"
-#include "beagle/Core/AllocatorT.hpp"
-#include "beagle/Core/PointerT.hpp"
-#include "beagle/Core/ContainerT.hpp"
-#include "beagle/Core/Component.hpp"
-#include "beagle/Core/WrapperT.hpp"
-#include "beagle/Core/ULong.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Object.hpp"
+#include "Beagle/Core/AllocatorT.hpp"
+#include "Beagle/Core/PointerT.hpp"
+#include "Beagle/Core/ContainerT.hpp"
+#include "Beagle/Core/Component.hpp"
+#include "Beagle/Core/WrapperT.hpp"
+#include "Beagle/Core/ULong.hpp"
 
 
 namespace Beagle
 {
 
 /*!
- *  \class QuasiRandom beagle/Core/QuasiRandom.hpp "beagle/Core/QuasiRandom.hpp"
+ *  \class QuasiRandom Beagle/Core/QuasiRandom.hpp "Beagle/Core/QuasiRandom.hpp"
  *  \brief Generator of low-discrepancy sequences.
  *  \ingroup Core
  *  \ingroup Sys

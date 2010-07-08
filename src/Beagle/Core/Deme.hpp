@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/Deme.hpp
+ *  \file   Beagle/Core/Deme.hpp
  *  \brief  Definition of the class Deme.
  *  \author Christian Gagne
  *  \author Marc Parizeau
@@ -38,27 +38,27 @@
 
 #include "PACC/XML.hpp"
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Core/Object.hpp"
-#include "beagle/Core/Pointer.hpp"
-#include "beagle/Core/PointerT.hpp"
-#include "beagle/Core/Allocator.hpp"
-#include "beagle/Core/AllocatorT.hpp"
-#include "beagle/Core/Container.hpp"
-#include "beagle/Core/ContainerT.hpp"
-#include "beagle/Core/Genotype.hpp"
-#include "beagle/Core/Individual.hpp"
-#include "beagle/Core/Member.hpp"
-#include "beagle/Core/MemberMap.hpp"
-#include "beagle/Core/HallOfFame.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Object.hpp"
+#include "Beagle/Core/Pointer.hpp"
+#include "Beagle/Core/PointerT.hpp"
+#include "Beagle/Core/Allocator.hpp"
+#include "Beagle/Core/AllocatorT.hpp"
+#include "Beagle/Core/Container.hpp"
+#include "Beagle/Core/ContainerT.hpp"
+#include "Beagle/Core/Genotype.hpp"
+#include "Beagle/Core/Individual.hpp"
+#include "Beagle/Core/Member.hpp"
+#include "Beagle/Core/MemberMap.hpp"
+#include "Beagle/Core/HallOfFame.hpp"
 
 
 namespace Beagle
 {
 
 /*!
- *  \class Deme beagle/Core/Deme.hpp "beagle/Core/Deme.hpp"
+ *  \class Deme Beagle/Core/Deme.hpp "Beagle/Core/Deme.hpp"
  *  \brief A deme is a bag of individuals and a map of members.
  *  \ingroup Core
  *  \ingroup Pop

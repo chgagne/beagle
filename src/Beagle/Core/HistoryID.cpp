@@ -25,14 +25,14 @@
  */
 
 /*!
- *  \file   beagle/Core/HistoryID.cpp
+ *  \file   Beagle/Core/HistoryID.cpp
  *  \brief  Source code of class HistoryID.
  *  \author Christian Gagne
  *  $Revision: 1.1 $
  *  $Date: 2007/08/27 13:22:06 $
  */
 
-#include "beagle/Core.hpp"
+#include "Beagle/Core.hpp"
 
 #include <fstream>
 

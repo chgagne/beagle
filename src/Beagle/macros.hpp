@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/macros.hpp
+ *  \file   Beagle/macros.hpp
  *  \brief  Contains some general Beagle macros and global functions.
  *  \author Christian Gagne
  *  \author Marc Parizeau
@@ -42,7 +42,7 @@
 #ifndef Beagle_macros_hpp
 #define Beagle_macros_hpp
 
-#include "beagle/config.hpp"
+#include "Beagle/config.hpp"
 
 #include <cstdlib>
 #include <cstdio>

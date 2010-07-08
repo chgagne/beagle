@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/Genotype.cpp
+ *  \file   Beagle/Core/Genotype.cpp
  *  \brief  Source code of class Genotype.
  *  \author Christian Gagne
  *  \author Marc Parizeau
@@ -33,7 +33,7 @@
  *  $Date: 2007/08/17 18:09:13 $
  */
 
-#include "beagle/Core.hpp"
+#include "Beagle/Core.hpp"
 
 using namespace Beagle;
 

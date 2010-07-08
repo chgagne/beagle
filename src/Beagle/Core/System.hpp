@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/System.hpp
+ *  \file   Beagle/Core/System.hpp
  *  \brief  Definition of the class System.
  *  \author Christian Gagne
  *  \author Marc Parizeau
@@ -117,27 +117,27 @@
 
 #include <set>
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Core/Object.hpp"
-#include "beagle/Core/Pointer.hpp"
-#include "beagle/Core/PointerT.hpp"
-#include "beagle/Core/Allocator.hpp"
-#include "beagle/Core/AllocatorT.hpp"
-#include "beagle/Core/Container.hpp"
-#include "beagle/Core/ContainerT.hpp"
-#include "beagle/Core/WrapperT.hpp"
-#include "beagle/Core/Genotype.hpp"
-#include "beagle/Core/Individual.hpp"
-#include "beagle/Core/HallOfFame.hpp"
-#include "beagle/Core/Deme.hpp"
-#include "beagle/Core/Randomizer.hpp"
-#include "beagle/Core/Register.hpp"
-#include "beagle/Core/Factory.hpp"
-#include "beagle/Core/Logger.hpp"
-#include "beagle/Core/Component.hpp"
-#include "beagle/Core/ComponentMap.hpp"
-#include "beagle/Core/Package.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Object.hpp"
+#include "Beagle/Core/Pointer.hpp"
+#include "Beagle/Core/PointerT.hpp"
+#include "Beagle/Core/Allocator.hpp"
+#include "Beagle/Core/AllocatorT.hpp"
+#include "Beagle/Core/Container.hpp"
+#include "Beagle/Core/ContainerT.hpp"
+#include "Beagle/Core/WrapperT.hpp"
+#include "Beagle/Core/Genotype.hpp"
+#include "Beagle/Core/Individual.hpp"
+#include "Beagle/Core/HallOfFame.hpp"
+#include "Beagle/Core/Deme.hpp"
+#include "Beagle/Core/Randomizer.hpp"
+#include "Beagle/Core/Register.hpp"
+#include "Beagle/Core/Factory.hpp"
+#include "Beagle/Core/Logger.hpp"
+#include "Beagle/Core/Component.hpp"
+#include "Beagle/Core/ComponentMap.hpp"
+#include "Beagle/Core/Package.hpp"
 
 #if defined(BEAGLE_HAVE_STDTR1_UNORDEREDSET)
   #include <tr1/unordered_set>
@@ -146,8 +146,8 @@
 #endif //BEAGLE_HAVE_STDTR1_UNORDEREDSET
 
 #ifdef BEAGLE_HAVE_OPENMP
-#include "beagle/Core/OpenMP.hpp"
-#include "beagle/Core/RandomizerMulti.hpp"
+#include "Beagle/Core/OpenMP.hpp"
+#include "Beagle/Core/RandomizerMulti.hpp"
 #include <omp.h>
 #endif
 
@@ -155,7 +155,7 @@ namespace Beagle
 {
 
 /*!
- *  \class System beagle/Core/System.hpp "beagle/Core/System.hpp"
+ *  \class System Beagle/Core/System.hpp "Beagle/Core/System.hpp"
  *  \brief Evolutionary system.
  *  \ingroup Core
  *  \ingroup Sys

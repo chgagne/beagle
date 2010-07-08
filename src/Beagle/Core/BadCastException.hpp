@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/BadCastException.hpp
+ *  \file   Beagle/Core/BadCastException.hpp
  *  \brief  Definition of class BadCastException.
  *  \author Christian Gagne
  *  \author Marc Parizeau
@@ -36,10 +36,10 @@
 #ifndef Beagle_Core_BadCastException_hpp
 #define Beagle_Core_BadCastException_hpp
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Core/Object.hpp"
-#include "beagle/Core/TargetedException.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Object.hpp"
+#include "Beagle/Core/TargetedException.hpp"
 
 #ifdef BEAGLE_HAVE_RTTI
 #include <typeinfo>
@@ -64,7 +64,7 @@ template <class T, class BaseType> class AllocatorT;
 template <class T, class BaseType> class ContainerT;
 
 /*!
- *  \class BadCastException beagle/Core/BadCastException.hpp "beagle/Core/BadCastException.hpp"
+ *  \class BadCastException Beagle/Core/BadCastException.hpp "Beagle/Core/BadCastException.hpp"
  *  \brief Beagle exception indicating that a bad cast (by a call to castObjectT) happen.
  *  \ingroup Core
  *  \ingroup Except

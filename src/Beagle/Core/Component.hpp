@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/Component.hpp
+ *  \file   Beagle/Core/Component.hpp
  *  \brief  Definition of class Component.
  *  \author Matthew Walker
  *  \author Christian Gagne
@@ -38,16 +38,16 @@
 
 #include "PACC/XML.hpp"
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Core/Object.hpp"
-#include "beagle/Core/Pointer.hpp"
-#include "beagle/Core/PointerT.hpp"
-#include "beagle/Core/Allocator.hpp"
-#include "beagle/Core/AllocatorT.hpp"
-#include "beagle/Core/Container.hpp"
-#include "beagle/Core/ContainerT.hpp"
-#include "beagle/Core/NamedObject.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Object.hpp"
+#include "Beagle/Core/Pointer.hpp"
+#include "Beagle/Core/PointerT.hpp"
+#include "Beagle/Core/Allocator.hpp"
+#include "Beagle/Core/AllocatorT.hpp"
+#include "Beagle/Core/Container.hpp"
+#include "Beagle/Core/ContainerT.hpp"
+#include "Beagle/Core/NamedObject.hpp"
 
 namespace Beagle
 {
@@ -57,7 +57,7 @@ class System;
 
 
 /*!
- *  \class Component beagle/Core/Component.hpp "beagle/Core/Component.hpp"
+ *  \class Component Beagle/Core/Component.hpp "Beagle/Core/Component.hpp"
  *  \brief System component base class.
  *  \ingroup Core
  *  \ingroup Sys

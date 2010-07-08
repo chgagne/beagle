@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/Map.cpp
+ *  \file   Beagle/Core/Map.cpp
  *  \brief  Source code of class Map.
  *  \author Christian Gagne
  *  \author Marc Parizeau
@@ -33,7 +33,7 @@
  *  $Date: 2007/09/21 17:45:46 $
  */
 
-#include "beagle/Core.hpp"
+#include "Beagle/Core.hpp"
 
 #include <algorithm>
 

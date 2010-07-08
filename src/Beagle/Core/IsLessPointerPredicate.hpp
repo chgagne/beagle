@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/IsLessPointerPredicate.hpp
+ *  \file   Beagle/Core/IsLessPointerPredicate.hpp
  *  \brief  Definition of class IsLessPointerPredicate.
  *  \author Christian Gagne
  *  \author Marc Parizeau
@@ -36,18 +36,18 @@
 #ifndef Beagle_Core_IsLessPointerPredicate_hpp
 #define Beagle_Core_IsLessPointerPredicate_hpp
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Core/Object.hpp"
-#include "beagle/Core/Pointer.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Object.hpp"
+#include "Beagle/Core/Pointer.hpp"
 
 namespace Beagle
 {
 
 
 /*!
- *  \class IsLessPointerPredicate beagle/Core/IsLessPointerPredicate.hpp
- *    "beagle/Core/IsLessPointerPredicate.hpp"
+ *  \class IsLessPointerPredicate Beagle/Core/IsLessPointerPredicate.hpp
+ *    "Beagle/Core/IsLessPointerPredicate.hpp"
  *  \brief Binary predicate functor that test the ordering of two pointed Objects.
  *  \ingroup Core
  *  \ingroup Utils

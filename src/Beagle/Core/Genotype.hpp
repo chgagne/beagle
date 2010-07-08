@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/Genotype.hpp
+ *  \file   Beagle/Core/Genotype.hpp
  *  \brief  Definition of the type Genotype.
  *  \author Christian Gagne
  *  \author Marc Parizeau
@@ -38,15 +38,15 @@
 
 #include "PACC/XML.hpp"
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Core/Object.hpp"
-#include "beagle/Core/Allocator.hpp"
-#include "beagle/Core/AllocatorT.hpp"
-#include "beagle/Core/Pointer.hpp"
-#include "beagle/Core/PointerT.hpp"
-#include "beagle/Core/Container.hpp"
-#include "beagle/Core/Member.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Object.hpp"
+#include "Beagle/Core/Allocator.hpp"
+#include "Beagle/Core/AllocatorT.hpp"
+#include "Beagle/Core/Pointer.hpp"
+#include "Beagle/Core/PointerT.hpp"
+#include "Beagle/Core/Container.hpp"
+#include "Beagle/Core/Member.hpp"
 
 
 namespace Beagle
@@ -57,7 +57,7 @@ class Context;
 
 
 /*!
- *  \class Genotype beagle/Core/Genotype.hpp "beagle/Core/Genotype.hpp"
+ *  \class Genotype Beagle/Core/Genotype.hpp "Beagle/Core/Genotype.hpp"
  *  \brief A plain empty genotype.
  *  \ingroup Core
  *  \ingroup Pop

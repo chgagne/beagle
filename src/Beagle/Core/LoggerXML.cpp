@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/LoggerXML.cpp
+ *  \file   Beagle/Core/LoggerXML.cpp
  *  \brief  Implementation of class LoggerXML.
  *  \author Christian Gagne
  *  \author Marc Parizeau
@@ -33,7 +33,7 @@
  *  $Date: 2007/09/27 14:58:02 $
  */
 
-#include "beagle/Core.hpp"
+#include "Beagle/Core.hpp"
 
 #ifdef BEAGLE_HAVE_OPENMP
 #include <omp.h>

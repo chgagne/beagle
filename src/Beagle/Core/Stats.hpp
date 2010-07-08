@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/Stats.hpp
+ *  \file   Beagle/Core/Stats.hpp
  *  \brief  Definition of class Stats.
  *  \author Christian Gagne
  *  \author Marc Parizeau
@@ -40,18 +40,18 @@
 
 #include "PACC/XML.hpp"
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Core/Object.hpp"
-#include "beagle/Core/Pointer.hpp"
-#include "beagle/Core/PointerT.hpp"
-#include "beagle/Core/Allocator.hpp"
-#include "beagle/Core/Container.hpp"
-#include "beagle/Core/ContainerT.hpp"
-#include "beagle/Core/Member.hpp"
-#include "beagle/Core/HashString.hpp"
-#include "beagle/Core/AssertException.hpp"
-#include "beagle/Core/RunTimeException.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Object.hpp"
+#include "Beagle/Core/Pointer.hpp"
+#include "Beagle/Core/PointerT.hpp"
+#include "Beagle/Core/Allocator.hpp"
+#include "Beagle/Core/Container.hpp"
+#include "Beagle/Core/ContainerT.hpp"
+#include "Beagle/Core/Member.hpp"
+#include "Beagle/Core/HashString.hpp"
+#include "Beagle/Core/AssertException.hpp"
+#include "Beagle/Core/RunTimeException.hpp"
 
 #ifdef BEAGLE_HAVE_STDTR1_UNORDEREDMAP
   #include <tr1/unordered_map>
@@ -66,7 +66,7 @@ namespace Beagle
 
 
 /*!
- *  \struct Measure beagle/Core/Stats.hpp "beagle/Core/Stats.hpp"
+ *  \struct Measure Beagle/Core/Stats.hpp "Beagle/Core/Stats.hpp"
  *  \brief Statistical measure of an evolution.
  *  \ingroup Core
  *  \ingroup FitStats
@@ -88,7 +88,7 @@ struct Measure
 
 
 /*!
- *  \class Stats beagle/Core/Stats.hpp "beagle/Core/Stats.hpp"
+ *  \class Stats Beagle/Core/Stats.hpp "Beagle/Core/Stats.hpp"
  *  \brief Generation statistics measure.
  *  \ingroup Core
  *  \ingroup FitStats

@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/Container.hpp
+ *  \file   Beagle/Core/Container.hpp
  *  \brief  Container class for implementing the Bag data type.
  *  \author Christian Gagne
  *  \author Marc Parizeau
@@ -72,14 +72,14 @@
 
 #include <vector>
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Core/Object.hpp"
-#include "beagle/Core/Pointer.hpp"
-#include "beagle/Core/PointerT.hpp"
-#include "beagle/Core/Allocator.hpp"
-#include "beagle/Core/AllocatorT.hpp"
-#include "beagle/Core/AssertException.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Object.hpp"
+#include "Beagle/Core/Pointer.hpp"
+#include "Beagle/Core/PointerT.hpp"
+#include "Beagle/Core/Allocator.hpp"
+#include "Beagle/Core/AllocatorT.hpp"
+#include "Beagle/Core/AssertException.hpp"
 
 
 namespace Beagle
@@ -91,7 +91,7 @@ template <class T, class BaseType> class ContainerT;
 template <class T, class BaseType> class PointerT;
 
 /*!
- *  \class Container beagle/Core/Container.hpp "beagle/Core/Container.hpp"
+ *  \class Container Beagle/Core/Container.hpp "Beagle/Core/Container.hpp"
  *  \brief Basic container data structure, implemented as a vector of smart pointers.
  *  \ingroup Core
  *  \ingroup DataStruct

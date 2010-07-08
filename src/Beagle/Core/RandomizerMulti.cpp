@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/RandomizerMulti.cpp
+ *  \file   Beagle/Core/RandomizerMulti.cpp
  *  \brief  Source code of class RandomizerMulti.
  *	\author Felix-Antoine Fortin
  *	\author Francois-Michel De Rainville
@@ -35,7 +35,7 @@
  *  $Date: $
  */
 
-#include "beagle/Core.hpp"
+#include "Beagle/Core.hpp"
 #ifdef BEAGLE_HAVE_OPENMP
 #include <omp.h>
 #endif

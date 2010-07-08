@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/AssertException.hpp
+ *  \file   Beagle/Core/AssertException.hpp
  *  \brief  Definition of class AssertException.
  *  \author Christian Gagne
  *  \author Marc Parizeau
@@ -36,10 +36,10 @@
 #ifndef Beagle_Core_AssertException_hpp
 #define Beagle_Core_AssertException_hpp
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Core/Object.hpp"
-#include "beagle/Core/TargetedException.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Object.hpp"
+#include "Beagle/Core/TargetedException.hpp"
 
 
 /*!
@@ -133,7 +133,7 @@ template <class T, class BaseType> class PointerT;
 template <class T, class BaseType> class ContainerT;
 
 /*!
- *  \class AssertException beagle/Core/AssertException.hpp "beagle/Core/AssertException.hpp"
+ *  \class AssertException Beagle/Core/AssertException.hpp "Beagle/Core/AssertException.hpp"
  *  \brief Beagle exception indicating an badly asserted condition.
  *  \ingroup Core
  *  \ingroup Except

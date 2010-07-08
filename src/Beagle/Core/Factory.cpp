@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/Factory.cpp
+ *  \file   Beagle/Core/Factory.cpp
  *  \brief  Source code of class Factory.
  *  \author Christian Gagne
  *  \author Marc Parizeau
@@ -33,7 +33,7 @@
  *  $Date: 2007/08/10 20:32:22 $
  */
 
-#include "beagle/Core.hpp"
+#include "Beagle/Core.hpp"
 
 #include <stdexcept>
 

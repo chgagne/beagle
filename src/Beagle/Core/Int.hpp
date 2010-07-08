@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/Int.hpp
+ *  \file   Beagle/Core/Int.hpp
  *  \brief  Definition of the type Int and related operators.
  *  \author Christian Gagne
  *  \author Marc Parizeau
@@ -36,10 +36,10 @@
 #ifndef Beagle_Core_Int_hpp
 #define Beagle_Core_Int_hpp
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Core/WrapperT.hpp"
-#include "beagle/Core/ArrayT.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/WrapperT.hpp"
+#include "Beagle/Core/ArrayT.hpp"
 
 
 namespace Beagle

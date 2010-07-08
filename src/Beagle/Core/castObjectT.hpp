@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/castObjectT.hpp
+ *  \file   Beagle/Core/castObjectT.hpp
  *  \brief  Implementation of castObjectT templated functions.
  *  \author Christian Gagne
  *  \author Marc Parizeau
@@ -39,11 +39,11 @@
 #include <typeinfo>
 #include <string>
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Core/Object.hpp"
-#include "beagle/Core/Pointer.hpp"
-#include "beagle/Core/BadCastException.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Object.hpp"
+#include "Beagle/Core/Pointer.hpp"
+#include "Beagle/Core/BadCastException.hpp"
 
 
 namespace Beagle

@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/DataSetRegression.hpp
+ *  \file   Beagle/Core/DataSetRegression.hpp
  *  \brief  Definition of the type DataSetRegression.
  *  \author Christian Gagne <cgagne@gmail.com>
  *  $Revision: 1.2 $
@@ -35,17 +35,17 @@
 #ifndef Beagle_Core_DataSetRegression_hpp
 #define Beagle_Core_DataSetRegression_hpp
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Core/Vector.hpp"
-#include "beagle/Core/Component.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Vector.hpp"
+#include "Beagle/Core/Component.hpp"
 #include <vector>
 
 
 namespace Beagle {
 
 /*!
- *  \class DataSetRegression beagle/Core/DataSetRegression.hpp "beagle/Core/DataSetRegression.hpp"
+ *  \class DataSetRegression Beagle/Core/DataSetRegression.hpp "Beagle/Core/DataSetRegression.hpp"
  *  \brief Component of a data set useful for regression problems.
  *  \ingroup Core
  */

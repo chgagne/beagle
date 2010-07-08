@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/RunTimeException.hpp
+ *  \file   Beagle/Core/RunTimeException.hpp
  *  \brief  Definition of class RunTimeException.
  *  \author Christian Gagne
  *  \author Marc Parizeau
@@ -38,11 +38,11 @@
 
 #include <string>
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Core/Object.hpp"
-#include "beagle/Core/Exception.hpp"
-#include "beagle/Core/TargetedException.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Object.hpp"
+#include "Beagle/Core/Exception.hpp"
+#include "Beagle/Core/TargetedException.hpp"
 
 /*!
  *  \def   Beagle_RunTimeExceptionM
@@ -64,7 +64,7 @@ template <class T, class BaseType> class ContainerT;
 
 
 /*!
- *  \class RunTimeException beagle/Core/RunTimeException.hpp "beagle/Core/RunTimeException.hpp"
+ *  \class RunTimeException Beagle/Core/RunTimeException.hpp "Beagle/Core/RunTimeException.hpp"
  *  \brief Run time checking exception.
  *  \ingroup Core
  *  \ingroup Except

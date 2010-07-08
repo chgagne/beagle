@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/Exception.cpp
+ *  \file   Beagle/Core/Exception.cpp
  *  \brief  Implementation of class Exception.
  *  \author Christian Gagne
  *  \author Marc Parizeau
@@ -33,7 +33,7 @@
  *  $Date: 2007/09/12 14:23:47 $
  */
 
-#include "beagle/Core.hpp"
+#include "Beagle/Core.hpp"
 
 using namespace Beagle;
 

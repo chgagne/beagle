@@ -25,14 +25,14 @@
  */
 
 /*!
- *  \file   beagle/Core/Package.cpp
+ *  \file   Beagle/Core/Package.cpp
  *  \brief  Source code of class Package.
  *  \author Christian Gagne
  *  $Revision: 1.1 $
  *  $Date: 2007/08/08 14:51:38 $
  */
 
-#include "beagle/Core.hpp"
+#include "Beagle/Core.hpp"
 
 using namespace Beagle;
 

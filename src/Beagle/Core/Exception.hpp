@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/Exception.hpp
+ *  \file   Beagle/Core/Exception.hpp
  *  \brief  Definition of class Exception.
  *  \author Christian Gagne
  *  \author Marc Parizeau
@@ -78,9 +78,9 @@
 #include <string>
 #include <vector>
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Core/Object.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Object.hpp"
 
 
 /*!
@@ -125,7 +125,7 @@ template <class T, class BaseType> class PointerT;
 template <class T, class BaseType> class ContainerT;
 
 /*!
- *  \class Exception beagle/Core/Exception.hpp "beagle/Core/Exception.hpp"
+ *  \class Exception Beagle/Core/Exception.hpp "Beagle/Core/Exception.hpp"
  *  \brief Basic Beagle exception class.
  *  \ingroup Core
  *  \ingroup Except

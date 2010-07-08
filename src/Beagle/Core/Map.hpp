@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/Map.hpp
+ *  \file   Beagle/Core/Map.hpp
  *  \brief  Definition of class Map.
  *  \author Christian Gagne
  *  \author Marc Parizeau
@@ -41,14 +41,14 @@
 
 #include "PACC/XML.hpp"
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Core/Object.hpp"
-#include "beagle/Core/Pointer.hpp"
-#include "beagle/Core/PointerT.hpp"
-#include "beagle/Core/Container.hpp"
-#include "beagle/Core/ContainerT.hpp"
-#include "beagle/Core/HashString.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Object.hpp"
+#include "Beagle/Core/Pointer.hpp"
+#include "Beagle/Core/PointerT.hpp"
+#include "Beagle/Core/Container.hpp"
+#include "Beagle/Core/ContainerT.hpp"
+#include "Beagle/Core/HashString.hpp"
 
 #ifdef BEAGLE_HAVE_STDTR1_UNORDEREDMAP
   #include <tr1/unordered_map>
@@ -62,7 +62,7 @@ namespace Beagle
 {
 
 /*!
- *  \class Map beagle/Core/Map.hpp "beagle/Core/Map.hpp"
+ *  \class Map Beagle/Core/Map.hpp "Beagle/Core/Map.hpp"
  *  \brief Associative container using a string as key accessors to the
  *    Object::Handle instances.
  *  \ingroup Core

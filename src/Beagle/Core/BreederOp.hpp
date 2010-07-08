@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/BreederOp.hpp
+ *  \file   Beagle/Core/BreederOp.hpp
  *  \brief  Definition of the class BreederOp.
  *  \author Christian Gagne
  *  \author Marc Parizeau
@@ -36,27 +36,27 @@
 #ifndef Beagle_Core_BreederOp_hpp
 #define Beagle_Core_BreederOp_hpp
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Core/Object.hpp"
-#include "beagle/Core/Pointer.hpp"
-#include "beagle/Core/PointerT.hpp"
-#include "beagle/Core/Allocator.hpp"
-#include "beagle/Core/AllocatorT.hpp"
-#include "beagle/Core/AbstractAllocT.hpp"
-#include "beagle/Core/Container.hpp"
-#include "beagle/Core/ContainerT.hpp"
-#include "beagle/Core/Operator.hpp"
-#include "beagle/Core/Individual.hpp"
-#include "beagle/Core/BreederNode.hpp"
-#include "beagle/Core/Double.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Object.hpp"
+#include "Beagle/Core/Pointer.hpp"
+#include "Beagle/Core/PointerT.hpp"
+#include "Beagle/Core/Allocator.hpp"
+#include "Beagle/Core/AllocatorT.hpp"
+#include "Beagle/Core/AbstractAllocT.hpp"
+#include "Beagle/Core/Container.hpp"
+#include "Beagle/Core/ContainerT.hpp"
+#include "Beagle/Core/Operator.hpp"
+#include "Beagle/Core/Individual.hpp"
+#include "Beagle/Core/BreederNode.hpp"
+#include "Beagle/Core/Double.hpp"
 
 
 namespace Beagle
 {
 
 /*!
- *  \class BreederOp beagle/Core/BreederOp.hpp "beagle/Core/BreederOp.hpp"
+ *  \class BreederOp Beagle/Core/BreederOp.hpp "Beagle/Core/BreederOp.hpp"
  *  \brief Breeder operator abstract class.
  *  \ingroup Core
  *  \ingroup Op

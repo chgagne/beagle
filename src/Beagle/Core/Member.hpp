@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/Member.hpp
+ *  \file   Beagle/Core/Member.hpp
  *  \brief  Definition of class Member.
  *  \author Christian Gagne
  *  $Revision: 1.1 $
@@ -37,15 +37,15 @@
 
 #include "PACC/XML.hpp"
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Core/Object.hpp"
-#include "beagle/Core/Pointer.hpp"
-#include "beagle/Core/PointerT.hpp"
-#include "beagle/Core/Allocator.hpp"
-#include "beagle/Core/AllocatorT.hpp"
-#include "beagle/Core/Container.hpp"
-#include "beagle/Core/ContainerT.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Object.hpp"
+#include "Beagle/Core/Pointer.hpp"
+#include "Beagle/Core/PointerT.hpp"
+#include "Beagle/Core/Allocator.hpp"
+#include "Beagle/Core/AllocatorT.hpp"
+#include "Beagle/Core/Container.hpp"
+#include "Beagle/Core/ContainerT.hpp"
 
 
 namespace Beagle
@@ -57,7 +57,7 @@ class System;
 
 
 /*!
- *  \class Member beagle/Core/Member.hpp "beagle/Core/Member.hpp"
+ *  \class Member Beagle/Core/Member.hpp "Beagle/Core/Member.hpp"
  *  \brief Population member base class.
  *  \ingroup Core
  *  \ingroup Sys

@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/Evolver.hpp
+ *  \file   Beagle/Core/Evolver.hpp
  *  \brief  Definition of the class Evolver.
  *  \author Christian Gagne
  *  \author Marc Parizeau
@@ -36,31 +36,31 @@
 #ifndef Beagle_Core_Evolver_hpp
 #define Beagle_Core_Evolver_hpp
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Core/Object.hpp"
-#include "beagle/Core/Pointer.hpp"
-#include "beagle/Core/PointerT.hpp"
-#include "beagle/Core/Allocator.hpp"
-#include "beagle/Core/AllocatorT.hpp"
-#include "beagle/Core/Container.hpp"
-#include "beagle/Core/ContainerT.hpp"
-#include "beagle/Core/AbstractAllocT.hpp"
-#include "beagle/Core/WrapperT.hpp"
-#include "beagle/Core/System.hpp"
-#include "beagle/Core/Operator.hpp"
-#include "beagle/Core/Map.hpp"
-#include "beagle/Core/OperatorMap.hpp"
-#include "beagle/Core/Vivarium.hpp"
-#include "beagle/Core/UInt.hpp"
-#include "beagle/Core/Package.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Object.hpp"
+#include "Beagle/Core/Pointer.hpp"
+#include "Beagle/Core/PointerT.hpp"
+#include "Beagle/Core/Allocator.hpp"
+#include "Beagle/Core/AllocatorT.hpp"
+#include "Beagle/Core/Container.hpp"
+#include "Beagle/Core/ContainerT.hpp"
+#include "Beagle/Core/AbstractAllocT.hpp"
+#include "Beagle/Core/WrapperT.hpp"
+#include "Beagle/Core/System.hpp"
+#include "Beagle/Core/Operator.hpp"
+#include "Beagle/Core/Map.hpp"
+#include "Beagle/Core/OperatorMap.hpp"
+#include "Beagle/Core/Vivarium.hpp"
+#include "Beagle/Core/UInt.hpp"
+#include "Beagle/Core/Package.hpp"
 
 
 namespace Beagle
 {
 
 /*!
- *  \class Evolver beagle/Core/Evolver.hpp "beagle/Core/Evolver.hpp"
+ *  \class Evolver Beagle/Core/Evolver.hpp "Beagle/Core/Evolver.hpp"
  *  \brief Basic Beagle evolver class.
  *  \ingroup Core
  *  \ingroup Op

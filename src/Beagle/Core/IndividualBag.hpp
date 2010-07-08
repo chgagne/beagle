@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/IndividualBag.hpp
+ *  \file   Beagle/Core/IndividualBag.hpp
  *  \brief  Definition of the class IndividualBag.
  *  \author Matthew Walker
  *  \author Christian Gagne
@@ -38,19 +38,19 @@
 #define Beagle_Core_IndividualBag_hpp
 
 #include <string>
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Core/Object.hpp"
-#include "beagle/Core/Container.hpp"
-#include "beagle/Core/ContainerT.hpp"
-#include "beagle/Core/Individual.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Object.hpp"
+#include "Beagle/Core/Container.hpp"
+#include "Beagle/Core/ContainerT.hpp"
+#include "Beagle/Core/Individual.hpp"
 
 namespace Beagle
 {
 
 
 /*!
- *  \class IndividualBag beagle/Core/IndividualBag.hpp "beagle/Core/IndividualBag.hpp"
+ *  \class IndividualBag Beagle/Core/IndividualBag.hpp "Beagle/Core/IndividualBag.hpp"
  *  \brief Container of individuals.
  *  \ingroup Core
  *  \ingroup Pop

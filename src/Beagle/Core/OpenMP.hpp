@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/OpenMP.hpp
+ *  \file   Beagle/Core/OpenMP.hpp
  *  \brief  Definition of the class OpenMP.
  *	\author Francois-Michel De Rainville
  *	\author Felix-Antoine Fortin
@@ -40,12 +40,12 @@
 
 #include <omp.h>
 
-#include "beagle/Core.hpp"
+#include "Beagle/Core.hpp"
 
 namespace Beagle {
 
 /*!
- *  \class OpenMP beagle/Core/OpenMP.hpp "beagle/Core/OpenMP.hpp"
+ *  \class OpenMP Beagle/Core/OpenMP.hpp "Beagle/Core/OpenMP.hpp"
  *  \brief OpenMP function wrapper class.
  *  \ingroup Core
  *  \ingroup Sys

@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/BreederOp.cpp
+ *  \file   Beagle/Core/BreederOp.cpp
  *  \brief  Source code of class BreederOp.
  *  \author Christian Gagne
  *  \author Marc Parizeau
@@ -33,7 +33,7 @@
  *  $Date: 2007/08/08 19:26:45 $
  */
 
-#include "beagle/Core.hpp"
+#include "Beagle/Core.hpp"
 
 using namespace Beagle;
 

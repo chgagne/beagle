@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/LoggerXML.hpp
+ *  \file   Beagle/Core/LoggerXML.hpp
  *  \brief  Definition of the class LoggerXML.
  *  \author Christian Gagne
  *  \author Marc Parizeau
@@ -36,16 +36,16 @@
 #ifndef Beagle_Core_LoggerXML_hpp
 #define Beagle_Core_LoggerXML_hpp
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Core/Logger.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Logger.hpp"
 #include "PACC/Threading.hpp"
 
 namespace Beagle
 {
 
 /*!
- *  \class LoggerXML beagle/Core/LoggerXML.hpp "beagle/Core/LoggerXML.hpp"
+ *  \class LoggerXML Beagle/Core/LoggerXML.hpp "Beagle/Core/LoggerXML.hpp"
  *  \brief XML message logger.
  *  \ingroup Core
  *

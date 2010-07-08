@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/config.hpp
+ *  \file   Beagle/config.hpp
  *  \brief  Results from architecture-specific tests.
  *  \author Christian Gagne
  *  $Revision:$

@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/History.hpp
+ *  \file   Beagle/Core/History.hpp
  *  \brief  Definition of the class History.
  *  \author Alexandre Devert
  *  $Revision: 1.19 $
@@ -93,16 +93,16 @@
 
 #include "PACC/Util.hpp"
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Core/Object.hpp"
-#include "beagle/Core/AllocatorT.hpp"
-#include "beagle/Core/PointerT.hpp"
-#include "beagle/Core/ContainerT.hpp"
-#include "beagle/Core/Component.hpp"
-#include "beagle/Core/WrapperT.hpp"
-#include "beagle/Core/Bool.hpp"
-#include "beagle/Core/HistoryTrace.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Object.hpp"
+#include "Beagle/Core/AllocatorT.hpp"
+#include "Beagle/Core/PointerT.hpp"
+#include "Beagle/Core/ContainerT.hpp"
+#include "Beagle/Core/Component.hpp"
+#include "Beagle/Core/WrapperT.hpp"
+#include "Beagle/Core/Bool.hpp"
+#include "Beagle/Core/HistoryTrace.hpp"
 
 
 namespace Beagle
@@ -112,7 +112,7 @@ namespace Beagle
 class System;
 
 /*!
- *  \class History beagle/Core/History.hpp "beagle/Core/History.hpp"
+ *  \class History Beagle/Core/History.hpp "Beagle/Core/History.hpp"
  *  \brief System component for the storage of history data.
  *
  *  The History component is the principle interface for the user to

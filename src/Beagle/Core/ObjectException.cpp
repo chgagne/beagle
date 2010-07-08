@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/ObjectException.cpp
+ *  \file   Beagle/Core/ObjectException.cpp
  *  \brief  Implementation of class ObjectException.
  *  \author Christian Gagne
  *  \author Marc Parizeau
@@ -33,7 +33,7 @@
  *  $Date: 2007/08/08 19:26:46 $
  */
 
-#include "beagle/Core.hpp"
+#include "Beagle/Core.hpp"
 
 #ifdef BEAGLE_HAVE_RTTI
 #include <typeinfo>

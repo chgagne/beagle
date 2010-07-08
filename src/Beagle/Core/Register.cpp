@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/Register.cpp
+ *  \file   Beagle/Core/Register.cpp
  *  \brief  Source code of class Register.
  *  \author Christian Gagne
  *  \author Marc Parizeau
@@ -33,7 +33,7 @@
  *  $Date: 2007/09/17 17:25:49 $
  */
 
-#include "beagle/Core.hpp"
+#include "Beagle/Core.hpp"
 
 #include <cstdio>
 #include <cstring>

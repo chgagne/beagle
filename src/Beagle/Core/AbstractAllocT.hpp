@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/AbstractAllocT.hpp
+ *  \file   Beagle/Core/AbstractAllocT.hpp
  *  \brief  Definition of abstract templated class AbstractAllocT.
  *  \author Christian Gagne
  *  \author Marc Parizeau
@@ -36,18 +36,18 @@
 #ifndef Beagle_Core_AbstractAllocT_hpp
 #define Beagle_Core_AbstractAllocT_hpp
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Core/Allocator.hpp"
-#include "beagle/Core/PointerT.hpp"
-#include "beagle/Core/AllocatorT.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Allocator.hpp"
+#include "Beagle/Core/PointerT.hpp"
+#include "Beagle/Core/AllocatorT.hpp"
 
 
 namespace Beagle
 {
 
 /*!
- *  \class AbstractAllocT beagle/Core/AbstractAllocT.hpp "beagle/Core/AbstractAllocT.hpp"
+ *  \class AbstractAllocT Beagle/Core/AbstractAllocT.hpp "Beagle/Core/AbstractAllocT.hpp"
  *  \brief Abstract templated allocator class.
  *  \param T Type (abtsract) of object allocated.
  *  \param BaseType Base type from which the actual allocator type is derived.

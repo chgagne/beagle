@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/ValidationException.cpp
+ *  \file   Beagle/Core/ValidationException.cpp
  *  \brief  Implementation of class ValidationException.
  *  \author Christian Gagne
  *  \author Marc Parizeau
@@ -33,7 +33,7 @@
  *  $Date: 2007/08/08 19:26:47 $
  */
 
-#include "beagle/Core.hpp"
+#include "Beagle/Core.hpp"
 
 using namespace Beagle;
 

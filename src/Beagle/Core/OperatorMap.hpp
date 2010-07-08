@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/OperatorMap.hpp
+ *  \file   Beagle/Core/OperatorMap.hpp
  *  \brief  Definition of class OperatorMap.
  *  \author Christian Gagne
  *  \author Marc Parizeau
@@ -39,10 +39,10 @@
 #include <string>
 #include <map>
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Core/Map.hpp"
-#include "beagle/Core/Operator.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Map.hpp"
+#include "Beagle/Core/Operator.hpp"
 
 
 namespace Beagle
@@ -50,7 +50,7 @@ namespace Beagle
 
 
 /*!
- *  \class OperatorMap beagle/Core/OperatorMap.hpp "beagle/Core/OperatorMap.hpp"
+ *  \class OperatorMap Beagle/Core/OperatorMap.hpp "Beagle/Core/OperatorMap.hpp"
  *  \brief Associative container using a string as key accessors to the
  *    Operator::Handle instances.
  *  \ingroup Core

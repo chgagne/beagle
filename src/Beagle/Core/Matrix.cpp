@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/Matrix.cpp
+ *  \file   Beagle/Core/Matrix.cpp
  *  \brief  Source code of class Matrix.
  *  \author Christian Gagne
  *  \author Marc Parizeau
@@ -33,7 +33,7 @@
  *  $Date: 2007/08/08 19:26:46 $
  */
 
-#include "beagle/Core.hpp"
+#include "Beagle/Core.hpp"
 
 #include <cfloat>
 #include <climits>

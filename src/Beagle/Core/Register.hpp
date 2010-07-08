@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/Register.hpp
+ *  \file   Beagle/Core/Register.hpp
  *  \brief  Definition of the class Register.
  *  \author Christian Gagne
  *  \author Marc Parizeau
@@ -39,13 +39,13 @@
 #include <map>
 #include <string>
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Core/Map.hpp"
-#include "beagle/Core/WrapperT.hpp"
-#include "beagle/Core/String.hpp"
-#include "beagle/Core/Operator.hpp"
-#include "beagle/Core/Component.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Map.hpp"
+#include "Beagle/Core/WrapperT.hpp"
+#include "Beagle/Core/String.hpp"
+#include "Beagle/Core/Operator.hpp"
+#include "Beagle/Core/Component.hpp"
 
 
 namespace Beagle
@@ -57,7 +57,7 @@ class System;
 
 
 /*!
- *  \class Register beagle/Core/Register.hpp "beagle/Core/Register.hpp"
+ *  \class Register Beagle/Core/Register.hpp "Beagle/Core/Register.hpp"
  *  \brief Register implementation, where all the parameters of the framework are centralized.
  *  \ingroup Core
  *  \ingroup Sys
@@ -68,7 +68,7 @@ class Register : public Component
 public:
 
 	/*!
-	 *  \struct Description beagle/Core/Register.hpp "beagle/Core/Register.hpp"
+	 *  \struct Description Beagle/Core/Register.hpp "Beagle/Core/Register.hpp"
 	 *  \brief Parameter extensive description.
 	 */
 	struct Description

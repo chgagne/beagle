@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/TargetedException.hpp
+ *  \file   Beagle/Core/TargetedException.hpp
  *  \brief  Definition of class TargetedException.
  *  \author Christian Gagne
  *  \author Marc Parizeau
@@ -38,10 +38,10 @@
 
 #include <string>
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Core/Object.hpp"
-#include "beagle/Core/Exception.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Object.hpp"
+#include "Beagle/Core/Exception.hpp"
 
 
 namespace Beagle
@@ -53,7 +53,7 @@ template <class T, class BaseType> class PointerT;
 template <class T, class BaseType> class ContainerT;
 
 /*!
- *  \class TargetedException beagle/Core/TargetedException.hpp "beagle/Core/TargetedException.hpp"
+ *  \class TargetedException Beagle/Core/TargetedException.hpp "Beagle/Core/TargetedException.hpp"
  *  \brief Targeted Beagle exception that indicate a precise line number in a source file.
  *  \ingroup Core
  *  \ingroup Except

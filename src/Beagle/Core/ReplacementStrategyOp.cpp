@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/ReplacementStrategyOp.cpp
+ *  \file   Beagle/Core/ReplacementStrategyOp.cpp
  *  \brief  Implementation of class ReplacementStrategyOp.
  *  \author Christian Gagne
  *  \author Marc Parizeau
@@ -33,7 +33,7 @@
  *  $Date: 2007/08/10 20:32:22 $
  */
 
-#include "beagle/Core.hpp"
+#include "Beagle/Core.hpp"
 
 #include <cmath>
 

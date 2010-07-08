@@ -25,14 +25,14 @@
  */
 
 /*!
- *  \file   beagle/Core/QuasiRandom.cpp
+ *  \file   Beagle/Core/QuasiRandom.cpp
  *  \brief  Source code of class QuasiRandom.
  *  \author Christian Gagne
  *  $Revision: 1.4 $
  *  $Date: 2007/08/08 19:26:46 $
  */
 
-#include "beagle/Core.hpp"
+#include "Beagle/Core.hpp"
 
 #include <cmath>
 

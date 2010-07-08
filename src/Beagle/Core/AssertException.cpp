@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/AssertException.cpp
+ *  \file   Beagle/Core/AssertException.cpp
  *  \brief  Implementation of class AssertException.
  *  \author Christian Gagne
  *  \author Marc Parizeau
@@ -33,7 +33,7 @@
  *  $Date: 2007/08/08 19:26:45 $
  */
 
-#include "beagle/Core.hpp"
+#include "Beagle/Core.hpp"
 
 using namespace Beagle;
 

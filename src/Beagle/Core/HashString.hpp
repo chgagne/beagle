@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/HashString.hpp
+ *  \file   Beagle/Core/HashString.hpp
  *  \brief  Definition of HashString Map.
  *  \author Christian Gagne
  *  $Revision: 1.3 $
@@ -37,8 +37,8 @@
 
 #include <string>
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
 
 #ifdef BEAGLE_HAVE_STDINT_H
 #include "stdint.h"
@@ -68,7 +68,7 @@ namespace Beagle
 {
 
 /*!
- *  \class HashString beagle/Core/HashString.hpp "beagle/Core/HashString.hpp"
+ *  \class HashString Beagle/Core/HashString.hpp "Beagle/Core/HashString.hpp"
  *  \brief Functor used to generate hash value from std::string.
  *  \ingroup Core
  *  \ingroup DataStruct

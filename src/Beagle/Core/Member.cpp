@@ -25,14 +25,14 @@
  */
 
 /*!
- *  \file   beagle/Core/Member.cpp
+ *  \file   Beagle/Core/Member.cpp
  *  \brief  Source code of class Member.
  *  \author Christian Gagne
  *  $Revision: 1.1 $
  *  $Date: 2007/08/17 18:09:13 $
  */
 
-#include "beagle/Core.hpp"
+#include "Beagle/Core.hpp"
 
 using namespace Beagle;
 

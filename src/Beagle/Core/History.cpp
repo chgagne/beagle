@@ -25,14 +25,14 @@
  */
 
 /*!
- *  \file   beagle/Core/History.cpp
+ *  \file   Beagle/Core/History.cpp
  *  \brief  Source code of class History.
  *  \author Alexandre Devert
  *  $Revision: 1.29 $
  *  $Date: 2007/08/17 20:58:00 $
  */
 
-#include "beagle/Core.hpp"
+#include "Beagle/Core.hpp"
 
 using namespace Beagle;
 

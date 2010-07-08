@@ -25,7 +25,7 @@
  */
 
 /*!
-*  \file   beagle/Core/HistoryEntry.hpp
+*  \file   Beagle/Core/HistoryEntry.hpp
 *  \brief  Definition of the class HistoryEntry.
 *  \author Alexandre Devert
 *  $Revision: 1.18 $
@@ -35,22 +35,22 @@
 #ifndef Beagle_Core_HistoryEntry_hpp
 #define Beagle_Core_HistoryEntry_hpp
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Core/Object.hpp"
-#include "beagle/Core/AllocatorT.hpp"
-#include "beagle/Core/PointerT.hpp"
-#include "beagle/Core/ContainerT.hpp"
-#include "beagle/Core/Component.hpp"
-#include "beagle/Core/WrapperT.hpp"
-#include "beagle/Core/HistoryID.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Object.hpp"
+#include "Beagle/Core/AllocatorT.hpp"
+#include "Beagle/Core/PointerT.hpp"
+#include "Beagle/Core/ContainerT.hpp"
+#include "Beagle/Core/Component.hpp"
+#include "Beagle/Core/WrapperT.hpp"
+#include "Beagle/Core/HistoryID.hpp"
 
 
 namespace Beagle
 {
 
 /*!
- *  \class HistoryEntry beagle/Core/HistoryEntry.hpp "beagle/Core/HistoryEntry.hpp"
+ *  \class HistoryEntry Beagle/Core/HistoryEntry.hpp "Beagle/Core/HistoryEntry.hpp"
  *  \brief Evolution history storage class.
  *
  *  This class is used internally by the History system component.

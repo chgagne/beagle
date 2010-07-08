@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/ArrayT.hpp
+ *  \file   Beagle/Core/ArrayT.hpp
  *  \brief  Definition and implementation of template WrapperT.
  *  \author Christian Gagne
  *  \author Marc Parizeau
@@ -41,22 +41,22 @@
 
 #include "PACC/XML.hpp"
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Core/Object.hpp"
-#include "beagle/Core/Exception.hpp"
-#include "beagle/Core/castObjectT.hpp"
-#include "beagle/Core/PointerT.hpp"
-#include "beagle/Core/AllocatorT.hpp"
-#include "beagle/Core/ContainerT.hpp"
-#include "beagle/Core/IOException.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Object.hpp"
+#include "Beagle/Core/Exception.hpp"
+#include "Beagle/Core/castObjectT.hpp"
+#include "Beagle/Core/PointerT.hpp"
+#include "Beagle/Core/AllocatorT.hpp"
+#include "Beagle/Core/ContainerT.hpp"
+#include "Beagle/Core/IOException.hpp"
 
 namespace Beagle
 {
 
 
 /*!
- *  \class ArrayT beagle/Core/ArrayT.hpp "beagle/Core/ArrayT.hpp"
+ *  \class ArrayT Beagle/Core/ArrayT.hpp "Beagle/Core/ArrayT.hpp"
  *  \brief Template of an ArrayT that adapt an array type (std::vector of the parametrized type) 
 *     to the Beagle Object interface.
  *  \param T The array-ed type.

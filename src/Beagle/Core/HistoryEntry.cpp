@@ -25,14 +25,14 @@
  */
 
 /*!
- *  \file   beagle/Core/HistoryEntry.cpp
+ *  \file   Beagle/Core/HistoryEntry.cpp
  *  \brief  Source code of class HistoryEntry.
  *  \author Alexandre Devert
  *  $Revision: 1.22 $
  *  $Date: 2007/08/17 20:58:00 $
  */
 
-#include "beagle/Core.hpp"
+#include "Beagle/Core.hpp"
 #include <sstream>
 
 using namespace Beagle;

@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/AllocatorT.hpp
+ *  \file   Beagle/Core/AllocatorT.hpp
  *  \brief  Definition of class template AllocatorT.
  *  \author Christian Gagne
  *  \author Marc Parizeau
@@ -36,13 +36,13 @@
 #ifndef Beagle_Core_AllocatorT_hpp
 #define Beagle_Core_AllocatorT_hpp
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Core/Object.hpp"
-#include "beagle/Core/castObjectT.hpp"
-#include "beagle/Core/Allocator.hpp"
-#include "beagle/Core/InternalException.hpp"
-#include "beagle/Core/BadCastException.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Object.hpp"
+#include "Beagle/Core/castObjectT.hpp"
+#include "Beagle/Core/Allocator.hpp"
+#include "Beagle/Core/InternalException.hpp"
+#include "Beagle/Core/BadCastException.hpp"
 
 
 namespace Beagle
@@ -53,7 +53,7 @@ template <class T, class BaseType> class AllocatorT;
 template <class T, class BaseType> class PointerT;
 
 /*!
- *  \class AllocatorT beagle/Core/AllocatorT.hpp "beagle/Core/AllocatorT.hpp"
+ *  \class AllocatorT Beagle/Core/AllocatorT.hpp "Beagle/Core/AllocatorT.hpp"
  *  \brief Templated class defining a T-type allocator.
  *  \param T Type of object allocated.
  *  \param BaseType Base type from which the actual allocator type is derived.

@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/RunTimeException.cpp
+ *  \file   Beagle/Core/RunTimeException.cpp
  *  \brief  Implementation of class RunTimeException.
  *  \author Christian Gagne
  *  \author Marc Parizeau
@@ -33,7 +33,7 @@
  *  $Date: 2007/08/08 19:26:46 $
  */
 
-#include "beagle/Core.hpp"
+#include "Beagle/Core.hpp"
 
 using namespace Beagle;
 

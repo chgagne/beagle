@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/ReplacementStrategyOp.hpp
+ *  \file   Beagle/Core/ReplacementStrategyOp.hpp
  *  \brief  Definition of the class ReplacementStrategyOp.
  *  \author Christian Gagne
  *  \author Marc Parizeau
@@ -36,26 +36,26 @@
 #ifndef Beagle_Core_ReplacementStrategyOp_hpp
 #define Beagle_Core_ReplacementStrategyOp_hpp
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Core/Object.hpp"
-#include "beagle/Core/Pointer.hpp"
-#include "beagle/Core/PointerT.hpp"
-#include "beagle/Core/Allocator.hpp"
-#include "beagle/Core/AllocatorT.hpp"
-#include "beagle/Core/AbstractAllocT.hpp"
-#include "beagle/Core/Container.hpp"
-#include "beagle/Core/ContainerT.hpp"
-#include "beagle/Core/Operator.hpp"
-#include "beagle/Core/BreederNode.hpp"
-#include "beagle/Core/BreederOp.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Object.hpp"
+#include "Beagle/Core/Pointer.hpp"
+#include "Beagle/Core/PointerT.hpp"
+#include "Beagle/Core/Allocator.hpp"
+#include "Beagle/Core/AllocatorT.hpp"
+#include "Beagle/Core/AbstractAllocT.hpp"
+#include "Beagle/Core/Container.hpp"
+#include "Beagle/Core/ContainerT.hpp"
+#include "Beagle/Core/Operator.hpp"
+#include "Beagle/Core/BreederNode.hpp"
+#include "Beagle/Core/BreederOp.hpp"
 
 namespace Beagle
 {
 
 
 /*!
- *  \class ReplacementStrategyOp beagle/Core/ReplacementStrategyOp.hpp "beagle/Core/ReplacementStrategyOp.hpp"
+ *  \class ReplacementStrategyOp Beagle/Core/ReplacementStrategyOp.hpp "Beagle/Core/ReplacementStrategyOp.hpp"
  *  \brief Replacement strategy operator abstract class.
  *  \ingroup Core
  *  \ingroup Op

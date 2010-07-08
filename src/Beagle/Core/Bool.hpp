@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/Bool.hpp
+ *  \file   Beagle/Core/Bool.hpp
  *  \brief  Definition of type Bool and related operators.
  *  \author Christian Gagne
  *  \author Marc Parizeau
@@ -36,10 +36,10 @@
 #ifndef Beagle_Core_Bool_hpp
 #define Beagle_Core_Bool_hpp
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Core/WrapperT.hpp"
-#include "beagle/Core/ArrayT.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/WrapperT.hpp"
+#include "Beagle/Core/ArrayT.hpp"
 
 
 namespace Beagle

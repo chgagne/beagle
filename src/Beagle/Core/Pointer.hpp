@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/Pointer.hpp
+ *  \file   Beagle/Core/Pointer.hpp
  *  \brief  Definition of class Pointer.
  *  \author Christian Gagne
  *  \author Marc Parizeau
@@ -36,17 +36,17 @@
 #ifndef Beagle_Core_Pointer_hpp
 #define Beagle_Core_Pointer_hpp
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Core/Object.hpp"
-#include "beagle/Core/AssertException.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Object.hpp"
+#include "Beagle/Core/AssertException.hpp"
 
 
 namespace Beagle
 {
 
 /*!
- *  \class Pointer beagle/Core/Pointer.hpp "beagle/Core/Pointer.hpp"
+ *  \class Pointer Beagle/Core/Pointer.hpp "Beagle/Core/Pointer.hpp"
  *  \brief Basic class describing a smart pointer to an object.
  *  \ingroup Core
  *  \ingroup ObjPt

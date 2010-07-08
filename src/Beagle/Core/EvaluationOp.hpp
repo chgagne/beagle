@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/EvaluationOp.hpp
+ *  \file   Beagle/Core/EvaluationOp.hpp
  *  \brief  Definition of the class EvaluationOp.
  *  \author Christian Gagne
  *  \author Marc Parizeau
@@ -39,25 +39,25 @@
 #include <string>
 #include <iostream>
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Core/Object.hpp"
-#include "beagle/Core/AbstractAllocT.hpp"
-#include "beagle/Core/PointerT.hpp"
-#include "beagle/Core/ContainerT.hpp"
-#include "beagle/Core/Operator.hpp"
-#include "beagle/Core/UInt.hpp"
-#include "beagle/Core/System.hpp"
-#include "beagle/Core/Context.hpp"
-#include "beagle/Core/Logger.hpp"
-#include "beagle/Core/BreederOp.hpp"
-#include "beagle/Core/Double.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Object.hpp"
+#include "Beagle/Core/AbstractAllocT.hpp"
+#include "Beagle/Core/PointerT.hpp"
+#include "Beagle/Core/ContainerT.hpp"
+#include "Beagle/Core/Operator.hpp"
+#include "Beagle/Core/UInt.hpp"
+#include "Beagle/Core/System.hpp"
+#include "Beagle/Core/Context.hpp"
+#include "Beagle/Core/Logger.hpp"
+#include "Beagle/Core/BreederOp.hpp"
+#include "Beagle/Core/Double.hpp"
 
 namespace Beagle
 {
 
 /*!
- *  \class EvaluationOp beagle/Core/EvaluationOp.hpp "beagle/Core/EvaluationOp.hpp"
+ *  \class EvaluationOp Beagle/Core/EvaluationOp.hpp "Beagle/Core/EvaluationOp.hpp"
  *  \brief Abstract evaluation operator class.
  *  \ingroup Core
  *  \ingroup Op

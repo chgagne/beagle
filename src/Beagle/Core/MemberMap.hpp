@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/MemberMap.hpp
+ *  \file   Beagle/Core/MemberMap.hpp
  *  \brief  Definition of class MemberMap.
  *  \author Christian Gagne
  *  $Revision: 1.1 $
@@ -38,10 +38,10 @@
 #include <string>
 #include <map>
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Core/Map.hpp"
-#include "beagle/Core/Member.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Map.hpp"
+#include "Beagle/Core/Member.hpp"
 
 
 namespace Beagle
@@ -49,7 +49,7 @@ namespace Beagle
 
 
 /*!
- *  \class MemberMap beagle/Core/MemberMap.hpp "beagle/Core/MemberMap.hpp"
+ *  \class MemberMap Beagle/Core/MemberMap.hpp "Beagle/Core/MemberMap.hpp"
  *  \brief Associative container using a string as key accessors to the
  *    Member::Handle instances.
  *  \ingroup Core

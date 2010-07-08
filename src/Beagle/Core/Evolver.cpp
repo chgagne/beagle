@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/Evolver.cpp
+ *  \file   Beagle/Core/Evolver.cpp
  *  \brief  Source code of class Evolver.
  *  \author Christian Gagne
  *  \author Marc Parizeau
@@ -33,7 +33,7 @@
  *  $Date: 2007/09/12 12:40:43 $
  */
 
-#include "beagle/Core.hpp"
+#include "Beagle/Core.hpp"
 
 #include <set>
 #include <cstring>

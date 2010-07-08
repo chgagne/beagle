@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/Context.hpp
+ *  \file   Beagle/Core/Context.hpp
  *  \brief  Definition of the class Context.
  *  \author Christian Gagne
  *  \author Marc Parizeau
@@ -36,26 +36,26 @@
 #ifndef Beagle_Core_Context_hpp
 #define Beagle_Core_Context_hpp
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Core/Object.hpp"
-#include "beagle/Core/AllocatorT.hpp"
-#include "beagle/Core/PointerT.hpp"
-#include "beagle/Core/ContainerT.hpp"
-#include "beagle/Core/WrapperT.hpp"
-#include "beagle/Core/Genotype.hpp"
-#include "beagle/Core/Individual.hpp"
-#include "beagle/Core/Deme.hpp"
-#include "beagle/Core/Vivarium.hpp"
-#include "beagle/Core/System.hpp"
-#include "beagle/Core/Evolver.hpp"
-#include "beagle/Core/RunTimeException.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Object.hpp"
+#include "Beagle/Core/AllocatorT.hpp"
+#include "Beagle/Core/PointerT.hpp"
+#include "Beagle/Core/ContainerT.hpp"
+#include "Beagle/Core/WrapperT.hpp"
+#include "Beagle/Core/Genotype.hpp"
+#include "Beagle/Core/Individual.hpp"
+#include "Beagle/Core/Deme.hpp"
+#include "Beagle/Core/Vivarium.hpp"
+#include "Beagle/Core/System.hpp"
+#include "Beagle/Core/Evolver.hpp"
+#include "Beagle/Core/RunTimeException.hpp"
 
 namespace Beagle
 {
 
 /*!
- *  \class Context beagle/Core/Context.hpp "beagle/Core/Context.hpp"
+ *  \class Context Beagle/Core/Context.hpp "Beagle/Core/Context.hpp"
  *  \brief Evolutionary context.
  *  \ingroup Core
  *  \ingroup Sys

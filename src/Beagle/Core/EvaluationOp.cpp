@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/EvaluationOp.cpp
+ *  \file   Beagle/Core/EvaluationOp.cpp
  *  \brief  Source code of class EvaluationOp.
  *  \author Christian Gagne
  *  \author Marc Parizeau
@@ -33,7 +33,7 @@
  *  $Date: 2007/08/17 20:58:00 $
  */
 
-#include "beagle/Core.hpp"
+#include "Beagle/Core.hpp"
 #include <algorithm>
 #include <string>
 #ifdef BEAGLE_HAVE_OPENMP

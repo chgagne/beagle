@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/IOException.hpp
+ *  \file   Beagle/Core/IOException.hpp
  *  \brief  Definition of class IOException.
  *  \author Christian Gagne
  *  \author Marc Parizeau
@@ -40,10 +40,10 @@
 
 #include "PACC/XML.hpp"
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Core/Object.hpp"
-#include "beagle/Core/TargetedException.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Object.hpp"
+#include "Beagle/Core/TargetedException.hpp"
 
 
 /*!
@@ -77,7 +77,7 @@ template <class T, class BaseType> class ContainerT;
 
 
 /*!
- *  \class IOException beagle/Core/IOException.hpp "beagle/Core/IOException.hpp"
+ *  \class IOException Beagle/Core/IOException.hpp "Beagle/Core/IOException.hpp"
  *  \brief Beagle exception indicating that a parameter, or such, is invalid.
  *  \ingroup Core
  *  \ingroup Except

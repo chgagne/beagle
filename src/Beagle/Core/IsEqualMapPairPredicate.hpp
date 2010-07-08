@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/IsEqualMapPairPredicate.hpp
+ *  \file   Beagle/Core/IsEqualMapPairPredicate.hpp
  *  \brief  Definition of class IsEqualMapPairPredicate.
  *  \author Christian Gagne
  *  \author Marc Parizeau
@@ -39,18 +39,18 @@
 #include <utility>
 #include <string>
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Core/Object.hpp"
-#include "beagle/Core/Pointer.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Object.hpp"
+#include "Beagle/Core/Pointer.hpp"
 
 namespace Beagle
 {
 
 
 /*!
- *  \class IsEqualMapPairPredicate beagle/Core/IsEqualMapPairPredicate.hpp
- *    "beagle/Core/IsEqualMapPairPredicate.hpp"
+ *  \class IsEqualMapPairPredicate Beagle/Core/IsEqualMapPairPredicate.hpp
+ *    "Beagle/Core/IsEqualMapPairPredicate.hpp"
  *  \brief Binary predicate functor that test if two std::pair<string,Object::Handle> are
  *    equals.
  *  \ingroup Core

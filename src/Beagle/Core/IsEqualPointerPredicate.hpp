@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/IsEqualPointerPredicate.hpp
+ *  \file   Beagle/Core/IsEqualPointerPredicate.hpp
  *  \brief  Definition of class IsEqualPointerPredicate.
  *  \author Christian Gagne
  *  \author Marc Parizeau
@@ -36,18 +36,18 @@
 #ifndef Beagle_Core_IsEqualPointerPredicate_hpp
 #define Beagle_Core_IsEqualPointerPredicate_hpp
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Core/Object.hpp"
-#include "beagle/Core/Pointer.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Object.hpp"
+#include "Beagle/Core/Pointer.hpp"
 
 namespace Beagle
 {
 
 
 /*!
- *  \class IsEqualPointerPredicate beagle/Core/IsEqualPointerPredicate.hpp
- *    "beagle/Core/IsEqualPointerPredicate.hpp"
+ *  \class IsEqualPointerPredicate Beagle/Core/IsEqualPointerPredicate.hpp
+ *    "Beagle/Core/IsEqualPointerPredicate.hpp"
  *  \brief Binary predicate functor that test if two pointed Objects are equals.
  *  \ingroup Core
  *  \ingroup Utils

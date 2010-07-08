@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/Package.hpp
+ *  \file   Beagle/Core/Package.hpp
  *  \brief  Definition of the class PackageBase.
  *  \author Christian Gagne
  *  $Revision: 1.2 $
@@ -38,18 +38,18 @@
 #include <map>
 #include <string>
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Core/System.hpp"
-#include "beagle/Core/Evolver.hpp"
-#include "beagle/Core/Package.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/System.hpp"
+#include "Beagle/Core/Evolver.hpp"
+#include "Beagle/Core/Package.hpp"
 
 
 namespace Beagle
 {
 
 /*!
- *  \class PackageBase beagle/Core/PackageBase.hpp "beagle/Core/PackageBase.hpp"
+ *  \class PackageBase Beagle/Core/PackageBase.hpp "Beagle/Core/PackageBase.hpp"
  *  \brief Package class for adding basic objects to the system.
  *  \ingroup Core
  */

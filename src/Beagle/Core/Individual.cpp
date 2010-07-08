@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/Individual.cpp
+ *  \file   Beagle/Core/Individual.cpp
  *  \brief  Source code of class Individual.
  *  \author Christian Gagne
  *  \author Marc Parizeau
@@ -33,7 +33,7 @@
  *  $Date: 2007/08/17 20:58:00 $
  */
 
-#include "beagle/Core.hpp"
+#include "Beagle/Core.hpp"
 
 #include <fstream>
 

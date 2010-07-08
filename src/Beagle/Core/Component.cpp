@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/Component.cpp
+ *  \file   Beagle/Core/Component.cpp
  *  \brief  Source code of class Component.
  *  \author Matthew Walker
  *  \author Christian Gagne
@@ -33,7 +33,7 @@
  *  $Date: 2007/08/17 18:09:13 $
  */
 
-#include "beagle/Core.hpp"
+#include "Beagle/Core.hpp"
 
 using namespace Beagle;
 

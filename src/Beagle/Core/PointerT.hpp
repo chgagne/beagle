@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/PointerT.hpp
+ *  \file   Beagle/Core/PointerT.hpp
  *  \brief  Definition of class template PointerT.
  *  \author Christian Gagne
  *  \author Marc Parizeau
@@ -36,17 +36,17 @@
 #ifndef Beagle_Core_PointerT_hpp
 #define Beagle_Core_PointerT_hpp
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Core/Object.hpp"
-#include "beagle/Core/Pointer.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Object.hpp"
+#include "Beagle/Core/Pointer.hpp"
 
 
 namespace Beagle
 {
 
 /*!
- *  \class PointerT beagle/Core/PointerT.hpp "beagle/Core/PointerT.hpp"
+ *  \class PointerT Beagle/Core/PointerT.hpp "Beagle/Core/PointerT.hpp"
  *  \brief Templated class defining a T-type smart pointer.
  *  \param T Type pointed.
  *  \param BaseType Pointer type from which the actual type is derived.

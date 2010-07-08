@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/IndividualBag.cpp
+ *  \file   Beagle/Core/IndividualBag.cpp
  *  \brief  Implementation of the class IndividualBag.
  *  \author Matthew Walker
  *  \author Christian Gagne
@@ -33,7 +33,7 @@
  *  $Date: 2008/02/29 14:12:43 $
  */
 
-#include "beagle/Core.hpp"
+#include "Beagle/Core.hpp"
 
 #include <fstream>
 

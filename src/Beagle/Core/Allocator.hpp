@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/Core/Allocator.hpp
+ *  \file   Beagle/Core/Allocator.hpp
  *  \brief  Definition of abstract class Allocator.
  *  \author Christian Gagne
  *  \author Marc Parizeau
@@ -81,9 +81,9 @@
 #ifndef Beagle_Core_Allocator_hpp
 #define Beagle_Core_Allocator_hpp
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Core/Object.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Object.hpp"
 
 
 namespace Beagle
@@ -95,7 +95,7 @@ template <class T, class BaseType> class PointerT;
 template <class T, class BaseType> class ContainerT;
 
 /*!
- *  \class Allocator beagle/Core/Allocator.hpp "beagle/Core/Allocator.hpp"
+ *  \class Allocator Beagle/Core/Allocator.hpp "Beagle/Core/Allocator.hpp"
  *  \brief Basic Beagle allocator class.
  *  \ingroup Core
  *  \ingroup Allocs
