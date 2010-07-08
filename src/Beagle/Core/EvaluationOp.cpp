@@ -1,26 +1,28 @@
 /*
- *  Open BEAGLE
- *  Copyright (C) 2001-2007 by Christian Gagne and Marc Parizeau
+ *  Open BEAGLE: A Generic Evolutionary Computation Framework in C++
+ *  Copyright (C) 2001-2010 by Christian Gagne and Marc Parizeau
  *
- *  This library is free software; you can redistribute it and/or
- *  modify it under the terms of the GNU Lesser General Public
- *  License as published by the Free Software Foundation; either
- *  version 2.1 of the License, or (at your option) any later version.
+ *  This library is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser General Public License as
+ *  published by the Free Software Foundation, version 3 of the License.
  *
  *  This library is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- *  Lesser General Public License for more details.
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ *  GNU Lesser General Public License and GNU General Public License for
+ *  more details.
  *
  *  You should have received a copy of the GNU Lesser General Public
- *  License along with this library; if not, write to the Free Software
- *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ *  License and GNU General Public License along with this library.
+ *  If not, see <http://www.gnu.org/licenses/>.
  *
  *  Contact:
- *  Laboratoire de Vision et Systemes Numeriques
+ *  Christian Gagne
+ *  Laboratoire de vision et systemes numeriques
  *  Departement de genie electrique et de genie informatique
- *  Universite Laval, Quebec, Canada, G1K 7P4
- *  http://vision.gel.ulaval.ca
+ *  Universite Laval, Quebec (Quebec), Canada  G1V 0A6
+ *  http://vision.gel.ulaval.ca/~cgagne
+ *  christian.gagne@gel.ulaval.ca
  *
  */
 
@@ -50,7 +52,7 @@ using namespace Beagle;
  *  \param inName Name of the operator.
  */
 EvaluationOp::EvaluationOp(std::string inName) :
-		BreederOp(inName)
+	BreederOp(inName)
 { }
 
 
@@ -161,15 +163,15 @@ void EvaluationOp::operate(Deme& ioDeme, Context& ioContext)
 	for(unsigned int i = 0; i < lOpenMP->getMaxNumThreads(); ++i)
 		lContexts[i] = castHandleT<Context>(lContextAlloc->clone(ioContext));
 #if defined(BEAGLE_USE_OMP_NR)
-	#pragma omp parallel for reduction(+:lNbrEvaluations) schedule(dynamic)
-#elif defined(BEAGLE_USE_OMP_R) 
+#pragma omp parallel for reduction(+:lNbrEvaluations) schedule(dynamic)
+#elif defined(BEAGLE_USE_OMP_R)
 	const int lChunkSize = std::max((int)(lSize / lOpenMP->getMaxNumThreads()), 1);
-	#pragma omp parallel for reduction(+:lNbrEvaluations) schedule(static, lChunkSize)
+#pragma omp parallel for reduction(+:lNbrEvaluations) schedule(static, lChunkSize)
 #endif
 #endif
 	for(int i=0; i < lSize; ++i) {
 		if((ioDeme[i]->getFitness() == NULL) ||
-			(ioDeme[i]->getFitness()->isValid() == false)) {
+		        (ioDeme[i]->getFitness()->isValid() == false)) {
 
 			Beagle_LogVerboseM(
 			    ioContext.getSystem().getLogger(),
@@ -182,24 +184,24 @@ void EvaluationOp::operate(Deme& ioDeme, Context& ioContext)
 			lContexts[lOpenMP->getThreadNum()]->setIndividualIndex(i);
 			lContexts[lOpenMP->getThreadNum()]->setIndividualHandle(ioDeme[i]);
 			ioDeme[i]->setFitness(evaluate(*ioDeme[i], *lContexts[lOpenMP->getThreadNum()]));
-#else 
+#else
 			ioContext.setIndividualIndex(i);
 			ioContext.setIndividualHandle(ioDeme[i]);
 			ioDeme[i]->setFitness(evaluate(*ioDeme[i], ioContext));
 #endif
-			ioDeme[i]->getFitness()->setValid();	
+			ioDeme[i]->getFitness()->setValid();
 			if(lHistory != NULL) {
-				#pragma omp critical (Beagle_History)
+#pragma omp critical (Beagle_History)
 				{
 					lHistory->allocateID(*ioDeme[i]);
 #if defined(BEAGLE_USE_OMP_R) || defined(BEAGLE_USE_OMP_NR)
 					lHistory->trace(*lContexts[lOpenMP->getThreadNum()], std::vector<HistoryID>(), ioDeme[i], getName(), "evaluation");
-#else 
+#else
 					lHistory->trace(ioContext, std::vector<HistoryID>(), ioDeme[i], getName(), "evaluation");
 #endif
 				}
 			}
-			
+
 
 			++lNbrEvaluations;
 
@@ -241,13 +243,13 @@ void EvaluationOp::operate(Deme& ioDeme, Context& ioContext)
 void EvaluationOp::prepareStats(Deme& ioDeme, Context& ioContext)
 {
 	Beagle_StackTraceBeginM();
-	
+
 	Stats::Handle lDemeStats = ioDeme.getStats();
 
 	if(lDemeStats == NULL) {
 		const Factory& lFactory = ioContext.getSystem().getFactory();
 		Stats::Alloc::Handle lStatsAlloc =
-			castHandleT<Stats::Alloc>(lFactory.getConceptAllocator("Stats"));
+		    castHandleT<Stats::Alloc>(lFactory.getConceptAllocator("Stats"));
 		lDemeStats = castHandleT<Stats>(lStatsAlloc->allocate());
 		ioDeme.addMember(lDemeStats);
 	}
@@ -258,33 +260,30 @@ void EvaluationOp::prepareStats(Deme& ioDeme, Context& ioContext)
 			ioContext.setTotalProcessedDeme((unsigned int)ioDeme.getStats()->getItem("total-processed"));
 		} else ioContext.setTotalProcessedDeme(0);
 		ioDeme.getStats()->setInvalid();
-	}
-	else {
+	} else {
 		ioContext.setProcessedDeme(0);
 		ioContext.setTotalProcessedDeme(0);
 	}
 
 	if(ioContext.getDemeIndex()==0) {
-	
+
 		Stats::Handle lVivaStats = ioContext.getVivarium().getStats();
 
 		if(lVivaStats == NULL) {
 			const Factory& lFactory = ioContext.getSystem().getFactory();
 			Stats::Alloc::Handle lStatsAlloc =
-				castHandleT<Stats::Alloc>(lFactory.getConceptAllocator("Stats"));
+			    castHandleT<Stats::Alloc>(lFactory.getConceptAllocator("Stats"));
 			lVivaStats = castHandleT<Stats>(lStatsAlloc->allocate());
 			ioContext.getVivarium().addMember(lVivaStats);
 		}
-		
+
 		if(lVivaStats->isValid()) {
 			ioContext.setProcessedVivarium(0);
 			if((ioContext.getGeneration()!=0) && (lVivaStats->existItem("total-processed"))) {
 				ioContext.setTotalProcessedVivarium((unsigned int)lVivaStats->getItem("total-processed"));
-			}
-			else ioContext.setTotalProcessedVivarium(0);
+			} else ioContext.setTotalProcessedVivarium(0);
 			lVivaStats->setInvalid();
-		}
-		else {
+		} else {
 			ioContext.setProcessedVivarium(0);
 			ioContext.setTotalProcessedVivarium(0);
 		}
@@ -402,7 +401,7 @@ void EvaluationOp::updateHallOfFameWithDeme(Deme& ioDeme, Context& ioContext)
 		if(lHoF == NULL) {
 			const Factory& lFactory = ioContext.getSystem().getFactory();
 			const HallOfFame::Alloc::Handle lHoFAlloc =
-				castHandleT<HallOfFame::Alloc>(lFactory.getConceptAllocator("HallOfFame"));
+			    castHandleT<HallOfFame::Alloc>(lFactory.getConceptAllocator("HallOfFame"));
 			lHoF = castHandleT<HallOfFame>(lHoFAlloc->allocate());
 			ioDeme.addMember(lHoF);
 		}
@@ -419,7 +418,7 @@ void EvaluationOp::updateHallOfFameWithDeme(Deme& ioDeme, Context& ioContext)
 		if(lHoF == NULL) {
 			const Factory& lFactory = ioContext.getSystem().getFactory();
 			const HallOfFame::Alloc::Handle lHoFAlloc =
-				castHandleT<HallOfFame::Alloc>(lFactory.getConceptAllocator("HallOfFame"));
+			    castHandleT<HallOfFame::Alloc>(lFactory.getConceptAllocator("HallOfFame"));
 			lHoF = castHandleT<HallOfFame>(lHoFAlloc->allocate());
 			ioContext.getVivarium().addMember(lHoF);
 		}
@@ -448,7 +447,7 @@ void EvaluationOp::updateHallOfFameWithIndividual(Individual& ioIndividual, Cont
 		if(lHoF == NULL) {
 			const Factory& lFactory = ioContext.getSystem().getFactory();
 			const HallOfFame::Alloc::Handle lHoFAlloc =
-				castHandleT<HallOfFame::Alloc>(lFactory.getConceptAllocator("HallOfFame"));
+			    castHandleT<HallOfFame::Alloc>(lFactory.getConceptAllocator("HallOfFame"));
 			lHoF = castHandleT<HallOfFame>(lHoFAlloc->allocate());
 			ioContext.getDeme().addMember(lHoF);
 		}
@@ -464,7 +463,7 @@ void EvaluationOp::updateHallOfFameWithIndividual(Individual& ioIndividual, Cont
 		if(lHoF == NULL) {
 			const Factory& lFactory = ioContext.getSystem().getFactory();
 			const HallOfFame::Alloc::Handle lHoFAlloc =
-				castHandleT<HallOfFame::Alloc>(lFactory.getConceptAllocator("HallOfFame"));
+			    castHandleT<HallOfFame::Alloc>(lFactory.getConceptAllocator("HallOfFame"));
 			lHoF = castHandleT<HallOfFame>(lHoFAlloc->allocate());
 			ioContext.getVivarium().addMember(lHoF);
 		}

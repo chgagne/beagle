@@ -1,26 +1,28 @@
 /*
- *  Open BEAGLE
- *  Copyright (C) 2001-2007 by Christian Gagne and Marc Parizeau
+ *  Open BEAGLE: A Generic Evolutionary Computation Framework in C++
+ *  Copyright (C) 2001-2010 by Christian Gagne and Marc Parizeau
  *
- *  This library is free software; you can redistribute it and/or
- *  modify it under the terms of the GNU Lesser General Public
- *  License as published by the Free Software Foundation; either
- *  version 2.1 of the License, or (at your option) any later version.
+ *  This library is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser General Public License as
+ *  published by the Free Software Foundation, version 3 of the License.
  *
  *  This library is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- *  Lesser General Public License for more details.
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ *  GNU Lesser General Public License and GNU General Public License for
+ *  more details.
  *
  *  You should have received a copy of the GNU Lesser General Public
- *  License along with this library; if not, write to the Free Software
- *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ *  License and GNU General Public License along with this library.
+ *  If not, see <http://www.gnu.org/licenses/>.
  *
  *  Contact:
- *  Laboratoire de Vision et Systemes Numeriques
+ *  Christian Gagne
+ *  Laboratoire de vision et systemes numeriques
  *  Departement de genie electrique et de genie informatique
- *  Universite Laval, Quebec, Canada, G1K 7P4
- *  http://vision.gel.ulaval.ca
+ *  Universite Laval, Quebec (Quebec), Canada  G1V 0A6
+ *  http://vision.gel.ulaval.ca/~cgagne
+ *  christian.gagne@gel.ulaval.ca
  *
  */
 
@@ -50,9 +52,9 @@ using namespace Beagle;
 HallOfFame::Entry::Entry(Individual::Handle inIndividual,
                          unsigned int inGeneration,
                          unsigned int inDemeIndex) :
-		mIndividual(inIndividual),
-		mGeneration(inGeneration),
-		mDemeIndex(inDemeIndex)
+	mIndividual(inIndividual),
+	mGeneration(inGeneration),
+	mDemeIndex(inDemeIndex)
 { }
 
 
@@ -106,7 +108,7 @@ bool HallOfFame::Entry::operator>(const HallOfFame::Entry& inRightEntry) const
  *  \param inN Initial number of elements in hall-of-fame.
  */
 HallOfFame::HallOfFame(unsigned int inN) :
-		mEntries(inN)
+	mEntries(inN)
 { }
 
 
@@ -116,7 +118,7 @@ HallOfFame::HallOfFame(unsigned int inN) :
  *  \param inModel Model of elements in the hall-of-fame.
  */
 HallOfFame::HallOfFame(unsigned int inN, const HallOfFame::Entry& inModel) :
-		mEntries(inN, inModel)
+	mEntries(inN, inModel)
 { }
 
 
@@ -134,7 +136,7 @@ void HallOfFame::copy(const Member& inOriginal, System& ioSystem)
 	for(unsigned int i=0; i<lOriginal.size(); ++i) {
 		const std::string& lIndivTypeName = lOriginal[i].mIndividual->getType();
 		Individual::Alloc::Handle lIndivAlloc =
-			castHandleT<Individual::Alloc>(lFactory.getAllocator(lIndivTypeName));
+		    castHandleT<Individual::Alloc>(lFactory.getAllocator(lIndivTypeName));
 		Individual::Handle lIndividual = castHandleT<Individual>(lIndivAlloc->allocate());
 		lIndividual->copy(*lOriginal[i].mIndividual, ioSystem);
 		(*this)[i].mIndividual = lIndividual;
@@ -183,11 +185,11 @@ void HallOfFame::log(Logger::LogLevel inLogLevel, Context& ioContext) const
 	                                      inLogLevel, "hall-of-fame", "Beagle::HallOfFame");
 	for(unsigned int i=0; i<size(); ++i) {
 		Beagle_LogObjectM(
-			ioContext.getSystem().getLogger(),
-			inLogLevel,
-			"hall-of-fame",
-			"Beagle::HallOfFame",
-			*(*this)[i].mIndividual
+		    ioContext.getSystem().getLogger(),
+		    inLogLevel,
+		    "hall-of-fame",
+		    "Beagle::HallOfFame",
+		    *(*this)[i].mIndividual
 		);
 	}
 	Beagle_StackTraceEndM("void HallOfFame::log(Logger::LogLevel inLogLevel, Context& ioContext) const");
@@ -215,7 +217,7 @@ void HallOfFame::readWithContext(PACC::XML::ConstIterator inIter, Context& ioCon
 		lOSS << getType() << "'!";
 		throw Beagle_IOExceptionNodeM(*inIter, lOSS.str());
 	}
-	
+
 	Individual::Handle lOldIndivHandle = ioContext.getIndividualHandle();
 	clear();
 	const Factory& lFactory = ioContext.getSystem().getFactory();
@@ -241,8 +243,7 @@ void HallOfFame::readWithContext(PACC::XML::ConstIterator inIter, Context& ioCon
 						lOSS << "valid concept allocator associated to it!";
 						throw Beagle_IOExceptionNodeM(*lChild2, lOSS.str());
 					}
-				}
-				else {
+				} else {
 					lIndividualAlloc = castHandleT<Individual::Alloc>(lFactory.getAllocator(lIndividualType));
 					if(lIndividualAlloc == NULL) {
 						std::ostringstream lOSS;
@@ -351,7 +352,7 @@ bool HallOfFame::updateWithDeme(unsigned int inSizeHOF, const Deme& inDeme, Cont
 			const Factory& lFactory = ioContext.getSystem().getFactory();
 			const std::string& lIndividualType = lTempPop[0]->getType();
 			Individual::Alloc::Handle lIndividualAlloc =
-				castHandleT<Individual::Alloc>(lFactory.getAllocator(lIndividualType));
+			    castHandleT<Individual::Alloc>(lFactory.getAllocator(lIndividualType));
 			if(lIndividualAlloc == NULL) {
 				std::ostringstream lOSS;
 				lOSS << "Type '" << lIndividualType << "' associated to individual to add to hall-of-fame ";
@@ -421,7 +422,7 @@ bool HallOfFame::updateWithDeme(unsigned int inSizeHOF, const Deme& inDeme, Cont
 			const Factory& lFactory = ioContext.getSystem().getFactory();
 			const std::string& lIndividualType = lTempPop[0]->getType();
 			Individual::Alloc::Handle lIndividualAlloc =
-				castHandleT<Individual::Alloc>(lFactory.getAllocator(lIndividualType));
+			    castHandleT<Individual::Alloc>(lFactory.getAllocator(lIndividualType));
 			if(lIndividualAlloc == NULL) {
 				std::ostringstream lOSS;
 				lOSS << "Type '" << lIndividualType << "' associated to individual to add to hall-of-fame ";
@@ -527,7 +528,7 @@ bool HallOfFame::updateWithIndividual(unsigned int inSizeHOF,
 			const Factory& lFactory = ioContext.getSystem().getFactory();
 			const std::string& lIndividualType = inIndividual.getType();
 			Individual::Alloc::Handle lIndividualAlloc =
-				castHandleT<Individual::Alloc>(lFactory.getAllocator(lIndividualType));
+			    castHandleT<Individual::Alloc>(lFactory.getAllocator(lIndividualType));
 			if(lIndividualAlloc == NULL) {
 				std::ostringstream lOSS;
 				lOSS << "Type '" << lIndividualType << "' of individual to add to hall-of-fame ";

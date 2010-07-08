@@ -1,26 +1,28 @@
 /*
- *  Open BEAGLE
- *  Copyright (C) 2001-2007 by Christian Gagne and Marc Parizeau
+ *  Open BEAGLE: A Generic Evolutionary Computation Framework in C++
+ *  Copyright (C) 2001-2010 by Christian Gagne and Marc Parizeau
  *
- *  This library is free software; you can redistribute it and/or
- *  modify it under the terms of the GNU Lesser General Public
- *  License as published by the Free Software Foundation; either
- *  version 2.1 of the License, or (at your option) any later version.
+ *  This library is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser General Public License as
+ *  published by the Free Software Foundation, version 3 of the License.
  *
  *  This library is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- *  Lesser General Public License for more details.
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ *  GNU Lesser General Public License and GNU General Public License for
+ *  more details.
  *
  *  You should have received a copy of the GNU Lesser General Public
- *  License along with this library; if not, write to the Free Software
- *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ *  License and GNU General Public License along with this library.
+ *  If not, see <http://www.gnu.org/licenses/>.
  *
  *  Contact:
- *  Laboratoire de Vision et Systemes Numeriques
+ *  Christian Gagne
+ *  Laboratoire de vision et systemes numeriques
  *  Departement de genie electrique et de genie informatique
- *  Universite Laval, Quebec, Canada, G1K 7P4
- *  http://vision.gel.ulaval.ca
+ *  Universite Laval, Quebec (Quebec), Canada  G1V 0A6
+ *  http://vision.gel.ulaval.ca/~cgagne
+ *  christian.gagne@gel.ulaval.ca
  *
  */
 
@@ -56,15 +58,15 @@ using namespace Beagle;
  *  \brief Construct a new system with the default basic components.
  */
 System::System(void) :
-		mFactory(new Factory),
-		mLogger(new LoggerXML),
+	mFactory(new Factory),
+	mLogger(new LoggerXML),
 #if defined(BEAGLE_USE_OMP_NR) ||  defined(BEAGLE_USE_OMP_R)
-		mRandomizer(new RandomizerMulti),
-		mOpenMP(new OpenMP),
+	mRandomizer(new RandomizerMulti),
+	mOpenMP(new OpenMP),
 #else
-		mRandomizer(new Randomizer),
+	mRandomizer(new Randomizer),
 #endif
-		mRegister(new Register)
+	mRegister(new Register)
 {
 	Beagle_StackTraceBeginM();
 	// Install basic components
@@ -91,19 +93,19 @@ System::System(void) :
 System::System(Factory::Handle    inFactory,
                Logger::Handle     inLogger,
 #if defined(BEAGLE_USE_OMP_NR) || defined(BEAGLE_USE_OMP_R)
-	       RandomizerMulti::Handle inRandomizer,
-		   OpenMP::Handle inOpenMP,
+               RandomizerMulti::Handle inRandomizer,
+               OpenMP::Handle inOpenMP,
 #else
                Randomizer::Handle inRandomizer,
 #endif
                Register::Handle   inRegister) :
-		mFactory(inFactory),
-		mLogger(inLogger),
-		mRandomizer(inRandomizer),
+	mFactory(inFactory),
+	mLogger(inLogger),
+	mRandomizer(inRandomizer),
 #if defined(BEAGLE_USE_OMP_NR) || defined(BEAGLE_USE_OMP_R)
-		mOpenMP(inOpenMP),
+	mOpenMP(inOpenMP),
 #endif
-		mRegister(inRegister)
+	mRegister(inRegister)
 {
 	Beagle_StackTraceBeginM();
 	// Install basic components
@@ -123,7 +125,7 @@ void System::replaceComponentsByConcepts(void)
 {
 	Beagle_StackTraceBeginM();
 	const std::string& lLoggerName = mFactory->getConceptTypeName("Logger");
-	if(lLoggerName != "LoggerXML"){
+	if(lLoggerName != "LoggerXML") {
 		Logger::Alloc::Handle lLoggerAlloc = castHandleT<Logger::Alloc>(mFactory->getAllocator(lLoggerName));
 		Logger::Handle lNewLogger = castHandleT<Logger>(lLoggerAlloc->allocate());
 		lNewLogger->copyBuffer(*mLogger);
@@ -132,7 +134,7 @@ void System::replaceComponentsByConcepts(void)
 	}
 #if !defined(BEAGLE_USE_OMP_NR) &&  !defined(BEAGLE_USE_OMP_R)
 	const std::string& lRandomizerName = mFactory->getConceptTypeName("Randomizer");
-	if(lRandomizerName != "Randomizer"){
+	if(lRandomizerName != "Randomizer") {
 		Randomizer::Alloc::Handle lRandomizerAlloc = castHandleT<Randomizer::Alloc>(mFactory->getAllocator(lRandomizerName));
 		Randomizer::Handle lNewRandomizer = castHandleT<Randomizer>(lRandomizerAlloc->allocate());
 		mRandomizer = lNewRandomizer;
@@ -316,7 +318,7 @@ void System::initComponents(void)
 	// Randomizer should be initialized second
 	mRandomizer->init(*this);
 	mRandomizer->setInitializedFlag(true);
-	
+
 	// Initialize remaining components
 	for(iterator lItr = begin(); lItr != end(); ++lItr) {
 		Component::Handle lComponent = castHandleT<Component>(lItr->second);
@@ -344,7 +346,7 @@ void System::initialize(int inArgc, char** inArgv)
 {
 	Beagle_StackTraceBeginM();
 
-	// replace component by their equivalent factory concept 
+	// replace component by their equivalent factory concept
 	replaceComponentsByConcepts();
 
 	// register component parameters.
@@ -373,7 +375,7 @@ void System::initialize(const std::string& inFileName)
 {
 	Beagle_StackTraceBeginM();
 
-	// replace component by their equivalent factory concept 
+	// replace component by their equivalent factory concept
 	replaceComponentsByConcepts();
 
 	// register component parameters
@@ -703,8 +705,8 @@ void System::write(PACC::XML::Streamer& outStreamer, bool inIndent) const
 	for(ComponentMap::const_iterator lItr = begin(); lItr != end(); ++lItr) {
 		lOrderedMap[lItr->first] = castHandleT<const Component>(lItr->second);
 	}
-	for(std::map<string, Component::Handle>::const_iterator lItr = lOrderedMap.begin(); 
-		   lItr != lOrderedMap.end(); ++lItr) {
+	for(std::map<string, Component::Handle>::const_iterator lItr = lOrderedMap.begin();
+	        lItr != lOrderedMap.end(); ++lItr) {
 		const Component::Handle lComponent = castHandleT<const Component>(lItr->second);
 		lComponent->write(outStreamer, inIndent);
 	}

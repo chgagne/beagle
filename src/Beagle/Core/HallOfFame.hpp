@@ -1,26 +1,28 @@
 /*
- *  Open BEAGLE
- *  Copyright (C) 2001-2007 by Christian Gagne and Marc Parizeau
+ *  Open BEAGLE: A Generic Evolutionary Computation Framework in C++
+ *  Copyright (C) 2001-2010 by Christian Gagne and Marc Parizeau
  *
- *  This library is free software; you can redistribute it and/or
- *  modify it under the terms of the GNU Lesser General Public
- *  License as published by the Free Software Foundation; either
- *  version 2.1 of the License, or (at your option) any later version.
+ *  This library is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser General Public License as
+ *  published by the Free Software Foundation, version 3 of the License.
  *
  *  This library is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- *  Lesser General Public License for more details.
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ *  GNU Lesser General Public License and GNU General Public License for
+ *  more details.
  *
  *  You should have received a copy of the GNU Lesser General Public
- *  License along with this library; if not, write to the Free Software
- *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ *  License and GNU General Public License along with this library.
+ *  If not, see <http://www.gnu.org/licenses/>.
  *
  *  Contact:
- *  Laboratoire de Vision et Systemes Numeriques
+ *  Christian Gagne
+ *  Laboratoire de vision et systemes numeriques
  *  Departement de genie electrique et de genie informatique
- *  Universite Laval, Quebec, Canada, G1K 7P4
- *  http://vision.gel.ulaval.ca
+ *  Universite Laval, Quebec (Quebec), Canada  G1V 0A6
+ *  http://vision.gel.ulaval.ca/~cgagne
+ *  christian.gagne@gel.ulaval.ca
  *
  */
 
@@ -71,15 +73,14 @@ public:
 	 *  \ingroup Core
 	 *  \ingroup Pop
 	 */
-	struct Entry
-	{
+	struct Entry {
 		Individual::Handle mIndividual;    //!< Individual member of the hall-of-fame.
 		unsigned int       mGeneration;    //!< Generation of introduction in the hall-of-fame.
 		unsigned int       mDemeIndex;     //!< Deme index to which the member belong.
 
 		Entry(Individual::Handle inIndividual=NULL,
-		       unsigned int inGeneration=0,
-		       unsigned int inDemeIndex=0);
+		      unsigned int inGeneration=0,
+		      unsigned int inDemeIndex=0);
 		bool operator==(const HallOfFame::Entry& inRightEntry) const;
 		bool operator<(const HallOfFame::Entry& inRightEntry) const;
 		bool operator>(const HallOfFame::Entry& inRightEntry) const;
@@ -112,8 +113,7 @@ public:
 	 *  \param  inN Indice of the member to get.
 	 *  \return Constant reference to the member at the indice N.
 	 */
-	inline const HallOfFame::Entry& operator[](unsigned int inN) const
-	{
+	inline const HallOfFame::Entry& operator[](unsigned int inN) const {
 		Beagle_StackTraceBeginM();
 		Beagle_UpperBoundCheckAssertM(inN,mEntries.size()-1);
 		return mEntries[inN];
@@ -125,8 +125,7 @@ public:
 	 *  \param  inN Indice of the member to get.
 	 *  \return Reference to the member at the indice N.
 	 */
-	inline HallOfFame::Entry& operator[](unsigned int inN)
-	{
+	inline HallOfFame::Entry& operator[](unsigned int inN) {
 		Beagle_StackTraceBeginM();
 		Beagle_UpperBoundCheckAssertM(inN,mEntries.size()-1);
 		return mEntries[inN];
@@ -136,8 +135,7 @@ public:
 	/*!
 	 *  \brief  Clear individuals from hall of fame
 	 */
-	inline void clear()
-	{
+	inline void clear() {
 		Beagle_StackTraceBeginM();
 		mEntries.clear();
 		Beagle_StackTraceEndM("void clear()");
@@ -146,8 +144,7 @@ public:
 	/*!
 	 *  \return Number of members in the hall-of-fame.
 	 */
-	inline unsigned int size() const
-	{
+	inline unsigned int size() const {
 		Beagle_StackTraceBeginM();
 		return mEntries.size();
 		Beagle_StackTraceEndM("unsigned int HallOfFame::size() const");

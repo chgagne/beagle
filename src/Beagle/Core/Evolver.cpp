@@ -1,26 +1,28 @@
 /*
- *  Open BEAGLE
- *  Copyright (C) 2001-2007 by Christian Gagne and Marc Parizeau
+ *  Open BEAGLE: A Generic Evolutionary Computation Framework in C++
+ *  Copyright (C) 2001-2010 by Christian Gagne and Marc Parizeau
  *
- *  This library is free software; you can redistribute it and/or
- *  modify it under the terms of the GNU Lesser General Public
- *  License as published by the Free Software Foundation; either
- *  version 2.1 of the License, or (at your option) any later version.
+ *  This library is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser General Public License as
+ *  published by the Free Software Foundation, version 3 of the License.
  *
  *  This library is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- *  Lesser General Public License for more details.
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ *  GNU Lesser General Public License and GNU General Public License for
+ *  more details.
  *
  *  You should have received a copy of the GNU Lesser General Public
- *  License along with this library; if not, write to the Free Software
- *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ *  License and GNU General Public License along with this library.
+ *  If not, see <http://www.gnu.org/licenses/>.
  *
  *  Contact:
- *  Laboratoire de Vision et Systemes Numeriques
+ *  Christian Gagne
+ *  Laboratoire de vision et systemes numeriques
  *  Departement de genie electrique et de genie informatique
- *  Universite Laval, Quebec, Canada, G1K 7P4
- *  http://vision.gel.ulaval.ca
+ *  Universite Laval, Quebec (Quebec), Canada  G1V 0A6
+ *  http://vision.gel.ulaval.ca/~cgagne
+ *  christian.gagne@gel.ulaval.ca
  *
  */
 
@@ -49,9 +51,9 @@ using namespace Beagle;
  *  \brief Construct an evolver.
  */
 Evolver::Evolver(void) :
-		mGeneration(0),
-		mDemeIndex(0),
-		mConfigChanged(false)
+	mGeneration(0),
+	mDemeIndex(0),
+	mConfigChanged(false)
 { }
 
 /*!
@@ -114,23 +116,22 @@ void Evolver::evolve(Vivarium::Handle ioVivarium, System::Handle ioSystem)
 
 	if(mVivariumFileName.empty()) {
 		Beagle_LogTraceM(
-			ioSystem->getLogger(),
-			"evolve", "Beagle::Evolver",
-			std::string("Vivarium resized to ")+uint2str(mPopSize->size())+" demes"
+		    ioSystem->getLogger(),
+		    "evolve", "Beagle::Evolver",
+		    std::string("Vivarium resized to ")+uint2str(mPopSize->size())+" demes"
 		);
 		const Factory& lFactory = ioSystem->getFactory();
 		Deme::Alloc::Handle lDemeAlloc =
-			castHandleT<Deme::Alloc>(lFactory.getConceptAllocator("Deme"));
+		    castHandleT<Deme::Alloc>(lFactory.getConceptAllocator("Deme"));
 		ioVivarium->clear();
 		for(unsigned int i=0; i<mPopSize->size(); ++i) {
 			ioVivarium->push_back(castHandleT<Deme>(lDemeAlloc->allocate()));
 		}
-	}
-	else {
+	} else {
 		Beagle_LogTraceM(
-			ioSystem->getLogger(),
-			"evolve", "Beagle::Evolver",
-			std::string("Reading vivarium from file '")+mVivariumFileName+"'"
+		    ioSystem->getLogger(),
+		    "evolve", "Beagle::Evolver",
+		    std::string("Reading vivarium from file '")+mVivariumFileName+"'"
 		);
 		readVivarium(mVivariumFileName, *ioVivarium, *lEvolContext);
 		unsigned int lDemeIndex = mDemeIndex+1;
@@ -613,7 +614,7 @@ void Evolver::read(PACC::XML::ConstIterator)
 void Evolver::readMilestone(const std::string& inFileName, System& ioSystem)
 {
 	Beagle_StackTraceBeginM();
-	
+
 	// Reading milestone file
 #ifdef BEAGLE_HAVE_LIBZ
 	igzstream lStream(inFileName.c_str());
@@ -670,7 +671,7 @@ void Evolver::readMilestone(const std::string& inFileName, System& ioSystem)
 
 	// register the parameters of any new operator
 	registerOperatorParams(ioSystem);
-	
+
 	// read system configuration
 	PACC::XML::ConstFinder lFinderSys(lDocument.getFirstDataTag());
 	PACC::XML::ConstIterator lPosSys = lFinderSys.find("/Beagle/System");
@@ -694,10 +695,10 @@ void Evolver::readMilestone(const std::string& inFileName, System& ioSystem)
 			} while(lPosSys = lFinderSys.findNext());
 		}
 	}
-	
+
 	// register the parameters of any new component
 	ioSystem.registerComponentParams();
-	
+
 	Beagle_StackTraceEndM("void Evolver::readMilestone(const std::string&,System&)");
 }
 
@@ -1053,7 +1054,7 @@ void Evolver::testIndividual(Vivarium::Handle ioVivarium, Context& ioContext)
 	// Allocate individual
 	const Factory& lFactory = ioContext.getSystem().getFactory();
 	Individual::Alloc::Handle lIndiAlloc =
-		castHandleT<Individual::Alloc>(lFactory.getConceptAllocator("Individual"));
+	    castHandleT<Individual::Alloc>(lFactory.getConceptAllocator("Individual"));
 	Individual::Handle lIndi = castHandleT<Individual>(lIndiAlloc->allocate());
 
 	// Parse individual

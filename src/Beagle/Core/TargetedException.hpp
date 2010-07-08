@@ -1,26 +1,28 @@
 /*
- *  Open BEAGLE
- *  Copyright (C) 2001-2007 by Christian Gagne and Marc Parizeau
+ *  Open BEAGLE: A Generic Evolutionary Computation Framework in C++
+ *  Copyright (C) 2001-2010 by Christian Gagne and Marc Parizeau
  *
- *  This library is free software; you can redistribute it and/or
- *  modify it under the terms of the GNU Lesser General Public
- *  License as published by the Free Software Foundation; either
- *  version 2.1 of the License, or (at your option) any later version.
+ *  This library is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser General Public License as
+ *  published by the Free Software Foundation, version 3 of the License.
  *
  *  This library is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- *  Lesser General Public License for more details.
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ *  GNU Lesser General Public License and GNU General Public License for
+ *  more details.
  *
  *  You should have received a copy of the GNU Lesser General Public
- *  License along with this library; if not, write to the Free Software
- *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ *  License and GNU General Public License along with this library.
+ *  If not, see <http://www.gnu.org/licenses/>.
  *
  *  Contact:
- *  Laboratoire de Vision et Systemes Numeriques
+ *  Christian Gagne
+ *  Laboratoire de vision et systemes numeriques
  *  Departement de genie electrique et de genie informatique
- *  Universite Laval, Quebec, Canada, G1K 7P4
- *  http://vision.gel.ulaval.ca
+ *  Universite Laval, Quebec (Quebec), Canada  G1V 0A6
+ *  http://vision.gel.ulaval.ca/~cgagne
+ *  christian.gagne@gel.ulaval.ca
  *
  */
 
@@ -88,8 +90,7 @@ public:
 	 *  \brief  Getting the file name where the exception is detected (throwed).
 	 *  \return File name where the exception is detected (throwed).
 	 */
-	inline const std::string& getFileName() const throw()
-	{
+	inline const std::string& getFileName() const throw() {
 		return mFileName;
 	}
 
@@ -97,8 +98,7 @@ public:
 	 *  \brief  Getting the line number in the file where the exception is detected (throwed).
 	 *  \return Line number in the file where the exception is detected (throwed).
 	 */
-	inline unsigned int getLineNumber() const throw()
-	{
+	inline unsigned int getLineNumber() const throw() {
 		return mLineNumber;
 	}
 
@@ -106,8 +106,7 @@ public:
 	 *  \brief Set the file name where the exception is detected (throwed).
 	 *  \param inFileName File name where the exception is detected.
 	 */
-	inline void setFileName(const std::string& inFileName)
-	{
+	inline void setFileName(const std::string& inFileName) {
 		Beagle_StackTraceBeginM();
 		mFileName = inFileName;
 		Beagle_StackTraceEndM("void TargetedException::setFileName(const std::string& inFileName)");
@@ -117,8 +116,7 @@ public:
 	 *  \brief Set the line number in the file where the exception is detected (throwed).
 	 *  \param inLineNumber Line number in the file where the exception is detected.
 	 */
-	inline void setLineNumber(unsigned int inLineNumber)
-	{
+	inline void setLineNumber(unsigned int inLineNumber) {
 		Beagle_StackTraceBeginM();
 		mLineNumber = inLineNumber;
 		Beagle_StackTraceEndM("void TargetedException::setLineNumber(unsigned int inLineNumber)");

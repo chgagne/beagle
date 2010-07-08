@@ -1,26 +1,28 @@
 /*
- *  Open BEAGLE
- *  Copyright (C) 2001-2007 by Christian Gagne and Marc Parizeau
+ *  Open BEAGLE: A Generic Evolutionary Computation Framework in C++
+ *  Copyright (C) 2001-2010 by Christian Gagne and Marc Parizeau
  *
- *  This library is free software; you can redistribute it and/or
- *  modify it under the terms of the GNU Lesser General Public
- *  License as published by the Free Software Foundation; either
- *  version 2.1 of the License, or (at your option) any later version.
+ *  This library is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser General Public License as
+ *  published by the Free Software Foundation, version 3 of the License.
  *
  *  This library is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- *  Lesser General Public License for more details.
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ *  GNU Lesser General Public License and GNU General Public License for
+ *  more details.
  *
  *  You should have received a copy of the GNU Lesser General Public
- *  License along with this library; if not, write to the Free Software
- *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ *  License and GNU General Public License along with this library.
+ *  If not, see <http://www.gnu.org/licenses/>.
  *
  *  Contact:
- *  Laboratoire de Vision et Systemes Numeriques
+ *  Christian Gagne
+ *  Laboratoire de vision et systemes numeriques
  *  Departement de genie electrique et de genie informatique
- *  Universite Laval, Quebec, Canada, G1K 7P4
- *  http://vision.gel.ulaval.ca
+ *  Universite Laval, Quebec (Quebec), Canada  G1V 0A6
+ *  http://vision.gel.ulaval.ca/~cgagne
+ *  christian.gagne@gel.ulaval.ca
  *
  */
 
@@ -53,15 +55,13 @@ void Logger::init(System& ioSystem)
 	log(std::string("Open BEAGLE, version ")+BEAGLE_VERSION, eBasic, "logger", "Beagle::Logger");
 	if(mConsoleLevel->getWrappedValue() == Logger::eNothing) {
 		log("Console logging is disabled", eBasic, "logger", "Beagle::Logger");
-	}
-	else {
-	  log(std::string("Setting console log level ")+mConsoleLevel->serialize(), eBasic, "logger", "Beagle::Logger");
+	} else {
+		log(std::string("Setting console log level ")+mConsoleLevel->serialize(), eBasic, "logger", "Beagle::Logger");
 	}
 
 	if(mFileName->getWrappedValue().empty()) {
 		log("File logging is disabled", eBasic, "logger", "Beagle::Logger");
-	}
-	else {
+	} else {
 		log(std::string("Setting file log level ")+mFileLevel->serialize(), eBasic, "logger", "Beagle::Logger");
 		log(std::string("Logging to file '")+mFileName->serialize()+std::string("'"), eBasic, "logger", "Beagle::LoggerXML");
 	}
@@ -82,7 +82,7 @@ void Logger::init(System& ioSystem)
  *  \param inType Type of the message to log.
  *  \param inClass Class name associated to the message.
  *
- *  Message is written only if its log level is equal or higher than the log 
+ *  Message is written only if its log level is equal or higher than the log
  *  level of the device.
  */
 void Logger::log(const std::string& inMessage, unsigned int inLevel, const std::string& inType, const std::string& inClass)
@@ -105,7 +105,7 @@ void Logger::log(const std::string& inMessage, unsigned int inLevel, const std::
  *  \param inType Type of the message to log.
  *  \param inClass Class name associated to the message.
  *
- *  Message is written only if its log level is equal or higher than the log 
+ *  Message is written only if its log level is equal or higher than the log
  *  level of the device.
  */
 void Logger::log(const Object& inObject, unsigned int inLevel, const std::string& inType, const std::string& inClass)
@@ -196,12 +196,12 @@ void Logger::registerParams(System& ioSystem)
 	                                    );
 	mShowClass = castHandleT<Bool>(ioSystem.getRegister().insertEntry("lg.show.class", new Bool(false), lDescription));
 
-        lDescription = Register::Description("Show message's time in logs",
-                                             "Bool",
-                                             "0",
-                                             "Indicates whether message's time should be included in messages."
-                                            );
-        mShowTime = castHandleT<Bool>(ioSystem.getRegister().insertEntry("lg.show.time", new Bool(false), lDescription));
+	lDescription = Register::Description("Show message's time in logs",
+	                                     "Bool",
+	                                     "0",
+	                                     "Indicates whether message's time should be included in messages."
+	                                    );
+	mShowTime = castHandleT<Bool>(ioSystem.getRegister().insertEntry("lg.show.time", new Bool(false), lDescription));
 
 	Beagle_StackTraceEndM("void Logger::registerParams(System&)");
 }

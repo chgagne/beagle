@@ -1,26 +1,28 @@
 /*
- *  Open BEAGLE
- *  Copyright (C) 2001-2007 by Christian Gagne and Marc Parizeau
+ *  Open BEAGLE: A Generic Evolutionary Computation Framework in C++
+ *  Copyright (C) 2001-2010 by Christian Gagne and Marc Parizeau
  *
- *  This library is free software; you can redistribute it and/or
- *  modify it under the terms of the GNU Lesser General Public
- *  License as published by the Free Software Foundation; either
- *  version 2.1 of the License, or (at your option) any later version.
+ *  This library is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser General Public License as
+ *  published by the Free Software Foundation, version 3 of the License.
  *
  *  This library is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- *  Lesser General Public License for more details.
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ *  GNU Lesser General Public License and GNU General Public License for
+ *  more details.
  *
  *  You should have received a copy of the GNU Lesser General Public
- *  License along with this library; if not, write to the Free Software
- *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ *  License and GNU General Public License along with this library.
+ *  If not, see <http://www.gnu.org/licenses/>.
  *
  *  Contact:
- *  Laboratoire de Vision et Systemes Numeriques
+ *  Christian Gagne
+ *  Laboratoire de vision et systemes numeriques
  *  Departement de genie electrique et de genie informatique
- *  Universite Laval, Quebec, Canada, G1K 7P4
- *  http://vision.gel.ulaval.ca
+ *  Universite Laval, Quebec (Quebec), Canada  G1V 0A6
+ *  http://vision.gel.ulaval.ca/~cgagne
+ *  christian.gagne@gel.ulaval.ca
  *
  */
 
@@ -46,7 +48,7 @@ using namespace Beagle;
  *  \param inModel Model of genotypes.
  */
 Individual::Individual(unsigned int inN, Genotype::Handle inModel) :
-		Genotype::Bag(inN, inModel)
+	Genotype::Bag(inN, inModel)
 { }
 
 
@@ -83,11 +85,11 @@ void Individual::copy(const Individual& inOriginal, System& ioSystem)
 	// Copy members
 	mMemberMap.clear();
 	for(MemberMap::const_iterator lIterMap=inOriginal.mMemberMap.begin();
-	    lIterMap!=inOriginal.mMemberMap.end(); ++lIterMap) {
-	    Member::Handle lOrigMember = castHandleT<Member>(lIterMap->second);
+	        lIterMap!=inOriginal.mMemberMap.end(); ++lIterMap) {
+		Member::Handle lOrigMember = castHandleT<Member>(lIterMap->second);
 		const std::string& lMemberType = lOrigMember->getType();
 		Member::Alloc::Handle lMemberAlloc =
-			castHandleT<Member::Alloc>(lFactory.getAllocator(lMemberType));
+		    castHandleT<Member::Alloc>(lFactory.getAllocator(lMemberType));
 		Member::Handle lMember = castHandleT<Member>(lMemberAlloc->allocate());
 		lMember->copy(*lOrigMember, ioSystem);
 		mMemberMap[lIterMap->first] = lMember;
@@ -96,11 +98,10 @@ void Individual::copy(const Individual& inOriginal, System& ioSystem)
 	// Copy fitness
 	if(inOriginal.getFitness() == NULL) {
 		mFitness = NULL;
-	}
-	else {
+	} else {
 		const std::string& lFitnessType = inOriginal.getFitness()->getType();
 		Fitness::Alloc::Handle lFitnessAlloc =
-			castHandleT<Fitness::Alloc>(lFactory.getAllocator(lFitnessType));
+		    castHandleT<Fitness::Alloc>(lFactory.getAllocator(lFitnessType));
 		mFitness = castHandleT<Fitness>(lFitnessAlloc->allocate());
 		mFitness->copy(*inOriginal.getFitness(), ioSystem);
 	}
@@ -110,7 +111,7 @@ void Individual::copy(const Individual& inOriginal, System& ioSystem)
 	for(unsigned int i=0; i<inOriginal.size(); ++i) {
 		const std::string& lGenotypeType = inOriginal[i]->getType();
 		Genotype::Alloc::Handle lGenotypeAlloc =
-			castHandleT<Genotype::Alloc>(lFactory.getAllocator(lGenotypeType));
+		    castHandleT<Genotype::Alloc>(lFactory.getAllocator(lGenotypeType));
 		(*this)[i] = castHandleT<Genotype>(lGenotypeAlloc->allocate());
 		(*this)[i]->copy(*inOriginal[i], ioSystem);
 	}
@@ -279,7 +280,7 @@ bool Individual::readFromFile(std::string inFileName, System& ioSystem)
 	lContext->setSystemHandle(&ioSystem);
 	lContext->setIndividualHandle(this);
 	lContext->setIndividualIndex(0);
-	
+
 	readWithContext(lIndivTag, *lContext);
 
 	return true;
@@ -315,8 +316,7 @@ void Individual::readFitness(PACC::XML::ConstIterator inIter, Context& ioContext
 				lOSS << "valid concept allocator associated to it!";
 				throw Beagle_IOExceptionNodeM(*lIter, lOSS.str());
 			}
-		}
-		else {
+		} else {
 			lFitnessAlloc = castHandleT<Fitness::Alloc>(lFactory.getAllocator(lFitnessType));
 			if(lFitnessAlloc == NULL) {
 				std::ostringstream lOSS;
@@ -359,8 +359,7 @@ void Individual::readGenotypes(PACC::XML::ConstIterator inIter, Context& ioConte
 				lOSS << "valid concept allocator associated to it!";
 				throw Beagle_IOExceptionNodeM(*lIter, lOSS.str());
 			}
-		}
-		else {
+		} else {
 			lGenotypeAlloc = castHandleT<Genotype::Alloc>(lFactory.getAllocator(lGenotypeType));
 			if(lGenotypeAlloc == NULL) {
 				std::ostringstream lOSS;
@@ -407,8 +406,7 @@ void Individual::readMembers(PACC::XML::ConstIterator inIter, Context& ioContext
 				lOSS << "valid concept allocator associated to it!";
 				throw Beagle_IOExceptionNodeM(*lIter, lOSS.str());
 			}
-		}
-		else {
+		} else {
 			lMemberAlloc = castHandleT<Member::Alloc>(lFactory.getAllocator(lMemberType));
 			if(lMemberAlloc == NULL) {
 				std::ostringstream lOSS;
@@ -519,8 +517,7 @@ void Individual::writeFitness(PACC::XML::Streamer& ioStreamer, bool inIndent) co
 		ioStreamer.openTag("Fitness", false);
 		ioStreamer.insertAttribute("valid", "no");
 		ioStreamer.closeTag();
-	}
-	else {
+	} else {
 		mFitness->write(ioStreamer, inIndent);
 	}
 	Beagle_StackTraceEndM("void Individual::writeFitness(PACC::XML::Streamer&,bool) const");
@@ -552,7 +549,7 @@ void Individual::writeMembers(PACC::XML::Streamer& ioStreamer, bool inIndent) co
 {
 	Beagle_StackTraceBeginM();
 	for(MemberMap::const_iterator lIterMap=mMemberMap.begin();
-	    lIterMap!=mMemberMap.end(); ++lIterMap) {
+	        lIterMap!=mMemberMap.end(); ++lIterMap) {
 		ioStreamer.openTag(lIterMap->first, inIndent);
 		Member::Handle lMember = castHandleT<Member>(lIterMap->second);
 		ioStreamer.insertAttribute("type", lMember->getType());

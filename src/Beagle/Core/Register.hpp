@@ -1,26 +1,28 @@
 /*
- *  Open BEAGLE
- *  Copyright (C) 2001-2007 by Christian Gagne and Marc Parizeau
+ *  Open BEAGLE: A Generic Evolutionary Computation Framework in C++
+ *  Copyright (C) 2001-2010 by Christian Gagne and Marc Parizeau
  *
- *  This library is free software; you can redistribute it and/or
- *  modify it under the terms of the GNU Lesser General Public
- *  License as published by the Free Software Foundation; either
- *  version 2.1 of the License, or (at your option) any later version.
+ *  This library is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser General Public License as
+ *  published by the Free Software Foundation, version 3 of the License.
  *
  *  This library is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- *  Lesser General Public License for more details.
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ *  GNU Lesser General Public License and GNU General Public License for
+ *  more details.
  *
  *  You should have received a copy of the GNU Lesser General Public
- *  License along with this library; if not, write to the Free Software
- *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ *  License and GNU General Public License along with this library.
+ *  If not, see <http://www.gnu.org/licenses/>.
  *
  *  Contact:
- *  Laboratoire de Vision et Systemes Numeriques
+ *  Christian Gagne
+ *  Laboratoire de vision et systemes numeriques
  *  Departement de genie electrique et de genie informatique
- *  Universite Laval, Quebec, Canada, G1K 7P4
- *  http://vision.gel.ulaval.ca
+ *  Universite Laval, Quebec (Quebec), Canada  G1V 0A6
+ *  http://vision.gel.ulaval.ca/~cgagne
+ *  christian.gagne@gel.ulaval.ca
  *
  */
 
@@ -71,8 +73,7 @@ public:
 	 *  \struct Description Beagle/Core/Register.hpp "Beagle/Core/Register.hpp"
 	 *  \brief Parameter extensive description.
 	 */
-	struct Description
-	{
+	struct Description {
 		std::string mBrief;         //!< Brief description of the parameter.
 		std::string mType;          //!< Type of the parameter.
 		std::string mDefaultValue;  //!< Default value of the parameter.
@@ -114,8 +115,7 @@ public:
 	 *  \return Smart pointer to the entry. Return a NULL pointer if there is no entry
 	 *     associated with the tag.
 	 */
-	inline Object::Handle operator[](const std::string& inTag)
-	{
+	inline Object::Handle operator[](const std::string& inTag) {
 		Beagle_StackTraceBeginM();
 		Map::iterator lIterObj = mParameters.find(inTag);
 		if(lIterObj == mParameters.end()) return Object::Handle(NULL);
@@ -129,8 +129,7 @@ public:
 	 *  \return Constant smart pointer to the entry. Return a NULL pointer if there is no entry
 	 *     associated with the tag.
 	 */
-	inline const Object::Handle operator[](const std::string& inTag) const
-	{
+	inline const Object::Handle operator[](const std::string& inTag) const {
 		Beagle_StackTraceBeginM();
 		Map::const_iterator lIterObj = mParameters.find(inTag);
 		if(lIterObj == mParameters.end()) return Object::Handle(NULL);
@@ -144,8 +143,7 @@ public:
 	 *  \return Smart pointer to the entry. Return a NULL pointer if there is no entry
 	 *     associated with the tag.
 	 */
-	inline Object::Handle getEntry(const std::string& inTag)
-	{
+	inline Object::Handle getEntry(const std::string& inTag) {
 		Beagle_StackTraceBeginM();
 		Map::iterator lIterObj = mParameters.find(inTag);
 		if(lIterObj == mParameters.end()) return Object::Handle(NULL);
@@ -159,8 +157,7 @@ public:
 	 *  \return Constant smart pointer to the entry. Return a NULL pointer if there is no entry
 	 *     associated with the tag.
 	 */
-	inline const Object::Handle getEntry(const std::string& inTag) const
-	{
+	inline const Object::Handle getEntry(const std::string& inTag) const {
 		Beagle_StackTraceBeginM();
 		Map::const_iterator lIterObj = mParameters.find(inTag);
 		if(lIterObj == mParameters.end()) return Object::Handle(NULL);

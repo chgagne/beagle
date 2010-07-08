@@ -1,26 +1,28 @@
 /*
- *  Open BEAGLE
- *  Copyright (C) 2001-2007 by Christian Gagne and Marc Parizeau
+ *  Open BEAGLE: A Generic Evolutionary Computation Framework in C++
+ *  Copyright (C) 2001-2010 by Christian Gagne and Marc Parizeau
  *
- *  This library is free software; you can redistribute it and/or
- *  modify it under the terms of the GNU Lesser General Public
- *  License as published by the Free Software Foundation; either
- *  version 2.1 of the License, or (at your option) any later version.
+ *  This library is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser General Public License as
+ *  published by the Free Software Foundation, version 3 of the License.
  *
  *  This library is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- *  Lesser General Public License for more details.
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ *  GNU Lesser General Public License and GNU General Public License for
+ *  more details.
  *
  *  You should have received a copy of the GNU Lesser General Public
- *  License along with this library; if not, write to the Free Software
- *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ *  License and GNU General Public License along with this library.
+ *  If not, see <http://www.gnu.org/licenses/>.
  *
  *  Contact:
- *  Laboratoire de Vision et Systemes Numeriques
+ *  Christian Gagne
+ *  Laboratoire de vision et systemes numeriques
  *  Departement de genie electrique et de genie informatique
- *  Universite Laval, Quebec, Canada, G1K 7P4
- *  http://vision.gel.ulaval.ca
+ *  Universite Laval, Quebec (Quebec), Canada  G1V 0A6
+ *  http://vision.gel.ulaval.ca/~cgagne
+ *  christian.gagne@gel.ulaval.ca
  *
  */
 
@@ -92,8 +94,7 @@ public:
 	/*!
 	 *  \return Breeder operator associated to node.
 	 */
-	inline PointerT<BreederOp,Operator::Handle> getBreederOp() const
-	{
+	inline PointerT<BreederOp,Operator::Handle> getBreederOp() const {
 		Beagle_StackTraceBeginM();
 		return mBreederOp;
 		Beagle_StackTraceEndM("PointerT<BreederOp,Operator::Handle> BreederNode::getBreederOp() const");
@@ -102,8 +103,7 @@ public:
 	/*!
 	 *  \return First child to the breeder.
 	 */
-	inline PointerT<BreederNode,Object::Handle> getFirstChild() const
-	{
+	inline PointerT<BreederNode,Object::Handle> getFirstChild() const {
 		Beagle_StackTraceBeginM();
 		return mChild;
 		Beagle_StackTraceEndM("PointerT<BreederNode,Object::Handle> BreederNode::getFirstChild() const");
@@ -112,8 +112,7 @@ public:
 	/*!
 	 *  \return Next sibbling to the breeder.
 	 */
-	inline PointerT<BreederNode,Object::Handle> getNextSibling() const
-	{
+	inline PointerT<BreederNode,Object::Handle> getNextSibling() const {
 		Beagle_StackTraceBeginM();
 		return mSibling;
 		Beagle_StackTraceEndM("PointerT<BreederNode,Object::Handle> BreederNode::getNextSibling() const");
@@ -123,8 +122,7 @@ public:
 	 *  \brief Set breeder operator associated to actual node.
 	 *  \param inBreederOp New breeder operator associated to breeder node.
 	 */
-	inline void setBreederOp(PointerT<BreederOp,Operator::Handle> inBreederOp)
-	{
+	inline void setBreederOp(PointerT<BreederOp,Operator::Handle> inBreederOp) {
 		Beagle_StackTraceBeginM();
 		mBreederOp = inBreederOp;
 		Beagle_StackTraceEndM("void BreederNode::setBreederOp(PointerT<BreederOp,Operator::Handle> inBreederOp)");
@@ -134,8 +132,7 @@ public:
 	 *  \brief Set first child of the breeder.
 	 *  \param inChild New first child.
 	 */
-	inline void setFirstChild(PointerT<BreederNode,Object::Handle> inChild)
-	{
+	inline void setFirstChild(PointerT<BreederNode,Object::Handle> inChild) {
 		Beagle_StackTraceBeginM();
 		mChild = inChild;
 		Beagle_StackTraceEndM("void BreederNode::setFirstChild(PointerT<BreederNode,Object::Handle> inChild)");
@@ -145,8 +142,7 @@ public:
 	 *  \brief Set next sibbling of the breeder.
 	 *  \param inSibling New next sibling.
 	 */
-	inline void setNextSibling(PointerT<BreederNode,Object::Handle> inSibling)
-	{
+	inline void setNextSibling(PointerT<BreederNode,Object::Handle> inSibling) {
 		Beagle_StackTraceBeginM();
 		mSibling = inSibling;
 		Beagle_StackTraceEndM("void BreederNode::setNextSibling(PointerT<BreederNode,Object::Handle> inSibling)");

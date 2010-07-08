@@ -1,26 +1,28 @@
 /*
- *  Open BEAGLE
- *  Copyright (C) 2001-2007 by Christian Gagne and Marc Parizeau
+ *  Open BEAGLE: A Generic Evolutionary Computation Framework in C++
+ *  Copyright (C) 2001-2010 by Christian Gagne and Marc Parizeau
  *
- *  This library is free software; you can redistribute it and/or
- *  modify it under the terms of the GNU Lesser General Public
- *  License as published by the Free Software Foundation; either
- *  version 2.1 of the License, or (at your option) any later version.
+ *  This library is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser General Public License as
+ *  published by the Free Software Foundation, version 3 of the License.
  *
  *  This library is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- *  Lesser General Public License for more details.
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ *  GNU Lesser General Public License and GNU General Public License for
+ *  more details.
  *
  *  You should have received a copy of the GNU Lesser General Public
- *  License along with this library; if not, write to the Free Software
- *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ *  License and GNU General Public License along with this library.
+ *  If not, see <http://www.gnu.org/licenses/>.
  *
  *  Contact:
- *  Laboratoire de Vision et Systemes Numeriques
+ *  Christian Gagne
+ *  Laboratoire de vision et systemes numeriques
  *  Departement de genie electrique et de genie informatique
- *  Universite Laval, Quebec, Canada, G1K 7P4
- *  http://vision.gel.ulaval.ca
+ *  Universite Laval, Quebec (Quebec), Canada  G1V 0A6
+ *  http://vision.gel.ulaval.ca/~cgagne
+ *  christian.gagne@gel.ulaval.ca
  *
  */
 
@@ -116,8 +118,7 @@ public:
 	 *  \brief Get an handle to the hall-of-fame.
 	 *  \return Handle to the hall-of-fame, a NULL handle if no hall-of-fame is present.
 	 */
-	inline const HallOfFame::Handle getHallOfFame() const
-	{
+	inline const HallOfFame::Handle getHallOfFame() const {
 		Beagle_StackTraceBeginM();
 		MemberMap::const_iterator lIterMap = mMemberMap.find("HallOfFame");
 		return (lIterMap == mMemberMap.end()) ? NULL : castHandleT<HallOfFame>(lIterMap->second);
@@ -128,8 +129,7 @@ public:
 	 *  \brief Get an handle to the hall-of-fame.
 	 *  \return Handle to the hall-of-fame, a NULL handle if no hall-of-fame is present.
 	 */
-	inline HallOfFame::Handle getHallOfFame()
-	{
+	inline HallOfFame::Handle getHallOfFame() {
 		Beagle_StackTraceBeginM();
 		MemberMap::const_iterator lIterMap = mMemberMap.find("HallOfFame");
 		return (lIterMap == mMemberMap.end()) ? NULL : castHandleT<HallOfFame>(lIterMap->second);
@@ -141,8 +141,7 @@ public:
 	 *  \param inName Name of the member to obtain.
 	 *  \return Reference to the member, a NULL pointer if there is no member with given name.
 	 */
-	inline const Member::Handle getMember(const std::string& inName) const
-	{
+	inline const Member::Handle getMember(const std::string& inName) const {
 		Beagle_StackTraceBeginM();
 		MemberMap::const_iterator lIterMap = mMemberMap.find(inName);
 		return (lIterMap == mMemberMap.end()) ? NULL : castHandleT<Member>(lIterMap->second);
@@ -154,8 +153,7 @@ public:
 	 *  \param inName Name of the member to obtain.
 	 *  \return Reference to the member, a NULL pointer if there is no member with given name.
 	 */
-	inline Member::Handle getMember(const std::string& inName)
-	{
+	inline Member::Handle getMember(const std::string& inName) {
 		Beagle_StackTraceBeginM();
 		MemberMap::iterator lIterMap = mMemberMap.find(inName);
 		return (lIterMap == mMemberMap.end()) ? NULL : castHandleT<Member>(lIterMap->second);
@@ -166,8 +164,7 @@ public:
 	 *  \brief Get an handle to the statistics.
 	 *  \return Handle to the statistics, a NULL handle if no statistics is present.
 	 */
-	inline const Stats::Handle getStats() const
-	{
+	inline const Stats::Handle getStats() const {
 		Beagle_StackTraceBeginM();
 		MemberMap::const_iterator lIterMap = mMemberMap.find("Stats");
 		return (lIterMap == mMemberMap.end()) ? NULL : castHandleT<Stats>(lIterMap->second);
@@ -178,8 +175,7 @@ public:
 	 *  \brief Get an handle to the statistics.
 	 *  \return Handle to the statistics, a NULL handle if no statistics is present.
 	 */
-	inline Stats::Handle getStats()
-	{
+	inline Stats::Handle getStats() {
 		Beagle_StackTraceBeginM();
 		MemberMap::iterator lIterMap = mMemberMap.find("Stats");
 		return (lIterMap == mMemberMap.end()) ? NULL : castHandleT<Stats>(lIterMap->second);

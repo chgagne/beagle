@@ -1,26 +1,28 @@
 /*
- *  Open BEAGLE
- *  Copyright (C) 2001-2007 by Christian Gagne and Marc Parizeau
+ *  Open BEAGLE: A Generic Evolutionary Computation Framework in C++
+ *  Copyright (C) 2001-2010 by Christian Gagne and Marc Parizeau
  *
- *  This library is free software; you can redistribute it and/or
- *  modify it under the terms of the GNU Lesser General Public
- *  License as published by the Free Software Foundation; either
- *  version 2.1 of the License, or (at your option) any later version.
+ *  This library is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser General Public License as
+ *  published by the Free Software Foundation, version 3 of the License.
  *
  *  This library is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- *  Lesser General Public License for more details.
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ *  GNU Lesser General Public License and GNU General Public License for
+ *  more details.
  *
  *  You should have received a copy of the GNU Lesser General Public
- *  License along with this library; if not, write to the Free Software
- *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ *  License and GNU General Public License along with this library.
+ *  If not, see <http://www.gnu.org/licenses/>.
  *
  *  Contact:
- *  Laboratoire de Vision et Systemes Numeriques
+ *  Christian Gagne
+ *  Laboratoire de vision et systemes numeriques
  *  Departement de genie electrique et de genie informatique
- *  Universite Laval, Quebec, Canada, G1K 7P4
- *  http://vision.gel.ulaval.ca
+ *  Universite Laval, Quebec (Quebec), Canada  G1V 0A6
+ *  http://vision.gel.ulaval.ca/~cgagne
+ *  christian.gagne@gel.ulaval.ca
  *
  */
 
@@ -39,17 +41,17 @@
  *  \brief Object wrapper and predefined adapted types, part of the Core library.
  *
  *  Given all this functionalities, the predominance of the object abstraction in Open BEAGLE's
- *  design is evident. But, if a user has some elaborated classes, or if a user wants to use other 
- *  libraries in conjunction of Open BEAGLE, it might be restrictive that everything must inherit from 
+ *  design is evident. But, if a user has some elaborated classes, or if a user wants to use other
+ *  libraries in conjunction of Open BEAGLE, it might be restrictive that everything must inherit from
  *  the superclass Beagle::Object. The user might not want to redefine everything or to use multiple
  *  inheritance to created hybrid classes. To enhance the user experience, a class template that would
- *  keep the use of Open BEAGLE simple is defined: the object wrapper. The wrapper is a simple adapter 
- *  of any type to the Open BEAGLE Beagle::Object interface. The concept of object wrapper is based 
+ *  keep the use of Open BEAGLE simple is defined: the object wrapper. The wrapper is a simple adapter
+ *  of any type to the Open BEAGLE Beagle::Object interface. The concept of object wrapper is based
  *  upon the \e Adapter design pattern.
  *
- *  The wrapper is defined in the C++ template Beagle::WrapperT. The template maps the Beagle::Object 
+ *  The wrapper is defined in the C++ template Beagle::WrapperT. The template maps the Beagle::Object
  *  interface to the usual methods of the wrapped type. The template got some casting operators to
- *  indifferently use the wrapper as the wrapped type. Furthermore, some types that are wrappers of 
+ *  indifferently use the wrapper as the wrapped type. Furthermore, some types that are wrappers of
  *  the C++ fundamental types are defined as standard types of Open BEAGLE.
  *
  */
@@ -121,8 +123,7 @@ public:
 	 *  \brief Cast the actual wrapper type into the wrapped type.
 	 *  \return A reference to the wrapped value.
 	 */
-	inline operator T() const
-	{
+	inline operator T() const {
 		Beagle_StackTraceBeginM();
 		return mWrappedValue;
 		Beagle_StackTraceEndM("WrapperT<T>::operator T() const");
@@ -132,8 +133,7 @@ public:
 	 *  \brief Get the wrapped type value.
 	 *  \return A reference to the wrapped value.
 	 */
-	inline T& getWrappedValue()
-	{
+	inline T& getWrappedValue() {
 		Beagle_StackTraceBeginM();
 		return mWrappedValue;
 		Beagle_StackTraceEndM("T& WrapperT<T>::getWrappedValue()");
@@ -143,8 +143,7 @@ public:
 	 *  \brief Get the wrapped type value.
 	 *  \return A constant reference to the wrapped value.
 	 */
-	inline const T& getWrappedValue() const
-	{
+	inline const T& getWrappedValue() const {
 		Beagle_StackTraceBeginM();
 		return mWrappedValue;
 		Beagle_StackTraceEndM("const T& WrapperT<T>::getWrappedValue() const");
@@ -155,8 +154,7 @@ public:
 	 *  \brief Set the wrapped type value.
 	 *  \param inNewValue Set the wrapped value.
 	 */
-	inline void setWrappedValue(const T& inNewValue)
-	{
+	inline void setWrappedValue(const T& inNewValue) {
 		Beagle_StackTraceBeginM();
 		mWrappedValue = inNewValue;
 		Beagle_StackTraceEndM("void WrapperT<T>::setWrappedValue(const T& inNewValue)");
@@ -176,7 +174,7 @@ private:
  */
 template <class T>
 Beagle::WrapperT<T>::WrapperT(const T& inWrappedValue) :
-		mWrappedValue(inWrappedValue)
+	mWrappedValue(inWrappedValue)
 { }
 
 

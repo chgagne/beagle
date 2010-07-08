@@ -1,26 +1,28 @@
 /*
- *  Open BEAGLE
- *  Copyright (C) 2001-2007 by Christian Gagne and Marc Parizeau
+ *  Open BEAGLE: A Generic Evolutionary Computation Framework in C++
+ *  Copyright (C) 2001-2010 by Christian Gagne and Marc Parizeau
  *
- *  This library is free software; you can redistribute it and/or
- *  modify it under the terms of the GNU Lesser General Public
- *  License as published by the Free Software Foundation; either
- *  version 2.1 of the License, or (at your option) any later version.
+ *  This library is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser General Public License as
+ *  published by the Free Software Foundation, version 3 of the License.
  *
  *  This library is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- *  Lesser General Public License for more details.
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ *  GNU Lesser General Public License and GNU General Public License for
+ *  more details.
  *
  *  You should have received a copy of the GNU Lesser General Public
- *  License along with this library; if not, write to the Free Software
- *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ *  License and GNU General Public License along with this library.
+ *  If not, see <http://www.gnu.org/licenses/>.
  *
  *  Contact:
- *  Laboratoire de Vision et Systemes Numeriques
+ *  Christian Gagne
+ *  Laboratoire de vision et systemes numeriques
  *  Departement de genie electrique et de genie informatique
- *  Universite Laval, Quebec, Canada, G1K 7P4
- *  http://vision.gel.ulaval.ca
+ *  Universite Laval, Quebec (Quebec), Canada  G1V 0A6
+ *  http://vision.gel.ulaval.ca/~cgagne
+ *  christian.gagne@gel.ulaval.ca
  *
  */
 
@@ -57,7 +59,7 @@
  *  parameter with the associated namespace and tag. The class Beagle::Register can be seen as a
  *  centralized database from which any entity could dynamically add, delete, access or modify
  *  parameters. The register is also responsible of the interpretation of the configuration file and
- *  set the parameters in consequence. The register also contains reference to every evolution 
+ *  set the parameters in consequence. The register also contains reference to every evolution
  *  operators available.
  *
  *  All the output messages given to the user pass by the logger. It consists of an interface with
@@ -72,10 +74,10 @@
  *  are classified into eight categories:
  *  - Nothing (0): Log nothing
  *  - Basic (1): Log essential informations
- *  - Stats (2): Log evolution statistics 
+ *  - Stats (2): Log evolution statistics
  *  - Info (3): Log general informations (default)
  *  - Detailed (4): Log details on operations
- *  - Trace (5): Log trace of the algorithms 
+ *  - Trace (5): Log trace of the algorithms
  *  - Verbose (6): Log details on everything (disabled in optimization mode)
  *  - Debug (7): Debug (enabled only in full debug mode)
  *
@@ -84,7 +86,7 @@
  *  choose the log level \e info (3), all messages classified in categories \e basic (1),
  *  \e stats (2), and \e info (3) will be outputed the given device. Log levels
  *  \e basic (1) to \e detailed (4) are appropriate for monitoring evolutions, log levels
- *  \e detailed (4) and \e trace (5) are good to get familiar with the internal functioning of 
+ *  \e detailed (4) and \e trace (5) are good to get familiar with the internal functioning of
  *  Open BEAGLE, while log levels \e trace (5) to \e debug (7) may be useful to debug an user
  *  application, or the framework.
  *
@@ -140,9 +142,9 @@
 #include "Beagle/Core/Package.hpp"
 
 #if defined(BEAGLE_HAVE_STDTR1_UNORDEREDSET)
-  #include <tr1/unordered_set>
+#include <tr1/unordered_set>
 #elif defined(BEAGLE_HAVE_STD_UNORDEREDSET)
-  #include <unordered_set>
+#include <unordered_set>
 #endif //BEAGLE_HAVE_STDTR1_UNORDEREDSET
 
 #ifdef BEAGLE_HAVE_OPENMP
@@ -182,10 +184,10 @@ public:
 	explicit System(Factory::Handle inFactory,
 	                Logger::Handle inLogger,
 #if defined(BEAGLE_USE_OMP_NR) || defined(BEAGLE_USE_OMP_R)
-		 	RandomizerMulti::Handle inRandomizer,
-			OpenMP::Handle inOpenMP,
-#else 
-			Randomizer::Handle inRandomizer,
+	                RandomizerMulti::Handle inRandomizer,
+	                OpenMP::Handle inOpenMP,
+#else
+	                Randomizer::Handle inRandomizer,
 #endif
 	                Register::Handle inRegister);
 	virtual ~System()
@@ -197,7 +199,7 @@ public:
 	virtual Component::Handle       getComponent(const std::string& inName);
 	virtual const Component::Handle haveComponent(const std::string& inName) const;
 	virtual Component::Handle       haveComponent(const std::string& inName);
-	virtual void			replaceComponentsByConcepts(void);
+	virtual void                    replaceComponentsByConcepts(void);
 	virtual void                    initComponents(void);
 	virtual void                    initialize(int inArgc, char** inArgv);
 	virtual void                    initialize(const std::string& inFileName);
@@ -208,108 +210,96 @@ public:
 	virtual void                    write(PACC::XML::Streamer& outStreamer, bool inIndent=true) const;
 
 	//! Return a const reference to the factory.
-	inline const Factory& getFactory(void) const
-	{
+	inline const Factory& getFactory(void) const {
 		Beagle_StackTraceBeginM();
 		return *mFactory;
 		Beagle_StackTraceEndM("const Factory& System::getFactory(void) const");
 	}
 
 	//! Return a reference to the factory.
-	inline Factory& getFactory(void)
-	{
+	inline Factory& getFactory(void) {
 		Beagle_StackTraceBeginM();
 		return *mFactory;
 		Beagle_StackTraceEndM("Factory& System::getFactory(void)");
 	}
 
 	//! Return a handle to the factory.
-	inline Factory::Handle getFactoryHandle(void)
-	{
+	inline Factory::Handle getFactoryHandle(void) {
 		Beagle_StackTraceBeginM();
 		return mFactory;
 		Beagle_StackTraceEndM("Register::Handle System::getFactoryHandle(void)");
 	}
 
 	//! Return a const reference to the logger.
-	inline const Logger& getLogger(void) const
-	{
+	inline const Logger& getLogger(void) const {
 		Beagle_StackTraceBeginM();
 		return *mLogger;
 		Beagle_StackTraceEndM("const Logger& System::getLogger(void) const");
 	}
 
 	//! Return a reference to the logger.
-	inline Logger& getLogger(void)
-	{
+	inline Logger& getLogger(void) {
 		Beagle_StackTraceBeginM();
 		return *mLogger;
 		Beagle_StackTraceEndM("Logger& System::getLogger(void)");
 	}
 
 	//! Return a handle to the logger.
-	inline Logger::Handle getLoggerHandle(void)
-	{
+	inline Logger::Handle getLoggerHandle(void) {
 		Beagle_StackTraceBeginM();
 		return mLogger;
 		Beagle_StackTraceEndM("Logger::Handle System::getLoggerHandle(void)");
 	}
 
 	//! Return a const reference to the randomizer.
-	inline const Randomizer& getRandomizer(void) const
-	{
+	inline const Randomizer& getRandomizer(void) const {
 		Beagle_StackTraceBeginM();
 #if defined(BEAGLE_USE_OMP_NR) || defined(BEAGLE_USE_OMP_R)
 		return *((*mRandomizer)[mOpenMP->getThreadNum()]);
-#else 
+#else
 		return *mRandomizer;
 #endif
 		Beagle_StackTraceEndM("const Randomizer& System::getRandomizer(void) const");
 	}
 
 	//! Return a reference to the randomizer.
-	inline Randomizer& getRandomizer(void)
-	{
+	inline Randomizer& getRandomizer(void) {
 		Beagle_StackTraceBeginM();
 #if defined(BEAGLE_USE_OMP_NR) || defined(BEAGLE_USE_OMP_R)
 		return *((*mRandomizer)[mOpenMP->getThreadNum()]);
-#else 
+#else
 		return *mRandomizer;
 #endif
 		Beagle_StackTraceEndM("Randomizer& System::getRandomizer(void)");
 	}
 
 	//! Return a handle to the randomizer.
-	inline Randomizer::Handle getRandomizerHandle(void)
-	{
+	inline Randomizer::Handle getRandomizerHandle(void) {
 		Beagle_StackTraceBeginM();
 #if defined(BEAGLE_USE_OMP_NR) || defined(BEAGLE_USE_OMP_R)
 		return (*mRandomizer)[mOpenMP->getThreadNum()];
-#else 
+#else
 		return mRandomizer;
 #endif
 		Beagle_StackTraceEndM("Randomizer::Handle System::getRandomizerHandle(void)");
 	}
 
 	//! Return a const reference to the register.
-	inline const Register& getRegister(void) const
-	{
+	inline const Register& getRegister(void) const {
 		Beagle_StackTraceBeginM();
 		return *mRegister;
 		Beagle_StackTraceEndM("const Register& System::getRegister(void) const");
 	}
 
 	//! Return a reference to the register.
-	inline Register& getRegister(void)
-	{
+	inline Register& getRegister(void) {
 		Beagle_StackTraceBeginM();
 		return *mRegister;
 		Beagle_StackTraceEndM("Register& System::getRegister(void)");
 	}
 
 	//! Return a handle to the register.
-	inline Register::Handle getRegisterHandle(void)
-	{
+	inline Register::Handle getRegisterHandle(void) {
 		Beagle_StackTraceBeginM();
 		return mRegister;
 		Beagle_StackTraceEndM("Register::Handle System::getRegisterHandle(void)");
@@ -339,7 +329,7 @@ protected:
 #if defined(BEAGLE_USE_OMP_NR) || defined(BEAGLE_USE_OMP_R)
 	RandomizerMulti::Handle  mRandomizer;  //!< Randomizer system component.
 	OpenMP::Handle			 mOpenMP;
-#else 
+#else
 	Randomizer::Handle  mRandomizer;  //!< Randomizer system component.
 #endif
 

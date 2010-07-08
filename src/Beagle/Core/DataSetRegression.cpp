@@ -1,26 +1,28 @@
 /*
- *  Open BEAGLE
- *  Copyright (C) 2001-2007 by Christian Gagne and Marc Parizeau
+ *  Open BEAGLE: A Generic Evolutionary Computation Framework in C++
+ *  Copyright (C) 2001-2010 by Christian Gagne and Marc Parizeau
  *
- *  This program is free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 2 of the License, or
- *  (at your option) any later version.
+ *  This library is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser General Public License as
+ *  published by the Free Software Foundation, version 3 of the License.
  *
- *  This program is distributed in the hope that it will be useful,
+ *  This library is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ *  GNU Lesser General Public License and GNU General Public License for
+ *  more details.
  *
- *  You should have received a copy of the GNU General Public License
- *  along with this program; if not, write to the Free Software
- *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ *  You should have received a copy of the GNU Lesser General Public
+ *  License and GNU General Public License along with this library.
+ *  If not, see <http://www.gnu.org/licenses/>.
  *
  *  Contact:
- *  Laboratoire de Vision et Systemes Numeriques
+ *  Christian Gagne
+ *  Laboratoire de vision et systemes numeriques
  *  Departement de genie electrique et de genie informatique
- *  Universite Laval, Quebec, Canada, G1K 7P4
- *  http://vision.gel.ulaval.ca
+ *  Universite Laval, Quebec (Quebec), Canada  G1V 0A6
+ *  http://vision.gel.ulaval.ca/~cgagne
+ *  christian.gagne@gel.ulaval.ca
  *
  */
 
@@ -44,7 +46,7 @@ using namespace Beagle;
  *  \param inName Name of the component.
  */
 DataSetRegression::DataSetRegression(const std::string& inName) :
-		Component(inName)
+	Component(inName)
 { }
 
 
@@ -54,33 +56,33 @@ DataSetRegression::DataSetRegression(const std::string& inName) :
  */
 void DataSetRegression::readCSV(std::istream& ioIS)
 {
-  clear();
-  char lBuf[4096];
-  for(ioIS.getline(lBuf,4096); ioIS.gcount()<4096; ioIS.getline(lBuf,4096)) {
-    std::string lStr(lBuf);
-    if(lStr.empty()) {
-      if(ioIS.good()==false) break;
-      else continue;
-    }
-    resize(size()+1);
-    back().second.resize(0);
-    std::istringstream lISS(lStr);
-    double lDbl=0.0;
-    for(lISS >> lDbl; (lISS.peek()==',') && lISS.good(); lISS >> lDbl) {
-      const unsigned int lSize = back().second.size();
-      back().second.resize(lSize + 1);
-      back().second[lSize] = lDbl;
-      lISS.get();
-    }
-    back().first = lDbl;
-    if(ioIS.good()==false) break;
-  }
-  if(ioIS.gcount() == 4096) {
-    std::ostringstream lOSS;
-    lOSS << "Unable to read data set from given stream, number of characters on one ";
-    lOSS << "line exceed 4096 characters!";
-    throw std::runtime_error(lOSS.str());
-  }
+	clear();
+	char lBuf[4096];
+	for(ioIS.getline(lBuf,4096); ioIS.gcount()<4096; ioIS.getline(lBuf,4096)) {
+		std::string lStr(lBuf);
+		if(lStr.empty()) {
+			if(ioIS.good()==false) break;
+			else continue;
+		}
+		resize(size()+1);
+		back().second.resize(0);
+		std::istringstream lISS(lStr);
+		double lDbl=0.0;
+		for(lISS >> lDbl; (lISS.peek()==',') && lISS.good(); lISS >> lDbl) {
+			const unsigned int lSize = back().second.size();
+			back().second.resize(lSize + 1);
+			back().second[lSize] = lDbl;
+			lISS.get();
+		}
+		back().first = lDbl;
+		if(ioIS.good()==false) break;
+	}
+	if(ioIS.gcount() == 4096) {
+		std::ostringstream lOSS;
+		lOSS << "Unable to read data set from given stream, number of characters on one ";
+		lOSS << "line exceed 4096 characters!";
+		throw std::runtime_error(lOSS.str());
+	}
 }
 
 
@@ -112,7 +114,7 @@ void DataSetRegression::readWithSystem(PACC::XML::ConstIterator inIter, System& 
 		}
 	}
 	resize(lCount);
-	
+
 	// Read data set
 	lCount = 0;
 	for(PACC::XML::ConstIterator lChild=inIter->getFirstChild(); lChild; ++lChild) {
@@ -130,7 +132,7 @@ void DataSetRegression::readWithSystem(PACC::XML::ConstIterator inIter, System& 
 			++lCount;
 		}
 	}
-	
+
 	Beagle_StackTraceEndM("void DataSetRegression::readWithSystem(PACC::XML::ConstIterator, System&)");
 }
 

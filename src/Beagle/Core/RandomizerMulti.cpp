@@ -1,26 +1,28 @@
 /*
- *  Open BEAGLE
- *  Copyright (C) 2001-2009 by Christian Gagne and Marc Parizeau
+ *  Open BEAGLE: A Generic Evolutionary Computation Framework in C++
+ *  Copyright (C) 2001-2010 by Christian Gagne and Marc Parizeau
  *
- *  This library is free software; you can redistribute it and/or
- *  modify it under the terms of the GNU Lesser General Public
- *  License as published by the Free Software Foundation; either
- *  version 2.1 of the License, or (at your option) any later version.
+ *  This library is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser General Public License as
+ *  published by the Free Software Foundation, version 3 of the License.
  *
  *  This library is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- *  Lesser General Public License for more details.
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ *  GNU Lesser General Public License and GNU General Public License for
+ *  more details.
  *
  *  You should have received a copy of the GNU Lesser General Public
- *  License along with this library; if not, write to the Free Software
- *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ *  License and GNU General Public License along with this library.
+ *  If not, see <http://www.gnu.org/licenses/>.
  *
  *  Contact:
- *  Laboratoire de Vision et Systemes Numeriques
+ *  Christian Gagne
+ *  Laboratoire de vision et systemes numeriques
  *  Departement de genie electrique et de genie informatique
- *  Universite Laval, Quebec, Canada, G1K 7P4
- *  http://vision.gel.ulaval.ca
+ *  Universite Laval, Quebec (Quebec), Canada  G1V 0A6
+ *  http://vision.gel.ulaval.ca/~cgagne
+ *  christian.gagne@gel.ulaval.ca
  *
  */
 
@@ -45,9 +47,9 @@
  *  \param inRandomizers Bag containing the randomizers to use by the RandomizerMulti.
  */
 Beagle::RandomizerMulti::RandomizerMulti(Randomizer::Bag::Handle inRandomizers)
- : Beagle::Component("RandomizerMulti"), mRandomizers(inRandomizers)
+	: Beagle::Component("RandomizerMulti"), mRandomizers(inRandomizers)
 {
-	if(mRandomizers == 0){
+	if(mRandomizers == 0) {
 		mRandomizers = new Randomizer::Bag(1);
 		(*mRandomizers)[0] = new Randomizer;
 	}
@@ -73,12 +75,12 @@ void Beagle::RandomizerMulti::registerParams(System& ioSystem)
 	    "0",
 	    lStream.str()
 	);
-	
+
 	mRegisteredSeed = castHandleT<ULongArray>(
-		ioSystem.getRegister().insertEntry("ec.rand.seed", new ULongArray(1,0), lDescription));
-	for(unsigned int i = 0; i < mRandomizers->size(); ++i){
+	                      ioSystem.getRegister().insertEntry("ec.rand.seed", new ULongArray(1,0), lDescription));
+	for(unsigned int i = 0; i < mRandomizers->size(); ++i) {
 		(*mRandomizers)[i]->registerParams(ioSystem);
-		(*mRandomizers)[i]->setRegisteredFlag(true);	
+		(*mRandomizers)[i]->setRegisteredFlag(true);
 	}
 	Beagle_StackTraceEndM("void RandomizerMulti::registerParams(System&)");
 }
@@ -91,18 +93,18 @@ void Beagle::RandomizerMulti::init(System& ioSystem)
 {
 	Beagle_StackTraceBeginM();
 	OpenMP::Handle lOpenMP = castHandleT<OpenMP>(ioSystem.getComponent("OpenMP"));
-	
+
 	if(mRandomizers->size() != lOpenMP->getMaxNumThreads())
 		mRandomizers = new Randomizer::Bag(lOpenMP->getMaxNumThreads());
 	if(mRegisteredSeed->size() != mRandomizers->size())
 		mRegisteredSeed->resize(mRandomizers->size(),0);
-	#pragma omp parallel for ordered schedule(static)
-	for(int i = 0; i < (int)mRandomizers->size(); ++i){
+#pragma omp parallel for ordered schedule(static)
+	for(int i = 0; i < (int)mRandomizers->size(); ++i) {
 		if((*mRandomizers)[i] == NULL)
 			(*mRandomizers)[i] = new Randomizer;
 		(*mRandomizers)[i]->registerParams(ioSystem);
 		(*mRandomizers)[i]->setRegisteredFlag(true);
-		#pragma omp ordered
+#pragma omp ordered
 		(*mRandomizers)[i]->init(ioSystem);
 		(*mRandomizers)[i]->setInitializedFlag(true);
 	}
@@ -124,10 +126,10 @@ void Beagle::RandomizerMulti::readWithSystem(PACC::XML::ConstIterator inIter, Sy
 	if(inIter->getChildCount() == 0) return;
 	else if(inIter->getChildCount() != lOpenMP->getMaxNumThreads())
 		throw Beagle_RunTimeExceptionM("The number of threads and the number of Randomizers are not equal.");
-	
+
 	mRandomizers = new Randomizer::Bag(lOpenMP->getMaxNumThreads());
 	PACC::XML::ConstIterator lChild = inIter->getFirstChild();
-	for(unsigned int i = 0; i < mRandomizers->size(); ++i){
+	for(unsigned int i = 0; i < mRandomizers->size(); ++i) {
 		(*mRandomizers)[i] = new Randomizer;
 		(*mRandomizers)[i]->readWithSystem(lChild, ioSystem);
 		++lChild;
@@ -144,7 +146,7 @@ void Beagle::RandomizerMulti::write(PACC::XML::Streamer& ioStreamer, bool inInde
 {
 	Beagle_StackTraceBeginM();
 	ioStreamer.openTag(getName(), inIndent);
-	if(isInitialized()){
+	if(isInitialized()) {
 		for(unsigned int i = 0; i < mRandomizers->size(); ++i)
 			(*mRandomizers)[i]->write(ioStreamer, inIndent);
 	}

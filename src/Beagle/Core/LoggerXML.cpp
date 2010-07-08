@@ -1,26 +1,28 @@
 /*
- *  Open BEAGLE
- *  Copyright (C) 2001-2007 by Christian Gagne and Marc Parizeau
+ *  Open BEAGLE: A Generic Evolutionary Computation Framework in C++
+ *  Copyright (C) 2001-2010 by Christian Gagne and Marc Parizeau
  *
- *  This library is free software; you can redistribute it and/or
- *  modify it under the terms of the GNU Lesser General Public
- *  License as published by the Free Software Foundation; either
- *  version 2.1 of the License, or (at your option) any later version.
+ *  This library is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser General Public License as
+ *  published by the Free Software Foundation, version 3 of the License.
  *
  *  This library is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- *  Lesser General Public License for more details.
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ *  GNU Lesser General Public License and GNU General Public License for
+ *  more details.
  *
  *  You should have received a copy of the GNU Lesser General Public
- *  License along with this library; if not, write to the Free Software
- *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ *  License and GNU General Public License along with this library.
+ *  If not, see <http://www.gnu.org/licenses/>.
  *
  *  Contact:
- *  Laboratoire de Vision et Systemes Numeriques
+ *  Christian Gagne
+ *  Laboratoire de vision et systemes numeriques
  *  Departement de genie electrique et de genie informatique
- *  Universite Laval, Quebec, Canada, G1K 7P4
- *  http://vision.gel.ulaval.ca
+ *  Universite Laval, Quebec (Quebec), Canada  G1V 0A6
+ *  http://vision.gel.ulaval.ca/~cgagne
+ *  christian.gagne@gel.ulaval.ca
  *
  */
 
@@ -45,8 +47,8 @@ using namespace Beagle;
  *  \brief Construct a new LoggerXML.
  */
 LoggerXML::LoggerXML(void) :
-		mStreamerConsole(std::cout),
-		mStreamerFile(mStream)
+	mStreamerConsole(std::cout),
+	mStreamerFile(mStream)
 {}
 
 
@@ -54,9 +56,9 @@ LoggerXML::LoggerXML(void) :
  *  \brief Copy constructor of a LoggerXML is disallowed.
  */
 LoggerXML::LoggerXML(const LoggerXML& inOrig) :
-		Logger(inOrig),
-		mStreamerConsole(std::cout),
-		mStreamerFile(mStream)
+	Logger(inOrig),
+	mStreamerConsole(std::cout),
+	mStreamerFile(mStream)
 {
 	Beagle_StackTraceBeginM();
 	throw Beagle_UndefinedMethodInternalExceptionM("LoggerXML", "LoggerXML", "LoggerXML");
@@ -136,7 +138,7 @@ void LoggerXML::outputMessage(const std::string& inMessage, unsigned int inLevel
 
 	// log to console
 	if(mConsoleLevel->getWrappedValue() >= inLevel) {
-		#pragma omp critical (Beagle_Logger_Log_Console)
+#pragma omp critical (Beagle_Logger_Log_Console)
 		{
 			mStreamerConsole.openTag("Log", false);
 			if(mShowLevel->getWrappedValue()) mStreamerConsole.insertAttribute("level", uint2str(inLevel));
@@ -150,13 +152,13 @@ void LoggerXML::outputMessage(const std::string& inMessage, unsigned int inLevel
 
 	// log to file
 	if(mFileLevel->getWrappedValue() >= inLevel && !mFileName->getWrappedValue().empty()) {
-		#pragma omp critical (Beagle_Logger_Log_File)
+#pragma omp critical (Beagle_Logger_Log_File)
 		{
 			mStreamerFile.openTag("Log", false);
 			if(mShowLevel->getWrappedValue()) mStreamerFile.insertAttribute("level", uint2str(inLevel));
 			if(mShowType->getWrappedValue())  mStreamerFile.insertAttribute("type",  inType);
 			if(mShowClass->getWrappedValue()) mStreamerFile.insertAttribute("class", inClass);
-                        if(mShowTime->getWrappedValue())  mStreamerFile.insertAttribute("time", PACC::Date().get("%X"));
+			if(mShowTime->getWrappedValue())  mStreamerFile.insertAttribute("time", PACC::Date().get("%X"));
 			mStreamerFile.insertStringContent(inMessage, false);
 			mStreamerFile.closeTag();
 		}
@@ -180,7 +182,7 @@ void LoggerXML::outputObject(const Object& inObject, unsigned int inLevel, const
 
 	// log to console
 	if(mConsoleLevel->getWrappedValue() >= inLevel) {
-		#pragma omp critical (Beagle_Logger_Log_Console)
+#pragma omp critical (Beagle_Logger_Log_Console)
 		{
 			mStreamerConsole.openTag("Log", true);
 			if(mShowLevel->getWrappedValue()) mStreamerConsole.insertAttribute("level", uint2str(inLevel));
@@ -192,15 +194,15 @@ void LoggerXML::outputObject(const Object& inObject, unsigned int inLevel, const
 		}
 	}
 
-	// log to file	
+	// log to file
 	if(mFileLevel->getWrappedValue() >= inLevel && !mFileName->getWrappedValue().empty()) {
-		#pragma omp critical (Beagle_Logger_Log_File)
+#pragma omp critical (Beagle_Logger_Log_File)
 		{
 			mStreamerFile.openTag("Log", true);
 			if(mShowLevel->getWrappedValue()) mStreamerFile.insertAttribute("level", uint2str(inLevel));
 			if(mShowType->getWrappedValue())  mStreamerFile.insertAttribute("type",  inType);
 			if(mShowClass->getWrappedValue()) mStreamerFile.insertAttribute("class", inClass);
-            if(mShowTime->getWrappedValue())  mStreamerFile.insertAttribute("time", PACC::Date().get("%X"));
+			if(mShowTime->getWrappedValue())  mStreamerFile.insertAttribute("time", PACC::Date().get("%X"));
 			inObject.write(mStreamerFile, true);
 			mStreamerFile.closeTag();
 		}
@@ -216,7 +218,7 @@ void LoggerXML::terminate(void)
 {
 	Beagle_StackTraceBeginM();
 
-	if((*this).isInitialized()){
+	if((*this).isInitialized()) {
 		if((mConsoleLevel != NULL) && (mConsoleLevel->getWrappedValue() != 0)) {
 			mStreamerConsole.closeAll();
 		}

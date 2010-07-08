@@ -1,26 +1,28 @@
 /*
- *  Open BEAGLE
- *  Copyright (C) 2001-2007 by Christian Gagne and Marc Parizeau
+ *  Open BEAGLE: A Generic Evolutionary Computation Framework in C++
+ *  Copyright (C) 2001-2010 by Christian Gagne and Marc Parizeau
  *
- *  This library is free software; you can redistribute it and/or
- *  modify it under the terms of the GNU Lesser General Public
- *  License as published by the Free Software Foundation; either
- *  version 2.1 of the License, or (at your option) any later version.
+ *  This library is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser General Public License as
+ *  published by the Free Software Foundation, version 3 of the License.
  *
  *  This library is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- *  Lesser General Public License for more details.
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ *  GNU Lesser General Public License and GNU General Public License for
+ *  more details.
  *
  *  You should have received a copy of the GNU Lesser General Public
- *  License along with this library; if not, write to the Free Software
- *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ *  License and GNU General Public License along with this library.
+ *  If not, see <http://www.gnu.org/licenses/>.
  *
  *  Contact:
- *  Laboratoire de Vision et Systemes Numeriques
+ *  Christian Gagne
+ *  Laboratoire de vision et systemes numeriques
  *  Departement de genie electrique et de genie informatique
- *  Universite Laval, Quebec, Canada, G1K 7P4
- *  http://vision.gel.ulaval.ca
+ *  Universite Laval, Quebec (Quebec), Canada  G1V 0A6
+ *  http://vision.gel.ulaval.ca/~cgagne
+ *  christian.gagne@gel.ulaval.ca
  *
  */
 
@@ -81,8 +83,7 @@ public:
 	 *  \param inValue The value to be inserted.
 	 *  \param inWeight The weighting to associate with the value.
 	 */
-	inline void insert(const T& inValue, double inWeight=1.0)
-	{
+	inline void insert(const T& inValue, double inWeight=1.0) {
 		Beagle_StackTraceBeginM();
 		Beagle_AssertM(inWeight>=0.0);
 		if(VectorType::empty()==false) inWeight += VectorType::back().first;
@@ -93,8 +94,7 @@ public:
 	/*!
 	 *  \brief Optimize distribution of values in the roulette.
 	 */
-	inline void optimize()
-	{
+	inline void optimize() {
 		Beagle_StackTraceBeginM();
 		if(VectorType::size()<2) return;
 		for(unsigned int i=(VectorType::size()-1); i>=1; --i)
@@ -109,8 +109,7 @@ public:
 	 *  \brief Select a value from the roulette wheel
 	 *  \param ioRandomizer Randomizer used to select element.
 	 */
-	inline const T& select(Beagle::Randomizer& ioRandomizer) const
-	{
+	inline const T& select(Beagle::Randomizer& ioRandomizer) const {
 		Beagle_StackTraceBeginM();
 		Beagle_AssertM(VectorType::empty()==false);
 		if(VectorType::back().first == 0.) {

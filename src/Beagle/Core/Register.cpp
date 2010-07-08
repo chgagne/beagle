@@ -1,26 +1,28 @@
 /*
- *  Open BEAGLE
- *  Copyright (C) 2001-2007 by Christian Gagne and Marc Parizeau
+ *  Open BEAGLE: A Generic Evolutionary Computation Framework in C++
+ *  Copyright (C) 2001-2010 by Christian Gagne and Marc Parizeau
  *
- *  This library is free software; you can redistribute it and/or
- *  modify it under the terms of the GNU Lesser General Public
- *  License as published by the Free Software Foundation; either
- *  version 2.1 of the License, or (at your option) any later version.
+ *  This library is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser General Public License as
+ *  published by the Free Software Foundation, version 3 of the License.
  *
  *  This library is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- *  Lesser General Public License for more details.
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ *  GNU Lesser General Public License and GNU General Public License for
+ *  more details.
  *
  *  You should have received a copy of the GNU Lesser General Public
- *  License along with this library; if not, write to the Free Software
- *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ *  License and GNU General Public License along with this library.
+ *  If not, see <http://www.gnu.org/licenses/>.
  *
  *  Contact:
- *  Laboratoire de Vision et Systemes Numeriques
+ *  Christian Gagne
+ *  Laboratoire de vision et systemes numeriques
  *  Departement de genie electrique et de genie informatique
- *  Universite Laval, Quebec, Canada, G1K 7P4
- *  http://vision.gel.ulaval.ca
+ *  Universite Laval, Quebec (Quebec), Canada  G1V 0A6
+ *  http://vision.gel.ulaval.ca/~cgagne
+ *  christian.gagne@gel.ulaval.ca
  *
  */
 
@@ -53,10 +55,10 @@ using namespace Beagle;
  *  \brief Default constructor of Register::Description.
  */
 Register::Description::Description(void ) :
-		mBrief("[No brief]"),
-		mType(""),
-		mDefaultValue(""),
-		mDescription("[No description]")
+	mBrief("[No brief]"),
+	mType(""),
+	mDefaultValue(""),
+	mDescription("[No description]")
 { }
 
 
@@ -71,10 +73,10 @@ Register::Description::Description(const std::string& inBrief,
                                    const std::string& inType,
                                    const std::string& inDefaultValue,
                                    const std::string& inDescription) :
-		mBrief(inBrief),
-		mType(inType),
-		mDefaultValue(inDefaultValue),
-		mDescription(inDescription)
+	mBrief(inBrief),
+	mType(inType),
+	mDefaultValue(inDefaultValue),
+	mDescription(inDescription)
 { }
 
 
@@ -527,20 +529,20 @@ void Register::write(PACC::XML::Streamer& ioStreamer, bool inIndent) const
 		lSortedKeys.insert(lIter->first);
 	}
 	for(std::set< std::string >::const_iterator lIter=lSortedKeys.begin(); lIter != lSortedKeys.end(); ++lIter) {
-			Map::const_iterator lParameter=mParameters.find(*lIter);
-			DescriptionMap::const_iterator lDescription=mDescriptions.find(*lIter);
-			if(lDescription != mDescriptions.end()) {
-				std::ostringstream lOSS;
-				lOSS << lParameter->first << " [";
-				lOSS << lDescription->second.mType << "]: ";
-				lOSS << lDescription->second.mDescription;
-				//      ioStreamer.insertComment(lOSS.str());
-			}
-			ioStreamer.openTag("Entry", false);
-			ioStreamer.insertAttribute("key", lParameter->first);
-			lParameter->second->write(ioStreamer, false);
-			ioStreamer.closeTag();
+		Map::const_iterator lParameter=mParameters.find(*lIter);
+		DescriptionMap::const_iterator lDescription=mDescriptions.find(*lIter);
+		if(lDescription != mDescriptions.end()) {
+			std::ostringstream lOSS;
+			lOSS << lParameter->first << " [";
+			lOSS << lDescription->second.mType << "]: ";
+			lOSS << lDescription->second.mDescription;
+			//      ioStreamer.insertComment(lOSS.str());
 		}
+		ioStreamer.openTag("Entry", false);
+		ioStreamer.insertAttribute("key", lParameter->first);
+		lParameter->second->write(ioStreamer, false);
+		ioStreamer.closeTag();
+	}
 	ioStreamer.closeTag();
 
 	Beagle_StackTraceEndM("void Register::write(PACC::XML::Streamer&, bool) const");

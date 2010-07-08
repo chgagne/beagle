@@ -1,26 +1,28 @@
 /*
- *  Open BEAGLE
- *  Copyright (C) 2001-2007 by Christian Gagne and Marc Parizeau
+ *  Open BEAGLE: A Generic Evolutionary Computation Framework in C++
+ *  Copyright (C) 2001-2010 by Christian Gagne and Marc Parizeau
  *
- *  This library is free software; you can redistribute it and/or
- *  modify it under the terms of the GNU Lesser General Public
- *  License as published by the Free Software Foundation; either
- *  version 2.1 of the License, or (at your option) any later version.
+ *  This library is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser General Public License as
+ *  published by the Free Software Foundation, version 3 of the License.
  *
  *  This library is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- *  Lesser General Public License for more details.
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ *  GNU Lesser General Public License and GNU General Public License for
+ *  more details.
  *
  *  You should have received a copy of the GNU Lesser General Public
- *  License along with this library; if not, write to the Free Software
- *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ *  License and GNU General Public License along with this library.
+ *  If not, see <http://www.gnu.org/licenses/>.
  *
  *  Contact:
- *  Laboratoire de Vision et Systemes Numeriques
+ *  Christian Gagne
+ *  Laboratoire de vision et systemes numeriques
  *  Departement de genie electrique et de genie informatique
- *  Universite Laval, Quebec, Canada, G1K 7P4
- *  http://vision.gel.ulaval.ca
+ *  Universite Laval, Quebec (Quebec), Canada  G1V 0A6
+ *  http://vision.gel.ulaval.ca/~cgagne
+ *  christian.gagne@gel.ulaval.ca
  *
  */
 
@@ -188,25 +190,25 @@ class System;
  *  \ingroup Core
  *  \ingroup Sys
  *
- *  This abstract class is for logging messages that summarize the internal 
+ *  This abstract class is for logging messages that summarize the internal
  *  processes of Beagle. Two output devices are supported: console and log
- *  file. For each device, a distinct user modifiable log level is 
+ *  file. For each device, a distinct user modifiable log level is
  *  implemented through the Register. Parameters \c lg.console.level and
- *  \c lg.file.level define the log levels associated with the console and 
- *  file devices, respectively. Messages are written to the output device 
+ *  \c lg.file.level define the log levels associated with the console and
+ *  file devices, respectively. Messages are written to the output device
  *  only if their log level is equal or high than the log level of the device.
  *
- *  Virtual pure methods \c Logger::outputMessage and \c Logger::outputObject 
- *  should be overridden in a derived class to physically write messages in a 
- *  specific format. Also, method Logger::terminate must be orridden to 
+ *  Virtual pure methods \c Logger::outputMessage and \c Logger::outputObject
+ *  should be overridden in a derived class to physically write messages in a
+ *  specific format. Also, method Logger::terminate must be orridden to
  *  terminate the logging process. For an example, see LoggerXML.
  *
- *  The derived class should override method \c Logger::registerParams if it 
+ *  The derived class should override method \c Logger::registerParams if it
  *  needs to add any parameters in the Register. But this method should always
  *  call the method of its base class first. It should also override method
  *  method \c Logger::init to initialize the physical device. This method
  *  should itself call the method of its base class after it has finished
- *  making its own initializations. 
+ *  making its own initializations.
  */
 class Logger : public Component
 {
@@ -217,14 +219,14 @@ public:
 	 *  \brief Available log levels (a level imply all previous levels).
 	 */
 	enum LogLevel {
-	    eNothing=0,   //!< Nothing.
-	    eBasic=1,     //!< Essential informations.
-	    eStats=2,     //!< eBasic    + evolution statistics.
-	    eInfo=3,      //!< eStats    + general informations.
-	    eDetailed=4,  //!< eInfo     + detailed operations.
-	    eTrace=5,     //!< eDetailed + trace of algorithms.
-	    eVerbose=6,   //!< eTrace    + details on everything (disabled in optimization mode).
-	    eDebug=7      //!< Debug (enabled only in full debug mode).
+		eNothing=0,   //!< Nothing.
+		eBasic=1,     //!< Essential informations.
+		eStats=2,     //!< eBasic    + evolution statistics.
+		eInfo=3,      //!< eStats    + general informations.
+		eDetailed=4,  //!< eInfo     + detailed operations.
+		eTrace=5,     //!< eDetailed + trace of algorithms.
+		eVerbose=6,   //!< eTrace    + details on everything (disabled in optimization mode).
+		eDebug=7      //!< Debug (enabled only in full debug mode).
 	};
 
 	//! Logger allocator type.
@@ -240,7 +242,9 @@ public:
 	virtual ~Logger()
 	{ }
 
-	inline void copyBuffer(const Logger& inLogger) { mBuffer = inLogger.mBuffer; }
+	inline void copyBuffer(const Logger& inLogger) {
+		mBuffer = inLogger.mBuffer;
+	}
 
 	virtual void registerParams(System& ioSystem);
 
@@ -258,7 +262,7 @@ public:
 	 *  \param inType Type of message.
 	 *  \param inClass Class of message.
 	 *
-	 *  This method must be overridden in a subclass for writing the message in a 
+	 *  This method must be overridden in a subclass for writing the message in a
 	 *  specific format.
 	 */
 	virtual void outputMessage(const std::string& inMessage, unsigned int inLevel, const std::string& inType, const std::string& inClass) = 0;
@@ -270,7 +274,7 @@ public:
 	 *  \param inType Type of message.
 	 *  \param inClass Class of message.
 	 *
-	 *  This method must be overridden in a subclass for serializing the object 
+	 *  This method must be overridden in a subclass for serializing the object
 	 *  in a specific format.
 	 */
 	virtual void outputObject(const Object& inObject, unsigned int inLevel, const std::string& inType, const std::string& inClass) = 0;
@@ -287,8 +291,7 @@ public:
 
 protected:
 
-	struct Message
-	{
+	struct Message {
 		std::string  mMessage;
 		unsigned int mLevel;
 		std::string  mType;
@@ -299,10 +302,10 @@ protected:
 		        const std::string& inType,
 		        const std::string& inClass
 		       ) :
-				mMessage(inMessage),
-				mLevel(inLevel),
-				mType(inType),
-				mClass(inClass)
+			mMessage(inMessage),
+			mLevel(inLevel),
+			mType(inType),
+			mClass(inClass)
 		{ }
 
 	};

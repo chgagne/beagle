@@ -1,26 +1,28 @@
 /*
- *  Open BEAGLE
- *  Copyright (C) 2001-2007 by Christian Gagne and Marc Parizeau
+ *  Open BEAGLE: A Generic Evolutionary Computation Framework in C++
+ *  Copyright (C) 2001-2010 by Christian Gagne and Marc Parizeau
  *
- *  This library is free software; you can redistribute it and/or
- *  modify it under the terms of the GNU Lesser General Public
- *  License as published by the Free Software Foundation; either
- *  version 2.1 of the License, or (at your option) any later version.
+ *  This library is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser General Public License as
+ *  published by the Free Software Foundation, version 3 of the License.
  *
  *  This library is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- *  Lesser General Public License for more details.
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ *  GNU Lesser General Public License and GNU General Public License for
+ *  more details.
  *
  *  You should have received a copy of the GNU Lesser General Public
- *  License along with this library; if not, write to the Free Software
- *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ *  License and GNU General Public License along with this library.
+ *  If not, see <http://www.gnu.org/licenses/>.
  *
  *  Contact:
- *  Laboratoire de Vision et Systemes Numeriques
+ *  Christian Gagne
+ *  Laboratoire de vision et systemes numeriques
  *  Departement de genie electrique et de genie informatique
- *  Universite Laval, Quebec, Canada, G1K 7P4
- *  http://vision.gel.ulaval.ca
+ *  Universite Laval, Quebec (Quebec), Canada  G1V 0A6
+ *  http://vision.gel.ulaval.ca/~cgagne
+ *  christian.gagne@gel.ulaval.ca
  *
  */
 
@@ -39,44 +41,44 @@
  *  \brief Object, smart pointers, and casting functions, part of the Core library.
  *
  *  In Open BEAGLE, most classes are derived from an abstract class called Beagle::Object. An
- *  Open BEAGLE object comprises some general methods that are characteristic of a complete C++ 
- *  object. The usual C++ objects comparison operators are defined, receiving arguments of the  
- *  Beagle::Object type and calling the appropriate comparison method (Beagle::Object::isEqual or 
- *  Beagle::Object::isLess). The methods Beagle::Object::read and Beagle::Object::write are used to 
+ *  Open BEAGLE object comprises some general methods that are characteristic of a complete C++
+ *  object. The usual C++ objects comparison operators are defined, receiving arguments of the
+ *  Beagle::Object type and calling the appropriate comparison method (Beagle::Object::isEqual or
+ *  Beagle::Object::isLess). The methods Beagle::Object::read and Beagle::Object::write are used to
  *  extract/insert an object into devices, in XML.
  *
- *  A Beagle::Object also implements a reference counter that remembers the number of references 
+ *  A Beagle::Object also implements a reference counter that remembers the number of references
  *  that point to it. The C++ language defines two ways of allocating an object instance. First, the
- *  instance can be allocated on the stack, it will then be destructed at the end of the scope. 
- *  Second, the instance can be allocated on the heap with a call to the \c new operator, which 
- *  means that it is necessary to apply a symmetrical \c delete at the end of the instance 
- *  lifetime. With Open BEAGLE, there is a variation on the second way to allocate objects: an Open 
- *  BEAGLE object can be allocated on the heap and affected to Open BEAGLE smart pointers that 
- *  interact with the object reference counter. The destruction of the object is then the 
+ *  instance can be allocated on the stack, it will then be destructed at the end of the scope.
+ *  Second, the instance can be allocated on the heap with a call to the \c new operator, which
+ *  means that it is necessary to apply a symmetrical \c delete at the end of the instance
+ *  lifetime. With Open BEAGLE, there is a variation on the second way to allocate objects: an Open
+ *  BEAGLE object can be allocated on the heap and affected to Open BEAGLE smart pointers that
+ *  interact with the object reference counter. The destruction of the object is then the
  *  responsibility of the smart pointers.
  *
- *  An Open BEAGLE smart pointer acts like a standard C++ pointer that manage the memory used by the 
- *  pointed objects. It is implemented it in class Beagle::Pointer, which is tightly linked to the 
- *  reference counter of class Beagle::Object. The implementation of the Beagle::Pointer class 
+ *  An Open BEAGLE smart pointer acts like a standard C++ pointer that manage the memory used by the
+ *  pointed objects. It is implemented it in class Beagle::Pointer, which is tightly linked to the
+ *  reference counter of class Beagle::Object. The implementation of the Beagle::Pointer class
  *  guarantees that the pointed object exists since there is a smart pointer that refer to it. It also
- *  guarantees that the object will be destroyed when its last reference will vanish. This emulates 
- *  the appreciated garbage collection mechanism of some programming languages. In fact, the Open 
- *  BEAGLE smart pointers are coherent with the creation and the garbage collecting of objects of the 
+ *  guarantees that the object will be destroyed when its last reference will vanish. This emulates
+ *  the appreciated garbage collection mechanism of some programming languages. In fact, the Open
+ *  BEAGLE smart pointers are coherent with the creation and the garbage collecting of objects of the
  *  \e Java language. The two things that the user should remember is to allocate objects on the heap
- *  (with a \c new) and never interfere with object destruction after assigning them to smart 
- *  pointers. Once an object is referred by smart pointer, the memory management responsibility is 
+ *  (with a \c new) and never interfere with object destruction after assigning them to smart
+ *  pointers. Once an object is referred by smart pointer, the memory management responsibility is
  *  held by the smart pointer.
  *
- *  Exceptionally, the Beagle::Pointer class and its subclasses do not inherit from superclass  
- *  Beagle::Object. Like a C++ pointer, an Open BEAGLE pointer can be assigned to a null pointer. The 
- *  class also provides the two usual dereferencing operators, \c operator* and \c operator->, 
+ *  Exceptionally, the Beagle::Pointer class and its subclasses do not inherit from superclass
+ *  Beagle::Object. Like a C++ pointer, an Open BEAGLE pointer can be assigned to a null pointer. The
+ *  class also provides the two usual dereferencing operators, \c operator* and \c operator->,
  *  which return a reference to the pointed object. There is also two comparison operators
- *  (\c operator== and \c operator!=) between two Beagle::Pointer, between a Beagle::Pointer and an 
+ *  (\c operator== and \c operator!=) between two Beagle::Pointer, between a Beagle::Pointer and an
  *  Beagle::Object* and the null pointer testing operator (\c operator!).
  *
  *  Since any instance are concrete objects and smart pointers gives references to the abstract
- *  Beagle::Object type, each access to methods or attributes that are not declared in the object 
- *  interface needs a cast of the reference given by the smart pointer to the desired derived type. 
+ *  Beagle::Object type, each access to methods or attributes that are not declared in the object
+ *  interface needs a cast of the reference given by the smart pointer to the desired derived type.
  *  This could lead to inelegant code, or even type inconsistencies if old C-style casts were used. To
  *  avoid these problems, there is a templated class, Beagle::PointerT, that defines the pointer
  *  unreferencing operators to the desired type.
@@ -88,19 +90,19 @@
  *    inline T* operator->();
  *  };
  *  \endcode
- *  The Beagle::PointerT template also emulates the mechanism of automatic pointer type binding for 
- *  inheritance-related classes. This allows a compile-time binding of T-type smart pointers 
+ *  The Beagle::PointerT template also emulates the mechanism of automatic pointer type binding for
+ *  inheritance-related classes. This allows a compile-time binding of T-type smart pointers
  *  that inherit from the \c BaseType, when a \c BaseType object is needed. For example, suppose a
- *  method taking an argument of the type \c Base::Handle, which is a smart pointer to an 
- *  object instance of the class \c Base. With the automatic type binding of smart pointer, the 
- *  method can get as argument a smart pointer to the type \c Derived::Handle, supposing that the 
- *  class \c Derived inherits from the class \c Base. This can be done without any explicit cast 
- *  of the smart pointers. Beagle::PointerT has two templated parameters: the type of object handled, 
- *  the T-type, and the parent type of the smart pointer, the \c BaseType. The \c BaseType is useful 
+ *  method taking an argument of the type \c Base::Handle, which is a smart pointer to an
+ *  object instance of the class \c Base. With the automatic type binding of smart pointer, the
+ *  method can get as argument a smart pointer to the type \c Derived::Handle, supposing that the
+ *  class \c Derived inherits from the class \c Base. This can be done without any explicit cast
+ *  of the smart pointers. Beagle::PointerT has two templated parameters: the type of object handled,
+ *  the T-type, and the parent type of the smart pointer, the \c BaseType. The \c BaseType is useful
  *  for the automatic type binding emulation by inheritance.
  *
- *  For each class of Open BEAGLE, the nested type \c Handle is declared. This is the type of 
- *  handle to the class, that is, a smart pointer that gives exact reference type. Usually, this type 
+ *  For each class of Open BEAGLE, the nested type \c Handle is declared. This is the type of
+ *  handle to the class, that is, a smart pointer that gives exact reference type. Usually, this type
  *  is simply declared as a synonym of a parametrized Beagle::PointerT.
  *  \code
  *  class AnyClass : public SuperClass {
@@ -109,18 +111,18 @@
  *    ...
  *  };
  *  \endcode
- *  Doing so, a smart pointer can be used to return reference to the right type, the type \c 
- *  AnyClass, simply by working with the right handle type, \c AnyClass::Handle. It is a good 
- *  practice to define the nested \c Handle type for every class that inherits directly or 
+ *  Doing so, a smart pointer can be used to return reference to the right type, the type \c
+ *  AnyClass, simply by working with the right handle type, \c AnyClass::Handle. It is a good
+ *  practice to define the nested \c Handle type for every class that inherits directly or
  *  indirectly from an Beagle::Object.
  *
- *  With the ANSI/ISO C++ standard, it is highly recommended to use the new style cast operators 
- *  instead of the old C-style one. This new style cast operators, such the operators \c static_cast 
+ *  With the ANSI/ISO C++ standard, it is highly recommended to use the new style cast operators
+ *  instead of the old C-style one. This new style cast operators, such the operators \c static_cast
  *  and \c const_cast, are more specialized cast operations. The use of different cast operators
  *  prevent some unwanted casting operations that could lead to nasty hidden bugs. In the Beagle
  *  namespace, three new cast operator is defined, Beagle::castObjectT(Beagle::Object*),
  *  Beagle::castObjectT(Beagle::Object&), and Beagle::castHandleT(Beagle::Object::Handle). These
- *  operators must be use to cast any Open BEAGLE object type into another object type. The usage of  
+ *  operators must be use to cast any Open BEAGLE object type into another object type. The usage of
  *  this casting operator is identical to the usage of new style cast operators.
  *
  */
@@ -181,8 +183,7 @@ public:
 	 *  \brief  Gives the number of smart pointers that refer to the actual object.
 	 *  \return Value of the reference counter.
 	 */
-	inline unsigned int getRefCounter() const
-	{
+	inline unsigned int getRefCounter() const {
 		return mRefCounter;
 	}
 
@@ -190,8 +191,7 @@ public:
 	 *  \brief  Increments the reference counter and returns a pointer to the actual object.
 	 *  \return Pointer to the actual object.
 	 */
-	inline Object* refer()
-	{
+	inline Object* refer() {
 		++mRefCounter;
 		return this;
 	}
@@ -199,8 +199,7 @@ public:
 	/*!
 	 *  \brief  Decrement the reference counter and deletes the actual object if it reaches zero.
 	 */
-	inline void unrefer()
-	{
+	inline void unrefer() {
 		if((--mRefCounter) == 0) delete this;
 	}
 

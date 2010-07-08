@@ -1,26 +1,28 @@
 /*
- *  Open BEAGLE
- *  Copyright (C) 2001-2007 by Christian Gagne and Marc Parizeau
+ *  Open BEAGLE: A Generic Evolutionary Computation Framework in C++
+ *  Copyright (C) 2001-2010 by Christian Gagne and Marc Parizeau
  *
- *  This library is free software; you can redistribute it and/or
- *  modify it under the terms of the GNU Lesser General Public
- *  License as published by the Free Software Foundation; either
- *  version 2.1 of the License, or (at your option) any later version.
+ *  This library is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser General Public License as
+ *  published by the Free Software Foundation, version 3 of the License.
  *
  *  This library is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- *  Lesser General Public License for more details.
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ *  GNU Lesser General Public License and GNU General Public License for
+ *  more details.
  *
  *  You should have received a copy of the GNU Lesser General Public
- *  License along with this library; if not, write to the Free Software
- *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ *  License and GNU General Public License along with this library.
+ *  If not, see <http://www.gnu.org/licenses/>.
  *
  *  Contact:
- *  Laboratoire de Vision et Systemes Numeriques
+ *  Christian Gagne
+ *  Laboratoire de vision et systemes numeriques
  *  Departement de genie electrique et de genie informatique
- *  Universite Laval, Quebec, Canada, G1K 7P4
- *  http://vision.gel.ulaval.ca
+ *  Universite Laval, Quebec (Quebec), Canada  G1V 0A6
+ *  http://vision.gel.ulaval.ca/~cgagne
+ *  christian.gagne@gel.ulaval.ca
  *
  */
 
@@ -115,17 +117,17 @@ Beagle::Object* Beagle::AllocatorT<T,BaseType>::allocate() const
 template <class T, class BaseType>
 Beagle::Object* Beagle::AllocatorT<T,BaseType>::clone(const Beagle::Object& inOriginal) const
 {
-  Beagle_StackTraceBeginM();
+	Beagle_StackTraceBeginM();
 #ifndef BEAGLE_NDEBUG
-  const T& lOrigT = castObjectT<const T&>(inOriginal);
-  T* lCopy = new T(lOrigT);
-  if(!lCopy) throw Beagle_InternalExceptionM("Out of memory!");
-  return lCopy;
+	const T& lOrigT = castObjectT<const T&>(inOriginal);
+	T* lCopy = new T(lOrigT);
+	if(!lCopy) throw Beagle_InternalExceptionM("Out of memory!");
+	return lCopy;
 #else // BEAGLE_NDEBUG
-  const T& lOrigT = castObjectT<const T&>(inOriginal);
-  return new T(lOrigT);
+	const T& lOrigT = castObjectT<const T&>(inOriginal);
+	return new T(lOrigT);
 #endif // BEAGLE_NDEBUG
-  Beagle_StackTraceEndM("Object* AllocatorT<T,BaseType>::clone(const Object&) const");
+	Beagle_StackTraceEndM("Object* AllocatorT<T,BaseType>::clone(const Object&) const");
 }
 
 
@@ -137,13 +139,13 @@ Beagle::Object* Beagle::AllocatorT<T,BaseType>::clone(const Beagle::Object& inOr
  */
 template <class T, class BaseType>
 void Beagle::AllocatorT<T,BaseType>::copy(Beagle::Object& outCopy,
-                                          const Beagle::Object& inOriginal) const
+        const Beagle::Object& inOriginal) const
 {
-  Beagle_StackTraceBeginM();
-  T& lCopyT = castObjectT<T&>(outCopy);
-  const T& lOriginalT = castObjectT<const T&>(inOriginal);
-  lCopyT = lOriginalT;
-  Beagle_StackTraceEndM("void AllocatorT<T,BaseType>::copy(Object&, const Object&) const");
+	Beagle_StackTraceBeginM();
+	T& lCopyT = castObjectT<T&>(outCopy);
+	const T& lOriginalT = castObjectT<const T&>(inOriginal);
+	lCopyT = lOriginalT;
+	Beagle_StackTraceEndM("void AllocatorT<T,BaseType>::copy(Object&, const Object&) const");
 }
 
 

@@ -1,26 +1,28 @@
 /*
- *  Open BEAGLE
- *  Copyright (C) 2001-2007 by Christian Gagne and Marc Parizeau
+ *  Open BEAGLE: A Generic Evolutionary Computation Framework in C++
+ *  Copyright (C) 2001-2010 by Christian Gagne and Marc Parizeau
  *
- *  This library is free software; you can redistribute it and/or
- *  modify it under the terms of the GNU Lesser General Public
- *  License as published by the Free Software Foundation; either
- *  version 2.1 of the License, or (at your option) any later version.
+ *  This library is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser General Public License as
+ *  published by the Free Software Foundation, version 3 of the License.
  *
  *  This library is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- *  Lesser General Public License for more details.
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ *  GNU Lesser General Public License and GNU General Public License for
+ *  more details.
  *
  *  You should have received a copy of the GNU Lesser General Public
- *  License along with this library; if not, write to the Free Software
- *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ *  License and GNU General Public License along with this library.
+ *  If not, see <http://www.gnu.org/licenses/>.
  *
  *  Contact:
- *  Laboratoire de Vision et Systemes Numeriques
+ *  Christian Gagne
+ *  Laboratoire de vision et systemes numeriques
  *  Departement de genie electrique et de genie informatique
- *  Universite Laval, Quebec, Canada, G1K 7P4
- *  http://vision.gel.ulaval.ca
+ *  Universite Laval, Quebec (Quebec), Canada  G1V 0A6
+ *  http://vision.gel.ulaval.ca/~cgagne
+ *  christian.gagne@gel.ulaval.ca
  *
  */
 
@@ -60,7 +62,7 @@ public:
 	 *  \brief Construct a NULL pointing smart pointer.
 	 */
 	inline Pointer() :
-			mObjectPointer(NULL)
+		mObjectPointer(NULL)
 	{ }
 
 	/*!
@@ -68,7 +70,7 @@ public:
 	 *  \param inObjPtr Pointer to the object to be referenced.
 	 */
 	inline Pointer(const Object* inObjPtr) :
-			mObjectPointer( (inObjPtr!=NULL) ? (const_cast<Object*>(inObjPtr)->refer()) : NULL )
+		mObjectPointer( (inObjPtr!=NULL) ? (const_cast<Object*>(inObjPtr)->refer()) : NULL )
 	{ }
 
 	/*!
@@ -76,15 +78,14 @@ public:
 	 *  \param inPointer Smart pointer to copy.
 	 */
 	inline Pointer(const Pointer& inPointer) :
-	mObjectPointer( (inPointer.getPointer()!=NULL) ?
-	                (const_cast<Beagle::Object*>(inPointer.getPointer())->refer()) : NULL )
+		mObjectPointer( (inPointer.getPointer()!=NULL) ?
+		                (const_cast<Beagle::Object*>(inPointer.getPointer())->refer()) : NULL )
 	{ }
 
 	/*!
 	 *  \brief Destruct a smart pointer by unrefering the pointed object.
 	 */
-	inline ~Pointer()
-	{
+	inline ~Pointer() {
 		Beagle_StackTraceBeginM();
 		if(mObjectPointer!=NULL) mObjectPointer->unrefer();
 		mObjectPointer = NULL;
@@ -96,8 +97,7 @@ public:
 	 *  \param inObjPtr Pointer to the object to refer.
 	 *  \return Actual smart pointer.
 	 */
-	inline Pointer& operator=(const Object* inObjPtr)
-	{
+	inline Pointer& operator=(const Object* inObjPtr) {
 		Beagle_StackTraceBeginM();
 		if(mObjectPointer==inObjPtr) return *this;
 		if(mObjectPointer!=NULL) mObjectPointer->unrefer();
@@ -112,8 +112,7 @@ public:
 	 *  \param inPointer Smart pointer to copy.
 	 *  \return Actual smart pointer.
 	 */
-	inline Pointer& operator=(const Pointer& inPointer)
-	{
+	inline Pointer& operator=(const Pointer& inPointer) {
 		Beagle_StackTraceBeginM();
 		if(mObjectPointer==inPointer.getPointer()) return *this;
 		if(mObjectPointer) mObjectPointer->unrefer();
@@ -129,8 +128,7 @@ public:
 	 *  \return Reference to the object pointed.
 	 *  \throw Beagle::AssertException If the pointer to the object is NULL.
 	 */
-	inline Object& operator*()
-	{
+	inline Object& operator*() {
 		Beagle_StackTraceBeginM();
 		Beagle_NonNullPointerAssertM(mObjectPointer);
 		return *mObjectPointer;
@@ -142,8 +140,7 @@ public:
 	 *  \return Constant reference to the object pointed.
 	 *  \throw Beagle::AssertException If the pointer to the object is NULL.
 	 */
-	inline const Object& operator*() const
-	{
+	inline const Object& operator*() const {
 		Beagle_StackTraceBeginM();
 		Beagle_NonNullPointerAssertM(mObjectPointer);
 		return *mObjectPointer;
@@ -155,8 +152,7 @@ public:
 	 *  \return Pointer to the object pointed.
 	 *  \throw  Beagle::AssertException If the pointer to the object is NULL.
 	 */
-	inline Object* operator->()
-	{
+	inline Object* operator->() {
 		Beagle_StackTraceBeginM();
 		Beagle_NonNullPointerAssertM(mObjectPointer);
 		return mObjectPointer;
@@ -168,8 +164,7 @@ public:
 	 *  \return Constant pointer to the object pointed.
 	 *  \throw  Beagle::AssertException If the pointer to the object is NULL.
 	 */
-	inline const Object* operator->() const
-	{
+	inline const Object* operator->() const {
 		Beagle_StackTraceBeginM();
 		Beagle_NonNullPointerAssertM(mObjectPointer);
 		return mObjectPointer;
@@ -180,8 +175,7 @@ public:
 	 *  \brief  Test whether the pointer is NULL or not.
 	 *  \return True if the pointer is NULL, false if it is not.
 	 */
-	inline bool operator!() const
-	{
+	inline bool operator!() const {
 		Beagle_StackTraceBeginM();
 		return (!mObjectPointer);
 		Beagle_StackTraceEndM("bool Pointer::operator!() const");
@@ -192,8 +186,7 @@ public:
 	 *  \param inObjPtr Right hand side object pointer to compare.
 	 *  \return True if they both refer to the same object (or are both NULL), false if not.
 	 */
-	inline bool operator==(const Object* inObjPtr) const
-	{
+	inline bool operator==(const Object* inObjPtr) const {
 		Beagle_StackTraceBeginM();
 		return (mObjectPointer == inObjPtr);
 		Beagle_StackTraceEndM("bool Pointer::operator==(const Object* inObjPtr) const");
@@ -204,8 +197,7 @@ public:
 	 *  \param inPointer Right hand side smart pointer to compare.
 	 *  \return True if they both refer to the same object (or are both NULL), false if not.
 	 */
-	inline bool operator==(const Pointer& inPointer) const
-	{
+	inline bool operator==(const Pointer& inPointer) const {
 		Beagle_StackTraceBeginM();
 		return (mObjectPointer == inPointer.getPointer());
 		Beagle_StackTraceEndM("bool Pointer::operator==(const Pointer& inPointer) const");
@@ -216,8 +208,7 @@ public:
 	 *  \param inObjPtr Right hand side object pointer to compare.
 	 *  \return False if they both refer to the same object (or are both NULL), true if not.
 	 */
-	inline bool operator!=(const Object* inObjPtr) const
-	{
+	inline bool operator!=(const Object* inObjPtr) const {
 		Beagle_StackTraceBeginM();
 		return (mObjectPointer != inObjPtr);
 		Beagle_StackTraceEndM("bool Pointer::operator!=(const Object* inObjPtr) const");
@@ -228,8 +219,7 @@ public:
 	 *  \param inPointer Right hand side smart pointer to compare.
 	 *  \return False if they both refer to the same object (or are both NULL), true if not.
 	 */
-	inline bool operator!=(const Pointer& inPointer) const
-	{
+	inline bool operator!=(const Pointer& inPointer) const {
 		Beagle_StackTraceBeginM();
 		return (mObjectPointer != inPointer.getPointer());
 		Beagle_StackTraceEndM("bool Pointer::operator!=(const Pointer& inPointer) const");
@@ -239,8 +229,7 @@ public:
 	 *  \brief Return pointer to the referenced object.
 	 *  \return C++ pointer to the object.
 	 */
-	inline Object* getPointer()
-	{
+	inline Object* getPointer() {
 		Beagle_StackTraceBeginM();
 		return mObjectPointer;
 		Beagle_StackTraceEndM("Object* Pointer::getPointer()");
@@ -250,8 +239,7 @@ public:
 	 *  \brief Return constant pointer to the referenced object.
 	 *  \return Constant C++ pointer to the object.
 	 */
-	inline const Object* getPointer() const
-	{
+	inline const Object* getPointer() const {
 		Beagle_StackTraceBeginM();
 		return mObjectPointer;
 		Beagle_StackTraceEndM("const Object* Pointer::getPointer() const");

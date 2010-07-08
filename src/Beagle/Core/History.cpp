@@ -1,26 +1,28 @@
 /*
- *  Open BEAGLE
- *  Copyright (C) 2001-2007 by Christian Gagne and Marc Parizeau
+ *  Open BEAGLE: A Generic Evolutionary Computation Framework in C++
+ *  Copyright (C) 2001-2010 by Christian Gagne and Marc Parizeau
  *
- *  This library is free software; you can redistribute it and/or
- *  modify it under the terms of the GNU Lesser General Public
- *  License as published by the Free Software Foundation; either
- *  version 2.1 of the License, or (at your option) any later version.
+ *  This library is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser General Public License as
+ *  published by the Free Software Foundation, version 3 of the License.
  *
  *  This library is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- *  Lesser General Public License for more details.
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ *  GNU Lesser General Public License and GNU General Public License for
+ *  more details.
  *
  *  You should have received a copy of the GNU Lesser General Public
- *  License along with this library; if not, write to the Free Software
- *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ *  License and GNU General Public License along with this library.
+ *  If not, see <http://www.gnu.org/licenses/>.
  *
  *  Contact:
- *  Laboratoire de Vision et Systemes Numeriques
+ *  Christian Gagne
+ *  Laboratoire de vision et systemes numeriques
  *  Departement de genie electrique et de genie informatique
- *  Universite Laval, Quebec, Canada, G1K 7P4
- *  http://vision.gel.ulaval.ca
+ *  Universite Laval, Quebec (Quebec), Canada  G1V 0A6
+ *  http://vision.gel.ulaval.ca/~cgagne
+ *  christian.gagne@gel.ulaval.ca
  *
  */
 
@@ -41,10 +43,10 @@ using namespace Beagle;
  *  \brief Construct a history.
  */
 History::History() :
-		Component("History"),
-		mTraces(0),
-		mTracesFirst(0),
-		mTracesCount(0)
+	Component("History"),
+	mTraces(0),
+	mTracesFirst(0),
+	mTracesCount(0)
 {}
 
 
@@ -113,7 +115,7 @@ void History::readWithSystem(PACC::XML::ConstIterator inIter, System& ioSystem)
 	// Read the individuals and store them in the history entries.
 	const Factory& lFactory = ioSystem.getFactory();
 	Context::Alloc::Handle lContextAlloc =
-		castHandleT<Context::Alloc>(lFactory.getConceptAllocator("Context"));
+	    castHandleT<Context::Alloc>(lFactory.getConceptAllocator("Context"));
 	Context::Handle lContext = castHandleT<Context>(lContextAlloc->allocate());
 	lContext->setSystemHandle(&ioSystem);
 
@@ -125,8 +127,7 @@ void History::readWithSystem(PACC::XML::ConstIterator inIter, System& ioSystem)
 			Individual::Alloc::Handle lIndivAlloc = NULL;
 			if(lIndivTypeStr.empty()) {
 				lIndivAlloc = castHandleT<Individual::Alloc>(lFactory.getConceptAllocator("Individual"));
-			}
-			else {
+			} else {
 				lIndivAlloc = castHandleT<Individual::Alloc>(lFactory.getAllocator(lIndivTypeStr));
 			}
 			Individual::Handle lIndividual = castHandleT<Individual>(lIndivAlloc->allocate());
@@ -277,17 +278,16 @@ void History::trace(Context& ioContext,
 		if(inIndividual->getFitness()->isValid() == false) {
 			std::string lIndividualType = inIndividual->getType();
 			Individual::Alloc::Handle lIndividualAlloc =
-				castHandleT<Individual::Alloc>(lFactory.getAllocator(lIndividualType));
+			    castHandleT<Individual::Alloc>(lFactory.getAllocator(lIndividualType));
 			Individual::Handle lCopyIndiv = castHandleT<Individual>(lIndividualAlloc->allocate());
 			lCopyIndiv->copy(*inIndividual, ioContext.getSystem());
 			lHistoryEntry->setIndividual(lCopyIndiv);
-		}
-		else {
+		} else {
 			Individual::Handle lIndividual = (*mTraces[lHistoryId-mTracesFirst])[lHistoryVar]->getIndividual();
 			if(lIndividual != NULL && lIndividual->getFitness()->isValid() == false) {
 				std::string lFitnessType = inIndividual->getFitness()->getType();
 				Fitness::Alloc::Handle lFitnessAlloc =
-					castHandleT<Fitness::Alloc>(lFactory.getAllocator(lFitnessType));
+				    castHandleT<Fitness::Alloc>(lFactory.getAllocator(lFitnessType));
 				Fitness::Handle lCopyFitness = castHandleT<Fitness>(lFitnessAlloc->allocate());
 				lCopyFitness->copy(*inIndividual->getFitness(), ioContext.getSystem());
 				lIndividual->setFitness(lCopyFitness);

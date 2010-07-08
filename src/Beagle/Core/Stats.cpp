@@ -1,26 +1,28 @@
 /*
- *  Open BEAGLE
- *  Copyright (C) 2001-2007 by Christian Gagne and Marc Parizeau
+ *  Open BEAGLE: A Generic Evolutionary Computation Framework in C++
+ *  Copyright (C) 2001-2010 by Christian Gagne and Marc Parizeau
  *
- *  This library is free software; you can redistribute it and/or
- *  modify it under the terms of the GNU Lesser General Public
- *  License as published by the Free Software Foundation; either
- *  version 2.1 of the License, or (at your option) any later version.
+ *  This library is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser General Public License as
+ *  published by the Free Software Foundation, version 3 of the License.
  *
  *  This library is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- *  Lesser General Public License for more details.
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ *  GNU Lesser General Public License and GNU General Public License for
+ *  more details.
  *
  *  You should have received a copy of the GNU Lesser General Public
- *  License along with this library; if not, write to the Free Software
- *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ *  License and GNU General Public License along with this library.
+ *  If not, see <http://www.gnu.org/licenses/>.
  *
  *  Contact:
- *  Laboratoire de Vision et Systemes Numeriques
+ *  Christian Gagne
+ *  Laboratoire de vision et systemes numeriques
  *  Departement de genie electrique et de genie informatique
- *  Universite Laval, Quebec, Canada, G1K 7P4
- *  http://vision.gel.ulaval.ca
+ *  Universite Laval, Quebec (Quebec), Canada  G1V 0A6
+ *  http://vision.gel.ulaval.ca/~cgagne
+ *  christian.gagne@gel.ulaval.ca
  *
  */
 
@@ -49,11 +51,11 @@ using namespace Beagle;
  *  \param inMin Minimum measure.
  */
 Measure::Measure(std::string inID, double inAvg, double inStd, double inMax, double inMin) :
-		mID(inID),
-		mAvg(inAvg),
-		mStd(inStd),
-		mMax(inMax),
-		mMin(inMin)
+	mID(inID),
+	mAvg(inAvg),
+	mStd(inStd),
+	mMax(inMax),
+	mMin(inMin)
 { }
 
 
@@ -68,10 +70,10 @@ Stats::Stats(std::string  inID,
              unsigned int inGeneration,
              unsigned int inPopSize,
              bool         inValid) :
-		mID(inID),
-		mGeneration(inGeneration),
-		mPopSize(inPopSize),
-		mValid(inValid)
+	mID(inID),
+	mGeneration(inGeneration),
+	mPopSize(inPopSize),
+	mValid(inValid)
 { }
 
 
@@ -177,8 +179,7 @@ void Stats::readWithContext(PACC::XML::ConstIterator inIter, Context& ioContext)
 						throw Beagle_IOExceptionNodeM(*lChild2, lOSS.str());
 					}
 					mItemMap.insert(std::make_pair(lKey,str2dbl(lChild2->getValue())));
-				}
-				else if(lChild->getValue() == "Measure") {
+				} else if(lChild->getValue() == "Measure") {
 					(*this)[lIndexMeasure].mID  = lChild->getAttribute("id");
 					(*this)[lIndexMeasure].mAvg = 0.0;
 					(*this)[lIndexMeasure].mStd = 0.0;
@@ -232,7 +233,7 @@ void Stats::writeContent(PACC::XML::Streamer& ioStreamer, bool inIndent) const
 			lSortedItemKey.insert(lIterMap->first);
 		}
 		for(std::set<std::string>::const_iterator lIterSet=lSortedItemKey.begin();
-		    lIterSet!=lSortedItemKey.end(); ++lIterSet) {
+		        lIterSet!=lSortedItemKey.end(); ++lIterSet) {
 			ioStreamer.openTag("Item", false);
 			ioStreamer.insertAttribute("key", *lIterSet);
 			ItemMap::const_iterator lIterMap = mItemMap.find(*lIterSet);

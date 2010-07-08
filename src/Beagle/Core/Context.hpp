@@ -1,26 +1,28 @@
 /*
- *  Open BEAGLE
- *  Copyright (C) 2001-2007 by Christian Gagne and Marc Parizeau
+ *  Open BEAGLE: A Generic Evolutionary Computation Framework in C++
+ *  Copyright (C) 2001-2010 by Christian Gagne and Marc Parizeau
  *
- *  This library is free software; you can redistribute it and/or
- *  modify it under the terms of the GNU Lesser General Public
- *  License as published by the Free Software Foundation; either
- *  version 2.1 of the License, or (at your option) any later version.
+ *  This library is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser General Public License as
+ *  published by the Free Software Foundation, version 3 of the License.
  *
  *  This library is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- *  Lesser General Public License for more details.
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ *  GNU Lesser General Public License and GNU General Public License for
+ *  more details.
  *
  *  You should have received a copy of the GNU Lesser General Public
- *  License along with this library; if not, write to the Free Software
- *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ *  License and GNU General Public License along with this library.
+ *  If not, see <http://www.gnu.org/licenses/>.
  *
  *  Contact:
- *  Laboratoire de Vision et Systemes Numeriques
+ *  Christian Gagne
+ *  Laboratoire de vision et systemes numeriques
  *  Departement de genie electrique et de genie informatique
- *  Universite Laval, Quebec, Canada, G1K 7P4
- *  http://vision.gel.ulaval.ca
+ *  Universite Laval, Quebec (Quebec), Canada  G1V 0A6
+ *  http://vision.gel.ulaval.ca/~cgagne
+ *  christian.gagne@gel.ulaval.ca
  *
  */
 
@@ -83,8 +85,7 @@ public:
 	 *  \brief Return the continuing flag value.
 	 *  \return Continuing flag value.
 	 */
-	inline bool getContinueFlag() const
-	{
+	inline bool getContinueFlag() const {
 		Beagle_StackTraceBeginM();
 		return mContinueFlag;
 		Beagle_StackTraceEndM("bool Context::getContinueFlag() const");
@@ -94,8 +95,7 @@ public:
 	 *  \brief Return a constant reference to the actual deme.
 	 *  \return Actual deme constant reference.
 	 */
-	inline const Deme& getDeme() const
-	{
+	inline const Deme& getDeme() const {
 		Beagle_StackTraceBeginM();
 #ifndef BEAGLE_NDEBUG
 		if(mDemeHandle == NULL) throw Beagle_RunTimeExceptionM(
@@ -110,8 +110,7 @@ public:
 	 *  \brief Return a reference to the actual deme.
 	 *  \return Actual deme reference.
 	 */
-	inline Deme& getDeme()
-	{
+	inline Deme& getDeme() {
 		Beagle_StackTraceBeginM();
 #ifndef BEAGLE_NDEBUG
 		if(mDemeHandle == NULL) throw Beagle_RunTimeExceptionM(
@@ -126,8 +125,7 @@ public:
 	 *  \brief Return a handle to the actual deme.
 	 *  \return Actual deme handle.
 	 */
-	inline Deme::Handle getDemeHandle()
-	{
+	inline Deme::Handle getDemeHandle() {
 		Beagle_StackTraceBeginM();
 		return mDemeHandle;
 		Beagle_StackTraceEndM("Deme::Handle Context::getDemeHandle()");
@@ -137,8 +135,7 @@ public:
 	 *  \brief Return the actual deme index.
 	 *  \return Actual deme index.
 	 */
-	inline unsigned int getDemeIndex() const
-	{
+	inline unsigned int getDemeIndex() const {
 		Beagle_StackTraceBeginM();
 		return mDemeIndex;
 		Beagle_StackTraceEndM("unsigned int Context::getDemeIndex() const");
@@ -148,8 +145,7 @@ public:
 	 *  \brief Return a constant reference to the actual evolver.
 	 *  \return Actual evolver constant reference.
 	 */
-	inline const Evolver& getEvolver() const
-	{
+	inline const Evolver& getEvolver() const {
 		Beagle_StackTraceBeginM();
 #ifndef BEAGLE_NDEBUG
 		if(mEvolverHandle == NULL) throw Beagle_RunTimeExceptionM(
@@ -164,8 +160,7 @@ public:
 	 *  \brief Return a reference to the actual evolver.
 	 *  \return Actual evolver reference.
 	 */
-	inline Evolver& getEvolver()
-	{
+	inline Evolver& getEvolver() {
 		Beagle_StackTraceBeginM();
 #ifndef BEAGLE_NDEBUG
 		if(mEvolverHandle == NULL) throw Beagle_RunTimeExceptionM(
@@ -180,8 +175,7 @@ public:
 	 *  \brief Return a handle to the actual evolver.
 	 *  \return Actual evolver handle.
 	 */
-	inline Evolver::Handle getEvolverHandle()
-	{
+	inline Evolver::Handle getEvolverHandle() {
 		Beagle_StackTraceBeginM();
 		return mEvolverHandle;
 		Beagle_StackTraceEndM("Evolver::Handle Context::getEvolverHandle()");
@@ -191,8 +185,7 @@ public:
 	 *  \brief Return a constant reference to the actual individual.
 	 *  \return Actual individual constant reference.
 	 */
-	inline const Individual& getIndividual() const
-	{
+	inline const Individual& getIndividual() const {
 		Beagle_StackTraceBeginM();
 #ifndef BEAGLE_NDEBUG
 		if(mIndividualHandle == NULL) throw Beagle_RunTimeExceptionM(
@@ -207,8 +200,7 @@ public:
 	 *  \brief Return a reference to the actual individual.
 	 *  \return Actual individual reference.
 	 */
-	inline Individual& getIndividual()
-	{
+	inline Individual& getIndividual() {
 		Beagle_StackTraceBeginM();
 #ifndef BEAGLE_NDEBUG
 		if(mIndividualHandle == NULL) throw Beagle_RunTimeExceptionM(
@@ -223,8 +215,7 @@ public:
 	 *  \brief Return a handle to the actual individual.
 	 *  \return Actual individual handle.
 	 */
-	inline Individual::Handle getIndividualHandle()
-	{
+	inline Individual::Handle getIndividualHandle() {
 		Beagle_StackTraceBeginM();
 		return mIndividualHandle;
 		Beagle_StackTraceEndM("Individual::Handle Context::getIndividualHandle()");
@@ -234,8 +225,7 @@ public:
 	 *  \brief Return the actual individual index.
 	 *  \return Actual individual index.
 	 */
-	inline unsigned int getIndividualIndex() const
-	{
+	inline unsigned int getIndividualIndex() const {
 		Beagle_StackTraceBeginM();
 		return mIndividualIndex;
 		Beagle_StackTraceEndM("unsigned int Context::getIndividualIndex() const");
@@ -245,8 +235,7 @@ public:
 	 *  \brief Return a constant reference to the actual genotype.
 	 *  \return Actual genotype constant reference.
 	 */
-	inline const Genotype& getGenotype() const
-	{
+	inline const Genotype& getGenotype() const {
 		Beagle_StackTraceBeginM();
 #ifndef BEAGLE_NDEBUG
 		if(mGenotypeHandle == NULL) throw Beagle_RunTimeExceptionM(
@@ -261,8 +250,7 @@ public:
 	 *  \brief Return a reference to the actual genotype.
 	 *  \return Actual genotype reference.
 	 */
-	inline Genotype& getGenotype()
-	{
+	inline Genotype& getGenotype() {
 		Beagle_StackTraceBeginM();
 #ifndef BEAGLE_NDEBUG
 		if(mGenotypeHandle == NULL) throw Beagle_RunTimeExceptionM(
@@ -277,8 +265,7 @@ public:
 	 *  \brief Return a handle to the actual genotype.
 	 *  \return Actual genotype handle.
 	 */
-	inline Genotype::Handle getGenotypeHandle()
-	{
+	inline Genotype::Handle getGenotypeHandle() {
 		Beagle_StackTraceBeginM();
 		return mGenotypeHandle;
 		Beagle_StackTraceEndM("Genotype::Handle Context::getGenotypeHandle()");
@@ -288,8 +275,7 @@ public:
 	 *  \brief Return the actual genotype index.
 	 *  \return Actual genotype index.
 	 */
-	inline unsigned int getGenotypeIndex() const
-	{
+	inline unsigned int getGenotypeIndex() const {
 		Beagle_StackTraceBeginM();
 		return mGenotypeIndex;
 		Beagle_StackTraceEndM("unsigned int Context::getGenotypeIndex() const");
@@ -299,8 +285,7 @@ public:
 	 *  \brief Return the actual generation number.
 	 *  \return Actual generation number.
 	 */
-	inline unsigned int getGeneration() const
-	{
+	inline unsigned int getGeneration() const {
 		Beagle_StackTraceBeginM();
 		return mGeneration;
 		Beagle_StackTraceEndM("unsigned int Context::getGeneration() const");
@@ -310,8 +295,7 @@ public:
 	 *  \brief Return the actual selection index value.
 	 *  \return Actual selection index value.
 	 */
-	inline unsigned int getSelectionIndex() const
-	{
+	inline unsigned int getSelectionIndex() const {
 		Beagle_StackTraceBeginM();
 		return mSelectionIndex;
 		Beagle_StackTraceEndM("unsigned int Context::getSelectionIndex() const");
@@ -320,8 +304,7 @@ public:
 	/*!
 	 *  \return Number of individuals processed by the actual deme in this generation.
 	 */
-	inline unsigned int getProcessedDeme() const
-	{
+	inline unsigned int getProcessedDeme() const {
 		Beagle_StackTraceBeginM();
 		return mProcessedDeme;
 		Beagle_StackTraceEndM("unsigned int Context::getProcessedDeme() const");
@@ -330,8 +313,7 @@ public:
 	/*!
 	 *  \return Total number of individuals processed by the actual deme in the evolution.
 	 */
-	inline unsigned int getTotalProcessedDeme() const
-	{
+	inline unsigned int getTotalProcessedDeme() const {
 		Beagle_StackTraceBeginM();
 		return mTotalProcDeme;
 		Beagle_StackTraceEndM("unsigned int Context::getTotalProcessedDeme() const");
@@ -340,8 +322,7 @@ public:
 	/*!
 	 *  \return Number of individuals processed by the actual vivarium in this generation.
 	 */
-	inline unsigned int getProcessedVivarium() const
-	{
+	inline unsigned int getProcessedVivarium() const {
 		Beagle_StackTraceBeginM();
 		return mProcessedViva;
 		Beagle_StackTraceEndM("unsigned int Context::getProcessedVivarium() const");
@@ -350,8 +331,7 @@ public:
 	/*!
 	 *  \return Total number of individuals processed by the actual vivarium in the evolution.
 	 */
-	inline unsigned int getTotalProcessedVivarium() const
-	{
+	inline unsigned int getTotalProcessedVivarium() const {
 		Beagle_StackTraceBeginM();
 		return mTotalProcViva;
 		Beagle_StackTraceEndM("unsigned int Context::getTotalProcessedVivarium() const");
@@ -361,8 +341,7 @@ public:
 	 *  \brief Return a constant reference to the system.
 	 *  \return Evolution system constant reference.
 	 */
-	inline const System& getSystem() const
-	{
+	inline const System& getSystem() const {
 		Beagle_StackTraceBeginM();
 #ifndef BEAGLE_NDEBUG
 		if(mSystemHandle == NULL) throw Beagle_RunTimeExceptionM(
@@ -377,8 +356,7 @@ public:
 	 *  \brief Return a reference to the system.
 	 *  \return Evolution system reference.
 	 */
-	inline System& getSystem()
-	{
+	inline System& getSystem() {
 		Beagle_StackTraceBeginM();
 #ifndef BEAGLE_NDEBUG
 		if(mSystemHandle == NULL) throw Beagle_RunTimeExceptionM(
@@ -393,8 +371,7 @@ public:
 	 *  \brief Return a handle to the system.
 	 *  \return Evolution system handle.
 	 */
-	inline System::Handle getSystemHandle()
-	{
+	inline System::Handle getSystemHandle() {
 		Beagle_StackTraceBeginM();
 		return mSystemHandle;
 		Beagle_StackTraceEndM("System::Handle Context::getSystemHandle()");
@@ -404,8 +381,7 @@ public:
 	 *  \brief Return a constant reference to the vivarium.
 	 *  \return Evolution vivarium constant reference.
 	 */
-	inline const Vivarium& getVivarium() const
-	{
+	inline const Vivarium& getVivarium() const {
 		Beagle_StackTraceBeginM();
 #ifndef BEAGLE_NDEBUG
 		if(mVivariumHandle == NULL) throw Beagle_RunTimeExceptionM(
@@ -420,8 +396,7 @@ public:
 	 *  \brief Return a reference to the vivarium.
 	 *  \return Evolution vivarium reference.
 	 */
-	inline Vivarium& getVivarium()
-	{
+	inline Vivarium& getVivarium() {
 		Beagle_StackTraceBeginM();
 #ifndef BEAGLE_NDEBUG
 		if(mVivariumHandle == NULL) throw Beagle_RunTimeExceptionM(
@@ -436,8 +411,7 @@ public:
 	 *  \brief Return a handle to the vivarium.
 	 *  \return Evolution vivarium handle.
 	 */
-	inline Vivarium::Handle getVivariumHandle()
-	{
+	inline Vivarium::Handle getVivariumHandle() {
 		Beagle_StackTraceBeginM();
 		return mVivariumHandle;
 		Beagle_StackTraceEndM("Vivarium::Handle Context::getVivariumHandle()");
@@ -447,8 +421,7 @@ public:
 	 *  \brief Whether evolution terminated on success (e.g. individual is adequate fitness).
 	 *  \return True is terminated successfuly, false if not.
 	 */
-	inline bool isTerminationSuccessful() const
-	{
+	inline bool isTerminationSuccessful() const {
 		Beagle_StackTraceBeginM();
 		return mSuccessfulTermination;
 		Beagle_StackTraceEndM("bool Context::isTerminationSuccessful() const");
@@ -458,8 +431,7 @@ public:
 	 *  \brief Set the evolution continuing flag.
 	 *  \param inContinueFlag Continuing flag value.
 	 */
-	inline void setContinueFlag(bool inContinueFlag)
-	{
+	inline void setContinueFlag(bool inContinueFlag) {
 		Beagle_StackTraceBeginM();
 		mContinueFlag = inContinueFlag;
 		Beagle_StackTraceEndM("void Context::setContinueFlag(bool inContinueFlag)");
@@ -469,8 +441,7 @@ public:
 	 *  \brief Set an handle to the actual deme.
 	 *  \param inDemeHandle Actual deme handle.
 	 */
-	inline void setDemeHandle(Deme::Handle inDemeHandle)
-	{
+	inline void setDemeHandle(Deme::Handle inDemeHandle) {
 		Beagle_StackTraceBeginM();
 		mDemeHandle = inDemeHandle;
 		Beagle_StackTraceEndM("void Context::setDemeHandle(Deme::Handle inDemeHandle)");
@@ -480,8 +451,7 @@ public:
 	 *  \brief Set the actual deme index.
 	 *  \param inDemeIndex Actual deme index.
 	 */
-	inline void setDemeIndex(unsigned int inDemeIndex)
-	{
+	inline void setDemeIndex(unsigned int inDemeIndex) {
 		Beagle_StackTraceBeginM();
 		mDemeIndex = inDemeIndex;
 		Beagle_StackTraceEndM("void Context::setDemeIndex(unsigned int inDemeIndex)");
@@ -491,8 +461,7 @@ public:
 	 *  \brief Set an handle to the evolver.
 	 *  \param inEvolverHandle Evolver handle.
 	 */
-	inline void setEvolverHandle(Evolver::Handle inEvolverHandle)
-	{
+	inline void setEvolverHandle(Evolver::Handle inEvolverHandle) {
 		Beagle_StackTraceBeginM();
 		mEvolverHandle = inEvolverHandle;
 		Beagle_StackTraceEndM("void Context::setEvolverHandle(Evolver::Handle inEvolverHandle)");
@@ -502,8 +471,7 @@ public:
 	 *  \brief Set an handle to the actual individual.
 	 *  \param inIndividualHandle Actual individual handle.
 	 */
-	inline void setIndividualHandle(Individual::Handle inIndividualHandle)
-	{
+	inline void setIndividualHandle(Individual::Handle inIndividualHandle) {
 		Beagle_StackTraceBeginM();
 		mIndividualHandle = inIndividualHandle;
 		Beagle_StackTraceEndM("void Context::setIndividualHandle(Individual::Handle inIndividualHandle)");
@@ -513,8 +481,7 @@ public:
 	 *  \brief Set the actual individual index.
 	 *  \param inIndividualIndex Actual individual index.
 	 */
-	inline void setIndividualIndex(unsigned int inIndividualIndex)
-	{
+	inline void setIndividualIndex(unsigned int inIndividualIndex) {
 		Beagle_StackTraceBeginM();
 		mIndividualIndex = inIndividualIndex;
 		Beagle_StackTraceEndM("void Context::setIndividualIndex(unsigned int inIndividualIndex)");
@@ -524,8 +491,7 @@ public:
 	 *  \brief Set an handle to the actual genotype.
 	 *  \param inGenotypeHandle Actual genotype handle.
 	 */
-	inline void setGenotypeHandle(Genotype::Handle inGenotypeHandle)
-	{
+	inline void setGenotypeHandle(Genotype::Handle inGenotypeHandle) {
 		Beagle_StackTraceBeginM();
 		mGenotypeHandle = inGenotypeHandle;
 		Beagle_StackTraceEndM("void Context::setGenotypeHandle(Genotype::Handle inGenotypeHandle)");
@@ -535,8 +501,7 @@ public:
 	 *  \brief Set the actual genotype index.
 	 *  \param inGenotypeIndex Actual genotype index.
 	 */
-	inline void setGenotypeIndex(unsigned int inGenotypeIndex)
-	{
+	inline void setGenotypeIndex(unsigned int inGenotypeIndex) {
 		Beagle_StackTraceBeginM();
 		mGenotypeIndex = inGenotypeIndex;
 		Beagle_StackTraceEndM("void Context::setGenotypeIndex(unsigned int inGenotypeIndex)");
@@ -546,8 +511,7 @@ public:
 	 *  \brief Set the actual generation number.
 	 *  \param inGeneration Actual generation number.
 	 */
-	inline void setGeneration(unsigned int inGeneration)
-	{
+	inline void setGeneration(unsigned int inGeneration) {
 		Beagle_StackTraceBeginM();
 		mGeneration = inGeneration;
 		Beagle_StackTraceEndM("void Context::setGeneration(unsigned int inGeneration)");
@@ -557,8 +521,7 @@ public:
 	 *  \brief Set the actual selection index value.
 	 *  \param inGeneration Actual selection index.
 	 */
-	inline void setSelectionIndex(unsigned int inSelectionIndex)
-	{
+	inline void setSelectionIndex(unsigned int inSelectionIndex) {
 		Beagle_StackTraceBeginM();
 		mSelectionIndex = inSelectionIndex;
 		Beagle_StackTraceEndM("void Context::setSelectionIndex(unsigned int inSelectionIndex)");
@@ -568,8 +531,7 @@ public:
 	 *  \brief Set the number of individuals processed by the deme for the actual generation.
 	 *  \param inProcessedDeme Number of individuals processed by the deme.
 	 */
-	inline void setProcessedDeme(unsigned int inProcessedDeme)
-	{
+	inline void setProcessedDeme(unsigned int inProcessedDeme) {
 		Beagle_StackTraceBeginM();
 		mProcessedDeme = inProcessedDeme;
 		Beagle_StackTraceEndM("void Context::setProcessedDeme(unsigned int inProcessedDeme)");
@@ -579,8 +541,7 @@ public:
 	 *  \brief Set the total number of individuals processed by the deme for the evolution.
 	 *  \param inTotalProcDeme Total number of individuals processed by the deme.
 	 */
-	inline void setTotalProcessedDeme(unsigned int inTotalProcDeme)
-	{
+	inline void setTotalProcessedDeme(unsigned int inTotalProcDeme) {
 		Beagle_StackTraceBeginM();
 		mTotalProcDeme = inTotalProcDeme;
 		Beagle_StackTraceEndM("void Context::setTotalProcessedDeme(unsigned int inTotalProcDeme)");
@@ -591,8 +552,7 @@ public:
 	 *  \brief Set the number of individuals processed by the vivarium for the actual generation.
 	 *  \param inProcessedViva Number of individuals processed by the vivarium.
 	 */
-	inline void setProcessedVivarium(unsigned int inProcessedViva)
-	{
+	inline void setProcessedVivarium(unsigned int inProcessedViva) {
 		Beagle_StackTraceBeginM();
 		mProcessedViva = inProcessedViva;
 		Beagle_StackTraceEndM("void Context::setProcessedVivarium(unsigned int inProcessedViva)");
@@ -602,8 +562,7 @@ public:
 	 *  \brief Set the total number of individuals processed by the vivarium for the evolution.
 	 *  \param inTotalProcViva Total number of individuals processed by the vivarium.
 	 */
-	inline void setTotalProcessedVivarium(unsigned int inTotalProcViva)
-	{
+	inline void setTotalProcessedVivarium(unsigned int inTotalProcViva) {
 		Beagle_StackTraceBeginM();
 		mTotalProcViva = inTotalProcViva;
 		Beagle_StackTraceEndM("void Context::setTotalProcessedVivarium(unsigned int inTotalProcViva)");
@@ -613,8 +572,7 @@ public:
 	 *  \brief Set the system handle.
 	 *  \param inSystemHandle Handle to the system.
 	 */
-	inline void setSystemHandle(System::Handle inSystemHandle)
-	{
+	inline void setSystemHandle(System::Handle inSystemHandle) {
 		Beagle_StackTraceBeginM();
 		mSystemHandle = inSystemHandle;
 		Beagle_StackTraceEndM("void Context::setSystemHandle(System::Handle inSystemHandle)");
@@ -624,8 +582,7 @@ public:
 	 *  \brief Set whether the termination has been successful.
 	 *  \param inSuccessfulTermination State of termination, true if successful, false if not.
 	 */
-	inline void setTerminationSuccessful(bool inSuccessfulTermination=true)
-	{
+	inline void setTerminationSuccessful(bool inSuccessfulTermination=true) {
 		Beagle_StackTraceBeginM();
 		mSuccessfulTermination = inSuccessfulTermination;
 		Beagle_StackTraceEndM("void Context::setTerminationSuccessful(bool isTerminationSuccessful)");
@@ -635,8 +592,7 @@ public:
 	 *  \brief Set the vivarium handle.
 	 *  \param inVivariumHandle Handle to the vivarium.
 	 */
-	inline void setVivariumHandle(Vivarium::Handle inVivariumHandle)
-	{
+	inline void setVivariumHandle(Vivarium::Handle inVivariumHandle) {
 		Beagle_StackTraceBeginM();
 		mVivariumHandle = inVivariumHandle;
 		Beagle_StackTraceEndM("void Context::setVivariumHandle(Vivarium::Handle inVivariumHandle)");
