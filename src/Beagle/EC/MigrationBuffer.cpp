@@ -1,26 +1,28 @@
 /*
- *  Open BEAGLE
- *  Copyright (C) 2001-2007 by Christian Gagne and Marc Parizeau
+ *  Open BEAGLE: A Generic Evolutionary Computation Framework in C++
+ *  Copyright (C) 2001-2010 by Christian Gagne and Marc Parizeau
  *
- *  This library is free software; you can redistribute it and/or
- *  modify it under the terms of the GNU Lesser General Public
- *  License as published by the Free Software Foundation; either
- *  version 2.1 of the License, or (at your option) any later version.
+ *  This library is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser General Public License as
+ *  published by the Free Software Foundation, version 3 of the License.
  *
  *  This library is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- *  Lesser General Public License for more details.
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ *  GNU Lesser General Public License and GNU General Public License for
+ *  more details.
  *
  *  You should have received a copy of the GNU Lesser General Public
- *  License along with this library; if not, write to the Free Software
- *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ *  License and GNU General Public License along with this library.
+ *  If not, see <http://www.gnu.org/licenses/>.
  *
  *  Contact:
- *  Laboratoire de Vision et Systemes Numeriques
+ *  Christian Gagne
+ *  Laboratoire de vision et systemes numeriques
  *  Departement de genie electrique et de genie informatique
- *  Universite Laval, Quebec, Canada, G1K 7P4
- *  http://vision.gel.ulaval.ca
+ *  Universite Laval, Quebec (Quebec), Canada  G1V 0A6
+ *  http://vision.gel.ulaval.ca/~cgagne
+ *  christian.gagne@gel.ulaval.ca
  *
  */
 
@@ -64,7 +66,7 @@ void MigrationBuffer::copy(const Member& inOriginal, System& ioSystem)
 	for(unsigned int i=0; i<lOriginal.mEmigrants.size(); ++i) {
 		const std::string& lIndivTypeName = lOriginal.mEmigrants[i]->getType();
 		Individual::Alloc::Handle lIndivAlloc =
-			castHandleT<Individual::Alloc>(lFactory.getAllocator(lIndivTypeName));
+		    castHandleT<Individual::Alloc>(lFactory.getAllocator(lIndivTypeName));
 		mEmigrants[i] = castHandleT<Individual>(lIndivAlloc->allocate());
 		mEmigrants[i]->copy(*lOriginal.mEmigrants[i], ioSystem);
 	}
@@ -72,7 +74,7 @@ void MigrationBuffer::copy(const Member& inOriginal, System& ioSystem)
 	for(unsigned int i=0; i<lOriginal.mImmigrants.size(); ++i) {
 		const std::string& lIndivTypeName = lOriginal.mImmigrants[i]->getType();
 		Individual::Alloc::Handle lIndivAlloc =
-			castHandleT<Individual::Alloc>(lFactory.getAllocator(lIndivTypeName));
+		    castHandleT<Individual::Alloc>(lFactory.getAllocator(lIndivTypeName));
 		mImmigrants[i] = castHandleT<Individual>(lIndivAlloc->allocate());
 		mImmigrants[i]->copy(*lOriginal.mImmigrants[i], ioSystem);
 	}
@@ -120,14 +122,14 @@ void MigrationBuffer::insertEmigrants(const std::vector<unsigned int>& inEmigran
 	Beagle_StackTraceBeginM();
 	const Factory& lFactory = ioContext.getSystem().getFactory();
 	Individual::Alloc::Handle lIndivAlloc =
-		castHandleT<Individual::Alloc>(lFactory.getConceptAllocator("Individual"));
+	    castHandleT<Individual::Alloc>(lFactory.getConceptAllocator("Individual"));
 	History::Handle lHistory = castHandleT<History>(ioContext.getSystem().haveComponent("History"));
 	for(unsigned int i=0; i<inEmigrantIndices.size(); ++i) {
 		Beagle_AssertM(inEmigrantIndices[i] < ioDeme.size());
 		Beagle_NonNullPointerAssertM(ioDeme[inEmigrantIndices[i]]);
 		const std::string& lIndivTypeName = ioDeme[inEmigrantIndices[i]]->getType();
 		Individual::Alloc::Handle lIndivAlloc =
-			castHandleT<Individual::Alloc>(lFactory.getAllocator(lIndivTypeName));
+		    castHandleT<Individual::Alloc>(lFactory.getAllocator(lIndivTypeName));
 		Individual::Handle lIndivCopy = castHandleT<Individual>(lIndivAlloc->allocate());
 		lIndivCopy->copy(*ioDeme[inEmigrantIndices[i]], ioContext.getSystem());
 		mEmigrants.push_back(lIndivCopy);
@@ -195,13 +197,13 @@ void MigrationBuffer::moveMigrants(unsigned int inNbMigrants,
 		lOSS << "emigrants available (" << mEmigrants.size() << ") in original deme. Could not proceed.";
 		throw Beagle_RunTimeExceptionM(lOSS.str());
 	}
-	
+
 	MigrationBuffer::Handle lDestMigBuffer =
-		castHandleT<MigrationBuffer>(ioDestDeme.getMember("MigrationBuffer"));
+	    castHandleT<MigrationBuffer>(ioDestDeme.getMember("MigrationBuffer"));
 	if(lDestMigBuffer == NULL) {
 		const Factory& lFactory = ioContext.getSystem().getFactory();
 		MigrationBuffer::Alloc::Handle lMigBufferAlloc =
-			castHandleT<MigrationBuffer::Alloc>(lFactory.getConceptAllocator("MigrationBuffer"));
+		    castHandleT<MigrationBuffer::Alloc>(lFactory.getConceptAllocator("MigrationBuffer"));
 		lDestMigBuffer = castHandleT<MigrationBuffer>(lMigBufferAlloc->allocate());
 		ioDestDeme.addMember(lDestMigBuffer);
 	}
@@ -278,8 +280,7 @@ void MigrationBuffer::readWithContext(PACC::XML::ConstIterator inIter, Context& 
 						lOSS << "valid concept allocator associated to it!";
 						throw Beagle_IOExceptionNodeM(*lChild2, lOSS.str());
 					}
-				}
-				else {
+				} else {
 					lIndividualAlloc = castHandleT<Individual::Alloc>(lFactory.getAllocator(lIndividualType));
 					if(lIndividualAlloc == NULL) {
 						std::ostringstream lOSS;
@@ -312,8 +313,7 @@ void MigrationBuffer::readWithContext(PACC::XML::ConstIterator inIter, Context& 
 						lOSS << "valid concept allocator associated to it!";
 						throw Beagle_IOExceptionNodeM(*lChild2, lOSS.str());
 					}
-				}
-				else {
+				} else {
 					lIndividualAlloc = castHandleT<Individual::Alloc>(lFactory.getAllocator(lIndividualType));
 					if(lIndividualAlloc == NULL) {
 						std::ostringstream lOSS;

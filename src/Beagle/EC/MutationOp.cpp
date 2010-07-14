@@ -1,26 +1,28 @@
 /*
- *  Open BEAGLE
- *  Copyright (C) 2001-2007 by Christian Gagne and Marc Parizeau
+ *  Open BEAGLE: A Generic Evolutionary Computation Framework in C++
+ *  Copyright (C) 2001-2010 by Christian Gagne and Marc Parizeau
  *
- *  This library is free software; you can redistribute it and/or
- *  modify it under the terms of the GNU Lesser General Public
- *  License as published by the Free Software Foundation; either
- *  version 2.1 of the License, or (at your option) any later version.
+ *  This library is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser General Public License as
+ *  published by the Free Software Foundation, version 3 of the License.
  *
  *  This library is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- *  Lesser General Public License for more details.
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ *  GNU Lesser General Public License and GNU General Public License for
+ *  more details.
  *
  *  You should have received a copy of the GNU Lesser General Public
- *  License along with this library; if not, write to the Free Software
- *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ *  License and GNU General Public License along with this library.
+ *  If not, see <http://www.gnu.org/licenses/>.
  *
  *  Contact:
- *  Laboratoire de Vision et Systemes Numeriques
+ *  Christian Gagne
+ *  Laboratoire de vision et systemes numeriques
  *  Departement de genie electrique et de genie informatique
- *  Universite Laval, Quebec, Canada, G1K 7P4
- *  http://vision.gel.ulaval.ca
+ *  Universite Laval, Quebec (Quebec), Canada  G1V 0A6
+ *  http://vision.gel.ulaval.ca/~cgagne
+ *  christian.gagne@gel.ulaval.ca
  *
  */
 
@@ -49,8 +51,8 @@ using namespace Beagle::EC;
  *  \param inName Name of the mutation operator.
  */
 MutationOp::MutationOp(std::string inMutationPbName, std::string inName) :
-		BreederOp(inName),
-		mMutationPbName(inMutationPbName)
+	BreederOp(inName),
+	mMutationPbName(inMutationPbName)
 {}
 
 
@@ -170,10 +172,10 @@ void MutationOp::operate(Deme& ioDeme, Context& ioContext)
 	for(unsigned int i = 0; i <  lOpenMP->getMaxNumThreads(); ++i)
 		lContexts[i] = castHandleT<Context>(lContextAlloc->clone(ioContext));
 #ifdef BEAGLE_USE_OMP_NR
-	#pragma omp parallel for schedule(dynamic)
+#pragma omp parallel for schedule(dynamic)
 #elif defined(BEAGLE_USE_OMP_R)
 	const int lChunkSize = std::max((int)(lSize / lOpenMP->getMaxNumThreads()), 1);
-	#pragma omp parallel for schedule(static, lChunkSize)
+#pragma omp parallel for schedule(static, lChunkSize)
 #endif
 #endif
 	for(int i=0; i<lSize; ++i) {
@@ -181,7 +183,7 @@ void MutationOp::operate(Deme& ioDeme, Context& ioContext)
 #if defined(BEAGLE_USE_OMP_NR) || defined(BEAGLE_USE_OMP_R)
 			lContexts[lOpenMP->getThreadNum()]->setIndividualIndex(i);
 			lContexts[lOpenMP->getThreadNum()]->setIndividualHandle(ioDeme[i]);
-#else 
+#else
 			ioContext.setIndividualIndex(i);
 			ioContext.setIndividualHandle(ioDeme[i]);
 #endif
@@ -201,7 +203,7 @@ void MutationOp::operate(Deme& ioDeme, Context& ioContext)
 					ioDeme[i]->getFitness()->setInvalid();
 				}
 				if(lHistory != NULL) {
-					#pragma omp critical (Beagle_History)
+#pragma omp critical (Beagle_History)
 					{
 						std::vector<HistoryID> lParent;
 						HistoryID::Handle lHID = castHandleT<HistoryID>(ioDeme[i]->getMember("HistoryID"));

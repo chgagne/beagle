@@ -1,26 +1,28 @@
 /*
- *  Open BEAGLE
- *  Copyright (C) 2001-2007 by Christian Gagne and Marc Parizeau
+ *  Open BEAGLE: A Generic Evolutionary Computation Framework in C++
+ *  Copyright (C) 2001-2010 by Christian Gagne and Marc Parizeau
  *
- *  This library is free software; you can redistribute it and/or
- *  modify it under the terms of the GNU Lesser General Public
- *  License as published by the Free Software Foundation; either
- *  version 2.1 of the License, or (at your option) any later version.
+ *  This library is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser General Public License as
+ *  published by the Free Software Foundation, version 3 of the License.
  *
  *  This library is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- *  Lesser General Public License for more details.
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ *  GNU Lesser General Public License and GNU General Public License for
+ *  more details.
  *
  *  You should have received a copy of the GNU Lesser General Public
- *  License along with this library; if not, write to the Free Software
- *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ *  License and GNU General Public License along with this library.
+ *  If not, see <http://www.gnu.org/licenses/>.
  *
  *  Contact:
- *  Laboratoire de Vision et Systemes Numeriques
+ *  Christian Gagne
+ *  Laboratoire de vision et systemes numeriques
  *  Departement de genie electrique et de genie informatique
- *  Universite Laval, Quebec, Canada, G1K 7P4
- *  http://vision.gel.ulaval.ca
+ *  Universite Laval, Quebec (Quebec), Canada  G1V 0A6
+ *  http://vision.gel.ulaval.ca/~cgagne
+ *  christian.gagne@gel.ulaval.ca
  *
  */
 
@@ -81,8 +83,7 @@ public:
 	/*!
 	 *  \return Parameter tag of condition to test in if-then-else operator.
 	 */
-	inline std::string getConditionTag() const
-	{
+	inline std::string getConditionTag() const {
 		Beagle_StackTraceBeginM();
 		return mConditionTag;
 		Beagle_StackTraceEndM("std::string IfThenElseOp::getConditionTag() const");
@@ -91,8 +92,7 @@ public:
 	/*!
 	 *  \return Condition value tested for positive condition in if-then-else operator.
 	 */
-	inline std::string getConditionValue() const
-	{
+	inline std::string getConditionValue() const {
 		Beagle_StackTraceBeginM();
 		return mConditionValue;
 		Beagle_StackTraceEndM("std::string IfThenElseOp::getConditionValue() const");
@@ -102,8 +102,7 @@ public:
 	 *  \brief Return a constant reference to the positive operator set.
 	 *  \return Positive operator set constant reference.
 	 */
-	inline const Beagle::Operator::Bag& getPositiveSet() const
-	{
+	inline const Beagle::Operator::Bag& getPositiveSet() const {
 		Beagle_StackTraceBeginM();
 		return mPositiveOpSet;
 		Beagle_StackTraceEndM("const Operator::Bag& IfThenElseOp::getPositiveSet() const");
@@ -113,8 +112,7 @@ public:
 	 *  \brief Return a reference to the positive operator set.
 	 *  \return Positive operator set reference.
 	 */
-	inline Beagle::Operator::Bag& getPositiveSet()
-	{
+	inline Beagle::Operator::Bag& getPositiveSet() {
 		Beagle_StackTraceBeginM();
 		return mPositiveOpSet;
 		Beagle_StackTraceEndM("Operator::Bag& IfThenElseOp::getPositiveSet()");
@@ -124,8 +122,7 @@ public:
 	 *  \brief Return a constant reference to the negative operator set.
 	 *  \return Negative operator set constant reference.
 	 */
-	inline const Beagle::Operator::Bag& getNegativeSet() const
-	{
+	inline const Beagle::Operator::Bag& getNegativeSet() const {
 		Beagle_StackTraceBeginM();
 		return mNegativeOpSet;
 		Beagle_StackTraceEndM("const Operator::Bag& IfThenElseOp::getNegativeSet() const");
@@ -135,8 +132,7 @@ public:
 	 *  \brief Return a reference to the negative operator set.
 	 *  \return Negative operator set reference.
 	 */
-	inline Beagle::Operator::Bag& getNegativeSet()
-	{
+	inline Beagle::Operator::Bag& getNegativeSet() {
 		Beagle_StackTraceBeginM();
 		return mNegativeOpSet;
 		Beagle_StackTraceEndM("Operator::Bag& IfThenElseOp::getNegativeSet()");
@@ -147,8 +143,7 @@ public:
 	 *  \param inOperator Operator to insert.
 	 *  \warning Insert your operators before the initialization!
 	 */
-	inline void insertPositiveOp(Beagle::Operator::Handle inOperator)
-	{
+	inline void insertPositiveOp(Beagle::Operator::Handle inOperator) {
 		Beagle_StackTraceBeginM();
 		mPositiveOpSet.push_back(inOperator);
 		Beagle_StackTraceEndM("void insertPositiveOp(Operator::Handle)");
@@ -159,8 +154,7 @@ public:
 	 *  \param inOperator Operator to insert.
 	 *  \warning Insert your operators before the initialization!
 	 */
-	void insertNegativeOp(Beagle::Operator::Handle inOperator)
-	{
+	void insertNegativeOp(Beagle::Operator::Handle inOperator) {
 		Beagle_StackTraceBeginM();
 		mNegativeOpSet.push_back(inOperator);
 		Beagle_StackTraceEndM("void insertPositiveOp(Operator::Handle)");
@@ -169,8 +163,7 @@ public:
 	/*!
 	 *  \brief Set parameter tag of condition to use.
 	 */
-	inline void setConditionTag(std::string inTag)
-	{
+	inline void setConditionTag(std::string inTag) {
 		Beagle_StackTraceBeginM();
 		mConditionTag = inTag;
 		Beagle_StackTraceEndM("void IfThenElseOp::setConditionTag(std::string inTag)");
@@ -179,8 +172,7 @@ public:
 	/*!
 	 *  \brief Set parameter value of condition to use.
 	 */
-	inline void setConditionValue(std::string inValue)
-	{
+	inline void setConditionValue(std::string inValue) {
 		Beagle_StackTraceBeginM();
 		mConditionValue = inValue;
 		Beagle_StackTraceEndM("void IfThenElseOp::setConditionValue(std::string inValue)");

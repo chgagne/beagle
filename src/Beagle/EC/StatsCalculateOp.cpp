@@ -1,26 +1,28 @@
 /*
- *  Open BEAGLE
- *  Copyright (C) 2001-2007 by Christian Gagne and Marc Parizeau
+ *  Open BEAGLE: A Generic Evolutionary Computation Framework in C++
+ *  Copyright (C) 2001-2010 by Christian Gagne and Marc Parizeau
  *
- *  This library is free software; you can redistribute it and/or
- *  modify it under the terms of the GNU Lesser General Public
- *  License as published by the Free Software Foundation; either
- *  version 2.1 of the License, or (at your option) any later version.
+ *  This library is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser General Public License as
+ *  published by the Free Software Foundation, version 3 of the License.
  *
  *  This library is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- *  Lesser General Public License for more details.
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ *  GNU Lesser General Public License and GNU General Public License for
+ *  more details.
  *
  *  You should have received a copy of the GNU Lesser General Public
- *  License along with this library; if not, write to the Free Software
- *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ *  License and GNU General Public License along with this library.
+ *  If not, see <http://www.gnu.org/licenses/>.
  *
  *  Contact:
- *  Laboratoire de Vision et Systemes Numeriques
+ *  Christian Gagne
+ *  Laboratoire de vision et systemes numeriques
  *  Departement de genie electrique et de genie informatique
- *  Universite Laval, Quebec, Canada, G1K 7P4
- *  http://vision.gel.ulaval.ca
+ *  Universite Laval, Quebec (Quebec), Canada  G1V 0A6
+ *  http://vision.gel.ulaval.ca/~cgagne
+ *  christian.gagne@gel.ulaval.ca
  *
  */
 
@@ -48,10 +50,10 @@ using namespace Beagle::EC;
  *  \param inName Name of the operator.
  */
 StatsCalculateOp::StatsCalculateOp(std::string inName) :
-		Beagle::Operator(inName),
-		mPopSize(NULL),
-		mNbDemesCalculated(0),
-		mGenerationCalculated(0)
+	Beagle::Operator(inName),
+	mPopSize(NULL),
+	mNbDemesCalculated(0),
+	mGenerationCalculated(0)
 { }
 
 
@@ -179,7 +181,7 @@ void StatsCalculateOp::operate(Deme& ioDeme, Context& ioContext)
 	if(ioDeme.getStats() == NULL) {
 		const Factory& lFactory = ioContext.getSystem().getFactory();
 		Stats::Alloc::Handle lStatsAlloc =
-			castHandleT<Stats::Alloc>(lFactory.getConceptAllocator("Stats"));
+		    castHandleT<Stats::Alloc>(lFactory.getConceptAllocator("Stats"));
 		Stats::Handle lStats = castHandleT<Stats>(lStatsAlloc->allocate());
 		ioDeme.addMember(lStats);
 	}
@@ -188,7 +190,7 @@ void StatsCalculateOp::operate(Deme& ioDeme, Context& ioContext)
 		calculateStatsDeme(*ioDeme.getStats(), ioDeme, ioContext);
 		ioDeme.getStats()->setValid();
 	}
-	
+
 	Beagle_LogObjectM(
 	    ioContext.getSystem().getLogger(),
 	    Logger::eStats,
@@ -203,20 +205,20 @@ void StatsCalculateOp::operate(Deme& ioDeme, Context& ioContext)
 		    "stats", "Beagle::StatsCalculateOp",
 		    "Calculating stats for the vivarium"
 		);
-		
+
 		if(ioContext.getVivarium().getStats() == NULL) {
 			const Factory& lFactory = ioContext.getSystem().getFactory();
 			Stats::Alloc::Handle lStatsAlloc =
-				castHandleT<Stats::Alloc>(lFactory.getConceptAllocator("Stats"));
+			    castHandleT<Stats::Alloc>(lFactory.getConceptAllocator("Stats"));
 			Stats::Handle lStats = castHandleT<Stats>(lStatsAlloc->allocate());
 			ioContext.getVivarium().addMember(lStats);
 		}
-		
+
 		calculateStatsVivarium(*ioContext.getVivarium().getStats(),
 		                       ioContext.getVivarium(),
 		                       ioContext);
 		ioContext.getVivarium().getStats()->setValid();
-		
+
 		Beagle_LogObjectM(
 		    ioContext.getSystem().getLogger(),
 		    Logger::eStats,

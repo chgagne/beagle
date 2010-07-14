@@ -1,26 +1,28 @@
 /*
- *  Open BEAGLE
- *  Copyright (C) 2001-2007 by Christian Gagne and Marc Parizeau
+ *  Open BEAGLE: A Generic Evolutionary Computation Framework in C++
+ *  Copyright (C) 2001-2010 by Christian Gagne and Marc Parizeau
  *
- *  This library is free software; you can redistribute it and/or
- *  modify it under the terms of the GNU Lesser General Public
- *  License as published by the Free Software Foundation; either
- *  version 2.1 of the License, or (at your option) any later version.
+ *  This library is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser General Public License as
+ *  published by the Free Software Foundation, version 3 of the License.
  *
  *  This library is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- *  Lesser General Public License for more details.
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ *  GNU Lesser General Public License and GNU General Public License for
+ *  more details.
  *
  *  You should have received a copy of the GNU Lesser General Public
- *  License along with this library; if not, write to the Free Software
- *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ *  License and GNU General Public License along with this library.
+ *  If not, see <http://www.gnu.org/licenses/>.
  *
  *  Contact:
- *  Laboratoire de Vision et Systemes Numeriques
+ *  Christian Gagne
+ *  Laboratoire de vision et systemes numeriques
  *  Departement de genie electrique et de genie informatique
- *  Universite Laval, Quebec, Canada, G1K 7P4
- *  http://vision.gel.ulaval.ca
+ *  Universite Laval, Quebec (Quebec), Canada  G1V 0A6
+ *  http://vision.gel.ulaval.ca/~cgagne
+ *  christian.gagne@gel.ulaval.ca
  *
  */
 
@@ -46,9 +48,9 @@ using namespace Beagle::EC;
  *  \param inName Name of operator.
  */
 MigrationMapOp::MigrationMapOp(std::string inName) :
-		Beagle::EC::MigrationOp(inName),
-		mSelectionOp(new Beagle::EC::SelectRandomOp),
-		mReplacementOp(NULL)
+	Beagle::EC::MigrationOp(inName),
+	mSelectionOp(new Beagle::EC::SelectRandomOp),
+	mReplacementOp(NULL)
 { }
 
 
@@ -62,9 +64,9 @@ MigrationMapOp::MigrationMapOp(std::string inName) :
 MigrationMapOp::MigrationMapOp(SelectionOp::Handle inSelectionOp,
                                SelectionOp::Handle inReplacementOp,
                                std::string inName) :
-		Beagle::EC::MigrationOp(inName),
-		mSelectionOp(inSelectionOp),
-		mReplacementOp(inReplacementOp)
+	Beagle::EC::MigrationOp(inName),
+	mSelectionOp(inSelectionOp),
+	mReplacementOp(inReplacementOp)
 { }
 
 
@@ -175,11 +177,11 @@ void MigrationMapOp::migrate(Deme& ioDeme, Context& ioContext)
 	ioContext.setSelectionIndex(lOldSelectionIndex);
 
 	MigrationBuffer::Handle lMigBuffer =
-		castHandleT<MigrationBuffer>(ioDeme.getMember("MigrationBuffer"));
+	    castHandleT<MigrationBuffer>(ioDeme.getMember("MigrationBuffer"));
 	if(lMigBuffer == NULL) {
 		const Factory& lFactory = ioContext.getSystem().getFactory();
 		MigrationBuffer::Alloc::Handle lMigBufferAlloc =
-			castHandleT<MigrationBuffer::Alloc>(lFactory.getConceptAllocator("MigrationBuffer"));
+		    castHandleT<MigrationBuffer::Alloc>(lFactory.getConceptAllocator("MigrationBuffer"));
 		lMigBuffer = castHandleT<MigrationBuffer>(lMigBufferAlloc->allocate());
 		ioDeme.addMember(lMigBuffer);
 	}
@@ -227,7 +229,8 @@ void MigrationMapOp::init(System& ioSystem)
  *  \brief Register the parameters of this operator.
  *  \param ioSystem Reference to the evolutionary system.
  */
-void MigrationMapOp::registerParams(System& ioSystem){
+void MigrationMapOp::registerParams(System& ioSystem)
+{
 	Beagle_StackTraceBeginM();
 	MigrationOp::registerParams(ioSystem);
 	if(mSelectionOp!=NULL)
@@ -341,7 +344,8 @@ void MigrationMapOp::validateMap(const std::vector< std::vector<unsigned int> >&
  *  \param ioStreamer XML streamer to write breeder operator into.
  *  \param inIndent Whether XML output should be indented.
  */
-void MigrationMapOp::write(PACC::XML::Streamer& ioStreamer, bool inIndent) const{
+void MigrationMapOp::write(PACC::XML::Streamer& ioStreamer, bool inIndent) const
+{
 	Beagle_StackTraceBeginM();
 	ioStreamer.openTag(getName(), inIndent);
 	writeContent(ioStreamer, inIndent);

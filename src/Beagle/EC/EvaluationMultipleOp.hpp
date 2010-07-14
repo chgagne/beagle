@@ -1,26 +1,28 @@
 /*
- *  Open BEAGLE
- *  Copyright (C) 2001-2007 by Christian Gagne and Marc Parizeau
+ *  Open BEAGLE: A Generic Evolutionary Computation Framework in C++
+ *  Copyright (C) 2001-2010 by Christian Gagne and Marc Parizeau
  *
- *  This library is free software; you can redistribute it and/or
- *  modify it under the terms of the GNU Lesser General Public
- *  License as published by the Free Software Foundation; either
- *  version 2.1 of the License, or (at your option) any later version.
+ *  This library is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser General Public License as
+ *  published by the Free Software Foundation, version 3 of the License.
  *
  *  This library is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- *  Lesser General Public License for more details.
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ *  GNU Lesser General Public License and GNU General Public License for
+ *  more details.
  *
  *  You should have received a copy of the GNU Lesser General Public
- *  License along with this library; if not, write to the Free Software
- *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ *  License and GNU General Public License along with this library.
+ *  If not, see <http://www.gnu.org/licenses/>.
  *
  *  Contact:
- *  Laboratoire de Vision et Systemes Numeriques
+ *  Christian Gagne
+ *  Laboratoire de vision et systemes numeriques
  *  Departement de genie electrique et de genie informatique
- *  Universite Laval, Quebec, Canada, G1K 7P4
- *  http://vision.gel.ulaval.ca
+ *  Universite Laval, Quebec (Quebec), Canada  G1V 0A6
+ *  http://vision.gel.ulaval.ca/~cgagne
+ *  christian.gagne@gel.ulaval.ca
  *
  */
 
@@ -43,7 +45,7 @@
 
 namespace Beagle
 {
-	
+
 namespace EC
 {
 
@@ -95,14 +97,13 @@ public:
 	 *  the individual's fitness.
 	 */
 	virtual Beagle::Fitness::Bag::Handle evaluateCase(Beagle::Individual::Bag& inIndividuals,
-	                                                  Beagle::Context::Bag& ioContexts) =0;
+	        Beagle::Context::Bag& ioContexts) =0;
 
 	/*!
 	 *  \brief Set number of individual per evaluation cases.
 	 *  \param inIndisPerCase Number of individual per evaluation cases.
 	 */
-	inline void setIndisPerCase(unsigned int inIndisPerCase)
-	{
+	inline void setIndisPerCase(unsigned int inIndisPerCase) {
 		Beagle_StackTraceBeginM();
 		mIndisPerCase=inIndisPerCase;
 		Beagle_StackTraceEndM("void EvaluationMultipleOp::setIndisPerCase(unsigned int inIndisPerCase)");
@@ -112,8 +113,7 @@ public:
 	 *  \brief Set number of individual per groups.
 	 *  \param inIndisPerGroup Number of individual per evaluation groups.
 	 */
-	inline void setIndisPerGroup(unsigned int inIndisPerGroup)
-	{
+	inline void setIndisPerGroup(unsigned int inIndisPerGroup) {
 		Beagle_StackTraceBeginM();
 		mIndisPerGroup=inIndisPerGroup;
 		Beagle_StackTraceEndM("void EvaluationMultipleOp::setIndisPerGroup(unsigned int inIndisPerGroup)");
@@ -122,8 +122,7 @@ public:
 	/*!
 	 *  \return Number of individual per evaluation cases.
 	 */
-	inline unsigned int getIndisPerCase() const
-	{
+	inline unsigned int getIndisPerCase() const {
 		Beagle_StackTraceBeginM();
 		return mIndisPerCase;
 		Beagle_StackTraceEndM("unsigned int EvaluationMultipleOp::getIndisPerCase() const");
@@ -132,26 +131,24 @@ public:
 	/*!
 	 *  \return Number of individual per groups.
 	 */
-	inline unsigned int getIndisPerGroup() const
-	{
+	inline unsigned int getIndisPerGroup() const {
 		Beagle_StackTraceBeginM();
 		return mIndisPerGroup;
 		Beagle_StackTraceEndM("unsigned int EvaluationMultipleOp::getIndisPerGroup() const");
 	}
 
 	virtual Beagle::Individual::Handle    breed(Beagle::Individual::Bag& inBreedingPool,
-	                                            Beagle::BreederNode::Handle inChild,
-	                                            Beagle::Context& ioContext);
+	        Beagle::BreederNode::Handle inChild,
+	        Beagle::Context& ioContext);
 	virtual Beagle::Fitness::Handle       evaluate(Beagle::Individual& inIndividual, Beagle::Context& ioContext);
 	virtual Beagle::Fitness::Bag::Handle  evaluateIndividuals(Beagle::Individual::Bag& ioIndividuals,
-	                                                         Beagle::Context::Bag& ioContexts);
+	        Beagle::Context::Bag& ioContexts);
 	virtual void                          operate(Beagle::Deme& ioDeme, Beagle::Context& ioContext);
 
 
 protected:
 
-struct Case : public Beagle::Object
-	{
+	struct Case : public Beagle::Object {
 		//! Case allocator type.
 		typedef Beagle::AbstractAllocT<Case,Beagle::Object::Alloc>
 		Alloc;
@@ -162,8 +159,7 @@ struct Case : public Beagle::Object
 		typedef Beagle::ContainerT<Case,Beagle::Object::Bag>
 		Bag;
 
-		virtual const std::string& getName()
-		{
+		virtual const std::string& getName() {
 			const static std::string lName("Case");
 			return lName;
 		}
@@ -175,8 +171,8 @@ struct Case : public Beagle::Object
 	virtual Case::Bag::Handle pruneIgnorableCases(unsigned int inNumToIgnore);
 	virtual void              setupCases(unsigned int inSize, Beagle::Context& ioContext);
 	virtual void              setupCaseRecursive(unsigned int inSize,
-	                                             unsigned int inLastIndex,
-	                                             Case::Handle inCase);
+	        unsigned int inLastIndex,
+	        Case::Handle inCase);
 
 	Case::Bag::Handle mCases;           //!< Evaluation cases.
 	unsigned int      mIndisPerCase;    //!< Number of individual per cases.
