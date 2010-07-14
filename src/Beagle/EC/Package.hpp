@@ -27,35 +27,34 @@
  */
 
 /*!
- *  \file   Beagle/Core/Package.hpp
+ *  \file   Beagle/EC/Package.hpp
  *  \brief  Definition of the class PackageBase.
  *  \author Christian Gagne
  *  $Revision: 1.2 $
  *  $Date: 2007/08/17 18:09:13 $
  */
 
-#ifndef Beagle_Core_PackageBase_hpp
-#define Beagle_Core_PackageBase_hpp
+#ifndef Beagle_EC_PackageBase_hpp
+#define Beagle_EC_PackageBase_hpp
 
 #include <map>
 #include <string>
 
-#include "Beagle/config.hpp"
-#include "Beagle/macros.hpp"
-#include "Beagle/Core/System.hpp"
-#include "Beagle/Core/Evolver.hpp"
-#include "Beagle/Core/Package.hpp"
+#include "Beagle/Core.hpp"
 
 
 namespace Beagle
 {
 
+namespace EC
+{
+
 /*!
- *  \class PackageBase Beagle/Core/PackageBase.hpp "Beagle/Core/PackageBase.hpp"
+ *  \class PackageBase Beagle/EC/PackageBase.hpp "Beagle/EC/PackageBase.hpp"
  *  \brief Package class for adding basic objects to the system.
- *  \ingroup Core
+ *  \ingroup EC
  */
-class PackageBase : public Package
+class Package : public Beagle::PackageAbstract
 {
 
 public:
@@ -71,11 +70,13 @@ public:
 	virtual ~PackageBase()
 	{ }
 
-	virtual void         configure(System& ioSystem);
+	virtual void         configure(Beagle::System& ioSystem);
 	virtual Package::Bag listDependencies(void);
 
 };
 
 }
 
-#endif // Beagle_Core_PackageBase_hpp
+}
+
+#endif // Beagle_EC_PackageBase_hpp

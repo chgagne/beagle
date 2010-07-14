@@ -27,55 +27,21 @@
  */
 
 /*!
- *  \file   Beagle/Core/Package.hpp
- *  \brief  Definition of the class PackageBase.
+ *  \file   Beagle/Core/Package.cpp
+ *  \brief  Source code of class Package.
  *  \author Christian Gagne
- *  $Revision: 1.2 $
- *  $Date: 2007/08/17 18:09:13 $
+ *  $Revision: 1.1 $
+ *  $Date: 2007/08/08 14:51:38 $
  */
 
-#ifndef Beagle_Core_PackageBase_hpp
-#define Beagle_Core_PackageBase_hpp
+#include "Beagle/Core.hpp"
 
-#include <map>
-#include <string>
+using namespace Beagle;
 
-#include "Beagle/config.hpp"
-#include "Beagle/macros.hpp"
-#include "Beagle/Core/System.hpp"
-#include "Beagle/Core/Evolver.hpp"
-#include "Beagle/Core/Package.hpp"
-
-
-namespace Beagle
-{
 
 /*!
- *  \class PackageBase Beagle/Core/PackageBase.hpp "Beagle/Core/PackageBase.hpp"
- *  \brief Package class for adding basic objects to the system.
- *  \ingroup Core
+ *  \brief Construct abstract package.
  */
-class PackageBase : public Package
-{
-
-public:
-
-	//! PackageBase allocator type.
-	typedef AllocatorT< PackageBase, Package::Alloc > Alloc;
-	//! PackageBase handle type.
-	typedef PointerT< PackageBase, Package::Handle > Handle;
-	//! PackageBase bag type.
-	typedef ContainerT< PackageBase, Package::Bag > Bag;
-
-	PackageBase(void);
-	virtual ~PackageBase()
-	{ }
-
-	virtual void         configure(System& ioSystem);
-	virtual Package::Bag listDependencies(void);
-
-};
-
-}
-
-#endif // Beagle_Core_PackageBase_hpp
+Package::Package(std::string inName) :
+	NamedObject(inName)
+{ }

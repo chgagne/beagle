@@ -27,56 +27,62 @@
  */
 
 /*!
- *  \file   Beagle/EC/Package.hpp
- *  \brief  Definition of the class PackageBase.
+ *  \file   Beagle/Core/Package.hpp
+ *  \brief  Definition of the class Package.
  *  \author Christian Gagne
- *  $Revision: 1.2 $
- *  $Date: 2007/08/17 18:09:13 $
+ *  $Revision: 1.3 $
+ *  $Date: 2007/09/12 14:23:47 $
  */
 
-#ifndef Beagle_EC_PackageBase_hpp
-#define Beagle_EC_PackageBase_hpp
+#ifndef Beagle_Core_Package_hpp
+#define Beagle_Core_Package_hpp
 
 #include <map>
 #include <string>
 
-#include "Beagle/Core.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/System.hpp"
 
 
 namespace Beagle
 {
 
-namespace EC
-{
-
 /*!
- *  \class PackageBase Beagle/EC/PackageBase.hpp "Beagle/EC/PackageBase.hpp"
- *  \brief Package class for adding basic objects to the system.
- *  \ingroup EC
+ *  \class Package Beagle/Core/Package.hpp "Beagle/Core/Package.hpp"
+ *  \brief Abstract package class, used to setup a system.
+ *  \ingroup Core
  */
-class PackageBase : public Package
+class Package : public NamedObject
 {
 
 public:
 
-	//! PackageBase allocator type.
-	typedef AllocatorT< PackageBase, Package::Alloc > Alloc;
-	//! PackageBase handle type.
-	typedef PointerT< PackageBase, Package::Handle > Handle;
-	//! PackageBase bag type.
-	typedef ContainerT< PackageBase, Package::Bag > Bag;
+	//! Package allocator type.
+	typedef AbstractAllocT< Package, NamedObject::Alloc > Alloc;
+	//! Package handle type.
+	typedef PointerT< Package, NamedObject::Handle > Handle;
+	//! Package bag type.
+	typedef ContainerT< Package, NamedObject::Bag > Bag;
 
-	PackageBase(void);
-	virtual ~PackageBase()
+	explicit Package(std::string inName="UnnamedPackage");
+	virtual ~Package()
 	{ }
 
-	virtual void         configure(Beagle::System& ioSystem);
-	virtual Package::Bag listDependencies(void);
+	/*!
+	 *  \brief Configure system by adding necessary objects into it.
+	 *  \param ioSystem System to configure.
+	 */
+	virtual void configure(System& ioSystem) =0;
+
+	/*!
+	 *  \brief Obtain list of package on which current package depends.
+	 *  \return Bag with the packages instanciation on which current package depends.
+	 */
+	virtual ContainerT< Package, NamedObject::Bag > listDependencies(void) =0;
 
 };
 
 }
 
-}
-
-#endif // Beagle_EC_PackageBase_hpp
+#endif // Beagle_Core_Package_hpp
