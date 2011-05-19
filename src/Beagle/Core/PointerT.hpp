@@ -98,7 +98,7 @@ public:
 		Beagle_StackTraceBeginM();
 		BaseType::operator=(inObjPtr);
 		return *this;
-		Beagle_StackTraceEndM("PointerT<T,BaseType>& PointerT<T,BaseType>::operator=(const T* inObjPtr)");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -110,7 +110,7 @@ public:
 		Beagle_StackTraceBeginM();
 		BaseType::operator=(inPointerT);
 		return *this;
-		Beagle_StackTraceEndM("PointerT<T,BaseType>& PointerT<T,BaseType>::operator=(const PointerT<T,BaseType>& inPointerT)");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -121,7 +121,7 @@ public:
 	inline T& operator*() {
 		Beagle_StackTraceBeginM();
 		return static_cast<T&>(Beagle::Pointer::operator*());
-		Beagle_StackTraceEndM("T& PointerT<T,BaseType>::operator*()");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -132,7 +132,7 @@ public:
 	inline const T& operator*() const {
 		Beagle_StackTraceBeginM();
 		return static_cast<const T&>(Beagle::Pointer::operator*());
-		Beagle_StackTraceEndM("const T& PointerT<T,BaseType>::operator*() const");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -143,7 +143,7 @@ public:
 	inline T* operator->() {
 		Beagle_StackTraceBeginM();
 		return static_cast<T*>(Beagle::Pointer::operator->());
-		Beagle_StackTraceEndM("T* PointerT<T,BaseType>::operator->()");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -154,7 +154,7 @@ public:
 	inline const T* operator->() const {
 		Beagle_StackTraceBeginM();
 		return static_cast<const T*>(Beagle::Pointer::operator->());
-		Beagle_StackTraceEndM("const T* PointerT<T,BaseType>::operator->() const");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -165,7 +165,7 @@ public:
 	inline bool operator==(const T* inObjPtr) const {
 		Beagle_StackTraceBeginM();
 		return Beagle::Pointer::operator==(inObjPtr);
-		Beagle_StackTraceEndM("bool PointerT<T,BaseType>::operator==(const T* inObjPtr) const");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -176,7 +176,7 @@ public:
 	inline bool operator==(const PointerT<T,BaseType>& inPointerT) const {
 		Beagle_StackTraceBeginM();
 		return Beagle::Pointer::operator==(inPointerT);
-		Beagle_StackTraceEndM("bool PointerT<T,BaseType>::operator==(const PointerT<T,BaseType>& inPointerT) const");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -187,7 +187,7 @@ public:
 	inline bool operator!=(const T* inObjPtr) const {
 		Beagle_StackTraceBeginM();
 		return Beagle::Pointer::operator!=(inObjPtr);
-		Beagle_StackTraceEndM("bool PointerT<T,BaseType>::operator!=(const T* inObjPtr) const");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -198,7 +198,7 @@ public:
 	inline bool operator!=(const PointerT<T,BaseType>& inPointerT) const {
 		Beagle_StackTraceBeginM();
 		return Beagle::Pointer::operator!=(inPointerT);
-		Beagle_StackTraceEndM("bool PointerT<T,BaseType>::operator!=(const PointerT<T,BaseType>& inPointerT) const");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -208,7 +208,7 @@ public:
 	inline T* getPointer() {
 		Beagle_StackTraceBeginM();
 		return static_cast<T*>(Beagle::Pointer::getPointer());
-		Beagle_StackTraceEndM("T* PointerT<T,BaseType>::getPointer()");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -218,7 +218,7 @@ public:
 	inline const T* getPointer() const {
 		Beagle_StackTraceBeginM();
 		return static_cast<const T*>(Beagle::Pointer::getPointer());
-		Beagle_StackTraceEndM("const T* PointerT<T,BaseType>::getPointer() const");
+		Beagle_StackTraceEndM();
 	}
 
 };

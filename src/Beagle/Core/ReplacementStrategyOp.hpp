@@ -100,7 +100,7 @@ public:
 	inline BreederNode::Handle getRootNode() const {
 		Beagle_StackTraceBeginM();
 		return mBreederRoot;
-		Beagle_StackTraceEndM("BreederNode::Handle ReplacementStrategyOp::getRootNode() const");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -110,7 +110,7 @@ public:
 	inline void setRootNode(BreederNode::Handle inRootNode) {
 		Beagle_StackTraceBeginM();
 		mBreederRoot = inRootNode;
-		Beagle_StackTraceEndM("void ReplacementStrategyOp::setRootNode(BreederNode::Handle inRootNode)");
+		Beagle_StackTraceEndM();
 	}
 
 protected:

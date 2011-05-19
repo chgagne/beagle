@@ -172,5 +172,5 @@ void AlgoGenerational::configure(Evolver& ioEvolver, System& ioSystem)
 	lMsWriteOpML->setName(lMsWriteOpName);
 	ioEvolver.getMainLoopSet().push_back(lMsWriteOpML);
 
-	Beagle_StackTraceEndM("void AlgoGenerational::configure(Evolver&,System&)");
+	Beagle_StackTraceEndM();
 }

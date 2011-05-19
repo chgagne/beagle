@@ -117,7 +117,7 @@ inline void Beagle::HistoryEntry::addAction(const std::string& inAction)
 {
 	Beagle_StackTraceBeginM();
 	mActions.push_back(inAction);
-	Beagle_StackTraceEndM("void HistoryEntry::addAction(const std::string& inAction)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -128,7 +128,7 @@ inline void Beagle::HistoryEntry::addOpName(const std::string& inOpName)
 {
 	Beagle_StackTraceBeginM();
 	mOpNames.push_back(inOpName);
-	Beagle_StackTraceEndM("void HistoryEntry::addOpName(const std::string& inOpName)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -139,7 +139,7 @@ inline const std::vector<std::string>& Beagle::HistoryEntry::getActions() const
 {
 	Beagle_StackTraceBeginM();
 	return mActions;
-	Beagle_StackTraceEndM("const std::vector<std::string>& HistoryEntry::getActions() const");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -150,7 +150,7 @@ inline unsigned int Beagle::HistoryEntry::getGeneration() const
 {
 	Beagle_StackTraceBeginM();
 	return mGeneration;
-	Beagle_StackTraceEndM("unsigned int HistoryEntry::getGeneration() const");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -161,7 +161,7 @@ inline Beagle::Individual::Handle Beagle::HistoryEntry::getIndividual()
 {
 	Beagle_StackTraceBeginM();
 	return mIndividual;
-	Beagle_StackTraceEndM("Individual::Handle HistoryEntry::getIndividual()");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -172,7 +172,7 @@ inline unsigned int Beagle::HistoryEntry::getIndividualVar() const
 {
 	Beagle_StackTraceBeginM();
 	return mIndividualVar;
-	Beagle_StackTraceEndM("unsigned int HistoryEntry::getIndividualVar() const");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -183,7 +183,7 @@ inline const std::vector<std::string>& Beagle::HistoryEntry::getOpNames() const
 {
 	Beagle_StackTraceBeginM();
 	return mOpNames;
-	Beagle_StackTraceEndM("const std::vector<std::string>& HistoryEntry::getOpNames() const");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -194,7 +194,7 @@ inline const std::vector<Beagle::HistoryID>& Beagle::HistoryEntry::getParents() 
 {
 	Beagle_StackTraceBeginM();
 	return mParents;
-	Beagle_StackTraceEndM("const std::vector<Beagle::HistoryID>& HistoryEntry::getParents() const");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -205,7 +205,7 @@ inline void Beagle::HistoryEntry::setGeneration(unsigned int inGeneration)
 {
 	Beagle_StackTraceBeginM();
 	mGeneration = inGeneration;
-	Beagle_StackTraceEndM("void HistoryEntry::setGeneration(unsigned int inGeneration)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -216,7 +216,7 @@ inline void Beagle::HistoryEntry::setIndividual(Individual::Handle inIndividual)
 {
 	Beagle_StackTraceBeginM();
 	mIndividual = inIndividual;
-	Beagle_StackTraceEndM("void HistoryEntry::setIndividual(Individual::Handle inIndividual)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -227,7 +227,7 @@ inline void Beagle::HistoryEntry::setIndividualVar(unsigned int inIndividualVar)
 {
 	Beagle_StackTraceBeginM();
 	mIndividualVar = inIndividualVar;
-	Beagle_StackTraceEndM("void HistoryEntry::setIndividualVar(unsigned int inIndividualVar)");
+	Beagle_StackTraceEndM();
 }
 
 

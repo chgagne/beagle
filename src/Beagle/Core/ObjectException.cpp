@@ -59,7 +59,7 @@ ObjectException::ObjectException(const Object&   inObject,
 {
 	Beagle_StackTraceBeginM();
 	setObjectState(inObject);
-	Beagle_StackTraceEndM("ObjectException::ObjectException(const Object& inObject, string inMessage, string inFileName, unsigned int inLineNumber)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -110,6 +110,6 @@ void ObjectException::setObjectState(const Object& inObject)
 	} catch(...) {
 		mSerializedObject = "<Failed>";
 	}
-	Beagle_StackTraceEndM("void ObjectException::setObjectState(const Object& inObject)");
+	Beagle_StackTraceEndM();
 }
 

@@ -73,7 +73,7 @@ inline CastPointerType castObjectT(Beagle::Object* inObject)
 	return static_cast<CastPointerType>(inObject);
 #endif // BEAGLE_HAVE_DYNAMIC_CAST
 #endif // BEAGLE_NDEBUG
-	Beagle_StackTraceEndM("CastPointerType castObjectT<CastPointerType>(Object* inObject)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -98,7 +98,7 @@ inline CastPointerType castObjectT(const Beagle::Object* inObject)
 	return static_cast<CastPointerType>(inObject);
 #endif // BEAGLE_HAVE_DYNAMIC_CAST
 #endif // BEAGLE_NDEBUG
-	Beagle_StackTraceEndM("CastPointerType castObjectT<CastPointerType>(const Object* inObject)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -135,7 +135,7 @@ inline CastRefType castObjectT(Beagle::Object& inObject)
 	return static_cast<CastRefType>(inObject);
 #endif // BEAGLE_HAVE_DYNAMIC_CAST
 #endif // BEAGLE_NDEBUG
-	Beagle_StackTraceEndM("CastRefType castObjectT<CastRefType>(Object& inObject)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -172,7 +172,7 @@ inline CastConstRefType castObjectT(const Beagle::Object& inObject)
 	return static_cast<CastConstRefType>(inObject);
 #endif // BEAGLE_HAVE_DYNAMIC_CAST
 #endif // BEAGLE_NDEBUG
-	Beagle_StackTraceEndM("CastConstRefType castObjectT<CastConstRefType>(const Object& inObject)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -209,7 +209,7 @@ inline typename CastType::Handle& castHandleT(Beagle::Object::Handle& inObject)
 	return static_cast<typename CastType::Handle&>(inObject);
 #endif // BEAGLE_HAVE_DYNAMIC_CAST
 #endif // BEAGLE_NDEBUG
-	Beagle_StackTraceEndM("CastType::Handle& castHandleT<CastType>(Object::Handle& inObject)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -246,7 +246,7 @@ inline const typename CastType::Handle& castHandleT(const Beagle::Object::Handle
 	return static_cast<const typename CastType::Handle&>(inObject);
 #endif // BEAGLE_HAVE_DYNAMIC_CAST
 #endif // BEAGLE_NDEBUG
-	Beagle_StackTraceEndM("const CastType::Handle& castHandleT<CastType>(const Object::Handle& inObject)");
+	Beagle_StackTraceEndM();
 }
 
 }

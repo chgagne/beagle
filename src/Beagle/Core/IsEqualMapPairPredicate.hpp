@@ -82,7 +82,7 @@ public:
 		if( (!inLeftPair.second) && (!inRightPair.second) ) return true;
 		else if( (!inLeftPair.second) || (!inRightPair.second) ) return false;
 		return inLeftPair.second->isEqual(*inRightPair.second);
-		Beagle_StackTraceEndM("bool operator()(const std::pair<std::string,Object::Handle>& inLeftPair, const std::pair<std::string,Object::Handle>& inRightPair) const");
+		Beagle_StackTraceEndM();
 	}
 
 };

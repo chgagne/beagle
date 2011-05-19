@@ -85,7 +85,7 @@ public:
 		Beagle_StackTraceBeginM();
 		Beagle_UpperBoundCheckAssertM(inN,BaseType::size()-1);
 		return castHandleT<T>(std::vector<Pointer>::operator[](inN));
-		Beagle_StackTraceEndM("const T::Handle& ContainerT<T,BaseType>::operator[](unsigned int inN) const");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -97,7 +97,7 @@ public:
 		Beagle_StackTraceBeginM();
 		Beagle_UpperBoundCheckAssertM(inN,BaseType::size()-1);
 		return castHandleT<T>(std::vector<Pointer>::operator[](inN));
-		Beagle_StackTraceEndM("T::Handle& ContainerT<T,BaseType>::operator[](unsigned int inN)");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -109,7 +109,7 @@ public:
 		Beagle_StackTraceBeginM();
 		Beagle_UpperBoundCheckAssertM(inN,BaseType::size()-1);
 		return castHandleT<T>(std::vector<Pointer>::operator[](inN));
-		Beagle_StackTraceEndM("T::Handle& ContainerT<T,BaseType>::at(unsigned int inN)");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -121,7 +121,7 @@ public:
 		Beagle_StackTraceBeginM();
 		Beagle_UpperBoundCheckAssertM(inN,BaseType::size()-1);
 		return castHandleT<T>(std::vector<Pointer>::operator[](inN));
-		Beagle_StackTraceEndM("const T::Handle& ContainerT<T,BaseType>::at(unsigned int inN) const");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -137,7 +137,7 @@ public:
 			throw Beagle_RunTimeExceptionM(lOSS.str());
 		}
 		return castHandleT<T>(std::vector<Pointer>::back());
-		Beagle_StackTraceEndM("T::Handle& ContainerT<T,BaseType>::back()");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -153,7 +153,7 @@ public:
 			throw Beagle_RunTimeExceptionM(lOSS.str());
 		}
 		return castHandleT<T>(std::vector<Pointer>::back());
-		Beagle_StackTraceEndM("const T::Handle& ContainerT<T,BaseType>::back() const");
+		Beagle_StackTraceEndM();
 	}
 
 

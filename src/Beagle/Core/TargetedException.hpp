@@ -109,7 +109,7 @@ public:
 	inline void setFileName(const std::string& inFileName) {
 		Beagle_StackTraceBeginM();
 		mFileName = inFileName;
-		Beagle_StackTraceEndM("void TargetedException::setFileName(const std::string& inFileName)");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -119,7 +119,7 @@ public:
 	inline void setLineNumber(unsigned int inLineNumber) {
 		Beagle_StackTraceBeginM();
 		mLineNumber = inLineNumber;
-		Beagle_StackTraceEndM("void TargetedException::setLineNumber(unsigned int inLineNumber)");
+		Beagle_StackTraceEndM();
 	}
 
 private:

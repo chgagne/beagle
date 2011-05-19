@@ -60,7 +60,7 @@ unsigned int SelectFirstOp::selectOneIndividual(Individual::Bag& ioPool, Context
 {
 	Beagle_StackTraceBeginM();
 	return 0;
-	Beagle_StackTraceEndM("unsigned int SelectFirstOp::selectIndividual(Individual::Bag&,Context&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -88,5 +88,5 @@ void SelectFirstOp::selectManyIndividuals(unsigned int inN,
 	for(unsigned int i=0; i<ioPool.size(); ++i) {
 		outSelections[i] = (i<lModNP) ? lDivNP+1 : lDivNP;
 	}
-	Beagle_StackTraceEndM("void SelectFirstOp::selectNIndividuals(unsigned int,Individual::Bag&,Context&,std::vector<unsigned int>&)");
+	Beagle_StackTraceEndM();
 }

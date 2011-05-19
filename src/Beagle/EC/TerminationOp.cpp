@@ -60,7 +60,6 @@ void TerminationOp::operate(Deme& ioDeme, Context& ioContext)
 	Beagle_StackTraceBeginM();
 	Beagle_LogTraceM(
 	    ioContext.getSystem().getLogger(),
-	    "termination", "Beagle::TerminationOp",
 	    std::string("Checking if '")+getName()+
 	    std::string("' termination criterion reached for the ")+
 	    uint2ordinal(ioContext.getDemeIndex()+1)+" deme"
@@ -68,11 +67,10 @@ void TerminationOp::operate(Deme& ioDeme, Context& ioContext)
 	if(terminate(ioDeme,ioContext)) {
 		Beagle_LogInfoM(
 		    ioContext.getSystem().getLogger(),
-		    "termination", "Beagle::TerminationOp",
 		    "Termination criterion reached"
 		);
 		ioContext.setContinueFlag(false);
 	}
-	Beagle_StackTraceEndM("void TerminationOp::operate(Deme& ioDeme, Context& ioContext)");
+	Beagle_StackTraceEndM();
 }
 

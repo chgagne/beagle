@@ -138,5 +138,5 @@ void AlgoSequential::configure(Evolver& ioEvolver, System& ioSystem)
 	lMsWriteOpML->setName(lMsWriteOpName);
 	ioEvolver.getMainLoopSet().push_back(lMsWriteOpML);
 
-	Beagle_StackTraceEndM("void AlgoSequential::configure(Evolver&,System&)");
+	Beagle_StackTraceEndM();
 }

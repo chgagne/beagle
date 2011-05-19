@@ -178,7 +178,7 @@ inline void Beagle::History::allocateID(Beagle::Individual& ioIndividual)
 	if(ioIndividual.getMember("HistoryID") == NULL) {
 		ioIndividual.addMember(new HistoryID(mTracesCount++, 0));
 	}
-	Beagle_StackTraceEndM("void History::allocateID(Beagle::Individual& ioIndividual)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -191,7 +191,7 @@ inline void Beagle::History::allocateNewID(Beagle::Individual& ioIndividual)
 	HistoryID::Handle lHID = castHandleT<HistoryID>(ioIndividual.getMember("HistoryID"));
 	if(lHID == NULL) ioIndividual.addMember(new HistoryID(mTracesCount++, 0));
 	else lHID->setID(mTracesCount++);
-	Beagle_StackTraceEndM("void History::allocateNewID(Beagle::Individual& ioIndividual)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -204,7 +204,7 @@ inline void Beagle::History::incrementHistoryVar(Beagle::Individual& ioIndividua
 	HistoryID::Handle lHID = castHandleT<HistoryID>(ioIndividual.getMember("HistoryID"));
 	if(lHID == NULL) ioIndividual.addMember(new HistoryID(mTracesCount++, 0));
 	else lHID->incrementVar();
-	Beagle_StackTraceEndM("void History::incrementHistoryVar(Beagle::Individual& ioIndividual)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -215,7 +215,7 @@ inline const Beagle::HistoryTrace::Bag& Beagle::History::getTraces() const
 {
 	Beagle_StackTraceBeginM();
 	return mTraces;
-	Beagle_StackTraceEndM("const HistoryTrace::Bag& History::getTraces() const");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -226,7 +226,7 @@ inline unsigned int Beagle::History::getFirstID() const
 {
 	Beagle_StackTraceBeginM();
 	return mTracesFirst;
-	Beagle_StackTraceEndM("unsigned int Beagle::History::getFirstID() const");
+	Beagle_StackTraceEndM();
 }
 
 

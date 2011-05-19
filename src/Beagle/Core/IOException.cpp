@@ -71,7 +71,7 @@ IOException::IOException(const PACC::XML::Node& inIter,
 	lOSS << "Error with XML node '" << inIter.getValue();
 	lOSS << "': " << inMessage;
 	setMessage(lOSS.str());
-	Beagle_StackTraceEndM("IOException::IOException(const PACC::XML::Node& inIter, string inMessage, string inFileName, unsigned int inLineNumber)");
+	Beagle_StackTraceEndM();
 }
 
 

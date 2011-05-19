@@ -121,7 +121,7 @@ void HistoryFlushOp::registerParams(System& ioSystem)
 		               ioSystem.getRegister().insertEntry("ec.pop.size", new UIntArray(1,100), lDescription));
 	}
 
-	Beagle_StackTraceEndM("void HistoryFlushOp::registerParams(System&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -144,8 +144,7 @@ void HistoryFlushOp::operate(Deme& ioDeme, Context& ioContext)
 
 	Beagle_LogBasicM(
 	    ioContext.getSystem().getLogger(),
-	    "milestone", "Beagle::HistoryFlushOp",
-	    std::string("Flushing history into milestone")
+	    "Flushing history into milestone"
 	);
 
 	History::Handle lHistory = castHandleT<History>(ioContext.getSystem().haveComponent("History"));
@@ -160,7 +159,7 @@ void HistoryFlushOp::operate(Deme& ioDeme, Context& ioContext)
 		}
 	}
 
-	Beagle_StackTraceEndM("void HistoryFlushOp::operate(Deme& ioDeme, Context& ioContext)");
+	Beagle_StackTraceEndM();
 }
 
 

@@ -76,7 +76,7 @@ inline bool operator==(const Beagle::Bool& inLeftBool, const Beagle::Bool& inRig
 {
 	Beagle_StackTraceBeginM();
 	return inLeftBool.isEqual(inRightBool);
-	Beagle_StackTraceEndM("bool operator==(const Bool& inLeftBool, const Bool& inRightBool)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -92,7 +92,7 @@ inline bool operator!=(const Beagle::Bool& inLeftBool, const Beagle::Bool& inRig
 {
 	Beagle_StackTraceBeginM();
 	return ( inLeftBool.isEqual(inRightBool) == false);
-	Beagle_StackTraceEndM("bool operator!=(const Bool& inLeftBool, const Bool& inRightBool)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -106,7 +106,7 @@ Beagle::Bool operator!(const Beagle::Bool& inBool)
 {
 	Beagle_StackTraceBeginM();
 	return !(inBool.getWrappedValue());
-	Beagle_StackTraceEndM("Bool operator!(const Bool& inBool)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -121,7 +121,7 @@ bool operator==(const Beagle::Bool& inLeftBool, bool inRightBool)
 {
 	Beagle_StackTraceBeginM();
 	return inLeftBool.getWrappedValue() == inRightBool;
-	Beagle_StackTraceEndM("bool operator==(const Bool& inLeftBool, bool inRightBool)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -136,7 +136,7 @@ bool operator!=(const Beagle::Bool& inLeftBool, bool inRightBool)
 {
 	Beagle_StackTraceBeginM();
 	return inLeftBool.getWrappedValue() != inRightBool;
-	Beagle_StackTraceEndM("bool operator!=(const Bool& inLeftBool, bool inRightBool)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -152,7 +152,7 @@ Beagle::Bool operator&&(const Beagle::Bool& inLeftBool,
 {
 	Beagle_StackTraceBeginM();
 	return inLeftBool.getWrappedValue() && inRightBool.getWrappedValue();
-	Beagle_StackTraceEndM("Bool operator&&(const Bool& inLeftBool, const Bool& inRightBool)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -167,7 +167,7 @@ Beagle::Bool operator&&(const Beagle::Bool& inLeftBool, bool inRightBool)
 {
 	Beagle_StackTraceBeginM();
 	return inLeftBool.getWrappedValue() && inRightBool;
-	Beagle_StackTraceEndM("Bool operator&&(const Bool& inLeftBool, bool inRightBool)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -183,7 +183,7 @@ Beagle::Bool operator||(const Beagle::Bool& inLeftBool,
 {
 	Beagle_StackTraceBeginM();
 	return inLeftBool.getWrappedValue() || inRightBool.getWrappedValue();
-	Beagle_StackTraceEndM("Bool operator||(const Bool& inLeftBool, const Bool& inRightBool)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -198,7 +198,7 @@ Beagle::Bool operator||(const Beagle::Bool& inLeftBool, bool inRightBool)
 {
 	Beagle_StackTraceBeginM();
 	return inLeftBool.getWrappedValue() || inRightBool;
-	Beagle_StackTraceEndM("Bool operator||(const Bool& inLeftBool, bool inRightBool)");
+	Beagle_StackTraceEndM();
 }
 
 

@@ -71,7 +71,7 @@ void SelectParsimonyTournOp::registerParams(System& ioSystem)
 	mNumberParticipants = castHandleT<UInt>(
 	                          ioSystem.getRegister().insertEntry("ec.sel.tournsize", new UInt(2), lDescription));
 
-	Beagle_StackTraceEndM("void SelectParsimonyTournOp::registerParams(System&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -91,7 +91,6 @@ unsigned int SelectParsimonyTournOp::selectOneIndividual(Individual::Bag& ioPool
 	    ioContext.getSystem().getRandomizer().rollInteger(0,((unsigned int)ioPool.size())-1);
 	Beagle_LogDebugM(
 	    ioContext.getSystem().getLogger(),
-	    "selection", "Beagle::SelectParsimonyTournOp",
 	    std::string("Starting by choosing the ")+
 	    uint2ordinal(lChoosenIndividual+1)+" individual"
 	);
@@ -103,7 +102,6 @@ unsigned int SelectParsimonyTournOp::selectOneIndividual(Individual::Bag& ioPool
 			lChoosenIndividual = lTriedIndividual;
 			Beagle_LogDebugM(
 			    ioContext.getSystem().getLogger(),
-			    "selection", "Beagle::SelectParsimonyTournOp",
 			    std::string("Trying the ")+uint2ordinal(lTriedIndividual+1)+
 			    " individual -> choosing it"
 			);
@@ -112,14 +110,12 @@ unsigned int SelectParsimonyTournOp::selectOneIndividual(Individual::Bag& ioPool
 				lChoosenIndividual = lTriedIndividual;
 				Beagle_LogDebugM(
 				    ioContext.getSystem().getLogger(),
-				    "selection", "Beagle::SelectParsimonyTournOp",
 				    std::string("Trying the ")+uint2ordinal(lTriedIndividual+1)+
 				    " individual -> choosing it as it is smaller (parsimony)"
 				);
 			} else {
 				Beagle_LogDebugM(
 				    ioContext.getSystem().getLogger(),
-				    "selection", "Beagle::SelectParsimonyTournOp",
 				    std::string("Trying the ")+uint2ordinal(lTriedIndividual+1)+
 				    " individual -> the previously choosen one is smaller (parsimony)"
 				);
@@ -127,7 +123,6 @@ unsigned int SelectParsimonyTournOp::selectOneIndividual(Individual::Bag& ioPool
 		} else {
 			Beagle_LogDebugM(
 			    ioContext.getSystem().getLogger(),
-			    "selection", "Beagle::SelectParsimonyTournOp",
 			    std::string("Trying the ")+uint2ordinal(lTriedIndividual+1)+
 			    " individual -> the previously choosen one is better"
 			);
@@ -136,17 +131,10 @@ unsigned int SelectParsimonyTournOp::selectOneIndividual(Individual::Bag& ioPool
 
 	Beagle_LogDebugM(
 	    ioContext.getSystem().getLogger(),
-	    "selection",
-	    "Beagle::SelectParsimonyTournOp",
-	    std::string("Selecting the ")+uint2ordinal(lChoosenIndividual+1)+" individual"
+	    "Selecting the " << uint2ordinal(lChoosenIndividual+1) << " individual"
 	);
-	Beagle_LogObjectDebugM(
-	    ioContext.getSystem().getLogger(),
-	    "selection",
-	    "Beagle::SelectParsimonyTournOp",
-	    *ioPool[lChoosenIndividual]
-	);
+	Beagle_LogDebugM(ioContext.getSystem().getLogger(), *ioPool[lChoosenIndividual]);
 
 	return lChoosenIndividual;
-	Beagle_StackTraceEndM("unsigned int SelectParsimonyTournOp::selectIndividual(Individual::Bag& ioPool, Context& ioContext)");
+	Beagle_StackTraceEndM();
 }

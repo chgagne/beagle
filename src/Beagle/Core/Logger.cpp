@@ -48,77 +48,77 @@ void Logger::init(System& ioSystem)
 {
 	Beagle_StackTraceBeginM();
 
-	// set initialized flag
+	// Set initialized flag
 	setInitializedFlag(true);
 
-	// log Beagle version and current log levels
-	log(std::string("Open BEAGLE, version ")+BEAGLE_VERSION, eBasic, "logger", "Beagle::Logger");
+	// Log Beagle version and current log levels
+	log(std::string("Open BEAGLE, version ")+BEAGLE_VERSION, eBasic, __FILE__, __PRETTY_FUNCTION__);
 	if(mConsoleLevel->getWrappedValue() == Logger::eNothing) {
-		log("Console logging is disabled", eBasic, "logger", "Beagle::Logger");
+		log("Console logging is disabled", eBasic, __FILE__, __PRETTY_FUNCTION__);
 	} else {
-		log(std::string("Setting console log level ")+mConsoleLevel->serialize(), eBasic, "logger", "Beagle::Logger");
+		log(std::string("Setting console log level ")+mConsoleLevel->serialize(), eBasic, __FILE__, __PRETTY_FUNCTION__);
 	}
 
 	if(mFileName->getWrappedValue().empty()) {
-		log("File logging is disabled", eBasic, "logger", "Beagle::Logger");
+		log("File logging is disabled", eBasic, __FILE__, __PRETTY_FUNCTION__);
 	} else {
-		log(std::string("Setting file log level ")+mFileLevel->serialize(), eBasic, "logger", "Beagle::Logger");
-		log(std::string("Logging to file '")+mFileName->serialize()+std::string("'"), eBasic, "logger", "Beagle::LoggerXML");
+		log(std::string("Setting file log level ")+mFileLevel->serialize(), eBasic, __FILE__, __PRETTY_FUNCTION__);
+		log(std::string("Logging to file '")+mFileName->serialize()+std::string("'"), eBasic, __FILE__, __PRETTY_FUNCTION__);
 	}
 
 	// output buffered messages
 	for(std::list<Message>::const_iterator lIter = mBuffer.begin(); lIter != mBuffer.end(); ++lIter) {
-		outputMessage(lIter->mMessage, lIter->mLevel, lIter->mType, lIter->mClass);
+		outputMessage(lIter->mMessage, lIter->mLevel, lIter->mFile, lIter->mFunction);
 	}
 	mBuffer.clear();
 
-	Beagle_StackTraceEndM("void Logger::init(System&)");
+	Beagle_StackTraceEndM();
 }
 
 /*!
  *  \brief Log string message to console and file.
  *  \param inMessage Message to log.
  *  \param inLevel Log level of message.
- *  \param inType Type of the message to log.
- *  \param inClass Class name associated to the message.
+ *  \param inFile Source filename where message is produced.
+ *  \param inFunction Function name where message is produced.
  *
  *  Message is written only if its log level is equal or higher than the log
  *  level of the device.
  */
-void Logger::log(const std::string& inMessage, unsigned int inLevel, const std::string& inType, const std::string& inClass)
+void Logger::log(std::string inMessage, unsigned int inLevel, std::string inFile, std::string inFunction)
 {
 	Beagle_StackTraceBeginM();
 
 	if(isInitialized()) {
-		outputMessage(inMessage, inLevel, inType, inClass);
+		outputMessage(inMessage, inLevel, inFile, inFunction);
 	} else {
-		mBuffer.push_back(Message(inMessage, inLevel, inType, inClass));
+		mBuffer.push_back(Message(inMessage, inLevel, inFile, inFunction));
 	}
 
-	Beagle_StackTraceEndM("void Logger::log(const std::string&, unsigned int, const std::string&, const std::string&)");
+	Beagle_StackTraceEndM();
 }
 
 /*!
  *  \brief Log object to console or file.
  *  \param inObject Object to log.
  *  \param inLevel Log level of message.
- *  \param inType Type of the message to log.
- *  \param inClass Class name associated to the message.
+ *  \param inFile Source filename where message is produced.
+ *  \param inFunction Function name where message is produced.
  *
  *  Message is written only if its log level is equal or higher than the log
  *  level of the device.
  */
-void Logger::log(const Object& inObject, unsigned int inLevel, const std::string& inType, const std::string& inClass)
+void Logger::log(const Object& inObject, unsigned int inLevel, std::string inFile, std::string inFunction)
 {
 	Beagle_StackTraceBeginM();
 
 	if(isInitialized()) {
-		outputObject(inObject, inLevel, inType, inClass);
+		outputObject(inObject, inLevel, inFile, inFunction);
 	} else {
 		throw Beagle_RunTimeExceptionM("Cannot log an object before logger has been initialized!");
 	}
 
-	Beagle_StackTraceEndM("void Logger::log(const Object&, unsigned int, const std::string&, const std::string&)");
+	Beagle_StackTraceEndM();
 }
 
 /*!
@@ -130,9 +130,9 @@ void Logger::logCurrentTime(unsigned int inLevel)
 	Beagle_StackTraceBeginM();
 
 	std::string lMessage = std::string("Current date and time: ")+PACC::Date().get("%X %d %b %Y");
-	log(lMessage, inLevel, "logger", "Beagle::Logger");
+	log(lMessage, inLevel, __FILE__, __PRETTY_FUNCTION__);
 
-	Beagle_StackTraceEndM("void Logger::logCurrentTime(unsigned int)");
+	Beagle_StackTraceEndM();
 }
 
 /*!
@@ -158,7 +158,7 @@ void Logger::registerParams(System& ioSystem)
 	                                     "UInt",
 	                                     "2",
 	                                     "Log level used for console output. Available levels are: (0) no log, (1) basic logs, (2) stats, (3) general informations, (4) details on operations, (5) trace of the algorithms, (6) verbose, (7) debug (enabled only in full debug mode)."
-	                                    );
+	                                     );
 	mConsoleLevel = castHandleT<UInt>(ioSystem.getRegister().insertEntry("lg.console.level", new UInt(eStats), lDescription));
 
 	lDescription = Register::Description("File log level",
@@ -182,19 +182,19 @@ void Logger::registerParams(System& ioSystem)
 	                                    );
 	mShowLevel = castHandleT<Bool>(ioSystem.getRegister().insertEntry("lg.show.level", new Bool(false), lDescription));
 
-	lDescription = Register::Description("Show message type information in logs",
+	lDescription = Register::Description("Show source filename of messages in logs",
 	                                     "Bool",
 	                                     "0",
-	                                     "Indicates whether message types should be included in messages."
+	                                     "Indicates whether source filename of messages should be included in messages."
 	                                    );
-	mShowType = castHandleT<Bool>(ioSystem.getRegister().insertEntry("lg.show.type", new Bool(false), lDescription));
+	mShowFile = castHandleT<Bool>(ioSystem.getRegister().insertEntry("lg.show.file", new Bool(false), lDescription));
 
-	lDescription = Register::Description("Show class information in logs",
+	lDescription = Register::Description("Show function name information in logs",
 	                                     "Bool",
 	                                     "0",
-	                                     "Indicates whether class names should be included in messages."
+	                                     "Indicates whether source function name of messages should be included in messages."
 	                                    );
-	mShowClass = castHandleT<Bool>(ioSystem.getRegister().insertEntry("lg.show.class", new Bool(false), lDescription));
+	mShowFunction = castHandleT<Bool>(ioSystem.getRegister().insertEntry("lg.show.function", new Bool(false), lDescription));
 
 	lDescription = Register::Description("Show message's time in logs",
 	                                     "Bool",
@@ -203,5 +203,5 @@ void Logger::registerParams(System& ioSystem)
 	                                    );
 	mShowTime = castHandleT<Bool>(ioSystem.getRegister().insertEntry("lg.show.time", new Bool(false), lDescription));
 
-	Beagle_StackTraceEndM("void Logger::registerParams(System&)");
+	Beagle_StackTraceEndM();
 }

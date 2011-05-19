@@ -106,7 +106,7 @@ public:
 	inline void setIndisPerCase(unsigned int inIndisPerCase) {
 		Beagle_StackTraceBeginM();
 		mIndisPerCase=inIndisPerCase;
-		Beagle_StackTraceEndM("void EvaluationMultipleOp::setIndisPerCase(unsigned int inIndisPerCase)");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -116,7 +116,7 @@ public:
 	inline void setIndisPerGroup(unsigned int inIndisPerGroup) {
 		Beagle_StackTraceBeginM();
 		mIndisPerGroup=inIndisPerGroup;
-		Beagle_StackTraceEndM("void EvaluationMultipleOp::setIndisPerGroup(unsigned int inIndisPerGroup)");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -125,7 +125,7 @@ public:
 	inline unsigned int getIndisPerCase() const {
 		Beagle_StackTraceBeginM();
 		return mIndisPerCase;
-		Beagle_StackTraceEndM("unsigned int EvaluationMultipleOp::getIndisPerCase() const");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -134,7 +134,7 @@ public:
 	inline unsigned int getIndisPerGroup() const {
 		Beagle_StackTraceBeginM();
 		return mIndisPerGroup;
-		Beagle_StackTraceEndM("unsigned int EvaluationMultipleOp::getIndisPerGroup() const");
+		Beagle_StackTraceEndM();
 	}
 
 	virtual Beagle::Individual::Handle    breed(Beagle::Individual::Bag& inBreedingPool,

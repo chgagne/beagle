@@ -97,7 +97,7 @@ void RegisterReadOp::registerParams(Beagle::System& ioSystem)
 		                ioSystem.getRegister().insertEntry("ec.conf.file", new String(""), lDescription));
 	}
 
-	Beagle_StackTraceEndM("void RegisterReadOp::registerParams(System&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -126,7 +126,6 @@ void RegisterReadOp::operate(Deme& ioDeme, Context& ioContext)
 	}
 	Beagle_LogInfoM(
 	    ioContext.getSystem().getLogger(),
-	    "configuration", "Beagle::RegisterReadOp",
 	    std::string("Reading system in file '")+lFileName+"'"
 	);
 	PACC::XML::Document lDocument(lStream, lFileName);
@@ -135,5 +134,5 @@ void RegisterReadOp::operate(Deme& ioDeme, Context& ioContext)
 	PACC::XML::ConstIterator lPos = lFinder.find("Beagle//Register");
 	while(lPos) ioContext.getSystem().getRegister().readWithSystem(lPos, ioContext.getSystem());
 
-	Beagle_StackTraceEndM("void RegisterReadOp::operate(Deme&, Context&)");
+	Beagle_StackTraceEndM();
 }

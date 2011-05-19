@@ -127,7 +127,7 @@ void StatsCalculateOp::calculateStatsVivarium(Stats& outStats,
 			outStats[i].mMin = lMin;
 		}
 	}
-	Beagle_StackTraceEndM("void StatsCalculateOp::calculateStatsVivarium(Stats& outStats, Vivarium& ioVivarium, Context& ioContext) const");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -154,7 +154,7 @@ void StatsCalculateOp::registerParams(System& ioSystem)
 	mPopSize = castHandleT<UIntArray>(
 	               ioSystem.getRegister().insertEntry("ec.pop.size", new UIntArray(1,100), lDescription));
 
-	Beagle_StackTraceEndM("void StatsCalculateOp::registerParams(System&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -168,7 +168,6 @@ void StatsCalculateOp::operate(Deme& ioDeme, Context& ioContext)
 	Beagle_StackTraceBeginM();
 	Beagle_LogTraceM(
 	    ioContext.getSystem().getLogger(),
-	    "stats", "Beagle::StatsCalculateOp",
 	    string("Calculating stats for the ")+
 	    uint2ordinal(ioContext.getDemeIndex()+1)+" deme"
 	);
@@ -191,18 +190,11 @@ void StatsCalculateOp::operate(Deme& ioDeme, Context& ioContext)
 		ioDeme.getStats()->setValid();
 	}
 
-	Beagle_LogObjectM(
-	    ioContext.getSystem().getLogger(),
-	    Logger::eStats,
-	    "stats",
-	    "Beagle::StatsCalculateOp",
-	    *ioDeme.getStats()
-	);
+	Beagle_LogStatsM(ioContext.getSystem().getLogger(), *ioDeme.getStats());
 
 	if(++mNbDemesCalculated == mPopSize->size()) {
 		Beagle_LogTraceM(
 		    ioContext.getSystem().getLogger(),
-		    "stats", "Beagle::StatsCalculateOp",
 		    "Calculating stats for the vivarium"
 		);
 
@@ -219,13 +211,8 @@ void StatsCalculateOp::operate(Deme& ioDeme, Context& ioContext)
 		                       ioContext);
 		ioContext.getVivarium().getStats()->setValid();
 
-		Beagle_LogObjectM(
-		    ioContext.getSystem().getLogger(),
-		    Logger::eStats,
-		    "stats", "Beagle::StatsCalculateOp",
-		    *ioContext.getVivarium().getStats()
-		);
+		Beagle_LogStatsM(ioContext.getSystem().getLogger(), *ioContext.getVivarium().getStats());
 	}
-	Beagle_StackTraceEndM("void StatsCalculateOp::operate(Deme& ioDeme, Context& ioContext)");
+	Beagle_StackTraceEndM();
 }
 

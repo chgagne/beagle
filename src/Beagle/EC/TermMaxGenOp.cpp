@@ -71,7 +71,7 @@ void TermMaxGenOp::registerParams(System& ioSystem)
 	mMaxGeneration = castHandleT<UInt>(
 	                     ioSystem.getRegister().insertEntry("ec.term.maxgen", new UInt(50), lDescription));
 
-	Beagle_StackTraceEndM("void TermMaxGenOp::registerParams(System&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -87,7 +87,6 @@ bool TermMaxGenOp::terminate(const Deme& ioDeme, Context& ioContext)
 	if(mMaxGeneration->getWrappedValue() == 0) {
 		Beagle_LogTraceM(
 		    ioContext.getSystem().getLogger(),
-		    "termination", "Beagle::TermMaxGenOp",
 		    std::string("Maximum number of generations (") +
 		    uint2str(mMaxGeneration->getWrappedValue()) +
 		    std::string(") termination criterion disabled")
@@ -97,14 +96,12 @@ bool TermMaxGenOp::terminate(const Deme& ioDeme, Context& ioContext)
 	if(ioContext.getGeneration() > mMaxGeneration->getWrappedValue()) {
 		Beagle_LogInfoM(
 		    ioContext.getSystem().getLogger(),
-		    "termination", "Beagle::TermMaxGenOp",
 		    std::string("Maximum number of generations (") +
 		    uint2str(mMaxGeneration->getWrappedValue()) +
 		    std::string(") termination criterion overpassed")
 		);
 		Beagle_LogDetailedM(
 		    ioContext.getSystem().getLogger(),
-		    "termination", "Beagle::TermMaxGenOp",
 		    std::string("Actual generation number is: ")+uint2str(ioContext.getGeneration())
 		);
 		return true;
@@ -113,7 +110,6 @@ bool TermMaxGenOp::terminate(const Deme& ioDeme, Context& ioContext)
 	        (ioContext.getDemeIndex() == (ioContext.getVivarium().size()-1))) {
 		Beagle_LogInfoM(
 		    ioContext.getSystem().getLogger(),
-		    "termination", "Beagle::TermMaxGenOp",
 		    std::string("Maximum number of generations (") +
 		    uint2str(mMaxGeneration->getWrappedValue()) +
 		    std::string(") termination criterion reached")
@@ -122,13 +118,12 @@ bool TermMaxGenOp::terminate(const Deme& ioDeme, Context& ioContext)
 	}
 	Beagle_LogTraceM(
 	    ioContext.getSystem().getLogger(),
-	    "termination", "Beagle::TermMaxGenOp",
 	    std::string("Maximum number of generations (") +
 	    uint2str(mMaxGeneration->getWrappedValue()) +
 	    std::string(") termination criterion not reached")
 	);
 	return false;
-	Beagle_StackTraceEndM("bool TermMaxGenOp::terminate(const Deme& ioDeme, Context& ioContext)");
+	Beagle_StackTraceEndM();
 }
 
 

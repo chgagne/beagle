@@ -60,7 +60,7 @@ void History::flush()
 	mTracesFirst = mTracesCount;
 	mTraces.clear();
 
-	Beagle_StackTraceEndM("void History::flush()");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -73,10 +73,9 @@ void History::init(System& ioSystem)
 	Beagle_StackTraceBeginM();
 	Beagle_LogDetailedM(
 	    ioSystem.getLogger(),
-	    "history", "Beagle::History",
 	    "Post-initializing history component"
 	);
-	Beagle_StackTraceEndM("void History::init(System&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -147,7 +146,7 @@ void History::readWithSystem(PACC::XML::ConstIterator inIter, System& ioSystem)
 		}
 	}
 
-	Beagle_StackTraceEndM("void History::readWithSystem(PACC::XML::ConstIterator,System&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -160,7 +159,6 @@ void History::registerParams(System& ioSystem)
 	Beagle_StackTraceBeginM();
 	Beagle_LogDetailedM(
 	    ioSystem.getLogger(),
-	    "history", "Beagle::History",
 	    "Initializing history component"
 	);
 	{
@@ -176,7 +174,7 @@ void History::registerParams(System& ioSystem)
 	mTracesFirst = 0;
 	mTracesCount = 0;
 	mTraces.clear();
-	Beagle_StackTraceEndM("void History::registerParams(System&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -206,7 +204,7 @@ void History::writeContent(PACC::XML::Streamer& ioStreamer, bool inIndent) const
 		}
 	}
 
-	Beagle_StackTraceEndM("void History::writeContent(PACC::XML::Streamer&,bool) const");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -296,13 +294,8 @@ void History::trace(Context& ioContext,
 	}
 
 	// Log trace.
-	Beagle_LogObjectM(
-	    ioContext.getSystem().getLogger(),
-	    Beagle::Logger::eTrace,
-	    "history", "Beagle::History",
-	    *lHistoryTrace
-	);
+	Beagle_LogTraceM(ioContext.getSystem().getLogger(), *lHistoryTrace);
 
-	Beagle_StackTraceEndM("void History::trace(Context&,const std::vector<HistoryID>&,const Individual::Handle inIndividual,const std::string&,const std::string&)");
+	Beagle_StackTraceEndM();
 }
 

@@ -122,7 +122,7 @@ public:
 		Factory::AllocatorMap::const_iterator lIterAllocMap = mAllocatorMap.find(inTypeName);
 		if(lIterAllocMap == mAllocatorMap.end()) return NULL;
 		return lIterAllocMap->second;
-		Beagle_StackTraceEndM("Allocator::Handle getAllocator(const std::string&) const");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -145,7 +145,7 @@ public:
 			throw Beagle_RunTimeExceptionM(lOSS.str());
 		}
 		return lIterAllocMap->second;
-		Beagle_StackTraceEndM("Allocator::Handle getConceptAllocator(const std::string&) const");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -158,7 +158,7 @@ public:
 		Factory::ConceptMap::const_iterator lIterConceptMap = mConceptMap.find(inConcept);
 		if(lIterConceptMap == mConceptMap.end()) return std::string();
 		return lIterConceptMap->second;
-		Beagle_StackTraceEndM("Allocator::Handle getAllocator(const std::string&) const");
+		Beagle_StackTraceEndM();
 	}
 
 

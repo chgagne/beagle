@@ -63,7 +63,7 @@ void HistoryMarkOp::operate(Deme& ioDeme, Context& ioContext)
 	// Mark every individual in the deme
 	mark(ioDeme, ioContext);
 
-	Beagle_StackTraceEndM("void HistoryMarkOp::operate(Deme&, Context&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -81,6 +81,6 @@ void HistoryMarkOp::mark(Individual::Bag& ioIndividuals, Context& ioContext)
 		}
 	}
 
-	Beagle_StackTraceEndM("void HistoryMarkOp::mark(Individual::Bag&, Context&)");
+	Beagle_StackTraceEndM();
 }
 

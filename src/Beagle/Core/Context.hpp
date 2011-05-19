@@ -88,7 +88,7 @@ public:
 	inline bool getContinueFlag() const {
 		Beagle_StackTraceBeginM();
 		return mContinueFlag;
-		Beagle_StackTraceEndM("bool Context::getContinueFlag() const");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -103,7 +103,7 @@ public:
 			    std::string("Consider Beagle::Context::setDemeHandle() and setDemeIndex()."));
 #endif // BEAGLE_NDEBUG
 		return *mDemeHandle;
-		Beagle_StackTraceEndM("const Deme& Context::getDeme() const");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -118,7 +118,7 @@ public:
 			    std::string("Consider Beagle::Context::setDemeHandle() and setDemeIndex()."));
 #endif // BEAGLE_NDEBUG
 		return *mDemeHandle;
-		Beagle_StackTraceEndM("Deme& Context::getDeme()");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -128,7 +128,7 @@ public:
 	inline Deme::Handle getDemeHandle() {
 		Beagle_StackTraceBeginM();
 		return mDemeHandle;
-		Beagle_StackTraceEndM("Deme::Handle Context::getDemeHandle()");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -138,7 +138,7 @@ public:
 	inline unsigned int getDemeIndex() const {
 		Beagle_StackTraceBeginM();
 		return mDemeIndex;
-		Beagle_StackTraceEndM("unsigned int Context::getDemeIndex() const");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -153,7 +153,7 @@ public:
 			    std::string("Consider Beagle::Context::setEvolverHandle()."));
 #endif // BEAGLE_NDEBUG
 		return *mEvolverHandle;
-		Beagle_StackTraceEndM("const Evolver& Context::getEvolver() const");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -168,7 +168,7 @@ public:
 			    std::string("Consider Beagle::Context::setEvolverHandle()."));
 #endif // BEAGLE_NDEBUG
 		return *mEvolverHandle;
-		Beagle_StackTraceEndM("Evolver& Context::getEvolver()");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -178,7 +178,7 @@ public:
 	inline Evolver::Handle getEvolverHandle() {
 		Beagle_StackTraceBeginM();
 		return mEvolverHandle;
-		Beagle_StackTraceEndM("Evolver::Handle Context::getEvolverHandle()");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -193,7 +193,7 @@ public:
 			    std::string("Consider Beagle::Context::setIndividualHandle() and setIndividualIndex()."));
 #endif // BEAGLE_NDEBUG
 		return *mIndividualHandle;
-		Beagle_StackTraceEndM("const Individual& Context::getIndividual() const");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -208,7 +208,7 @@ public:
 			    std::string("Consider Beagle::Context::setIndividualHandle() and setIndividualIndex()."));
 #endif // BEAGLE_NDEBUG
 		return *mIndividualHandle;
-		Beagle_StackTraceEndM("Individual& Context::getIndividual()");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -218,7 +218,7 @@ public:
 	inline Individual::Handle getIndividualHandle() {
 		Beagle_StackTraceBeginM();
 		return mIndividualHandle;
-		Beagle_StackTraceEndM("Individual::Handle Context::getIndividualHandle()");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -228,7 +228,7 @@ public:
 	inline unsigned int getIndividualIndex() const {
 		Beagle_StackTraceBeginM();
 		return mIndividualIndex;
-		Beagle_StackTraceEndM("unsigned int Context::getIndividualIndex() const");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -243,7 +243,7 @@ public:
 			    std::string("Consider Beagle::Context::setGenotypeHandle()."));
 #endif // BEAGLE_NDEBUG
 		return *mGenotypeHandle;
-		Beagle_StackTraceEndM("const Genotype& Context::getGenotype() const");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -258,7 +258,7 @@ public:
 			    std::string("Consider Beagle::Context::setGenotypeHandle()."));
 #endif // BEAGLE_NDEBUG
 		return *mGenotypeHandle;
-		Beagle_StackTraceEndM("Genotype& Context::getGenotype()");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -268,7 +268,7 @@ public:
 	inline Genotype::Handle getGenotypeHandle() {
 		Beagle_StackTraceBeginM();
 		return mGenotypeHandle;
-		Beagle_StackTraceEndM("Genotype::Handle Context::getGenotypeHandle()");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -278,7 +278,7 @@ public:
 	inline unsigned int getGenotypeIndex() const {
 		Beagle_StackTraceBeginM();
 		return mGenotypeIndex;
-		Beagle_StackTraceEndM("unsigned int Context::getGenotypeIndex() const");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -288,7 +288,7 @@ public:
 	inline unsigned int getGeneration() const {
 		Beagle_StackTraceBeginM();
 		return mGeneration;
-		Beagle_StackTraceEndM("unsigned int Context::getGeneration() const");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -298,7 +298,7 @@ public:
 	inline unsigned int getSelectionIndex() const {
 		Beagle_StackTraceBeginM();
 		return mSelectionIndex;
-		Beagle_StackTraceEndM("unsigned int Context::getSelectionIndex() const");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -307,7 +307,7 @@ public:
 	inline unsigned int getProcessedDeme() const {
 		Beagle_StackTraceBeginM();
 		return mProcessedDeme;
-		Beagle_StackTraceEndM("unsigned int Context::getProcessedDeme() const");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -316,7 +316,7 @@ public:
 	inline unsigned int getTotalProcessedDeme() const {
 		Beagle_StackTraceBeginM();
 		return mTotalProcDeme;
-		Beagle_StackTraceEndM("unsigned int Context::getTotalProcessedDeme() const");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -325,7 +325,7 @@ public:
 	inline unsigned int getProcessedVivarium() const {
 		Beagle_StackTraceBeginM();
 		return mProcessedViva;
-		Beagle_StackTraceEndM("unsigned int Context::getProcessedVivarium() const");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -334,7 +334,7 @@ public:
 	inline unsigned int getTotalProcessedVivarium() const {
 		Beagle_StackTraceBeginM();
 		return mTotalProcViva;
-		Beagle_StackTraceEndM("unsigned int Context::getTotalProcessedVivarium() const");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -349,7 +349,7 @@ public:
 			    std::string("Consider Beagle::Context::setSystemHandle()."));
 #endif // BEAGLE_NDEBUG
 		return *mSystemHandle;
-		Beagle_StackTraceEndM("const System& Context::getSystem() const");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -364,7 +364,7 @@ public:
 			    std::string("Consider Beagle::Context::setSystemHandle()."));
 #endif // BEAGLE_NDEBUG
 		return *mSystemHandle;
-		Beagle_StackTraceEndM("System& Context::getSystem()");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -374,7 +374,7 @@ public:
 	inline System::Handle getSystemHandle() {
 		Beagle_StackTraceBeginM();
 		return mSystemHandle;
-		Beagle_StackTraceEndM("System::Handle Context::getSystemHandle()");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -389,7 +389,7 @@ public:
 			    std::string("Consider Beagle::Context::setVivariumHandle()."));
 #endif // BEAGLE_NDEBUG
 		return *mVivariumHandle;
-		Beagle_StackTraceEndM("const Vivarium& Context::getVivarium() const");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -404,7 +404,7 @@ public:
 			    std::string("Consider Beagle::Context::setVivariumHandle()."));
 #endif // BEAGLE_NDEBUG
 		return *mVivariumHandle;
-		Beagle_StackTraceEndM("Vivarium& Context::getVivarium()");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -414,7 +414,7 @@ public:
 	inline Vivarium::Handle getVivariumHandle() {
 		Beagle_StackTraceBeginM();
 		return mVivariumHandle;
-		Beagle_StackTraceEndM("Vivarium::Handle Context::getVivariumHandle()");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -424,7 +424,7 @@ public:
 	inline bool isTerminationSuccessful() const {
 		Beagle_StackTraceBeginM();
 		return mSuccessfulTermination;
-		Beagle_StackTraceEndM("bool Context::isTerminationSuccessful() const");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -434,7 +434,7 @@ public:
 	inline void setContinueFlag(bool inContinueFlag) {
 		Beagle_StackTraceBeginM();
 		mContinueFlag = inContinueFlag;
-		Beagle_StackTraceEndM("void Context::setContinueFlag(bool inContinueFlag)");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -444,7 +444,7 @@ public:
 	inline void setDemeHandle(Deme::Handle inDemeHandle) {
 		Beagle_StackTraceBeginM();
 		mDemeHandle = inDemeHandle;
-		Beagle_StackTraceEndM("void Context::setDemeHandle(Deme::Handle inDemeHandle)");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -454,7 +454,7 @@ public:
 	inline void setDemeIndex(unsigned int inDemeIndex) {
 		Beagle_StackTraceBeginM();
 		mDemeIndex = inDemeIndex;
-		Beagle_StackTraceEndM("void Context::setDemeIndex(unsigned int inDemeIndex)");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -464,7 +464,7 @@ public:
 	inline void setEvolverHandle(Evolver::Handle inEvolverHandle) {
 		Beagle_StackTraceBeginM();
 		mEvolverHandle = inEvolverHandle;
-		Beagle_StackTraceEndM("void Context::setEvolverHandle(Evolver::Handle inEvolverHandle)");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -474,7 +474,7 @@ public:
 	inline void setIndividualHandle(Individual::Handle inIndividualHandle) {
 		Beagle_StackTraceBeginM();
 		mIndividualHandle = inIndividualHandle;
-		Beagle_StackTraceEndM("void Context::setIndividualHandle(Individual::Handle inIndividualHandle)");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -484,7 +484,7 @@ public:
 	inline void setIndividualIndex(unsigned int inIndividualIndex) {
 		Beagle_StackTraceBeginM();
 		mIndividualIndex = inIndividualIndex;
-		Beagle_StackTraceEndM("void Context::setIndividualIndex(unsigned int inIndividualIndex)");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -494,7 +494,7 @@ public:
 	inline void setGenotypeHandle(Genotype::Handle inGenotypeHandle) {
 		Beagle_StackTraceBeginM();
 		mGenotypeHandle = inGenotypeHandle;
-		Beagle_StackTraceEndM("void Context::setGenotypeHandle(Genotype::Handle inGenotypeHandle)");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -504,7 +504,7 @@ public:
 	inline void setGenotypeIndex(unsigned int inGenotypeIndex) {
 		Beagle_StackTraceBeginM();
 		mGenotypeIndex = inGenotypeIndex;
-		Beagle_StackTraceEndM("void Context::setGenotypeIndex(unsigned int inGenotypeIndex)");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -514,7 +514,7 @@ public:
 	inline void setGeneration(unsigned int inGeneration) {
 		Beagle_StackTraceBeginM();
 		mGeneration = inGeneration;
-		Beagle_StackTraceEndM("void Context::setGeneration(unsigned int inGeneration)");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -524,7 +524,7 @@ public:
 	inline void setSelectionIndex(unsigned int inSelectionIndex) {
 		Beagle_StackTraceBeginM();
 		mSelectionIndex = inSelectionIndex;
-		Beagle_StackTraceEndM("void Context::setSelectionIndex(unsigned int inSelectionIndex)");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -534,7 +534,7 @@ public:
 	inline void setProcessedDeme(unsigned int inProcessedDeme) {
 		Beagle_StackTraceBeginM();
 		mProcessedDeme = inProcessedDeme;
-		Beagle_StackTraceEndM("void Context::setProcessedDeme(unsigned int inProcessedDeme)");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -544,7 +544,7 @@ public:
 	inline void setTotalProcessedDeme(unsigned int inTotalProcDeme) {
 		Beagle_StackTraceBeginM();
 		mTotalProcDeme = inTotalProcDeme;
-		Beagle_StackTraceEndM("void Context::setTotalProcessedDeme(unsigned int inTotalProcDeme)");
+		Beagle_StackTraceEndM();
 	}
 
 
@@ -555,7 +555,7 @@ public:
 	inline void setProcessedVivarium(unsigned int inProcessedViva) {
 		Beagle_StackTraceBeginM();
 		mProcessedViva = inProcessedViva;
-		Beagle_StackTraceEndM("void Context::setProcessedVivarium(unsigned int inProcessedViva)");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -565,7 +565,7 @@ public:
 	inline void setTotalProcessedVivarium(unsigned int inTotalProcViva) {
 		Beagle_StackTraceBeginM();
 		mTotalProcViva = inTotalProcViva;
-		Beagle_StackTraceEndM("void Context::setTotalProcessedVivarium(unsigned int inTotalProcViva)");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -575,7 +575,7 @@ public:
 	inline void setSystemHandle(System::Handle inSystemHandle) {
 		Beagle_StackTraceBeginM();
 		mSystemHandle = inSystemHandle;
-		Beagle_StackTraceEndM("void Context::setSystemHandle(System::Handle inSystemHandle)");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -585,7 +585,7 @@ public:
 	inline void setTerminationSuccessful(bool inSuccessfulTermination=true) {
 		Beagle_StackTraceBeginM();
 		mSuccessfulTermination = inSuccessfulTermination;
-		Beagle_StackTraceEndM("void Context::setTerminationSuccessful(bool isTerminationSuccessful)");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -595,7 +595,7 @@ public:
 	inline void setVivariumHandle(Vivarium::Handle inVivariumHandle) {
 		Beagle_StackTraceBeginM();
 		mVivariumHandle = inVivariumHandle;
-		Beagle_StackTraceEndM("void Context::setVivariumHandle(Vivarium::Handle inVivariumHandle)");
+		Beagle_StackTraceEndM();
 	}
 
 protected:

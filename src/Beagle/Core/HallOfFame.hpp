@@ -117,7 +117,7 @@ public:
 		Beagle_StackTraceBeginM();
 		Beagle_UpperBoundCheckAssertM(inN,mEntries.size()-1);
 		return mEntries[inN];
-		Beagle_StackTraceEndM("const HallOfFame::Entry& HallOfFame::operator[](unsigned int) const");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -129,7 +129,7 @@ public:
 		Beagle_StackTraceBeginM();
 		Beagle_UpperBoundCheckAssertM(inN,mEntries.size()-1);
 		return mEntries[inN];
-		Beagle_StackTraceEndM("HallOfFame::Entry& HallOfFame::operator[](unsigned int)");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -138,7 +138,7 @@ public:
 	inline void clear() {
 		Beagle_StackTraceBeginM();
 		mEntries.clear();
-		Beagle_StackTraceEndM("void clear()");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -147,7 +147,7 @@ public:
 	inline unsigned int size() const {
 		Beagle_StackTraceBeginM();
 		return mEntries.size();
-		Beagle_StackTraceEndM("unsigned int HallOfFame::size() const");
+		Beagle_StackTraceEndM();
 	}
 
 protected:

@@ -133,7 +133,7 @@ void DataSetRegression::readWithSystem(PACC::XML::ConstIterator inIter, System& 
 		}
 	}
 
-	Beagle_StackTraceEndM("void DataSetRegression::readWithSystem(PACC::XML::ConstIterator, System&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -153,5 +153,5 @@ void DataSetRegression::writeContent(PACC::XML::Streamer& ioStreamer, bool inInd
 		(*this)[i].second.write(ioStreamer, false);
 		ioStreamer.closeTag();
 	}
-	Beagle_StackTraceEndM("void DataSetRegression::writeContent(PACC::XML::Streamer&, bool) const");
+	Beagle_StackTraceEndM();
 }

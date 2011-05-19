@@ -149,7 +149,7 @@ void Beagle::EC::CrossoverUniformOpT<T>::registerParams(Beagle::System& ioSystem
 		mDistribProba = castHandleT<Double>(
 		                    ioSystem.getRegister().insertEntry(mDistribProbaName, new Double(0.5), lDescription));
 	}
-	Beagle_StackTraceEndM("void GA::CrossoverUniformOpT<T>::registerParams(System&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -171,21 +171,8 @@ bool Beagle::EC::CrossoverUniformOpT<T>::mate(Beagle::Individual& ioIndiv1,
 	unsigned int lNbGenotypes = minOf<unsigned int>(ioIndiv1.size(), ioIndiv2.size());
 	if(lNbGenotypes == 0) return false;
 
-	Beagle_LogDebugM(
-	    ioContext1.getSystem().getLogger(),
-	    "crossover", "Beagle::GA::CrossoverUniformOpT",
-	    "Individuals mated (before GA uniform crossover)"
-	);
-	Beagle_LogObjectDebugM(
-	    ioContext1.getSystem().getLogger(),
-	    "crossover", "Beagle::GA::CrossoverUniformOpT",
-	    ioIndiv1
-	);
-	Beagle_LogObjectDebugM(
-	    ioContext1.getSystem().getLogger(),
-	    "crossover", "Beagle::GA::CrossoverUniformOpT",
-	    ioIndiv2
-	);
+	Beagle_LogDebugM(ioContext1.getSystem().getLogger(), ioIndiv1);
+	Beagle_LogDebugM(ioContext1.getSystem().getLogger(), ioIndiv2);
 
 	for(unsigned int i=0; i<lNbGenotypes; ++i) {
 		typename T::Handle lGenotype1 = castHandleT<T>(ioIndiv1[i]);
@@ -201,26 +188,11 @@ bool Beagle::EC::CrossoverUniformOpT<T>::mate(Beagle::Individual& ioIndiv1,
 		}
 	}
 
-	Beagle_LogDebugM(
-	    ioContext1.getSystem().getLogger(),
-	    "crossover", "Beagle::GA::CrossoverUniformOpT",
-	    "Individuals mated (after GA uniform crossover)"
-	);
-	Beagle_LogObjectDebugM(
-	    ioContext1.getSystem().getLogger(),
-	    "crossover",
-	    "Beagle::GA::CrossoverUniformOpT",
-	    ioIndiv1
-	);
-	Beagle_LogObjectDebugM(
-	    ioContext1.getSystem().getLogger(),
-	    "crossover",
-	    "Beagle::GA::CrossoverUniformOpT",
-	    ioIndiv2
-	);
+	Beagle_LogDebugM(ioContext1.getSystem().getLogger(), ioIndiv1);
+	Beagle_LogDebugM(ioContext1.getSystem().getLogger(), ioIndiv2);
 
 	return true;
-	Beagle_StackTraceEndM("bool GA::CrossoverUniformOpT<T>::mate(Individual& ioIndiv1, Context& ioContext1, Individual& ioIndiv2, Context& ioContext2)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -245,7 +217,7 @@ void Beagle::EC::CrossoverUniformOpT<T>::readWithSystem(PACC::XML::ConstIterator
 	// For backward compatibility, accept ancient name "mutdistribpb"
 	std::string lDistribProbaReadNameLegacy = inIter->getAttribute("mutdistribpb");
 	if(lDistribProbaReadNameLegacy.empty() == false) mDistribProbaName = lDistribProbaReadNameLegacy;
-	Beagle_StackTraceEndM("void GA::CrossoverUniformOpT<T>::readWithSystem(PACC::XML::ConstIterator, System&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -260,7 +232,7 @@ void Beagle::EC::CrossoverUniformOpT<T>::writeContent(PACC::XML::Streamer& ioStr
 	Beagle_StackTraceBeginM();
 	CrossoverOp::writeContent(ioStreamer, inIndent);
 	ioStreamer.insertAttribute("distrpb", mDistribProbaName);
-	Beagle_StackTraceEndM("void GA::CrossoverUniformOpT<T>::writeContent(PACC::XML::Streamer& ioStreamer, bool inIndent) const");
+	Beagle_StackTraceEndM();
 }
 
 

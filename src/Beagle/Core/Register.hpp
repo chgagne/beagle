@@ -120,7 +120,7 @@ public:
 		Map::iterator lIterObj = mParameters.find(inTag);
 		if(lIterObj == mParameters.end()) return Object::Handle(NULL);
 		else return lIterObj->second;
-		Beagle_StackTraceEndM("Object::Handle Register::operator[](const std::string&)");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -134,7 +134,7 @@ public:
 		Map::const_iterator lIterObj = mParameters.find(inTag);
 		if(lIterObj == mParameters.end()) return Object::Handle(NULL);
 		else return lIterObj->second;
-		Beagle_StackTraceEndM("const Object::Handle Register::operator[](const std::string&) const");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -148,7 +148,7 @@ public:
 		Map::iterator lIterObj = mParameters.find(inTag);
 		if(lIterObj == mParameters.end()) return Object::Handle(NULL);
 		else return lIterObj->second;
-		Beagle_StackTraceEndM("Object::Handle Register::getEntry(const std::string&)");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -162,7 +162,7 @@ public:
 		Map::const_iterator lIterObj = mParameters.find(inTag);
 		if(lIterObj == mParameters.end()) return Object::Handle(NULL);
 		else return lIterObj->second;
-		Beagle_StackTraceEndM("const Object::Handle Register::getEntry(const std::string&) const");
+		Beagle_StackTraceEndM();
 	}
 
 protected:

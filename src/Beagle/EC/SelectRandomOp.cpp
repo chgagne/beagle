@@ -61,7 +61,7 @@ unsigned int SelectRandomOp::selectOneIndividual(Individual::Bag& ioPool, Contex
 	Beagle_StackTraceBeginM();
 	if(ioPool.size() < 2) return 0;
 	return ioContext.getSystem().getRandomizer().rollInteger(0, ioPool.size()-1);
-	Beagle_StackTraceEndM("unsigned int SelectRandomOp::selectIndividual(Individual::Bag& ioPool, Context& ioContext)");
+	Beagle_StackTraceEndM();
 }
 
 

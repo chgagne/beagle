@@ -71,7 +71,7 @@ void SelectTournamentOp::registerParams(System& ioSystem)
 	mNumberParticipants = castHandleT<UInt>(
 	                          ioSystem.getRegister().insertEntry("ec.sel.tournsize", new UInt(2), lDescription));
 
-	Beagle_StackTraceEndM("void SelectTournamentOp::registerParams(System&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -91,7 +91,6 @@ unsigned int SelectTournamentOp::selectOneIndividual(Individual::Bag& ioPool, Co
 	    ioContext.getSystem().getRandomizer().rollInteger(0,((unsigned int)ioPool.size())-1);
 	Beagle_LogDebugM(
 	    ioContext.getSystem().getLogger(),
-	    "selection", "Beagle::SelectTournamentOp",
 	    std::string("Starting by choosing the ")+
 	    uint2ordinal(lChoosenIndividual+1)+" individual"
 	);
@@ -103,14 +102,12 @@ unsigned int SelectTournamentOp::selectOneIndividual(Individual::Bag& ioPool, Co
 			lChoosenIndividual = lTriedIndividual;
 			Beagle_LogDebugM(
 			    ioContext.getSystem().getLogger(),
-			    "selection", "Beagle::SelectTournamentOp",
 			    std::string("Trying the ")+uint2ordinal(lTriedIndividual+1)+
 			    " individual -> choosing it"
 			);
 		} else {
 			Beagle_LogDebugM(
 			    ioContext.getSystem().getLogger(),
-			    "selection", "Beagle::SelectTournamentOp",
 			    std::string("Trying the ")+uint2ordinal(lTriedIndividual+1)+
 			    " individual -> the previously choosen one is better"
 			);
@@ -119,17 +116,10 @@ unsigned int SelectTournamentOp::selectOneIndividual(Individual::Bag& ioPool, Co
 
 	Beagle_LogDebugM(
 	    ioContext.getSystem().getLogger(),
-	    "selection",
-	    "Beagle::SelectTournamentOp",
-	    std::string("Selecting the ")+uint2ordinal(lChoosenIndividual+1)+" individual"
+	    "Selecting the " << uint2ordinal(lChoosenIndividual+1) << " individual"
 	);
-	Beagle_LogObjectDebugM(
-	    ioContext.getSystem().getLogger(),
-	    "selection",
-	    "Beagle::SelectTournamentOp",
-	    *ioPool[lChoosenIndividual]
-	);
+	Beagle_LogDebugM(ioContext.getSystem().getLogger(), *ioPool[lChoosenIndividual]);
 
 	return lChoosenIndividual;
-	Beagle_StackTraceEndM("unsigned int SelectTournamentOp::selectIndividual(Individual::Bag& ioPool, Context& ioContext)");
+	Beagle_StackTraceEndM();
 }

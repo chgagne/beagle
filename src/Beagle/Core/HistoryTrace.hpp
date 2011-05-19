@@ -88,7 +88,7 @@ public:
 	inline unsigned int getDemeID() const {
 		Beagle_StackTraceBeginM();
 		return mDemeID;
-		Beagle_StackTraceEndM("unsigned int HistoryTrace::getDemeID() const");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -98,7 +98,7 @@ public:
 	inline void setDemeID(unsigned int inDemeID) {
 		Beagle_StackTraceBeginM();
 		mDemeID = inDemeID;
-		Beagle_StackTraceEndM("void HistoryTrace::setDemeID(unsigned int inDemeID)");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -107,7 +107,7 @@ public:
 	inline unsigned int getIndividualID() const {
 		Beagle_StackTraceBeginM();
 		return mIndividualID;
-		Beagle_StackTraceEndM("unsigned int HistoryTrace::getIndividualID() const");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -117,7 +117,7 @@ public:
 	inline void setIndividualID(unsigned int inIndividualID) {
 		Beagle_StackTraceBeginM();
 		mIndividualID = inIndividualID;
-		Beagle_StackTraceEndM("void HistoryTrace::setIndividualID(unsigned int inIndividualID)");
+		Beagle_StackTraceEndM();
 	}
 
 protected:

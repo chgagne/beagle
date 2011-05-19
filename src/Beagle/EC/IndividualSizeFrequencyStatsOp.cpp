@@ -86,7 +86,7 @@ void UsageCount::write(PACC::XML::Streamer& ioStreamer, bool inIndent) const
 		ioStreamer.closeTag();
 	}
 	ioStreamer.closeTag();
-	Beagle_StackTraceEndM("void UsageCount::write(PACC::XML::Streamer& ioStreamer, bool inIndent) const");
+	Beagle_StackTraceEndM();
 }
 
 }
@@ -118,11 +118,6 @@ void IndividualSizeFrequencyStatsOp::operate(Beagle::Deme& ioDeme, Beagle::Conte
 	}
 
 	// Display usage statistics
-	Beagle_LogObjectM(
-	    ioContext.getSystem().getLogger(),
-	    Logger::eStats,
-	    "stats", "Beagle::IndividualSizeFrequencyStatsOp",
-	    lCounter
-	);
-	Beagle_StackTraceEndM("void IndividualSizeFrequencyStatsOp::operate(Beagle::Deme& ioDeme, Beagle::Context& ioContext)");
+	Beagle_LogStatsM(ioContext.getSystem().getLogger(), lCounter);
+	Beagle_StackTraceEndM();
 }

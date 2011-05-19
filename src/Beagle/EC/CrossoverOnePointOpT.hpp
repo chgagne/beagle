@@ -121,7 +121,7 @@ void Beagle::EC::CrossoverOnePointOpT<T>::registerParams(Beagle::System& ioSyste
 		                   ioSystem.getRegister().insertEntry(mMatingProbaName, new Double(0.3f), lProbaDescription));
 	}
 	EC::CrossoverOp::registerParams(ioSystem);
-	Beagle_StackTraceEndM("void GA::CrossoverOnePointOpT<T>::registerParams(System& ioSystem)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -149,26 +149,11 @@ bool Beagle::EC::CrossoverOnePointOpT<T>::mate(Beagle::Individual& ioIndiv1,
 		if(lSize < 2) return false;
 		unsigned int lMatingPoint = ioContext1.getSystem().getRandomizer().rollInteger(1, (lSize-1));
 
-		Beagle_LogDebugM(
-		    ioContext1.getSystem().getLogger(),
-		    "crossover", "Beagle::EC::CrossoverOnePointOpT",
-		    "Genotypes mated (before one point crossover)"
-		);
-		Beagle_LogObjectDebugM(
-		    ioContext1.getSystem().getLogger(),
-		    "crossover", "Beagle::EC::CrossoverOnePointOpT",
-		    *lGenotype1
-		);
-		Beagle_LogObjectDebugM(
-		    ioContext1.getSystem().getLogger(),
-		    "crossover", "Beagle::EC::CrossoverOnePointOpT",
-		    *lGenotype2
-		);
+		Beagle_LogDebugM(ioContext1.getSystem().getLogger(), *lGenotype1);
+		Beagle_LogDebugM(ioContext1.getSystem().getLogger(), *lGenotype2);
 		Beagle_LogVerboseM(
 		    ioContext1.getSystem().getLogger(),
-		    "crossover", "Beagle::EC::CrossoverOnePointOpT",
-		    std::string("Mating individuals before the ")+
-		    uint2ordinal(lMatingPoint+1)+std::string(" element")
+		    "Mating individuals before the " << uint2ordinal(lMatingPoint+1) << " element"
 		);
 
 		for(unsigned int i=0; i<lMatingPoint; ++i) {
@@ -177,21 +162,8 @@ bool Beagle::EC::CrossoverOnePointOpT<T>::mate(Beagle::Individual& ioIndiv1,
 			(*lGenotype2)[i] = lTemp;
 		}
 
-		Beagle_LogDebugM(
-		    ioContext1.getSystem().getLogger(),
-		    "crossover", "Beagle::EC::CrossoverOnePointOpT",
-		    "Genotypes mated (after GA one point crossover)"
-		);
-		Beagle_LogObjectDebugM(
-		    ioContext1.getSystem().getLogger(),
-		    "crossover", "Beagle::EC::CrossoverOnePointOpT",
-		    *lGenotype1
-		);
-		Beagle_LogObjectDebugM(
-		    ioContext1.getSystem().getLogger(),
-		    "crossover", "Beagle::EC::CrossoverOnePointOpT",
-		    *lGenotype2
-		);
+		Beagle_LogDebugM(ioContext1.getSystem().getLogger(), *lGenotype1);
+		Beagle_LogDebugM(ioContext1.getSystem().getLogger(), *lGenotype2);
 	} else {
 		unsigned int lTotalSize = 0;
 		std::vector<unsigned int> lSizes;
@@ -213,29 +185,15 @@ bool Beagle::EC::CrossoverOnePointOpT<T>::mate(Beagle::Individual& ioIndiv1,
 
 		Beagle_LogVerboseM(
 		    ioContext1.getSystem().getLogger(),
-		    "crossover", "Beagle::EC::CrossoverOnePointOpT",
-		    std::string("Mating the ")+uint2ordinal(lMatingGenotype+1)+
-		    std::string(" genotypes before the ")+uint2ordinal(lMatingPoint+1)+std::string(" element")
+		    "Mating the " << uint2ordinal(lMatingGenotype+1) <<
+		    " genotypes before the " << uint2ordinal(lMatingPoint+1) << " element"
 		);
 
 		typename T::Handle lGenotype1 = castHandleT<T>(ioIndiv1[lMatingGenotype]);
 		typename T::Handle lGenotype2 = castHandleT<T>(ioIndiv2[lMatingGenotype]);
 
-		Beagle_LogDebugM(
-		    ioContext1.getSystem().getLogger(),
-		    "crossover", "Beagle::EC::CrossoverOnePointOpT",
-		    "Genotypes mated (before one point crossover)"
-		);
-		Beagle_LogObjectDebugM(
-		    ioContext1.getSystem().getLogger(),
-		    "crossover", "Beagle::EC::CrossoverOnePointOpT",
-		    *lGenotype1
-		);
-		Beagle_LogObjectDebugM(
-		    ioContext1.getSystem().getLogger(),
-		    "crossover", "Beagle::EC::CrossoverOnePointOpT",
-		    *lGenotype2
-		);
+		Beagle_LogDebugM(ioContext1.getSystem().getLogger(), *lGenotype1);
+		Beagle_LogDebugM(ioContext1.getSystem().getLogger(), *lGenotype2);
 
 		for(unsigned int i=0; i<lMatingPoint; ++i) {
 			typename T::value_type lTemp = (*lGenotype1)[i];
@@ -243,25 +201,12 @@ bool Beagle::EC::CrossoverOnePointOpT<T>::mate(Beagle::Individual& ioIndiv1,
 			(*lGenotype2)[i] = lTemp;
 		}
 
-		Beagle_LogDebugM(
-		    ioContext1.getSystem().getLogger(),
-		    "crossover",  "Beagle::EC::CrossoverOnePointOpT",
-		    "Genotypes mated (after one point crossover)"
-		);
-		Beagle_LogObjectDebugM(
-		    ioContext1.getSystem().getLogger(),
-		    "crossover",  "Beagle::EC::CrossoverOnePointOpT",
-		    *lGenotype1
-		);
-		Beagle_LogObjectDebugM(
-		    ioContext1.getSystem().getLogger(),
-		    "crossover",  "Beagle::EC::CrossoverOnePointOpT",
-		    *lGenotype2
-		);
+		Beagle_LogDebugM(ioContext1.getSystem().getLogger(), *lGenotype1);
+		Beagle_LogDebugM(ioContext1.getSystem().getLogger(), *lGenotype2);
 	}
 
 	return true;
-	Beagle_StackTraceEndM("bool GA::CrossoverOnePointOpT<T>::mate(Individual& ioIndiv1, Context& ioContext1, Individual& ioIndiv2, Context& ioContext)");
+	Beagle_StackTraceEndM();
 
 }
 

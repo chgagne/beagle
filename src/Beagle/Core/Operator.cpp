@@ -70,7 +70,7 @@ void Operator::read(PACC::XML::ConstIterator)
 
 	throw Beagle_UndefinedMethodInternalExceptionM("read", "Operator", getName());
 
-	Beagle_StackTraceEndM("void Operator::read(PACC::XML::ConstIterator)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -90,7 +90,7 @@ void Operator::readWithSystem(PACC::XML::ConstIterator inIter, System& ioSystem)
 		throw Beagle_IOExceptionNodeM(*inIter, lOSS.str());
 	}
 
-	Beagle_StackTraceEndM("void Operator::readWithSystem(PACC::XML::ConstIterator, System&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -116,6 +116,6 @@ void Operator::write(PACC::XML::Streamer& ioStreamer, bool inIndent) const
 	ioStreamer.openTag(getName(), inIndent);
 	ioStreamer.closeTag();
 
-	Beagle_StackTraceEndM("void Operator::write(PACC::XML::Streamer&, bool) const");
+	Beagle_StackTraceEndM();
 }
 

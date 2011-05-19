@@ -41,6 +41,7 @@
 #include <fstream>
 #include <string>
 #include <list>
+#include <sstream>
 
 #include "Beagle/config.hpp"
 #include "Beagle/macros.hpp"
@@ -52,81 +53,70 @@
 
 #include "PACC/Util/Date.hpp"
 
+
 /*!
  *  \def Beagle_LogBasicM
  *  \brief Log given message if log level is equal to or more than "Basic (1)".
  *  \param ioLogger Logger to log message into.
- *  \param inType Type of the message to log.
- *  \param inClass Class name associated to the message to log.
  *  \param inMessage Message to log.
  *  \ingroup Sys
  */
-#define Beagle_LogBasicM(ioLogger, inType, inClass, inMessage) \
-ioLogger.log(inMessage, Beagle::Logger::eBasic, inType, inClass)
+#define Beagle_LogBasicM(ioLogger, inMessage) \
+if(ioLogger.shouldLog(Beagle::Logger::eBasic)) {std::ostringstream lOSS; lOSS << inMessage; ioLogger.log(lOSS.str(), Beagle::Logger::eBasic, __FILE__, __PRETTY_FUNCTION__);}
 
 /*!
  *  \def Beagle_LogStatsM
  *  \brief Log given message if log level is equal to or more than "Stats (2)".
  *  \param ioLogger Logger to log message into.
- *  \param inType Type of the message to log.
- *  \param inClass Class name associated to the message to log.
  *  \param inMessage Message to log.
  *  \ingroup Sys
  */
-#define Beagle_LogStatsM(ioLogger, inType, inClass, inMessage) \
-ioLogger.log(inMessage, Beagle::Logger::eStats, inType, inClass)
+#define Beagle_LogStatsM(ioLogger, inMessage) \
+if(ioLogger.shouldLog(Beagle::Logger::eStats)) {std::ostringstream lOSS; lOSS << inMessage; ioLogger.log(lOSS.str(), Beagle::Logger::eStats, __FILE__, __PRETTY_FUNCTION__);}
 
 /*!
  *  \def Beagle_LogInfoM
  *  \brief Log given message if log level is equal to or more than "Info (3)".
  *  \param ioLogger Logger to log message into.
- *  \param inType Type of the message to log.
- *  \param inClass Class name associated to the message to log.
  *  \param inMessage Message to log.
  *  \ingroup Sys
  */
-#define Beagle_LogInfoM(ioLogger, inType, inClass, inMessage) \
-ioLogger.log(inMessage, Beagle::Logger::eInfo, inType, inClass)
+#define Beagle_LogInfoM(ioLogger, inMessage) \
+if(ioLogger.shouldLog(Beagle::Logger::eInfo)) {std::ostringstream lOSS; lOSS << inMessage; ioLogger.log(lOSS.str(), Beagle::Logger::eInfo, __FILE__, __PRETTY_FUNCTION__);}
 
 /*!
  *  \def Beagle_LogDetailedM
  *  \brief Log given message if log level is equal to or more than "Detailed (4)".
  *  \param ioLogger Logger to log message into.
- *  \param inType Type of the message to log.
- *  \param inClass Class name associated to the message to log.
  *  \param inMessage Message to log.
  *  \ingroup Sys
  */
-#define Beagle_LogDetailedM(ioLogger, inType, inClass, inMessage) \
-ioLogger.log(inMessage, Beagle::Logger::eDetailed, inType, inClass)
+#define Beagle_LogDetailedM(ioLogger, inMessage) \
+if(ioLogger.shouldLog(Beagle::Logger::eDetailed)) {std::ostringstream lOSS; lOSS << inMessage; ioLogger.log(lOSS.str(), Beagle::Logger::eDetailed, __FILE__, __PRETTY_FUNCTION__);}
 
 /*!
  *  \def Beagle_LogTraceM
  *  \brief Log given message if log level is equal to or more than "Trace (5)".
  *  \param ioLogger Logger to log message into.
- *  \param inType Type of the message to log.
- *  \param inClass Class name associated to the message to log.
  *  \param inMessage Message to log.
  *  \ingroup Sys
  */
-#define Beagle_LogTraceM(ioLogger, inType, inClass, inMessage) \
-ioLogger.log(inMessage, Beagle::Logger::eTrace, inType, inClass)
+#define Beagle_LogTraceM(ioLogger, inMessage) \
+if(ioLogger.shouldLog(Beagle::Logger::eTrace)) {std::ostringstream lOSS; lOSS << inMessage; ioLogger.log(lOSS.str(), Beagle::Logger::eTrace, __FILE__, __PRETTY_FUNCTION__);}
 
 /*!
  *  \def Beagle_LogVerboseM
  *  \brief Log given message if log level is equal to or more than "Verbose (6)".
  *    Executed only when the framework is compiled with optimisation mode off.
  *  \param ioLogger Logger to log message into.
- *  \param inType Type of the message to log.
- *  \param inClass Class name associated to the message to log.
  *  \param inMessage Message to log.
  *  \ingroup Sys
  */
 #ifndef BEAGLE_NDEBUG
-#define Beagle_LogVerboseM(ioLogger, inType, inClass, inMessage) \
-ioLogger.log(inMessage, Beagle::Logger::eVerbose, inType, inClass)
+#define Beagle_LogVerboseM(ioLogger, inMessage) \
+if(ioLogger.shouldLog(Beagle::Logger::eVerbose)) {std::ostringstream lOSS; lOSS << inMessage; ioLogger.log(lOSS.str(), Beagle::Logger::eVerbose, __FILE__, __PRETTY_FUNCTION__);}
 #else  // BEAGLE_NDEBUG
-#define Beagle_LogVerboseM(ioLogger,inType, inClass, inMessage)
+#define Beagle_LogVerboseM(ioLogger, inMessage)
 #endif // BEAGLE_NDEBUG
 
 /*!
@@ -135,48 +125,16 @@ ioLogger.log(inMessage, Beagle::Logger::eVerbose, inType, inClass)
  *    Executed only when the framework is compiled with full debug mode activated,
  *    and optimisation mode off.
  *  \param ioLogger Logger to log message into.
- *  \param inType Type of the message to log.
- *  \param inClass Class name associated to the message to log.
  *  \param inMessage Message to log.
  *  \ingroup Sys
  */
 #if defined (BEAGLE_FULL_DEBUG) && ! defined (BEAGLE_NDEBUG)
-#define Beagle_LogDebugM(ioLogger, inType, inClass, inMessage) \
-ioLogger.log(inMessage, Beagle::Logger::eDebug, inType, inClass)
+#define Beagle_LogDebugM(ioLogger, inMessage) \
+if(ioLogger.shouldLog(Beagle::Logger::eDebug)) {std::ostringstream lOSS; lOSS << inMessage; ioLogger.log(lOSS.str(), Beagle::Logger::eDebug, __FILE__, __PRETTY_FUNCTION__);}
 #else  // defined (BEAGLE_FULL_DEBUG) && ! defined (BEAGLE_NDEBUG)
-#define Beagle_LogDebugM(ioLogger, inType, inClass, inObject)
+#define Beagle_LogDebugM(ioLogger, inMessage)
 #endif // defined (BEAGLE_FULL_DEBUG) && ! defined (BEAGLE_NDEBUG)
 
-/*!
- *  \def Beagle_LogObjectM
- *  \brief Log given Beagle object using the given log level.
- *  \param ioLogger Logger to log message into.
- *  \param inLogLevel Log level of the message
- *  \param inType Type of the message to log.
- *  \param inClass Class name associated to the message to log.
- *  \param inObject Beagle object to log.
- *  \ingroup Sys
- */
-#define Beagle_LogObjectM(ioLogger, inLogLevel, inType, inClass, inObject) \
-ioLogger.log((const Beagle::Object&)inObject, inLogLevel, inType, inClass)
-
-/*!
- *  \def Beagle_LogObjectDebugM
- *  \brief Log given Beagle object using log level #7.
- *    Executed only when the framework is compiled with full debug mode activated,
- *    and optimisation turned off.
- *  \param ioLogger Logger to log message into.
- *  \param inType Type of the message to log.
- *  \param inClass Class name associated to the message to log.
- *  \param inObject Beagle object to log.
- *  \ingroup Sys
- */
-#if defined (BEAGLE_FULL_DEBUG) && ! defined (BEAGLE_NDEBUG)
-#define Beagle_LogObjectDebugM(ioLogger, inType, inClass, inObject) \
-ioLogger.log((const Beagle::Object&)inObject, Beagle::Logger::eDebug, inType, inClass)
-#else  // defined (BEAGLE_FULL_DEBUG) && ! defined (BEAGLE_NDEBUG)
-#define Beagle_LogObjectDebugM(ioLogger, inType, inClass, inObject)
-#endif // defined (BEAGLE_FULL_DEBUG) && ! defined (BEAGLE_NDEBUG)
 
 namespace Beagle
 {
@@ -248,10 +206,14 @@ public:
 
 	virtual void registerParams(System& ioSystem);
 
-	void log(const std::string& inMessage, unsigned int inLevel, const std::string& inType="",
-	         const std::string& inClass="");
-	void log(const Object& inObject, unsigned int inLevel, const std::string& inType="",
-	         const std::string& inClass="");
+	void log(std::string inMessage,
+	         unsigned int inLevel,
+	         std::string inFile,
+	         std::string inFunction);
+	void log(const Object& inObject,
+	         unsigned int inLevel,
+	         std::string inFile,
+	         std::string inFunction);
 
 	void logCurrentTime(unsigned int inLevel);
 
@@ -259,25 +221,41 @@ public:
 	 *  \brief Output message to console and file devices.
 	 *  \param inMessage Message to log.
 	 *  \param inLevel Log level of message.
-	 *  \param inType Type of message.
-	 *  \param inClass Class of message.
+	 *  \param inFile Source file where message is produced.
+	 *  \param inFunction Function name where message is produced.
 	 *
 	 *  This method must be overridden in a subclass for writing the message in a
 	 *  specific format.
 	 */
-	virtual void outputMessage(const std::string& inMessage, unsigned int inLevel, const std::string& inType, const std::string& inClass) = 0;
+	virtual void outputMessage(const std::string& inMessage,
+	                           unsigned int inLevel,
+	                           const std::string& inFile,
+	                           const std::string& inFunction) = 0;
 
 	/*!
 	 *  \brief Output serialized object to console and file devices.
 	 *  \param inObject Object to log.
 	 *  \param inLevel Log level of message.
-	 *  \param inType Type of message.
-	 *  \param inClass Class of message.
+	 *  \param inFile Source file where message is produced.
+	 *  \param inFunction Function name where message is produced.
 	 *
 	 *  This method must be overridden in a subclass for serializing the object
 	 *  in a specific format.
 	 */
-	virtual void outputObject(const Object& inObject, unsigned int inLevel, const std::string& inType, const std::string& inClass) = 0;
+	virtual void outputObject(const Object& inObject,
+	                          unsigned int inLevel,
+	                          const std::string& inFile,
+	                          const std::string& inFunction) = 0;
+
+	/*!
+	 *  \brief Check whether message should be logged.
+	 *  \param inLevel Log level of message.
+	 *  \return True if message will be logged, not if it is discarted.
+	 *
+	 *  This method must be overridden in a subclass for serializing the object
+	 *  in a specific format.
+	 */
+	virtual bool shouldLog(unsigned int inLevel) const = 0;
 
 	virtual void init(System& ioSystem);
 
@@ -287,25 +265,25 @@ public:
 	 *  This method must overridden in a subclass for terminating the logging
 	 *  process. For instance, it should close any openned files.
 	 */
-	virtual void terminate(void) = 0;
+	virtual void terminate() = 0;
 
 protected:
 
 	struct Message {
 		std::string  mMessage;
 		unsigned int mLevel;
-		std::string  mType;
-		std::string  mClass;
+		std::string  mFile;
+		std::string  mFunction;
 
 		Message(const std::string& inMessage,
 		        unsigned int       inLevel,
-		        const std::string& inType,
-		        const std::string& inClass
+		        const std::string& inFile,
+		        const std::string& inFunction
 		       ) :
 			mMessage(inMessage),
 			mLevel(inLevel),
-			mType(inType),
-			mClass(inClass)
+			mFile(inFile),
+			mFunction(inFunction)
 		{ }
 
 	};
@@ -314,8 +292,8 @@ protected:
 	UInt::Handle       mFileLevel;        //!< File log level.
 	String::Handle     mFileName;         //!< File name.
 	Bool::Handle       mShowLevel;        //!< Show log level in messages.
-	Bool::Handle       mShowType;         //!< Show type of messages.
-	Bool::Handle       mShowClass;        //!< Show class that produce messages.
+	Bool::Handle       mShowFile;         //!< Show source filename of messages.
+	Bool::Handle       mShowFunction;     //!< Show source function that produce messages.
 	Bool::Handle       mShowTime;         //!< Show messages log time.
 	std::list<Message> mBuffer;           //!< Messages buffer.
 

@@ -76,7 +76,7 @@ inline bool operator<(const Beagle::UInt& inLeftUInt, const Beagle::UInt& inRigh
 {
 	Beagle_StackTraceBeginM();
 	return inLeftUInt.isLess(inRightUInt);
-	Beagle_StackTraceEndM("bool operator<(const UInt& inLeftUInt, const UInt& inRightUInt)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -92,7 +92,7 @@ inline bool operator<=(const Beagle::UInt& inLeftUInt, const Beagle::UInt& inRig
 {
 	Beagle_StackTraceBeginM();
 	return ( inLeftUInt.isLess(inRightUInt) || inLeftUInt.isEqual(inRightUInt) );
-	Beagle_StackTraceEndM("bool operator<=(const UInt& inLeftUInt, const UInt& inRightUInt)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -108,7 +108,7 @@ inline bool operator>(const Beagle::UInt& inLeftUInt, const Beagle::UInt& inRigh
 {
 	Beagle_StackTraceBeginM();
 	return inRightUInt.isLess(inLeftUInt);
-	Beagle_StackTraceEndM("bool operator>(const UInt& inLeftUInt, const UInt& inRightUInt)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -124,7 +124,7 @@ inline bool operator>=(const Beagle::UInt& inLeftUInt, const Beagle::UInt& inRig
 {
 	Beagle_StackTraceBeginM();
 	return ( inRightUInt.isLess(inLeftUInt) || inLeftUInt.isEqual(inRightUInt) );
-	Beagle_StackTraceEndM("bool operator>=(const UInt& inLeftUInt, const UInt& inRightUInt)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -140,7 +140,7 @@ inline bool operator==(const Beagle::UInt& inLeftUInt, const Beagle::UInt& inRig
 {
 	Beagle_StackTraceBeginM();
 	return inLeftUInt.isEqual(inRightUInt);
-	Beagle_StackTraceEndM("bool operator==(const UInt& inLeftUInt, const UInt& inRightUInt)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -156,7 +156,7 @@ inline bool operator!=(const Beagle::UInt& inLeftUInt, const Beagle::UInt& inRig
 {
 	Beagle_StackTraceBeginM();
 	return ( inLeftUInt.isEqual(inRightUInt) == false);
-	Beagle_StackTraceEndM("bool operator!=(const UInt& inLeftUInt, const UInt& inRightUInt)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -171,7 +171,7 @@ bool operator==(const Beagle::UInt& inLeftUInt, unsigned int inRightUInt)
 {
 	Beagle_StackTraceBeginM();
 	return inLeftUInt.getWrappedValue() == inRightUInt;
-	Beagle_StackTraceEndM("bool operator==(const UInt& inLeftUInt, unsigned int inRightUInt)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -186,7 +186,7 @@ bool operator!=(const Beagle::UInt& inLeftUInt, unsigned int inRightUInt)
 {
 	Beagle_StackTraceBeginM();
 	return inLeftUInt.getWrappedValue() != inRightUInt;
-	Beagle_StackTraceEndM("bool operator!=(const UInt& inLeftUInt, unsigned int inRightUInt)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -201,7 +201,7 @@ bool operator<(const Beagle::UInt& inLeftUInt, unsigned int inRightUInt)
 {
 	Beagle_StackTraceBeginM();
 	return inLeftUInt.getWrappedValue() < inRightUInt;
-	Beagle_StackTraceEndM("bool operator<(const UInt& inLeftUInt, unsigned int inRightUInt)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -216,7 +216,7 @@ bool operator<=(const Beagle::UInt& inLeftUInt, unsigned int inRightUInt)
 {
 	Beagle_StackTraceBeginM();
 	return inLeftUInt.getWrappedValue() <= inRightUInt;
-	Beagle_StackTraceEndM("bool operator<=(const UInt& inLeftUInt, unsigned int inRightUInt)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -231,7 +231,7 @@ bool operator>(const Beagle::UInt& inLeftUInt, unsigned int inRightUInt)
 {
 	Beagle_StackTraceBeginM();
 	return inLeftUInt.getWrappedValue() > inRightUInt;
-	Beagle_StackTraceEndM("bool operator>(const UInt& inLeftUInt, unsigned int inRightUInt)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -246,7 +246,7 @@ bool operator>=(const Beagle::UInt& inLeftUInt, unsigned int inRightUInt)
 {
 	Beagle_StackTraceBeginM();
 	return inLeftUInt.getWrappedValue() >= inRightUInt;
-	Beagle_StackTraceEndM("bool operator>=(const UInt& inLeftUInt, unsigned int inRightUInt)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -261,7 +261,7 @@ Beagle::UInt& operator++(Beagle::UInt& inUInt)
 	Beagle_StackTraceBeginM();
 	inUInt.getWrappedValue()++;
 	return inUInt;
-	Beagle_StackTraceEndM("UInt& operator++(UInt& inUInt)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -277,7 +277,7 @@ Beagle::UInt operator++(Beagle::UInt& inUInt, int)
 	Beagle::UInt lUInt = inUInt;
 	inUInt.getWrappedValue()++;
 	return lUInt;
-	Beagle_StackTraceEndM("UInt operator++(UInt& inUInt, int)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -292,7 +292,7 @@ Beagle::UInt operator+(const Beagle::UInt& inLeftUInt, const Beagle::UInt& inRig
 {
 	Beagle_StackTraceBeginM();
 	return inLeftUInt.getWrappedValue() + inRightUInt.getWrappedValue();
-	Beagle_StackTraceEndM("UInt operator+(const UInt& inLeftUInt, const UInt& inRightUInt)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -307,7 +307,7 @@ Beagle::UInt operator+(const Beagle::UInt& inLeftUInt, unsigned int inRightUInt)
 {
 	Beagle_StackTraceBeginM();
 	return inLeftUInt.getWrappedValue() + inRightUInt;
-	Beagle_StackTraceEndM("UInt operator+(const UInt& inLeftUInt, unsigned int inRightUInt)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -323,7 +323,7 @@ Beagle::UInt& operator+=(Beagle::UInt& inLeftUInt, const Beagle::UInt& inRightUI
 	Beagle_StackTraceBeginM();
 	inLeftUInt.getWrappedValue() += inRightUInt.getWrappedValue();
 	return inLeftUInt;
-	Beagle_StackTraceEndM("UInt& operator+=(UInt& inLeftUInt, const UInt& inRightUInt)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -339,7 +339,7 @@ Beagle::UInt& operator+=(Beagle::UInt& inLeftUInt, unsigned int inRightUInt)
 	Beagle_StackTraceBeginM();
 	inLeftUInt.getWrappedValue() += inRightUInt;
 	return inLeftUInt;
-	Beagle_StackTraceEndM("UInt& operator+=(UInt& inLeftUInt, unsigned int inRightUInt)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -354,7 +354,7 @@ Beagle::UInt& operator--(Beagle::UInt& inUInt)
 	Beagle_StackTraceBeginM();
 	inUInt.getWrappedValue()--;
 	return inUInt;
-	Beagle_StackTraceEndM("UInt& operator--(UInt& inUInt)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -370,7 +370,7 @@ Beagle::UInt operator--(Beagle::UInt& inUInt, int)
 	Beagle::UInt lUInt = inUInt;
 	inUInt.getWrappedValue()--;
 	return lUInt;
-	Beagle_StackTraceEndM("UInt operator--(UInt& inUInt, int)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -385,7 +385,7 @@ Beagle::UInt operator-(const Beagle::UInt& inLeftUInt, const Beagle::UInt& inRig
 {
 	Beagle_StackTraceBeginM();
 	return inLeftUInt.getWrappedValue() - inRightUInt.getWrappedValue();
-	Beagle_StackTraceEndM("UInt operator-(const UInt& inLeftUInt, const UInt& inRightUInt)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -400,7 +400,7 @@ Beagle::UInt operator-(const Beagle::UInt& inLeftUInt, unsigned int inRightUInt)
 {
 	Beagle_StackTraceBeginM();
 	return inLeftUInt.getWrappedValue() - inRightUInt;
-	Beagle_StackTraceEndM("UInt operator-(const UInt& inLeftUInt, unsigned int inRightUInt)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -416,7 +416,7 @@ Beagle::UInt& operator-=(Beagle::UInt& inLeftUInt, const Beagle::UInt& inRightUI
 	Beagle_StackTraceBeginM();
 	inLeftUInt.getWrappedValue() -= inRightUInt.getWrappedValue();
 	return inLeftUInt;
-	Beagle_StackTraceEndM("UInt& operator-=(UInt& inLeftUInt, const UInt& inRightUInt)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -432,7 +432,7 @@ Beagle::UInt& operator-=(Beagle::UInt& inLeftUInt, unsigned int inRightUInt)
 	Beagle_StackTraceBeginM();
 	inLeftUInt.getWrappedValue() -= inRightUInt;
 	return inLeftUInt;
-	Beagle_StackTraceEndM("UInt& operator-=(UInt& inLeftUInt, unsigned int inRightUInt)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -447,7 +447,7 @@ Beagle::UInt operator*(const Beagle::UInt& inLeftUInt, const Beagle::UInt& inRig
 {
 	Beagle_StackTraceBeginM();
 	return inLeftUInt.getWrappedValue() * inRightUInt.getWrappedValue();
-	Beagle_StackTraceEndM("UInt operator*(const UInt& inLeftUInt, const UInt& inRightUInt)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -462,7 +462,7 @@ Beagle::UInt operator*(const Beagle::UInt& inLeftUInt, unsigned int inRightUInt)
 {
 	Beagle_StackTraceBeginM();
 	return inLeftUInt.getWrappedValue() * inRightUInt;
-	Beagle_StackTraceEndM("UInt operator*(const UInt& inLeftUInt, unsigned int inRightUInt)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -478,7 +478,7 @@ Beagle::UInt& operator*=(Beagle::UInt& inLeftUInt, const Beagle::UInt& inRightUI
 	Beagle_StackTraceBeginM();
 	inLeftUInt.getWrappedValue() *= inRightUInt.getWrappedValue();
 	return inLeftUInt;
-	Beagle_StackTraceEndM("UInt& operator*=(UInt& inLeftUInt, const UInt& inRightUInt)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -494,7 +494,7 @@ Beagle::UInt& operator*=(Beagle::UInt& inLeftUInt, unsigned int inRightUInt)
 	Beagle_StackTraceBeginM();
 	inLeftUInt.getWrappedValue() *= inRightUInt;
 	return inLeftUInt;
-	Beagle_StackTraceEndM("UInt& operator*=(UInt& inLeftUInt, unsigned int inRightUInt)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -509,7 +509,7 @@ Beagle::UInt operator/(const Beagle::UInt& inLeftUInt, const Beagle::UInt& inRig
 {
 	Beagle_StackTraceBeginM();
 	return inLeftUInt.getWrappedValue() / inRightUInt.getWrappedValue();
-	Beagle_StackTraceEndM("UInt operator/(const UInt& inLeftUInt, const UInt& inRightUInt)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -524,7 +524,7 @@ Beagle::UInt operator/(const Beagle::UInt& inLeftUInt, unsigned int inRightUInt)
 {
 	Beagle_StackTraceBeginM();
 	return inLeftUInt.getWrappedValue() / inRightUInt;
-	Beagle_StackTraceEndM("UInt operator/(const UInt& inLeftUInt, unsigned int inRightUInt)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -540,7 +540,7 @@ Beagle::UInt& operator/=(Beagle::UInt& inLeftUInt, const Beagle::UInt& inRightUI
 	Beagle_StackTraceBeginM();
 	inLeftUInt.getWrappedValue() /= inRightUInt.getWrappedValue();
 	return inLeftUInt;
-	Beagle_StackTraceEndM("UInt& operator/=(UInt& inLeftUInt, const UInt& inRightUInt)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -556,7 +556,7 @@ Beagle::UInt operator/=(Beagle::UInt& inLeftUInt, unsigned int inRightUInt)
 	Beagle_StackTraceBeginM();
 	inLeftUInt.getWrappedValue() /= inRightUInt;
 	return inLeftUInt;
-	Beagle_StackTraceEndM("UInt operator/=(UInt& inLeftUInt, unsigned int inRightUInt)");
+	Beagle_StackTraceEndM();
 }
 
 

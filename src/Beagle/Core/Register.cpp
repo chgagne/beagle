@@ -106,7 +106,7 @@ void Register::addDescription(const std::string& inTag, const Description& inDes
 	}
 	mDescriptions[inTag] = inDescription;
 
-	Beagle_StackTraceEndM("void Register::addDescription(const std::string&, const Description&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -135,7 +135,7 @@ void Register::addEntry(const std::string& inTag, Object::Handle inEntry, const 
 	mParameters[inTag] = inEntry;
 	addDescription(inTag,inDescription);
 
-	Beagle_StackTraceEndM("void Register::addEntry(const std::string&, Object::Handle, const Register::Description&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -168,7 +168,7 @@ Object::Handle Register::deleteEntry(const std::string& inTag)
 	mDescriptions.erase(lIterDescrip);
 	return lObjHandle;
 
-	Beagle_StackTraceEndM("Object::Handle Register::deleteEntry(const string&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -190,7 +190,7 @@ const Register::Description& Register::getDescription(const std::string& inTag) 
 	}
 	return lIterDescrip->second;
 
-	Beagle_StackTraceEndM("const Register::Description& Register::getDescription(const string&) const");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -212,7 +212,7 @@ char* Register::eraseArg(int inN, int& ioArgc, char**& ioArgv) const
 	ioArgc--;
 	return lTemp;
 
-	Beagle_StackTraceEndM("char* Register::eraseArg(int, int&, char**) const");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -245,7 +245,7 @@ Object::Handle Register::insertEntry(const std::string& inTag, Object::Handle in
 	}
 	return lIterObj->second;
 
-	Beagle_StackTraceEndM("Object::Handle Register::insertEntry(const string&, Object::Handle, const Register::Description&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -261,7 +261,7 @@ bool Register::isRegistered(const std::string& inTag) const
 	Map::const_iterator lIterObj = mParameters.find(inTag);
 	return (lIterObj != mParameters.end());
 
-	Beagle_StackTraceEndM("bool Register::isRegistered(const std::string&) const");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -287,7 +287,7 @@ Object::Handle Register::modifyEntry(const std::string& inTag, Object::Handle in
 	lIterObj->second = inNewEntry;
 	return lObjHandle;
 
-	Beagle_StackTraceEndM("Object::Handle Register::modifyEntry(const std::string&, Object::Handle)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -311,7 +311,7 @@ Register::Description Register::modifyDescription(const std::string& inTag, cons
 	Description lDescription = lIterDescrip->second;
 	lIterDescrip->second = inNewDescription;
 	return lDescription;
-	Beagle_StackTraceEndM("Register::Description Register::modifyDescription(const std::string&, const Register::Description&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -337,7 +337,7 @@ void Register::read(PACC::XML::ConstIterator inNode)
 		}
 	}
 
-	Beagle_StackTraceEndM("void Register::read(PACC::XML::ConstIterator inIter)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -358,7 +358,6 @@ void Register::readFromFile(const std::string& inFileName, System& ioSystem)
 	}
 	Beagle_LogBasicM(
 	    ioSystem.getLogger(),
-	    "init", "Beagle::System",
 	    std::string("Reading file '")+inFileName+"' for system configuration"
 	);
 	PACC::XML::Document lDocument(lStream, inFileName);
@@ -368,7 +367,6 @@ void Register::readFromFile(const std::string& inFileName, System& ioSystem)
 	if(!lPos) {
 		Beagle_LogBasicM(
 		    ioSystem.getLogger(),
-		    "init", "Beagle::Register",
 		    "WARNING: file does not contain any valid system"
 		);
 	} else {
@@ -377,7 +375,6 @@ void Register::readFromFile(const std::string& inFileName, System& ioSystem)
 		if(lPos = lFinder.findNext()) {
 			Beagle_LogBasicM(
 			    ioSystem.getLogger(),
-			    "init", "Beagle::Register",
 			    "WARNING: file contains multiple systems"
 			);
 			do {
@@ -408,7 +405,6 @@ void Register::readWithSystem(PACC::XML::ConstIterator inIter, System& ioSystem)
 			if(mParameters.find(lEntryKey) == mParameters.end()) {
 				Beagle_LogBasicM(
 				    ioSystem.getLogger(),
-				    "register", "Beagle::Register",
 				    std::string("WARNING: unknown parameter '")+lEntryKey+"'; not registered!"
 				);
 				continue;
@@ -416,14 +412,13 @@ void Register::readWithSystem(PACC::XML::ConstIterator inIter, System& ioSystem)
 			mParameters[lEntryKey]->read(lChild->getFirstChild());
 			Beagle_LogTraceM(
 			    ioSystem.getLogger(),
-			    "register", "Beagle::Register",
 			    std::string("Register entry '")+lEntryKey+std::string("' is now ")+
 			    mParameters[lEntryKey]->serialize()
 			);
 		}
 	}
 
-	Beagle_StackTraceEndM("void Register::readWithSystem(PACC::XML::ConstIterator, System&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -451,7 +446,7 @@ void Register::setEntryDefaultValue(const std::string& inTag,
 	}
 	mDefaultValues[inTag] = std::make_pair(inValue, inValueStr);
 
-	Beagle_StackTraceEndM("void Register::setEntryDefaultValue(const std::string&, Object::Handle, const std::string&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -485,7 +480,7 @@ void Register::showHelp(std::ostream& outStream) const
 	}
 	outStream << std::endl << std::flush;
 
-	Beagle_StackTraceEndM("void Register::showHelp(std::ostream&) const");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -510,7 +505,7 @@ void Register::showUsage(std::ostream& outStream) const
 	}
 	outStream << std::endl << std::flush;
 
-	Beagle_StackTraceEndM("void Register::showUsage(std::ostream&) const");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -545,6 +540,6 @@ void Register::write(PACC::XML::Streamer& ioStreamer, bool inIndent) const
 	}
 	ioStreamer.closeTag();
 
-	Beagle_StackTraceEndM("void Register::write(PACC::XML::Streamer&, bool) const");
+	Beagle_StackTraceEndM();
 }
 

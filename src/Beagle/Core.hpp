@@ -153,8 +153,8 @@
 #include "Beagle/Core/EvaluationOp.hpp"
 #include "Beagle/Core/Evolver.hpp"
 #include "Beagle/Core/Algorithm.hpp"
+#include "Beagle/Core/PackageAbstract.hpp"
 #include "Beagle/Core/Package.hpp"
-#include "Beagle/Core/PackageBase.hpp"
 
 #ifdef BEAGLE_HAVE_OPENMP
 #include "Beagle/Core/OpenMP.hpp"

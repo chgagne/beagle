@@ -56,7 +56,7 @@ const std::string& NamedObject::getName() const
 {
 	Beagle_StackTraceBeginM();
 	return mName;
-	Beagle_StackTraceEndM("const string& NamedObject::getName() const");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -68,6 +68,6 @@ void NamedObject::setName(const std::string& inName)
 {
 	Beagle_StackTraceBeginM();
 	mName = inName;
-	Beagle_StackTraceEndM("void NamedObject::setName(const string& inName)");
+	Beagle_StackTraceEndM();
 }
 

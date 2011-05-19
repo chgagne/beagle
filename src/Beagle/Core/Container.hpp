@@ -128,7 +128,7 @@ public:
 		Beagle_StackTraceBeginM();
 		Beagle_UpperBoundCheckAssertM(inN,size()-1);
 		return std::vector<Pointer>::operator[](inN);
-		Beagle_StackTraceEndM("const Object::Handle& Container::operator[](unsigned int inN) const");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -140,7 +140,7 @@ public:
 		Beagle_StackTraceBeginM();
 		Beagle_UpperBoundCheckAssertM(inN,size()-1);
 		return std::vector<Pointer>::operator[](inN);
-		Beagle_StackTraceEndM("Object::Handle& Container::operator[](unsigned int inN)");
+		Beagle_StackTraceEndM();
 	}
 
 };

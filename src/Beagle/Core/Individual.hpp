@@ -111,7 +111,7 @@ public:
 	inline const Fitness::Handle getFitness() const {
 		Beagle_StackTraceBeginM();
 		return mFitness;
-		Beagle_StackTraceEndM("const Fitness::Handle Individual::getFitness() const");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -121,7 +121,7 @@ public:
 	inline Fitness::Handle getFitness() {
 		Beagle_StackTraceBeginM();
 		return mFitness;
-		Beagle_StackTraceEndM("Fitness::Handle Individual::getFitness()");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -133,7 +133,7 @@ public:
 		Beagle_StackTraceBeginM();
 		MemberMap::const_iterator lIterMap = mMemberMap.find(inName);
 		return (lIterMap == mMemberMap.end()) ? NULL : castHandleT<Member>(lIterMap->second);
-		Beagle_StackTraceEndM("const Member::Handle Individual::getMember(const std::string&) const");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -145,7 +145,7 @@ public:
 		Beagle_StackTraceBeginM();
 		MemberMap::const_iterator lIterMap = mMemberMap.find(inName);
 		return (lIterMap == mMemberMap.end()) ? NULL : castHandleT<Member>(lIterMap->second);
-		Beagle_StackTraceEndM("Member::Handle Individual::getMember(const std::string&)");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -155,7 +155,7 @@ public:
 	inline void setFitness(Fitness::Handle inFitness) {
 		Beagle_StackTraceBeginM();
 		mFitness = inFitness;
-		Beagle_StackTraceEndM("void Individual::setFitness(Fitness::Handle inFitness)");
+		Beagle_StackTraceEndM();
 	}
 
 protected:

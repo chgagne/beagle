@@ -79,7 +79,7 @@ void OversizeOp::registerParams(System& ioSystem)
 		                 (ioSystem.getRegister().insertEntry(mOversizeRatioName, new Float(7.0f), lDescription));
 	}
 
-	Beagle_StackTraceEndM("void OversizeOp::registerParams(System&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -100,14 +100,12 @@ void OversizeOp::operate(Deme& ioDeme, Context& ioContext)
 
 	Beagle_LogTraceM(
 	    ioContext.getSystem().getLogger(),
-	    "replacement-strategy", "Beagle::OversizeOp",
 	    string("Using oversize replacement strategy to process the ")+
 	    uint2ordinal(ioContext.getDemeIndex()+1)+" deme"
 	);
 	Beagle_LogObjectM(
 	    ioContext.getSystem().getLogger(),
 	    Logger::eTrace,
-	    "replacement-strategy", "Beagle::OversizeOp",
 	    (*this)
 	);
 
@@ -141,7 +139,6 @@ void OversizeOp::operate(Deme& ioDeme, Context& ioContext)
 	}
 	Beagle_LogTraceM(
 	    ioContext.getSystem().getLogger(),
-	    "replacement-strategy", "Beagle::OversizeOp",
 	    string("Population will be increased in size by ")+uint2str(lLambda)+" individuals"
 	);
 
@@ -164,11 +161,10 @@ void OversizeOp::operate(Deme& ioDeme, Context& ioContext)
 	ioDeme.insert(ioDeme.end(), lOffsprings.begin(), lOffsprings.end());
 	Beagle_LogDetailedM(
 	    ioContext.getSystem().getLogger(),
-	    "replacement-strategy", "Beagle::OversizeOp",
 	    string("There are now ")+uint2str(ioDeme.size())+" individuals in the "+
 	    uint2ordinal(ioContext.getDemeIndex()+1)+" deme"
 	);
-	Beagle_StackTraceEndM("void OversizeOp::operate(Deme& ioDeme, Context& ioContext)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -189,7 +185,7 @@ void OversizeOp::readWithSystem(PACC::XML::ConstIterator inIter, System& ioSyste
 	if(lOversizeRatioReadName.empty() == false) mOversizeRatioName = lOversizeRatioReadName;
 
 	ReplacementStrategyOp::readWithSystem(inIter, ioSystem);
-	Beagle_StackTraceEndM("void OversizeOp::readWithSystem(PACC::XML::ConstIterator, System&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -207,5 +203,5 @@ void OversizeOp::write(PACC::XML::Streamer& ioStreamer, bool inIndent) const
 		lNode->write(ioStreamer, inIndent);
 	}
 	ioStreamer.closeTag();
-	Beagle_StackTraceEndM("void OversizeOp::write(PACC::XML::Streamer& ioStreamer, bool inIndent) const");
+	Beagle_StackTraceEndM();
 }

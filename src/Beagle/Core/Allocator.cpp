@@ -54,7 +54,7 @@ Beagle::Object* Beagle::Allocator::allocate() const
 #else // BEAGLE_NDEBUG
 	return new Object;
 #endif // BEAGLE_NDEBUG
-	Beagle_StackTraceEndM("Beagle::Object* Beagle::Allocator::allocate() const");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -73,7 +73,7 @@ Beagle::Object* Beagle::Allocator::clone(const Beagle::Object& inOriginal) const
 #else // BEAGLE_NDEBUG
 	return new Object(inOriginal);
 #endif // BEAGLE_NDEBUG
-	Beagle_StackTraceEndM("Beagle::Object* Beagle::Allocator::clone(const Beagle::Object&) const");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -87,6 +87,6 @@ void Beagle::Allocator::copy(Beagle::Object& outCopy,
 {
 	Beagle_StackTraceBeginM();
 	outCopy = inOriginal;
-	Beagle_StackTraceEndM("void Beagle::Allocator::copy(Beagle::Object&, const Beagle::Object&) const");
+	Beagle_StackTraceEndM();
 }
 

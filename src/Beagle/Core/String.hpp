@@ -70,7 +70,7 @@ inline bool operator<(const Beagle::String& inLeftString, const Beagle::String& 
 {
 	Beagle_StackTraceBeginM();
 	return inLeftString.isLess(inRightString);
-	Beagle_StackTraceEndM("bool operator<(const String& inLeftString, const String& inRightString)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -86,7 +86,7 @@ inline bool operator<=(const Beagle::String& inLeftString, const Beagle::String&
 {
 	Beagle_StackTraceBeginM();
 	return ( inLeftString.isLess(inRightString) || inLeftString.isEqual(inRightString) );
-	Beagle_StackTraceEndM("bool operator<=(const String& inLeftString, const String& inRightString)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -102,7 +102,7 @@ inline bool operator>(const Beagle::String& inLeftString, const Beagle::String& 
 {
 	Beagle_StackTraceBeginM();
 	return inRightString.isLess(inLeftString);
-	Beagle_StackTraceEndM("bool operator>(const String& inLeftString, const String& inRightString)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -118,7 +118,7 @@ inline bool operator>=(const Beagle::String& inLeftString, const Beagle::String&
 {
 	Beagle_StackTraceBeginM();
 	return ( inRightString.isLess(inLeftString) || inLeftString.isEqual(inRightString) );
-	Beagle_StackTraceEndM("bool operator>=(const String& inLeftString, const String& inRightString)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -134,7 +134,7 @@ inline bool operator==(const Beagle::String& inLeftString, const Beagle::String&
 {
 	Beagle_StackTraceBeginM();
 	return inLeftString.isEqual(inRightString);
-	Beagle_StackTraceEndM("bool operator==(const String& inLeftString, const String& inRightString)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -150,7 +150,7 @@ inline bool operator!=(const Beagle::String& inLeftString, const Beagle::String&
 {
 	Beagle_StackTraceBeginM();
 	return ( inLeftString.isEqual(inRightString) == false);
-	Beagle_StackTraceEndM("bool operator!=(const String& inLeftString, const String& inRightString)");
+	Beagle_StackTraceEndM();
 }
 
 #endif // Beagle_Core_String_hpp

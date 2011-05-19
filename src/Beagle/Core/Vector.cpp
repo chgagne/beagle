@@ -92,7 +92,7 @@ Vector& Vector::operator=(const PACC::Matrix& inMatrix)
 	Beagle_AssertM(inMatrix.getCols() <= 1);
 	PACC::Matrix::operator=(inMatrix);
 	return *this;
-	Beagle_StackTraceEndM("Vector& Vector::operator=(const PACC::Matrix& inMatrix)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -106,7 +106,7 @@ Vector& Vector::operator=(const PACC::Vector& inVector)
 	Beagle_StackTraceBeginM();
 	PACC::Vector::operator=(inVector);
 	return *this;
-	Beagle_StackTraceEndM("Vector& Vector::operator=(const PACC::Vector& inVector)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -121,7 +121,7 @@ Vector& Vector::operator=(const Beagle::Matrix& inMatrix)
 	Beagle_AssertM(inMatrix.getCols() <= 1);
 	PACC::Matrix::operator=(inMatrix);
 	return *this;
-	Beagle_StackTraceEndM("Vector& Vector::operator=(const Beagle::Matrix& inMatrix)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -145,7 +145,7 @@ void Vector::read(PACC::XML::ConstIterator inIter)
 		int lDelim=lISS.get();
 		if((lISS.good()==false) || (lDelim==-1)) break;
 	}
-	Beagle_StackTraceEndM("void Vector::read(PACC::XML::ConstIterator inIter)");
+	Beagle_StackTraceEndM();
 }
 
 /*!
@@ -159,7 +159,7 @@ std::string Vector::serialize(bool inIndent, unsigned int inIndentWidth) const
 {
 	Beagle_StackTraceBeginM();
 	return Object::serialize(inIndent, inIndentWidth);
-	Beagle_StackTraceEndM("std::string Vector::serialize(bool inIndent, unsigned int inIndentWidth) const");
+	Beagle_StackTraceEndM();
 }
 
 /*!
@@ -171,5 +171,5 @@ void Vector::write(PACC::XML::Streamer& ioStreamer, bool inIndent) const
 {
 	Beagle_StackTraceBeginM();
 	ioStreamer.insertStringContent(PACC::Matrix::serialize());
-	Beagle_StackTraceEndM("void Vector::write(PACC::XML::Streamer& ioStreamer, bool inIndent) const");
+	Beagle_StackTraceEndM();
 }

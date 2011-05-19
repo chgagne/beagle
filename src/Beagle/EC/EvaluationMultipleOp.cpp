@@ -83,7 +83,7 @@ Individual::Handle EvaluationMultipleOp::breed(Individual::Bag&,
 	Beagle_StackTraceBeginM();
 	throw Beagle_UndefinedMethodInternalExceptionM("EvaluationMultipleOp", "breed", getName());
 	return Individual::Handle(NULL);
-	Beagle_StackTraceEndM("Individual::Handle EvaluationMultipleOp::breed(Individual::Bag&, BreederNode::Handle, Context&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -105,7 +105,6 @@ unsigned int EvaluationMultipleOp::enlargeGroup(Individual::Bag& ioIndividuals,
 	unsigned int lNumToAdd = mIndisPerGroup - ioIndividuals.size();
 	Beagle_LogVerboseM(
 	    lContext.getSystem().getLogger(),
-	    "evaluation", "Beagle::EvaluationMultipleOp",
 	    std::string("Adding ")+uint2str(lNumToAdd)+std::string(" individuals to the group (for padding)")
 	);
 
@@ -147,7 +146,6 @@ unsigned int EvaluationMultipleOp::enlargeGroup(Individual::Bag& ioIndividuals,
 		unsigned int lIndiIndex = lSelectableIndis[lIndex];
 		Beagle_LogVerboseM(
 		    lContext.getSystem().getLogger(),
-		    "evaluation", "Beagle::EvaluationMultipleOp",
 		    std::string("Adding ")+uint2ordinal(lIndiIndex+1)+
 		    std::string(" individual to the group (for padding)")
 		);
@@ -163,7 +161,7 @@ unsigned int EvaluationMultipleOp::enlargeGroup(Individual::Bag& ioIndividuals,
 	Beagle_AssertM( lIndisCounter==ioIndividuals.size() );
 
 	return lNumToAdd;
-	Beagle_StackTraceEndM("unsigned int EvaluationMultipleOp::enlargeGroup(Individual::Bag&,Context::Bag&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -200,7 +198,7 @@ Fitness::Handle EvaluationMultipleOp::evaluate(Individual& inIndividual, Context
 	// Return fitness
 	Beagle_AssertM( !lFitnessBag->empty() );
 	return lFitnessBag->at(0);
-	Beagle_StackTraceEndM("Fitness::Handle EvaluationMultipleOp::evaluate(Individual&,Context&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -239,7 +237,6 @@ Fitness::Bag::Handle EvaluationMultipleOp::evaluateIndividuals(Individual::Bag& 
 	for (unsigned int i=0; i<lCases->size(); i++) {
 		Beagle_LogVerboseM(
 		    lContext.getSystem().getLogger(),
-		    "evaluation", "Beagle::EvaluationMultipleOp",
 		    std::string("Evaluating the ")+uint2ordinal(i+1)+std::string(" case")
 		);
 		Case& lCase = *(lCases->at(i));
@@ -264,7 +261,6 @@ Fitness::Bag::Handle EvaluationMultipleOp::evaluateIndividuals(Individual::Bag& 
 		}
 		Beagle_LogDebugM(
 		    lContext.getSystem().getLogger(),
-		    "evaluation", "Beagle::EvaluationMultipleOp",
 		    uint2ordinal(i+1)+std::string(" case: ")+
 		    lOSS.str()
 		);
@@ -277,30 +273,23 @@ Fitness::Bag::Handle EvaluationMultipleOp::evaluateIndividuals(Individual::Bag& 
 		Beagle_NonNullPointerAssertM( lFitnessBagCase );
 		Beagle_LogDebugM(
 		    lContext.getSystem().getLogger(),
-		    "evaluation", "Beagle::EvaluationMultipleOp",
-		    std::string("Evaluation of the case is complete.  The fitnesses are as follows:")
+		    "Evaluation of the case is complete. The fitnesses are as follows:"
 		);
 		for (unsigned int j=0; j<mIndisPerCase; j++) {
 			Beagle_NonNullPointerAssertM( lFitnessBagCase->at(j) );
 			Beagle_LogDebugM(
 			    lContext.getSystem().getLogger(),
-			    "evaluation", "Beagle::EvaluationMultipleOp",
 			    std::string("Fitness of the ")+
 			    uint2ordinal(ioContexts[lCase.mIndices[j]]->getIndividualIndex()+1)+
 			    std::string(" individual")
 			);
-			Beagle_LogObjectDebugM(
-			    lContext.getSystem().getLogger(),
-			    "evaluation", "Beagle::EvaluationMultipleOp",
-			    *lFitnessBagCase->at(j)
-			);
+			Beagle_LogDebugM(lContext.getSystem().getLogger(), *(*lFitnessBagCase)[j]);
 
 			// Need to assign fitness values from case to lFitnessBagAll
 			unsigned int lIndex = lCase.mIndices[j];
 			Beagle_LogDebugM(
 			    lContext.getSystem().getLogger(),
-			    "evaluation", "Beagle::EvaluationMultipleOp",
-			    std::string("Setting fitness for lFitnessBagAll at index ")+uint2str(lIndex)
+			    "Setting fitness for lFitnessBagAll at index " << uint2str(lIndex)
 			);
 			Beagle_AssertM(lIndex < lFitnessBagAll->size());
 			if (lFitnessBagAll->at(lIndex)==NULL) {
@@ -310,23 +299,17 @@ Fitness::Bag::Handle EvaluationMultipleOp::evaluateIndividuals(Individual::Bag& 
 				                 lFitnessBagCase->at(j) );
 				Beagle_LogDebugM(
 				    lContext.getSystem().getLogger(),
-				    "evaluation", "Beagle::EvaluationMultipleOp",
-				    std::string("Fitness of the ")+uint2ordinal(ioContexts[lIndex]->getIndividualIndex()+1)+
-				    std::string(" individual has been combined to")
+				    "Fitness of the " << uint2ordinal(ioContexts[lIndex]->getIndividualIndex()+1) <<
+				    " individual has been combined to"
 				);
-				Beagle_LogObjectDebugM(
-				    lContext.getSystem().getLogger(),
-				    "evaluation", "Beagle::EvaluationMultipleOp",
-				    *lFitnessBagAll->at(lIndex)
-				);
+				Beagle_LogDebugM(lContext.getSystem().getLogger(), *(*lFitnessBagAll)[lIndex]);
 			}
 		}
 	}
 
 	Beagle_LogDebugM(
 	    lContext.getSystem().getLogger(),
-	    "evaluation", "Beagle::EvaluationMultipleOp",
-	    std::string("Evaluation of all cases is complete.  Fitnesses are as follows:")
+	    "Evaluation of all cases is complete. Fitnesses are as follows:"
 	);
 	for (unsigned int i=0;
 	        i<ioIndividuals.size();
@@ -335,9 +318,7 @@ Fitness::Bag::Handle EvaluationMultipleOp::evaluateIndividuals(Individual::Bag& 
 			// Nullify ignorable individuals' fitness scores
 			Beagle_LogDebugM(
 			    lContext.getSystem().getLogger(),
-			    "evaluation", "Beagle::EvaluationMultipleOp",
-			    std::string("Ignoring fitness of the ")+uint2ordinal(ioContexts[i]->getIndividualIndex()+1)+
-			    std::string(" individual")
+			    "Ignoring fitness of the " << uint2ordinal(ioContexts[i]->getIndividualIndex()+1) << " individual"
 			);
 			(*lFitnessBagAll)[i] = NULL;
 			continue;
@@ -345,19 +326,13 @@ Fitness::Bag::Handle EvaluationMultipleOp::evaluateIndividuals(Individual::Bag& 
 		Beagle_NonNullPointerAssertM( lFitnessBagAll->at(i) );
 		Beagle_LogDebugM(
 		    lContext.getSystem().getLogger(),
-		    "evaluation", "Beagle::EvaluationMultipleOp",
-		    std::string("Fitness of the ")+uint2ordinal(ioContexts[i]->getIndividualIndex()+1)+
-		    " individual"
+		    "Fitness of the " << uint2ordinal(ioContexts[i]->getIndividualIndex()+1) << " individual"
 		);
-		Beagle_LogObjectDebugM(
-		    lContext.getSystem().getLogger(),
-		    "evaluation", "Beagle::EvaluationMultipleOp",
-		    *lFitnessBagAll->at(i)
-		);
+		Beagle_LogDebugM(lContext.getSystem().getLogger(), *(*lFitnessBagAll)[i]);
 	}
 
 	return lFitnessBagAll;
-	Beagle_StackTraceEndM("Fitness::Bag::Handle EvaluationMultipleOp::evaluateIndividuals(Individual::Bag&,Context::Bag&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -371,9 +346,8 @@ void EvaluationMultipleOp::operate(Deme& ioDeme, Context& ioContext)
 	Beagle_StackTraceBeginM();
 	Beagle_LogTraceM(
 	    ioContext.getSystem().getLogger(),
-	    "evaluation", "Beagle::EvaluationMultipleOp",
-	    std::string("Evaluating the fitness of the individuals in the ")+
-	    uint2ordinal(ioContext.getDemeIndex()+1)+" deme"
+	    "Evaluating the fitness of the individuals in the " << 
+	    uint2ordinal(ioContext.getDemeIndex()+1 << " deme"
 	);
 
 	Beagle_AssertM( ioDeme.size()!=0 );
@@ -389,7 +363,6 @@ void EvaluationMultipleOp::operate(Deme& ioDeme, Context& ioContext)
 			lEvalVector.push_back(i);
 			Beagle_LogDebugM(
 			    ioContext.getSystem().getLogger(),
-			    "evaluation", "Beagle::EvaluationMultipleOp",
 			    std::string("Added ")+uint2ordinal(i+1)+std::string(" individual for evaluation.")
 			);
 		}
@@ -399,9 +372,7 @@ void EvaluationMultipleOp::operate(Deme& ioDeme, Context& ioContext)
 
 	Beagle_LogDebugM(
 	    ioContext.getSystem().getLogger(),
-	    "evaluation", "Beagle::EvaluationMultipleOp",
-	    std::string("There are ")+uint2str(lEvalVector.size())+
-	    std::string(" individuals to be evaluated.")
+	    "There are " << lEvalVector.size() << " individuals to be evaluated."
 	);
 
 	History::Handle lHistory = castHandleT<History>(ioContext.getSystem().haveComponent("History"));
@@ -436,16 +407,17 @@ void EvaluationMultipleOp::operate(Deme& ioDeme, Context& ioContext)
 
 		// Evaluate individuals
 		std::ostringstream lOSS;
-		for (unsigned int i=0; i<lIndiCounter; i++) {
+		lOSS << "Evaluating the fitness of the ";
+		for(unsigned int i=0; i<lIndiCounter; i++) {
 			// Add to message
 			if (i==lIndiCounter-1) lOSS << " and ";
 			lOSS << uint2ordinal(lContexts[i]->getIndividualIndex()+1);
 			if (i<lIndiCounter-2) lOSS << ", ";
 		}
+		lOSS << " individuals";
 		Beagle_LogVerboseM(
 		    ioContext.getSystem().getLogger(),
-		    "evaluation", "Beagle::EvaluationMultipleOp",
-		    std::string("Evaluating the fitness of the ")+lOSS.str()+" individuals"
+		    lOSS.str()
 		);
 		Fitness::Bag::Handle lFitnessBag = evaluateIndividuals(lIndividuals, lContexts);
 
@@ -453,9 +425,7 @@ void EvaluationMultipleOp::operate(Deme& ioDeme, Context& ioContext)
 		for (unsigned int i=0; i<lIndiCounter; i++) {
 			Beagle_LogDebugM(
 			    ioContext.getSystem().getLogger(),
-			    "evaluation", "Beagle::EvaluationMultipleOp",
-			    std::string("Considering fitness of the ")+
-			    uint2ordinal(lContexts[i]->getIndividualIndex()+1)+std::string(" individual")
+			    "Considering fitness of the " << uint2ordinal(lContexts[i]->getIndividualIndex()+1 << " individual"
 			);
 			Beagle_AssertM( i < lFitnessBag->size() );
 			Fitness::Handle lFitness = lFitnessBag->at(i);
@@ -470,7 +440,6 @@ void EvaluationMultipleOp::operate(Deme& ioDeme, Context& ioContext)
 			Beagle_LogObjectM(
 			    ioContext.getSystem().getLogger(),
 			    Logger::eVerbose,
-			    "evaluation", "Beagle::EvaluationMultipleOp",
 			    *lIndividuals[i]->getFitness()
 			);
 		}
@@ -480,7 +449,7 @@ void EvaluationMultipleOp::operate(Deme& ioDeme, Context& ioContext)
 	}
 
 	updateHallOfFameWithDeme(ioDeme,ioContext);
-	Beagle_StackTraceEndM("void EvaluationMultipleOp::operate(Deme&,Context&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -519,7 +488,7 @@ EvaluationMultipleOp::pruneIgnorableCases(unsigned int inNumToIgnore)
 
 	lCases->resize(lCaseCounter);
 	return lCases;
-	Beagle_StackTraceEndM("EvaluationMultipleOp::Case::Bag::Handle EvaluationMultipleOp::pruneIgnorableCases(unsigned int)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -543,11 +512,7 @@ EvaluationMultipleOp::pruneIgnorableCases(unsigned int inNumToIgnore)
 void EvaluationMultipleOp::setupCases(unsigned int inSize, Context& ioContext)
 {
 	Beagle_StackTraceBeginM();
-	Beagle_LogDebugM(
-	    ioContext.getSystem().getLogger(),
-	    "evaluation", "Beagle::EvaluationMultipleOp",
-	    std::string("Creating evaluation cases")
-	);
+	Beagle_LogDebugM(ioContext.getSystem().getLogger(), "Creating evaluation cases");
 	Beagle_AssertM(inSize >= mIndisPerCase);
 	Beagle_AssertM(inSize == mIndisPerGroup);
 
@@ -563,8 +528,7 @@ void EvaluationMultipleOp::setupCases(unsigned int inSize, Context& ioContext)
 	// Log cases
 	Beagle_LogDebugM(
 	    ioContext.getSystem().getLogger(),
-	    "evaluation", "Beagle::EvaluationMultipleOp",
-	    uint2str(mCases->size())+std::string(" evaluation cases were created")
+	    mCases->size() << " evaluation cases were created"
 	);
 	for (unsigned int i=0; i<mCases->size(); i++) {
 		std::ostringstream lOSS;
@@ -574,12 +538,10 @@ void EvaluationMultipleOp::setupCases(unsigned int inSize, Context& ioContext)
 		}
 		Beagle_LogDebugM(
 		    ioContext.getSystem().getLogger(),
-		    "evaluation", "Beagle::EvaluationMultipleOp",
-		    uint2ordinal(i+1)+std::string(" case: ")+
-		    lOSS.str()
+		    uint2ordinal(i+1) << " case: " << lOSS.str()
 		);
 	}
-	Beagle_StackTraceEndM("void EvaluationMultipleOp::setupCases(unsigned int,Context&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -615,5 +577,5 @@ void EvaluationMultipleOp::setupCaseRecursive(unsigned int inSize,
 		lNewCase->mIndices.push_back(i);
 		setupCaseRecursive(inSize,i,lNewCase);
 	}
-	Beagle_StackTraceEndM("void EvaluationMultipleOp::setupCaseRecursive(unsigned int,unsigned int,Case::Handle");
+	Beagle_StackTraceEndM();
 }

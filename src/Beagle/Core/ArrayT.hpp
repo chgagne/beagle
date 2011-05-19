@@ -138,7 +138,7 @@ bool Beagle::ArrayT<T>::isEqual(const Beagle::Object& inRightObj) const
 	const Beagle::ArrayT<T>& lRightArray = castObjectT<const Beagle::ArrayT<T>&>(inRightObj);
 	const std::vector<T>& lRightVector   = lRightArray;
 	return (lLeftVector == lRightVector);
-	Beagle_StackTraceEndM("bool ArrayT<T>::isEqual(const Object& inRightObj) const");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -156,7 +156,7 @@ bool Beagle::ArrayT<T>::isLess(const Beagle::Object& inRightObj) const
 	const Beagle::ArrayT<T>& lRightArray = castObjectT<const Beagle::ArrayT<T>&>(inRightObj);
 	const std::vector<T>& lRightVector   = lRightArray;
 	return (lLeftVector < lRightVector);
-	Beagle_StackTraceEndM("bool ArrayT<T>::isLess(const Object& inRightObj) const");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -181,7 +181,7 @@ void Beagle::ArrayT<T>::read(PACC::XML::ConstIterator inIter)
 		int lDelim=lISS.get();
 		if((lISS.good()==false) || (lDelim==-1)) break;
 	}
-	Beagle_StackTraceEndM("void ArrayT<T>::read(PACC::XML::ConstIterator inIter)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -200,7 +200,7 @@ void Beagle::ArrayT<T>::write(PACC::XML::Streamer& ioStreamer, bool inIndent) co
 		if(i != (std::vector<T>::size()-1)) lOSS << ',';
 	}
 	ioStreamer.insertStringContent(lOSS.str());
-	Beagle_StackTraceEndM("void ArrayT<T>::write(PACC::XML::Streamer& ioStreamer, bool inIndent) const");
+	Beagle_StackTraceEndM();
 }
 
 

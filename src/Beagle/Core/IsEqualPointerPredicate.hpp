@@ -76,7 +76,7 @@ public:
 		if( (!inLeftPtr) && (!inRightPtr) ) return true;
 		else if( (!inLeftPtr) || (!inRightPtr) ) return false;
 		return inLeftPtr->isEqual(*inRightPtr);
-		Beagle_StackTraceEndM("bool operator()(const Pointer& inLeftPtr, const Pointer& inRightPtr) const");
+		Beagle_StackTraceEndM();
 	}
 
 };

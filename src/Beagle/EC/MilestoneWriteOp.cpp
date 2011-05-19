@@ -155,7 +155,7 @@ void MilestoneWriteOp::registerParams(Beagle::System& ioSystem)
 		                         ioSystem.getRegister().insertEntry("ms.write.compress", new Bool(true), lDescription));
 	}
 #endif // BEAGLE_HAVE_LIBZ
-	Beagle_StackTraceEndM("void MilestoneWriteOp::registerParams(System&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -189,11 +189,10 @@ void MilestoneWriteOp::operate(Deme& ioDeme, Context& ioContext)
 #endif // BEAGLE_HAVE_LIBZ
 	Beagle_LogBasicM(
 	    ioContext.getSystem().getLogger(),
-	    "milestone", "Beagle::MilestoneWriteOp",
 	    std::string("Writing milestone file '")+lFilename+"'"
 	);
 	writeMilestone(lFilename, ioContext);
-	Beagle_StackTraceEndM("void MilestoneWriteOp::operate(Deme& ioDeme, Context& ioContext)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -237,7 +236,7 @@ void MilestoneWriteOp::writeMilestone(std::string inFilename, Context& ioContext
 	}
 	delete lOS;
 	lOS = NULL;
-	Beagle_StackTraceEndM("void MilestoneWriteOp::writeMilestone(std::string inFilename, Context& ioContext)");
+	Beagle_StackTraceEndM();
 }
 
 

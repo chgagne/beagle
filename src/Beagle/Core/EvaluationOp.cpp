@@ -83,7 +83,6 @@ Individual::Handle EvaluationOp::breed(Individual::Bag& inBreedingPool,
 	if((lBredIndividual->getFitness()==NULL) || (lBredIndividual->getFitness()->isValid()==false)) {
 		Beagle_LogVerboseM(
 		    ioContext.getSystem().getLogger(),
-		    "evaluation", "Beagle::EvaluationOp",
 		    "Evaluating the fitness of a new bred individual"
 		);
 
@@ -100,19 +99,13 @@ Individual::Handle EvaluationOp::breed(Individual::Bag& inBreedingPool,
 		ioContext.setProcessedVivarium(ioContext.getProcessedVivarium()+1);
 		ioContext.setTotalProcessedVivarium(ioContext.getTotalProcessedVivarium()+1);
 
-		Beagle_LogObjectM(
-		    ioContext.getSystem().getLogger(),
-		    Logger::eVerbose,
-		    "evaluation",
-		    "Beagle::EvaluationOp",
-		    *lBredIndividual->getFitness()
-		);
+		Beagle_LogVerboseM(ioContext.getSystem().getLogger(), *lBredIndividual->getFitness());
 
 		updateHallOfFameWithIndividual(*lBredIndividual, ioContext);
 	}
 
 	return lBredIndividual;
-	Beagle_StackTraceEndM("Individual::Handle EvaluationOp::breed(Individual::Bag&,BreederNode::Handle,Context&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -126,7 +119,7 @@ double EvaluationOp::getBreedingProba(BreederNode::Handle inChild)
 	Beagle_NonNullPointerAssertM(inChild);
 	Beagle_NonNullPointerAssertM(inChild->getBreederOp());
 	return inChild->getBreederOp()->getBreedingProba(inChild->getFirstChild());
-	Beagle_StackTraceEndM("double EvaluationOp::getBreedingProba(BreederNode::Handle)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -140,7 +133,6 @@ void EvaluationOp::operate(Deme& ioDeme, Context& ioContext)
 	Beagle_StackTraceBeginM();
 	Beagle_LogTraceM(
 	    ioContext.getSystem().getLogger(),
-	    "evaluation", "Beagle::EvaluationOp",
 	    std::string("Evaluating the fitness of the individuals in the ")+
 	    uint2ordinal(ioContext.getDemeIndex()+1)+" deme"
 	);
@@ -175,7 +167,6 @@ void EvaluationOp::operate(Deme& ioDeme, Context& ioContext)
 
 			Beagle_LogVerboseM(
 			    ioContext.getSystem().getLogger(),
-			    "evaluation", "Beagle::EvaluationOp",
 			    std::string("Evaluating the fitness of the ")+uint2ordinal(i+1)+
 			    " individual"
 			);
@@ -205,13 +196,7 @@ void EvaluationOp::operate(Deme& ioDeme, Context& ioContext)
 
 			++lNbrEvaluations;
 
-			Beagle_LogObjectM(
-			    ioContext.getSystem().getLogger(),
-			    Logger::eVerbose,
-			    "evaluation",
-			    "Beagle::EvaluationOp",
-			    *ioDeme[i]->getFitness()
-			);
+			Beagle_LogVerboseM(ioContext.getSystem().getLogger(), *ioDeme[i]->getFitness());
 		}
 	}
 
@@ -225,13 +210,12 @@ void EvaluationOp::operate(Deme& ioDeme, Context& ioContext)
 	if(lNbrEvaluations == 0) {
 		Beagle_LogBasicM(
 		    ioContext.getSystem().getLogger(),
-		    "evaluation", "Beagle::EvaluationOp",
 		    std::string("Warning!  The '")+getName()+"' operator did not evaluate any individuals.  "+
 		    "Consider using the 'InvalidateFitnessOp' operator to force evaluation of every individual."
 		);
 	}
 
-	Beagle_StackTraceEndM("void EvaluationOp::operate(Deme&,Context&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -290,7 +274,7 @@ void EvaluationOp::prepareStats(Deme& ioDeme, Context& ioContext)
 
 	}
 
-	Beagle_StackTraceEndM("void EvaluationOp::prepareStats(Deme&,Context&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -332,7 +316,7 @@ void EvaluationOp::registerParams(System& ioSystem)
 		mDemeHOFSize = castHandleT<UInt>(
 		                   ioSystem.getRegister().insertEntry("ec.hof.demesize", new UInt(0), lDescription));
 	}
-	Beagle_StackTraceEndM("void EvaluationOp::registerParams(System&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -348,13 +332,11 @@ Fitness::Handle EvaluationOp::test(Individual::Handle inIndividual, System::Hand
 	Beagle_StackTraceBeginM();
 	Beagle_LogInfoM(
 	    ioSystem->getLogger(),
-	    "evaluation", "Beagle::EvaluationOp",
 	    std::string("Testing the following individual:")
 	);
 	Beagle_LogObjectM(
 	    ioSystem->getLogger(),
 	    Beagle::Logger::eInfo,
-	    "evaluation", "Beagle::EvaluationOp",
 	    *inIndividual
 	);
 
@@ -367,19 +349,11 @@ Fitness::Handle EvaluationOp::test(Individual::Handle inIndividual, System::Hand
 
 	Beagle_LogInfoM(
 	    ioSystem->getLogger(),
-	    "evaluation", "Beagle::EvaluationOp",
-	    std::string("New fitness of the individual")
+	    "New fitness of the individual: " << *lFitness
 	);
-	Beagle_LogObjectM(
-	    ioSystem->getLogger(),
-	    Beagle::Logger::eInfo,
-	    "evaluation", "Beagle::EvaluationOp",
-	    *lFitness
-	);
-
 
 	return lFitness;
-	Beagle_StackTraceEndM("Fitness::Handle EvaluationOp::test(Individual::Handle, System::Handle)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -394,7 +368,6 @@ void EvaluationOp::updateHallOfFameWithDeme(Deme& ioDeme, Context& ioContext)
 	if(mDemeHOFSize->getWrappedValue() > 0) {
 		Beagle_LogDetailedM(
 		    ioContext.getSystem().getLogger(),
-		    "evaluation", "Beagle::EvaluationOp",
 		    "Updating the deme's hall-of-fame"
 		);
 		HallOfFame::Handle lHoF = ioDeme.getHallOfFame();
@@ -411,7 +384,6 @@ void EvaluationOp::updateHallOfFameWithDeme(Deme& ioDeme, Context& ioContext)
 	if(mVivaHOFSize->getWrappedValue() > 0) {
 		Beagle_LogDetailedM(
 		    ioContext.getSystem().getLogger(),
-		    "evaluation", "Beagle::EvaluationOp",
 		    "Updating the vivarium's hall-of-fame"
 		);
 		HallOfFame::Handle lHoF = ioContext.getVivarium().getHallOfFame();
@@ -425,7 +397,7 @@ void EvaluationOp::updateHallOfFameWithDeme(Deme& ioDeme, Context& ioContext)
 		lHoF->updateWithDeme(mVivaHOFSize->getWrappedValue(), ioDeme, ioContext);
 		lHoF->log(Logger::eVerbose, ioContext);
 	}
-	Beagle_StackTraceEndM("void EvaluationOp::updateHallOfFameWithDeme(Deme&,Context&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -440,7 +412,6 @@ void EvaluationOp::updateHallOfFameWithIndividual(Individual& ioIndividual, Cont
 	if(mDemeHOFSize->getWrappedValue() > 0) {
 		Beagle_LogVerboseM(
 		    ioContext.getSystem().getLogger(),
-		    "evaluation", "Beagle::EvaluationOp",
 		    "Updating the deme hall-of-fame"
 		);
 		HallOfFame::Handle lHoF = ioContext.getDeme().getHallOfFame();
@@ -456,7 +427,6 @@ void EvaluationOp::updateHallOfFameWithIndividual(Individual& ioIndividual, Cont
 	if(mVivaHOFSize->getWrappedValue() > 0) {
 		Beagle_LogVerboseM(
 		    ioContext.getSystem().getLogger(),
-		    "evaluation", "Beagle::EvaluationOp",
 		    "Updating the vivarium hall-of-fame"
 		);
 		HallOfFame::Handle lHoF = ioContext.getVivarium().getHallOfFame();
@@ -469,7 +439,7 @@ void EvaluationOp::updateHallOfFameWithIndividual(Individual& ioIndividual, Cont
 		}
 		lHoF->updateWithIndividual(mVivaHOFSize->getWrappedValue(), ioIndividual, ioContext);
 	}
-	Beagle_StackTraceEndM("void EvaluationOp::updateHallOfFameWithIndividual(Individual&,Context&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -485,7 +455,7 @@ void EvaluationOp::updateStats(unsigned int inNumProcessed, Context& ioContext)
 	ioContext.setTotalProcessedDeme(ioContext.getTotalProcessedDeme()+inNumProcessed);
 	ioContext.setProcessedVivarium(ioContext.getProcessedVivarium()+inNumProcessed);
 	ioContext.setTotalProcessedVivarium(ioContext.getTotalProcessedVivarium()+inNumProcessed);
-	Beagle_StackTraceEndM("void EvaluationOp::updateStats(unsigned int inNumProcessed,Context& ioContext)");
+	Beagle_StackTraceEndM();
 }
 
 

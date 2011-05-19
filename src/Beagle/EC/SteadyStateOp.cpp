@@ -71,7 +71,7 @@ void SteadyStateOp::registerParams(System& ioSystem)
 	mElitismKeepSize = castHandleT<UInt>(
 	                       ioSystem.getRegister().insertEntry("ec.elite.keepsize", new UInt(1), lDescription));
 
-	Beagle_StackTraceEndM("void SteadyStateOp::registerParams(System&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -91,16 +91,10 @@ void SteadyStateOp::operate(Deme& ioDeme, Context& ioContext)
 
 	Beagle_LogTraceM(
 	    ioContext.getSystem().getLogger(),
-	    "replacement-strategy", "Beagle::SteadyStateOp",
-	    string("Processing using steady-state replacement strategy the ")+
-	    uint2ordinal(ioContext.getDemeIndex()+1)+" deme"
+	    "Processing using steady-state replacement strategy the " <<
+	    uint2ordinal(ioContext.getDemeIndex()+1) << " deme"
 	);
-	Beagle_LogObjectM(
-	    ioContext.getSystem().getLogger(),
-	    Logger::eTrace,
-	    "replacement-strategy", "Beagle::SteadyStateOp",
-	    (*this)
-	);
+	Beagle_LogTraceM(ioContext.getSystem().getLogger(), (*this));
 
 	RouletteT<unsigned int> lRoulette;
 	buildRoulette(lRoulette, ioContext);
@@ -136,5 +130,5 @@ void SteadyStateOp::operate(Deme& ioDeme, Context& ioContext)
 		Beagle_NonNullPointerAssertM(lBredIndiv);
 		ioDeme[i] = lBredIndiv;
 	}
-	Beagle_StackTraceEndM("void SteadyStateOp::operate(Deme& ioDeme, Context& ioContext)");
+	Beagle_StackTraceEndM();
 }

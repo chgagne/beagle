@@ -82,7 +82,7 @@ void Beagle::RandomizerMulti::registerParams(System& ioSystem)
 		(*mRandomizers)[i]->registerParams(ioSystem);
 		(*mRandomizers)[i]->setRegisteredFlag(true);
 	}
-	Beagle_StackTraceEndM("void RandomizerMulti::registerParams(System&)");
+	Beagle_StackTraceEndM();
 }
 
 /*!
@@ -108,7 +108,7 @@ void Beagle::RandomizerMulti::init(System& ioSystem)
 		(*mRandomizers)[i]->init(ioSystem);
 		(*mRandomizers)[i]->setInitializedFlag(true);
 	}
-	Beagle_StackTraceEndM("void RandomizerMulti::init(System&)");
+	Beagle_StackTraceEndM();
 }
 
 /*!
@@ -134,7 +134,7 @@ void Beagle::RandomizerMulti::readWithSystem(PACC::XML::ConstIterator inIter, Sy
 		(*mRandomizers)[i]->readWithSystem(lChild, ioSystem);
 		++lChild;
 	}
-	Beagle_StackTraceEndM("void RandomizerMulti::readWithSystem(PACC::XML::ConstIterator, System&)");
+	Beagle_StackTraceEndM();
 }
 
 /*!
@@ -151,5 +151,5 @@ void Beagle::RandomizerMulti::write(PACC::XML::Streamer& ioStreamer, bool inInde
 			(*mRandomizers)[i]->write(ioStreamer, inIndent);
 	}
 	ioStreamer.closeTag();
-	Beagle_StackTraceEndM("void RandomizerMulti::writeContent(PACC::XML::Streamer&, bool) const");
+	Beagle_StackTraceEndM();
 }

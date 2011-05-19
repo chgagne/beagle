@@ -62,7 +62,7 @@ double AdaptBreedingProbaOp::getBreedingProba(BreederNode::Handle inChild)
 		lSum += lNode->getBreederOp()->getBreedingProba(lNode->getFirstChild());
 	}
 	return lSum;
-	Beagle_StackTraceEndM("double AdaptBreedingProbaOp::getBreedingProba(BreederNode::Handle)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -135,7 +135,7 @@ void AdaptBreedingProbaOp::registerParams(System& ioSystem)
 		mAdaptationFactor = castHandleT<Double>(
 		                        ioSystem.getRegister().insertEntry("ec.adaptbreed.factor", new Double(0.9), lDescription));
 	}
-	Beagle_StackTraceEndM("void GA::AdaptBreedingProbaOp::registerParams(System&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -156,7 +156,6 @@ Individual::Handle AdaptBreedingProbaOp::breed(Individual::Bag& inBreedingPool,
 	if(mAdaptedProbas->size() == 0) {
 		Beagle_LogVerboseM(
 		    ioContext.getSystem().getLogger(),
-		    "adaptation", "Beagle::AdaptBreedingProbaOp",
 		    "Getting breeding probabilities from underlying operators to initialize internal tables"
 		);
 		mSuccessCount->clear();
@@ -196,7 +195,6 @@ Individual::Handle AdaptBreedingProbaOp::breed(Individual::Bag& inBreedingPool,
 			lOSS << "' as variation operator";
 			Beagle_LogVerboseM(
 			    ioContext.getSystem().getLogger(),
-			    "adaptation", "Beagle::AdaptBreedingProbaOp",
 			    lOSS.str()
 			);
 			lIndiv = lNode->getBreederOp()->breed(inBreedingPool, lNode->getFirstChild(), ioContext);
@@ -211,14 +209,12 @@ Individual::Handle AdaptBreedingProbaOp::breed(Individual::Bag& inBreedingPool,
 	if(lFitParent->isLess(*lFitChild)) {
 		Beagle_LogVerboseM(
 		    ioContext.getSystem().getLogger(),
-		    "adaptation", "Beagle::AdaptBreedingProbaOp",
 		    "Variation operation successful, the offspring's fitness is better than the parent's fitness"
 		);
 		++(*mSuccessCount)[lIndexThisVarOp];
 	} else {
 		Beagle_LogVerboseM(
 		    ioContext.getSystem().getLogger(),
-		    "adaptation", "Beagle::AdaptBreedingProbaOp",
 		    "Variation operation not successful, the offspring's fitness is worse than or equal to the parent's fitness"
 		);
 	}
@@ -266,14 +262,13 @@ Individual::Handle AdaptBreedingProbaOp::breed(Individual::Bag& inBreedingPool,
 			}
 			Beagle_LogDetailedM(
 			    ioContext.getSystem().getLogger(),
-			    "adaptation", "Beagle::AdaptBreedingProbaOp",
 			    lOSS.str()
 			);
 		}
 	}
 
 	return lIndiv;
-	Beagle_StackTraceEndM("Individual::Handle AdaptBreedingProbaOp::breed(Individual::Bag& inBreedingPool,BreederNode::Handle inChild,Context& ioContext)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -286,6 +281,6 @@ void AdaptBreedingProbaOp::operate(Deme& ioDeme, Context& ioContext)
 {
 	Beagle_StackTraceBeginM();
 	throw Beagle_UndefinedMethodInternalExceptionM("operate", "AdaptBreedingProbaOp", getName());
-	Beagle_StackTraceEndM("void AdaptBreedingProbaOp::operate(Deme& ioDeme, Context& ioContext)");
+	Beagle_StackTraceEndM();
 }
 

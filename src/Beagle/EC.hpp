@@ -89,7 +89,7 @@
 #include "Beagle/EC/MutationOp.hpp"
 #include "Beagle/EC/OneCommaLambdaAdaptedOp.hpp"
 #include "Beagle/EC/OversizeOp.hpp"
-#include "Beagle/EC/PackageBase.hpp"
+#include "Beagle/EC/Package.hpp"
 #include "Beagle/EC/RandomShuffleDemeOp.hpp"
 #include "Beagle/EC/RecombinationOp.hpp"
 #include "Beagle/EC/RegisterReadOp.hpp"

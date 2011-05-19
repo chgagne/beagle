@@ -68,7 +68,6 @@ void Evolver::configureDefaultAlgorithm(System& ioSystem)
 	if(lAlgoAlloc == NULL) {
 		Beagle_LogDetailedM(
 		    ioSystem.getLogger(),
-		    "algorithm", "Beagle::Evolver",
 		    "No default algorithm defined, evolver stay empty"
 		);
 		return;
@@ -76,12 +75,11 @@ void Evolver::configureDefaultAlgorithm(System& ioSystem)
 	Algorithm::Handle lAlgo = castHandleT<Algorithm>(lAlgoAlloc->allocate());
 	Beagle_LogDetailedM(
 	    ioSystem.getLogger(),
-	    "algorithm", "Beagle::Evolver",
 	    std::string("Configuring evolver with default algorithm '")+
 	    ioSystem.getFactory().getConceptTypeName("Algorithm")+"'"
 	);
 	lAlgo->configure(*this, ioSystem);
-	Beagle_StackTraceEndM("void Evolver::configureDefaultAlgorithm(System&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -117,7 +115,6 @@ void Evolver::evolve(Vivarium::Handle ioVivarium, System::Handle ioSystem)
 	if(mVivariumFileName.empty()) {
 		Beagle_LogTraceM(
 		    ioSystem->getLogger(),
-		    "evolve", "Beagle::Evolver",
 		    std::string("Vivarium resized to ")+uint2str(mPopSize->size())+" demes"
 		);
 		const Factory& lFactory = ioSystem->getFactory();
@@ -130,7 +127,6 @@ void Evolver::evolve(Vivarium::Handle ioVivarium, System::Handle ioSystem)
 	} else {
 		Beagle_LogTraceM(
 		    ioSystem->getLogger(),
-		    "evolve", "Beagle::Evolver",
 		    std::string("Reading vivarium from file '")+mVivariumFileName+"'"
 		);
 		readVivarium(mVivariumFileName, *ioVivarium, *lEvolContext);
@@ -150,7 +146,6 @@ void Evolver::evolve(Vivarium::Handle ioVivarium, System::Handle ioSystem)
 
 		Beagle_LogBasicM(
 		    ioSystem->getLogger(),
-		    "evolve", "Beagle::Evolver",
 		    std::string("Evolving generation ")+uint2str(lGeneration)
 		);
 		if(lGeneration == 0) {
@@ -160,14 +155,12 @@ void Evolver::evolve(Vivarium::Handle ioVivarium, System::Handle ioSystem)
 
 				Beagle_LogInfoM(
 				    ioSystem->getLogger(),
-				    "evolve", "Beagle::Evolver",
 				    std::string("Applying bootstrap operators to the ")+uint2ordinal(i+1)+
 				    std::string(" deme")
 				);
 				for(unsigned int j=0; j<mBootStrapSet.size(); j++) {
 					Beagle_LogDetailedM(
 					    ioSystem->getLogger(),
-					    "evolve", "Beagle::Evolver",
 					    std::string("Applying '")+mBootStrapSet[j]->getName()+std::string("'")
 					);
 					mBootStrapSet[j]->operate(*(*ioVivarium)[i], *lEvolContext);
@@ -175,16 +168,10 @@ void Evolver::evolve(Vivarium::Handle ioVivarium, System::Handle ioSystem)
 					if(mConfigChanged) {
 						Beagle_LogBasicM(
 						    ioSystem->getLogger(),
-						    "evolve", "Beagle::Evolver",
-						    std::string("Evolver configuration changed after applying '")+
-						    mBootStrapSet[j]->getName()+"' operator from bootstrap set"
+						    "Evolver configuration changed after applying '" <<
+						    mBootStrapSet[j]->getName() << "' operator from bootstrap set"
 						);
-						Beagle_LogObjectM(
-						    ioSystem->getLogger(),
-						    Logger::eDetailed,
-						    "evolve", "Beagle::Evolver",
-						    (*this)
-						);
+						Beagle_LogDetailedM(ioSystem->getLogger(), (*this));
 						mConfigChanged = false;
 					}
 				}
@@ -202,14 +189,12 @@ void Evolver::evolve(Vivarium::Handle ioVivarium, System::Handle ioSystem)
 				lEvolContext->setDemeHandle((*ioVivarium)[i]);
 				Beagle_LogInfoM(
 				    ioSystem->getLogger(),
-				    "evolve", "Beagle::Evolver",
 				    std::string("Applying main-loop operators to the ")+uint2ordinal(i+1)+
 				    std::string(" deme")
 				);
 				for(unsigned int j=0; j<mMainLoopSet.size(); j++) {
 					Beagle_LogDetailedM(
 					    ioSystem->getLogger(),
-					    "evolve", "Beagle::Evolver",
 					    std::string("Applying '")+mMainLoopSet[j]->getName()+std::string("'")
 					);
 					mMainLoopSet[j]->operate(*(*ioVivarium)[i], *lEvolContext);
@@ -218,16 +203,10 @@ void Evolver::evolve(Vivarium::Handle ioVivarium, System::Handle ioSystem)
 					if (mConfigChanged) {
 						Beagle_LogBasicM(
 						    ioSystem->getLogger(),
-						    "evolve", "Beagle::Evolver",
-						    std::string("Evolver configuration changed after applying '")+
-						    mMainLoopSet[j]->getName()+"' operator from main-loop set"
+						    "Evolver configuration changed after applying '" <<
+						    mMainLoopSet[j]->getName() << "' operator from main-loop set"
 						);
-						Beagle_LogObjectM(
-						    ioSystem->getLogger(),
-						    Logger::eDetailed,
-						    "evolve", "Beagle::Evolver",
-						    (*this)
-						);
+						Beagle_LogDetailedM(ioSystem->getLogger(), (*this));
 						mConfigChanged = false;
 					}
 				}
@@ -246,43 +225,27 @@ void Evolver::evolve(Vivarium::Handle ioVivarium, System::Handle ioSystem)
 	for(unsigned int i=0; i<ioVivarium->size(); ++i) {
 		HallOfFame::Handle lDemeHoF = (*ioVivarium)[i]->getHallOfFame();
 		if((lDemeHoF!=NULL) && (lDemeHoF->size()>0)) {
-			Beagle_LogInfoM(
-			    ioSystem->getLogger(),
-			    "evolve", "Beagle::Evolver",
-			    std::string("Logging hall-of-fame of the ")+uint2ordinal(i+1)+std::string(" deme")
-			);
-			Beagle_LogObjectM(
-			    ioSystem->getLogger(),
-			    Logger::eInfo,
-			    "evolve", "Beagle::Evolver",
-			    *lDemeHoF
-			);
+			Beagle_LogInfoM(ioSystem->getLogger(), "Logging hall-of-fame of the " << uint2ordinal(i+1) << " deme");
+			Beagle_LogInfoM(ioSystem->getLogger(), *lDemeHoF);
 		}
 	}
 	HallOfFame::Handle lVivaHoF = ioVivarium->getHallOfFame();
 	if((lVivaHoF!=NULL) && (lVivaHoF->size()>0)) {
 		Beagle_LogInfoM(
 		    ioSystem->getLogger(),
-		    "evolve", "Beagle::Evolver",
 		    "Logging hall-of-fame of the vivarium"
 		);
-		Beagle_LogObjectM(
-		    ioSystem->getLogger(),
-		    Logger::eInfo,
-		    "evolve", "Beagle::Evolver",
-		    *lVivaHoF
-		);
+		Beagle_LogInfoM(ioSystem->getLogger(), *lVivaHoF);
 	}
 
 	// Log date, time, and ending message.
 	ioSystem->getLogger().logCurrentTime(Logger::eBasic);
 	Beagle_LogBasicM(
 	    ioSystem->getLogger(),
-	    "evolve", "Beagle::Evolver",
 	    (lEvolContext->isTerminationSuccessful())?("End of (successful) evolution"):("End of (unsuccessful) evolution")
 	);
 
-	Beagle_StackTraceEndM("void Evolver::evolve(Vivarium::Handle)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -327,7 +290,7 @@ void Evolver::initialize(System::Handle ioSystem, int inArgc, char** inArgv)
 	// initialize evolver operators
 	initOperators(*ioSystem);
 
-	Beagle_StackTraceEndM("void Evolver::initialize(System::Handle, int, char**)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -363,7 +326,7 @@ void Evolver::initialize(System::Handle ioSystem, const std::string& inFilename)
 	// initialize evolver operators
 	initOperators(*ioSystem);
 
-	Beagle_StackTraceEndM("void Evolver::initialize(System::Handle, const std::string&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -378,14 +341,12 @@ void Evolver::initOperators(System& ioSystem)
 	// initializing the bootstrap operator set
 	Beagle_LogDetailedM(
 	    ioSystem.getLogger(),
-	    "init", "Beagle::Evolver",
 	    "Initializing the bootstrap operator set"
 	);
 	for(unsigned int i = 0; i < mBootStrapSet.size(); i++) {
 		if(mBootStrapSet[i]->isInitialized() == false) {
 			Beagle_LogTraceM(
 			    ioSystem.getLogger(),
-			    "init", "Beagle::Evolver",
 			    std::string("Initializing '") + mBootStrapSet[i]->getName() + "'"
 			);
 			mBootStrapSet[i]->init(ioSystem);
@@ -396,14 +357,12 @@ void Evolver::initOperators(System& ioSystem)
 	// initializing the main-loop operator set
 	Beagle_LogDetailedM(
 	    ioSystem.getLogger(),
-	    "init", "Beagle::Evolver",
 	    "Initializing the main-loop operator set"
 	);
 	for(unsigned int i = 0; i < mMainLoopSet.size(); i++) {
 		if(mMainLoopSet[i]->isInitialized() == false) {
 			Beagle_LogTraceM(
 			    ioSystem.getLogger(),
-			    "init", "Beagle::Evolver",
 			    std::string("Initializing '") + mMainLoopSet[i]->getName() + "'"
 			);
 			mMainLoopSet[i]->init(ioSystem);
@@ -411,7 +370,7 @@ void Evolver::initOperators(System& ioSystem)
 		}
 	}
 
-	Beagle_StackTraceEndM("void Evolver::initOperators(void)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -425,28 +384,16 @@ void Evolver::logWelcomeMessages(System& ioSystem)
 
 	Beagle_LogBasicM(
 	    ioSystem.getLogger(),
-	    "evolve", "Beagle::Evolver",
 	    "Starting an evolution"
 	);
 
 	ioSystem.getLogger().logCurrentTime(Logger::eBasic);
-
-	Beagle_LogObjectM(
-	    ioSystem.getLogger(),
-	    Logger::eDetailed,
-	    "evolve", "Beagle::Evolver",
-	    ioSystem.getRegister()
-	);
-
-	Beagle_LogObjectM(
-	    ioSystem.getLogger(),
-	    Logger::eDetailed,
-	    "evolve", "Beagle::Evolver",
-	    (*this)
-	);
+	Beagle_LogDetailedM(ioSystem.getLogger(), ioSystem.getRegister());
+	Beagle_LogDetailedM(ioSystem.getLogger(), (*this));
+	
 	mConfigChanged=false;
 
-	Beagle_StackTraceEndM("void Evolver::logWelcomeMessages()");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -471,7 +418,6 @@ void Evolver::parseCommandLine(System& ioSystem, int inArgc, char** inArgv)
 	for(int i = 1; i < inArgc; ++i) lCommandLine += std::string(" ")+inArgv[i];
 	Beagle_LogDetailedM(
 	    ioSystem.getLogger(),
-	    "init", "Beagle::Evolver",
 	    std::string("Parsing command-line: ")+lCommandLine
 	);
 	for(int i = 1; i < inArgc; i++) {
@@ -509,7 +455,6 @@ void Evolver::parseCommandLine(System& ioSystem, int inArgc, char** inArgv)
 					if (lName=="ec.conf.file") {
 						Beagle_LogBasicM(
 						    ioSystem.getLogger(),
-						    "init", "Beagle::Evolver",
 						    "The register variable 'ec.conf.file' is DEPRECATED, please use 'conf' instead."
 						);
 					}
@@ -553,7 +498,6 @@ void Evolver::parseCommandLine(System& ioSystem, int inArgc, char** inArgv)
 					if (lName=="ms.restart.file") {
 						Beagle_LogBasicM(
 						    ioSystem.getLogger(),
-						    "init", "Beagle::Evolver",
 						    "The register variable 'ms.restart.file' is DEPRECATED, please use 'restart' instead."
 						);
 					}
@@ -590,7 +534,7 @@ void Evolver::parseCommandLine(System& ioSystem, int inArgc, char** inArgv)
 		}
 	}
 
-	Beagle_StackTraceEndM("void Evolver::parseCommandLine(System&, int, char**)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -601,7 +545,7 @@ void Evolver::read(PACC::XML::ConstIterator)
 {
 	Beagle_StackTraceBeginM();
 	throw Beagle_UndefinedMethodInternalExceptionM("read", "Evolver", "Evolver");
-	Beagle_StackTraceEndM("void Operator::read(PACC::XML::ConstIterator)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -626,8 +570,7 @@ void Evolver::readMilestone(const std::string& inFileName, System& ioSystem)
 	}
 	Beagle_LogBasicM(
 	    ioSystem.getLogger(),
-	    "init", "Beagle::Evolver",
-	    std::string("Reading evolver and system configuration from milestone file '")+inFileName+"'"
+	    "Reading evolver and system configuration from milestone file '" << inFileName << "'"
 	);
 	PACC::XML::Document lDocument(lStream, inFileName);
 	lStream.close();
@@ -651,7 +594,6 @@ void Evolver::readMilestone(const std::string& inFileName, System& ioSystem)
 	if(!lPosEvol) {
 		Beagle_LogBasicM(
 		    ioSystem.getLogger(),
-		    "init", "Beagle::Evolver",
 		    "WARNING: milestone does not contain any valid evolver"
 		);
 	} else {
@@ -660,7 +602,6 @@ void Evolver::readMilestone(const std::string& inFileName, System& ioSystem)
 		if(lPosEvol = lFinderEvol.findNext()) {
 			Beagle_LogBasicM(
 			    ioSystem.getLogger(),
-			    "init", "Beagle::Evolver",
 			    "WARNING: milestone contains multiple evolvers"
 			);
 			do {
@@ -678,18 +619,13 @@ void Evolver::readMilestone(const std::string& inFileName, System& ioSystem)
 	if(!lPosSys) {
 		Beagle_LogBasicM(
 		    ioSystem.getLogger(),
-		    "init", "Beagle::Evolver",
 		    "WARNING: milestone does not contain any valid system"
 		);
 	} else {
 		// read all system instances
 		ioSystem.read(lPosSys);
 		if(lPosSys = lFinderSys.findNext()) {
-			Beagle_LogBasicM(
-			    ioSystem.getLogger(),
-			    "init", "Beagle::Evolver",
-			    "WARNING: milestone contains multiple systems"
-			);
+			Beagle_LogBasicM(ioSystem.getLogger(), "WARNING: milestone contains multiple systems");
 			do {
 				ioSystem.read(lPosSys);
 			} while(lPosSys = lFinderSys.findNext());
@@ -699,7 +635,7 @@ void Evolver::readMilestone(const std::string& inFileName, System& ioSystem)
 	// register the parameters of any new component
 	ioSystem.registerComponentParams();
 
-	Beagle_StackTraceEndM("void Evolver::readMilestone(const std::string&,System&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -723,35 +659,26 @@ void Evolver::readFromFile(const std::string& inFileName, System& ioSystem)
 	}
 	Beagle_LogBasicM(
 	    ioSystem.getLogger(),
-	    "init", "Beagle::Evolver",
-	    std::string("Reading file '")+inFileName+"' for evolver configuration"
+	    "Reading file '" << inFileName << "' for evolver configuration"
 	);
 	PACC::XML::Document lDocument(lStream, inFileName);
 	lStream.close();
 	PACC::XML::ConstFinder lFinder(lDocument.getFirstDataTag());
 	PACC::XML::ConstIterator lPos = lFinder.find("/Beagle/Evolver");
 	if(!lPos) {
-		Beagle_LogBasicM(
-		    ioSystem.getLogger(),
-		    "init", "Beagle::Evolver",
-		    "WARNING: file does not contain any valid evolver"
-		);
+		Beagle_LogBasicM(ioSystem.getLogger(), "WARNING: file does not contain any valid evolver");
 	} else {
 		// read all evolver instances
 		readWithSystem(lPos, ioSystem);
 		if(lPos = lFinder.findNext()) {
-			Beagle_LogBasicM(
-			    ioSystem.getLogger(),
-			    "init", "Beagle::Evolver",
-			    "WARNING: file contains multiple evolvers"
-			);
+			Beagle_LogBasicM(ioSystem.getLogger(), "WARNING: file contains multiple evolvers");
 			do {
 				read(lPos);
 			} while(lPos = lFinder.findNext());
 		}
 	}
 
-	Beagle_StackTraceEndM("void Evolver::readFromFile(const std::string&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -777,8 +704,7 @@ void Evolver::readVivarium(const std::string& inFileName, Vivarium& outVivarium,
 	}
 	Beagle_LogBasicM(
 	    ioContext.getSystem().getLogger(),
-	    "init", "Beagle::Evolver",
-	    std::string("Reading vivarium from milestone file '")+inFileName+"'"
+	    "Reading vivarium from milestone file '" << inFileName << "'"
 	);
 	PACC::XML::Document lDocument(lStream, inFileName);
 	lStream.close();
@@ -787,7 +713,6 @@ void Evolver::readVivarium(const std::string& inFileName, Vivarium& outVivarium,
 	if(!lPos) {
 		Beagle_LogBasicM(
 		    ioContext.getSystem().getLogger(),
-		    "init", "Beagle::Evolver",
 		    "WARNING: file does not contain any valid vivarium"
 		);
 	} else {
@@ -796,7 +721,6 @@ void Evolver::readVivarium(const std::string& inFileName, Vivarium& outVivarium,
 		if(lPos = lFinder.findNext()) {
 			Beagle_LogBasicM(
 			    ioContext.getSystem().getLogger(),
-			    "init", "Beagle::Evolver",
 			    "WARNING: file contains multiple vivarium"
 			);
 			do {
@@ -805,7 +729,7 @@ void Evolver::readVivarium(const std::string& inFileName, Vivarium& outVivarium,
 		}
 	}
 
-	Beagle_StackTraceEndM("void Evolver::readVivarium(const std::string&,Vivarium&,System&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -867,7 +791,7 @@ void Evolver::readWithSystem(PACC::XML::ConstIterator inIter, System& ioSystem)
 			}
 		}
 	}
-	Beagle_StackTraceEndM("void Evolver::read(PACC::XML::ConstIterator)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -882,15 +806,13 @@ void Evolver::registerOperatorParams(System& ioSystem)
 	// registering the bootstrap operator set parameters
 	Beagle_LogDetailedM(
 	    ioSystem.getLogger(),
-	    "init", "Beagle::Evolver",
 	    "Registering the evolver bootstrap operator set parameters"
 	);
 	for(unsigned int i = 0; i < mBootStrapSet.size(); i++) {
 		if(mBootStrapSet[i]->hasRegisteredParams() == false) {
 			Beagle_LogTraceM(
 			    ioSystem.getLogger(),
-			    "init", "Beagle::Evolver",
-			    std::string("Registering '") + mBootStrapSet[i]->getName() + "' parameters"
+			    "Registering '" << mBootStrapSet[i]->getName() << "' parameters"
 			);
 			mBootStrapSet[i]->registerParams(ioSystem);
 			mBootStrapSet[i]->setRegisteredFlag(true);
@@ -900,22 +822,20 @@ void Evolver::registerOperatorParams(System& ioSystem)
 	// registering the main-loop operator set parameters
 	Beagle_LogDetailedM(
 	    ioSystem.getLogger(),
-	    "init", "Beagle::Evolver",
 	    "Registering the evolver main-loop operator set parameters"
 	);
 	for(unsigned int i = 0; i < mMainLoopSet.size(); i++) {
 		if(mMainLoopSet[i]->hasRegisteredParams() == false) {
 			Beagle_LogTraceM(
 			    ioSystem.getLogger(),
-			    "init", "Beagle::Evolver",
-			    std::string("Registering '") + mMainLoopSet[i]->getName() + "' parameters"
+			    "Registering '" << mMainLoopSet[i]->getName() << "' parameters"
 			);
 			mMainLoopSet[i]->registerParams(ioSystem);
 			mMainLoopSet[i]->setRegisteredFlag(true);
 		}
 	}
 
-	Beagle_StackTraceEndM("void Evolver::registerOperatorParams(void)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -965,7 +885,7 @@ void Evolver::registerParams(System& ioSystem)
 	// register bootstrap and main-loop operator set parameters
 	registerOperatorParams(ioSystem);
 
-	Beagle_StackTraceEndM("void Evolver::registerParams(void)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -1002,7 +922,7 @@ void Evolver::showHelp(System& ioSystem, const std::string& inProgram, std::ostr
 
 	ioSystem.getRegister().showHelp(outStream);
 
-	Beagle_StackTraceEndM("void Evolver::showHelp(const std::string&, std::ostream&) const");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -1036,7 +956,7 @@ void Evolver::showUsage(System& ioSystem, const std::string& inProgram, std::ost
 
 	ioSystem.getRegister().showUsage(outStream);
 
-	Beagle_StackTraceEndM("void Evolver::showUsage(System&,const std::string&,std::ostream&) const");
+	Beagle_StackTraceEndM();
 }
 
 /*!
@@ -1047,8 +967,7 @@ void Evolver::testIndividual(Vivarium::Handle ioVivarium, Context& ioContext)
 	Beagle_StackTraceBeginM();
 	Beagle_LogDetailedM(
 	    ioContext.getSystem().getLogger(),
-	    "evolve", "Beagle::Evolver",
-	    std::string("Evaluating individual in file '")+mTestIndi->getWrappedValue()+"'"
+	    "Evaluating individual in file '" << mTestIndi->getWrappedValue() << "'"
 	);
 
 	// Allocate individual
@@ -1060,15 +979,13 @@ void Evolver::testIndividual(Vivarium::Handle ioVivarium, Context& ioContext)
 	// Parse individual
 	Beagle_LogDebugM(
 	    ioContext.getSystem().getLogger(),
-	    "evolve", "Beagle::Evolver",
-	    std::string("Reading and parsing XML from file '")+mTestIndi->getWrappedValue()+"'"
+	    "Reading and parsing XML from file '" << *mTestIndi << "'"
 	);
 	std::ifstream lInFile(mTestIndi->getWrappedValue().c_str());
 	PACC::XML::Document lXML;
 	lXML.parse(lInFile,mTestIndi->getWrappedValue());
 	Beagle_LogDebugM(
 	    ioContext.getSystem().getLogger(),
-	    "evolve", "Beagle::Evolver",
 	    "Reading individual from XML"
 	);
 	ioContext.setIndividualHandle(lIndi);
@@ -1084,7 +1001,7 @@ void Evolver::testIndividual(Vivarium::Handle ioVivarium, Context& ioContext)
 	lEvalOp->init(ioContext.getSystem());
 	lEvalOp->test(lIndi, ioContext.getSystemHandle());
 
-	Beagle_StackTraceEndM("void Evolver::testIndividual(Vivarium::Handle, Context&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -1111,5 +1028,5 @@ void Evolver::write(PACC::XML::Streamer& ioStreamer, bool inIndent) const
 	ioStreamer.closeTag();
 	ioStreamer.closeTag();
 
-	Beagle_StackTraceEndM("void Evolver::write(PACC::XML::Streamer, bool inIndent) const");
+	Beagle_StackTraceEndM();
 }

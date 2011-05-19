@@ -68,7 +68,7 @@ inline bool operator<(const Beagle::Char& inLeftChar, const Beagle::Char& inRigh
 {
 	Beagle_StackTraceBeginM();
 	return inLeftChar.isLess(inRightChar);
-	Beagle_StackTraceEndM("bool operator<(const Char& inLeftChar, const Char& inRightChar)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -84,7 +84,7 @@ inline bool operator<=(const Beagle::Char& inLeftChar, const Beagle::Char& inRig
 {
 	Beagle_StackTraceBeginM();
 	return ( inLeftChar.isLess(inRightChar) || inLeftChar.isEqual(inRightChar) );
-	Beagle_StackTraceEndM("bool operator<=(const Char& inLeftChar, const Char& inRightChar)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -100,7 +100,7 @@ inline bool operator>(const Beagle::Char& inLeftChar, const Beagle::Char& inRigh
 {
 	Beagle_StackTraceBeginM();
 	return inRightChar.isLess(inLeftChar);
-	Beagle_StackTraceEndM("bool operator>(const Char& inLeftChar, const Char& inRightChar)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -116,7 +116,7 @@ inline bool operator>=(const Beagle::Char& inLeftChar, const Beagle::Char& inRig
 {
 	Beagle_StackTraceBeginM();
 	return ( inRightChar.isLess(inLeftChar) || inLeftChar.isEqual(inRightChar) );
-	Beagle_StackTraceEndM("bool operator>=(const Char& inLeftChar, const Char& inRightChar)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -132,7 +132,7 @@ inline bool operator==(const Beagle::Char& inLeftChar, const Beagle::Char& inRig
 {
 	Beagle_StackTraceBeginM();
 	return inLeftChar.isEqual(inRightChar);
-	Beagle_StackTraceEndM("bool operator==(const Char& inLeftChar, const Char& inRightChar)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -148,7 +148,7 @@ inline bool operator!=(const Beagle::Char& inLeftChar, const Beagle::Char& inRig
 {
 	Beagle_StackTraceBeginM();
 	return ( inLeftChar.isEqual(inRightChar) == false);
-	Beagle_StackTraceEndM("bool operator!=(const Char& inLeftChar, const Char& inRightChar)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -163,7 +163,7 @@ bool operator==(const Beagle::Char& inLeftChar, char inRightChar)
 {
 	Beagle_StackTraceBeginM();
 	return inLeftChar.getWrappedValue() == inRightChar;
-	Beagle_StackTraceEndM("bool operator==(const Char& inLeftChar, char inRightChar)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -178,7 +178,7 @@ bool operator!=(const Beagle::Char& inLeftChar, char inRightChar)
 {
 	Beagle_StackTraceBeginM();
 	return inLeftChar.getWrappedValue() != inRightChar;
-	Beagle_StackTraceEndM("bool operator!=(const Char& inLeftChar, char inRightChar)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -193,7 +193,7 @@ bool operator<(const Beagle::Char& inLeftChar, char inRightChar)
 {
 	Beagle_StackTraceBeginM();
 	return inLeftChar.getWrappedValue() < inRightChar;
-	Beagle_StackTraceEndM("bool operator<(const Char& inLeftChar, char inRightChar)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -208,7 +208,7 @@ bool operator<=(const Beagle::Char& inLeftChar, char inRightChar)
 {
 	Beagle_StackTraceBeginM();
 	return inLeftChar.getWrappedValue() <= inRightChar;
-	Beagle_StackTraceEndM("bool operator<=(const Char& inLeftChar, char inRightChar)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -223,7 +223,7 @@ bool operator>(const Beagle::Char& inLeftChar, char inRightChar)
 {
 	Beagle_StackTraceBeginM();
 	return inLeftChar.getWrappedValue() > inRightChar;
-	Beagle_StackTraceEndM("bool operator>(const Char& inLeftChar, char inRightChar)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -238,7 +238,7 @@ bool operator>=(const Beagle::Char& inLeftChar, char inRightChar)
 {
 	Beagle_StackTraceBeginM();
 	return inLeftChar.getWrappedValue() >= inRightChar;
-	Beagle_StackTraceEndM("bool operator>=(const Char& inLeftChar, char inRightChar)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -253,7 +253,7 @@ Beagle::Char& operator++(Beagle::Char& inChar)
 	Beagle_StackTraceBeginM();
 	inChar.getWrappedValue()++;
 	return inChar;
-	Beagle_StackTraceEndM("Char& operator++(Char& inChar)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -269,7 +269,7 @@ Beagle::Char operator++(Beagle::Char& inChar, int)
 	Beagle::Char lChar = inChar;
 	inChar.getWrappedValue()++;
 	return lChar;
-	Beagle_StackTraceEndM("Char operator++(Char& inChar, int)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -284,7 +284,7 @@ Beagle::Char operator+(const Beagle::Char& inLeftChar, const Beagle::Char& inRig
 {
 	Beagle_StackTraceBeginM();
 	return inLeftChar.getWrappedValue() + inRightChar.getWrappedValue();
-	Beagle_StackTraceEndM("Char operator+(const Char& inLeftChar, const Char& inRightChar)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -299,7 +299,7 @@ Beagle::Char operator+(const Beagle::Char& inLeftChar, char inRightChar)
 {
 	Beagle_StackTraceBeginM();
 	return inLeftChar.getWrappedValue() + inRightChar;
-	Beagle_StackTraceEndM("Char operator+(const Char& inLeftChar, char inRightChar)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -315,7 +315,7 @@ Beagle::Char& operator+=(Beagle::Char& inLeftChar, const Beagle::Char& inRightCh
 	Beagle_StackTraceBeginM();
 	inLeftChar.getWrappedValue() += inRightChar.getWrappedValue();
 	return inLeftChar;
-	Beagle_StackTraceEndM("Char& operator+=(Char& inLeftChar, const Char& inRightChar)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -331,7 +331,7 @@ Beagle::Char& operator+=(Beagle::Char& inLeftChar, char inRightChar)
 	Beagle_StackTraceBeginM();
 	inLeftChar.getWrappedValue() += inRightChar;
 	return inLeftChar;
-	Beagle_StackTraceEndM("Char& operator+=(Char& inLeftChar, char inRightChar)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -346,7 +346,7 @@ Beagle::Char& operator--(Beagle::Char& inChar)
 	Beagle_StackTraceBeginM();
 	inChar.getWrappedValue()--;
 	return inChar;
-	Beagle_StackTraceEndM("Char& operator--(Char& inChar)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -362,7 +362,7 @@ Beagle::Char operator--(Beagle::Char& inChar, int)
 	Beagle::Char lChar = inChar;
 	inChar.getWrappedValue()--;
 	return lChar;
-	Beagle_StackTraceEndM("Char operator--(Char& inChar, int)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -378,7 +378,7 @@ Beagle::Char operator-(const Beagle::Char& inLeftChar, const Beagle::Char& inRig
 {
 	Beagle_StackTraceBeginM();
 	return inLeftChar.getWrappedValue() - inRightChar.getWrappedValue();
-	Beagle_StackTraceEndM("Char operator-(const Char& inLeftChar, const Char& inRightChar)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -393,7 +393,7 @@ Beagle::Char operator-(const Beagle::Char& inLeftChar, char inRightChar)
 {
 	Beagle_StackTraceBeginM();
 	return inLeftChar.getWrappedValue() - inRightChar;
-	Beagle_StackTraceEndM("Char operator-(const Char& inLeftChar, char inRightChar)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -409,7 +409,7 @@ Beagle::Char& operator-=(Beagle::Char& inLeftChar, const Beagle::Char& inRightCh
 	Beagle_StackTraceBeginM();
 	inLeftChar.getWrappedValue() -= inRightChar.getWrappedValue();
 	return inLeftChar;
-	Beagle_StackTraceEndM("Char& operator-=(Char& inLeftChar, const Char& inRightChar)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -425,7 +425,7 @@ Beagle::Char& operator-=(Beagle::Char& inLeftChar, char inRightChar)
 	Beagle_StackTraceBeginM();
 	inLeftChar.getWrappedValue() -= inRightChar;
 	return inLeftChar;
-	Beagle_StackTraceEndM("Char& operator-=(Char& inLeftChar, char inRightChar)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -440,7 +440,7 @@ Beagle::Char operator*(const Beagle::Char& inLeftChar, const Beagle::Char& inRig
 {
 	Beagle_StackTraceBeginM();
 	return inLeftChar.getWrappedValue() * inRightChar.getWrappedValue();
-	Beagle_StackTraceEndM("Char operator*(const Char& inLeftChar, const Char& inRightChar)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -455,7 +455,7 @@ Beagle::Char operator*(const Beagle::Char& inLeftChar, char inRightChar)
 {
 	Beagle_StackTraceBeginM();
 	return inLeftChar.getWrappedValue() * inRightChar;
-	Beagle_StackTraceEndM("Char operator*(const Char& inLeftChar, char inRightChar)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -471,7 +471,7 @@ Beagle::Char& operator*=(Beagle::Char& inLeftChar, const Beagle::Char& inRightCh
 	Beagle_StackTraceBeginM();
 	inLeftChar.getWrappedValue() *= inRightChar.getWrappedValue();
 	return inLeftChar;
-	Beagle_StackTraceEndM("Char& operator*=(Char& inLeftChar, const Char& inRightChar)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -487,7 +487,7 @@ Beagle::Char& operator*=(Beagle::Char& inLeftChar, char inRightChar)
 	Beagle_StackTraceBeginM();
 	inLeftChar.getWrappedValue() *= inRightChar;
 	return inLeftChar;
-	Beagle_StackTraceEndM("Char& operator*=(Char& inLeftChar, char inRightChar)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -502,7 +502,7 @@ Beagle::Char operator/(const Beagle::Char& inLeftChar, const Beagle::Char& inRig
 {
 	Beagle_StackTraceBeginM();
 	return inLeftChar.getWrappedValue() / inRightChar.getWrappedValue();
-	Beagle_StackTraceEndM("Char operator/(const Char& inLeftChar, const Char& inRightChar)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -517,7 +517,7 @@ Beagle::Char operator/(const Beagle::Char& inLeftChar, char inRightChar)
 {
 	Beagle_StackTraceBeginM();
 	return inLeftChar.getWrappedValue() / inRightChar;
-	Beagle_StackTraceEndM("Char operator/(const Char& inLeftChar, char inRightChar)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -533,7 +533,7 @@ Beagle::Char& operator/=(Beagle::Char& inLeftChar, const Beagle::Char& inRightCh
 	Beagle_StackTraceBeginM();
 	inLeftChar.getWrappedValue() /= inRightChar.getWrappedValue();
 	return inLeftChar;
-	Beagle_StackTraceEndM("Char& operator/=(Char& inLeftChar, const Char& inRightChar)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -549,7 +549,7 @@ Beagle::Char operator/=(Beagle::Char& inLeftChar, char inRightChar)
 	Beagle_StackTraceBeginM();
 	inLeftChar.getWrappedValue() /= inRightChar;
 	return inLeftChar;
-	Beagle_StackTraceEndM("Char operator/=(Char& inLeftChar, char inRightChar)");
+	Beagle_StackTraceEndM();
 }
 
 

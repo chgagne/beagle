@@ -68,7 +68,7 @@ void Individual::addMember(Member::Handle inMember)
 		throw Beagle_RunTimeExceptionM(lOSS.str());
 	}
 	mMemberMap[inMember->getName()] = inMember;
-	Beagle_StackTraceEndM("void Individual::addMember(Member::Handle)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -116,7 +116,7 @@ void Individual::copy(const Individual& inOriginal, System& ioSystem)
 		(*this)[i]->copy(*inOriginal[i], ioSystem);
 	}
 
-	Beagle_StackTraceEndM("void Individual::copy(const Individual&,System&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -128,7 +128,7 @@ double Individual::getDistanceGenotype(const Individual&) const
 	Beagle_StackTraceBeginM();
 	throw Beagle_UndefinedMethodInternalExceptionM("getDistanceGenotype", "Individual", getType());
 	return 0.0;
-	Beagle_StackTraceEndM("double Individual::getDistanceGenotype(const Individual&) const");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -140,7 +140,7 @@ double Individual::getDistancePhenotype(const Individual&) const
 	Beagle_StackTraceBeginM();
 	throw Beagle_UndefinedMethodInternalExceptionM("getDistancePhenotype", "Individual", getType());
 	return 0.0;
-	Beagle_StackTraceEndM("double Individual::getDistancePhenotype(const Individual&) const");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -153,7 +153,7 @@ const std::string& Individual::getName() const
 	Beagle_StackTraceBeginM();
 	const static std::string lName("Individual");
 	return lName;
-	Beagle_StackTraceEndM("const std::string& Individual::getName() const");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -167,7 +167,7 @@ unsigned int Individual::getSize() const
 	unsigned int lSize=0;
 	for(unsigned int i=0; i<size(); ++i) lSize += (*this)[i]->getSize();
 	return lSize;
-	Beagle_StackTraceEndM("unsigned int Individual::getSize() const");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -180,7 +180,7 @@ const std::string& Individual::getType() const
 	Beagle_StackTraceBeginM();
 	const static std::string lType("Individual");
 	return lType;
-	Beagle_StackTraceEndM("const std::string& Individual::getType() const");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -198,7 +198,7 @@ bool Individual::isEqual(const Object& inRightObj) const
 	if((mFitness == NULL) && (lRightIndividual.mFitness == NULL)) return true;
 	if((mFitness == NULL) || (lRightIndividual.mFitness == NULL)) return false;
 	return mFitness->isEqual(*lRightIndividual.mFitness);
-	Beagle_StackTraceEndM("bool Individual::isEqual(const Object&) const");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -216,7 +216,7 @@ bool Individual::isIdentical(const Individual& inRightIndividual) const
 		if((*this)[i]->isEqual(*inRightIndividual[i]) == false) return false;
 	}
 	return true;
-	Beagle_StackTraceEndM("bool Individual::isIdentical(const Individual&) const");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -242,7 +242,7 @@ bool Individual::isLess(const Object& inRightObj) const
 	const Individual& lRightIndividual = castObjectT<const Individual&>(inRightObj);
 	if((mFitness == NULL) || (lRightIndividual.mFitness == NULL)) return false;
 	return mFitness->isLess(*lRightIndividual.mFitness);
-	Beagle_StackTraceEndM("bool Individual::isLess(const Object&) const");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -253,7 +253,7 @@ void Individual::read(PACC::XML::ConstIterator)
 {
 	Beagle_StackTraceBeginM();
 	throw Beagle_UndefinedMethodInternalExceptionM("read", "Individual", getType());
-	Beagle_StackTraceEndM("void Individual::read(PACC::XML::ConstIterator)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -284,7 +284,7 @@ bool Individual::readFromFile(std::string inFileName, System& ioSystem)
 	readWithContext(lIndivTag, *lContext);
 
 	return true;
-	Beagle_StackTraceEndM("bool Individual::readFromFile(string,System&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -329,7 +329,7 @@ void Individual::readFitness(PACC::XML::ConstIterator inIter, Context& ioContext
 		mFitness->readWithContext(lIter, ioContext);
 		break;
 	}
-	Beagle_StackTraceEndM("void Individual::readFitness(PACC::XML::ConstIterator,Context&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -376,7 +376,7 @@ void Individual::readGenotypes(PACC::XML::ConstIterator inIter, Context& ioConte
 	}
 	ioContext.setGenotypeHandle(lPrevGenoHandle);
 	ioContext.setGenotypeIndex(lPrevGenoIndex);
-	Beagle_StackTraceEndM("void Individual::readGenotypes(PACC::XML::ConstIterator,Context&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -419,7 +419,7 @@ void Individual::readMembers(PACC::XML::ConstIterator inIter, Context& ioContext
 		lMember->readWithContext(lIter, ioContext);
 		mMemberMap[lMemberName] = lMember;
 	}
-	Beagle_StackTraceEndM("void Individual::readMembers(PACC::XML::ConstIterator,Context&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -449,7 +449,7 @@ void Individual::readWithContext(PACC::XML::ConstIterator inIter, Context& ioCon
 	readFitness(inIter->getFirstChild(), ioContext);
 	// Read genotypes
 	readGenotypes(inIter->getFirstChild(), ioContext);
-	Beagle_StackTraceEndM("void Individual::readWithContext(PACC::XML::ConstIterator,Context&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -467,7 +467,7 @@ Member::Handle Individual::removeMember(const std::string& inName)
 	Member::Handle lMember = castHandleT<Member>(lIterMap->second);
 	mMemberMap.erase(lIterMap);
 	return lMember;
-	Beagle_StackTraceEndM("Member::Handle Individual::removeMember(const std::string&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -483,7 +483,7 @@ void Individual::write(PACC::XML::Streamer& ioStreamer, bool inIndent) const
 	ioStreamer.insertAttribute("type", getType());
 	writeContent(ioStreamer, inIndent);
 	ioStreamer.closeTag();
-	Beagle_StackTraceEndM("void Individual::write(PACC::XML::Streamer&,bool) const");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -501,7 +501,7 @@ void Individual::writeContent(PACC::XML::Streamer& ioStreamer, bool inIndent) co
 	writeFitness(ioStreamer, false);
 	// Write genotypes
 	writeGenotypes(ioStreamer, false);
-	Beagle_StackTraceEndM("void Individual::writeContent(PACC::XML::Streamer&,bool) const");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -520,7 +520,7 @@ void Individual::writeFitness(PACC::XML::Streamer& ioStreamer, bool inIndent) co
 	} else {
 		mFitness->write(ioStreamer, inIndent);
 	}
-	Beagle_StackTraceEndM("void Individual::writeFitness(PACC::XML::Streamer&,bool) const");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -536,7 +536,7 @@ void Individual::writeGenotypes(PACC::XML::Streamer& ioStreamer, bool inIndent) 
 		Beagle_NonNullPointerAssertM((*this)[i]);
 		(*this)[i]->write(ioStreamer, inIndent);
 	}
-	Beagle_StackTraceEndM("void Individual::writeGenotypes(PACC::XML::Streamer&,bool) const");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -556,5 +556,5 @@ void Individual::writeMembers(PACC::XML::Streamer& ioStreamer, bool inIndent) co
 		lMember->writeContent(ioStreamer, inIndent);
 		ioStreamer.closeTag();
 	}
-	Beagle_StackTraceEndM("void Individual::writeMembers(PACC::XML::Streamer&,bool) const");
+	Beagle_StackTraceEndM();
 }

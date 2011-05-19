@@ -62,5 +62,5 @@ void RandomShuffleDemeOp::operate(Deme& ioDeme, Context& ioContext)
 	Beagle_StackTraceBeginM();
 	std::random_shuffle(ioDeme.begin(), ioDeme.end(),
 	                    ioContext.getSystem().getRandomizer());
-	Beagle_StackTraceEndM("void RandomShuffleDemeOp::operate(Deme& ioDeme, Context& ioContext)");
+	Beagle_StackTraceEndM();
 }

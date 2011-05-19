@@ -101,7 +101,6 @@ Individual::Handle RecombinationOp::breed(Individual::Bag& inBreedingPool,
 	// Log parents selected for recombination.
 	Beagle_LogVerboseM(
 	    ioContext.getSystem().getLogger(),
-	    "recombination", "Beagle::RecombinationOp",
 	    std::string("Recombining ")+uint2str(lParents->size())+std::string(" individuals together")
 	);
 
@@ -124,7 +123,7 @@ Individual::Handle RecombinationOp::breed(Individual::Bag& inBreedingPool,
 	}
 
 	return lChildIndiv;
-	Beagle_StackTraceEndM("Individual::Handle RecombinationOp::breed(Individual::Bag& inBreedingPool, BreederNode::Handle inChild, Context& ioContext)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -136,7 +135,7 @@ double RecombinationOp::getBreedingProba(BreederNode::Handle)
 {
 	Beagle_StackTraceBeginM();
 	return mRecombProba->getWrappedValue();
-	Beagle_StackTraceEndM("double RecombinationOp::getBreedingProba(BreederNode::Handle)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -173,7 +172,7 @@ void RecombinationOp::registerParams(System& ioSystem)
 		                   ioSystem.getRegister().insertEntry(mRecombProbaName, new Double(0.5f), lDescription));
 	}
 
-	Beagle_StackTraceEndM("void RecombinationOp::registerParams(System&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -189,13 +188,11 @@ void RecombinationOp::operate(Deme& ioDeme, Context& ioContext)
 
 	Beagle_LogTraceM(
 	    ioContext.getSystem().getLogger(),
-	    "recombination", "Beagle::RecombinationOp",
 	    std::string("Recombining individuals of the ")+
 	    uint2ordinal(ioContext.getDemeIndex()+1)+" deme"
 	);
 	Beagle_LogVerboseM(
 	    ioContext.getSystem().getLogger(),
-	    "recombination", "Beagle::RecombinationOp",
 	    std::string("Recombining individuals with probability ")+
 	    dbl2str(mRecombProba->getWrappedValue())
 	);
@@ -225,7 +222,6 @@ void RecombinationOp::operate(Deme& ioDeme, Context& ioContext)
 			// Log and update history.
 			Beagle_LogVerboseM(
 			    ioContext.getSystem().getLogger(),
-			    "recombination", "Beagle::RecombinationOp",
 			    std::string("The ")+uint2ordinal(i+1)+
 			    std::string(" individual as been replaced by recombination")
 			);
@@ -244,7 +240,7 @@ void RecombinationOp::operate(Deme& ioDeme, Context& ioContext)
 		if(lRecombinedIndiv[i] != NULL) ioDeme[i] = lRecombinedIndiv[i];
 	}
 
-	Beagle_StackTraceEndM("void RecombinationOp::operate(Deme& ioDeme, Context& ioContext)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -265,7 +261,7 @@ void RecombinationOp::readWithSystem(PACC::XML::ConstIterator inIter, System& io
 	if(lRecombProbaReadName.empty()==false) mRecombProbaName = lRecombProbaReadName;
 	std::string lNumberRecombReadName = inIter->getAttribute("nbrindrecomb");
 	if(lNumberRecombReadName.empty()==false) mNumberRecombName = lNumberRecombReadName;
-	Beagle_StackTraceEndM("void RecombinationOp::readWithSystem(PACC::XML::ConstIterator, System&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -279,5 +275,5 @@ void RecombinationOp::writeContent(PACC::XML::Streamer& ioStreamer, bool inInden
 	Beagle_StackTraceBeginM();
 	ioStreamer.insertAttribute("recombpb", mRecombProbaName);
 	ioStreamer.insertAttribute("nbrindrecomb", mNumberRecombName);
-	Beagle_StackTraceEndM("void RecombinationOp::writeContent(PACC::XML::Streamer& ioStreamer, bool inIndent) const");
+	Beagle_StackTraceEndM();
 }

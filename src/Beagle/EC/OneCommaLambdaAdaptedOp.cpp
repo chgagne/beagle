@@ -115,7 +115,7 @@ void OneCommaLambdaAdaptedOp::registerParams(System& ioSystem)
 		                 ioSystem.getRegister().insertEntry("ec.1cladp.maxlambda", new UInt(200), lDescription));
 	}
 
-	Beagle_StackTraceEndM("void OneCommaLambdaAdaptedOp::registerParams(System&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -130,14 +130,12 @@ void OneCommaLambdaAdaptedOp::operate(Deme& ioDeme, Context& ioContext)
 
 	Beagle_LogTraceM(
 	    ioContext.getSystem().getLogger(),
-	    "replacement-strategy", "Beagle::OneCommaLambdaAdaptedOp",
 	    std::string("Using (1,lambda_adapt) replacement strategy to process the ")+
 	    uint2ordinal(ioContext.getDemeIndex()+1)+" deme"
 	);
 	Beagle_LogObjectM(
 	    ioContext.getSystem().getLogger(),
 	    Logger::eTrace,
-	    "replacement-strategy", "Beagle::OneCommaLambdaAdaptedOp",
 	    (*this)
 	);
 
@@ -188,7 +186,6 @@ void OneCommaLambdaAdaptedOp::operate(Deme& ioDeme, Context& ioContext)
 		lOSS << "), lambda value has been decreased to " << lNewLambda << " offsprings per generation";
 		Beagle_LogDetailedM(
 		    ioContext.getSystem().getLogger(),
-		    "replacement-strategy", "Beagle::OneCommaLambdaAdaptedOp",
 		    lOSS.str()
 		);
 	}
@@ -224,7 +221,7 @@ void OneCommaLambdaAdaptedOp::operate(Deme& ioDeme, Context& ioContext)
 	// Use best children as parent for next generation
 	ioDeme[0] = lBestOffspring;
 
-	Beagle_StackTraceEndM("void OneCommaLambdaAdaptedOp::operate(Deme& ioDeme, Context& ioContext)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -250,5 +247,5 @@ void OneCommaLambdaAdaptedOp::init(System& ioSystem)
 		mLambda->getWrappedValue() = mMinLambda->getWrappedValue();
 	}
 
-	Beagle_StackTraceEndM("void OneCommaLambdaAdaptedOp::init(System&)");
+	Beagle_StackTraceEndM();
 }

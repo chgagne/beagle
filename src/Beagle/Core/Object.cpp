@@ -74,7 +74,7 @@ Object::~Object()
 		throw Beagle_InternalExceptionM(lMessage);
 	}
 #endif // BEAGLE_NDEBUG
-	Beagle_StackTraceEndM("Object::~Object()");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -86,7 +86,7 @@ Object& Object::operator=(const Object&)
 {
 	Beagle_StackTraceBeginM();
 	return *this;
-	Beagle_StackTraceEndM("Object& Object::operator=(const Object&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -98,7 +98,7 @@ const std::string& Object::getName() const
 	Beagle_StackTraceBeginM();
 	const static std::string mName("Non-named Object");
 	return mName;
-	Beagle_StackTraceEndM("const std::string& Object::getName() const");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -111,7 +111,7 @@ bool Object::isEqual(const Object&) const
 {
 	Beagle_StackTraceBeginM();
 	throw Beagle_UndefinedMethodInternalExceptionM("isEqual","Object",getName());
-	Beagle_StackTraceEndM("bool Object::isEqual(const Object&) const");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -124,7 +124,7 @@ bool Object::isLess(const Object&) const
 {
 	Beagle_StackTraceBeginM();
 	throw Beagle_UndefinedMethodInternalExceptionM("isLess","Object",getName());
-	Beagle_StackTraceEndM("bool Object::isLess(const Object&) const");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -136,7 +136,7 @@ void Object::read(PACC::XML::ConstIterator)
 {
 	Beagle_StackTraceBeginM();
 	throw Beagle_UndefinedMethodInternalExceptionM("read", "Object", getName());
-	Beagle_StackTraceEndM("void Object::read(PACC::XML::ConstIterator)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -155,7 +155,7 @@ std::string Object::serialize(bool inIndent, unsigned int inIndentWidth) const
 	write(lStreamer, inIndent);
 	std::string lStr = lOSS.str();
 	return lStr;
-	Beagle_StackTraceEndM("std::string Object::serialize(bool inIndent, unsigned int inIndentWidth) const");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -167,7 +167,7 @@ void Object::write(PACC::XML::Streamer&, bool) const
 {
 	Beagle_StackTraceBeginM();
 	throw Beagle_UndefinedMethodInternalExceptionM("write", "Object", getName());
-	Beagle_StackTraceEndM("void Object::write(PACC::XML::Streamer&, bool) const");
+	Beagle_StackTraceEndM();
 }
 
 

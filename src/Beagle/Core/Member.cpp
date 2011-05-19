@@ -46,7 +46,7 @@ void Member::read(PACC::XML::ConstIterator inIter)
 {
 	Beagle_StackTraceBeginM();
 	throw Beagle_UndefinedMethodInternalExceptionM("read", "Member", getType());
-	Beagle_StackTraceEndM("void Member::read(PACC::XML::ConstIterator)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -71,7 +71,7 @@ void Member::readWithContext(PACC::XML::ConstIterator inIter, Context& ioContext
 		lOSS << getType() << "'!";
 		throw Beagle_IOExceptionNodeM(*inIter, lOSS.str());
 	}
-	Beagle_StackTraceEndM("void Member::readWithContext(PACC::XML::ConstIterator,Context&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -87,7 +87,7 @@ void Member::write(PACC::XML::Streamer& ioStreamer, bool inIndent) const
 	ioStreamer.insertAttribute("type", getType());
 	writeContent(ioStreamer, inIndent);
 	ioStreamer.closeTag();
-	Beagle_StackTraceEndM("void Member::write(PACC::XML::Streamer&, bool) const");
+	Beagle_StackTraceEndM();
 }
 
 

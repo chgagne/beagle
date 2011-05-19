@@ -70,7 +70,7 @@ void TermMaxEvalsOp::registerParams(System& ioSystem)
 	mMaxEvaluations = castHandleT<UInt>(
 	                      ioSystem.getRegister().insertEntry("ec.term.maxevals", new UInt(5000), lDescription));
 
-	Beagle_StackTraceEndM("void TermMaxEvalsOp::registerParams(System&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -87,14 +87,12 @@ bool TermMaxEvalsOp::terminate(const Deme& ioDeme, Context& ioContext)
 	if(ioContext.getTotalProcessedVivarium() >= mMaxEvaluations->getWrappedValue()) {
 		Beagle_LogInfoM(
 		    ioContext.getSystem().getLogger(),
-		    "termination", "Beagle::TermMaxEvalsOp",
 		    std::string("Maximum number of fitness evaluations (") +
 		    uint2str(mMaxEvaluations->getWrappedValue()) +
 		    std::string(") termination criterion reached")
 		);
 		Beagle_LogDetailedM(
 		    ioContext.getSystem().getLogger(),
-		    "termination", "Beagle::TermMaxEvalsOp",
 		    std::string("Actual number of fitness evaluations is: ")+
 		    uint2str(ioContext.getTotalProcessedVivarium())
 		);
@@ -102,13 +100,12 @@ bool TermMaxEvalsOp::terminate(const Deme& ioDeme, Context& ioContext)
 	}
 	Beagle_LogTraceM(
 	    ioContext.getSystem().getLogger(),
-	    "termination", "Beagle::TermMaxEvalsOp",
 	    std::string("Maximum number of fitness evaluations (") +
 	    uint2str(mMaxEvaluations->getWrappedValue()) +
 	    std::string(") termination criterion not reached ")
 	);
 	return false;
-	Beagle_StackTraceEndM("bool TermMaxEvalsOp::terminate(const Deme& ioDeme, Context& ioContext)");
+	Beagle_StackTraceEndM();
 }
 
 

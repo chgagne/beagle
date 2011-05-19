@@ -194,7 +194,7 @@ public:
 	{ }
 
 	virtual void                    addComponent(Component::Handle inComponent);
-	virtual void                    addPackage(Package::Handle inPackage);
+	virtual void                    addPackage(PackageAbstract::Handle inPackage);
 	virtual const Component::Handle getComponent(const std::string& inName) const;
 	virtual Component::Handle       getComponent(const std::string& inName);
 	virtual const Component::Handle haveComponent(const std::string& inName) const;
@@ -213,42 +213,42 @@ public:
 	inline const Factory& getFactory(void) const {
 		Beagle_StackTraceBeginM();
 		return *mFactory;
-		Beagle_StackTraceEndM("const Factory& System::getFactory(void) const");
+		Beagle_StackTraceEndM();
 	}
 
 	//! Return a reference to the factory.
 	inline Factory& getFactory(void) {
 		Beagle_StackTraceBeginM();
 		return *mFactory;
-		Beagle_StackTraceEndM("Factory& System::getFactory(void)");
+		Beagle_StackTraceEndM();
 	}
 
 	//! Return a handle to the factory.
 	inline Factory::Handle getFactoryHandle(void) {
 		Beagle_StackTraceBeginM();
 		return mFactory;
-		Beagle_StackTraceEndM("Register::Handle System::getFactoryHandle(void)");
+		Beagle_StackTraceEndM();
 	}
 
 	//! Return a const reference to the logger.
 	inline const Logger& getLogger(void) const {
 		Beagle_StackTraceBeginM();
 		return *mLogger;
-		Beagle_StackTraceEndM("const Logger& System::getLogger(void) const");
+		Beagle_StackTraceEndM();
 	}
 
 	//! Return a reference to the logger.
 	inline Logger& getLogger(void) {
 		Beagle_StackTraceBeginM();
 		return *mLogger;
-		Beagle_StackTraceEndM("Logger& System::getLogger(void)");
+		Beagle_StackTraceEndM();
 	}
 
 	//! Return a handle to the logger.
 	inline Logger::Handle getLoggerHandle(void) {
 		Beagle_StackTraceBeginM();
 		return mLogger;
-		Beagle_StackTraceEndM("Logger::Handle System::getLoggerHandle(void)");
+		Beagle_StackTraceEndM();
 	}
 
 	//! Return a const reference to the randomizer.
@@ -259,7 +259,7 @@ public:
 #else
 		return *mRandomizer;
 #endif
-		Beagle_StackTraceEndM("const Randomizer& System::getRandomizer(void) const");
+		Beagle_StackTraceEndM();
 	}
 
 	//! Return a reference to the randomizer.
@@ -270,7 +270,7 @@ public:
 #else
 		return *mRandomizer;
 #endif
-		Beagle_StackTraceEndM("Randomizer& System::getRandomizer(void)");
+		Beagle_StackTraceEndM();
 	}
 
 	//! Return a handle to the randomizer.
@@ -281,28 +281,28 @@ public:
 #else
 		return mRandomizer;
 #endif
-		Beagle_StackTraceEndM("Randomizer::Handle System::getRandomizerHandle(void)");
+		Beagle_StackTraceEndM();
 	}
 
 	//! Return a const reference to the register.
 	inline const Register& getRegister(void) const {
 		Beagle_StackTraceBeginM();
 		return *mRegister;
-		Beagle_StackTraceEndM("const Register& System::getRegister(void) const");
+		Beagle_StackTraceEndM();
 	}
 
 	//! Return a reference to the register.
 	inline Register& getRegister(void) {
 		Beagle_StackTraceBeginM();
 		return *mRegister;
-		Beagle_StackTraceEndM("Register& System::getRegister(void)");
+		Beagle_StackTraceEndM();
 	}
 
 	//! Return a handle to the register.
 	inline Register::Handle getRegisterHandle(void) {
 		Beagle_StackTraceBeginM();
 		return mRegister;
-		Beagle_StackTraceEndM("Register::Handle System::getRegisterHandle(void)");
+		Beagle_StackTraceEndM();
 	}
 
 protected:

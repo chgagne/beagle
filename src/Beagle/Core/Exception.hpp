@@ -57,13 +57,13 @@
  *  included in the trace.  The first macro \c
  *  Beagle_StackTraceBeginM() should appear at the top of your
  *  function or method.  The second macro \c Beagle_StackTraceEndM()
- *  should appear at the end or your function or method with the
- *  function or method's specification.  Here is an example: \code
+ *  should appear at the end or your function or method.
+ *  Here is an example: \code
  *
  *  void myFunction() {
  *    Beagle_StackTraceBeginM();
  *    std::cout << "This is my function." << std::endl;
- *    Beagle_StackTraceEndM("void myFunction()");
+ *    Beagle_StackTraceEndM();
  *  } \endcode
  *
  *  If your function or method has an all-inclusive try...catch block,
@@ -107,14 +107,14 @@
  *  \ingroup Except
  */
 #ifndef BEAGLE_NDEBUG
-#define Beagle_StackTraceEndM(NAME) \
+#define Beagle_StackTraceEndM() \
   } \
   catch (Beagle::Exception& inException) { \
-    inException.pushStackTrace(NAME,__FILE__,__LINE__); \
+    inException.pushStackTrace(__PRETTY_FUNCTION__,__FILE__,__LINE__); \
     throw; \
   }
 #else // BEAGLE_NDEBUG
-#define Beagle_StackTraceEndM(NAME)
+#define Beagle_StackTraceEndM()
 #endif // BEAGLE_NDEBUG
 
 

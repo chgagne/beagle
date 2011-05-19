@@ -43,6 +43,7 @@
 #include "Beagle/Core/Logger.hpp"
 #include "PACC/Threading.hpp"
 
+
 namespace Beagle
 {
 
@@ -68,10 +69,17 @@ public:
 	LoggerXML(void);
 	virtual ~LoggerXML(void);
 
-	virtual void outputMessage(const std::string& inMessage, unsigned int inLevel, const std::string& inType, const std::string& inClass);
-	virtual void outputObject(const Object& inObject, unsigned int inLevel, const std::string& inType, const std::string& inClass);
+	virtual void outputMessage(const std::string& inMessage,
+	                           unsigned int inLevel,
+	                           const std::string& inFile,
+	                           const std::string& inFunction);
+	virtual void outputObject(const Object& inObject,
+	                          unsigned int inLevel,
+	                          const std::string& inFile,
+	                          const std::string& inFunction);
+	virtual bool shouldLog(unsigned int inLevel) const;
 	virtual void init(System& ioSystem);
-	virtual void terminate(void);
+	virtual void terminate();
 
 protected:
 

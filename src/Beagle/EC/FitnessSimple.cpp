@@ -74,7 +74,7 @@ void FitnessSimple::copy(const Member& inOriginal, System& ioSystem)
 	Beagle_StackTraceBeginM();
 	const FitnessSimple& lOriginal = castObjectT<const FitnessSimple&>(inOriginal);
 	(*this) = lOriginal;
-	Beagle_StackTraceEndM("void FitnessSimple::copy(const Member&,System&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -94,7 +94,7 @@ double FitnessSimple::getDistance(const Fitness& inRightFitness) const
 		throw Beagle_RunTimeExceptionM(lOSS.str());
 	}
 	return std::fabs(mValue - lRightFitness.mValue);
-	Beagle_StackTraceEndM("double FitnessSimple::getDistance(const Fitness& inRightFitness) const");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -106,7 +106,7 @@ unsigned int FitnessSimple::getNumberOfObjectives() const
 {
 	Beagle_StackTraceBeginM();
 	return 1;
-	Beagle_StackTraceEndM("unsigned int FitnessSimple::getNumberOfObjectives() const");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -130,7 +130,7 @@ double FitnessSimple::getObjective(unsigned int inObjIndex) const
 		throw Beagle_RunTimeExceptionM(lOSS.str());
 	}
 	return mValue;
-	Beagle_StackTraceEndM("double FitnessSimple::getObjective(unsigned int inObjIndex) const");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -159,7 +159,7 @@ bool FitnessSimple::isDominated(const Fitness& inRightFitness) const
 	if(isValid() != lRightFitness.isValid()) return false;
 	if((isValid()==false) && (lRightFitness.isValid()==false)) return false;
 	return mValue < lRightFitness.mValue;
-	Beagle_StackTraceEndM("bool FitnessSimple::isDominated(const Object& inRightObj) const");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -175,7 +175,7 @@ bool FitnessSimple::isEqual(const Object& inRightObj) const
 	if(isValid() != lRightFitness.isValid()) return false;
 	if((isValid()==false) && (lRightFitness.isValid()==false)) return true;
 	return mValue == lRightFitness.mValue;
-	Beagle_StackTraceEndM("bool FitnessSimple::isEqual(const Object& inRightObj) const");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -191,7 +191,7 @@ bool FitnessSimple::isLess(const Object& inRightObj) const
 	if(isValid() != lRightFitness.isValid()) return false;
 	if((isValid()==false) && (lRightFitness.isValid()==false)) return false;
 	return mValue < lRightFitness.mValue;
-	Beagle_StackTraceEndM("bool FitnessSimple::isLess(const Object& inRightObj) const");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -231,7 +231,7 @@ void FitnessSimple::read(PACC::XML::ConstIterator inIter)
 		throw Beagle_IOExceptionNodeM(*inIter, "bad fitness validity value!");
 	}
 
-	Beagle_StackTraceEndM("void FitnessSimple::read(PACC::XML::ConstIterator)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -245,7 +245,7 @@ void FitnessSimple::setValue(double inValue)
 	if(isFinite(inValue)) mValue = inValue;
 	else mValue = -DBL_MAX;
 	setValid();
-	Beagle_StackTraceEndM("void FitnessSimple::setValue(double)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -258,5 +258,5 @@ void FitnessSimple::writeContent(PACC::XML::Streamer& ioStreamer, bool inIndent)
 {
 	Beagle_StackTraceBeginM();
 	ioStreamer.insertStringContent(dbl2str(mValue));
-	Beagle_StackTraceEndM("void FitnessSimple::writeContent(PACC::XML::Streamer&,bool) const");
+	Beagle_StackTraceEndM();
 }

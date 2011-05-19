@@ -81,19 +81,16 @@ void IfThenElseOp::operate(Deme& ioDeme, Context& ioContext)
 
 	Beagle_LogTraceM(
 	    ioContext.getSystem().getLogger(),
-	    "if-then-else", "Beagle::IfThenElseOp",
 	    std::string("if-then-else parameter is '") + mConditionTag + "=" + mConditionValue
 	);
 	if(lTestedValue == mConditionValue) {
 		Beagle_LogDetailedM(
 		    ioContext.getSystem().getLogger(),
-		    "if-then-else", "Beagle::IfThenElseOp",
 		    "Applying positive operator set"
 		);
 		for(unsigned int i=0; i<mPositiveOpSet.size(); i++) {
 			Beagle_LogDetailedM(
 			    ioContext.getSystem().getLogger(),
-			    "if-then-else", "Beagle::IfThenElseOp",
 			    std::string("Applying '")+mPositiveOpSet[i]->getName()+"'"
 			);
 			mPositiveOpSet[i]->operate(ioDeme, ioContext);
@@ -101,20 +98,18 @@ void IfThenElseOp::operate(Deme& ioDeme, Context& ioContext)
 	} else {
 		Beagle_LogDetailedM(
 		    ioContext.getSystem().getLogger(),
-		    "if-then-else", "Beagle::IfThenElseOp",
 		    "Applying negative operator set"
 		);
 		for(unsigned int i=0; i<mNegativeOpSet.size(); i++) {
 			Beagle_LogDetailedM(
 			    ioContext.getSystem().getLogger(),
-			    "if-then-else", "Beagle::IfThenElseOp",
 			    std::string("Applying '")+mNegativeOpSet[i]->getName()+std::string("'")
 			);
 			mNegativeOpSet[i]->operate(ioDeme, ioContext);
 		}
 	}
 
-	Beagle_StackTraceEndM("void IfThenElseOp::operate(Deme&, Context&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -131,7 +126,6 @@ void IfThenElseOp::init(System& ioSystem)
 		if(mPositiveOpSet[i]->isInitialized() == false) {
 			Beagle_LogTraceM(
 			    ioSystem.getLogger(),
-			    "if-then-else", "Beagle::IfThenElseOp",
 			    std::string("Initializing positive set operator '") + mPositiveOpSet[i]->getName() + "'"
 			);
 			mPositiveOpSet[i]->init(ioSystem);
@@ -144,7 +138,6 @@ void IfThenElseOp::init(System& ioSystem)
 		if(mNegativeOpSet[i]->isInitialized() == false) {
 			Beagle_LogTraceM(
 			    ioSystem.getLogger(),
-			    "if-then-else", "Beagle::IfThenElseOp",
 			    std::string("Initializing negative set operator '") + mNegativeOpSet[i]->getName() + "'"
 			);
 			mNegativeOpSet[i]->init(ioSystem);
@@ -152,7 +145,7 @@ void IfThenElseOp::init(System& ioSystem)
 		}
 	}
 
-	Beagle_StackTraceEndM("void IfThenElseOp::init(System&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -221,7 +214,7 @@ void IfThenElseOp::readWithSystem(PACC::XML::ConstIterator inIter, System& ioSys
 		}
 	}
 
-	Beagle_StackTraceEndM("void IfThenElseOp::readWithSystem(PACC::XML::ConstIterator, System&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -236,14 +229,12 @@ void IfThenElseOp::registerParams(System& ioSystem)
 	// register positive set parameters
 	Beagle_LogTraceM(
 	    ioSystem.getLogger(),
-	    "if-then-else", "Beagle::Evolver",
 	    "Registering positive set operator parameters"
 	);
 	for(unsigned int i = 0; i < mPositiveOpSet.size(); i++) {
 		if(mPositiveOpSet[i]->hasRegisteredParams() == false) {
 			Beagle_LogTraceM(
 			    ioSystem.getLogger(),
-			    "if-then-else", "Beagle::Evolver",
 			    std::string("Registering '") + mPositiveOpSet[i]->getName() + "' parameters"
 			);
 			mPositiveOpSet[i]->registerParams(ioSystem);
@@ -254,14 +245,12 @@ void IfThenElseOp::registerParams(System& ioSystem)
 	// register negative set parameters
 	Beagle_LogTraceM(
 	    ioSystem.getLogger(),
-	    "if-then-else", "Beagle::Evolver",
 	    "Registering negative set operator parameters"
 	);
 	for(unsigned int i = 0; i < mNegativeOpSet.size(); i++) {
 		if(mNegativeOpSet[i]->hasRegisteredParams() == false) {
 			Beagle_LogTraceM(
 			    ioSystem.getLogger(),
-			    "if-then-else", "Beagle::IfThenElseOp",
 			    std::string("Registering '") + mNegativeOpSet[i]->getName() + "' parameters"
 			);
 			mNegativeOpSet[i]->registerParams(ioSystem);
@@ -269,7 +258,7 @@ void IfThenElseOp::registerParams(System& ioSystem)
 		}
 	}
 
-	Beagle_StackTraceEndM("void IfThenElseOp::registerParams(System&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -293,7 +282,7 @@ void IfThenElseOp::write(PACC::XML::Streamer& ioStreamer, bool inIndent) const
 	ioStreamer.closeTag();
 	ioStreamer.closeTag();
 
-	Beagle_StackTraceEndM("void IfThenElseOp::write(PACC::XML::Streamer&, bool) const");
+	Beagle_StackTraceEndM();
 }
 
 

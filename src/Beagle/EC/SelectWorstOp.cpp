@@ -61,7 +61,7 @@ public:
 		Beagle_StackTraceBeginM();
 		if( (!inLeft.second) || (!inRight.second) ) return false;
 		return inRight.second->isLess(*inLeft.second);
-		Beagle_StackTraceEndM("bool TempPoolPredicate::operator()(const std::pair<unsigned int,Pointer&>,const std::pair<unsigned int, Pointer&>) const");
+		Beagle_StackTraceEndM();
 	}
 
 };
@@ -94,7 +94,7 @@ unsigned int SelectWorstOp::selectOneIndividual(Individual::Bag& ioPool, Context
 		}
 	}
 	return lWorstIndex;
-	Beagle_StackTraceEndM("unsigned int SelectWorstOp::selectIndividual(Individual::Bag&,Context&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -121,8 +121,7 @@ void SelectWorstOp::selectManyIndividuals(unsigned int inN,
 	if((inN%ioPool.size()) == 0) {
 		Beagle_LogBasicM(
 		    ioContext.getSystem().getLogger(),
-		    "selection", "Beagle::SelectWorstOp",
-		    std::string("Warning!  Selecting the worst ")+uint2str(inN)+" individuals from a pool size of "+
+		    std::string("Warning! Selecting the worst ")+uint2str(inN)+" individuals from a pool size of "+
 		    uint2str(ioPool.size())+" (during SelectWorstOp) means that every individual will be selected "+
 		    uint2str(inN/ioPool.size())+" times, thus applying no selective pressure."
 		);
@@ -131,7 +130,6 @@ void SelectWorstOp::selectManyIndividuals(unsigned int inN,
 	// Copy the pool, pairing indices and handles to individuals
 	Beagle_LogDebugM(
 	    ioContext.getSystem().getLogger(),
-	    "selection", "Beagle::SelectWorstOp",
 	    "Copying pool's individuals and pairing them to their indices"
 	);
 	typedef std::vector< std::pair< unsigned int, Individual::Handle > > lTempPoolType;
@@ -148,7 +146,6 @@ void SelectWorstOp::selectManyIndividuals(unsigned int inN,
 	if(inN > ioPool.size()) {
 		Beagle_LogBasicM(
 		    ioContext.getSystem().getLogger(),
-		    "selection", "Beagle::SelectWorstOp",
 		    std::string("Warning sorting entire copy of pool because number to select (")+uint2str(inN)+
 		    ") is greater than size of pool ("+uint2str(ioPool.size())+")"
 		);
@@ -156,7 +153,6 @@ void SelectWorstOp::selectManyIndividuals(unsigned int inN,
 	} else {
 		Beagle_LogDebugM(
 		    ioContext.getSystem().getLogger(),
-		    "selection", "Beagle::SelectWorstOp",
 		    std::string("Partial sorting top ")+uint2str(inN)+" individuals in copy of pool"
 		);
 		std::partial_sort(lTempPool.begin(), lTempPool.begin()+inN, lTempPool.end(), TempPoolInvPredicate());
@@ -165,7 +161,6 @@ void SelectWorstOp::selectManyIndividuals(unsigned int inN,
 	// Write to the selection table
 	Beagle_LogDebugM(
 	    ioContext.getSystem().getLogger(),
-	    "selection", "Beagle::SelectWorstOp",
 	    "Writing selection table"
 	);
 	outSelections.clear();
@@ -174,11 +169,10 @@ void SelectWorstOp::selectManyIndividuals(unsigned int inN,
 		unsigned int lSelection = lTempPool[i%lTempPool.size()].first;
 		Beagle_LogDebugM(
 		    ioContext.getSystem().getLogger(),
-		    "selection", "Beagle::SelectWorstOp",
 		    std::string("Selecting ")+uint2ordinal(i+1)+" worst ("+uint2ordinal(lSelection+1)+" individual)"
 		);
 		++(outSelections[lSelection]);
 	}
 
-	Beagle_StackTraceEndM("void SelectWorstOp::selectNIndividuals(unsigned int,Individual::Bag&,Context&,std::vector<unsigned int>&)");
+	Beagle_StackTraceEndM();
 }

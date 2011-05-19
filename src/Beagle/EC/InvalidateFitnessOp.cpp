@@ -69,19 +69,13 @@ Individual::Handle InvalidateFitnessOp::breed(Individual::Bag& inBreedingPool,
 	if((lBredIndividual->getFitness()!=NULL) && (lBredIndividual->getFitness()->isValid())) {
 		Beagle_LogDebugM(
 		    ioContext.getSystem().getLogger(),
-		    "invalidate-fitness", "Beagle::InvalidateFitnessOp",
 		    "Invalidating the fitness of the following bred individual"
 		);
-		Beagle_LogObjectDebugM(
-		    ioContext.getSystem().getLogger(),
-		    "invalidate-fitness",
-		    "Beagle::InvalidateFitnessOp",
-		    *lBredIndividual
-		);
+		Beagle_LogDebugM(ioContext.getSystem().getLogger(), *lBredIndividual);
 		lBredIndividual->getFitness()->setInvalid();
 	}
 	return lBredIndividual;
-	Beagle_StackTraceEndM("Individual::Handle InvalidateFitnessOp::breed(Individual::Bag& inBreedingPool, BreederNode::Handle inChild, Context& ioContext)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -95,7 +89,7 @@ double InvalidateFitnessOp::getBreedingProba(BreederNode::Handle inChild)
 	Beagle_NonNullPointerAssertM(inChild);
 	Beagle_NonNullPointerAssertM(inChild->getBreederOp());
 	return inChild->getBreederOp()->getBreedingProba(inChild->getFirstChild());
-	Beagle_StackTraceEndM("float InvalidateFitnessOp::getBreedingProba(BreederNode::Handle inChild)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -109,20 +103,18 @@ void InvalidateFitnessOp::operate(Deme& ioDeme, Context& ioContext)
 	Beagle_StackTraceBeginM();
 	Beagle_LogTraceM(
 	    ioContext.getSystem().getLogger(),
-	    "invalidate-fitness", "Beagle::InvalidateFitnessOp",
-	    std::string("Invalidating the fitness of every individual in the ")+uint2ordinal(ioContext.getDemeIndex()+1)+
-	    std::string(" deme")
+	    "Invalidating the fitness of every individual in the " <<
+	    uint2ordinal(ioContext.getDemeIndex()+1) << " deme"
 	);
 	for(unsigned int i=0; i<ioDeme.size(); i++) {
 		if(ioDeme[i]->getFitness() != NULL) {
 			Beagle_LogDebugM(
 			    ioContext.getSystem().getLogger(),
-			    "invalidate-fitness", "Beagle::InvalidateFitnessOp",
-			    std::string("Invalidating the fitness of the ")+uint2ordinal(i+1)+
-			    " individual of the "+uint2ordinal(ioContext.getDemeIndex()+1)+" deme"
+			    "Invalidating the fitness of the " << uint2ordinal(i+1) <<
+			    " individual of the " << uint2ordinal(ioContext.getDemeIndex()+1) << " deme"
 			);
 			ioDeme[i]->getFitness()->setInvalid();
 		}
 	}
-	Beagle_StackTraceEndM("void InvalidateFitnessOp::operate(Deme& ioDeme, Context& ioContext)");
+	Beagle_StackTraceEndM();
 }

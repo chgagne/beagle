@@ -68,7 +68,7 @@ void Vivarium::addMember(Member::Handle inMember)
 		throw Beagle_RunTimeExceptionM(lOSS.str());
 	}
 	mMemberMap[inMember->getName()] = inMember;
-	Beagle_StackTraceEndM("void Vivarium::addMember(Member::Handle)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -106,7 +106,7 @@ void Vivarium::copy(const Vivarium& inOriginal, System& ioSystem)
 		(*this)[i] = lDeme;
 	}
 
-	Beagle_StackTraceEndM("void Vivarium::copy(const Deme&,System&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -119,7 +119,7 @@ const std::string& Vivarium::getName() const
 	Beagle_StackTraceBeginM();
 	const static std::string lName("Vivarium");
 	return lName;
-	Beagle_StackTraceEndM("const std::string& Vivarium::getName() const");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -132,7 +132,7 @@ const std::string& Vivarium::getType() const
 	Beagle_StackTraceBeginM();
 	const static std::string lType("Vivarium");
 	return lType;
-	Beagle_StackTraceEndM("const std::string& Vivarium::getType() const");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -143,7 +143,7 @@ void Vivarium::read(PACC::XML::ConstIterator)
 {
 	Beagle_StackTraceBeginM();
 	throw Beagle_UndefinedMethodInternalExceptionM("read","Vivarium",getType());
-	Beagle_StackTraceEndM("void Vivarium::read(PACC::XML::ConstIterator)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -186,7 +186,7 @@ void Vivarium::readMembers(PACC::XML::ConstIterator inIter, Context& ioContext)
 		lMember->readWithContext(lIter, ioContext);
 		mMemberMap[lMemberName] = lMember;
 	}
-	Beagle_StackTraceEndM("void Vivarium::readMembers(PACC::XML::ConstIterator,Context&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -237,7 +237,7 @@ void Vivarium::readPopulation(PACC::XML::ConstIterator inIter, Context& ioContex
 	}
 	ioContext.setDemeHandle(lPrevDemeHandle);
 	ioContext.setDemeIndex(lPrevDemeIndex);
-	Beagle_StackTraceEndM("void Vivarium::readPopulation(PACC::XML::ConstIterator,Context&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -269,7 +269,7 @@ void Vivarium::readWithContext(PACC::XML::ConstIterator inIter, Context& ioConte
 			readPopulation(lChild, ioContext);
 		}
 	}
-	Beagle_StackTraceEndM("void Vivarium::readWithContext(PACC::XML::ConstIterator,Context&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -287,7 +287,7 @@ Member::Handle Vivarium::removeMember(const std::string& inName)
 	Member::Handle lMember = castHandleT<Member>(lIterMap->second);
 	mMemberMap.erase(lIterMap);
 	return lMember;
-	Beagle_StackTraceEndM("Member::Handle Vivarium::removeMember(const std::string&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -303,7 +303,7 @@ void Vivarium::write(PACC::XML::Streamer& ioStreamer, bool inIndent) const
 	ioStreamer.insertAttribute("type", getType());
 	writeContent(ioStreamer, inIndent);
 	ioStreamer.closeTag();
-	Beagle_StackTraceEndM("void Vivarium::write(PACC::XML::Streamer&, bool) const");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -317,7 +317,7 @@ void Vivarium::writeContent(PACC::XML::Streamer& ioStreamer, bool inIndent) cons
 	Beagle_StackTraceBeginM();
 	writeMembers(ioStreamer, inIndent);
 	writePopulation(ioStreamer, inIndent);
-	Beagle_StackTraceEndM("void Vivarium::writeContent(PACC::XML::Streamer&,bool) const");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -337,7 +337,7 @@ void Vivarium::writeMembers(PACC::XML::Streamer& ioStreamer, bool inIndent) cons
 		lMember->writeContent(ioStreamer, inIndent);
 		ioStreamer.closeTag();
 	}
-	Beagle_StackTraceEndM("void Vivarium::writeMembers(PACC::XML::Streamer&,bool) const");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -356,5 +356,5 @@ void Vivarium::writePopulation(PACC::XML::Streamer& ioStreamer, bool inIndent) c
 		(*this)[i]->write(ioStreamer, inIndent);
 	}
 	ioStreamer.closeTag();
-	Beagle_StackTraceEndM("void Vivarium::writePopulation(PACC::XML::Streamer&,bool) const");
+	Beagle_StackTraceEndM();
 }

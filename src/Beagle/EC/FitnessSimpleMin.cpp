@@ -53,7 +53,7 @@ FitnessSimpleMin::FitnessSimpleMin(double inFitness)
 {
 	Beagle_StackTraceBeginM();
 	setValue(inFitness);
-	Beagle_StackTraceEndM("FitnessSimpleMin::FitnessSimpleMin(double)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -67,7 +67,7 @@ void FitnessSimpleMin::copy(const Member& inOriginal, System& ioSystem)
 	Beagle_StackTraceBeginM();
 	const FitnessSimpleMin& lOriginal = castObjectT<const FitnessSimpleMin&>(inOriginal);
 	(*this) = lOriginal;
-	Beagle_StackTraceEndM("void FitnessSimpleMin::copy(const Member&,System&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -96,7 +96,7 @@ bool FitnessSimpleMin::isDominated(const Fitness& inRightFitness) const
 	if(isValid() != lRightFitness.isValid()) return false;
 	if((isValid()==false) && (lRightFitness.isValid()==false)) return false;
 	return mValue > lRightFitness.mValue;
-	Beagle_StackTraceEndM("bool FitnessSimpleMin::isDominated(const Object&) const");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -116,7 +116,7 @@ bool FitnessSimpleMin::isLess(const Object& inRightObj) const
 	if(isValid() != lRightFitness.isValid()) return false;
 	if((isValid()==false) && (lRightFitness.isValid()==false)) return false;
 	return mValue > lRightFitness.mValue;
-	Beagle_StackTraceEndM("bool FitnessSimpleMin::isLess(const Object&) const");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -130,5 +130,5 @@ void FitnessSimpleMin::setValue(double inValue)
 	if(isFinite(inValue)) mValue = inValue;
 	else mValue = DBL_MAX;
 	setValid();
-	Beagle_StackTraceEndM("void FitnessSimpleMin::setValue(double)");
+	Beagle_StackTraceEndM();
 }

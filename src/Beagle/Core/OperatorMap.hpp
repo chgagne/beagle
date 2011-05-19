@@ -83,7 +83,7 @@ public:
 	inline Operator::Handle& operator[](std::string inKey) {
 		Beagle_StackTraceBeginM();
 		return castHandleT<Operator>(Map::operator[](inKey));
-		Beagle_StackTraceEndM("Operator::Handle& OperatorMap::operator[](std::string inKey)");
+		Beagle_StackTraceEndM();
 	}
 
 };

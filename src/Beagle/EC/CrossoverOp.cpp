@@ -90,7 +90,6 @@ Individual::Handle CrossoverOp::breed(Individual::Bag& inBreedingPool,
 	            *lContext2);
 	Beagle_LogVerboseM(
 	    ioContext.getSystem().getLogger(),
-	    "crossover", "Beagle::CrossoverOp",
 	    std::string("Mating the ")+uint2ordinal(ioContext.getIndividualIndex()+1)+
 	    std::string(" individual with the ")+uint2ordinal(lContext2->getIndividualIndex()+1)+
 	    " individual"
@@ -115,7 +114,7 @@ Individual::Handle CrossoverOp::breed(Individual::Bag& inBreedingPool,
 	}
 
 	return lIndiv1;
-	Beagle_StackTraceEndM("Individual::Handle CrossoverOp::breed(Individual::Bag& inBreedingPool, BreederNode::Handle inChild, Context& ioContext)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -129,7 +128,7 @@ double CrossoverOp::getBreedingProba(BreederNode::Handle)
 
 	return mMatingProba->getWrappedValue();
 
-	Beagle_StackTraceEndM("double CrossoverOp::getBreedingProba(BreederNode::Handle)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -151,7 +150,7 @@ void CrossoverOp::registerParams(System& ioSystem)
 	mMatingProba = castHandleT<Double>(
 	                   ioSystem.getRegister().insertEntry(mMatingProbaName, new Double(0.5f), lDescription));
 
-	Beagle_StackTraceEndM("void CrossoverOp::registerParams(System&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -168,13 +167,11 @@ void CrossoverOp::operate(Deme& ioDeme, Context& ioContext)
 
 	Beagle_LogTraceM(
 	    ioContext.getSystem().getLogger(),
-	    "crossover", "Beagle::CrossoverOp",
 	    std::string("Mating individuals of the ")+
 	    uint2ordinal(ioContext.getDemeIndex()+1)+" deme"
 	);
 	Beagle_LogVerboseM(
 	    ioContext.getSystem().getLogger(),
-	    "crossover", "Beagle::CrossoverOp",
 	    std::string("Mating individuals with probability ")+
 	    dbl2str(mMatingProba->getWrappedValue())
 	);
@@ -238,7 +235,6 @@ void CrossoverOp::operate(Deme& ioDeme, Context& ioContext)
 
 		Beagle_LogVerboseM(
 		    ioContext.getSystem().getLogger(),
-		    "crossover", "Beagle::CrossoverOp",
 		    std::string("Mating the ")+uint2ordinal(lFirstMate+1)+
 		    std::string(" individual with the ")+uint2ordinal(lSecondMate+1)+" individual"
 		);
@@ -289,7 +285,7 @@ void CrossoverOp::operate(Deme& ioDeme, Context& ioContext)
 	ioContext.setIndividualIndex(lOldIndividualIndex);
 	ioContext.setIndividualHandle(lOldIndividualHandle);
 
-	Beagle_StackTraceEndM("void CrossoverOp::operate(Deme& ioDeme, Context& ioContext)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -310,7 +306,7 @@ void CrossoverOp::readWithSystem(PACC::XML::ConstIterator inIter, System& ioSyst
 	std::string lMatingProbaReadName = inIter->getAttribute("matingpb");
 	if(lMatingProbaReadName.empty()==false) mMatingProbaName = lMatingProbaReadName;
 
-	Beagle_StackTraceEndM("void CrossoverOp::readWithSystem(PACC::XML::ConstIterator, System&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -325,6 +321,6 @@ void CrossoverOp::writeContent(PACC::XML::Streamer& ioStreamer, bool inIndent) c
 
 	ioStreamer.insertAttribute("matingpb", mMatingProbaName);
 
-	Beagle_StackTraceEndM("void CrossoverOp::writeContent(PACC::XML::Streamer&, bool) const");
+	Beagle_StackTraceEndM();
 }
 

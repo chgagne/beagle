@@ -87,7 +87,7 @@ void Stats::copy(const Member& inOriginal, System& ioSystem)
 	Beagle_StackTraceBeginM();
 	const Stats& lOriginal = castObjectT<const Stats&>(inOriginal);
 	Stats::operator=(lOriginal);
-	Beagle_StackTraceEndM("void Stats::copy(const Member&,System&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -100,7 +100,7 @@ const std::string& Stats::getName() const
 	Beagle_StackTraceBeginM();
 	const static std::string lName("Stats");
 	return lName;
-	Beagle_StackTraceEndM("const std::string& Stats::getName() const");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -113,7 +113,7 @@ const std::string& Stats::getType() const
 	Beagle_StackTraceBeginM();
 	const static std::string lType("Stats");
 	return lType;
-	Beagle_StackTraceEndM("const std::string& Stats::getType() const");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -212,7 +212,7 @@ void Stats::readWithContext(PACC::XML::ConstIterator inIter, Context& ioContext)
 		}
 	} else if(lValid == "no") mValid = false;
 	else throw Beagle_IOExceptionNodeM((*inIter), "bad stats validity value!");
-	Beagle_StackTraceEndM("void Stats::readWithContext(PACC::XML::ConstIterator,Context&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -258,5 +258,5 @@ void Stats::writeContent(PACC::XML::Streamer& ioStreamer, bool inIndent) const
 			ioStreamer.closeTag();
 		}
 	} else ioStreamer.insertAttribute("valid", "no");
-	Beagle_StackTraceEndM("void Stats::writeContent(PACC::XML::Streamer&,bool) const");
+	Beagle_StackTraceEndM();
 }

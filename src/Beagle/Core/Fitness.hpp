@@ -138,7 +138,7 @@ public:
 	inline bool isValid() const {
 		Beagle_StackTraceBeginM();
 		return mValid;
-		Beagle_StackTraceEndM("bool Fitness::isValid() const");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -147,7 +147,7 @@ public:
 	inline void setInvalid() {
 		Beagle_StackTraceBeginM();
 		mValid = false;
-		Beagle_StackTraceEndM("void Fitness::setInvalid()");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -156,7 +156,7 @@ public:
 	inline void setValid() {
 		Beagle_StackTraceBeginM();
 		mValid = true;
-		Beagle_StackTraceEndM("void Fitness::setValid()");
+		Beagle_StackTraceEndM();
 	}
 
 private:

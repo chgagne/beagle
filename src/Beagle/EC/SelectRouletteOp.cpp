@@ -64,7 +64,6 @@ void SelectRouletteOp::selectManyIndividuals(unsigned int inN,
 	Beagle_StackTraceBeginM();
 	Beagle_LogTraceM(
 	    ioContext.getSystem().getLogger(),
-	    "selection", "Beagle::SelectionOp",
 	    std::string("Selecting ")+uint2str(inN)+" individuals from a pool of "+uint2str(ioPool.size())+
 	    " individuals"
 	);
@@ -89,7 +88,7 @@ void SelectRouletteOp::selectManyIndividuals(unsigned int inN,
 	for(unsigned int i=0; i<inN; ++i) {
 		outSelections[ lRoulette.select(ioContext.getSystem().getRandomizer()) ]++;
 	}
-	Beagle_StackTraceEndM("void SelectRouletteOp::operate(Deme& ioDeme, Context& ioContext)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -119,6 +118,6 @@ unsigned int SelectRouletteOp::selectOneIndividual(Individual::Bag& ioPool, Cont
 		lRoulette.insert(i, lFitness->getValue());
 	}
 	return lRoulette.select(ioContext.getSystem().getRandomizer());
-	Beagle_StackTraceEndM("unsigned int SelectRouletteOp::selectIndividual(Individual::Bag& ioPool, Context& ioContext)");
+	Beagle_StackTraceEndM();
 }
 

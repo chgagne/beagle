@@ -69,7 +69,7 @@ bool HallOfFame::Entry::operator==(const HallOfFame::Entry& inRightEntry) const
 	Beagle_NonNullPointerAssertM(mIndividual);
 	Beagle_NonNullPointerAssertM(inRightEntry.mIndividual);
 	return mIndividual->isEqual(*inRightEntry.mIndividual);
-	Beagle_StackTraceEndM("bool HallOfFame::Entry::operator==(const HallOfFame::Entry&) const");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -84,7 +84,7 @@ bool HallOfFame::Entry::operator<(const HallOfFame::Entry& inRightEntry) const
 	Beagle_NonNullPointerAssertM(mIndividual);
 	Beagle_NonNullPointerAssertM(inRightEntry.mIndividual);
 	return mIndividual->isLess(*inRightEntry.mIndividual);
-	Beagle_StackTraceEndM("bool HallOfFame::Entry::operator<(const HallOfFame::Entry&) const");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -99,7 +99,7 @@ bool HallOfFame::Entry::operator>(const HallOfFame::Entry& inRightEntry) const
 	Beagle_NonNullPointerAssertM(mIndividual);
 	Beagle_NonNullPointerAssertM(inRightEntry.mIndividual);
 	return inRightEntry.mIndividual->isLess(*mIndividual);
-	Beagle_StackTraceEndM("bool HallOfFame::Entry::operator>(const HallOfFame::Entry&) const");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -143,7 +143,7 @@ void HallOfFame::copy(const Member& inOriginal, System& ioSystem)
 		(*this)[i].mGeneration = lOriginal[i].mGeneration;
 		(*this)[i].mDemeIndex  = lOriginal[i].mDemeIndex;
 	}
-	Beagle_StackTraceEndM("void HallOfFame::copy(const Member&,System&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -156,7 +156,7 @@ const std::string& HallOfFame::getName() const
 	Beagle_StackTraceBeginM();
 	const static std::string lName("HallOfFame");
 	return lName;
-	Beagle_StackTraceEndM("const std::string& HallOfFame::getName() const");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -169,7 +169,7 @@ const std::string& HallOfFame::getType() const
 	Beagle_StackTraceBeginM();
 	const static std::string lType("HallOfFame");
 	return lType;
-	Beagle_StackTraceEndM("const std::string& HallOfFame::getType() const");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -181,18 +181,14 @@ const std::string& HallOfFame::getType() const
 void HallOfFame::log(Logger::LogLevel inLogLevel, Context& ioContext) const
 {
 	Beagle_StackTraceBeginM();
-	ioContext.getSystem().getLogger().log("Individuals of hall-of-fame are following",
-	                                      inLogLevel, "hall-of-fame", "Beagle::HallOfFame");
+	if(ioContext.getSystem().getLogger().shouldLog(inLogLevel) == false) return;
+	ioContext.getSystem().getLogger().log("Individuals of hall-of-fame are following", inLogLevel, __FILE__, __PRETTY_FUNCTION__);
 	for(unsigned int i=0; i<size(); ++i) {
-		Beagle_LogObjectM(
-		    ioContext.getSystem().getLogger(),
-		    inLogLevel,
-		    "hall-of-fame",
-		    "Beagle::HallOfFame",
-		    *(*this)[i].mIndividual
-		);
+		std::ostringstream lOSS;
+		lOSS << *(*this)[i].mIndividual;
+		ioContext.getSystem().getLogger().log(lOSS.str(), inLogLevel, __FILE__, __PRETTY_FUNCTION__);
 	}
-	Beagle_StackTraceEndM("void HallOfFame::log(Logger::LogLevel inLogLevel, Context& ioContext) const");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -262,7 +258,7 @@ void HallOfFame::readWithContext(PACC::XML::ConstIterator inIter, Context& ioCon
 	}
 	ioContext.setIndividualHandle(lOldIndivHandle);
 
-	Beagle_StackTraceEndM("void HallOfFame::readWithContext(PACC::XML::ConstIterator,Context&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -273,7 +269,7 @@ void HallOfFame::sort()
 {
 	Beagle_StackTraceBeginM();
 	std::sort(mEntries.begin(), mEntries.end(), std::greater<HallOfFame::Entry>());
-	Beagle_StackTraceEndM("void HallOfFame::sort()");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -292,11 +288,7 @@ bool HallOfFame::updateWithDeme(unsigned int inSizeHOF, const Deme& inDeme, Cont
 	if(inSizeHOF == 0) {
 		if(mEntries.empty()) return false;
 		clear();
-		Beagle_LogVerboseM(
-		    ioContext.getSystem().getLogger(),
-		    "hall-of-fame", "Beagle::HallOfFame",
-		    "Hall-of-fame cleared"
-		);
+		Beagle_LogVerboseM(ioContext.getSystem().getLogger(), "Hall-of-fame cleared");
 		return true;
 	}
 
@@ -309,18 +301,7 @@ bool HallOfFame::updateWithDeme(unsigned int inSizeHOF, const Deme& inDeme, Cont
 	// If the heap is too big, resizing it.
 	while(mEntries.size() > inSizeHOF) {
 		std::pop_heap(mEntries.begin(), mEntries.end(), std::greater<HallOfFame::Entry>());
-		Beagle_LogDebugM(
-		    ioContext.getSystem().getLogger(),
-		    "hall-of-fame",
-		    "Beagle::HallOfFame",
-		    "Individual removed from hall-of-fame"
-		);
-		Beagle_LogObjectDebugM(
-		    ioContext.getSystem().getLogger(),
-		    "hall-of-fame",
-		    "Beagle::HallOfFame",
-		    *mEntries.back().mIndividual
-		);
+		Beagle_LogDebugM(ioContext.getSystem().getLogger(), *mEntries.back().mIndividual);
 		mEntries.pop_back();
 		lHOFModified = true;
 	}
@@ -364,16 +345,8 @@ bool HallOfFame::updateWithDeme(unsigned int inSizeHOF, const Deme& inDeme, Cont
 			HallOfFame::Entry lEntry(lIndivCopy, ioContext.getGeneration(), ioContext.getDemeIndex());
 			mEntries.push_back(lEntry);
 			std::push_heap(mEntries.begin(), mEntries.end(), std::greater<HallOfFame::Entry>());
-			Beagle_LogDebugM(
-			    ioContext.getSystem().getLogger(),
-			    "hall-of-fame",
-			    "Beagle::HallOfFame",
-			    "Individual added to hall-of-fame"
-			);
 			Beagle_LogObjectDebugM(
 			    ioContext.getSystem().getLogger(),
-			    "hall-of-fame",
-			    "Beagle::HallOfFame",
 			    *lTempPop[0]
 			);
 			++lAddedIndividuals;
@@ -406,17 +379,8 @@ bool HallOfFame::updateWithDeme(unsigned int inSizeHOF, const Deme& inDeme, Cont
 		if(lIsIdentical == false) {
 			// STL heap pop of the worse individual of the HOF
 			std::pop_heap(mEntries.begin(), mEntries.end(), std::greater<HallOfFame::Entry>());
-
-			Beagle_LogDebugM(
-			    ioContext.getSystem().getLogger(),
-			    "hall-of-fame", "Beagle::HallOfFame",
-			    "Individual removed from hall-of-fame"
-			);
-			Beagle_LogObjectDebugM(
-			    ioContext.getSystem().getLogger(),
-			    "hall-of-fame", "Beagle::HallOfFame",
-			    *mEntries.back().mIndividual
-			);
+			
+			Beagle_LogDebugM(ioContext.getSystem().getLogger(), *mEntries.back().mIndividual);
 
 			// Replace the popped individual with the best of the temporary buffer.
 			const Factory& lFactory = ioContext.getSystem().getFactory();
@@ -434,18 +398,7 @@ bool HallOfFame::updateWithDeme(unsigned int inSizeHOF, const Deme& inDeme, Cont
 			mEntries.back().mGeneration = ioContext.getGeneration();
 			mEntries.back().mDemeIndex  = ioContext.getDemeIndex();
 
-			Beagle_LogDebugM(
-			    ioContext.getSystem().getLogger(),
-			    "hall-of-fame",
-			    "Beagle::HallOfFame",
-			    "Individual added to hall-of-fame"
-			);
-			Beagle_LogObjectDebugM(
-			    ioContext.getSystem().getLogger(),
-			    "hall-of-fame",
-			    "Beagle::HallOfFame",
-			    *lTempPop[0]
-			);
+			Beagle_LogDebugM(ioContext.getSystem().getLogger(), *lTempPop[0]);
 
 			// STL push heap of the newly added individual.
 			std::push_heap(mEntries.begin(), mEntries.end(), std::greater<HallOfFame::Entry>());
@@ -463,16 +416,14 @@ bool HallOfFame::updateWithDeme(unsigned int inSizeHOF, const Deme& inDeme, Cont
 	if(lHOFModified) {
 		Beagle_LogVerboseM(
 		    ioContext.getSystem().getLogger(),
-		    "hall-of-fame", "Beagle::HallOfFame",
-		    std::string("There are ")+uint2str(lAddedIndividuals)+
-		    std::string(" individuals added to the hall-of-fame")
+		    "There are " << lAddedIndividuals << " individuals added to the hall-of-fame"
 		);
 	}
 
 	// Exit return whether the HOF has been modified.
 	return lHOFModified;
 
-	Beagle_StackTraceEndM("bool HallOfFame::updateWithDeme(unsigned int,const Deme&,Context&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -492,11 +443,7 @@ bool HallOfFame::updateWithIndividual(unsigned int inSizeHOF,
 	if(inSizeHOF == 0) {
 		if(inSizeHOF != mEntries.size()) {
 			clear();
-			Beagle_LogVerboseM(
-			    ioContext.getSystem().getLogger(),
-			    "hall-of-fame", "Beagle::HallOfFame",
-			    "Hall-of-fame cleared"
-			);
+			Beagle_LogVerboseM(ioContext.getSystem().getLogger(), "Hall-of-fame cleared");
 			return true;
 		} else return false;
 	}
@@ -514,16 +461,10 @@ bool HallOfFame::updateWithIndividual(unsigned int inSizeHOF,
 		}
 		if(lIsIdentical == false) {
 			Beagle_LogVerboseM(
-			    ioContext.getSystem().getLogger(),
-			    "hall-of-fame", "Beagle::HallOfFame",
+				ioContext.getSystem().getLogger(),
 			    "An individual is added to the hall-of-fame"
 			);
-			Beagle_LogObjectDebugM(
-			    ioContext.getSystem().getLogger(),
-			    "hall-of-fame",
-			    "Beagle::Deme",
-			    inIndividual
-			);
+			Beagle_LogDebugM(ioContext.getSystem().getLogger(), inIndividual);
 
 			const Factory& lFactory = ioContext.getSystem().getFactory();
 			const std::string& lIndividualType = inIndividual.getType();
@@ -548,25 +489,14 @@ bool HallOfFame::updateWithIndividual(unsigned int inSizeHOF,
 
 	while(mEntries.size() > inSizeHOF) {
 		std::pop_heap(mEntries.begin(), mEntries.end(), std::greater<HallOfFame::Entry>());
-		Beagle_LogDebugM(
-		    ioContext.getSystem().getLogger(),
-		    "hall-of-fame",
-		    "Beagle::HallOfFame",
-		    "Individual removed from hall-of-fame"
-		);
-		Beagle_LogDebugM(
-		    ioContext.getSystem().getLogger(),
-		    "hall-of-fame",
-		    "Beagle::HallOfFame",
-		    *mEntries.back().mIndividual
-		);
+		Beagle_LogDebugM(ioContext.getSystem().getLogger(), *mEntries.back().mIndividual);
 		mEntries.pop_back();
 		lHOFModified = true;
 	}
 
 	return lHOFModified;
 
-	Beagle_StackTraceEndM("bool HallOfFame::updateWithIndividual(unsigned int inSizeHOF, const Individual& inIndividual, Context& ioContext");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -589,5 +519,5 @@ void HallOfFame::writeContent(PACC::XML::Streamer& ioStreamer, bool inIndent) co
 		lTemp[i].mIndividual->write(ioStreamer, inIndent);
 		ioStreamer.closeTag();
 	}
-	Beagle_StackTraceEndM("void HallOfFame::write(PACC::XML::Streamer& ioStreamer, bool inIndent) const");
+	Beagle_StackTraceEndM();
 }

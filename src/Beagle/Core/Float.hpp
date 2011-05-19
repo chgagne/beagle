@@ -72,7 +72,7 @@ inline Float absolute(const Float& inValue)
 {
 	Beagle_StackTraceBeginM();
 	return Float(std::fabs(inValue.getWrappedValue()));
-	Beagle_StackTraceEndM("Float absolute(const Float& inValue)");
+	Beagle_StackTraceEndM();
 }
 
 }
@@ -90,7 +90,7 @@ inline bool operator<(const Beagle::Float& inLeftFloat, const Beagle::Float& inR
 {
 	Beagle_StackTraceBeginM();
 	return inLeftFloat.isLess(inRightFloat);
-	Beagle_StackTraceEndM("bool operator<(const Float& inLeftFloat, const Float& inRightFloat)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -106,7 +106,7 @@ inline bool operator<=(const Beagle::Float& inLeftFloat, const Beagle::Float& in
 {
 	Beagle_StackTraceBeginM();
 	return ( inLeftFloat.isLess(inRightFloat) || inLeftFloat.isEqual(inRightFloat) );
-	Beagle_StackTraceEndM("bool operator<=(const Float& inLeftFloat, const Float& inRightFloat)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -122,7 +122,7 @@ inline bool operator>(const Beagle::Float& inLeftFloat, const Beagle::Float& inR
 {
 	Beagle_StackTraceBeginM();
 	return inRightFloat.isLess(inLeftFloat);
-	Beagle_StackTraceEndM("bool operator>(const Float& inLeftFloat, const Float& inRightFloat)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -138,7 +138,7 @@ inline bool operator>=(const Beagle::Float& inLeftFloat, const Beagle::Float& in
 {
 	Beagle_StackTraceBeginM();
 	return ( inRightFloat.isLess(inLeftFloat) || inLeftFloat.isEqual(inRightFloat) );
-	Beagle_StackTraceEndM("bool operator>=(const Float& inLeftFloat, const Float& inRightFloat)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -154,7 +154,7 @@ inline bool operator==(const Beagle::Float& inLeftFloat, const Beagle::Float& in
 {
 	Beagle_StackTraceBeginM();
 	return inLeftFloat.isEqual(inRightFloat);
-	Beagle_StackTraceEndM("bool operator==(const Float& inLeftFloat, const Float& inRightFloat)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -170,7 +170,7 @@ inline bool operator!=(const Beagle::Float& inLeftFloat, const Beagle::Float& in
 {
 	Beagle_StackTraceBeginM();
 	return ( inLeftFloat.isEqual(inRightFloat) == false);
-	Beagle_StackTraceEndM("bool operator!=(const Float& inLeftFloat, const Float& inRightFloat)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -185,7 +185,7 @@ bool operator==(const Beagle::Float& inLeftFloat, float inRightFloat)
 {
 	Beagle_StackTraceBeginM();
 	return inLeftFloat.getWrappedValue() == inRightFloat;
-	Beagle_StackTraceEndM("bool operator==(const Float& inLeftFloat, float inRightFloat)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -200,7 +200,7 @@ bool operator!=(const Beagle::Float& inLeftFloat, float inRightFloat)
 {
 	Beagle_StackTraceBeginM();
 	return inLeftFloat.getWrappedValue() != inRightFloat;
-	Beagle_StackTraceEndM("bool operator!=(const Float& inLeftFloat, float inRightFloat)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -215,7 +215,7 @@ bool operator<(const Beagle::Float& inLeftFloat, float inRightFloat)
 {
 	Beagle_StackTraceBeginM();
 	return inLeftFloat.getWrappedValue() < inRightFloat;
-	Beagle_StackTraceEndM("bool operator<(const Float& inLeftFloat, float inRightFloat)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -230,7 +230,7 @@ bool operator<=(const Beagle::Float& inLeftFloat, float inRightFloat)
 {
 	Beagle_StackTraceBeginM();
 	return inLeftFloat.getWrappedValue() <= inRightFloat;
-	Beagle_StackTraceEndM("bool operator<=(const Float& inLeftFloat, float inRightFloat)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -245,7 +245,7 @@ bool operator>(const Beagle::Float& inLeftFloat, float inRightFloat)
 {
 	Beagle_StackTraceBeginM();
 	return inLeftFloat.getWrappedValue() > inRightFloat;
-	Beagle_StackTraceEndM("bool operator>(const Float& inLeftFloat, float inRightFloat)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -260,7 +260,7 @@ bool operator>=(const Beagle::Float& inLeftFloat, float inRightFloat)
 {
 	Beagle_StackTraceBeginM();
 	return inLeftFloat.getWrappedValue() >= inRightFloat;
-	Beagle_StackTraceEndM("bool operator>=(const Float& inLeftFloat, float inRightFloat)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -275,7 +275,7 @@ Beagle::Float operator+(const Beagle::Float& inLeftFloat, const Beagle::Float& i
 {
 	Beagle_StackTraceBeginM();
 	return inLeftFloat.getWrappedValue() + inRightFloat.getWrappedValue();
-	Beagle_StackTraceEndM("Float operator+(const Float& inLeftFloat, const Float& inRightFloat)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -290,7 +290,7 @@ Beagle::Float operator+(const Beagle::Float& inLeftFloat, float inRightFloat)
 {
 	Beagle_StackTraceBeginM();
 	return inLeftFloat.getWrappedValue() + inRightFloat;
-	Beagle_StackTraceEndM("Float operator+(const Float& inLeftFloat, float inRightFloat)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -306,7 +306,7 @@ Beagle::Float operator+=(Beagle::Float& inLeftFloat, const Beagle::Float& inRigh
 	Beagle_StackTraceBeginM();
 	inLeftFloat.getWrappedValue() += inRightFloat.getWrappedValue();
 	return inLeftFloat;
-	Beagle_StackTraceEndM("Float operator+=(Float& inLeftFloat, const Float& inRightFloat)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -322,7 +322,7 @@ Beagle::Float operator+=(Beagle::Float& inLeftFloat, float inRightFloat)
 	Beagle_StackTraceBeginM();
 	inLeftFloat.getWrappedValue() += inRightFloat;
 	return inLeftFloat;
-	Beagle_StackTraceEndM("Float operator+=(Float& inLeftFloat, float inRightFloat)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -337,7 +337,7 @@ Beagle::Float operator-(const Beagle::Float& inLeftFloat, const Beagle::Float& i
 {
 	Beagle_StackTraceBeginM();
 	return inLeftFloat.getWrappedValue() - inRightFloat.getWrappedValue();
-	Beagle_StackTraceEndM("Float operator-(const Float& inLeftFloat, const Float& inRightFloat)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -352,7 +352,7 @@ Beagle::Float operator-(const Beagle::Float& inLeftFloat, float inRightFloat)
 {
 	Beagle_StackTraceBeginM();
 	return inLeftFloat.getWrappedValue() - inRightFloat;
-	Beagle_StackTraceEndM("Float operator-(const Float& inLeftFloat, float inRightFloat)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -368,7 +368,7 @@ Beagle::Float operator-=(Beagle::Float& inLeftFloat, const Beagle::Float& inRigh
 	Beagle_StackTraceBeginM();
 	inLeftFloat.getWrappedValue() -= inRightFloat.getWrappedValue();
 	return inLeftFloat;
-	Beagle_StackTraceEndM("Float operator-=(Float& inLeftFloat, const Float& inRightFloat)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -384,7 +384,7 @@ Beagle::Float operator-=(Beagle::Float& inLeftFloat, float inRightFloat)
 	Beagle_StackTraceBeginM();
 	inLeftFloat.getWrappedValue() -= inRightFloat;
 	return inLeftFloat;
-	Beagle_StackTraceEndM("Float operator-=(Float& inLeftFloat, float inRightFloat)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -399,7 +399,7 @@ Beagle::Float operator*(const Beagle::Float& inLeftFloat, const Beagle::Float& i
 {
 	Beagle_StackTraceBeginM();
 	return inLeftFloat.getWrappedValue() * inRightFloat.getWrappedValue();
-	Beagle_StackTraceEndM("Float operator*(const Float& inLeftFloat, const Float& inRightFloat)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -414,7 +414,7 @@ Beagle::Float operator*(const Beagle::Float& inLeftFloat, float inRightFloat)
 {
 	Beagle_StackTraceBeginM();
 	return inLeftFloat.getWrappedValue() * inRightFloat;
-	Beagle_StackTraceEndM("Float operator*(const Float& inLeftFloat, float inRightFloat)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -430,7 +430,7 @@ Beagle::Float operator*=(Beagle::Float& inLeftFloat, const Beagle::Float& inRigh
 	Beagle_StackTraceBeginM();
 	inLeftFloat.getWrappedValue() *= inRightFloat.getWrappedValue();
 	return inLeftFloat;
-	Beagle_StackTraceEndM("Float operator*=(Float& inLeftFloat, const Float& inRightFloat)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -446,7 +446,7 @@ Beagle::Float operator*=(Beagle::Float& inLeftFloat, float inRightFloat)
 	Beagle_StackTraceBeginM();
 	inLeftFloat.getWrappedValue() *= inRightFloat;
 	return inLeftFloat;
-	Beagle_StackTraceEndM("Float operator*=(Float& inLeftFloat, float inRightFloat)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -461,7 +461,7 @@ Beagle::Float operator/(const Beagle::Float& inLeftFloat, const Beagle::Float& i
 {
 	Beagle_StackTraceBeginM();
 	return inLeftFloat.getWrappedValue() / inRightFloat.getWrappedValue();
-	Beagle_StackTraceEndM("Float operator/(const Float& inLeftFloat, const Float& inRightFloat)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -476,7 +476,7 @@ Beagle::Float operator/(const Beagle::Float& inLeftFloat, float inRightFloat)
 {
 	Beagle_StackTraceBeginM();
 	return inLeftFloat.getWrappedValue() / inRightFloat;
-	Beagle_StackTraceEndM("Float operator/(const Float& inLeftFloat, float inRightFloat)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -492,7 +492,7 @@ Beagle::Float operator/=(Beagle::Float& inLeftFloat, const Beagle::Float& inRigh
 	Beagle_StackTraceBeginM();
 	inLeftFloat.getWrappedValue() /= inRightFloat.getWrappedValue();
 	return inLeftFloat;
-	Beagle_StackTraceEndM("Float operator/=(Float& inLeftFloat, const Float& inRightFloat)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -508,7 +508,7 @@ Beagle::Float operator/=(Beagle::Float& inLeftFloat, float inRightFloat)
 	Beagle_StackTraceBeginM();
 	inLeftFloat.getWrappedValue() /= inRightFloat;
 	return inLeftFloat;
-	Beagle_StackTraceEndM("Float operator/=(Float& inLeftFloat, float inRightFloat)");
+	Beagle_StackTraceEndM();
 }
 
 

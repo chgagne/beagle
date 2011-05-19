@@ -104,7 +104,7 @@ Beagle::Object* Beagle::AllocatorT<T,BaseType>::allocate() const
 #else // BEAGLE_NDEBUG
 	return new T;
 #endif // BEAGLE_NDEBUG
-	Beagle_StackTraceEndM("Object* AllocatorT<T,BaseType>::allocate() const");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -127,7 +127,7 @@ Beagle::Object* Beagle::AllocatorT<T,BaseType>::clone(const Beagle::Object& inOr
 	const T& lOrigT = castObjectT<const T&>(inOriginal);
 	return new T(lOrigT);
 #endif // BEAGLE_NDEBUG
-	Beagle_StackTraceEndM("Object* AllocatorT<T,BaseType>::clone(const Object&) const");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -145,7 +145,7 @@ void Beagle::AllocatorT<T,BaseType>::copy(Beagle::Object& outCopy,
 	T& lCopyT = castObjectT<T&>(outCopy);
 	const T& lOriginalT = castObjectT<const T&>(inOriginal);
 	lCopyT = lOriginalT;
-	Beagle_StackTraceEndM("void AllocatorT<T,BaseType>::copy(Object&, const Object&) const");
+	Beagle_StackTraceEndM();
 }
 
 

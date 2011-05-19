@@ -43,39 +43,38 @@
 #include "Beagle/config.hpp"
 #include "Beagle/macros.hpp"
 #include "Beagle/Core/System.hpp"
-#include "Beagle/Core/Evolver.hpp"
-#include "Beagle/Core/Package.hpp"
+#include "Beagle/Core/PackageAbstract.hpp"
 
 
 namespace Beagle
 {
 
 /*!
- *  \class PackageBase Beagle/Core/PackageBase.hpp "Beagle/Core/PackageBase.hpp"
+ *  \class Package Beagle/Core/Package.hpp "Beagle/Core/Package.hpp"
  *  \brief Package class for adding basic objects to the system.
  *  \ingroup Core
  */
-class PackageBase : public Package
+class Package : public PackageAbstract
 {
 
 public:
 
-	//! PackageBase allocator type.
-	typedef AllocatorT< PackageBase, Package::Alloc > Alloc;
-	//! PackageBase handle type.
-	typedef PointerT< PackageBase, Package::Handle > Handle;
-	//! PackageBase bag type.
-	typedef ContainerT< PackageBase, Package::Bag > Bag;
+	//! Package allocator type.
+	typedef AllocatorT< Package,PackageAbstract::Alloc > Alloc;
+	//! Package handle type.
+	typedef PointerT< Package,PackageAbstract::Handle > Handle;
+	//! Package bag type.
+	typedef ContainerT< Package,PackageAbstract::Bag > Bag;
 
-	PackageBase(void);
-	virtual ~PackageBase()
+	Package();
+	virtual ~Package()
 	{ }
 
-	virtual void         configure(System& ioSystem);
-	virtual Package::Bag listDependencies(void);
+	virtual void                 configure(System& ioSystem);
+	virtual PackageAbstract::Bag listDependencies(void);
 
 };
 
 }
 
-#endif // Beagle_Core_PackageBase_hpp
+#endif // Beagle_Core_Package_hpp

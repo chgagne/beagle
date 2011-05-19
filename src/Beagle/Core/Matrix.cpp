@@ -97,7 +97,7 @@ Matrix& Matrix::operator=(const PACC::Matrix& inMatrix)
 	Beagle_StackTraceBeginM();
 	PACC::Matrix::operator=(inMatrix);
 	return *this;
-	Beagle_StackTraceEndM("Matrix& Matrix::operator=(const PACC::Matrix& inMatrix)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -111,7 +111,7 @@ Matrix& Matrix::operator=(const PACC::Vector& inVector)
 	Beagle_StackTraceBeginM();
 	PACC::Matrix::operator=(inVector);
 	return *this;
-	Beagle_StackTraceEndM("Matrix& Matrix::operator=(const PACC::Vector& inVector)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -125,7 +125,7 @@ Matrix& Matrix::operator=(const Beagle::Vector& inVector)
 	Beagle_StackTraceBeginM();
 	PACC::Matrix::operator=(inVector);
 	return *this;
-	Beagle_StackTraceEndM("Matrix& Matrix::operator=(const Beagle::Vector& inVector)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -137,7 +137,7 @@ void Matrix::read(PACC::XML::ConstIterator inIter)
 {
 	Beagle_StackTraceBeginM();
 	PACC::Matrix::read(inIter);
-	Beagle_StackTraceEndM("void Matrix::read(PACC::XML::ConstIterator inIter)");
+	Beagle_StackTraceEndM();
 }
 
 /*!
@@ -151,7 +151,7 @@ std::string Matrix::serialize(bool inIndent, unsigned int inIndentWidth) const
 {
 	Beagle_StackTraceBeginM();
 	return Object::serialize(inIndent, inIndentWidth);
-	Beagle_StackTraceEndM("std::string Matrix::serialize(bool inIndent, unsigned int inIndentWidth) const");
+	Beagle_StackTraceEndM();
 }
 
 /*!
@@ -163,6 +163,6 @@ void Matrix::write(PACC::XML::Streamer& ioStreamer, bool inIndent) const
 {
 	Beagle_StackTraceBeginM();
 	ioStreamer.insertStringContent(PACC::Matrix::serialize());
-	Beagle_StackTraceEndM("void Matrix::write(PACC::XML::Streamer& ioStreamer, bool inIndent) const");
+	Beagle_StackTraceEndM();
 }
 

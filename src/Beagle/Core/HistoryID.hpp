@@ -90,7 +90,7 @@ public:
 	inline unsigned int getID() const {
 		Beagle_StackTraceBeginM();
 		return mID;
-		Beagle_StackTraceEndM("unsigned int HistoryID::getID() const");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -101,7 +101,7 @@ public:
 		Beagle_StackTraceBeginM();
 		mID = inID;
 		mVar = 0;
-		Beagle_StackTraceEndM("void HistoryID::setID(unsigned int inID)");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -110,7 +110,7 @@ public:
 	inline unsigned int getVar() const {
 		Beagle_StackTraceBeginM();
 		return mVar;
-		Beagle_StackTraceEndM("inline unsigned int HistoryID::getVar() const");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -119,7 +119,7 @@ public:
 	inline void incrementVar() {
 		Beagle_StackTraceBeginM();
 		++mVar;
-		Beagle_StackTraceEndM("inline void HistoryID::incrementVar()");
+		Beagle_StackTraceEndM();
 	}
 
 

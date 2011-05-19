@@ -82,7 +82,7 @@ public:
 	inline unsigned int getNumThreads() const {
 		Beagle_StackTraceBeginM();
 		return omp_get_num_threads();
-		Beagle_StackTraceEndM("unsigned int OpenMP::getNumThreads() const");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!	\brief
@@ -97,7 +97,7 @@ public:
 			return omp_get_max_threads();
 		return mNumThreads->getWrappedValue();
 #endif
-		Beagle_StackTraceEndM("unsigned int OpenMP::getMaxNumThreads() const");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!	\brief
@@ -106,7 +106,7 @@ public:
 	inline unsigned int getThreadNum() const {
 		Beagle_StackTraceBeginM();
 		return omp_get_thread_num();
-		Beagle_StackTraceEndM("unsigned int OpenMP::getThreadNum() const");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!	\brief Ask OpenMP how many processors are available.
@@ -115,7 +115,7 @@ public:
 	inline unsigned int getNumProcs() const {
 		Beagle_StackTraceBeginM();
 		return omp_get_num_procs();
-		Beagle_StackTraceEndM("unsigned int OpenMP::getNumProcs() const");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!	\brief
@@ -124,7 +124,7 @@ public:
 	inline bool	inParallelSection() const {
 		Beagle_StackTraceBeginM();
 		return (omp_in_parallel()>0)?true:false;
-		Beagle_StackTraceEndM("unsigned int OpenMP::inParallelSection() const");
+		Beagle_StackTraceEndM();
 	}
 
 protected:
@@ -134,7 +134,7 @@ protected:
 	inline virtual void	setNumThreads(unsigned int inNumThreads) {
 		Beagle_StackTraceBeginM();
 		omp_set_num_threads(inNumThreads);
-		Beagle_StackTraceEndM("unsigned int OpenMP::setNumThreads(unsigned int)");
+		Beagle_StackTraceEndM();
 	}
 
 	UInt::Handle mNumThreads;

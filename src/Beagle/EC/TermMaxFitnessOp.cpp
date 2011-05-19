@@ -71,7 +71,7 @@ void TermMaxFitnessOp::registerParams(System& ioSystem)
 	mMaxFitness = castHandleT<Float>(
 	                  ioSystem.getRegister().insertEntry("ec.term.maxfitness", new Float(mMaxFitnessDefault), lDescription));
 
-	Beagle_StackTraceEndM("void TermMaxFitnessOp::registerParams(System&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -94,7 +94,7 @@ void TermMaxFitnessOp::readWithSystem(PACC::XML::ConstIterator inIter, System& i
 		mMaxFitnessDefault = str2dbl(lFitnessStr);
 		if(mMaxFitness != NULL) mMaxFitness->getWrappedValue() = mMaxFitnessDefault;
 	}
-	Beagle_StackTraceEndM("void TermMaxFitnessOp::readWithSystem(PACC::XML::ConstIterator, System&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -113,7 +113,6 @@ bool TermMaxFitnessOp::terminate(const Deme& inDeme, Context& ioContext)
 		if(lFitness->isValid() && lFitness->getValue() >= mMaxFitness->getWrappedValue()) {
 			Beagle_LogInfoM(
 			    ioContext.getSystem().getLogger(),
-			    "termination", "Beagle::TermMaxFitnessOp",
 			    std::string("Maximum fitness value (") +
 			    dbl2str(mMaxFitness->getWrappedValue()) +
 			    std::string(") termination criterion reached by the ") +
@@ -127,13 +126,12 @@ bool TermMaxFitnessOp::terminate(const Deme& inDeme, Context& ioContext)
 
 	Beagle_LogTraceM(
 	    ioContext.getSystem().getLogger(),
-	    "termination", "Beagle::TermMaxFitnessOp",
 	    std::string("Maximum fitness value (") +
 	    dbl2str(mMaxFitness->getWrappedValue()) +
 	    std::string(") termination criterion not reached ")
 	);
 	return false;
-	Beagle_StackTraceEndM("bool TermMaxFitnessOp::terminate(const Deme& inDeme, Context& ioContext)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -150,5 +148,5 @@ void TermMaxFitnessOp::write(PACC::XML::Streamer& ioStreamer, bool inIndent) con
 		ioStreamer.insertAttribute("fitness", dbl2str(mMaxFitness->getWrappedValue()));
 	else ioStreamer.insertAttribute("fitness", dbl2str(mMaxFitnessDefault));
 	ioStreamer.closeTag();
-	Beagle_StackTraceEndM("void TermMaxFitnessOp::write(PACC::XML::Streamer& ioStreamer, bool inIndent) const");
+	Beagle_StackTraceEndM();
 }

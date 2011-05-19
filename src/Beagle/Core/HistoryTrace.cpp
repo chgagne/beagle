@@ -80,7 +80,7 @@ void HistoryTrace::read(PACC::XML::ConstIterator inIter)
 		push_back(lHistoryEntry);
 	}
 
-	Beagle_StackTraceEndM("void HistoryTrace::read(PACC::XML::ConstIterator inIter)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -101,5 +101,5 @@ void HistoryTrace::write(PACC::XML::Streamer& ioStreamer, bool inIndent) const
 		at(i)->write(ioStreamer, inIndent);
 	}
 	ioStreamer.closeTag();
-	Beagle_StackTraceEndM("void HistoryTrace::write(PACC::XML::Streamer&,bool) const");
+	Beagle_StackTraceEndM();
 }

@@ -84,7 +84,7 @@ void MigrationRingOp::registerParams(System& ioSystem)
 	);
 	mNumberMigrants = castHandleT<UInt>(
 	                      ioSystem.getRegister().insertEntry("ec.mig.size", new UInt(5), lDescription));
-	Beagle_StackTraceEndM("void MigrationRandomRingOp::registerParams(System&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -112,5 +112,5 @@ void MigrationRingOp::init(System& ioSystem)
 	}
 
 	MigrationMapOp::init(ioSystem);
-	Beagle_StackTraceEndM("void MigrationRingOp::init(System&)");
+	Beagle_StackTraceEndM();
 }

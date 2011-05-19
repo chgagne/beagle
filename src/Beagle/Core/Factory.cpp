@@ -77,7 +77,7 @@ void Factory::aliasAllocator(const std::string& inTypeName, const std::string& i
 		throw Beagle_RunTimeExceptionM(lOSS.str());
 	}
 	mAllocatorMap[inAlias] = lIterType->second;
-	Beagle_StackTraceEndM("void Factory::aliasAllocator(const std::string&,const std::string&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -99,7 +99,7 @@ void Factory::insertAllocator(const std::string& inTypeName, Allocator::Handle i
 		throw Beagle_RunTimeExceptionM(lOSS.str());
 	}
 	mAllocatorMap[inTypeName] = inAllocator;
-	Beagle_StackTraceEndM("void Factory::insertAllocator(const std::string&, Allocator::Handle)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -135,7 +135,7 @@ void Factory::read(PACC::XML::ConstIterator inIter)
 			setConcept(lConceptName, lTypeName);
 		}
 	}
-	Beagle_StackTraceEndM("void Factory::read(PACC::XML::ConstIterator)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -172,13 +172,12 @@ void Factory::readWithSystem(PACC::XML::ConstIterator inIter, System& ioSystem)
 			setConcept(lConceptName, lTypeName);
 			Beagle_LogTraceM(
 			    ioSystem.getLogger(),
-			    "factory", "Beagle::Factory",
 			    std::string("Type associated to concept '")+lConceptName+
 			    std::string("' is now '")+lTypeName+std::string("'")
 			);
 		}
 	}
-	Beagle_StackTraceEndM("void Factory::readWithSystem(PACC::XML::ConstIterator,System&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -195,7 +194,7 @@ Allocator::Handle Factory::removeAllocator(const std::string& inTypeName)
 	Allocator::Handle lAlloc = lIterAllocMap->second;
 	mAllocatorMap.erase(lIterAllocMap);
 	return lAlloc;
-	Beagle_StackTraceEndM("Allocator::Handle Factory::removeAllocator(const std::string&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -212,7 +211,7 @@ std::string Factory::removeConcept(const std::string& inConcept)
 	std::string lTypeName = lIterConceptMap->second;
 	mConceptMap.erase(lIterConceptMap);
 	return lTypeName;
-	Beagle_StackTraceEndM("std::string Factory::removeConcept(const std::string&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -234,7 +233,7 @@ void Factory::setConcept(const std::string& inConcept, const std::string& inType
 		throw Beagle_RunTimeExceptionM(lOSS.str());
 	}
 	mConceptMap[inConcept] = inTypeName;
-	Beagle_StackTraceEndM("void Factory::setConcept(const std::string&,const std::string&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -260,5 +259,5 @@ void Factory::write(PACC::XML::Streamer& ioStreamer, bool inIndent) const
 		ioStreamer.closeTag();
 	}
 	ioStreamer.closeTag();
-	Beagle_StackTraceEndM("void Factory::write(PACC::XML::Streamer&,bool) const");
+	Beagle_StackTraceEndM();
 }

@@ -93,7 +93,7 @@ void MigrationOp::registerParams(System& ioSystem)
 		               ioSystem.getRegister().insertEntry("ec.pop.size", new UIntArray(1,100), lDescription));
 	}
 
-	Beagle_StackTraceEndM("void MigrationOp::registerParams(System&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -112,12 +112,11 @@ void MigrationOp::operate(Deme& ioDeme, Context& ioContext)
 	if(mPopSize->size() < 2) return;
 	Beagle_LogTraceM(
 	    ioContext.getSystem().getLogger(),
-	    "migration", "Beagle::MigrationOp",
 	    std::string("Migrating individuals from the ")+uint2ordinal(ioContext.getDemeIndex()+1)+" deme"
 	);
 	migrate(ioDeme, ioContext);
 
-	Beagle_StackTraceEndM("void MigrationOp::operate(Deme&, Context&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -132,12 +131,11 @@ void MigrationOp::init(System& ioSystem)
 	if(mPopSize->size() < 2) {
 		Beagle_LogBasicM(
 		    ioSystem.getLogger(),
-		    "migration", "Beagle::MigrationOp",
 		    std::string("WARNING: Migration can't occur because there are fewer than two demes. Consider")+
 		    std::string(" either, removing the migration operator by editing your configuration file, or")+
 		    std::string(" adding demes to the vivarium through the register variable 'ec.pop.size'.")
 		);
 	}
 
-	Beagle_StackTraceEndM("void MigrationOp::init(System&)");
+	Beagle_StackTraceEndM();
 }

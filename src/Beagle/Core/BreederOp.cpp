@@ -60,7 +60,7 @@ void BreederOp::write(PACC::XML::Streamer& ioStreamer, bool inIndent) const
 	ioStreamer.openTag(getName(), inIndent);
 	writeContent(ioStreamer, inIndent);
 	ioStreamer.closeTag();
-	Beagle_StackTraceEndM("void BreederOp::write(PACC::XML::Streamer& ioStreamer, bool inIndent) const");
+	Beagle_StackTraceEndM();
 }
 
 

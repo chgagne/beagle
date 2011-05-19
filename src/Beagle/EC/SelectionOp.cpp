@@ -93,7 +93,7 @@ Individual::Handle SelectionOp::breed(Individual::Bag& inBreedingPool,
 	}
 
 	return lClonedIndiv;
-	Beagle_StackTraceEndM("Individual::Handle SelectionOp::breed(Individual::Bag& inBreedingPool, BreederNode::Handle inChild, Context& ioContext)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -120,7 +120,7 @@ void SelectionOp::convertToList(unsigned int inN, std::vector<unsigned int>& ioS
 		 " match the expected number ("+uint2str(inN)+").");
 	}
 
-	Beagle_StackTraceEndM("void SelectionOp::convertToList(std::vector<unsigned int>&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -132,7 +132,7 @@ double SelectionOp::getBreedingProba(BreederNode::Handle)
 {
 	Beagle_StackTraceBeginM();
 	return mReproductionProba->getWrappedValue();
-	Beagle_StackTraceEndM("double SelectionOp::getBreedingProba(BreederNode::Handle)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -158,7 +158,7 @@ void SelectionOp::registerParams(System& ioSystem)
 	mReproductionProba = castHandleT<Double>(
 	                         ioSystem.getRegister().insertEntry(mReproProbaName, new Double(0.1f), lDescription));
 
-	Beagle_StackTraceEndM("void SelectionOp::registerParams(System&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -172,7 +172,6 @@ void SelectionOp::operate(Deme& ioDeme, Context& ioContext)
 	Beagle_StackTraceBeginM();
 	Beagle_LogTraceM(
 	    ioContext.getSystem().getLogger(),
-	    "selection", "Beagle::SelectionOp",
 	    std::string("Applying selection on the ")+
 	    uint2ordinal(ioContext.getDemeIndex()+1)+" deme"
 	);
@@ -180,7 +179,6 @@ void SelectionOp::operate(Deme& ioDeme, Context& ioContext)
 	if(ioContext.getGeneration() == 0) {
 		Beagle_LogTraceM(
 		    ioContext.getSystem().getLogger(),
-		    "selection", "Beagle::SelectionOp",
 		    std::string("Note that the reproduction probability parameter named '") + mReproProbaName +
 		    std::string("' is ignored when no breeder is set in the evolver, as it seems ") +
 		    " actually the case."
@@ -227,7 +225,6 @@ void SelectionOp::operate(Deme& ioDeme, Context& ioContext)
 	for(unsigned int j=0; j<ioDeme.size(); ++j) {
 		Beagle_LogVerboseM(
 		    ioContext.getSystem().getLogger(),
-		    "selection", "Beagle::SelectionOp",
 		    uint2ordinal(j+1)+" individual selected "+
 		    uint2str(lIndices[j])+" times"
 		);
@@ -250,7 +247,6 @@ void SelectionOp::operate(Deme& ioDeme, Context& ioContext)
 			ioDeme[lNextEmpty]->copy(*ioDeme[lNextFilled], ioContext.getSystem());
 			Beagle_LogDebugM(
 			    ioContext.getSystem().getLogger(),
-			    "selection", "Beagle::SelectionOp",
 			    uint2ordinal(lNextFilled+1)+" individual has replaced the "+
 			    uint2ordinal(lNextEmpty+1)+" individual"
 			);
@@ -273,7 +269,6 @@ void SelectionOp::operate(Deme& ioDeme, Context& ioContext)
 		if (lIndicesCopy[j] != 0) {
 			Beagle_LogDebugM(
 			    ioContext.getSystem().getLogger(),
-			    "selection", "Beagle::SelectionOp",
 			    uint2ordinal(j+1)+" individual will be passively copied into the new generation"
 			);
 			if (lHistory != NULL) {
@@ -286,7 +281,7 @@ void SelectionOp::operate(Deme& ioDeme, Context& ioContext)
 		}
 	}
 
-	Beagle_StackTraceEndM("void SelectionOp::operate(Deme& ioDeme, Context& ioContext)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -305,7 +300,7 @@ void SelectionOp::readWithSystem(PACC::XML::ConstIterator inIter, System& ioSyst
 	}
 	std::string mReproProbaReadName = inIter->getAttribute("repropb");
 	if(mReproProbaReadName.empty() == false) mReproProbaName = mReproProbaReadName;
-	Beagle_StackTraceEndM("void SelectionOp::readWithSystem(PACC::XML::ConstIterator, System&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -329,7 +324,6 @@ void SelectionOp::selectManyIndividuals(unsigned int inN,
 	Beagle_StackTraceBeginM();
 	Beagle_LogTraceM(
 	    ioContext.getSystem().getLogger(),
-	    "selection", "Beagle::SelectionOp",
 	    std::string("Selecting ")+uint2str(inN)+" individuals from a pool of "+uint2str(ioPool.size())+
 	    " individuals"
 	);
@@ -345,7 +339,7 @@ void SelectionOp::selectManyIndividuals(unsigned int inN,
 		outSelections[ selectOneIndividual(ioPool,ioContext) ]++;
 	}
 
-	Beagle_StackTraceEndM("std::vector<unsigned int> SelectionOp::selectNIndividuals(unsigned int, Individual::Bag&, Context&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -359,5 +353,5 @@ void SelectionOp::writeContent(PACC::XML::Streamer& ioStreamer, bool inIndent) c
 {
 	Beagle_StackTraceBeginM();
 	ioStreamer.insertAttribute("repropb", mReproProbaName);
-	Beagle_StackTraceEndM("void SelectionOp::writeContent(PACC::XML::Streamer& ioStreamer, bool inIndent) const");
+	Beagle_StackTraceEndM();
 }

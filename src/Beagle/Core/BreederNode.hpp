@@ -97,7 +97,7 @@ public:
 	inline PointerT<BreederOp,Operator::Handle> getBreederOp() const {
 		Beagle_StackTraceBeginM();
 		return mBreederOp;
-		Beagle_StackTraceEndM("PointerT<BreederOp,Operator::Handle> BreederNode::getBreederOp() const");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -106,7 +106,7 @@ public:
 	inline PointerT<BreederNode,Object::Handle> getFirstChild() const {
 		Beagle_StackTraceBeginM();
 		return mChild;
-		Beagle_StackTraceEndM("PointerT<BreederNode,Object::Handle> BreederNode::getFirstChild() const");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -115,7 +115,7 @@ public:
 	inline PointerT<BreederNode,Object::Handle> getNextSibling() const {
 		Beagle_StackTraceBeginM();
 		return mSibling;
-		Beagle_StackTraceEndM("PointerT<BreederNode,Object::Handle> BreederNode::getNextSibling() const");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -125,7 +125,7 @@ public:
 	inline void setBreederOp(PointerT<BreederOp,Operator::Handle> inBreederOp) {
 		Beagle_StackTraceBeginM();
 		mBreederOp = inBreederOp;
-		Beagle_StackTraceEndM("void BreederNode::setBreederOp(PointerT<BreederOp,Operator::Handle> inBreederOp)");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -135,7 +135,7 @@ public:
 	inline void setFirstChild(PointerT<BreederNode,Object::Handle> inChild) {
 		Beagle_StackTraceBeginM();
 		mChild = inChild;
-		Beagle_StackTraceEndM("void BreederNode::setFirstChild(PointerT<BreederNode,Object::Handle> inChild)");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -145,7 +145,7 @@ public:
 	inline void setNextSibling(PointerT<BreederNode,Object::Handle> inSibling) {
 		Beagle_StackTraceBeginM();
 		mSibling = inSibling;
-		Beagle_StackTraceEndM("void BreederNode::setNextSibling(PointerT<BreederNode,Object::Handle> inSibling)");
+		Beagle_StackTraceEndM();
 	}
 
 private:

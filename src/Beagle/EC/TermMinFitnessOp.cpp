@@ -71,7 +71,7 @@ void TermMinFitnessOp::registerParams(System& ioSystem)
 	mMinFitness = castHandleT<Float>(
 	                  ioSystem.getRegister().insertEntry("ec.term.minfitness", new Float(mMinFitnessDefault), lDescription));
 
-	Beagle_StackTraceEndM("void TermMinFitnessOp::registerParams(System& ioSystem)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -94,7 +94,7 @@ void TermMinFitnessOp::readWithSystem(PACC::XML::ConstIterator inIter, System& i
 		mMinFitnessDefault = str2dbl(lFitnessStr);
 		if(mMinFitness != NULL) mMinFitness->getWrappedValue() = mMinFitnessDefault;
 	}
-	Beagle_StackTraceEndM("void TermMinFitnessOp::readWithSystem(PACC::XML::ConstIterator, System&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -113,7 +113,6 @@ bool TermMinFitnessOp::terminate(const Deme& inDeme, Context& ioContext)
 		if(lFitness->isValid() && lFitness->getValue() <= mMinFitness->getWrappedValue()) {
 			Beagle_LogInfoM(
 			    ioContext.getSystem().getLogger(),
-			    "termination", "Beagle::TermMinFitnessOp",
 			    std::string("Minimum fitness value (") +
 			    dbl2str(mMinFitness->getWrappedValue()) +
 			    std::string(") termination criterion reached by the ") +
@@ -127,13 +126,12 @@ bool TermMinFitnessOp::terminate(const Deme& inDeme, Context& ioContext)
 
 	Beagle_LogTraceM(
 	    ioContext.getSystem().getLogger(),
-	    "termination", "Beagle::TermMinFitnessOp",
 	    std::string("Minimum fitness value (") +
 	    dbl2str(mMinFitness->getWrappedValue()) +
 	    std::string(") termination criterion not reached ")
 	);
 	return false;
-	Beagle_StackTraceEndM("bool TermMinFitnessOp::terminate(const Deme& inDeme, Context& ioContext)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -150,5 +148,5 @@ void TermMinFitnessOp::write(PACC::XML::Streamer& ioStreamer, bool inIndent) con
 		ioStreamer.insertAttribute("fitness", dbl2str(mMinFitness->getWrappedValue()));
 	else ioStreamer.insertAttribute("fitness", dbl2str(mMinFitnessDefault));
 	ioStreamer.closeTag();
-	Beagle_StackTraceEndM("void TermMinFitnessOp::write(PACC::XML::Streamer& ioStreamer, bool inIndent) const");
+	Beagle_StackTraceEndM();
 }

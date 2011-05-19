@@ -122,7 +122,7 @@ void Beagle::EC::CrossoverTwoPointsOpT<T>::registerParams(Beagle::System& ioSyst
 		                   ioSystem.getRegister().insertEntry(mMatingProbaName, new Double(0.3f), lDescription));
 	}
 	Beagle::EC::CrossoverOp::registerParams(ioSystem);
-	Beagle_StackTraceEndM("void GA::CrossoverTwoPointsOpT<T>::registerParams(System& ioSystem)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -157,27 +157,12 @@ bool Beagle::EC::CrossoverTwoPointsOpT<T>::mate(Beagle::Individual& ioIndiv1,
 			lMatingPoint2 = lTemp;
 		}
 
-		Beagle_LogDebugM(
-		    ioContext1.getSystem().getLogger(),
-		    "crossover", "Beagle::GA::CrossoverTwoPointsOpT",
-		    "Genotypes mated (before GA two points crossover)"
-		);
-		Beagle_LogObjectDebugM(
-		    ioContext1.getSystem().getLogger(),
-		    "crossover", "Beagle::GA::CrossoverTwoPointsOpT",
-		    *lGenotype1
-		);
-		Beagle_LogObjectDebugM(
-		    ioContext1.getSystem().getLogger(),
-		    "crossover", "Beagle::GA::CrossoverTwoPointsOpT",
-		    *lGenotype2
-		);
+		Beagle_LogDebugM(ioContext1.getSystem().getLogger(), *lGenotype1);
+		Beagle_LogDebugM(ioContext1.getSystem().getLogger(), *lGenotype2);
 		Beagle_LogVerboseM(
 		    ioContext1.getSystem().getLogger(),
-		    "crossover", "Beagle::GA::CrossoverTwoPointsOpT",
-		    std::string("Mating individuals after the ")+
-		    uint2ordinal(lMatingPoint1+1)+std::string(" element and before the")+
-		    uint2ordinal(lMatingPoint2+1)+std::string(" element")
+		    "Mating individuals after the " << uint2ordinal(lMatingPoint1+1) <<
+		    " element and before the" << uint2ordinal(lMatingPoint2+1) << " element"
 		);
 
 		for(unsigned int i=lMatingPoint1; i<lMatingPoint2; ++i) {
@@ -186,21 +171,8 @@ bool Beagle::EC::CrossoverTwoPointsOpT<T>::mate(Beagle::Individual& ioIndiv1,
 			(*lGenotype2)[i] = lTemp;
 		}
 
-		Beagle_LogDebugM(
-		    ioContext1.getSystem().getLogger(),
-		    "crossover", "Beagle::GA::CrossoverTwoPointsOpT",
-		    "Genotypes mated (after GA two points crossover)"
-		);
-		Beagle_LogObjectDebugM(
-		    ioContext1.getSystem().getLogger(),
-		    "crossover", "Beagle::GA::CrossoverTwoPointsOpT",
-		    *lGenotype1
-		);
-		Beagle_LogObjectDebugM(
-		    ioContext1.getSystem().getLogger(),
-		    "crossover", "Beagle::GA::CrossoverTwoPointsOpT",
-		    *lGenotype2
-		);
+		Beagle_LogDebugM(ioContext1.getSystem().getLogger(), *lGenotype1);
+		Beagle_LogDebugM(ioContext1.getSystem().getLogger(), *lGenotype2);
 	} else {
 		unsigned int lTotalSize = 0;
 		std::vector<unsigned int> lSizes;
@@ -233,28 +205,13 @@ bool Beagle::EC::CrossoverTwoPointsOpT<T>::mate(Beagle::Individual& ioIndiv1,
 
 		Beagle_LogVerboseM(
 		    ioContext1.getSystem().getLogger(),
-		    "crossover", "Beagle::GA::CrossoverTwoPointsOpT",
-		    std::string("Mating the ")+uint2ordinal(lMatingGenotype+1)+
-		    std::string(" genotypes after the ")+uint2ordinal(lMatingPoint1+1)+
-		    std::string(" element and before the ")+uint2ordinal(lMatingPoint2+1)+
-		    std::string(" element")
+		    "Mating the " << uint2ordinal(lMatingGenotype+1) << " genotypes after the " <<
+		    uint2ordinal(lMatingPoint1+1) << " element and before the " <<
+		    uint2ordinal(lMatingPoint2+1) << " element"
 		);
 
-		Beagle_LogDebugM(
-		    ioContext1.getSystem().getLogger(),
-		    "crossover", "Beagle::GA::CrossoverTwoPointsOpT",
-		    "Genotypes mated (before GA two points crossover)"
-		);
-		Beagle_LogObjectDebugM(
-		    ioContext1.getSystem().getLogger(),
-		    "crossover", "Beagle::GA::CrossoverTwoPointsOpT",
-		    *lGenotype1
-		);
-		Beagle_LogObjectDebugM(
-		    ioContext1.getSystem().getLogger(),
-		    "crossover", "Beagle::GA::CrossoverTwoPointsOpT",
-		    *lGenotype2
-		);
+		Beagle_LogDebugM(ioContext1.getSystem().getLogger(), *lGenotype1);
+		Beagle_LogDebugM(ioContext1.getSystem().getLogger(), *lGenotype2);
 
 		for(unsigned int i=lMatingPoint1; i<lMatingPoint2; ++i) {
 			typename T::value_type lTemp = (*lGenotype1)[i];
@@ -262,25 +219,12 @@ bool Beagle::EC::CrossoverTwoPointsOpT<T>::mate(Beagle::Individual& ioIndiv1,
 			(*lGenotype2)[i] = lTemp;
 		}
 
-		Beagle_LogDebugM(
-		    ioContext1.getSystem().getLogger(),
-		    "crossover", "Beagle::GA::CrossoverTwoPointsOpT",
-		    "Genotypes mated (after GA two points crossover)"
-		);
-		Beagle_LogObjectDebugM(
-		    ioContext1.getSystem().getLogger(),
-		    "crossover", "Beagle::GA::CrossoverTwoPointsOpT",
-		    *lGenotype1
-		);
-		Beagle_LogObjectDebugM(
-		    ioContext1.getSystem().getLogger(),
-		    "crossover", "Beagle::GA::CrossoverTwoPointsOpT",
-		    *lGenotype2
-		);
+		Beagle_LogDebugM(ioContext1.getSystem().getLogger(), *lGenotype1);
+		Beagle_LogDebugM(ioContext1.getSystem().getLogger(), *lGenotype2);
 	}
 
 	return true;
-	Beagle_StackTraceEndM("bool GA::CrossoverTwoPointsOpT<T>::mate(Individual& ioIndiv1,Context& ioContext1, Individual& ioIndiv2, Context& ioContext2)");
+	Beagle_StackTraceEndM();
 }
 
 

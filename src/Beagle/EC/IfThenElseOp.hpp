@@ -86,7 +86,7 @@ public:
 	inline std::string getConditionTag() const {
 		Beagle_StackTraceBeginM();
 		return mConditionTag;
-		Beagle_StackTraceEndM("std::string IfThenElseOp::getConditionTag() const");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -95,7 +95,7 @@ public:
 	inline std::string getConditionValue() const {
 		Beagle_StackTraceBeginM();
 		return mConditionValue;
-		Beagle_StackTraceEndM("std::string IfThenElseOp::getConditionValue() const");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -105,7 +105,7 @@ public:
 	inline const Beagle::Operator::Bag& getPositiveSet() const {
 		Beagle_StackTraceBeginM();
 		return mPositiveOpSet;
-		Beagle_StackTraceEndM("const Operator::Bag& IfThenElseOp::getPositiveSet() const");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -115,7 +115,7 @@ public:
 	inline Beagle::Operator::Bag& getPositiveSet() {
 		Beagle_StackTraceBeginM();
 		return mPositiveOpSet;
-		Beagle_StackTraceEndM("Operator::Bag& IfThenElseOp::getPositiveSet()");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -125,7 +125,7 @@ public:
 	inline const Beagle::Operator::Bag& getNegativeSet() const {
 		Beagle_StackTraceBeginM();
 		return mNegativeOpSet;
-		Beagle_StackTraceEndM("const Operator::Bag& IfThenElseOp::getNegativeSet() const");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -135,7 +135,7 @@ public:
 	inline Beagle::Operator::Bag& getNegativeSet() {
 		Beagle_StackTraceBeginM();
 		return mNegativeOpSet;
-		Beagle_StackTraceEndM("Operator::Bag& IfThenElseOp::getNegativeSet()");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -146,7 +146,7 @@ public:
 	inline void insertPositiveOp(Beagle::Operator::Handle inOperator) {
 		Beagle_StackTraceBeginM();
 		mPositiveOpSet.push_back(inOperator);
-		Beagle_StackTraceEndM("void insertPositiveOp(Operator::Handle)");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -157,7 +157,7 @@ public:
 	void insertNegativeOp(Beagle::Operator::Handle inOperator) {
 		Beagle_StackTraceBeginM();
 		mNegativeOpSet.push_back(inOperator);
-		Beagle_StackTraceEndM("void insertPositiveOp(Operator::Handle)");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -166,7 +166,7 @@ public:
 	inline void setConditionTag(std::string inTag) {
 		Beagle_StackTraceBeginM();
 		mConditionTag = inTag;
-		Beagle_StackTraceEndM("void IfThenElseOp::setConditionTag(std::string inTag)");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -175,7 +175,7 @@ public:
 	inline void setConditionValue(std::string inValue) {
 		Beagle_StackTraceBeginM();
 		mConditionValue = inValue;
-		Beagle_StackTraceEndM("void IfThenElseOp::setConditionValue(std::string inValue)");
+		Beagle_StackTraceEndM();
 	}
 
 private:

@@ -27,8 +27,8 @@
  */
 
 /*!
- *  \file   Beagle/Core/PackageBase.cpp
- *  \brief  Source code of class PackageBase.
+ *  \file   Beagle/Core/Package.cpp
+ *  \brief  Source code of class Package.
  *  \author Christian Gagne
  *  $Revision: 1.8 $
  *  $Date: 2007/09/20 14:46:33 $
@@ -42,8 +42,8 @@ using namespace Beagle;
 /*!
  *  \brief Construct package with basic Open BEAGLE objects.
  */
-PackageBase::PackageBase(void) :
-	Package("PackageBase")
+Package::Package(void) :
+	PackageAbstract("Package")
 { }
 
 
@@ -51,7 +51,7 @@ PackageBase::PackageBase(void) :
  *  \brief Configure system by adding necessary components into it.
  *  \param ioSystem System to configure.
  */
-void PackageBase::configure(System& ioSystem)
+void Package::configure(System& ioSystem)
 {
 	Beagle_StackTraceBeginM();
 	Factory& lFactory = ioSystem.getFactory();
@@ -79,7 +79,7 @@ void PackageBase::configure(System& ioSystem)
 	lFactory.insertAllocator("Beagle::LongArray", new LongArray::Alloc);
 	lFactory.insertAllocator("Beagle::Map", new Map::Alloc);
 	lFactory.insertAllocator("Beagle::Matrix", new Matrix::Alloc);
-	lFactory.insertAllocator("Beagle::PackageBase", new PackageBase::Alloc);
+	lFactory.insertAllocator("Beagle::Package", new Package::Alloc);
 	lFactory.insertAllocator("Beagle::QuasiRandom", new QuasiRandom::Alloc);
 	lFactory.insertAllocator("Beagle::Randomizer", new Randomizer::Alloc);
 	lFactory.insertAllocator("Beagle::Register", new Register::Alloc);
@@ -122,7 +122,7 @@ void PackageBase::configure(System& ioSystem)
 	lFactory.aliasAllocator("Beagle::LongArray", "LongArray");
 	lFactory.aliasAllocator("Beagle::Map", "Map");
 	lFactory.aliasAllocator("Beagle::Matrix", "Matrix");
-	lFactory.aliasAllocator("Beagle::PackageBase", "PackageBase");
+	lFactory.aliasAllocator("Beagle::Package", "Package");
 	lFactory.aliasAllocator("Beagle::QuasiRandom", "QuasiRandom");
 	lFactory.aliasAllocator("Beagle::Randomizer", "Randomizer");
 	lFactory.aliasAllocator("Beagle::Register", "Register");
@@ -154,7 +154,7 @@ void PackageBase::configure(System& ioSystem)
 	lFactory.setConcept("Register", "Register");
 	lFactory.setConcept("System", "System");
 
-	Beagle_StackTraceEndM("void PackageBase::configureSystem(System&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -162,12 +162,12 @@ void PackageBase::configure(System& ioSystem)
  *  \brief List packages which current package depends.
  *  \return Bag with the packages instanciation on which current package depends.
  *
- *  PackageBase doesn't depend on any other packages, it is the basic package of all the
+ *  Package doesn't depend on any other packages, it is the basic package of all the
     others.
  */
-Package::Bag PackageBase::listDependencies(void)
+PackageAbstract::Bag Package::listDependencies(void)
 {
 	Beagle_StackTraceBeginM();
 	return Package::Bag();
-	Beagle_StackTraceEndM("Package::Bag PackageBase::listDependencies(void)");
+	Beagle_StackTraceEndM();
 }

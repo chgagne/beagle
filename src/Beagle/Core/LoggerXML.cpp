@@ -46,7 +46,7 @@ using namespace Beagle;
 /*!
  *  \brief Construct a new LoggerXML.
  */
-LoggerXML::LoggerXML(void) :
+LoggerXML::LoggerXML() :
 	mStreamerConsole(std::cout),
 	mStreamerFile(mStream)
 {}
@@ -62,18 +62,18 @@ LoggerXML::LoggerXML(const LoggerXML& inOrig) :
 {
 	Beagle_StackTraceBeginM();
 	throw Beagle_UndefinedMethodInternalExceptionM("LoggerXML", "LoggerXML", "LoggerXML");
-	Beagle_StackTraceEndM("LoggerXML::LoggerXML(const LoggerXML&)");
+	Beagle_StackTraceEndM();
 }
 
 
 /*!
  *  \brief Destruct a LoggerXML.
  */
-LoggerXML::~LoggerXML(void)
+LoggerXML::~LoggerXML()
 {
 	Beagle_StackTraceBeginM();
 	terminate();
-	Beagle_StackTraceEndM("LoggerXML::~LoggerXML(void)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -84,12 +84,12 @@ void LoggerXML::operator=(const LoggerXML&)
 {
 	Beagle_StackTraceBeginM();
 	throw Beagle_UndefinedMethodInternalExceptionM("operator=", "LoggerXML", "LoggerXML");
-	Beagle_StackTraceEndM("void LoggerXML::operator=(const LoggerXML&)");
+	Beagle_StackTraceEndM();
 }
 
 
 /*!
-*  \brief Initialize this logger.
+*   \brief Initialize this logger.
  *  \param ioSystem Reference to the system to use for initialization.
  */
 void LoggerXML::init(System& ioSystem)
@@ -120,19 +120,22 @@ void LoggerXML::init(System& ioSystem)
 
 	Logger::init(ioSystem);
 
-	Beagle_StackTraceEndM("void LoggerXML::init(System&)");
+	Beagle_StackTraceEndM();
 }
 
 /*!
  *  \brief Output message to console and file devices.
  *  \param inMessage Message to log.
  *  \param inLevel Log level of message.
- *  \param inType Type of message.
- *  \param inClass Class of message.
+ *  \param inFile Source file of message.
+ *  \param inFunction Source function of message.
  *
  *  This method outputs messages in XML format.
  */
-void LoggerXML::outputMessage(const std::string& inMessage, unsigned int inLevel, const std::string& inType, const std::string& inClass)
+void LoggerXML::outputMessage(const std::string& inMessage,
+                              unsigned int inLevel,
+                              const std::string& inFile,
+                              const std::string& inFunction)
 {
 	Beagle_StackTraceBeginM();
 
@@ -142,8 +145,8 @@ void LoggerXML::outputMessage(const std::string& inMessage, unsigned int inLevel
 		{
 			mStreamerConsole.openTag("Log", false);
 			if(mShowLevel->getWrappedValue()) mStreamerConsole.insertAttribute("level", uint2str(inLevel));
-			if(mShowType->getWrappedValue())  mStreamerConsole.insertAttribute("type",  inType);
-			if(mShowClass->getWrappedValue()) mStreamerConsole.insertAttribute("class", inClass);
+			if(mShowType->getWrappedValue())  mStreamerConsole.insertAttribute("file",  inFile);
+			if(mShowClass->getWrappedValue()) mStreamerConsole.insertAttribute("function", inFunction);
 			if(mShowTime->getWrappedValue())  mStreamerConsole.insertAttribute("time", PACC::Date().get("%X"));
 			mStreamerConsole.insertStringContent(inMessage, false);
 			mStreamerConsole.closeTag();
@@ -151,32 +154,32 @@ void LoggerXML::outputMessage(const std::string& inMessage, unsigned int inLevel
 	}
 
 	// log to file
-	if(mFileLevel->getWrappedValue() >= inLevel && !mFileName->getWrappedValue().empty()) {
+	if(mFileNameLevel->getWrappedValue() >= inLevel && !mFileName->getWrappedValue().empty()) {
 #pragma omp critical (Beagle_Logger_Log_File)
 		{
 			mStreamerFile.openTag("Log", false);
 			if(mShowLevel->getWrappedValue()) mStreamerFile.insertAttribute("level", uint2str(inLevel));
-			if(mShowType->getWrappedValue())  mStreamerFile.insertAttribute("type",  inType);
-			if(mShowClass->getWrappedValue()) mStreamerFile.insertAttribute("class", inClass);
+			if(mShowType->getWrappedValue())  mStreamerFile.insertAttribute("file",  inFile);
+			if(mShowClass->getWrappedValue()) mStreamerFile.insertAttribute("function", inFunction);
 			if(mShowTime->getWrappedValue())  mStreamerFile.insertAttribute("time", PACC::Date().get("%X"));
 			mStreamerFile.insertStringContent(inMessage, false);
 			mStreamerFile.closeTag();
 		}
 	}
 
-	Beagle_StackTraceEndM("void LoggerXML::outputMessage(cons std::string&, unsigned int, const std::string&, const std::string&)");
+	Beagle_StackTraceEndM();
 }
 
 /*!
  *  \brief Output serialized object to console and file devices.
  *  \param inObject Object to log.
  *  \param inLevel Log level of message.
- *  \param inType Type of message.
- *  \param inClass Class of message.
+ *  \param inFile Source filename of message.
+ *  \param inFunction Source function name of message.
  *
  *  This method outputs the serialized objects in XML format.
  */
-void LoggerXML::outputObject(const Object& inObject, unsigned int inLevel, const std::string& inType, const std::string& inClass)
+void LoggerXML::outputObject(const Object& inObject, unsigned int inLevel, const std::string& inFile, const std::string& inFunction)
 {
 	Beagle_StackTraceBeginM();
 
@@ -186,8 +189,8 @@ void LoggerXML::outputObject(const Object& inObject, unsigned int inLevel, const
 		{
 			mStreamerConsole.openTag("Log", true);
 			if(mShowLevel->getWrappedValue()) mStreamerConsole.insertAttribute("level", uint2str(inLevel));
-			if(mShowType->getWrappedValue())  mStreamerConsole.insertAttribute("type",  inType);
-			if(mShowClass->getWrappedValue()) mStreamerConsole.insertAttribute("class", inClass);
+			if(mShowType->getWrappedValue())  mStreamerConsole.insertAttribute("file",  inFile);
+			if(mShowClass->getWrappedValue()) mStreamerConsole.insertAttribute("function", inFunction);
 			if(mShowTime->getWrappedValue())  mStreamerConsole.insertAttribute("time", PACC::Date().get("%X"));
 			inObject.write(mStreamerConsole, true);
 			mStreamerConsole.closeTag();
@@ -195,30 +198,46 @@ void LoggerXML::outputObject(const Object& inObject, unsigned int inLevel, const
 	}
 
 	// log to file
-	if(mFileLevel->getWrappedValue() >= inLevel && !mFileName->getWrappedValue().empty()) {
+	if(mFileNameLevel->getWrappedValue() >= inLevel && !mFileName->getWrappedValue().empty()) {
 #pragma omp critical (Beagle_Logger_Log_File)
 		{
 			mStreamerFile.openTag("Log", true);
 			if(mShowLevel->getWrappedValue()) mStreamerFile.insertAttribute("level", uint2str(inLevel));
-			if(mShowType->getWrappedValue())  mStreamerFile.insertAttribute("type",  inType);
-			if(mShowClass->getWrappedValue()) mStreamerFile.insertAttribute("class", inClass);
+			if(mShowType->getWrappedValue())  mStreamerFile.insertAttribute("file",  inFile);
+			if(mShowClass->getWrappedValue()) mStreamerFile.insertAttribute("function", inFunction);
 			if(mShowTime->getWrappedValue())  mStreamerFile.insertAttribute("time", PACC::Date().get("%X"));
 			inObject.write(mStreamerFile, true);
 			mStreamerFile.closeTag();
 		}
 	}
 
-	Beagle_StackTraceEndM("void LoggerXML::outputObject(const Object& inObject, unsigned int inLevel, const std::string& inType, const std::string& inClass)");
+	Beagle_StackTraceEndM();
 }
+
+
+/*!
+ *  \brief Check whether message should be logged.
+ *  \param inLevel Log level of message.
+ *  \return True if message will be logged, not if it is discarted.
+ */
+bool LoggerXML::shouldLog(unsigned int inLevel) const
+{
+	Beagle_StackTraceBeginM();
+	return (!isInitialized()) || 
+	       (mConsoleLevel->getWrappedValue() >= inLevel) ||
+	       ((mFileNameLevel->getWrappedValue() >= inLevel) && !mFileName->getWrappedValue().empty()));
+	Beagle_StackTraceEndM();	
+}
+
 
 /*!
  *  \brief Terminate XML logger operations.
  */
-void LoggerXML::terminate(void)
+void LoggerXML::terminate()
 {
 	Beagle_StackTraceBeginM();
 
-	if((*this).isInitialized()) {
+	if(isInitialized()) {
 		if((mConsoleLevel != NULL) && (mConsoleLevel->getWrappedValue() != 0)) {
 			mStreamerConsole.closeAll();
 		}
@@ -228,6 +247,6 @@ void LoggerXML::terminate(void)
 			mStream.close();
 		}
 	}
-	Beagle_StackTraceEndM("void LoggerXML::terminate(void)");
+	Beagle_StackTraceEndM();
 }
 

@@ -120,7 +120,7 @@ void HierarchicalFairCompetitionOp::registerParams(System& ioSystem)
 		mPopSize = castHandleT<UIntArray>(
 		               ioSystem.getRegister().insertEntry("ec.pop.size", new UIntArray(1,100), lDescription));
 	}
-	Beagle_StackTraceEndM("void HierarchicalFairCompetitionOp::registerParams(System&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -149,7 +149,6 @@ void HierarchicalFairCompetitionOp::operate(Deme& ioDeme, Context& ioContext)
 	// Log some information.
 	Beagle_LogTraceM(
 	    ioContext.getSystem().getLogger(),
-	    "migration", "Beagle::HierarchicalFairCompetitionOp",
 	    std::string("Applying HFC migration to the ")+uint2ordinal(ioContext.getDemeIndex())+
 	    std::string(" deme")
 	);
@@ -246,18 +245,7 @@ void HierarchicalFairCompetitionOp::operate(Deme& ioDeme, Context& ioContext)
 		std::make_heap(ioDeme.begin(), ioDeme.end(), IsMorePointerPredicate());
 		for(unsigned int i=0; i<lNbDeletedInd; ++i) {
 			std::pop_heap(ioDeme.begin(), ioDeme.end(), IsMorePointerPredicate());
-			Beagle_LogDebugM(
-			    ioContext.getSystem().getLogger(),
-			    "migration",
-			    "Beagle::HierarchicalFairCompetitionOp",
-			    "Individual erased from the last deme"
-			);
-			Beagle_LogObjectDebugM(
-			    ioContext.getSystem().getLogger(),
-			    "migration",
-			    "Beagle::HierarchicalFairCompetitionOp",
-			    *ioDeme.back()
-			);
+			Beagle_LogDebugM(ioContext.getSystem().getLogger(), *ioDeme.back());
 			ioDeme.pop_back();
 		}
 		lChanged = true;
@@ -268,7 +256,7 @@ void HierarchicalFairCompetitionOp::operate(Deme& ioDeme, Context& ioContext)
 		if(ioDeme.getStats() != NULL) ioDeme.getStats()->setInvalid();
 		if(ioContext.getVivarium().getStats() != NULL) ioContext.getVivarium().getStats()->setInvalid();
 	}
-	Beagle_StackTraceEndM("void HierarchicalFairCompetitionOp::operate(Deme& ioDeme, Context& ioContext)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -287,16 +275,10 @@ HierarchicalFairCompetitionOp::generateIndividuals(unsigned int inN,
 	Beagle_NonNullPointerAssertM(getRootNode());
 	Beagle_LogTraceM(
 	    ioContext.getSystem().getLogger(),
-	    "replacement-strategy", "Beagle::HierarchicalFairCompetitionOp",
-	    std::string("Processing using HFC replacement strategy the ")+
-	    uint2ordinal(ioContext.getDemeIndex()+1)+" deme"
+	    "Processing using HFC replacement strategy the " <<
+	    uint2ordinal(ioContext.getDemeIndex()+1 << " deme"
 	);
-	Beagle_LogObjectM(
-	    ioContext.getSystem().getLogger(),
-	    Logger::eTrace,
-	    "replacement-strategy", "Beagle::HierarchicalFairCompetitionOp",
-	    (*this)
-	);
+	Beagle_LogTraceM(ioContext.getSystem().getLogger(), (*this));
 
 	RouletteT<unsigned int> lRoulette;
 	buildRoulette(lRoulette, ioContext);
@@ -311,21 +293,10 @@ HierarchicalFairCompetitionOp::generateIndividuals(unsigned int inN,
 		Individual::Handle lBredIndiv =
 		    lSelectedBreeder->getBreederOp()->breed(ioDeme, lSelectedBreeder->getFirstChild(), ioContext);
 		lNewIndividuals.push_back(lBredIndiv);
-		Beagle_LogDebugM(
-		    ioContext.getSystem().getLogger(),
-		    "migration",
-		    "Beagle::HierarchicalFairCompetitionOp",
-		    "Randomly generated individual to be inserted in first deme"
-		);
-		Beagle_LogObjectDebugM(
-		    ioContext.getSystem().getLogger(),
-		    "migration",
-		    "Beagle::HierarchicalFairCompetitionOp",
-		    *lBredIndiv
-		);
+		Beagle_LogDebugM(ioContext.getSystem().getLogger(), *lBredIndiv);
 	}
 	return lNewIndividuals;
-	Beagle_StackTraceEndM("Individual::Bag HierarchicalFairCompetitionOp::generateIndividuals(unsigned int inN, Deme& ioDeme, Context& ioContext) const");
+	Beagle_StackTraceEndM();
 }
 
 

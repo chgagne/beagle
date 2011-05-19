@@ -53,7 +53,7 @@ void Beagle::OpenMP::init(Beagle::System& ioSystem)
 	omp_set_dynamic(0);
 	setNumThreads(mNumThreads->getWrappedValue());
 #endif
-	Beagle_StackTraceEndM("OpenMP::init(System&)");
+	Beagle_StackTraceEndM();
 }
 
 void Beagle::OpenMP::readWithSystem(PACC::XML::ConstIterator inIter, Beagle::System& ioSystem)
@@ -69,7 +69,7 @@ void Beagle::OpenMP::readWithSystem(PACC::XML::ConstIterator inIter, Beagle::Sys
 
 	mNumThreads->getWrappedValue() = Beagle::str2uint(lNumThreads);
 #endif
-	Beagle_StackTraceEndM("OpenMP::readWithSystem(PACC::XML::ConstIterator, System&)");
+	Beagle_StackTraceEndM();
 }
 
 //!	\brief Register the parameters of the OpenMP component.
@@ -91,7 +91,7 @@ void Beagle::OpenMP::registerParams(Beagle::System& ioSystem)
 	mNumThreads = Beagle::castHandleT<Beagle::UInt>(
 	                  ioSystem.getRegister().insertEntry("ec.omp.threads", new Beagle::UInt(lNumThreads), lDescription));
 #endif
-	Beagle_StackTraceEndM("OpenMP::registerParams(System&)");
+	Beagle_StackTraceEndM();
 }
 
 void Beagle::OpenMP::writeContent(PACC::XML::Streamer& ioStreamer, bool inIndent /*=true*/) const
@@ -100,5 +100,5 @@ void Beagle::OpenMP::writeContent(PACC::XML::Streamer& ioStreamer, bool inIndent
 #if defined(BEAGLE_USE_OMP_R)
 	ioStreamer.insertAttribute("threads", Beagle::uint2str(getMaxNumThreads()));
 #endif
-	Beagle_StackTraceEndM("OpenMP::writeContent(PACC::XML::Streamer&, bool) const");
+	Beagle_StackTraceEndM();
 }

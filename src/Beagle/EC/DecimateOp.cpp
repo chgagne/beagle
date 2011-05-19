@@ -94,7 +94,7 @@ void DecimateOp::registerParams(System& ioSystem)
 		mDecimationRatio = castHandleT<Float>(
 		                       ioSystem.getRegister().insertEntry(mDecimationRatioName, new Float(-1.0f), lDescription));
 	}
-	Beagle_StackTraceEndM("void DecimateOp::registerParams(System&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -112,7 +112,6 @@ void DecimateOp::operate(Deme& ioDeme, Context& ioContext)
 
 	Beagle_LogTraceM(
 	    ioContext.getSystem().getLogger(),
-	    "decimation", "Beagle::DecimateOp",
 	    std::string("Applying decimation operation on the ")+
 	    uint2ordinal(ioContext.getDemeIndex()+1)+" deme"
 	);
@@ -130,7 +129,6 @@ void DecimateOp::operate(Deme& ioDeme, Context& ioContext)
 	}
 	Beagle_LogTraceM(
 	    ioContext.getSystem().getLogger(),
-	    "decimation", "Beagle::DecimateOp",
 	    std::string("Keeping ")+uint2str(lMu)+" of the "+uint2str(ioDeme.size())+
 	    " individuals from the "+uint2ordinal(ioContext.getDemeIndex()+1)+" deme"
 	);
@@ -143,7 +141,6 @@ void DecimateOp::operate(Deme& ioDeme, Context& ioContext)
 		lOSS << "). Decimation is thus not applied.";
 		Beagle_LogBasicM(
 		    ioContext.getSystem().getLogger(),
-		    "decimation", "Beagle::DecimateOp",
 		    lOSS.str()
 		);
 		return;
@@ -160,10 +157,9 @@ void DecimateOp::operate(Deme& ioDeme, Context& ioContext)
 	ioDeme.insert(ioDeme.begin(), lSurvivors.begin(), lSurvivors.end());
 	Beagle_LogDetailedM(
 	    ioContext.getSystem().getLogger(),
-	    "decimation", "Beagle::DecimateOp",
 	    std::string("There are now ")+uint2str(ioDeme.size())+" individuals in the "+
 	    uint2ordinal(ioContext.getDemeIndex()+1)+" deme"
 	);
-	Beagle_StackTraceEndM("void DecimateOp::operate(Deme& ioDeme, Context& ioContext)");
+	Beagle_StackTraceEndM();
 }
 

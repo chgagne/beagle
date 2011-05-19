@@ -126,7 +126,7 @@ public:
 	inline operator T() const {
 		Beagle_StackTraceBeginM();
 		return mWrappedValue;
-		Beagle_StackTraceEndM("WrapperT<T>::operator T() const");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -136,7 +136,7 @@ public:
 	inline T& getWrappedValue() {
 		Beagle_StackTraceBeginM();
 		return mWrappedValue;
-		Beagle_StackTraceEndM("T& WrapperT<T>::getWrappedValue()");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -146,7 +146,7 @@ public:
 	inline const T& getWrappedValue() const {
 		Beagle_StackTraceBeginM();
 		return mWrappedValue;
-		Beagle_StackTraceEndM("const T& WrapperT<T>::getWrappedValue() const");
+		Beagle_StackTraceEndM();
 	}
 
 
@@ -157,7 +157,7 @@ public:
 	inline void setWrappedValue(const T& inNewValue) {
 		Beagle_StackTraceBeginM();
 		mWrappedValue = inNewValue;
-		Beagle_StackTraceEndM("void WrapperT<T>::setWrappedValue(const T& inNewValue)");
+		Beagle_StackTraceEndM();
 	}
 
 private:
@@ -189,7 +189,7 @@ bool Beagle::WrapperT<T>::isEqual(const Beagle::Object& inRightObj) const
 	Beagle_StackTraceBeginM();
 	const WrapperT<T>& lRightWrapper = castObjectT<const WrapperT<T>&>(inRightObj);
 	return mWrappedValue == lRightWrapper.mWrappedValue;
-	Beagle_StackTraceEndM("bool WrapperT<T>::isEqual(const Object& inRightObj) const");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -204,7 +204,7 @@ bool Beagle::WrapperT<T>::isLess(const Beagle::Object& inRightObj) const
 	Beagle_StackTraceBeginM();
 	const WrapperT<T>& lRightWrapper = castObjectT<const WrapperT<T>&>(inRightObj);
 	return mWrappedValue < lRightWrapper.mWrappedValue;
-	Beagle_StackTraceEndM("bool WrapperT<T>::isLess(const Object& inRightObj) const");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -227,7 +227,7 @@ void Beagle::WrapperT<T>::read(PACC::XML::ConstIterator inIter)
 			lISS >> mWrappedValue;
 		}
 	}
-	Beagle_StackTraceEndM("void WrapperT<T>::read(PACC::XML::ConstIterator inIter)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -243,7 +243,7 @@ void Beagle::WrapperT<T>::write(PACC::XML::Streamer& ioStreamer, bool inIndent) 
 	std::ostringstream lOSS;
 	lOSS << mWrappedValue << std::flush;
 	ioStreamer.insertStringContent(lOSS.str(), false);
-	Beagle_StackTraceEndM("void WrapperT<T>::write(PACC::XML::Streamer& ioStreamer, bool inIndent) const");
+	Beagle_StackTraceEndM();
 }
 
 

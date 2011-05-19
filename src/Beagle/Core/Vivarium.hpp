@@ -122,7 +122,7 @@ public:
 		Beagle_StackTraceBeginM();
 		MemberMap::const_iterator lIterMap = mMemberMap.find("HallOfFame");
 		return (lIterMap == mMemberMap.end()) ? NULL : castHandleT<HallOfFame>(lIterMap->second);
-		Beagle_StackTraceEndM("const HallOfFame::Handle getHallOfFame() const");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -133,7 +133,7 @@ public:
 		Beagle_StackTraceBeginM();
 		MemberMap::const_iterator lIterMap = mMemberMap.find("HallOfFame");
 		return (lIterMap == mMemberMap.end()) ? NULL : castHandleT<HallOfFame>(lIterMap->second);
-		Beagle_StackTraceEndM("HallOfFame::Handle getHallOfFame()");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -145,7 +145,7 @@ public:
 		Beagle_StackTraceBeginM();
 		MemberMap::const_iterator lIterMap = mMemberMap.find(inName);
 		return (lIterMap == mMemberMap.end()) ? NULL : castHandleT<Member>(lIterMap->second);
-		Beagle_StackTraceEndM("const Member::Handle Vivarium::getMember(const std::string&) const");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -157,7 +157,7 @@ public:
 		Beagle_StackTraceBeginM();
 		MemberMap::iterator lIterMap = mMemberMap.find(inName);
 		return (lIterMap == mMemberMap.end()) ? NULL : castHandleT<Member>(lIterMap->second);
-		Beagle_StackTraceEndM("Member::Handle Vivarium::getMember(const std::string&)");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -168,7 +168,7 @@ public:
 		Beagle_StackTraceBeginM();
 		MemberMap::const_iterator lIterMap = mMemberMap.find("Stats");
 		return (lIterMap == mMemberMap.end()) ? NULL : castHandleT<Stats>(lIterMap->second);
-		Beagle_StackTraceEndM("const HallOfFame::Handle getHallOfFame() const");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -179,7 +179,7 @@ public:
 		Beagle_StackTraceBeginM();
 		MemberMap::iterator lIterMap = mMemberMap.find("Stats");
 		return (lIterMap == mMemberMap.end()) ? NULL : castHandleT<Stats>(lIterMap->second);
-		Beagle_StackTraceEndM("HallOfFame::Handle getHallOfFame()");
+		Beagle_StackTraceEndM();
 	}
 
 protected:

@@ -27,8 +27,8 @@
  */
 
 /*!
- *  \file   Beagle/EC/PackageBase.cpp
- *  \brief  Source code of class PackageBase.
+ *  \file   Beagle/EC/Package.cpp
+ *  \brief  Source code of class Package.
  *  \author Christian Gagne
  *  $Revision: 1.8 $
  *  $Date: 2007/09/20 14:46:33 $
@@ -43,8 +43,8 @@ using namespace Beagle::EC;
 /*!
  *  \brief Construct package with basic Open BEAGLE objects.
  */
-Beagle::EC::PackageBase::PackageBase(void) :
-	Package("EC-PackageBase")
+Beagle::EC::Package::Package(void) :
+	PackageAbstract("EC-Package")
 { }
 
 
@@ -52,7 +52,7 @@ Beagle::EC::PackageBase::PackageBase(void) :
  *  \brief Configure system by adding necessary components into it.
  *  \param ioSystem System to configure.
  */
-void Beagle::EC::PackageBase::configure(System& ioSystem)
+void Beagle::EC::Package::configure(System& ioSystem)
 {
 	Beagle_StackTraceBeginM();
 	Factory& lFactory = ioSystem.getFactory();
@@ -81,7 +81,7 @@ void Beagle::EC::PackageBase::configure(System& ioSystem)
 	lFactory.insertAllocator("Beagle::EC::MuPlusLambdaOp", new MuPlusLambdaOp::Alloc);
 	lFactory.insertAllocator("Beagle::EC::OneCommaLambdaAdaptedOp", new OneCommaLambdaAdaptedOp::Alloc);
 	lFactory.insertAllocator("Beagle::EC::OversizeOp", new OversizeOp::Alloc);
-	lFactory.insertAllocator("Beagle::EC::PackageBase", new Beagle::EC::PackageBase::Alloc);
+	lFactory.insertAllocator("Beagle::EC::Package", new Beagle::EC::Package::Alloc);
 	lFactory.insertAllocator("Beagle::EC::RandomShuffleDemeOp", new RandomShuffleDemeOp::Alloc);
 	lFactory.insertAllocator("Beagle::EC::RegisterReadOp", new RegisterReadOp::Alloc);
 	lFactory.insertAllocator("Beagle::EC::SelectBestOp", new SelectBestOp::Alloc);
@@ -123,7 +123,7 @@ void Beagle::EC::PackageBase::configure(System& ioSystem)
 	lFactory.aliasAllocator("Beagle::EC::MuPlusLambdaOp", "MuPlusLambdaOp");
 	lFactory.aliasAllocator("Beagle::EC::OneCommaLambdaAdaptedOp", "OneCommaLambdaAdaptedOp");
 	lFactory.aliasAllocator("Beagle::EC::OversizeOp", "OversizeOp");
-	lFactory.aliasAllocator("Beagle::EC::PackageBase", "PackageBase");
+	lFactory.aliasAllocator("Beagle::EC::Package", "Package");
 	lFactory.aliasAllocator("Beagle::EC::RandomShuffleDemeOp", "RandomShuffleDemeOp");
 	lFactory.aliasAllocator("Beagle::EC::RegisterReadOp", "RegisterReadOp");
 	lFactory.aliasAllocator("Beagle::EC::SelectBestOp", "SelectBestOp");
@@ -151,7 +151,7 @@ void Beagle::EC::PackageBase::configure(System& ioSystem)
 	lFactory.setConcept("TerminationOp", "TermMaxGenOp");
 	lFactory.setConcept("Algorithm", "AlgoSequential");
 
-	Beagle_StackTraceEndM("void PackageBase::configureSystem(System&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -159,12 +159,12 @@ void Beagle::EC::PackageBase::configure(System& ioSystem)
  *  \brief List packages which current package depends.
  *  \return Bag with the packages instanciation on which current package depends.
  *
- *  PackageBase doesn't depend on any other packages, it is the basic package of all the
+ *  Package doesn't depend on any other packages, it is the basic package of all the
     others.
  */
-Package::Bag Beagle::EC::PackageBase::listDependencies(void)
+PackageAbstract::Bag Beagle::EC::Package::listDependencies(void)
 {
 	Beagle_StackTraceBeginM();
-	return Beagle::Package::Bag();
-	Beagle_StackTraceEndM("Package::Bag PackageBase::listDependencies(void)");
+	return Beagle::PackageAbstract::Bag();
+	Beagle_StackTraceEndM();
 }

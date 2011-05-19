@@ -62,7 +62,7 @@ void HistoryID::copy(const Member& inOriginal, System& ioSystem)
 	Beagle_StackTraceBeginM();
 	const HistoryID& lOrigHID = castObjectT<const HistoryID&>(inOriginal);
 	operator=(lOrigHID);
-	Beagle_StackTraceEndM("void HistoryID::copy(const Member&,System&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -74,7 +74,7 @@ const std::string& HistoryID::getName() const
 	Beagle_StackTraceBeginM();
 	const static std::string lName("HistoryID");
 	return lName;
-	Beagle_StackTraceEndM("const std::string& HistoryID::getName() const");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -86,7 +86,7 @@ const std::string& HistoryID::getType() const
 	Beagle_StackTraceBeginM();
 	const static std::string lType("HistoryID");
 	return lType;
-	Beagle_StackTraceEndM("const std::string& HistoryID::getType() const");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -126,7 +126,7 @@ void HistoryID::readWithContext(PACC::XML::ConstIterator inIter, Context& ioCont
 	}
 	mVar = str2uint(lVarStr);
 
-	Beagle_StackTraceEndM("void HistoryID::readWithContext(PACC::XML::ConstIterator,Context&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -140,5 +140,5 @@ void HistoryID::writeContent(PACC::XML::Streamer& ioStreamer, bool inIndent) con
 	Beagle_StackTraceBeginM();
 	ioStreamer.insertAttribute("id", mID);
 	ioStreamer.insertAttribute("var", mVar);
-	Beagle_StackTraceEndM("void HistoryID::writeContent(PACC::XML::Streamer&,bool) const");
+	Beagle_StackTraceEndM();
 }

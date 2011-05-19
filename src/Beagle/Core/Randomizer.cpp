@@ -84,7 +84,6 @@ void Randomizer::init(System& ioSystem)
 	}
 	Beagle_LogBasicM(
 	    ioSystem.getLogger(),
-	    "randomizer", "Beagle::Randomizer",
 	    std::string("Randomizer (")+uint2str(lOpenMP->getThreadNum())+std::string(") seed used: ")+uint2str(mSeed)
 	);
 #else
@@ -96,12 +95,11 @@ void Randomizer::init(System& ioSystem)
 	}
 	Beagle_LogBasicM(
 	    ioSystem.getLogger(),
-	    "randomizer", "Beagle::Randomizer",
 	    std::string("Randomizer seed used: ")+uint2str(mSeed)
 	);
 #endif
 
-	Beagle_StackTraceEndM("void Randomizer::init(System&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -127,7 +125,7 @@ void Randomizer::readWithSystem(PACC::XML::ConstIterator inIter, System& ioSyste
 			throw Beagle_IOExceptionNodeM(*lChild, "expected randomizer state!");
 		setState(lChild->getValue());
 	}
-	Beagle_StackTraceEndM("void Randomizer::readWithSystem(PACC::XML::ConstIterator inIter, System& ioSystem)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -166,7 +164,7 @@ void Randomizer::registerParams(System& ioSystem)
 	mRegisteredSeed = castHandleT<ULong>(
 	                      ioSystem.getRegister().insertEntry("ec.rand.seed", new ULong(0), lDescription));
 #endif
-	Beagle_StackTraceEndM("void Randomizer::registerParams(System&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -180,5 +178,5 @@ void Randomizer::writeContent(PACC::XML::Streamer& ioStreamer, bool inIndent) co
 	Beagle_StackTraceBeginM();
 	ioStreamer.insertAttribute("seed", uint2str(mSeed));
 	if(mSeed!=0) ioStreamer.insertStringContent(getState());
-	Beagle_StackTraceEndM("void Randomizer::writeContent(PACC::XML::Streamer& ioStreamer, bool inIndent) const");
+	Beagle_StackTraceEndM();
 }

@@ -75,7 +75,6 @@ Individual::Handle MutationOp::breed(Individual::Bag& inBreedingPool,
 
 	Beagle_LogVerboseM(
 	    ioContext.getSystem().getLogger(),
-	    "mutation", "Beagle::MutationOp",
 	    std::string("Mutating the ")+uint2ordinal(ioContext.getIndividualIndex()+1)+" individual"
 	);
 
@@ -95,7 +94,7 @@ Individual::Handle MutationOp::breed(Individual::Bag& inBreedingPool,
 	}
 
 	return lIndiv;
-	Beagle_StackTraceEndM("Individual::Handle MutationOp::breed(Individual::Bag& inBreedingPool, BreederNode::Handle inChild, Context& ioContext)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -108,7 +107,7 @@ double MutationOp::getBreedingProba(BreederNode::Handle)
 
 	return mMutationProba->getWrappedValue();
 
-	Beagle_StackTraceEndM("double MutationOp::getBreedingProba(BreederNode::Handle)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -132,7 +131,7 @@ void MutationOp::registerParams(System& ioSystem)
 		                     ioSystem.getRegister().insertEntry(mMutationPbName, new Double(0.1f), lDescription));
 	}
 
-	Beagle_StackTraceEndM("void MutationOp::registerParams(System&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -148,13 +147,11 @@ void MutationOp::operate(Deme& ioDeme, Context& ioContext)
 	unsigned int lOldIndividualIndex = ioContext.getIndividualIndex();
 	Beagle_LogTraceM(
 	    ioContext.getSystem().getLogger(),
-	    "mutation", "Beagle::MutationOp",
 	    std::string("Mutating individuals of the ")+
 	    uint2ordinal(ioContext.getDemeIndex()+1)+" deme"
 	);
 	Beagle_LogVerboseM(
 	    ioContext.getSystem().getLogger(),
-	    "mutation", "Beagle::MutationOp",
 	    std::string("Mutating individuals with probability ")+
 	    dbl2str(mMutationProba->getWrappedValue())
 	);
@@ -190,7 +187,6 @@ void MutationOp::operate(Deme& ioDeme, Context& ioContext)
 
 			Beagle_LogVerboseM(
 			    ioContext.getSystem().getLogger(),
-			    "mutation", "Beagle::MutationOp",
 			    std::string("Mutating the ")+uint2ordinal(i+1)+" individual"
 			);
 
@@ -223,7 +219,7 @@ void MutationOp::operate(Deme& ioDeme, Context& ioContext)
 	ioContext.setIndividualIndex(lOldIndividualIndex);
 	ioContext.setIndividualHandle(lOldIndividualHandle);
 
-	Beagle_StackTraceEndM("void MutationOp::operate(Deme& ioDeme, Context& ioContext)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -244,7 +240,7 @@ void MutationOp::readWithSystem(PACC::XML::ConstIterator inIter, System& ioSyste
 	std::string mMutationPbReadName = inIter->getAttribute("mutationpb");
 	if(mMutationPbReadName.empty() == false) mMutationPbName = mMutationPbReadName;
 
-	Beagle_StackTraceEndM("void MutationOp::readWithSystem(PACC::XML::ConstIterator, System&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -259,6 +255,6 @@ void MutationOp::writeContent(PACC::XML::Streamer& ioStreamer, bool inIndent) co
 
 	ioStreamer.insertAttribute("mutationpb", mMutationPbName);
 
-	Beagle_StackTraceEndM("void MutationOp::writeContent(PACC::XML::Streamer&, bool) const");
+	Beagle_StackTraceEndM();
 }
 

@@ -89,7 +89,7 @@ public:
 	inline double getValue() const {
 		Beagle_StackTraceBeginM();
 		return mValue;
-		Beagle_StackTraceEndM("double FitnessSimple::getValue() const");
+		Beagle_StackTraceEndM();
 	}
 
 protected:

@@ -72,7 +72,7 @@ inline Int absolute(const Int& inValue)
 {
 	Beagle_StackTraceBeginM();
 	return Int(std::abs(inValue.getWrappedValue()));
-	Beagle_StackTraceEndM("Int absolute(const Int& inValue)");
+	Beagle_StackTraceEndM();
 }
 
 }
@@ -90,7 +90,7 @@ inline bool operator<(const Beagle::Int& inLeftInt, const Beagle::Int& inRightIn
 {
 	Beagle_StackTraceBeginM();
 	return inLeftInt.isLess(inRightInt);
-	Beagle_StackTraceEndM("bool operator<(const Int& inLeftInt, const Int& inRightInt)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -106,7 +106,7 @@ inline bool operator<=(const Beagle::Int& inLeftInt, const Beagle::Int& inRightI
 {
 	Beagle_StackTraceBeginM();
 	return ( inLeftInt.isLess(inRightInt) || inLeftInt.isEqual(inRightInt) );
-	Beagle_StackTraceEndM("bool operator<=(const Int& inLeftInt, const Int& inRightInt)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -122,7 +122,7 @@ inline bool operator>(const Beagle::Int& inLeftInt, const Beagle::Int& inRightIn
 {
 	Beagle_StackTraceBeginM();
 	return inRightInt.isLess(inLeftInt);
-	Beagle_StackTraceEndM("bool operator>(const Int& inLeftInt, const Int& inRightInt)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -138,7 +138,7 @@ inline bool operator>=(const Beagle::Int& inLeftInt, const Beagle::Int& inRightI
 {
 	Beagle_StackTraceBeginM();
 	return ( inRightInt.isLess(inLeftInt) || inLeftInt.isEqual(inRightInt) );
-	Beagle_StackTraceEndM("bool operator>=(const Int& inLeftInt, const Int& inRightInt)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -154,7 +154,7 @@ inline bool operator==(const Beagle::Int& inLeftInt, const Beagle::Int& inRightI
 {
 	Beagle_StackTraceBeginM();
 	return inLeftInt.isEqual(inRightInt);
-	Beagle_StackTraceEndM("bool operator==(const Int& inLeftInt, const Int& inRightInt)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -170,7 +170,7 @@ inline bool operator!=(const Beagle::Int& inLeftInt, const Beagle::Int& inRightI
 {
 	Beagle_StackTraceBeginM();
 	return ( inLeftInt.isEqual(inRightInt) == false);
-	Beagle_StackTraceEndM("bool operator!=(const Int& inLeftInt, const Int& inRightInt)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -185,7 +185,7 @@ bool operator==(const Beagle::Int& inLeftInt, int inRightInt)
 {
 	Beagle_StackTraceBeginM();
 	return inLeftInt.getWrappedValue() == inRightInt;
-	Beagle_StackTraceEndM("bool operator==(const Int& inLeftInt, int inRightInt)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -200,7 +200,7 @@ bool operator!=(const Beagle::Int& inLeftInt, int inRightInt)
 {
 	Beagle_StackTraceBeginM();
 	return inLeftInt.getWrappedValue() != inRightInt;
-	Beagle_StackTraceEndM("bool operator!=(const Int& inLeftInt, int inRightInt)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -215,7 +215,7 @@ bool operator<(const Beagle::Int& inLeftInt, int inRightInt)
 {
 	Beagle_StackTraceBeginM();
 	return inLeftInt.getWrappedValue() < inRightInt;
-	Beagle_StackTraceEndM("bool operator<(const Int& inLeftInt, int inRightInt)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -230,7 +230,7 @@ bool operator<=(const Beagle::Int& inLeftInt, int inRightInt)
 {
 	Beagle_StackTraceBeginM();
 	return inLeftInt.getWrappedValue() <= inRightInt;
-	Beagle_StackTraceEndM("bool operator<=(const Int& inLeftInt, int inRightInt)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -245,7 +245,7 @@ bool operator>(const Beagle::Int& inLeftInt, int inRightInt)
 {
 	Beagle_StackTraceBeginM();
 	return inLeftInt.getWrappedValue() > inRightInt;
-	Beagle_StackTraceEndM("bool operator>(const Int& inLeftInt, int inRightInt)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -260,7 +260,7 @@ bool operator>=(const Beagle::Int& inLeftInt, int inRightInt)
 {
 	Beagle_StackTraceBeginM();
 	return inLeftInt.getWrappedValue() >= inRightInt;
-	Beagle_StackTraceEndM("bool operator>=(const Int& inLeftInt, int inRightInt)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -275,7 +275,7 @@ Beagle::Int& operator++(Beagle::Int& inInt)
 	Beagle_StackTraceBeginM();
 	inInt.getWrappedValue()++;
 	return inInt;
-	Beagle_StackTraceEndM("Int& operator++(Int& inInt)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -291,7 +291,7 @@ Beagle::Int operator++(Beagle::Int& inInt, int)
 	Beagle::Int lInt = inInt;
 	inInt.getWrappedValue()++;
 	return lInt;
-	Beagle_StackTraceEndM("Int operator++(Int& inInt, int)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -306,7 +306,7 @@ Beagle::Int operator+(const Beagle::Int& inLeftInt, const Beagle::Int& inRightIn
 {
 	Beagle_StackTraceBeginM();
 	return inLeftInt.getWrappedValue() + inRightInt.getWrappedValue();
-	Beagle_StackTraceEndM("Int operator+(const Int& inLeftInt, const Int& inRightInt)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -321,7 +321,7 @@ Beagle::Int operator+(const Beagle::Int& inLeftInt, int inRightInt)
 {
 	Beagle_StackTraceBeginM();
 	return inLeftInt.getWrappedValue() + inRightInt;
-	Beagle_StackTraceEndM("Int operator+(const Int& inLeftInt, int inRightInt)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -337,7 +337,7 @@ Beagle::Int& operator+=(Beagle::Int& inLeftInt, const Beagle::Int& inRightInt)
 	Beagle_StackTraceBeginM();
 	inLeftInt.getWrappedValue() += inRightInt.getWrappedValue();
 	return inLeftInt;
-	Beagle_StackTraceEndM("Int& operator+=(Int& inLeftInt, const Int& inRightInt)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -353,7 +353,7 @@ Beagle::Int& operator+=(Beagle::Int& inLeftInt, int inRightInt)
 	Beagle_StackTraceBeginM();
 	inLeftInt.getWrappedValue() += inRightInt;
 	return inLeftInt;
-	Beagle_StackTraceEndM("Int& operator+=(Int& inLeftInt, int inRightInt)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -368,7 +368,7 @@ Beagle::Int& operator--(Beagle::Int& inInt)
 	Beagle_StackTraceBeginM();
 	inInt.getWrappedValue()--;
 	return inInt;
-	Beagle_StackTraceEndM("Int& operator--(Int& inInt)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -384,7 +384,7 @@ Beagle::Int operator--(Beagle::Int& inInt, int)
 	Beagle::Int lInt = inInt;
 	inInt.getWrappedValue()--;
 	return lInt;
-	Beagle_StackTraceEndM("Int operator--(Int& inInt, int)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -400,7 +400,7 @@ Beagle::Int operator-(const Beagle::Int& inLeftInt, const Beagle::Int& inRightIn
 {
 	Beagle_StackTraceBeginM();
 	return inLeftInt.getWrappedValue() - inRightInt.getWrappedValue();
-	Beagle_StackTraceEndM("Int operator-(const Int& inLeftInt, const Int& inRightInt)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -415,7 +415,7 @@ Beagle::Int operator-(const Beagle::Int& inLeftInt, int inRightInt)
 {
 	Beagle_StackTraceBeginM();
 	return inLeftInt.getWrappedValue() - inRightInt;
-	Beagle_StackTraceEndM("Int operator-(const Int& inLeftInt, int inRightInt)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -431,7 +431,7 @@ Beagle::Int& operator-=(Beagle::Int& inLeftInt, const Beagle::Int& inRightInt)
 	Beagle_StackTraceBeginM();
 	inLeftInt.getWrappedValue() -= inRightInt.getWrappedValue();
 	return inLeftInt;
-	Beagle_StackTraceEndM("Int& operator-=(Int& inLeftInt, const Int& inRightInt)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -447,7 +447,7 @@ Beagle::Int& operator-=(Beagle::Int& inLeftInt, int inRightInt)
 	Beagle_StackTraceBeginM();
 	inLeftInt.getWrappedValue() -= inRightInt;
 	return inLeftInt;
-	Beagle_StackTraceEndM("Int& operator-=(Int& inLeftInt, int inRightInt)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -462,7 +462,7 @@ Beagle::Int operator*(const Beagle::Int& inLeftInt, const Beagle::Int& inRightIn
 {
 	Beagle_StackTraceBeginM();
 	return inLeftInt.getWrappedValue() * inRightInt.getWrappedValue();
-	Beagle_StackTraceEndM("Int operator*(const Int& inLeftInt, const Int& inRightInt)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -477,7 +477,7 @@ Beagle::Int operator*(const Beagle::Int& inLeftInt, int inRightInt)
 {
 	Beagle_StackTraceBeginM();
 	return inLeftInt.getWrappedValue() * inRightInt;
-	Beagle_StackTraceEndM("Int operator*(const Int& inLeftInt, int inRightInt)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -493,7 +493,7 @@ Beagle::Int& operator*=(Beagle::Int& inLeftInt, const Beagle::Int& inRightInt)
 	Beagle_StackTraceBeginM();
 	inLeftInt.getWrappedValue() *= inRightInt.getWrappedValue();
 	return inLeftInt;
-	Beagle_StackTraceEndM("Int& operator*=(Int& inLeftInt, const Int& inRightInt)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -509,7 +509,7 @@ Beagle::Int& operator*=(Beagle::Int& inLeftInt, int inRightInt)
 	Beagle_StackTraceBeginM();
 	inLeftInt.getWrappedValue() *= inRightInt;
 	return inLeftInt;
-	Beagle_StackTraceEndM("Int& operator*=(Int& inLeftInt, int inRightInt)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -524,7 +524,7 @@ Beagle::Int operator/(const Beagle::Int& inLeftInt, const Beagle::Int& inRightIn
 {
 	Beagle_StackTraceBeginM();
 	return inLeftInt.getWrappedValue() / inRightInt.getWrappedValue();
-	Beagle_StackTraceEndM("Int operator/(const Int& inLeftInt, const Int& inRightInt)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -539,7 +539,7 @@ Beagle::Int operator/(const Beagle::Int& inLeftInt, int inRightInt)
 {
 	Beagle_StackTraceBeginM();
 	return inLeftInt.getWrappedValue() / inRightInt;
-	Beagle_StackTraceEndM("Int operator/(const Int& inLeftInt, int inRightInt)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -555,7 +555,7 @@ Beagle::Int& operator/=(Beagle::Int& inLeftInt, const Beagle::Int& inRightInt)
 	Beagle_StackTraceBeginM();
 	inLeftInt.getWrappedValue() /= inRightInt.getWrappedValue();
 	return inLeftInt;
-	Beagle_StackTraceEndM("Int& operator/=(Int& inLeftInt, const Int& inRightInt)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -571,7 +571,7 @@ Beagle::Int operator/=(Beagle::Int& inLeftInt, int inRightInt)
 	Beagle_StackTraceBeginM();
 	inLeftInt.getWrappedValue() /= inRightInt;
 	return inLeftInt;
-	Beagle_StackTraceEndM("Int operator/=(Int& inLeftInt, int inRightInt)");
+	Beagle_StackTraceEndM();
 }
 
 

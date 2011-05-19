@@ -65,14 +65,13 @@ void BreederNode::registerParams(System& ioSystem)
 	if(mBreederOp != NULL) {
 		Beagle_LogTraceM(
 		    ioSystem.getLogger(),
-		    "breeder", "Beagle::BreederNode",
 		    std::string("Initializing operator '") + mBreederOp->getName() + "'"
 		);
 		mBreederOp->registerParams(ioSystem);
 	}
 	if(mChild != NULL) mChild->registerParams(ioSystem);
 	if(mSibling != NULL) mSibling->registerParams(ioSystem);
-	Beagle_StackTraceEndM("void BreederNode::registerParams(System&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -86,7 +85,6 @@ void BreederNode::init(System& ioSystem)
 	if(mBreederOp != NULL) {
 		Beagle_LogTraceM(
 		    ioSystem.getLogger(),
-		    "breeder", "Beagle::BreederNode",
 		    std::string("Calling post-initialization hook of operator '") +
 		    mBreederOp->getName() + "'"
 		);
@@ -94,7 +92,7 @@ void BreederNode::init(System& ioSystem)
 	}
 	if(mChild != NULL) mChild->init(ioSystem);
 	if(mSibling != NULL) mSibling->init(ioSystem);
-	Beagle_StackTraceEndM("void BreederNode::init(System&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -105,7 +103,7 @@ void BreederNode::read(PACC::XML::ConstIterator)
 {
 	Beagle_StackTraceBeginM();
 	throw Beagle_UndefinedMethodInternalExceptionM("read","BreederNode",getName());
-	Beagle_StackTraceEndM("void BreederNode::read(PACC::XML::ConstIterator)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -169,7 +167,7 @@ void BreederNode::readWithSystem(PACC::XML::ConstIterator inIter, System& ioSyst
 			}
 		}
 	}
-	Beagle_StackTraceEndM("void BreederNode::readWithSystem(PACC::XML::ConstIterator,System&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -190,6 +188,6 @@ void BreederNode::write(PACC::XML::Streamer& ioStreamer, bool inIndent) const
 		lChild->write(ioStreamer, inIndent);
 	}
 	if(mBreederOp != NULL) ioStreamer.closeTag();
-	Beagle_StackTraceEndM("void BreederNode::write(PACC::XML::Streamer& ioStreamer, bool inIndent) const");
+	Beagle_StackTraceEndM();
 }
 

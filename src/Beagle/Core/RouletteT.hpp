@@ -88,7 +88,7 @@ public:
 		Beagle_AssertM(inWeight>=0.0);
 		if(VectorType::empty()==false) inWeight += VectorType::back().first;
 		push_back(std::make_pair(inWeight,inValue));
-		Beagle_StackTraceEndM("void RouletteT<T>::insert(const T& inValue, double inWeight)");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -102,7 +102,7 @@ public:
 		std::sort(VectorType::begin(), VectorType::end(), std::greater< std::pair<double,T> >());
 		for(unsigned int i=1; i<VectorType::size(); ++i)
 			(*this)[i].first += (*this)[i-1].first;
-		Beagle_StackTraceEndM("void RouletteT<T>::optimize()");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -121,7 +121,7 @@ public:
 		for(i=0; i<(VectorType::size()-1); ++i) if(lDice<(*this)[i].first) break;
 		Beagle_AssertM(lDice<(*this)[i].first);
 		return (*this)[i].second;
-		Beagle_StackTraceEndM("const T& RouletteT<T>::select(Beagle::Randomizer& ioRandomizer) const");
+		Beagle_StackTraceEndM();
 	}
 
 };

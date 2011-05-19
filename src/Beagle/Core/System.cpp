@@ -79,7 +79,7 @@ System::System(void) :
 	addComponent(mOpenMP);
 #endif
 
-	Beagle_StackTraceEndM("System::System(void)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -118,7 +118,7 @@ System::System(Factory::Handle    inFactory,
 	addComponent(mOpenMP);
 #endif
 
-	Beagle_StackTraceEndM("System::System(Factory::Handle,Logger::Handle,Randomizer::Handle,Register::Handle)");
+	Beagle_StackTraceEndM();
 }
 
 void System::replaceComponentsByConcepts(void)
@@ -141,7 +141,7 @@ void System::replaceComponentsByConcepts(void)
 		(*this)["Randomizer"] = mRandomizer;
 	}
 #endif
-	Beagle_StackTraceEndM("System::replaceComponentsByConcepts(void)");
+	Beagle_StackTraceEndM();
 }
 
 /*!
@@ -163,12 +163,11 @@ void System::addComponent(Component::Handle inComponent)
 	// add component
 	Beagle_LogDetailedM(
 	    getLogger(),
-	    "system", "Beagle::System",
 	    string("Adding component '")+inComponent->getName()+string("' to the system")
 	);
 	(*this)[inComponent->getName()] = inComponent;
 
-	Beagle_StackTraceEndM("void System::addComponent(Component::Handle)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -176,7 +175,7 @@ void System::addComponent(Component::Handle inComponent)
  *  \brief Add a new package in the system.
  *  \param inPackage Package to add.
  */
-void System::addPackage(Package::Handle inPackage)
+void System::addPackage(PackageAbstract::Handle inPackage)
 {
 	Beagle_StackTraceBeginM();
 
@@ -185,7 +184,6 @@ void System::addPackage(Package::Handle inPackage)
 	if(lIterPack != mPackages.end()) {
 		Beagle_LogDetailedM(
 		    getLogger(),
-		    "system", "Beagle::System",
 		    std::string("Not installing package '")+inPackage->getName()+
 		    std::string("' as it has already been added")
 		);
@@ -194,11 +192,10 @@ void System::addPackage(Package::Handle inPackage)
 	mPackages.insert(inPackage->getName());
 
 	// Look for dependencies of the package
-	Package::Bag lDependencies = inPackage->listDependencies();
+	PackageAbstract::Bag lDependencies = inPackage->listDependencies();
 	for(unsigned int i=0; i<lDependencies.size(); ++i) {
 		Beagle_LogDetailedM(
 		    getLogger(),
-		    "system", "Beagle::System",
 		    std::string("Package '")+inPackage->getName()+
 		    std::string("' depends on package '")+lDependencies[i]->getName()+
 		    std::string("'")
@@ -209,12 +206,11 @@ void System::addPackage(Package::Handle inPackage)
 	// Install package itself
 	Beagle_LogDetailedM(
 	    getLogger(),
-	    "system", "Beagle::System",
 	    std::string("Installing package '")+inPackage->getName()+std::string("'")
 	);
 	inPackage->configure(*this);
 
-	Beagle_StackTraceEndM("void System::addPackage(Package::Handle)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -234,7 +230,7 @@ const Beagle::Component::Handle System::getComponent(const std::string& inName) 
 	}
 	return castHandleT<Component>(lItr->second);
 
-	Beagle_StackTraceEndM("const Beagle::Component::Handle System::getComponent(const std::string&) const");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -254,7 +250,7 @@ Beagle::Component::Handle System::getComponent(const std::string& inName)
 	}
 	return castHandleT<Component>(lItr->second);
 
-	Beagle_StackTraceEndM("Beagle::Component::Handle System::getComponent(const std::string&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -271,7 +267,7 @@ const Beagle::Component::Handle System::haveComponent(const std::string& inName)
 	if (lItr == end()) return Component::Handle(NULL);
 	return castHandleT<Component>(lItr->second);
 
-	Beagle_StackTraceEndM("const Beagle::Component::Handle System::haveComponent(const std::string&) const");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -288,7 +284,7 @@ Beagle::Component::Handle System::haveComponent(const std::string& inName)
 	if (lItr == end()) return Component::Handle(NULL);
 	return castHandleT<Component>(lItr->second);
 
-	Beagle_StackTraceEndM("Beagle::Component::Handle System::haveComponent(const std::string&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -301,7 +297,6 @@ void System::initComponents(void)
 
 	Beagle_LogDetailedM(
 	    getLogger(),
-	    "system", "Beagle::System",
 	    "Initializing system components"
 	);
 
@@ -325,7 +320,6 @@ void System::initComponents(void)
 		if(lComponent->isInitialized() == false) {
 			Beagle_LogDetailedM(
 			    getLogger(),
-			    "system", "Beagle::System",
 			    string("Initializing component '")+lComponent->getName()+string("'")
 			);
 			lComponent->init(*this);
@@ -333,7 +327,7 @@ void System::initComponents(void)
 		}
 	}
 
-	Beagle_StackTraceEndM("void System::initComponents(void)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -363,7 +357,7 @@ void System::initialize(int inArgc, char** inArgv)
 	// initialize components.
 	initComponents();
 
-	Beagle_StackTraceEndM("void System::initialize(int, char**)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -387,7 +381,7 @@ void System::initialize(const std::string& inFileName)
 	// initialize components
 	initComponents();
 
-	Beagle_StackTraceEndM("void System::initialize(const std::string&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -409,7 +403,6 @@ void System::parseCommandLine(int inArgc, char** inArgv)
 	// process all command-line arguments
 	Beagle_LogDetailedM(
 	    getLogger(),
-	    "init", "Beagle::System",
 	    "Parsing the command-line"
 	);
 	for(int i = 1; i < inArgc; i++) {
@@ -501,7 +494,7 @@ void System::parseCommandLine(int inArgc, char** inArgv)
 		}
 	}
 
-	Beagle_StackTraceEndM("void System::parseCommandLine(int, char**)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -515,7 +508,6 @@ void System::read(PACC::XML::ConstIterator inIter)
 
 	Beagle_LogDebugM(
 	    getLogger(),
-	    "system", "Beagle::System",
 	    "Reading system components"
 	);
 
@@ -533,7 +525,7 @@ void System::read(PACC::XML::ConstIterator inIter)
 		}
 	}
 
-	Beagle_StackTraceEndM("void System::read(PACC::XML::ConstIterator)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -553,7 +545,6 @@ void System::readFromFile(const std::string& inFileName)
 	}
 	Beagle_LogBasicM(
 	    getLogger(),
-	    "init", "Beagle::System",
 	    std::string("Reading file '")+inFileName+"' for system configuration"
 	);
 	PACC::XML::Document lDocument(lStream, inFileName);
@@ -563,7 +554,6 @@ void System::readFromFile(const std::string& inFileName)
 	if(!lPos) {
 		Beagle_LogBasicM(
 		    getLogger(),
-		    "init", "Beagle::System",
 		    "WARNING: file does not contain any valid system"
 		);
 	} else {
@@ -572,7 +562,6 @@ void System::readFromFile(const std::string& inFileName)
 		if(lPos = lFinder.findNext()) {
 			Beagle_LogBasicM(
 			    getLogger(),
-			    "init", "Beagle::System",
 			    "WARNING: file contains multiple systems"
 			);
 			do {
@@ -592,7 +581,6 @@ void System::registerComponentParams(void)
 
 	Beagle_LogDetailedM(
 	    getLogger(),
-	    "system", "Beagle::System",
 	    "Registering system component parameters"
 	);
 
@@ -601,7 +589,6 @@ void System::registerComponentParams(void)
 		if(lComponent->hasRegisteredParams() == false) {
 			Beagle_LogTraceM(
 			    getLogger(),
-			    "init", "Beagle::System",
 			    std::string("Registering '") + lComponent->getName() + "' parameters"
 			);
 			lComponent->registerParams(*this);
@@ -609,7 +596,7 @@ void System::registerComponentParams(void)
 		}
 	}
 
-	Beagle_StackTraceEndM("void System::registerComponentParams(void)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -623,7 +610,7 @@ void System::setEvaluationOp(const std::string& inName, Allocator::Handle inEval
 	Beagle_StackTraceBeginM();
 	mFactory->insertAllocator(inName, inEvalOpAlloc);
 	mFactory->setConcept("EvaluationOp", inName);
-	Beagle_StackTraceEndM("void System::setEvaluationOp(const std::string&, Allocator::Handle)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -656,7 +643,7 @@ void System::showHelp(const std::string& inProgram, std::ostream& outStream) con
 
 	mRegister->showHelp(outStream);
 
-	Beagle_StackTraceEndM("void System::showHelp(const std::string&, std::ostream&) const");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -687,7 +674,7 @@ void System::showUsage(const std::string& inProgram, std::ostream& outStream) co
 
 	mRegister->showUsage(outStream);
 
-	Beagle_StackTraceEndM("void System::showUsage(const std::string&, std::ostream&) const");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -712,6 +699,6 @@ void System::write(PACC::XML::Streamer& outStreamer, bool inIndent) const
 	}
 	outStreamer.closeTag();
 
-	Beagle_StackTraceEndM("void System::write(PACC::XML::Streamer&, bool) const");
+	Beagle_StackTraceEndM();
 }
 

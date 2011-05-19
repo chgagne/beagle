@@ -77,7 +77,7 @@ void MuPlusLambdaOp::registerParams(System& ioSystem)
 	mLMRatio = castHandleT<Float>(
 	               ioSystem.getRegister().insertEntry(mLMRatioName, new Float(7.0f), lDescription));
 
-	Beagle_StackTraceEndM("void MuPlusLambdaOp::registerParams(System&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -97,7 +97,6 @@ void MuPlusLambdaOp::operate(Deme& ioDeme, Context& ioContext)
 	if(ioDeme.size() == 0) {
 		Beagle_LogBasicM(
 		    ioContext.getSystem().getLogger(),
-		    "replacement-strategy", "Beagle::MuPlusLambdaOp",
 		    "WARNING: actual deme size is 0, do nothing and return from MuPlusLambadaOp operator."
 		);
 		return;
@@ -126,14 +125,12 @@ void MuPlusLambdaOp::operate(Deme& ioDeme, Context& ioContext)
 
 	Beagle_LogTraceM(
 	    ioContext.getSystem().getLogger(),
-	    "replacement-strategy", "Beagle::MuPlusLambdaOp",
 	    std::string("Using (mu+lambda) replacement strategy to process the ")+
 	    uint2ordinal(ioContext.getDemeIndex()+1)+" deme"
 	);
 	Beagle_LogObjectM(
 	    ioContext.getSystem().getLogger(),
 	    Logger::eTrace,
-	    "replacement-strategy", "Beagle::MuPlusLambdaOp",
 	    (*this)
 	);
 
@@ -175,7 +172,7 @@ void MuPlusLambdaOp::operate(Deme& ioDeme, Context& ioContext)
 		ioDeme[j] = lOffsprings[0];
 		std::pop_heap(lOffsprings.begin(), (lOffsprings.end()-j), IsLessPointerPredicate());
 	}
-	Beagle_StackTraceEndM("void MuPlusLambdaOp::operate(Deme& ioDeme, Context& ioContext)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -196,7 +193,7 @@ void MuPlusLambdaOp::readWithSystem(PACC::XML::ConstIterator inIter, System& ioS
 	if(lLMRatioReadName.empty() == false) mLMRatioName = lLMRatioReadName;
 
 	ReplacementStrategyOp::readWithSystem(inIter, ioSystem);
-	Beagle_StackTraceEndM("void MuPlusLambdaOp::readWithSystem(PACC::XML::ConstIterator, System&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -214,6 +211,6 @@ void MuPlusLambdaOp::write(PACC::XML::Streamer& ioStreamer, bool inIndent) const
 		lNode->write(ioStreamer, inIndent);
 	}
 	ioStreamer.closeTag();
-	Beagle_StackTraceEndM("void MuPlusLambdaOp::write(PACC::XML::Streamer& ioStreamer, bool inIndent) const");
+	Beagle_StackTraceEndM();
 }
 

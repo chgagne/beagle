@@ -90,7 +90,7 @@ public:
 	inline unsigned int getNumberOfEmigrants() const {
 		Beagle_StackTraceBeginM();
 		return mEmigrants.size();
-		Beagle_StackTraceEndM("unsigned int MigrationBuffer::getNumberOfEmigrants() const");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -100,7 +100,7 @@ public:
 	inline unsigned int getNumberOfImmigrants() const {
 		Beagle_StackTraceBeginM();
 		return mImmigrants.size();
-		Beagle_StackTraceEndM("unsigned int MigrationBuffer::getNumberOfImmigrants() const");
+		Beagle_StackTraceEndM();
 	}
 
 protected:

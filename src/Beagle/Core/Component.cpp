@@ -74,7 +74,7 @@ void Component::readWithSystem(PACC::XML::ConstIterator inIter, System& ioSystem
 		throw Beagle_IOExceptionNodeM(*inIter, lOSS.str());
 	}
 
-	Beagle_StackTraceEndM("void Component::readWithSystem(PACC::XML::ConstIterator, System&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -100,7 +100,7 @@ void Component::write(PACC::XML::Streamer& ioStreamer, bool inIndent) const
 	writeContent(ioStreamer, inIndent);
 	ioStreamer.closeTag();
 
-	Beagle_StackTraceEndM("void Component::write(PACC::XML::Streamer&, bool) const");
+	Beagle_StackTraceEndM();
 }
 
 

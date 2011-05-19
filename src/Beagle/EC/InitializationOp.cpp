@@ -81,7 +81,7 @@ Individual::Handle InitializationOp::breed(Individual::Bag& inBreedingPool,
 	}
 	ioContext.setIndividualHandle(lNewIndiv);
 	return lNewIndiv;
-	Beagle_StackTraceEndM("Individual::Handle InitializationOp::breed(Individual::Bag& inBreedingPool, BreederNode::Handle inChild, Context& ioContext)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -92,7 +92,7 @@ double InitializationOp::getBreedingProba(BreederNode::Handle)
 {
 	Beagle_StackTraceBeginM();
 	return mReproductionProba->getWrappedValue();
-	Beagle_StackTraceEndM("double InitializationOp::getBreedingProba(BreederNode::Handle)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -147,7 +147,7 @@ void InitializationOp::registerParams(System& ioSystem)
 		mSeedsFile = castHandleT<String>(
 		                 ioSystem.getRegister().insertEntry("ec.init.seedsfile", new String(""), lDescription));
 	}
-	Beagle_StackTraceEndM("void InitializationOp::registerParams(System&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -168,14 +168,12 @@ void InitializationOp::operate(Deme& ioDeme, Context& ioContext)
 
 	Beagle_LogTraceM(
 	    ioContext.getSystem().getLogger(),
-	    "initialization", "Beagle::InitializationOp",
 	    std::string("Initializing the ")+
 	    uint2ordinal(ioContext.getDemeIndex()+1)+" deme"
 	);
 	if(!ioDeme.empty()) {
 		Beagle_LogBasicM(
 		    ioContext.getSystem().getLogger(),
-		    "initialization", "Beagle::InitializationOp",
 		    std::string("Warning!  Applying '")+getName()+"' will overwrite the "+
 		    uint2str(ioDeme.size())+" individual(s) currently in the deme with newly initialized "+
 		    "individuals.  If this is not what you desire consider using OversizeOp instead."
@@ -183,7 +181,6 @@ void InitializationOp::operate(Deme& ioDeme, Context& ioContext)
 	}
 	Beagle_LogTraceM(
 	    ioContext.getSystem().getLogger(),
-	    "initialization", "Beagle::InitializationOp",
 	    std::string("Resizing the deme from ")+
 	    uint2str(ioDeme.size())+" to "+
 	    uint2str((*mPopSize)[ioContext.getDemeIndex()])+" individuals"
@@ -202,7 +199,6 @@ void InitializationOp::operate(Deme& ioDeme, Context& ioContext)
 	if(mSeedsFile->getWrappedValue().empty() == false) {
 		Beagle_LogInfoM(
 		    ioContext.getSystem().getLogger(),
-		    "initialization", "Beagle::InitializationOp",
 		    std::string("Reading seeds file '")+mSeedsFile->getWrappedValue()+
 		    std::string("' to initialize the ")+uint2ordinal(ioContext.getDemeIndex()+1)+
 		    std::string(" deme")
@@ -210,7 +206,6 @@ void InitializationOp::operate(Deme& ioDeme, Context& ioContext)
 		lSeededIndividuals = readSeeds(mSeedsFile->getWrappedValue(), ioDeme, ioContext);
 		Beagle_LogDetailedM(
 		    ioContext.getSystem().getLogger(),
-		    "initialization", "Beagle::InitializationOp",
 		    uint2str(lSeededIndividuals)+std::string(" individuals read to seed the deme")
 		);
 	}
@@ -222,7 +217,6 @@ void InitializationOp::operate(Deme& ioDeme, Context& ioContext)
 	for(unsigned int i=lSeededIndividuals; i<ioDeme.size(); ++i) {
 		Beagle_LogVerboseM(
 		    ioContext.getSystem().getLogger(),
-		    "initialization", "Beagle::InitializationOp",
 		    std::string("Initializing the ")+uint2ordinal(i+1)+" individual"
 		);
 		ioContext.setIndividualHandle(ioDeme[i]);
@@ -239,7 +233,7 @@ void InitializationOp::operate(Deme& ioDeme, Context& ioContext)
 	ioContext.setIndividualIndex(lOldIndividualIndex);
 	ioContext.setIndividualHandle(lOldIndividualHandle);
 
-	Beagle_StackTraceEndM("void InitializationOp::operate(Deme& ioDeme, Context& ioContext)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -303,18 +297,11 @@ unsigned int InitializationOp::readSeeds(std::string inFileName,
 							ioContext.setIndividualHandle(ioDeme[lReadIndividuals]);
 							Beagle_LogVerboseM(
 							    ioContext.getSystem().getLogger(),
-							    "initialization",
-							    "Beagle::InitializationOp",
 							    std::string("Reading the ")+uint2ordinal(lReadIndividuals+1)+
 							    std::string(" individual from seeds file")
 							);
 							ioDeme[lReadIndividuals]->readWithContext(lChild2, ioContext);
-							Beagle_LogObjectDebugM(
-							    ioContext.getSystem().getLogger(),
-							    "initialization",
-							    "Beagle::InitializationOp",
-							    *ioDeme[lReadIndividuals]
-							);
+							Beagle_LogDebugM(ioContext.getSystem().getLogger(), *ioDeme[lReadIndividuals]);
 							++lReadIndividuals;
 						}
 					}
@@ -325,7 +312,7 @@ unsigned int InitializationOp::readSeeds(std::string inFileName,
 	ioContext.setIndividualHandle(lOldIndivHandle);
 	ioContext.setIndividualIndex(lOldIndivIndex);
 	return lReadIndividuals;
-	Beagle_StackTraceEndM("unsigned int InitializationOp::readSeeds(std::string inFileName, Deme& ioDeme, Context& ioContext)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -344,7 +331,7 @@ void InitializationOp::readWithSystem(PACC::XML::ConstIterator inIter, System& i
 	}
 	std::string mReproProbaReadName = inIter->getAttribute("repropb");
 	if(mReproProbaReadName.empty() == false) mReproProbaName = mReproProbaReadName;
-	Beagle_StackTraceEndM("void InitializationOp::readWithSystem(PACC::XML::ConstIterator, System&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -357,5 +344,5 @@ void InitializationOp::writeContent(PACC::XML::Streamer& ioStreamer, bool inInde
 {
 	Beagle_StackTraceBeginM();
 	ioStreamer.insertAttribute("repropb", mReproProbaName);
-	Beagle_StackTraceEndM("void InitializationOp::writeContent(PACC::XML::Streamer& ioStreamer, bool inIndent) const");
+	Beagle_StackTraceEndM();
 }

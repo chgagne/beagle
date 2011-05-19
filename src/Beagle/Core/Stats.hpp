@@ -132,7 +132,7 @@ public:
 			throw Beagle_RunTimeExceptionM("Could not add item to statistics as it already exist!");
 		}
 		mItemMap.insert(std::make_pair(inTag,inValue));
-		Beagle_StackTraceEndM("void Stats::addItem(std::string,double)");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -141,7 +141,7 @@ public:
 	inline void clearItems() {
 		Beagle_StackTraceBeginM();
 		mItemMap.clear();
-		Beagle_StackTraceEndM("void Stats::clearItems()");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -161,7 +161,7 @@ public:
 		double lValue = lIterObj->second;
 		mItemMap.erase(lIterObj);
 		return lValue;
-		Beagle_StackTraceEndM("double Stats::deleteItem(std::string)");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -179,7 +179,7 @@ public:
 			throw Beagle_RunTimeExceptionM(lOSS.str());
 		}
 		return lIterObj->second;
-		Beagle_StackTraceEndM("double& Stats::getItem(std::string)");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -197,7 +197,7 @@ public:
 			throw Beagle_RunTimeExceptionM(lOSS.str());
 		}
 		return lIterObj->second;
-		Beagle_StackTraceEndM("const double& Stats::getItem(std::string) const");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -206,7 +206,7 @@ public:
 	inline std::string getID() const {
 		Beagle_StackTraceBeginM();
 		return mID;
-		Beagle_StackTraceEndM("std::string Stats::getID() const");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -215,7 +215,7 @@ public:
 	inline unsigned int getGeneration() const {
 		Beagle_StackTraceBeginM();
 		return mGeneration;
-		Beagle_StackTraceEndM("unsigned int Stats::getGeneration() const");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -224,7 +224,7 @@ public:
 	inline unsigned int getPopSize() const {
 		Beagle_StackTraceBeginM();
 		return mPopSize;
-		Beagle_StackTraceEndM("unsigned int Stats::getPopSize() const");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -235,7 +235,7 @@ public:
 		Beagle_StackTraceBeginM();
 		ItemMap::const_iterator lIterObj = mItemMap.find(inTag);
 		return (lIterObj != mItemMap.end());
-		Beagle_StackTraceEndM("bool Stats::existItem(std::string) const");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -245,7 +245,7 @@ public:
 	inline bool isValid() const {
 		Beagle_StackTraceBeginM();
 		return mValid;
-		Beagle_StackTraceEndM("bool Stats::isValid() const");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -256,7 +256,7 @@ public:
 	inline void modifyItem(std::string inTag, double inValue) {
 		Beagle_StackTraceBeginM();
 		mItemMap[inTag] = inValue;
-		Beagle_StackTraceEndM("void Stats::modifyItem(std::string,double)");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -265,7 +265,7 @@ public:
 	inline void setInvalid() {
 		Beagle_StackTraceBeginM();
 		mValid = false;
-		Beagle_StackTraceEndM("void Stats::setInvalid()");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -274,7 +274,7 @@ public:
 	inline void setValid() {
 		Beagle_StackTraceBeginM();
 		mValid = true;
-		Beagle_StackTraceEndM("void Stats::setValid()");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -293,7 +293,7 @@ public:
 		mGeneration = inGeneration;
 		mPopSize = inPopSize;
 		mValid = inValid;
-		Beagle_StackTraceEndM("void Stats::setGenerationValues(std::string,unsigned int,unsigned int,bool)");
+		Beagle_StackTraceEndM();
 	}
 
 protected:

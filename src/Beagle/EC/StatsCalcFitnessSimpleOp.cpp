@@ -147,7 +147,7 @@ void StatsCalcFitnessSimpleOp::calculateStatsDeme(Stats& outStats,
 	outStats.back().mStd = lStdError;
 	outStats.back().mMax = lMax;
 	outStats.back().mMin = lMin;
-	Beagle_StackTraceEndM("void StatsCalcFitnessSimpleOp::calculateStatsDeme(Stats& outStats, Deme& ioDeme, Context& ioContext) const");
+	Beagle_StackTraceEndM();
 }
 
 

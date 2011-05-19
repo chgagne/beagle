@@ -75,7 +75,7 @@ public:
 		Beagle_StackTraceBeginM();
 		if( (!inLeftPtr) || (!inRightPtr) ) return false;
 		return inRightPtr->isLess(*inLeftPtr);
-		Beagle_StackTraceEndM("bool operator()(const Pointer& inLeftPtr, const Pointer& inRightPtr) const");
+		Beagle_StackTraceEndM();
 	}
 
 };

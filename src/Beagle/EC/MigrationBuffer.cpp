@@ -79,7 +79,7 @@ void MigrationBuffer::copy(const Member& inOriginal, System& ioSystem)
 		mImmigrants[i]->copy(*lOriginal.mImmigrants[i], ioSystem);
 	}
 	mReplacedIndices = lOriginal.mReplacedIndices;
-	Beagle_StackTraceEndM("void MigrationBuffer::copy(const Member&,System&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -92,7 +92,7 @@ const std::string& MigrationBuffer::getName() const
 	Beagle_StackTraceBeginM();
 	const static std::string lName("MigrationBuffer");
 	return lName;
-	Beagle_StackTraceEndM("const std::string& MigrationBuffer::getName() const");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -105,7 +105,7 @@ const std::string& MigrationBuffer::getType() const
 	Beagle_StackTraceBeginM();
 	const static std::string lType("MigrationBuffer");
 	return lType;
-	Beagle_StackTraceEndM("const std::string& MigrationBuffer::getType() const");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -141,7 +141,7 @@ void MigrationBuffer::insertEmigrants(const std::vector<unsigned int>& inEmigran
 			lHistory->trace(ioContext, lParent, mEmigrants.back(), "MigrationBuffer", "migration");
 		}
 	}
-	Beagle_StackTraceEndM("void MigrationBuffer::insertEmigrants(const std::vector<unsigned int>&,Deme&,Context&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -158,7 +158,7 @@ void MigrationBuffer::insertReplaced(const std::vector<unsigned int>& inReplaced
 		mReplacedIndices.push_back(inReplacedIndices[i]);
 	}
 	mergeImmigrantsToDeme(ioDeme);
-	Beagle_StackTraceEndM("void MigrationBuffer::insertReplaced(const std::vector<unsigned int>&,Deme&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -176,7 +176,7 @@ void MigrationBuffer::mergeImmigrantsToDeme(Deme& ioDeme)
 		mReplacedIndices.pop_front();
 		mImmigrants.pop_front();
 	}
-	Beagle_StackTraceEndM("void MigrationBuffer::mergeImmigrantsToDeme(Deme& ioDeme)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -213,20 +213,13 @@ void MigrationBuffer::moveMigrants(unsigned int inNbMigrants,
 		lDestMigBuffer->mImmigrants.push_back(mEmigrants.front());
 		Beagle_LogDebugM(
 		    ioContext.getSystem().getLogger(),
-		    "migration",
-		    "Beagle::MigrationBuffer",
 		    "Emigrant moved into the migration buffer of another deme"
 		);
-		Beagle_LogObjectDebugM(
-		    ioContext.getSystem().getLogger(),
-		    "migration",
-		    "Beagle::MigrationBuffer",
-		    *mEmigrants.front()
-		);
+		Beagle_LogDebugM(ioContext.getSystem().getLogger(), *mEmigrants.front());
 		mEmigrants.pop_front();
 	}
 	lDestMigBuffer->mergeImmigrantsToDeme(ioDestDeme);
-	Beagle_StackTraceEndM("void MigrationBuffer::moveMigrants(unsigned int,Deme&,Context&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -352,7 +345,7 @@ void MigrationBuffer::readWithContext(PACC::XML::ConstIterator inIter, Context& 
 	ioContext.setIndividualHandle(lOldIndivHandle);
 	ioContext.setIndividualIndex(lOldIndivIndex);
 
-	Beagle_StackTraceEndM("void MigrationBuffer::readWithContext(PACC::XML::ConstIterator, Context&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -393,5 +386,5 @@ void MigrationBuffer::writeContent(PACC::XML::Streamer& ioStreamer, bool inInden
 	}
 	ioStreamer.closeTag();
 
-	Beagle_StackTraceEndM("void MigrationBuffer::write(PACC::XML::Streamer&, bool) const");
+	Beagle_StackTraceEndM();
 }

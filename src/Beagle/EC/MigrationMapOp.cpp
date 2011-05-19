@@ -82,21 +82,18 @@ void MigrationMapOp::logMap(const std::vector< std::vector<unsigned int> >& inMi
 
 	Beagle_LogDetailedM(
 	    ioSystem.getLogger(),
-	    "migration", "Beagle::MigrationRingOp",
 	    string("'")+getName()+"' will use '"+mSelectionOp->getName()+"' for selection"
 	);
 	if (mReplacementOp!=NULL) {
 		// Have replacement operator
 		Beagle_LogDetailedM(
 		    ioSystem.getLogger(),
-		    "migration", "Beagle::MigrationRingOp",
 		    string("'")+getName()+"' will use '"+mReplacementOp->getName()+"' for replacement"
 		);
 	} else {
 		// Do not have a replacement operator
 		Beagle_LogTraceM(
 		    ioSystem.getLogger(),
-		    "migration", "Beagle::MigrationRingOp",
 		    string("'")+getName()+"' does not have a replacement operator installed"
 		);
 	}
@@ -112,12 +109,11 @@ void MigrationMapOp::logMap(const std::vector< std::vector<unsigned int> >& inMi
 		}
 		Beagle_LogTraceM(
 		    ioSystem.getLogger(),
-		    "migration", "Beagle::MigrationRingOp",
 		    lOSS.str()
 		);
 	}
 
-	Beagle_StackTraceEndM("void MigrationMapOp::logMap(const std::vector< std::vector<unsigned int> >&,System&) const");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -148,7 +144,6 @@ void MigrationMapOp::migrate(Deme& ioDeme, Context& ioContext)
 	// Get index of individuals to migrate.
 	Beagle_LogTraceM(
 	    ioContext.getSystem().getLogger(),
-	    "migration", "Beagle::MigrationMapOp",
 	    std::string("Selecting ")+uint2str(lNbEmigrants)+" individuals for migration from "+
 	    uint2ordinal(ioContext.getDemeIndex()+1)+" deme using '"+mSelectionOp->getName()+"'"
 	);
@@ -164,7 +159,6 @@ void MigrationMapOp::migrate(Deme& ioDeme, Context& ioContext)
 	else {
 		Beagle_LogTraceM(
 		    ioContext.getSystem().getLogger(),
-		    "migration", "Beagle::MigrationMapOp",
 		    std::string("Selecting ")+uint2str(lNbEmigrants)+" individuals for replacement from "+
 		    uint2ordinal(ioContext.getDemeIndex()+1)+" deme using '"+mReplacementOp->getName()+"'"
 		);
@@ -199,7 +193,6 @@ void MigrationMapOp::migrate(Deme& ioDeme, Context& ioContext)
 			lOSS << uint2ordinal(i+1) << " deme";
 			Beagle_LogTraceM(
 			    ioContext.getSystem().getLogger(),
-			    "migration", "Beagle::MigrationMapOp",
 			    lOSS.str()
 			);
 			Deme& lDestDeme = *ioContext.getVivarium()[i];
@@ -207,7 +200,7 @@ void MigrationMapOp::migrate(Deme& ioDeme, Context& ioContext)
 		}
 	}
 
-	Beagle_StackTraceEndM("void MigrationMapOp::migrate(Deme&, Context&, unsigned int)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -221,7 +214,7 @@ void MigrationMapOp::init(System& ioSystem)
 	Beagle::EC::MigrationOp::init(ioSystem);
 	logMap(mMigrationMap, ioSystem);
 	validateMap(mMigrationMap, ioSystem);
-	Beagle_StackTraceEndM("void MigrationMapOp::init(System&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -237,7 +230,7 @@ void MigrationMapOp::registerParams(System& ioSystem)
 		mSelectionOp->registerParams(ioSystem);
 	if(mReplacementOp!=NULL)
 		mReplacementOp->registerParams(ioSystem);
-	Beagle_StackTraceEndM("void MigrationMapOp::registerParams(System&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -335,7 +328,7 @@ void MigrationMapOp::validateMap(const std::vector< std::vector<unsigned int> >&
 		}
 	}
 
-	Beagle_StackTraceEndM("void MigrationMapOp::validateMap(const std::vector< std::vector<unsigned int> >&,System&) const");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -350,7 +343,7 @@ void MigrationMapOp::write(PACC::XML::Streamer& ioStreamer, bool inIndent) const
 	ioStreamer.openTag(getName(), inIndent);
 	writeContent(ioStreamer, inIndent);
 	ioStreamer.closeTag();
-	Beagle_StackTraceEndM("write(PACC::XML::Streamer&,bool) const");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -372,5 +365,5 @@ void MigrationMapOp::writeContent(PACC::XML::Streamer &ioStreamer, bool inIndent
 	if (mReplacementOp!=NULL) {
 		ioStreamer.insertAttribute("replace",mReplacementOp->getName());
 	}
-	Beagle_StackTraceEndM("void MigrationMapOp::write(PACC::XML::Streamer& ioStreamer, bool inIndent) const");
+	Beagle_StackTraceEndM();
 }

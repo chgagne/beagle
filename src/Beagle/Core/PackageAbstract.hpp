@@ -27,15 +27,15 @@
  */
 
 /*!
- *  \file   Beagle/Core/Package.hpp
- *  \brief  Definition of the class Package.
+ *  \file   Beagle/Core/PackageAbstract.hpp
+ *  \brief  Definition of the class PackageAbstract.
  *  \author Christian Gagne
  *  $Revision: 1.3 $
  *  $Date: 2007/09/12 14:23:47 $
  */
 
-#ifndef Beagle_Core_Package_hpp
-#define Beagle_Core_Package_hpp
+#ifndef Beagle_Core_PackageAbstract_hpp
+#define Beagle_Core_PackageAbstract_hpp
 
 #include <map>
 #include <string>
@@ -49,24 +49,24 @@ namespace Beagle
 {
 
 /*!
- *  \class Package Beagle/Core/Package.hpp "Beagle/Core/Package.hpp"
+ *  \class PackageAbstract Beagle/Core/PackageAbstract.hpp "Beagle/Core/PackageAbstract.hpp"
  *  \brief Abstract package class, used to setup a system.
  *  \ingroup Core
  */
-class Package : public NamedObject
+class PackageAbstract : public NamedObject
 {
 
 public:
 
-	//! Package allocator type.
-	typedef AbstractAllocT< Package, NamedObject::Alloc > Alloc;
-	//! Package handle type.
-	typedef PointerT< Package, NamedObject::Handle > Handle;
-	//! Package bag type.
-	typedef ContainerT< Package, NamedObject::Bag > Bag;
+	//! PackageAbstract allocator type.
+	typedef AbstractAllocT< PackageAbstract, NamedObject::Alloc > Alloc;
+	//! PackageAbstract handle type.
+	typedef PointerT< PackageAbstract, NamedObject::Handle > Handle;
+	//! PackageAbstract bag type.
+	typedef ContainerT< PackageAbstract, NamedObject::Bag > Bag;
 
-	explicit Package(std::string inName="UnnamedPackage");
-	virtual ~Package()
+	explicit PackageAbstract(std::string inName="PackageAbstract");
+	virtual ~PackageAbstract()
 	{ }
 
 	/*!
@@ -79,10 +79,10 @@ public:
 	 *  \brief Obtain list of package on which current package depends.
 	 *  \return Bag with the packages instanciation on which current package depends.
 	 */
-	virtual ContainerT< Package, NamedObject::Bag > listDependencies(void) =0;
+	virtual ContainerT< PackageAbstract, NamedObject::Bag > listDependencies(void) =0;
 
 };
 
 }
 
-#endif // Beagle_Core_Package_hpp
+#endif // Beagle_Core_PackageAbstract_hpp

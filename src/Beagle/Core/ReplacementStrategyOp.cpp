@@ -64,7 +64,6 @@ void ReplacementStrategyOp::buildRoulette(RouletteT<unsigned int>& outRoulette,
 
 	Beagle_LogTraceM(
 	    ioContext.getSystem().getLogger(),
-	    "replacement-strategy", "Beagle::ReplacementStrategyOp",
 	    "Building routing tables of the replacement strategy"
 	);
 
@@ -77,7 +76,6 @@ void ReplacementStrategyOp::buildRoulette(RouletteT<unsigned int>& outRoulette,
 	if(std::fabs(1.0 - outRoulette.back().first) > 0.0001) {
 		Beagle_LogInfoM(
 		    ioContext.getSystem().getLogger(),
-		    "replacement-strategy", "Beagle::ReplacementStrategyOp",
 		    std::string("Sum of probabilities of breeder operators children to ") +
 		    std::string("replacement strategy named '") + getName() +
 		    std::string("' is different from 1.0 (value: ") + dbl2str(outRoulette.back().first) +
@@ -87,7 +85,7 @@ void ReplacementStrategyOp::buildRoulette(RouletteT<unsigned int>& outRoulette,
 
 	outRoulette.optimize();
 
-	Beagle_StackTraceEndM("void ReplacementStrategyOp::buildRoulette(RouletteT<unsigned int>&, Context&) const");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -101,7 +99,7 @@ void ReplacementStrategyOp::registerParams(System& ioSystem)
 
 	if(getRootNode() != NULL) getRootNode()->registerParams(ioSystem);
 
-	Beagle_StackTraceEndM("void ReplacementStrategyOp::registerParams(System&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -115,7 +113,7 @@ void ReplacementStrategyOp::init(System& ioSystem)
 
 	if(getRootNode() != NULL) getRootNode()->init(ioSystem);
 
-	Beagle_StackTraceEndM("void ReplacementStrategyOp::init(System&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -165,7 +163,7 @@ void ReplacementStrategyOp::readWithSystem(PACC::XML::ConstIterator inIter, Syst
 		}
 	}
 
-	Beagle_StackTraceEndM("void ReplacementStrategyOp::readWithSystem(PACC::XML::ConstIterator, System&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -184,6 +182,6 @@ void ReplacementStrategyOp::write(PACC::XML::Streamer& ioStreamer, bool inIndent
 	}
 	ioStreamer.closeTag();
 
-	Beagle_StackTraceEndM("void ReplacementStrategyOp::write(PACC::XML::Streamer&, bool) const");
+	Beagle_StackTraceEndM();
 }
 

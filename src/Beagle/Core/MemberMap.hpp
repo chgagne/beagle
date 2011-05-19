@@ -82,7 +82,7 @@ public:
 	inline Member::Handle& operator[](std::string inKey) {
 		Beagle_StackTraceBeginM();
 		return castHandleT<Member>(Map::operator[](inKey));
-		Beagle_StackTraceEndM("Member::Handle& MemberMap::operator[](std::string inKey)");
+		Beagle_StackTraceEndM();
 	}
 
 };

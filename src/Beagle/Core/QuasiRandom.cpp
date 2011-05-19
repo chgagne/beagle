@@ -69,7 +69,7 @@ void QuasiRandom::readWithSystem(PACC::XML::ConstIterator inIter, System& ioSyst
 			throw Beagle_IOExceptionNodeM(*lChild, "expected quasi-random state!");
 		setState(lChild->getValue());
 	} else reset(0);
-	Beagle_StackTraceEndM("void QuasiRandom::readWithSystem(PACC::XML::ConstIterator inIter, System& ioSystem)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -82,5 +82,5 @@ void QuasiRandom::writeContent(PACC::XML::Streamer& ioStreamer, bool inIndent) c
 {
 	Beagle_StackTraceBeginM();
 	if(getDimensionality() != 0) ioStreamer.insertStringContent(getState());
-	Beagle_StackTraceEndM("void QuasiRandom::writeContent(PACC::XML::Streamer& ioStreamer, bool inIndent) const");
+	Beagle_StackTraceEndM();
 }

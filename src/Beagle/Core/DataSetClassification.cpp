@@ -133,7 +133,7 @@ void DataSetClassification::readWithSystem(PACC::XML::ConstIterator inIter, Syst
 		}
 	}
 
-	Beagle_StackTraceEndM("void DataSetClassification::readWithSystem(PACC::XML::ConstIterator, System&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -153,5 +153,5 @@ void DataSetClassification::writeContent(PACC::XML::Streamer& ioStreamer, bool i
 		(*this)[i].second.write(ioStreamer, false);
 		ioStreamer.closeTag();
 	}
-	Beagle_StackTraceEndM("void DataSetClassification::writeContent(PACC::XML::Streamer&, bool) const");
+	Beagle_StackTraceEndM();
 }

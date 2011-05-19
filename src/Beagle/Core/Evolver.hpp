@@ -99,28 +99,28 @@ public:
 	inline const Operator::Bag& getBootStrapSet(void) const {
 		Beagle_StackTraceBeginM();
 		return mBootStrapSet;
-		Beagle_StackTraceEndM("const Operator::Bag& Evolver::getBootStrapSet(void) const");
+		Beagle_StackTraceEndM();
 	}
 
 	//! Return a reference to the bootstrap operator set.
 	inline Operator::Bag& getBootStrapSet(void) {
 		Beagle_StackTraceBeginM();
 		return mBootStrapSet;
-		Beagle_StackTraceEndM("Operator::Bag& Evolver::getBootStrapSet(void)");
+		Beagle_StackTraceEndM();
 	}
 
 	//! Return a const reference to the main-loop operator set.
 	inline const Operator::Bag& getMainLoopSet(void) const {
 		Beagle_StackTraceBeginM();
 		return mMainLoopSet;
-		Beagle_StackTraceEndM("const Operator::Bag& Evolver::getMainLoopSet(void) const");
+		Beagle_StackTraceEndM();
 	}
 
 	//! Return a reference to the main-loop operator set.
 	inline Operator::Bag& getMainLoopSet(void) {
 		Beagle_StackTraceBeginM();
 		return mMainLoopSet;
-		Beagle_StackTraceEndM("Operator::Bag& Evolver::getMainLoopSet(void)");
+		Beagle_StackTraceEndM();
 	}
 
 protected:

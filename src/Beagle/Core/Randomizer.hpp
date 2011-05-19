@@ -100,7 +100,7 @@ public:
 		Beagle_StackTraceBeginM();
 		Beagle_AssertM(inStdDev >= 0.0);
 		return randNorm(inMean, inStdDev);
-		Beagle_StackTraceEndM("double Randomizer::rollGaussian(double inMean, double inStdDev)");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -113,7 +113,7 @@ public:
 		Beagle_StackTraceBeginM();
 		Beagle_AssertM(inLower <= inUpper);
 		return randInt(inUpper-inLower)+inLower;
-		Beagle_StackTraceEndM("unsigned long Randomizer::rollInteger(unsigned long inLower, unsigned long inUpper)");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -126,7 +126,7 @@ public:
 		Beagle_StackTraceBeginM();
 		Beagle_AssertM(inLower <= inUpper);
 		return (randExc() * (inUpper-inLower)) + inLower;
-		Beagle_StackTraceEndM("double Randomizer::rollUniform(double inLower, double inUpper)");
+		Beagle_StackTraceEndM();
 	}
 
 protected:

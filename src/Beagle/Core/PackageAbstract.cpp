@@ -27,8 +27,8 @@
  */
 
 /*!
- *  \file   Beagle/Core/Package.cpp
- *  \brief  Source code of class Package.
+ *  \file   Beagle/Core/PackageAbstract.cpp
+ *  \brief  Source code of class PackageAbstract.
  *  \author Christian Gagne
  *  $Revision: 1.1 $
  *  $Date: 2007/08/08 14:51:38 $
@@ -42,6 +42,6 @@ using namespace Beagle;
 /*!
  *  \brief Construct abstract package.
  */
-Package::Package(std::string inName) :
+PackageAbstract::PackageAbstract(std::string inName) :
 	NamedObject(inName)
 { }

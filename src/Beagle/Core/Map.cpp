@@ -57,7 +57,7 @@ bool Map::isEqual(const Object& inRightObj) const
 	const Map& lRightMap = castObjectT<const Map&>(inRightObj);
 	if(size() != lRightMap.size()) return false;
 	return std::equal(begin(), end(), lRightMap.begin(), IsEqualMapPairPredicate());
-	Beagle_StackTraceEndM("bool Map::isEqual(const Object& inRightObj) const");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -96,7 +96,7 @@ bool Map::isLess(const Object& inRightObj) const
 	                                    lRightMap.end(),
 	                                    IsLessMapPairPredicate());
 #endif // defined(BEAGLE_HAVE_STDTR1_UNORDEREDMAP) | defined(BEAGLE_HAVE_STD_UNORDEREDMAP)
-	Beagle_StackTraceEndM("bool Map::isLess(const Object& inRightObj) const");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -125,7 +125,7 @@ void Map::read(PACC::XML::ConstIterator inIter)
 			(*this)[lKey]->read(lChild2);
 		}
 	}
-	Beagle_StackTraceEndM("void Map::read(PACC::XML::ConstIterator inIter)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -159,6 +159,6 @@ void Map::write(PACC::XML::Streamer& ioStreamer, bool inIndent) const
 	}
 #endif // defined(BEAGLE_HAVE_STDTR1_UNORDEREDMAP) | defined(BEAGLE_HAVE_STD_UNORDEREDMAP)
 	ioStreamer.closeTag();
-	Beagle_StackTraceEndM("void Map::write(PACC::XML::Streamer& ioStreamer, bool inIndent) const");
+	Beagle_StackTraceEndM();
 }
 

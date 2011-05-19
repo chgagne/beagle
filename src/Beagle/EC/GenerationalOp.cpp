@@ -68,7 +68,7 @@ void GenerationalOp::registerParams(System& ioSystem)
 	);
 	mElitismKeepSize = castHandleT<UInt>(
 	                       ioSystem.getRegister().insertEntry("ec.elite.keepsize", new UInt(1), lDescription));
-	Beagle_StackTraceEndM("void GenerationalOp::registerParams(System&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -88,16 +88,10 @@ void GenerationalOp::operate(Deme& ioDeme, Context& ioContext)
 
 	Beagle_LogTraceM(
 	    ioContext.getSystem().getLogger(),
-	    "replacement-strategy", "Beagle::GenerationalOp",
-	    std::string("Processing using generational replacement strategy the ")+
-	    uint2ordinal(ioContext.getDemeIndex()+1)+" deme"
+	    "Processing using generational replacement strategy the " <<
+	    uint2ordinal(ioContext.getDemeIndex()+1) << " deme"
 	);
-	Beagle_LogObjectM(
-	    ioContext.getSystem().getLogger(),
-	    Logger::eTrace,
-	    "replacement-strategy", "Beagle::GenerationalOp",
-	    (*this)
-	);
+	Beagle_LogTraceM(ioContext.getSystem().getLogger(), (*this));
 
 	RouletteT<unsigned int> lRoulette;
 	buildRoulette(lRoulette, ioContext);
@@ -139,7 +133,7 @@ void GenerationalOp::operate(Deme& ioDeme, Context& ioContext)
 	}
 
 	for(unsigned int j=0; j<lOffsprings.size(); ++j) ioDeme[j] = lOffsprings[j];
-	Beagle_StackTraceEndM("void GenerationalOp::operate(Deme& ioDeme, Context& ioContext)");
+	Beagle_StackTraceEndM();
 }
 
 

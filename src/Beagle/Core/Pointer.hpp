@@ -89,7 +89,7 @@ public:
 		Beagle_StackTraceBeginM();
 		if(mObjectPointer!=NULL) mObjectPointer->unrefer();
 		mObjectPointer = NULL;
-		Beagle_StackTraceEndM("Pointer::~Pointer()");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -104,7 +104,7 @@ public:
 		if(inObjPtr) mObjectPointer = const_cast<Object*>(inObjPtr)->refer();
 		else mObjectPointer = NULL;
 		return *this;
-		Beagle_StackTraceEndM("Pointer& Pointer::operator=(const Object* inObjPtr)");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -120,7 +120,7 @@ public:
 			mObjectPointer = const_cast<Object*>(inPointer.getPointer())->refer();
 		else mObjectPointer = NULL;
 		return *this;
-		Beagle_StackTraceEndM("Pointer& Pointer::operator=(const Pointer& inPointer)");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -132,7 +132,7 @@ public:
 		Beagle_StackTraceBeginM();
 		Beagle_NonNullPointerAssertM(mObjectPointer);
 		return *mObjectPointer;
-		Beagle_StackTraceEndM("Object& Pointer::operator*()");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -144,7 +144,7 @@ public:
 		Beagle_StackTraceBeginM();
 		Beagle_NonNullPointerAssertM(mObjectPointer);
 		return *mObjectPointer;
-		Beagle_StackTraceEndM("const Object& Pointer::operator*() const");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -156,7 +156,7 @@ public:
 		Beagle_StackTraceBeginM();
 		Beagle_NonNullPointerAssertM(mObjectPointer);
 		return mObjectPointer;
-		Beagle_StackTraceEndM("Object* Pointer::operator->()");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -168,7 +168,7 @@ public:
 		Beagle_StackTraceBeginM();
 		Beagle_NonNullPointerAssertM(mObjectPointer);
 		return mObjectPointer;
-		Beagle_StackTraceEndM("const Object* Pointer::operator->() const");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -178,7 +178,7 @@ public:
 	inline bool operator!() const {
 		Beagle_StackTraceBeginM();
 		return (!mObjectPointer);
-		Beagle_StackTraceEndM("bool Pointer::operator!() const");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -189,7 +189,7 @@ public:
 	inline bool operator==(const Object* inObjPtr) const {
 		Beagle_StackTraceBeginM();
 		return (mObjectPointer == inObjPtr);
-		Beagle_StackTraceEndM("bool Pointer::operator==(const Object* inObjPtr) const");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -200,7 +200,7 @@ public:
 	inline bool operator==(const Pointer& inPointer) const {
 		Beagle_StackTraceBeginM();
 		return (mObjectPointer == inPointer.getPointer());
-		Beagle_StackTraceEndM("bool Pointer::operator==(const Pointer& inPointer) const");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -211,7 +211,7 @@ public:
 	inline bool operator!=(const Object* inObjPtr) const {
 		Beagle_StackTraceBeginM();
 		return (mObjectPointer != inObjPtr);
-		Beagle_StackTraceEndM("bool Pointer::operator!=(const Object* inObjPtr) const");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -222,7 +222,7 @@ public:
 	inline bool operator!=(const Pointer& inPointer) const {
 		Beagle_StackTraceBeginM();
 		return (mObjectPointer != inPointer.getPointer());
-		Beagle_StackTraceEndM("bool Pointer::operator!=(const Pointer& inPointer) const");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -232,7 +232,7 @@ public:
 	inline Object* getPointer() {
 		Beagle_StackTraceBeginM();
 		return mObjectPointer;
-		Beagle_StackTraceEndM("Object* Pointer::getPointer()");
+		Beagle_StackTraceEndM();
 	}
 
 	/*!
@@ -242,7 +242,7 @@ public:
 	inline const Object* getPointer() const {
 		Beagle_StackTraceBeginM();
 		return mObjectPointer;
-		Beagle_StackTraceEndM("const Object* Pointer::getPointer() const");
+		Beagle_StackTraceEndM();
 	}
 
 private:

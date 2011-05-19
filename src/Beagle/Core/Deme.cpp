@@ -68,7 +68,7 @@ void Deme::addMember(Member::Handle inMember)
 		throw Beagle_RunTimeExceptionM(lOSS.str());
 	}
 	mMemberMap[inMember->getName()] = inMember;
-	Beagle_StackTraceEndM("void Deme::addMember(Member::Handle)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -106,7 +106,7 @@ void Deme::copy(const Deme& inOriginal, System& ioSystem)
 		(*this)[i] = lIndividual;
 	}
 
-	Beagle_StackTraceEndM("void Deme::copy(const Deme&,System&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -119,7 +119,7 @@ const std::string& Deme::getName() const
 	Beagle_StackTraceBeginM();
 	const static std::string lName("Deme");
 	return lName;
-	Beagle_StackTraceEndM("const std::string& Deme::getName() const");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -132,7 +132,7 @@ const std::string& Deme::getType() const
 	Beagle_StackTraceBeginM();
 	const static std::string lType("Deme");
 	return lType;
-	Beagle_StackTraceEndM("const std::string& Deme::getType() const");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -143,7 +143,7 @@ void Deme::read(PACC::XML::ConstIterator)
 {
 	Beagle_StackTraceBeginM();
 	throw Beagle_UndefinedMethodInternalExceptionM("read", "Deme", getName());
-	Beagle_StackTraceEndM("void Deme::read(PACC::XML::ConstIterator)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -186,7 +186,7 @@ void Deme::readMembers(PACC::XML::ConstIterator inIter, Context& ioContext)
 		lMember->readWithContext(lIter, ioContext);
 		mMemberMap[lMemberName] = lMember;
 	}
-	Beagle_StackTraceEndM("void Deme::readMembers(PACC::XML::ConstIterator,Context&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -236,7 +236,7 @@ void Deme::readPopulation(PACC::XML::ConstIterator inIter, Context& ioContext)
 	}
 	ioContext.setIndividualHandle(lPrevIndividualHandle);
 	ioContext.setIndividualIndex(lPrevIndividualIndex);
-	Beagle_StackTraceEndM("void Deme::readPopulation(PACC::XML::ConstIterator,Context&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -268,7 +268,7 @@ void Deme::readWithContext(PACC::XML::ConstIterator inIter, Context& ioContext)
 			readPopulation(lChild, ioContext);
 		}
 	}
-	Beagle_StackTraceEndM("void Deme::readWithContext(PACC::XML::ConstIterator,Context&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -286,7 +286,7 @@ Member::Handle Deme::removeMember(const std::string& inName)
 	Member::Handle lMember = castHandleT<Member>(lIterMap->second);
 	mMemberMap.erase(lIterMap);
 	return lMember;
-	Beagle_StackTraceEndM("Member::Handle Deme::removeMember(const std::string&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -302,7 +302,7 @@ void Deme::write(PACC::XML::Streamer& ioStreamer, bool inIndent) const
 	ioStreamer.insertAttribute("type", getType());
 	writeContent(ioStreamer, inIndent);
 	ioStreamer.closeTag();
-	Beagle_StackTraceEndM("void Deme::write(PACC::XML::Streamer&,bool) const");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -316,7 +316,7 @@ void Deme::writeContent(PACC::XML::Streamer& ioStreamer, bool inIndent) const
 	Beagle_StackTraceBeginM();
 	writeMembers(ioStreamer, inIndent);
 	writePopulation(ioStreamer, inIndent);
-	Beagle_StackTraceEndM("void Deme::writeContent(PACC::XML::Streamer&,bool) const");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -336,7 +336,7 @@ void Deme::writeMembers(PACC::XML::Streamer& ioStreamer, bool inIndent) const
 		lMember->writeContent(ioStreamer, inIndent);
 		ioStreamer.closeTag();
 	}
-	Beagle_StackTraceEndM("void Deme::writeMembers(PACC::XML::Streamer&,bool) const");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -355,6 +355,6 @@ void Deme::writePopulation(PACC::XML::Streamer& ioStreamer, bool inIndent) const
 		(*this)[i]->write(ioStreamer, inIndent);
 	}
 	ioStreamer.closeTag();
-	Beagle_StackTraceEndM("void Deme::writePopulation(PACC::XML::Streamer&,bool) const");
+	Beagle_StackTraceEndM();
 }
 

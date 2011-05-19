@@ -60,7 +60,7 @@ double Fitness::getDistance(const Fitness& inRightFitness) const
 	Beagle_StackTraceBeginM();
 	throw Beagle_UndefinedMethodInternalExceptionM("getDistance", "Fitness", getType());
 	return 0.;
-	Beagle_StackTraceEndM("bool Fitness::getDistance(const Fitness&) const");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -73,7 +73,7 @@ const std::string& Fitness::getName() const
 	Beagle_StackTraceBeginM();
 	const static std::string lName("Fitness");
 	return lName;
-	Beagle_StackTraceEndM("const std::string& Fitness::getConceptName() const");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -87,7 +87,7 @@ unsigned int Fitness::getNumberOfObjectives() const
 	Beagle_StackTraceBeginM();
 	throw Beagle_UndefinedMethodInternalExceptionM("getNumberOfObjectives", "Fitness", getType());
 	return 0;
-	Beagle_StackTraceEndM("unsigned int Fitness::getNumberOfObjectives() const");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -102,7 +102,7 @@ double Fitness::getObjective(unsigned int inObjIndex) const
 	Beagle_StackTraceBeginM();
 	throw Beagle_UndefinedMethodInternalExceptionM("getObjective", "Fitness", getType());
 	return 0.;
-	Beagle_StackTraceEndM("double Fitness::getObjective(unsigned int) const");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -117,7 +117,7 @@ bool Fitness::isDominated(const Fitness& inRightFitness) const
 	Beagle_StackTraceBeginM();
 	throw Beagle_UndefinedMethodInternalExceptionM("isDominated", "Fitness", getType());
 	return false;
-	Beagle_StackTraceEndM("bool Fitness::isDominated(const Fitness&) const");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -144,7 +144,7 @@ void Fitness::read(PACC::XML::ConstIterator inIter)
 	const std::string& lValid = inIter->getAttribute("valid");
 	if(lValid == "yes") setValid();
 	else setInvalid();
-	Beagle_StackTraceEndM("void Fitness::read(PACC::XML::ConstIterator)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -157,7 +157,7 @@ void Fitness::readWithContext(PACC::XML::ConstIterator inIter, Context& ioContex
 {
 	Beagle_StackTraceBeginM();
 	read(inIter);
-	Beagle_StackTraceEndM("void Fitness::readWithContext(PACC::XML::ConstIterator,Context&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -178,5 +178,5 @@ void Fitness::write(PACC::XML::Streamer& ioStreamer, bool inIndent) const
 		ioStreamer.insertAttribute("valid", "no");
 	}
 	ioStreamer.closeTag();
-	Beagle_StackTraceEndM("void Fitness::write(PACC::XML::Streamer&,bool) const");
+	Beagle_StackTraceEndM();
 }

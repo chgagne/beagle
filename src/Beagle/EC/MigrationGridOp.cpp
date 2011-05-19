@@ -118,7 +118,7 @@ void MigrationGridOp::registerParams(System& ioSystem)
 		mToroidal = castHandleT<Bool>(
 		                ioSystem.getRegister().insertEntry("ec.mig.toroidal", new Bool(true), lDescription));
 	}
-	Beagle_StackTraceEndM("void MigrationGridOp::registerParams(System&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -145,7 +145,6 @@ void MigrationGridOp::init(System& ioSystem)
 	if(lToroidal && lNbDemes<5) {
 		Beagle_LogBasicM(
 		    ioSystem.getLogger(),
-		    "migration", "Beagle::MigrationGridOp",
 		    std::string("WARNING: In MigrationGridOp: Toroidal grids are not generated for configurations ")+
 		    "of fewer than five demes; value of ec.mig.toroidal will be reset to false"
 		);
@@ -153,7 +152,6 @@ void MigrationGridOp::init(System& ioSystem)
 	}
 	Beagle_LogVerboseM(
 	    ioSystem.getLogger(),
-	    "migration", "Beagle::MigrationGridOp",
 	    std::string("The grid will ")+((lToroidal)?("be"):("not be"))+" toroidal"
 	);
 
@@ -167,7 +165,6 @@ void MigrationGridOp::init(System& ioSystem)
 	const unsigned int lGridExtras = lNbDemes % lGridWidth;
 	Beagle_LogVerboseM(
 	    ioSystem.getLogger(),
-	    "migration", "Beagle::MigrationGridOp",
 	    std::string("The migration grid will be ")+
 	    uint2str(lGridWidth)+" demes across by "+uint2str(lGridHeight)+" demes down"+
 	    ((lGridExtras==0)?(""):(std::string(" (plus ")+uint2str(lGridExtras)+" demes in an extra row)"))
@@ -186,7 +183,6 @@ void MigrationGridOp::init(System& ioSystem)
 
 			Beagle_LogDebugM(
 			    ioSystem.getLogger(),
-			    "migration", "Beagle::MigrationGridOp",
 			    std::string("Configuring emigrants connections for ")+uint2ordinal(lDemeIndex+1)+" deme"
 			);
 
@@ -244,5 +240,5 @@ void MigrationGridOp::init(System& ioSystem)
 
 	// Call MigrationMapOp post-initialization and exit.
 	MigrationMapOp::init(ioSystem);
-	Beagle_StackTraceEndM("void MigrationGridOp::init(System&)");
+	Beagle_StackTraceEndM();
 }

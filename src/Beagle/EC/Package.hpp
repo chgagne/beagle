@@ -28,14 +28,14 @@
 
 /*!
  *  \file   Beagle/EC/Package.hpp
- *  \brief  Definition of the class PackageBase.
+ *  \brief  Definition of the class Package.
  *  \author Christian Gagne
  *  $Revision: 1.2 $
  *  $Date: 2007/08/17 18:09:13 $
  */
 
-#ifndef Beagle_EC_PackageBase_hpp
-#define Beagle_EC_PackageBase_hpp
+#ifndef Beagle_EC_Package_hpp
+#define Beagle_EC_Package_hpp
 
 #include <map>
 #include <string>
@@ -50,7 +50,7 @@ namespace EC
 {
 
 /*!
- *  \class PackageBase Beagle/EC/PackageBase.hpp "Beagle/EC/PackageBase.hpp"
+ *  \class Package Beagle/EC/Package.hpp "Beagle/EC/Package.hpp"
  *  \brief Package class for adding basic objects to the system.
  *  \ingroup EC
  */
@@ -59,19 +59,19 @@ class Package : public Beagle::PackageAbstract
 
 public:
 
-	//! PackageBase allocator type.
-	typedef AllocatorT< PackageBase, Package::Alloc > Alloc;
-	//! PackageBase handle type.
-	typedef PointerT< PackageBase, Package::Handle > Handle;
-	//! PackageBase bag type.
-	typedef ContainerT< PackageBase, Package::Bag > Bag;
+	//! Package allocator type.
+	typedef AllocatorT< Package,Beagle::PackageAbstract::Alloc > Alloc;
+	//! Package handle type.
+	typedef PointerT< Package,Beagle::PackageAbstract::Handle > Handle;
+	//! Package bag type.
+	typedef ContainerT< Package,Beagle::PackageAbstract::Bag > Bag;
 
-	PackageBase(void);
-	virtual ~PackageBase()
+	Package();
+	virtual ~Package()
 	{ }
 
-	virtual void         configure(Beagle::System& ioSystem);
-	virtual Package::Bag listDependencies(void);
+	virtual void                 configure(Beagle::System& ioSystem);
+	virtual PackageAbstract::Bag listDependencies(void);
 
 };
 
@@ -79,4 +79,4 @@ public:
 
 }
 
-#endif // Beagle_EC_PackageBase_hpp
+#endif // Beagle_EC_Package_hpp

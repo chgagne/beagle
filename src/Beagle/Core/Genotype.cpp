@@ -49,7 +49,7 @@ const std::string& Genotype::getName() const
 	Beagle_StackTraceBeginM();
 	const static std::string lName("Genotype");
 	return lName;
-	Beagle_StackTraceEndM("const std::string& Genotype::getConceptName() const");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -63,7 +63,7 @@ unsigned int Genotype::getSize() const
 	Beagle_StackTraceBeginM();
 	throw Beagle_UndefinedMethodInternalExceptionM("getSize", "Genotype", getType());
 	return 0;
-	Beagle_StackTraceEndM("unsigned int Genotype::getSize() const");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -77,7 +77,7 @@ void Genotype::swap(unsigned int inI, unsigned int inJ)
 {
 	Beagle_StackTraceBeginM();
 	throw Beagle_UndefinedMethodInternalExceptionM("swap", "Genotype", getType());
-	Beagle_StackTraceEndM("unsigned int Genotype::swap()");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -99,7 +99,7 @@ void Genotype::readWithContext(PACC::XML::ConstIterator inIter, Context& ioConte
 		lOSS << getType() << "'!";
 		throw Beagle_IOExceptionNodeM(*inIter, lOSS.str());
 	}
-	Beagle_StackTraceEndM("void Genotype::readWithContext(PACC::XML::ConstIterator,Context&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -115,7 +115,7 @@ void Genotype::write(PACC::XML::Streamer& ioStreamer, bool inIndent) const
 	ioStreamer.insertAttribute("type", getType());
 	writeContent(ioStreamer, inIndent);
 	ioStreamer.closeTag();
-	Beagle_StackTraceEndM("void Genotype::write(PACC::XML::Streamer&,bool) const");
+	Beagle_StackTraceEndM();
 }
 
 

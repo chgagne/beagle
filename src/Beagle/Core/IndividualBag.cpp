@@ -60,7 +60,7 @@ void IndividualBag::read(PACC::XML::ConstIterator)
 {
 	Beagle_StackTraceBeginM();
 	throw Beagle_UndefinedMethodInternalExceptionM("read", "IndividualBag", getName());
-	Beagle_StackTraceEndM("void IndividualBag::read(PACC::XML::ConstIterator)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -92,7 +92,6 @@ bool IndividualBag::readFromFile(std::string inFileName,
 
 	Beagle_LogInfoM(
 	    ioSystem.getLogger(),
-	    "individual", "Beagle::IndividualBag",
 	    std::string("Reading an individual bag from file '")+inFileName+
 	    std::string("' that is in-between the XML tags '")+inBagTag+std::string("'")
 	);
@@ -100,7 +99,7 @@ bool IndividualBag::readFromFile(std::string inFileName,
 	readIndividuals(lIndivTag, *lContext);
 
 	return true;
-	Beagle_StackTraceEndM("bool IndividualBag::readFromFile(string inFileName, System& ioSystem, string inBagTag)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -120,7 +119,7 @@ void IndividualBag::readWithContext(PACC::XML::ConstIterator inIter, Context& io
 			break;
 		}
 	}
-	Beagle_StackTraceEndM("void IndividualBag::readIndividuals(PACC::XML::ConstIterator,Context&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -165,7 +164,7 @@ void IndividualBag::readIndividuals(PACC::XML::ConstIterator inIter, Context& io
 	ioContext.setIndividualIndex(lPrevIndivIndex);
 	ioContext.setIndividualHandle(lPrevIndivHandle);
 
-	Beagle_StackTraceEndM("void IndividualBag::readIndividuals(PACC::XML::ConstIterator,Context&)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -187,5 +186,5 @@ void IndividualBag::write(PACC::XML::Streamer& ioStreamer, bool inIndent) const
 		}
 	}
 	ioStreamer.closeTag();
-	Beagle_StackTraceEndM("void IndividualBag::write(PACC::XML::Streamer& ioStreamer, bool inIndent) const");
+	Beagle_StackTraceEndM();
 }

@@ -72,7 +72,7 @@ inline Long absolute(const Long& inValue)
 {
 	Beagle_StackTraceBeginM();
 	return Long(std::abs(inValue.getWrappedValue()));
-	Beagle_StackTraceEndM("Long absolute(const Long& inValue)");
+	Beagle_StackTraceEndM();
 }
 
 }
@@ -90,7 +90,7 @@ inline bool operator<(const Beagle::Long& inLeftLong, const Beagle::Long& inRigh
 {
 	Beagle_StackTraceBeginM();
 	return inLeftLong.isLess(inRightLong);
-	Beagle_StackTraceEndM("bool operator<(const Long& inLeftLong, const Long& inRightLong)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -106,7 +106,7 @@ inline bool operator<=(const Beagle::Long& inLeftLong, const Beagle::Long& inRig
 {
 	Beagle_StackTraceBeginM();
 	return ( inLeftLong.isLess(inRightLong) || inLeftLong.isEqual(inRightLong) );
-	Beagle_StackTraceEndM("bool operator<=(const Long& inLeftLong, const Long& inRightLong)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -122,7 +122,7 @@ inline bool operator>(const Beagle::Long& inLeftLong, const Beagle::Long& inRigh
 {
 	Beagle_StackTraceBeginM();
 	return inRightLong.isLess(inLeftLong);
-	Beagle_StackTraceEndM("bool operator>(const Long& inLeftLong, const Long& inRightLong)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -138,7 +138,7 @@ inline bool operator>=(const Beagle::Long& inLeftLong, const Beagle::Long& inRig
 {
 	Beagle_StackTraceBeginM();
 	return ( inRightLong.isLess(inLeftLong) || inLeftLong.isEqual(inRightLong) );
-	Beagle_StackTraceEndM("bool operator>=(const Long& inLeftLong, const Long& inRightLong)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -154,7 +154,7 @@ inline bool operator==(const Beagle::Long& inLeftLong, const Beagle::Long& inRig
 {
 	Beagle_StackTraceBeginM();
 	return inLeftLong.isEqual(inRightLong);
-	Beagle_StackTraceEndM("bool operator==(const Long& inLeftLong, const Long& inRightLong)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -170,7 +170,7 @@ inline bool operator!=(const Beagle::Long& inLeftLong, const Beagle::Long& inRig
 {
 	Beagle_StackTraceBeginM();
 	return ( inLeftLong.isEqual(inRightLong) == false);
-	Beagle_StackTraceEndM("bool operator!=(const Long& inLeftLong, const Long& inRightLong)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -185,7 +185,7 @@ bool operator==(const Beagle::Long& inLeftLong, long inRightLong)
 {
 	Beagle_StackTraceBeginM();
 	return inLeftLong.getWrappedValue() == inRightLong;
-	Beagle_StackTraceEndM("bool operator==(const Long& inLeftLong, long inRightLong)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -200,7 +200,7 @@ bool operator!=(const Beagle::Long& inLeftLong, long inRightLong)
 {
 	Beagle_StackTraceBeginM();
 	return inLeftLong.getWrappedValue() != inRightLong;
-	Beagle_StackTraceEndM("bool operator!=(const Long& inLeftLong, long inRightLong)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -215,7 +215,7 @@ bool operator<(const Beagle::Long& inLeftLong, long inRightLong)
 {
 	Beagle_StackTraceBeginM();
 	return inLeftLong.getWrappedValue() < inRightLong;
-	Beagle_StackTraceEndM("bool operator<(const Long& inLeftLong, long inRightLong)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -230,7 +230,7 @@ bool operator<=(const Beagle::Long& inLeftLong, long inRightLong)
 {
 	Beagle_StackTraceBeginM();
 	return inLeftLong.getWrappedValue() <= inRightLong;
-	Beagle_StackTraceEndM("bool operator<=(const Long& inLeftLong, long inRightLong)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -245,7 +245,7 @@ bool operator>(const Beagle::Long& inLeftLong, long inRightLong)
 {
 	Beagle_StackTraceBeginM();
 	return inLeftLong.getWrappedValue() > inRightLong;
-	Beagle_StackTraceEndM("bool operator>(const Long& inLeftLong, long inRightLong)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -260,7 +260,7 @@ bool operator>=(const Beagle::Long& inLeftLong, long inRightLong)
 {
 	Beagle_StackTraceBeginM();
 	return inLeftLong.getWrappedValue() >= inRightLong;
-	Beagle_StackTraceEndM("bool operator>=(const Long& inLeftLong, long inRightLong)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -275,7 +275,7 @@ Beagle::Long& operator++(Beagle::Long& inLong)
 	Beagle_StackTraceBeginM();
 	inLong.getWrappedValue()++;
 	return inLong;
-	Beagle_StackTraceEndM("Long& operator++(Long& inLong)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -291,7 +291,7 @@ Beagle::Long operator++(Beagle::Long& inLong, int)
 	Beagle::Long lLong = inLong;
 	inLong.getWrappedValue()++;
 	return lLong;
-	Beagle_StackTraceEndM("Long operator++(Long& inLong, int)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -306,7 +306,7 @@ Beagle::Long operator+(const Beagle::Long& inLeftLong, const Beagle::Long& inRig
 {
 	Beagle_StackTraceBeginM();
 	return inLeftLong.getWrappedValue() + inRightLong.getWrappedValue();
-	Beagle_StackTraceEndM("Long operator+(const Long& inLeftLong, const Long& inRightLong)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -321,7 +321,7 @@ Beagle::Long operator+(const Beagle::Long& inLeftLong, long inRightLong)
 {
 	Beagle_StackTraceBeginM();
 	return inLeftLong.getWrappedValue() + inRightLong;
-	Beagle_StackTraceEndM("Beagle::Long operator+(const Beagle::Long& inLeftLong, long inRightLong)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -337,7 +337,7 @@ Beagle::Long& operator+=(Beagle::Long& inLeftLong, const Beagle::Long& inRightLo
 	Beagle_StackTraceBeginM();
 	inLeftLong.getWrappedValue() += inRightLong.getWrappedValue();
 	return inLeftLong;
-	Beagle_StackTraceEndM("Long& operator+=(Long& inLeftLong, const Long& inRightLong)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -353,7 +353,7 @@ Beagle::Long& operator+=(Beagle::Long& inLeftLong, long inRightLong)
 	Beagle_StackTraceBeginM();
 	inLeftLong.getWrappedValue() += inRightLong;
 	return inLeftLong;
-	Beagle_StackTraceEndM("Long& operator+=(Long& inLeftLong, long inRightLong)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -368,7 +368,7 @@ Beagle::Long& operator--(Beagle::Long& inLong)
 	Beagle_StackTraceBeginM();
 	inLong.getWrappedValue()--;
 	return inLong;
-	Beagle_StackTraceEndM("Long& operator--(Long& inLong)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -384,7 +384,7 @@ Beagle::Long operator--(Beagle::Long& inLong, int)
 	Beagle::Long lLong = inLong;
 	inLong.getWrappedValue()--;
 	return lLong;
-	Beagle_StackTraceEndM("Long operator--(Long& inLong, int)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -400,7 +400,7 @@ Beagle::Long operator-(const Beagle::Long& inLeftLong, const Beagle::Long& inRig
 {
 	Beagle_StackTraceBeginM();
 	return inLeftLong.getWrappedValue() - inRightLong.getWrappedValue();
-	Beagle_StackTraceEndM("Long operator-(const Long& inLeftLong, const Long& inRightLong)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -415,7 +415,7 @@ Beagle::Long operator-(const Beagle::Long& inLeftLong, long inRightLong)
 {
 	Beagle_StackTraceBeginM();
 	return inLeftLong.getWrappedValue() - inRightLong;
-	Beagle_StackTraceEndM("Long operator-(const Long& inLeftLong, long inRightLong)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -431,7 +431,7 @@ Beagle::Long& operator-=(Beagle::Long& inLeftLong, const Beagle::Long& inRightLo
 	Beagle_StackTraceBeginM();
 	inLeftLong.getWrappedValue() -= inRightLong.getWrappedValue();
 	return inLeftLong;
-	Beagle_StackTraceEndM("Long& operator-=(Long& inLeftLong, const Long& inRightLong)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -447,7 +447,7 @@ Beagle::Long& operator-=(Beagle::Long& inLeftLong, long inRightLong)
 	Beagle_StackTraceBeginM();
 	inLeftLong.getWrappedValue() -= inRightLong;
 	return inLeftLong;
-	Beagle_StackTraceEndM("Long& operator-=(Long& inLeftLong, long inRightLong)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -462,7 +462,7 @@ Beagle::Long operator*(const Beagle::Long& inLeftLong, const Beagle::Long& inRig
 {
 	Beagle_StackTraceBeginM();
 	return inLeftLong.getWrappedValue() * inRightLong.getWrappedValue();
-	Beagle_StackTraceEndM("Long operator*(const Long& inLeftLong, const Long& inRightLong)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -477,7 +477,7 @@ Beagle::Long operator*(const Beagle::Long& inLeftLong, long inRightLong)
 {
 	Beagle_StackTraceBeginM();
 	return inLeftLong.getWrappedValue() * inRightLong;
-	Beagle_StackTraceEndM("Long operator*(const Long& inLeftLong, long inRightLong)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -493,7 +493,7 @@ Beagle::Long& operator*=(Beagle::Long& inLeftLong, const Beagle::Long& inRightLo
 	Beagle_StackTraceBeginM();
 	inLeftLong.getWrappedValue() *= inRightLong.getWrappedValue();
 	return inLeftLong;
-	Beagle_StackTraceEndM("Long& operator*=(Long& inLeftLong, const Long& inRightLong)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -509,7 +509,7 @@ Beagle::Long& operator*=(Beagle::Long& inLeftLong, long inRightLong)
 	Beagle_StackTraceBeginM();
 	inLeftLong.getWrappedValue() *= inRightLong;
 	return inLeftLong;
-	Beagle_StackTraceEndM("Long& operator*=(Long& inLeftLong, long inRightLong)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -524,7 +524,7 @@ Beagle::Long operator/(const Beagle::Long& inLeftLong, const Beagle::Long& inRig
 {
 	Beagle_StackTraceBeginM();
 	return inLeftLong.getWrappedValue() / inRightLong.getWrappedValue();
-	Beagle_StackTraceEndM("Long operator/(const Long& inLeftLong, const Long& inRightLong)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -539,7 +539,7 @@ Beagle::Long operator/(const Beagle::Long& inLeftLong, long inRightLong)
 {
 	Beagle_StackTraceBeginM();
 	return inLeftLong.getWrappedValue() / inRightLong;
-	Beagle_StackTraceEndM("Long operator/(const Long& inLeftLong, long inRightLong)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -555,7 +555,7 @@ Beagle::Long& operator/=(Beagle::Long& inLeftLong, const Beagle::Long& inRightLo
 	Beagle_StackTraceBeginM();
 	inLeftLong.getWrappedValue() /= inRightLong.getWrappedValue();
 	return inLeftLong;
-	Beagle_StackTraceEndM("Long& operator/=(Long& inLeftLong, const Long& inRightLong)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -571,7 +571,7 @@ Beagle::Long operator/=(Beagle::Long& inLeftLong, long inRightLong)
 	Beagle_StackTraceBeginM();
 	inLeftLong.getWrappedValue() /= inRightLong;
 	return inLeftLong;
-	Beagle_StackTraceEndM("Long operator/=(Long& inLeftLong, long inRightLong)");
+	Beagle_StackTraceEndM();
 }
 
 

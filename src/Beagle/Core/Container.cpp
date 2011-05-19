@@ -70,7 +70,7 @@ bool Container::isEqual(const Object& inRightObj) const
 	Container::const_iterator lLastIter1  = begin() + size();
 	Container::const_iterator lFirstIter2 = lRightContainer.begin();
 	return std::equal(lFirstIter1, lLastIter1, lFirstIter2, IsEqualPointerPredicate());
-	Beagle_StackTraceEndM("bool Container::isEqual(const Object& inRightObj) const");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -98,7 +98,7 @@ bool Container::isLess(const Object& inRightObj) const
 	                                    lFirstIter2,
 	                                    lLastIter2,
 	                                    IsLessPointerPredicate());
-	Beagle_StackTraceEndM("bool Container::isLess(const Object& inRightObj) const");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -131,7 +131,7 @@ void Container::read(PACC::XML::ConstIterator inIter)
 		}
 		++lChild;
 	}
-	Beagle_StackTraceEndM("void Container::read(PACC::XML::ConstIterator inIter)");
+	Beagle_StackTraceEndM();
 }
 
 
@@ -153,5 +153,5 @@ void Container::write(PACC::XML::Streamer& ioStreamer, bool inIndent) const
 		}
 	}
 	ioStreamer.closeTag();
-	Beagle_StackTraceEndM("void Container::write(PACC::XML::Streamer& ioStreamer, bool inIndent) const");
+	Beagle_StackTraceEndM();
 }
