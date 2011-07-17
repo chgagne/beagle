@@ -25,37 +25,37 @@
  */
 
 /*!
- *  \file   beagle/GA/CrossoverSBXFltVecOp.hpp
- *  \brief  Definition of the class GA::CrossoverSBXFltVecOp.
+ *  \file   Beagle/FltVec/CrossoverSBXOp.hpp
+ *  \brief  Definition of the class FltVec::CrossoverSBXOp.
  *  \author Christian Gagne
  *  \author Marc Parizeau
  *  $Revision: 1.9 $
  *  $Date: 2007/08/08 19:26:34 $
  */
 
-#ifndef Beagle_GA_CrossoverSBXFltVecOp_hpp
-#define Beagle_GA_CrossoverSBXFltVecOp_hpp
+#ifndef Beagle_FltVec_CrossoverSBXOp_hpp
+#define Beagle_FltVec_CrossoverSBXOp_hpp
 
 #include <string>
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Object.hpp"
+#include "Beagle/Core.hpp"
+#include "Beagle/EC.hpp"
 #include "beagle/CrossoverOp.hpp"
+
 
 namespace Beagle
 {
-namespace GA
+
+namespace FltVec
 {
 
 /*!
- *  \class CrossoverSBXFltVecOp beagle/GA/CrossoverSBXFltVecOp.hpp
- *    "beagle/GA/CrossoverSBXFltVecOp.hpp"
- *  \brief Real-valued GA simulated binary crossover (SBX) operator class.
- *  \ingroup GAF
- *  \ingroup GAFV
+ *  \class CrossoverSBXOp Beagle/FltVec/CrossoverSBXOp.hpp
+ *    "Beagle/FltVec/CrossoverSBXOp.hpp"
+ *  \brief Simulated binary crossover (SBX) operator class.
+ *  \ingroup FltVecF
  *
- *  Real-valued GA simulated binary crossover (SBX) proceed by mating two
+ *  Real-valued FltVec simulated binary crossover (SBX) proceed by mating two
  *  float vectors, \f$(x^{(1,t)},x^{(2,t)})\f$. The resulting children
  *  \f$(x^{(1,t+1)},x^{(2,t+1)})\f$ are equal to
  *  \f$x^{(1,t+1)}_i=0.5((1+\beta_i) x^{(1,t)}_i+(1-\beta_i) x^{(2,t)}_i)\f$ and
@@ -68,24 +68,24 @@ namespace GA
  *  Simulated Binary Crossover. Evolutionary Computation, 9(2), pp. 197-221.
  *
  */
-class CrossoverSBXFltVecOp : public CrossoverOp
+class CrossoverSBXOp : public EC::CrossoverOp
 {
 
 public:
 
-	//! GA::CrossoverSBXFltVecOp allocator type.
-	typedef AllocatorT<CrossoverSBXFltVecOp,CrossoverOp::Alloc>
+	//! FltVec::CrossoverSBXOp allocator type.
+	typedef AllocatorT<CrossoverSBXOp,EC::CrossoverOp::Alloc>
 	Alloc;
-	//! GA::CrossoverSBXFltVecOp handle type.
-	typedef PointerT<CrossoverSBXFltVecOp,CrossoverOp::Handle>
+	//! FltVec::CrossoverSBXOp handle type.
+	typedef PointerT<CrossoverSBXOp,EC::CrossoverOp::Handle>
 	Handle;
-	//! GA::CrossoverSBXFltVecOp bag type.
-	typedef ContainerT<CrossoverSBXFltVecOp,CrossoverOp::Bag>
+	//! FltVec::CrossoverSBXOp bag type.
+	typedef ContainerT<CrossoverSBXOp,EC::CrossoverOp::Bag>
 	Bag;
 
-	explicit CrossoverSBXFltVecOp(std::string inMatingPbName="ga.cxsbx.prob",
-	                              std::string inName="GA-CrossoverSBXFltVecOp");
-	virtual ~CrossoverSBXFltVecOp()
+	explicit CrossoverSBXOp(std::string inMatingPbName="fltvec.cxsbx.prob",
+	                        std::string inName="FltVec-CrossoverSBXOp");
+	virtual ~CrossoverSBXOp()
 	{ }
 
 	virtual void registerParams(System& ioSystem);
@@ -94,8 +94,8 @@ public:
 
 protected:
 
-	DoubleArray::Handle mMaxValue;  //!< Max value of GA float vectors.
-	DoubleArray::Handle mMinValue;  //!< Min value of GA float vectors.
+	DoubleArray::Handle mMaxValue;  //!< Max value of float vectors.
+	DoubleArray::Handle mMinValue;  //!< Min value of float vectors.
 	Double::Handle mNu;             //!< SBX Nu parameter.
 
 };
@@ -103,4 +103,4 @@ protected:
 }
 }
 
-#endif // Beagle_GA_CrossoverSBXFltVecOp_hpp
+#endif // Beagle_FltVec_CrossoverSBXOp_hpp

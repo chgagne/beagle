@@ -25,59 +25,53 @@
  */
 
 /*!
- *  \file   beagle/GA/InitQRESVecOp.hpp
- *  \brief  Definition of the class GA::InitQRESVecOp.
+ *  \file   Beagle/FltVec/InitGaussianQROp.hpp
+ *  \brief  Definition of the class FltVec::InitGaussianQROp.
  *  \author Christian Gagne
  *  $Revision: 1.5 $
  *  $Date: 2007/08/08 19:26:34 $
  */
 
-#ifndef Beagle_GA_InitQRESVecOp_hpp
-#define Beagle_GA_InitQRESVecOp_hpp
+#ifndef Beagle_FltVec_InitGaussianQROp_hpp
+#define Beagle_FltVec_InitGaussianQROp_hpp
 
 #include <string>
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Object.hpp"
-#include "beagle/AllocatorT.hpp"
-#include "beagle/PointerT.hpp"
-#include "beagle/ContainerT.hpp"
-#include "beagle/InitializationOp.hpp"
-#include "beagle/Float.hpp"
-#include "beagle/GA/InitESVecOp.hpp"
+#include "Beagle/Core.hpp"
+#include "Beagle/EC.hpp"
+#include "Beagle/FltVec/InitGaussianOp.hpp"
 
 
 namespace Beagle
 {
-namespace GA
+
+namespace FltVec
 {
 
 /*!
- *  \class InitQRESVecOp beagle/GA/InitQRESVecOp.hpp "beagle/GA/InitQRESVecOp.hpp"
- *  \brief ES genotype derandomized initialization operator class.
- *  \ingroup GAF
- *  \ingroup GAES
+ *  \class InitGaussianQROp Beagle/FltVec/InitGaussianQROp.hpp "Beagle/FltVec/InitGaussianQROp.hpp"
+ *  \brief Real-valued genotype derandomized Gaussian initialization operator class.
+ *  \ingroup FltVecF
  */
-class InitQRESVecOp : public GA::InitESVecOp
+class InitGaussianQROp : public FltVec::InitUniformOp
 {
 
 public:
 
-	//! GA::InitQRESVecOp allocator type.
-	typedef AllocatorT<InitQRESVecOp,GA::InitESVecOp::Alloc>
+	//! FltVec::InitGaussianQROp allocator type.
+	typedef AllocatorT<InitGaussianQROp,FltVec::InitUniformOp::Alloc>
 	Alloc;
-	//! GA::InitQRESVecOp handle type.
-	typedef PointerT<InitQRESVecOp,GA::InitESVecOp::Handle>
+	//! FltVec::InitGaussianQROp handle type.
+	typedef PointerT<InitGaussianQROp,FltVec::InitUniformOp::Handle>
 	Handle;
-	//! GA::InitQRESVecOp bag type.
-	typedef ContainerT<InitQRESVecOp,GA::InitESVecOp::Bag>
+	//! FltVec::InitGaussianQROp bag type.
+	typedef ContainerT<InitGaussianQROp,FltVec::InitUniformOp::Bag>
 	Bag;
 
-	explicit InitQRESVecOp(unsigned int inESVectorSize=0,
-	                       std::string inReproProbaName="ec.repro.prob",
-	                       std::string inName="GA-InitQRESVecOp");
-	virtual ~InitQRESVecOp()
+	explicit InitGaussianQROp(unsigned int inFloatVectorSize=0,
+	                          std::string inReproProbaName="ec.repro.prob",
+	                          std::string inName="FltVec-InitGaussianQROp");
+	virtual ~InitGaussianQROp()
 	{ }
 
 	virtual void registerParams(System& ioSystem);
@@ -89,4 +83,4 @@ public:
 }
 }
 
-#endif // Beagle_GA_InitQRESVecOp_hpp
+#endif // Beagle_FltVec_InitGaussianQROp_hpp

@@ -36,7 +36,7 @@
 /*!
  *  \namespace Beagle::BitStr
  *  \brief     Namespace of all the classes of the Open BEAGLE bit string representation framework.
- *  \ingroup BitStr
+ *  \ingroup BitStrF
  */
 
 /*!

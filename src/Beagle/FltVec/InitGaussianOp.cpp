@@ -25,15 +25,15 @@
  */
 
 /*!
- *  \file   beagle/GA/src/InitFltVecOp.cpp
- *  \brief  Source code of class GA::InitFltVecOp.
+ *  \file   Beagle/FltVec/InitGaussianOp.cpp
+ *  \brief  Source code of class FltVec::InitGaussianOp.
  *  \author Christian Gagne
  *  \author Marc Parizeau
  *  $Revision: 1.25 $
  *  $Date: 2007/08/17 18:09:10 $
  */
 
-#include "beagle/GA.hpp"
+#include "Beagle/FltVec.hpp"
 
 #include <cmath>
 #include <sstream>
@@ -43,27 +43,27 @@ using namespace Beagle;
 
 
 /*!
- *  \brief Construct a GA float vectors uniformly distributed initialization operator.
+ *  \brief Construct a float vector Gaussian distributed initialization operator.
  *  \param inFloatVectorSize Size of the float vectors initialized.
  *  \param inReproProbaName Reproduction probability parameter name used in register.
  *  \param inName Name of the operator.
  */
-GA::InitFltVecOp::InitFltVecOp(unsigned int inFloatVectorSize,
-                               std::string inReproProbaName,
-                               std::string inName) :
-		InitializationOp(inReproProbaName, inName),
+FltVec::InitGaussianOp::InitGaussianOp(unsigned int inFloatVectorSize,
+                                       std::string inReproProbaName,
+                                       std::string inName) :
+		EC::InitializationOp(inReproProbaName, inName),
 		mFloatVectorSize(new UInt(inFloatVectorSize))
 { }
 
 
 /*!
- *  \brief Register the parameters of the GA float vectors uniformly distributed initialization operator.
+ *  \brief Register the parameters of the GA float vectors Gaussian distributed initialization operator.
  *  \param ioSystem System of the evolution.
  */
-void GA::InitFltVecOp::registerParams(System& ioSystem)
+void FltVec::InitGaussianOp::registerParams(System& ioSystem)
 {
 	Beagle_StackTraceBeginM();
-	InitializationOp::registerParams(ioSystem);
+	EC::InitializationOp::registerParams(ioSystem);
 	{
 		Register::Description lDescription(
 		    "Initial float vectors sizes",
@@ -72,7 +72,7 @@ void GA::InitFltVecOp::registerParams(System& ioSystem)
 		    "Float vector size of initialized individuals."
 		);
 		mFloatVectorSize = castHandleT<UInt>(
-		                       ioSystem.getRegister().insertEntry("ga.init.vectorsize", mFloatVectorSize, lDescription));
+		                       ioSystem.getRegister().insertEntry("fltvec.initgauss.vectorsize", mFloatVectorSize, lDescription));
 	}
 	{
 		std::ostringstream lOSS;
@@ -85,11 +85,11 @@ void GA::InitFltVecOp::registerParams(System& ioSystem)
 		Register::Description lDescription(
 		    "Maximum initialization values",
 		    "DoubleArray",
-		    "1.0",
+		    dbl2str(DBL_MAX),
 		    lOSS.str()
 		);
 		mMaxInitValue = castHandleT<DoubleArray>(
-		                    ioSystem.getRegister().insertEntry("ga.init.maxvalue", new DoubleArray(1,1.0), lDescription));
+		                    ioSystem.getRegister().insertEntry("fltvec.initgauss.maxvalue", new DoubleArray(1,DBL_MAX), lDescription));
 	}
 	{
 		std::ostringstream lOSS;
@@ -102,11 +102,11 @@ void GA::InitFltVecOp::registerParams(System& ioSystem)
 		Register::Description lDescription(
 		    "Minimum initialization values",
 		    "DoubleArray",
-		    "-1.0",
+		    dbl2str(-DBL_MAX),
 		    lOSS.str()
 		);
 		mMinInitValue = castHandleT<DoubleArray>(
-		                    ioSystem.getRegister().insertEntry("ga.init.minvalue", new DoubleArray(1,-1.0), lDescription));
+		                    ioSystem.getRegister().insertEntry("fltvec.initunif.minvalue", new DoubleArray(1,-DBL_MAX), lDescription));
 	}
 	{
 		std::ostringstream lOSS;
@@ -123,51 +123,89 @@ void GA::InitFltVecOp::registerParams(System& ioSystem)
 		    lOSS.str()
 		);
 		mIncValue = castHandleT<DoubleArray>(
-		                ioSystem.getRegister().insertEntry("ga.float.inc", new DoubleArray(1,0.0), lDescription));
+		                ioSystem.getRegister().insertEntry("fltvec.float.inc", new DoubleArray(1,0.0), lDescription));
+	}
+	{
+		std::ostringstream lOSS;
+		lOSS << "Mean of Gaussian distribution used to initialize the vector's floats. ";
+		lOSS << "Value can be a scalar, which parametrizes the initialization value for all float ";
+		lOSS << "vector parameters, or a vector which parametrizes the value for the parameters ";
+		lOSS << "individually. If the minimum initialization value is smaller than the ";
+		lOSS << "float vector size, the mean used for the last values of the float vector ";
+		lOSS << "is equal to the last value of the mu vector.";
+		Register::Description lDescription(
+		    "Gaussian mean initialization values",
+		    "DoubleArray",
+		    "0.0",
+		    lOSS.str()
+		);
+		mMean = castHandleT<DoubleArray>(
+		                    ioSystem.getRegister().insertEntry("fltvec.initgauss.mean", new DoubleArray(1,0.0), lDescription));
+	}
+	{
+		std::ostringstream lOSS;
+		lOSS << "Standard deviation of Gaussian distribution used to initialize the vector's floats. ";
+		lOSS << "Value can be a scalar, which parametrizes the initialization value for all float ";
+		lOSS << "vector parameters, or a vector which parametrizes the value for the parameters ";
+		lOSS << "individually. If the minimum initialization value is smaller than the ";
+		lOSS << "float vector size, the mean used for the last values of the float vector ";
+		lOSS << "is equal to the last value of the mu vector.";
+		Register::Description lDescription(
+		    "Gaussian stdev initialization values",
+		    "DoubleArray",
+		    "1.0",
+		    lOSS.str()
+		);
+		mStdev = castHandleT<DoubleArray>(
+		                    ioSystem.getRegister().insertEntry("fltvec.initgauss.stdev", new DoubleArray(1,1.0), lDescription));
 	}
 	Beagle_StackTraceEndM();
 }
 
 
 /*!
- *  \brief Initialize real-valued GA individual with numbers uniformly distributed in a given range.
+ *  \brief Initialize real-valued individual with numbers following a Gaussian distribution of given variance.
  *  \param outIndividual Individual to initialize.
  *  \param ioContext Evolution context.
  */
-void GA::InitFltVecOp::initIndividual(Beagle::Individual& outIndividual, Context& ioContext)
+void FltVec::InitGaussianOp::initIndividual(Beagle::Individual& outIndividual, Context& ioContext)
 {
 	Beagle_StackTraceBeginM();
 #ifndef BEAGLE_NDEBUG
 	if(mFloatVectorSize->getWrappedValue() == 0) {
-		string lMessage = "GA::InitFltVecOp::initIndividual: ";
+		string lMessage = "FltVec::InitGaussianOp::initIndividual: ";
 		lMessage += "float vector size parameter is zero; ";
 		lMessage += "could not initialize the individuals!";
 		throw Beagle_RunTimeExceptionM(lMessage);
 	}
 #endif // BEAGLE_NDEBUG
 	const Factory& lFactory = ioContext.getSystem().getFactory();
-	GA::FloatVector::Alloc::Handle lFloatVectorAlloc =
-		castHandleT<GA::FloatVector::Alloc>(lFactory.getConceptAllocator("Genotype"));
-	GA::FloatVector::Handle lFloatVector =
-		castHandleT<GA::FloatVector>(lFloatVectorAlloc->allocate());
-	lFloatVector->resize(mFloatVectorSize->getWrappedValue());
+	FltVec::FloatVector::Alloc::Handle lVectorAlloc =
+		castHandleT<FltVec::FloatVector::Alloc>(lFactory.getConceptAllocator("Genotype"));
+	FltVec::FloatVector::Handle lVector =
+		castHandleT<FltVec::FloatVector>(lVectorAlloc->allocate());
+	lVector->resize(mFloatVectorSize->getWrappedValue());
 	outIndividual.clear();
-	outIndividual.push_back(lFloatVector);
-	for(unsigned int j=0; j<lFloatVector->size(); ++j) {
+	outIndividual.push_back(lVector);
+	for(unsigned int j=0; j<lVector->size(); ++j) {
 		const double lMaxVal = j<mMaxInitValue->size() ? (*mMaxInitValue)[j] : mMaxInitValue->back();
 		const double lMinVal = j<mMinInitValue->size() ? (*mMinInitValue)[j] : mMinInitValue->back();
 		const double lIncVal = j<mIncValue->size() ? (*mIncValue)[j] : mIncValue->back();
-		(*lFloatVector)[j] = ioContext.getSystem().getRandomizer().rollUniform(lMinVal,lMaxVal);
+		const double lMean   = j<mMean->size() ? (*mMean)[j] : mMean->back();
+		const double lStdev  = j<mStdev->size() ? (*mStdev)[j] : mStdev->back();
+		(*lVector)[j] = ioContext.getSystem().getRandomizer().rollGaussian(lMean,lStdev);
+		if((*lVector)[j] > lMaxVal) (*lVector)[j] = lMaxVal;
+		if((*lVector)[j] < lMinVal) (*lVector)[j] = lMinVal;
 		if(std::fabs(lIncVal)>1e-12) {
-			(*lFloatVector)[j] = lIncVal * round((*lFloatVector)[j] / lIncVal);
-			if((*lFloatVector)[j] > lMaxVal) (*lFloatVector)[j] = lMaxVal;
-			if((*lFloatVector)[j] < lMinVal) (*lFloatVector)[j] = lMinVal;
+			(*lVector)[j] = lIncVal * round((*lVector)[j] / lIncVal);
+			if((*lVector)[j] > lMaxVal) (*lVector)[j] -= lIncVal;
+			if((*lVector)[j] < lMinVal) (*lVector)[j] += lIncVal;
 		}
 	}
 
 	Beagle_LogObjectDebugM(
 	    ioContext.getSystem().getLogger(),
-	    *lFloatVector
+	    *lVector
 	);
 	Beagle_StackTraceEndM();
 }

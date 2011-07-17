@@ -25,58 +25,56 @@
  */
 
 /*!
- *  \file   beagle/GA/MutationGaussianFltVecOp.hpp
- *  \brief  Definition of the class GA::MutationGaussianFltVecOp.
+ *  \file   Beagle/FltVec/MutationGaussianOp.hpp
+ *  \brief  Definition of the class FltVec::MutationGaussianOp.
  *  \author Christian Gagne
  *  \author Marc Parizeau
  *  $Revision: 1.18 $
  *  $Date: 2007/08/08 19:26:34 $
  */
 
-#ifndef Beagle_GA_MutationGaussianFltVecOp_hpp
-#define Beagle_GA_MutationGaussianFltVecOp_hpp
+#ifndef Beagle_FltVec_MutationGaussianOp_hpp
+#define Beagle_FltVec_MutationGaussianOp_hpp
 
 #include <string>
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Object.hpp"
-#include "beagle/MutationOp.hpp"
+#include "Beagle/Core.hpp"
+#include "Beagle/EC.hpp"
 
 
 namespace Beagle
 {
-namespace GA
+
+namespace FltVec
 {
 
 /*!
- *  \class MutationGaussianFltVecOp beagle/GA/MutationGaussianFltVecOp.hpp
- *    "beagle/GA/MutationGaussianFltVecOp.hpp"
- *  \brief Real-valued GA Gaussian mutation operator class.
- *  \ingroup GAF
- *  \ingroup GAFV
+ *  \class MutationGaussianOp Beagle/FltVec/MutationGaussianOp.hpp
+ *    "Beagle/FltVec/MutationGaussianOp.hpp"
+ *  \brief Real-valued Gaussian mutation operator class.
+ *  \ingroup FltVecF
  */
-class MutationGaussianFltVecOp : public Beagle::MutationOp
+class MutationGaussianOp : public MutationOp
 {
 
 public:
 
-	//! GA::MutationGaussianFltVecOp allocator type.
-	typedef AllocatorT<MutationGaussianFltVecOp,Beagle::MutationOp::Alloc>
+	//! FltVec::MutationGaussianOp allocator type.
+	typedef AllocatorT<MutationGaussianOp,MutationOp::Alloc>
 	Alloc;
-	//! GA::MutationGaussianFltVecOp handle type.
-	typedef PointerT<MutationGaussianFltVecOp,Beagle::MutationOp::Handle>
+	//! FltVec::MutationGaussianOp handle type.
+	typedef PointerT<MutationGaussianOp,MutationOp::Handle>
 	Handle;
-	//! GA::MutationGaussianFltVecOp bag type.
-	typedef ContainerT<MutationGaussianFltVecOp,Beagle::MutationOp::Bag>
+	//! FltVec::MutationGaussianOp bag type.
+	typedef ContainerT<MutationGaussianOp,MutationOp::Bag>
 	Bag;
 
-	explicit MutationGaussianFltVecOp(std::string inMutationPbName="ga.mutgauss.indpb",
-	                                  std::string inMutateFloatPbName="ga.mutgauss.floatpb",
-	                                  std::string inMutateGaussMuName="ga.mutgauss.mu",
-	                                  std::string inMutateGaussSigmaName="ga.mutgauss.sigma",
-	                                  std::string inName="GA-MutationGaussianFltVecOp");
-	virtual ~MutationGaussianFltVecOp()
+	explicit MutationGaussianOp(std::string inMutationPbName="fltvec.mutgauss.indpb",
+	                            std::string inMutateFloatPbName="fltvec.mutgauss.floatpb",
+	                            std::string inMutateGaussMuName="fltvec.mutgauss.mu",
+	                            std::string inMutateGaussSigmaName="fltvec.mutgauss.sigma",
+	                            std::string inName="FltVec-MutationGaussianOp");
+	virtual ~MutationGaussianOp()
 	{ }
 
 	virtual void registerParams(System& ioSystem);
@@ -86,9 +84,9 @@ public:
 
 protected:
 
-	DoubleArray::Handle mMaxValue;             //!< Max value of GA float vectors.
-	DoubleArray::Handle mMinValue;             //!< Min value of GA float vectors.
-	DoubleArray::Handle mIncValue;             //!< Increment of valid value of GA float vectors.
+	DoubleArray::Handle mMaxValue;             //!< Max value of float vectors.
+	DoubleArray::Handle mMinValue;             //!< Min value of float vectors.
+	DoubleArray::Handle mIncValue;             //!< Increment of valid value of float vectors.
 	Float::Handle       mMutateFloatPb;        //!< Single value mutation probability.
 	DoubleArray::Handle mMutateGaussMu;        //!< Gaussian mutation mean.
 	DoubleArray::Handle mMutateGaussSigma;     //!< Gaussian mutation standard deviation.
@@ -101,4 +99,4 @@ protected:
 }
 }
 
-#endif // Beagle_GA_MutationGaussianFltVecOp_hpp
+#endif // Beagle_FltVec_MutationGaussianOp_hpp

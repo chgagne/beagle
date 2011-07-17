@@ -25,51 +25,49 @@
  */
 
 /*!
- *  \file   beagle/GA/CrossoverTwoPointsFltVecOp.hpp
- *  \brief  Definition of the class GA::CrossoverTwoPointsFltVecOp.
+ *  \file   Beagle/FltVec/CrossoverTwoPointsOp.hpp
+ *  \brief  Definition of the class FltVec::CrossoverTwoPointsOp.
  *  \author Christian Gagne
  *  \author Marc Parizeau
  *  $Revision: 1.10 $
  *  $Date: 2007/08/08 19:26:34 $
  */
 
-#ifndef Beagle_GA_CrossoverTwoPointsFltVecOp_hpp
-#define Beagle_GA_CrossoverTwoPointsFltVecOp_hpp
+#ifndef Beagle_FltVec_CrossoverTwoPointsOp_hpp
+#define Beagle_FltVec_CrossoverTwoPointsOp_hpp
 
 #include <string>
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Object.hpp"
-#include "beagle/CrossoverOp.hpp"
-#include "beagle/GA/CrossoverTwoPointsOpT.hpp"
-#include "beagle/GA/FloatVector.hpp"
+#include "Beagle/Core.hpp"
+#include "Beagle/EC.hpp"
+#include "Beagle/FltVec/FloatVector.hpp"
+
 
 namespace Beagle
 {
-namespace GA
+	
+namespace FltVec
 {
 
 /*!
- *  \class CrossoverTwoPointsFltVecOp beagle/GA/CrossoverTwoPointsFltVecOp.hpp
- *    "beagle/GA/CrossoverTwoPointsFltVecOp.hpp"
- *  \brief Real-valued GA two points crossover operator class.
- *  \ingroup GAF
- *  \ingroup GAFV
+ *  \class CrossoverTwoPointsOp Beagle/FltVec/CrossoverTwoPointsOp.hpp
+ *    "Beagle/FltVec/CrossoverTwoPointsOp.hpp"
+ *  \brief Real-valued two points crossover operator class.
+ *  \ingroup FltVecF
  */
-class CrossoverTwoPointsFltVecOp : public GA::CrossoverTwoPointsOpT<GA::FloatVector>
+class CrossoverTwoPointsOp : public EC::CrossoverTwoPointsOpT<FltVec::FloatVector>
 {
 
 public:
 
-	//! GA::CrossoverTwoPointsFltVecOp allocator type.
-	typedef AllocatorT<CrossoverTwoPointsFltVecOp,GA::CrossoverTwoPointsOpT<GA::FloatVector>::Alloc>
+	//! FltVec::CrossoverTwoPointsOp allocator type.
+	typedef AllocatorT<CrossoverTwoPointsOp,EC::CrossoverTwoPointsOpT<FltVec::FloatVector>::Alloc>
 	Alloc;
-	//! GA::CrossoverTwoPointsFltVecOp handle type.
-	typedef PointerT<CrossoverTwoPointsFltVecOp,GA::CrossoverTwoPointsOpT<GA::FloatVector>::Handle>
+	//! GA::CrossoverTwoPointsOp handle type.
+	typedef PointerT<CrossoverTwoPointsOp,EC::CrossoverTwoPointsOpT<FltVec::FloatVector>::Handle>
 	Handle;
-	//! GA::CrossoverTwoPointsFltVecOp bag type.
-	typedef ContainerT<CrossoverTwoPointsFltVecOp,GA::CrossoverTwoPointsOpT<GA::FloatVector>::Bag>
+	//! GA::CrossoverTwoPointsOp bag type.
+	typedef ContainerT<CrossoverTwoPointsOp,EC::CrossoverTwoPointsOpT<FltVec::FloatVector>::Bag>
 	Bag;
 
 	/*!
@@ -77,12 +75,12 @@ public:
 	 *  \param inMatingPbName Name of the mating probability parameter used in the register.
 	 *  \param inName Name of the float vector GA two points crossover operator.
 	 */
-	explicit CrossoverTwoPointsFltVecOp(std::string inMatingPbName="ga.cx2p.prob",
-	                                    std::string inName="GA-CrossoverTwoPointsFltVecOp") :
-			GA::CrossoverTwoPointsOpT<GA::FloatVector>(inMatingPbName, inName)
+	explicit CrossoverTwoPointsOp(std::string inMatingPbName="fltvec.cx2p.prob",
+	                              std::string inName="FltVec-CrossoverTwoPointsOp") :
+			EC::CrossoverTwoPointsOpT<FltVec::FloatVector>(inMatingPbName, inName)
 	{ }
 
-	virtual ~CrossoverTwoPointsFltVecOp()
+	virtual ~CrossoverTwoPointsOp()
 	{ }
 
 };
@@ -90,4 +88,4 @@ public:
 }
 }
 
-#endif // Beagle_GA_CrossoverTwoPointsFltVecOp_hpp
+#endif // Beagle_FltVec_CrossoverTwoPointsOp_hpp

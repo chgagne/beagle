@@ -8,7 +8,7 @@
 # Felix-Antoine Fortin <felix-antoine.fortin.1@ulaval.ca>
 # Francois-Michel De Rainville <francois-michel.de-rainville.1@ulaval.ca>
 #
-# Date : 17/05/2011
+# Date: 17/07/2011
 
 # Minimal CMake version
 cmake_minimum_required(VERSION 2.6)
@@ -476,11 +476,13 @@ CONFIGURE_FILE("${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/config.hpp.in" "${CMAKE_C
 file(GLOB BEAGLE_CORE_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/Core/*.cpp")
 file(GLOB BEAGLE_EC_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/EC/*.cpp")
 file(GLOB BEAGLE_BITSTR_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/BitStr/*.cpp")
+file(GLOB BEAGLE_FLTVEC_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/FltVec/*.cpp")
 
 # Glob headers
 file(GLOB BEAGLE_CORE_HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/Core/*.hpp")
 file(GLOB BEAGLE_EC_HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/EC/*.hpp")
 file(GLOB BEAGLE_BITSTR_HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/BitStr/*.hpp")
+file(GLOB BEAGLE_FLTVEC_HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/FltVec/*.hpp")
 
 # Remove OpenMP files if OpenMP it no used
 if(NOT BEAGLE_USE_OMP_NR AND NOT BEAGLE_USE_OMP_R)
@@ -497,12 +499,15 @@ if(CMAKE_FAST_COMPILATION)
     set(BEAGLE_EC_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/EC/libBeagle-EC.cpp")
     AllFilesInOne("${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/BitStr/libBeagle-BitStr.cpp" ${BEAGLE_BITSTR_SRC})
     set(BEAGLE_BITSTR_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/BitStr/libBeagle-BitStr.cpp")
+    AllFilesInOne("${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/FltVec/libBeagle-FltVec.cpp" ${BEAGLE_FLTVEC_SRC})
+    set(BEAGLE_FLTVEC_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/FltVec/libBeagle-FltVec.cpp")
 	message(STATUS "Include files generated...")
 else(CMAKE_FAST_COMPILATION)
 	message(STATUS "Using normal compilation mode...")
 	file(REMOVE "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/Core/libBeagle-Core.cpp")
     file(REMOVE "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/EC/libBeagle-EC.cpp")
     file(REMOVE "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/BitStr/libBeagle-BitStr.cpp")
+    file(REMOVE "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/FltVec/libBeagle-FltVec.cpp")
 endif(CMAKE_FAST_COMPILATION)
 
 # Include headers required
@@ -524,8 +529,8 @@ if(COMPILER_SUPPORTS_C0X AND BEAGLE_USE_C0x)
     set_target_properties(Beagle-Core PROPERTIES COMPILE_FLAGS "-std=c++0x")
 endif(COMPILER_SUPPORTS_C0X AND BEAGLE_USE_C0x)
 MoveConfigFiles("${BEAGLE_CORE_HEADERS}" "${BEAGLE_OUTPUT_DIR}/include/beagle" false)
-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/include/Beagle/config.hpp DESTINATION "${BEAGLE_OUTPUT_DIR}/include/beagle")
-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/include/Beagle/Core.hpp DESTINATION "${BEAGLE_OUTPUT_DIR}/include/beagle")
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/include/Beagle/config.hpp DESTINATION "${BEAGLE_OUTPUT_DIR}/include/Beagle")
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/include/Beagle/Core.hpp DESTINATION "${BEAGLE_OUTPUT_DIR}/include/Beagle")
 install(FILES ${BEAGLE_CORE_HEADERS} DESTINATION "${BEAGLE_OUTPUT_DIR}/include/Beagle/Core")
 install(TARGETS Beagle-Core DESTINATION "${BEAGLE_OUTPUT_DIR}/lib")
 
@@ -544,7 +549,7 @@ if(COMPILER_SUPPORTS_C0X AND BEAGLE_USE_C0x)
     set_target_properties(Beagle-EC PROPERTIES COMPILE_FLAGS "-std=c++0x")
 endif(COMPILER_SUPPORTS_C0X AND BEAGLE_USE_C0x)
 MoveConfigFiles("${BEAGLE_EC_HEADERS}" "${BEAGLE_OUTPUT_DIR}/include/Beagle/EC" false)
-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/include/Beagle/EC.hpp DESTINATION "${BEAGLE_OUTPUT_DIR}/include/beagle")
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/include/Beagle/EC.hpp DESTINATION "${BEAGLE_OUTPUT_DIR}/include/Beagle")
 install(FILES ${BEAGLE_EC_HEADERS} DESTINATION "${BEAGLE_OUTPUT_DIR}/include/Beagle/EC")
 install(TARGETS Beagle-EC DESTINATION "${BEAGLE_OUTPUT_DIR}/lib")
 
@@ -563,9 +568,28 @@ if(COMPILER_SUPPORTS_C0X AND BEAGLE_USE_C0x)
     set_target_properties(Beagle-BitStr PROPERTIES COMPILE_FLAGS "-std=c++0x")
 endif(COMPILER_SUPPORTS_C0X AND BEAGLE_USE_C0x)
 MoveConfigFiles("${BEAGLE_BITSTR_HEADERS}" "${BEAGLE_OUTPUT_DIR}/include/Beagle/BitStr" false)
-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/include/Beagle/BitStr.hpp DESTINATION "${BEAGLE_OUTPUT_DIR}/include/beagle")
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/include/Beagle/BitStr.hpp DESTINATION "${BEAGLE_OUTPUT_DIR}/include/Beagle")
 install(FILES ${BEAGLE_BITSTR_HEADERS} DESTINATION "${BEAGLE_OUTPUT_DIR}/include/Beagle/BitStr")
 install(TARGETS Beagle-BitStr DESTINATION "${BEAGLE_OUTPUT_DIR}/lib")
+
+# Create Beagle-FltVec library target
+add_library(Beagle-FltVec ${BEAGLE_LIBRARY_TYPE} ${BEAGLE_FLTVEC_SRC})
+target_link_libraries(Beagle-FltVec Beagle-EC Beagle-Core pacc)
+if(ZLIB_FOUND)
+    target_link_libraries(Beagle-FltVec ${ZLIB_LIBRARY})
+endif(ZLIB_FOUND)
+if(BUILD_STATIC_LIB)
+    set_target_properties(Beagle-FltVec PROPERTIES VERSION ${BEAGLE_VERSION} ARCHIVE_OUTPUT_DIRECTORY "${BEAGLE_OUTPUT_DIR}/lib")
+else(BUILD_STATIC_LIB)
+    set_target_properties(Beagle-FltVec PROPERTIES VERSION ${BEAGLE_VERSION} LIBRARY_OUTPUT_DIRECTORY "${BEAGLE_OUTPUT_DIR}/lib")
+endif(BUILD_STATIC_LIB)
+if(COMPILER_SUPPORTS_C0X AND BEAGLE_USE_C0x)
+    set_target_properties(Beagle-FltVec PROPERTIES COMPILE_FLAGS "-std=c++0x")
+endif(COMPILER_SUPPORTS_C0X AND BEAGLE_USE_C0x)
+MoveConfigFiles("${BEAGLE_FLTVEC_HEADERS}" "${BEAGLE_OUTPUT_DIR}/include/Beagle/FltVec" false)
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/include/Beagle/FltVec.hpp DESTINATION "${BEAGLE_OUTPUT_DIR}/include/Beagle")
+install(FILES ${BEAGLE_FLTVEC_HEADERS} DESTINATION "${BEAGLE_OUTPUT_DIR}/include/Beagle/FltVec")
+install(TARGETS Beagle-FltVec DESTINATION "${BEAGLE_OUTPUT_DIR}/lib")
 
 # Create Beagle-HPC library target
 #if(NOT BEAGLE_NO_HPC)

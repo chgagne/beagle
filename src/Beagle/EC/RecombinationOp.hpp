@@ -66,8 +66,8 @@ public:
 	//! RecombinationOp bag type.
 	typedef Beagle::ContainerT<RecombinationOp,Beagle::BreederOp::Bag> Bag;
 
-	explicit RecombinationOp(std::string inRecombProbaName="ec.rec.prob",
-	                         std::string inNumberRecombName="ec.rec.nbrind",
+	explicit RecombinationOp(std::string inRecombProbaName="ec.recomb.prob",
+	                         std::string inNumberRecombName="ec.recomb.nbrind",
 	                         std::string inName="RecombinationOp");
 	virtual ~RecombinationOp()
 	{ }

@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/BitStr/BitString.hpp
+ *  \file   Beagle/BitStr/BitString.hpp
  *  \brief  Definition of the type BitStr::BitString.
  *  \author Christian Gagne
  *  \author Marc Parizeau

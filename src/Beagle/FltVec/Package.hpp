@@ -25,56 +25,61 @@
  */
 
 /*!
- *  \file   beagle/GA/AlgoSAESPlus.hpp
- *  \brief  Definition of the class GA::AlgoSAESPlus.
+ *  \file   Beagle/FltVec/Package.hpp
+ *  \brief  Definition of the class FltVec::Package.
  *  \author Christian Gagne
- *  $Revision: 1.1 $
- *  $Date: 2007/08/08 14:51:33 $
+ *  $Revision: 1.2 $
+ *  $Date: 2007/08/08 19:26:34 $
  */
 
-#ifndef Beagle_GA_AlgoSAESPlus_hpp
-#define Beagle_GA_AlgoSAESPlus_hpp
+#ifndef Beagle_FltVec_Package_hpp
+#define Beagle_FltVec_Package_hpp
 
 #include <map>
 #include <string>
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Algorithm.hpp"
+#include "Beagle/Core.hpp"
+#include "Beagle/EC.hpp"
 
 
 namespace Beagle
 {
 
-namespace GA
+namespace FltVec
 {
 
-
 /*!
- *  \class GA::AlgoSAESPlus beagle/GA/AlgoSAESPlus.hpp "beagle/GA/AlgoSAESPlus.hpp"
- *  \brief Self-adaptive evolution strategy, with (\mu+\lambda) replacement strategy.
- *  \ingroup GAF
- *  \ingroup GAES
+ *  \class FltVec::Package Beagle/FltVec/Package.hpp "Beagle/FltVec/Package.hpp"
+ *  \brief Package for adding objects related to real-valued.
+ *  \ingroup FltVecF
  */
-class AlgoSAESPlus : public Algorithm
+class Package : public EC::PackageAbstract
 {
 
 public:
 
-	//! AlgoSAESPlus allocator type.
-	typedef AllocatorT< AlgoSAESPlus, Algorithm::Alloc > Alloc;
-	//! AlgoSAESPlus handle type.
-	typedef PointerT< AlgoSAESPlus, Algorithm::Handle > Handle;
-	//! AlgoSAESPlus bag type.
-	typedef ContainerT< AlgoSAESPlus, Algorithm::Bag > Bag;
+	//! FltVec::Package allocator type.
+	typedef AllocatorT< Package, EC::PackageAbstract::Alloc >
+	Alloc;
+	//! FltVec::Package handle type.
+	typedef PointerT< Package, EC::PackageAbstract::Handle >
+	Handle;
+	//! FltVec::Package bag type.
+	typedef ContainerT< Package, EC::PackageAbstract::Bag >
+	Bag;
 
-	AlgoSAESPlus(void);
+	explicit Package(unsigned int inInitSize=0);
 
-	virtual void configure(Evolver& ioEvolver, System& ioSystem);
+	virtual void          configure(System& ioSystem);
+	virtual Package::Bag  listDependencies(void);
+
+protected:
+
+	unsigned int mInitSize;  //!< Size of vector to use at initialization.
 
 };
 
 }
 }
 
-#endif // Beagle_GA_AlgoSAESPlus_hpp
+#endif // Beagle_FltVec_Package_hpp

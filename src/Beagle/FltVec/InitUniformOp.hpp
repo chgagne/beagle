@@ -25,58 +25,53 @@
  */
 
 /*!
- *  \file   beagle/GA/InitFltVecOp.hpp
- *  \brief  Definition of the class GA::InitFltVecOp.
+ *  \file   Beagle/FltVec/InitUniformOp.hpp
+ *  \brief  Definition of the class FltVec::InitUniformOp.
  *  \author Christian Gagne
  *  \author Marc Parizeau
  *  $Revision: 1.14 $
  *  $Date: 2007/08/08 19:26:34 $
  */
 
-#ifndef Beagle_GA_InitFltVecOp_hpp
-#define Beagle_GA_InitFltVecOp_hpp
+#ifndef Beagle_FltVec_InitUniformOp_hpp
+#define Beagle_FltVec_InitUniformOp_hpp
 
 #include <string>
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Object.hpp"
-#include "beagle/AllocatorT.hpp"
-#include "beagle/PointerT.hpp"
-#include "beagle/ContainerT.hpp"
-#include "beagle/InitializationOp.hpp"
-#include "beagle/Float.hpp"
+#include "Beagle/Core.hpp"
+#include "Beagle/EC.hpp"
+
 
 namespace Beagle
 {
-namespace GA
+
+namespace FltVec
 {
 
 /*!
- *  \class InitFltVecOp beagle/GA/InitFltVecOp.hpp "beagle/GA/InitFltVecOp.hpp"
- *  \brief Real-valued GA genotype uniformly distributed initialization operator class.
- *  \ingroup GAF
- *  \ingroup GAFV
+ *  \class InitUniformOp Beagle/FltVec/InitUniformOp.hpp "Beagle/FltVec/InitUniformOp.hpp"
+ *  \brief Real-valued genotype uniformly distributed initialization operator class.
+ *  \ingroup FltVecF
  */
-class InitFltVecOp : public InitializationOp
+class InitUniformOp : public EC::InitializationOp
 {
 
 public:
 
-	//! GA::InitFltVecOp allocator type.
-	typedef AllocatorT<InitFltVecOp,InitializationOp::Alloc>
+	//! FltVec::InitUniformOp allocator type.
+	typedef AllocatorT<InitUniformOp,EC::InitializationOp::Alloc>
 	Alloc;
-	//! GA::InitFltVecOp handle type.
-	typedef PointerT<InitFltVecOp,InitializationOp::Handle>
+	//! FltVec::InitUniformOp handle type.
+	typedef PointerT<InitUniformOp,EC::InitializationOp::Handle>
 	Handle;
-	//! GA::InitFltVecOp bag type.
-	typedef ContainerT<InitFltVecOp,InitializationOp::Bag>
+	//! FltVec::InitUniformOp bag type.
+	typedef ContainerT<InitUniformOp,EC::InitializationOp::Bag>
 	Bag;
 
-	explicit InitFltVecOp(unsigned int inFloatVectorSize=0,
-	                      std::string inReproProbaName="ec.repro.prob",
-	                      std::string inName="GA-InitFltVecOp");
-	virtual ~InitFltVecOp()
+	explicit InitUniformOp(unsigned int inFloatVectorSize=0,
+	                       std::string inReproProbaName="fltvec.repro.prob",
+	                       std::string inName="FltVec-InitUniformOp");
+	virtual ~InitUniformOp()
 	{ }
 
 	virtual void registerParams(System& ioSystem);
@@ -105,14 +100,14 @@ public:
 
 protected:
 
-	DoubleArray::Handle  mMaxInitValue;     //!< Maximum value used to initialize floats.
-	DoubleArray::Handle  mMinInitValue;     //!< Minimum value used to initialize floats.
-	DoubleArray::Handle  mIncValue;         //!< Increment of valid value of GA float vectors.
-	UInt::Handle         mFloatVectorSize;  //!< Individual float vectors size.
+	DoubleArray::Handle  mMaxInitValue;      //!< Maximum value used to initialize floats.
+	DoubleArray::Handle  mMinInitValue;      //!< Minimum value used to initialize floats.
+	DoubleArray::Handle  mIncValue;          //!< Increment of valid value of GA float vectors.
+	UInt::Handle         mFloatVectorSize;   //!< Individual float vectors size.
 
 };
 
 }
 }
 
-#endif // Beagle_GA_InitFltVecOp_hpp
+#endif // Beagle_FltVec_InitUniformOp_hpp

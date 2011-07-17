@@ -25,37 +25,38 @@
  */
 
 /*!
- *  \file   beagle/GA/CrossoverBlendFltVecOp.hpp
- *  \brief  Definition of the class GA::CrossoverBlendFltVecOp.
+ *  \file   Beagle/FltVec/CrossoverBlendOp.hpp
+ *  \brief  Definition of the class FltVec::CrossoverBlendOp.
  *  \author Christian Gagne
  *  \author Marc Parizeau
  *  $Revision: 1.16 $
  *  $Date: 2007/08/08 19:26:34 $
  */
 
-#ifndef Beagle_GA_CrossoverBlendFltVecOp_hpp
-#define Beagle_GA_CrossoverBlendFltVecOp_hpp
+#ifndef Beagle_FltVec_CrossoverBlendOp_hpp
+#define Beagle_FltVec_CrossoverBlendOp_hpp
 
 #include <string>
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Object.hpp"
-#include "beagle/CrossoverOp.hpp"
+#include "Beagle/Core.hpp"
+#include "Beagle/EC.hpp"
+#include "Beagle/FltVec/FloatVector.hpp"
+
 
 namespace Beagle
 {
-namespace GA
+	
+namespace FltVec
 {
 
+
 /*!
- *  \class CrossoverBlendFltVecOp beagle/GA/CrossoverBlendFltVecOp.hpp
- *    "beagle/GA/CrossoverBlendFltVecOp.hpp"
- *  \brief Real-valued GA blend crossover (BLX-alpha) operator class.
- *  \ingroup GAF
- *  \ingroup GAFV
+ *  \class CrossoverBlendOp Beagle/FltVec/CrossoverBlendOp.hpp
+ *    "Beagle/FltVec/CrossoverBlendOp.hpp"
+ *  \brief Blend crossover (BLX-alpha) for float vector representation operator class.
+ *  \ingroup FltVecF
  *
- *  Real-valued GA blend crossover (BLX-alpha) proceed by blending two float vectors,
+ *  Float vector blend crossover (BLX-alpha) proceed by blending two float vectors,
  *  \f$(x^{(1,t)},x^{(2,t)})\f$, using a parameter \f$\alpha\in[0,1]\f$.
  *  The resulting children \f$(x^{(1,t+1)},x^{(2,t+1)})\f$ are equal to
  *  \f$x^{(1,t+1)}_i=(1-\gamma_i) x^{(1,t)}_i+\gamma_i x^{(2,t)}_i\f$ and
@@ -66,24 +67,24 @@ namespace GA
  *  difference between the parents individuals.
  *
  */
-class CrossoverBlendFltVecOp : public CrossoverOp
+class CrossoverBlendOp : public EC::CrossoverOp
 {
 
 public:
 
-	//! GA::CrossoverBlendFltVecOp allocator type.
-	typedef AllocatorT<CrossoverBlendFltVecOp,CrossoverOp::Alloc>
+	//! FltVec::CrossoverBlendOp allocator type.
+	typedef AllocatorT<CrossoverBlendOp,EC::CrossoverOp::Alloc>
 	Alloc;
-	//! GA::CrossoverBlendFltVecOp handle type.
-	typedef PointerT<CrossoverBlendFltVecOp,CrossoverOp::Handle>
+	//! FltVec::CrossoverBlendOp handle type.
+	typedef PointerT<CrossoverBlendOp,EC::CrossoverOp::Handle>
 	Handle;
-	//! GA::CrossoverBlendFltVecOp bag type.
-	typedef ContainerT<CrossoverBlendFltVecOp,CrossoverOp::Bag>
+	//! FltVec::CrossoverBlendOp bag type.
+	typedef ContainerT<CrossoverBlendOp,EC::CrossoverOp::Bag>
 	Bag;
 
-	explicit CrossoverBlendFltVecOp(std::string inMatingPbName="ga.cxblend.prob",
-	                                std::string inName="GA-CrossoverBlendFltVecOp");
-	virtual ~CrossoverBlendFltVecOp()
+	explicit CrossoverBlendOp(std::string inMatingPbName="fltvec.cxblend.prob",
+	                          std::string inName="FltVec-CrossoverBlendOp");
+	virtual ~CrossoverBlendOp()
 	{ }
 
 	virtual void registerParams(System& ioSystem);
@@ -92,10 +93,10 @@ public:
 
 protected:
 
-	DoubleArray::Handle mMaxValue;  //!< Max value of GA float vectors.
-	DoubleArray::Handle mMinValue;  //!< Min value of GA float vectors.
-	DoubleArray::Handle mIncValue;  //!< Increment of valid value of GA float vectors.
-	Double::Handle mAlpha;          //!< Blend crossover alpha parameter.
+	DoubleArray::Handle mMaxValue;  //!< Max value of initialized float vectors.
+	DoubleArray::Handle mMinValue;  //!< Min value of initialized float vectors.
+	DoubleArray::Handle mIncValue;  //!< Increment of valid value of initialized float vectors.
+	Double::Handle      mAlpha;     //!< Blend crossover alpha parameter.
 
 };
 
@@ -103,4 +104,4 @@ protected:
 }
 
 
-#endif // Beagle_GA_CrossoverBlendFltVecOp_hpp
+#endif // Beagle_FltVec_CrossoverBlendOp_hpp

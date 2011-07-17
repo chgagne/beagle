@@ -25,18 +25,12 @@
  */
 
 /*!
- *  \file   beagle/GA/FloatVector.hpp
- *  \brief  Definition of the type GA::FloatVector.
+ *  \file   Beagle/FltVec/FloatVector.hpp
+ *  \brief  Definition of the type FltVec::FloatVector.
  *  \author Christian Gagne
  *  \author Marc Parizeau
  *  $Revision: 1.14 $
  *  $Date: 2007/08/17 18:09:10 $
- */
-
-/*!
- *  \defgroup GAFV Real-valued GA
- *  \ingroup GAF
- *  \brief Real-valued GA representation, operators and evolvers, part of the GA framework.
  */
 
 #ifndef Beagle_GA_FloatVector_hpp
@@ -44,38 +38,31 @@
 
 #include <vector>
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Object.hpp"
-#include "beagle/Allocator.hpp"
-#include "beagle/Pointer.hpp"
-#include "beagle/Container.hpp"
-#include "beagle/ContainerT.hpp"
-#include "beagle/Genotype.hpp"
-#include "beagle/Vector.hpp"
+#include "Beagle/Core.hpp"
+#include "Beagle/EC.hpp"
 
 
 namespace Beagle
 {
-namespace GA
+
+namespace FltVec
 {
 
 /*!
- *  \class FloatVector beagle/GA/FloatVector.hpp "beagle/GA/FloatVector.hpp"
- *  \brief Real-valued GA genotype class.
- *  \ingroup GAF
- *  \ingroup GAFV
+ *  \class FloatVector Beagle/FltVec/FloatVector.hpp "Beagle/FltVec/FloatVector.hpp"
+ *  \brief Real-valued genotype class.
+ *  \ingroup FltVecF
  */
 class FloatVector : public Genotype, public std::vector<double>
 {
 
 public:
 
-	//! FloatVector allocator type.
+	//! FltVec::FloatVector allocator type.
 	typedef AllocatorT<FloatVector,Genotype::Alloc> Alloc;
-	//! FloatVector handle type.
+	//! FltVec::FloatVector handle type.
 	typedef PointerT<FloatVector,Genotype::Handle> Handle;
-	//! FloatVector bag type.
+	//! FltVec::FloatVector bag type.
 	typedef ContainerT<FloatVector,Genotype::Bag> Bag;
 
 	explicit FloatVector(unsigned int inSize=0, float inModel=0.f);
@@ -94,5 +81,5 @@ public:
 }
 }
 
-#endif // Beagle_GA_FloatVector_hpp
+#endif // Beagle_FltVec_FloatVector_hpp
 

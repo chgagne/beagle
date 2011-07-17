@@ -25,15 +25,15 @@
  */
 
 /*!
- *  \file   beagle/GA/src/FloatVector.cpp
- *  \brief  Source code of class GA::FloatVector.
+ *  \file   Beagle/FltVec/FloatVector.cpp
+ *  \brief  Source code of class FltVec::FloatVector.
  *  \author Christian Gagne
  *  \author Marc Parizeau
  *  $Revision: 1.25 $
  *  $Date: 2007/08/17 18:09:10 $
  */
 
-#include "beagle/GA.hpp"
+#include "Beagle/FltVec.hpp"
 
 #include <algorithm>
 #include <cfloat>
@@ -43,24 +43,24 @@ using namespace Beagle;
 
 
 /*!
- *  \brief Construct a GA float vector.
+ *  \brief Construct a float vector.
  *  \param inSize Size of the vector.
  *  \param inModel Default values of the floats.
  */
-GA::FloatVector::FloatVector(unsigned int inSize, float inModel) :
+FltVec::FloatVector::FloatVector(unsigned int inSize, float inModel) :
 		std::vector<double>(inSize, inModel)
 { }
 
 
 /*!
- *  \brief Copy GA float vector into current.
+ *  \brief Copy float vector into current.
  *  \param inOriginal Float vector to copy.
  *  \param ioSystem Evolutionary system to use for making the copy.
  */
-void GA::FloatVector::copy(const Member& inOriginal, System& ioSystem)
+void FltVec::FloatVector::copy(const Member& inOriginal, System& ioSystem)
 {
 	Beagle_StackTraceBeginM();
-	const GA::FloatVector& lOriginal = castObjectT<const GA::FloatVector&>(inOriginal);
+	const FltVec::FloatVector& lOriginal = castObjectT<const FltVec::FloatVector&>(inOriginal);
 	(*this) = lOriginal;
 	Beagle_StackTraceEndM();
 }
@@ -70,7 +70,7 @@ void GA::FloatVector::copy(const Member& inOriginal, System& ioSystem)
  *  \brief Return size (length) of genotype.
  *  \return Size (length) of genotype.
  */
-unsigned int GA::FloatVector::getSize() const
+unsigned int FltVec::FloatVector::getSize() const
 {
 	Beagle_StackTraceBeginM();
 	return size();
@@ -82,12 +82,12 @@ unsigned int GA::FloatVector::getSize() const
  *  \brief Get exact type of the genotype.
  *  \return Exact type of the genotype.
  */
-const std::string& GA::FloatVector::getType() const
+const std::string& FltVec::FloatVector::getType() const
 {
 	Beagle_StackTraceBeginM();
-	const static std::string lType("GA-FloatVector");
+	const static std::string lType("FltVec-FloatVector");
 	return lType;
-	Beagle_StackTraceEndM("const std::string& GA::FloatVector::getType() const")
+	Beagle_StackTraceEndM()
 }
 
 
@@ -96,13 +96,13 @@ const std::string& GA::FloatVector::getType() const
  *	\param inI is the index of the first gene to swap.
  *	\param inJ is the index of the second gene to swap.
  */
-void GA::FloatVector::swap(unsigned int inI, unsigned int inJ)
+void FltVec::FloatVector::swap(unsigned int inI, unsigned int inJ)
 {
 	Beagle_StackTraceBeginM();
 	Beagle_BoundCheckAssertM(inI, 0, size() -1);
 	Beagle_BoundCheckAssertM(inJ, 0, size() -1);
 	std::swap((*this)[inI], (*this)[inJ]);
-	Beagle_StackTraceEndM("const std::string& GA::FloatVector::swap(unsigned int, unsigned int) const")
+	Beagle_StackTraceEndM()
 }
 
 
@@ -111,10 +111,10 @@ void GA::FloatVector::swap(unsigned int inI, unsigned int inJ)
  *  \param  inRightObj Second float vector used for the comparison.
  *  \return True if float vectors are equal and of same size, false if not.
  */
-bool GA::FloatVector::isEqual(const Object& inRightObj) const
+bool FltVec::FloatVector::isEqual(const Object& inRightObj) const
 {
 	Beagle_StackTraceBeginM();
-	const GA::FloatVector& lRightVector = castObjectT<const GA::FloatVector&>(inRightObj);
+	const FltVec::FloatVector& lRightVector = castObjectT<const FltVec::FloatVector&>(inRightObj);
 	if(size() != lRightVector.size()) return false;
 	const std::vector<double>& lLeft = *this;
 	const std::vector<double>& lRight = lRightVector;
@@ -128,10 +128,10 @@ bool GA::FloatVector::isEqual(const Object& inRightObj) const
  *  \param  inRightObj Second float vector used for the ordering test.
  *  \return True if the actual float vector is before the second and of the same size, false if not.
  */
-bool GA::FloatVector::isLess(const Object& inRightObj) const
+bool FltVec::FloatVector::isLess(const Object& inRightObj) const
 {
 	Beagle_StackTraceBeginM();
-	const GA::FloatVector& lRightVector = castObjectT<const GA::FloatVector&>(inRightObj);
+	const FltVec::FloatVector& lRightVector = castObjectT<const FltVec::FloatVector&>(inRightObj);
 	if(size() != lRightVector.size()) return false;
 	const std::vector<double>& lLeft = *this;
 	const std::vector<double>& lRight = lRightVector;
@@ -146,7 +146,7 @@ bool GA::FloatVector::isLess(const Object& inRightObj) const
  *  \param ioContext Evolutionary context.
  *  \throw Beagle::IOException If a reading error occured (generally bad file format)!
  */
-void GA::FloatVector::readWithContext(PACC::XML::ConstIterator inIter, Context& ioContext)
+void FltVec::FloatVector::readWithContext(PACC::XML::ConstIterator inIter, Context& ioContext)
 {
 	Beagle_StackTraceBeginM();
 	if((inIter->getType() != PACC::XML::eData) || (inIter->getValue() != "Genotype")) {
@@ -184,7 +184,7 @@ void GA::FloatVector::readWithContext(PACC::XML::ConstIterator inIter, Context& 
  *  \param ioStreamer XML streamer into which the float vector is written.
  *  \param inIndent Whether output should be indented.
  */
-void GA::FloatVector::writeContent(PACC::XML::Streamer& ioStreamer, bool inIndent) const
+void FltVec::FloatVector::writeContent(PACC::XML::Streamer& ioStreamer, bool inIndent) const
 {
 	Beagle_StackTraceBeginM();
 	ioStreamer.insertAttribute("size", uint2str(size()));

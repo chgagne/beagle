@@ -25,49 +25,49 @@
  */
 
 /*!
- *  \file   beagle/GA/src/CrossoverSBXFltVecOp.cpp
- *  \brief  Source code of class GA::CrossoverSBXFltVecOp.
+ *  \file   Beagle/FltVec/CrossoverBlendOp.cpp
+ *  \brief  Source code of class FltVec::CrossoverBlendFltVec.
  *  \author Christian Gagne
  *  \author Marc Parizeau
- *  $Revision: 1.14 $
+ *  $Revision: 1.21 $
  *  $Date: 2007/08/17 18:09:10 $
  */
 
-#include "beagle/GA.hpp"
+#include "Beagle/FltVec.hpp"
 
 #include <cfloat>
-#include <cmath>
 #include <float.h>
+#include <cmath>
 #include <algorithm>
 #include <string>
 
+using namespace std;
 using namespace Beagle;
 
 
 /*!
- *  \brief Construct a real-valued simulated binary crossover (SBX) operator.
+ *  \brief Construct a float vector blend crossover operator.
  *  \param inMatingPbName Mating probability parameter name.
  *  \param inName Name of the operator.
  */
-Beagle::GA::CrossoverSBXFltVecOp::CrossoverSBXFltVecOp(std::string inMatingPbName,
-        std::string inName) :
-		CrossoverOp(inMatingPbName, inName)
+Beagle::FltVec::CrossoverBlendOp::CrossoverBlendOp(string inMatingPbName, string inName) :
+		EC::CrossoverOp(inMatingPbName, inName)
 { }
 
 
 /*!
- *  \brief Register the parameters of the real-valued simulated binary crossover (SBX) operator.
+ *  \brief Register the parameters of the real-valued FltVec blend crossover operator.
  *  \param ioSystem System of the evolution.
  */
-void Beagle::GA::CrossoverSBXFltVecOp::registerParams(Beagle::System& ioSystem)
+void Beagle::FltVec::CrossoverBlendOp::registerParams(Beagle::System& ioSystem)
 {
 	Beagle_StackTraceBeginM();
 	{
 		Register::Description lDescription(
-		    "Individual SBX crossover prob.",
+		    "Individual blend crossover prob.",
 		    "Double",
 		    "0.3",
-		    "Real-valued simulated binary crossover (SBX) probability of a single individual."
+		    "Real-valued FltVec blend crossover probability of a single individual."
 		);
 		mMatingProba = castHandleT<Double>(
 		                   ioSystem.getRegister().insertEntry(mMatingProbaName, new Double(0.3f), lDescription));
@@ -108,60 +108,74 @@ void Beagle::GA::CrossoverSBXFltVecOp::registerParams(Beagle::System& ioSystem)
 		                ioSystem.getRegister().insertEntry("ga.float.minvalue", new DoubleArray(1,-DBL_MAX), lDescription));
 	}
 	{
+		std::ostringstream lOSS;
+		lOSS << "Increments of valid values assigned to vector's floats. ";
+		lOSS << "Value can be a scalar, which limit the value for all float ";
+		lOSS << "vector parameters, or a vector which limit the value for the parameters ";
+		lOSS << "individually. If the value is not evenly divisible by the ";
+		lOSS << "increment, the value will be set to the closest valid ";
+		lOSS << "value.";
 		Register::Description lDescription(
-		    "SBX crossover nu value",
-		    "Double",
-		    "2.0",
-		    "SBX crossover nu parameter moduling crossover."
+		    "Increments of valid values",
+		    "DoubleArray",
+		    "0.0",
+		    lOSS.str()
 		);
-		mNu = castHandleT<Double>(
-		          ioSystem.getRegister().insertEntry("ga.cxsbx.nu", new Double(2.0), lDescription));
+		mIncValue = castHandleT<DoubleArray>(
+		                ioSystem.getRegister().insertEntry("ga.float.inc", new DoubleArray(1,0.0), lDescription));
+	}
+	{
+		Register::Description lDescription(
+		    "Blend crossover alpha value",
+		    "Double",
+		    "0.5",
+		    "FltVec blend crossover alpha parameter moduling amplitude of operation."
+		);
+		mAlpha = castHandleT<Double>(
+		             ioSystem.getRegister().insertEntry("ga.cxblend.alpha", new Double(0.5), lDescription));
 	}
 	Beagle_StackTraceEndM();
 }
 
 
 /*!
- *  \brief Mate two GA individuals for real-valued SBX crossover.
+ *  \brief Mate two FltVec individuals for real-valued FltVec blend crossover.
  *  \param ioIndiv1   First individual to mate.
  *  \param ioContext1 Evolutionary context of the first individual.
  *  \param ioIndiv2   Second individual to mate.
  *  \param ioContext2 Evolutionary context of the second individual.
  *  \return True if the individuals are effectively mated, false if not.
  */
-bool Beagle::GA::CrossoverSBXFltVecOp::mate(Beagle::Individual& ioIndiv1,
+bool Beagle::FltVec::CrossoverBlendOp::mate(Beagle::Individual& ioIndiv1,
         Beagle::Context&    ioContext1,
         Beagle::Individual& ioIndiv2,
         Beagle::Context&    ioContext2)
 {
 	Beagle_StackTraceBeginM();
 	unsigned int lNbGenotypes = minOf<unsigned int>(ioIndiv1.size(), ioIndiv2.size());
-	if(lNbGenotypes==0) return false;
+	if(lNbGenotypes == 0) return false;
 
-	Beagle_LogObjectDebugM(
-	    ioContext1.getSystem().getLogger(),
-	    ioIndiv1
-	);
-	Beagle_LogObjectDebugM(
-	    ioContext1.getSystem().getLogger(),
-	    ioIndiv2
-	);
+	Beagle_LogDebugM(ioContext1.getSystem().getLogger(), ioIndiv1);
+	Beagle_LogDebugM(ioContext1.getSystem().getLogger(), ioIndiv2);
 
-	const double lNu=mNu->getWrappedValue();
 	for(unsigned int i=0; i<lNbGenotypes; ++i) {
-		GA::FloatVector::Handle lFloatVector1 = castHandleT<FloatVector>(ioIndiv1[i]);
-		GA::FloatVector::Handle lFloatVector2 = castHandleT<FloatVector>(ioIndiv2[i]);
+		FltVec::FloatVector::Handle lFloatVector1 = castHandleT<FloatVector>(ioIndiv1[i]);
+		FltVec::FloatVector::Handle lFloatVector2 = castHandleT<FloatVector>(ioIndiv2[i]);
 		const unsigned int lSize = minOf<unsigned int>(lFloatVector1->size(), lFloatVector2->size());
 		for(unsigned int j=0; j<lSize; ++j) {
 			const double lMaxVal = j<mMaxValue->size() ? (*mMaxValue)[j] : mMaxValue->back();
 			const double lMinVal = j<mMinValue->size() ? (*mMinValue)[j] : mMinValue->back();
+			const double lIncVal = j<mIncValue->size() ? (*mIncValue)[j] : mIncValue->back();
 			const double lU_i = ioContext1.getSystem().getRandomizer().rollUniform();
+			const double lGamma_i = ((1.0+2.0*mAlpha->getWrappedValue())*lU_i)-mAlpha->getWrappedValue();
 			const double lX1_i = (*lFloatVector1)[j];
 			const double lX2_i = (*lFloatVector2)[j];
-			double lBeta_i = (lU_i<=0.5) ? (2.0*lU_i) : (1.0/(2.0*(1.0-lU_i)));
-			lBeta_i = std::pow(lBeta_i, 1.0/(lNu+1.0));
-			(*lFloatVector1)[j] = 0.5 * (((1.0+lBeta_i)*lX1_i) + ((1.0-lBeta_i)*lX2_i));
-			(*lFloatVector2)[j] = 0.5 * (((1.0-lBeta_i)*lX1_i) + ((1.0+lBeta_i)*lX2_i));
+			(*lFloatVector1)[j] = ((1.0-lGamma_i)*lX1_i) + (lGamma_i*lX2_i);
+			(*lFloatVector2)[j] = (lGamma_i*lX1_i) + ((1.0-lGamma_i)*lX2_i);
+			if(lIncVal!=0.0) {
+				(*lFloatVector1)[j] = lIncVal * round((*lFloatVector1)[j] / lIncVal);
+				(*lFloatVector2)[j] = lIncVal * round((*lFloatVector2)[j] / lIncVal);
+			}
 			if((*lFloatVector1)[j] > lMaxVal) (*lFloatVector1)[j] = lMaxVal;
 			if((*lFloatVector1)[j] < lMinVal) (*lFloatVector1)[j] = lMinVal;
 			if((*lFloatVector2)[j] > lMaxVal) (*lFloatVector2)[j] = lMaxVal;
@@ -169,14 +183,8 @@ bool Beagle::GA::CrossoverSBXFltVecOp::mate(Beagle::Individual& ioIndiv1,
 		}
 	}
 
-	Beagle_LogObjectDebugM(
-	    ioContext1.getSystem().getLogger(),
-	    ioIndiv1
-	);
-	Beagle_LogObjectDebugM(
-	    ioContext1.getSystem().getLogger(),
-	    ioIndiv2
-	);
+	Beagle_LogDebugM(ioContext1.getSystem().getLogger(), ioIndiv1);
+	Beagle_LogDebugM(ioContext1.getSystem().getLogger(), ioIndiv2);
 
 	return true;
 	Beagle_StackTraceEndM();

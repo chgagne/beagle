@@ -25,15 +25,15 @@
  */
 
 /*!
- *  \file   beagle/GA/src/InitQRFltVecOp.cpp
- *  \brief  Source code of class GA::InitQRFltVecOp.
+ *  \file   Beagle/FltVec/InitGaussianQROp.cpp
+ *  \brief  Source code of class FltVec::InitGaussianQROp.
  *  \author Christian Gagne
  *  \author Marc Parizeau
  *  $Revision: 1.7 $
  *  $Date: 2007/08/17 18:09:10 $
  */
 
-#include "beagle/GA.hpp"
+#include "Beagle/FltVec.hpp"
 
 #include <cmath>
 #include <sstream>
@@ -43,26 +43,26 @@ using namespace Beagle;
 
 
 /*!
- *  \brief Construct a GA float vectors derandomized initialization operator.
+ *  \brief Construct a float vectors derandomized Gaussian initialization operator.
  *  \param inFloatVectorSize Size of the float vectors initialized.
  *  \param inReproProbaName Reproduction probability parameter name used in register.
  *  \param inName Name of the operator.
  */
-GA::InitQRFltVecOp::InitQRFltVecOp(unsigned int inFloatVectorSize,
-                                   std::string inReproProbaName,
-                                   std::string inName) :
-		InitFltVecOp(inFloatVectorSize, inReproProbaName, inName)
+FltVec::InitGaussianQROp::InitGaussianQROp(unsigned int inFloatVectorSize,
+                                           std::string inReproProbaName,
+                                           std::string inName) :
+		FltVec::InitGaussianOp(inFloatVectorSize, inReproProbaName, inName)
 { }
 
 
 /*!
- *  \brief Register the parameters of the derandomized GA float vector initialization operator.
+ *  \brief Register the parameters of the derandomized Gaussian float vector initialization operator.
  *  \param ioSystem System of the evolution.
  */
-void GA::InitQRFltVecOp::registerParams(System& ioSystem)
+void FltVec::InitGaussianQROp::registerParams(System& ioSystem)
 {
 	Beagle_StackTraceBeginM();
-	GA::InitFltVecOp::registerParams(ioSystem);
+	FltVec::InitGaussianOp::registerParams(ioSystem);
 	Component::Handle lQRComponent = ioSystem.haveComponent("QuasiRandom");
 	if(lQRComponent == NULL) ioSystem.addComponent(new QuasiRandom);
 	Beagle_StackTraceEndM();
@@ -70,13 +70,13 @@ void GA::InitQRFltVecOp::registerParams(System& ioSystem)
 
 
 /*!
- *  \brief Initialize the derandomized GA float vector initialization operator.
+ *  \brief Initialize the derandomized Gaussian float vector initialization operator.
  *  \param ioSystem System of the evolution.
  */
-void GA::InitQRFltVecOp::init(System& ioSystem)
+void FltVec::InitGaussianQROp::init(System& ioSystem)
 {
 	Beagle_StackTraceBeginM();
-	GA::InitFltVecOp::init(ioSystem);
+	FltVec::InitGaussianOp::init(ioSystem);
 	QuasiRandom::Handle lQRComponent =
 	    castHandleT<QuasiRandom>(ioSystem.getComponent("QuasiRandom"));
 	if(lQRComponent->getDimensionality() == 0) {
@@ -87,48 +87,53 @@ void GA::InitQRFltVecOp::init(System& ioSystem)
 
 
 /*!
- *  \brief Initialize real-valued GA individual with derandomized numbers.
+ *  \brief Initialize real-valued individual with derandomized Gaussian values.
  *  \param outIndividual Individual to initialize.
  *  \param ioContext Evolution context.
  */
-void GA::InitQRFltVecOp::initIndividual(Beagle::Individual& outIndividual, Context& ioContext)
+void FltVec::InitGaussianQROp::initIndividual(Beagle::Individual& outIndividual, Context& ioContext)
 {
 	Beagle_StackTraceBeginM();
 #ifndef BEAGLE_NDEBUG
 	if(mFloatVectorSize->getWrappedValue() == 0) {
-		string lMessage = "GA::InitQRFltVecOp::initIndividual: ";
+		string lMessage = "FltVec::InitGaussianQROp::initIndividual: ";
 		lMessage += "float vector size parameter is zero; ";
 		lMessage += "could not initialize the individuals!";
 		throw Beagle_RunTimeExceptionM(lMessage);
 	}
 #endif // BEAGLE_NDEBUG
 	const Factory& lFactory = ioContext.getSystem().getFactory();
-	GA::FloatVector::Alloc::Handle lFloatVectorAlloc =
-		castHandleT<GA::FloatVector::Alloc>(lFactory.getConceptAllocator("Genotype"));
-	GA::FloatVector::Handle lFloatVector =
-		castHandleT<GA::FloatVector>(lFloatVectorAlloc->allocate());
-	lFloatVector->resize(mFloatVectorSize->getWrappedValue());
+	FltVec::FloatVector::Alloc::Handle lVectorAlloc =
+		castHandleT<FltVec::FloatVector::Alloc>(lFactory.getConceptAllocator("Genotype"));
+	FltVec::FloatVector::Handle lVector =
+		castHandleT<FltVec::FloatVector>(lVectorAlloc->allocate());
+	lVector->resize(mFloatVectorSize->getWrappedValue());
 	outIndividual.clear();
-	outIndividual.push_back(lFloatVector);
+	outIndividual.push_back(lVector);
 	Vector lQRValues(mFloatVectorSize->getWrappedValue());
 	QuasiRandom::Handle lQRComponent =
 	    castHandleT<QuasiRandom>(ioContext.getSystem().getComponent("QuasiRandom"));
-	lQRComponent->getUniformVector(lQRValues);
+	Vector lQRValues(lVector->size());
+	lQRComponent->getGaussianVector(lQRValues);
 	Beagle_AssertM(mFloatVectorSize->getWrappedValue() == lQRValues.size());
-	for(unsigned int j=0; j<lFloatVector->size(); ++j) {
+	for(unsigned int j=0; j<lVector->size(); ++j) {
 		const double lMaxVal = j<mMaxInitValue->size() ? (*mMaxInitValue)[j] : mMaxInitValue->back();
 		const double lMinVal = j<mMinInitValue->size() ? (*mMinInitValue)[j] : mMinInitValue->back();
 		const double lIncVal = j<mIncValue->size() ? (*mIncValue)[j] : mIncValue->back();
-		(*lFloatVector)[j] = ((lMaxVal-lMinVal)*lQRValues[j])+lMinVal;
+		const double lMean   = j<mMean->size() ? (*mMean)[j] : mMean->back();
+		const double lStdev  = j<mStdev->size() ? (*mStdev)[j] : mStdev->back();
+		(*lVector)[j] = (lQRValues[j] * lSigma) + lMu;
+		if((*lVector)[j] > lMaxVal) (*lVector)[j] = lMaxVal;
+		if((*lVector)[j] < lMinVal) (*lVector)[j] = lMinVal;
 		if(std::fabs(lIncVal)>1e-12) {
-			(*lFloatVector)[j] = lIncVal * round((*lFloatVector)[j] / lIncVal);
-			if((*lFloatVector)[j] > lMaxVal) (*lFloatVector)[j] = lMaxVal;
-			if((*lFloatVector)[j] < lMinVal) (*lFloatVector)[j] = lMinVal;
+			(*lVector)[j] = lIncVal * round((*lVector)[j] / lIncVal);
+			if((*lVector)[j] > lMaxVal) (*lVector)[j] -= lIncVal;
+			if((*lVector)[j] < lMinVal) (*lVector)[j] += lIncVal;
 		}
 	}
 	Beagle_LogObjectDebugM(
 	    ioContext.getSystem().getLogger(),
-	    *lFloatVector
+	    *lVector
 	);
 	Beagle_StackTraceEndM();
 }

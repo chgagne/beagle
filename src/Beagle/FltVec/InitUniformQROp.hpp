@@ -25,59 +25,53 @@
  */
 
 /*!
- *  \file   beagle/GA/InitQRFltVecOp.hpp
- *  \brief  Definition of the class GA::InitQRFltVecOp.
+ *  \file   Beagle/FltVec/InitUniformQROp.hpp
+ *  \brief  Definition of the class FltVec::InitUniformQROp.
  *  \author Christian Gagne
  *  $Revision: 1.5 $
  *  $Date: 2007/08/08 19:26:34 $
  */
 
-#ifndef Beagle_GA_InitQRFltVecOp_hpp
-#define Beagle_GA_InitQRFltVecOp_hpp
+#ifndef Beagle_FltVec_InitUniformQROp_hpp
+#define Beagle_FltVec_InitUniformQROp_hpp
 
 #include <string>
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Object.hpp"
-#include "beagle/AllocatorT.hpp"
-#include "beagle/PointerT.hpp"
-#include "beagle/ContainerT.hpp"
-#include "beagle/InitializationOp.hpp"
-#include "beagle/Float.hpp"
-#include "beagle/GA/InitFltVecOp.hpp"
+#include "Beagle/Core.hpp"
+#include "Beagle/EC.hpp"
+#include "Beagle/FltVec/InitUniformOp.hpp"
 
 
 namespace Beagle
 {
-namespace GA
+
+namespace FltVec
 {
 
 /*!
- *  \class InitQRFltVecOp beagle/GA/InitQRFltVecOp.hpp "beagle/GA/InitQRFltVecOp.hpp"
- *  \brief Real-valued GA genotype derandomized initialization operator class.
- *  \ingroup GAF
- *  \ingroup GAFV
+ *  \class InitUniformQROp Beagle/FltVec/InitUniformQROp.hpp "Beagle/FltVec/InitUniformQROp.hpp"
+ *  \brief Real-valued genotype derandomized initialization operator class.
+ *  \ingroup FltVecF
  */
-class InitQRFltVecOp : public GA::InitFltVecOp
+class InitUniformQROp : public FltVec::InitUniformOp
 {
 
 public:
 
-	//! GA::InitQRFltVecOp allocator type.
-	typedef AllocatorT<InitQRFltVecOp,GA::InitFltVecOp::Alloc>
+	//! FltVec::InitUniformQROp allocator type.
+	typedef AllocatorT<InitUniformQROp,FltVec::InitUniformOp::Alloc>
 	Alloc;
-	//! GA::InitQRFltVecOp handle type.
-	typedef PointerT<InitQRFltVecOp,GA::InitFltVecOp::Handle>
+	//! FltVec::InitUniformQROp handle type.
+	typedef PointerT<InitUniformQROp,FltVec::InitUniformOp::Handle>
 	Handle;
-	//! GA::InitQRFltVecOp bag type.
-	typedef ContainerT<InitQRFltVecOp,GA::InitFltVecOp::Bag>
+	//! FltVec::InitUniformQROp bag type.
+	typedef ContainerT<InitUniformQROp,FltVec::InitUniformOp::Bag>
 	Bag;
 
-	explicit InitQRFltVecOp(unsigned int inFloatVectorSize=0,
-	                        std::string inReproProbaName="ec.repro.prob",
-	                        std::string inName="GA-InitQRFltVecOp");
-	virtual ~InitQRFltVecOp()
+	explicit InitUniformQROp(unsigned int inFloatVectorSize=0,
+	                         std::string inReproProbaName="ec.repro.prob",
+	                         std::string inName="FltVec-InitUniformQROp");
+	virtual ~InitUniformQROp()
 	{ }
 
 	virtual void registerParams(System& ioSystem);
@@ -89,4 +83,4 @@ public:
 }
 }
 
-#endif // Beagle_GA_InitQRFltVecOp_hpp
+#endif // Beagle_FltVec_InitUniformQROp_hpp

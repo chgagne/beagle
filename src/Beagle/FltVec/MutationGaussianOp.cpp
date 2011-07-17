@@ -25,15 +25,15 @@
  */
 
 /*!
- *  \file   beagle/GA/src/MutationGaussianFltVecOp.cpp
- *  \brief  Source code of class GA::MutationGaussianFltVecOp.
+ *  \file   Beagle/FltVec/MutationGaussianOp.cpp
+ *  \brief  Source code of class FltVec::MutationGaussianOp.
  *  \author Christian Gagne
  *  \author Marc Parizeau
  *  $Revision: 1.30 $
  *  $Date: 2007/08/17 18:09:10 $
  */
 
-#include "beagle/GA.hpp"
+#include "beagle/FltVec.hpp"
 
 #include <cfloat>
 #include <float.h>    // To get FLT_MAX on Borland C++ Builder
@@ -53,7 +53,7 @@ using namespace Beagle;
  *  \param inMutateGaussSigmaName Gaussian mutation std deviation parameter name used in register.
  *  \param inName Name of the operator.
  */
-GA::MutationGaussianFltVecOp::MutationGaussianFltVecOp(std::string inMutationPbName,
+FltVec::MutationGaussianOp::MutationGaussianOp(std::string inMutationPbName,
         std::string inMutateFloatPbName,
         std::string inMutateGaussMuName,
         std::string inMutateGaussSigmaName,
@@ -66,10 +66,10 @@ GA::MutationGaussianFltVecOp::MutationGaussianFltVecOp(std::string inMutationPbN
 
 
 /*!
- *  \brief Register the parameters of the real-valued GA Gaussian mutation operator.
+ *  \brief Register the parameters of the real-valued Gaussian mutation operator.
  *  \param ioSystem System of the evolution.
  */
-void GA::MutationGaussianFltVecOp::registerParams(System& ioSystem)
+void FltVec::MutationGaussianOp::registerParams(System& ioSystem)
 {
 	Beagle_StackTraceBeginM();
 	{
@@ -77,7 +77,7 @@ void GA::MutationGaussianFltVecOp::registerParams(System& ioSystem)
 		    "Indiv. Gaussian mutation prob.",
 		    "Double",
 		    "1.0",
-		    "Gaussian mutation probability for each real-valued GA individual."
+		    "Gaussian mutation probability for each real-valued individual."
 		);
 		mMutationProba = castHandleT<Double>(
 		                     ioSystem.getRegister().insertEntry(mMutationPbName, new Double(1.0f), lDescription));
@@ -88,7 +88,7 @@ void GA::MutationGaussianFltVecOp::registerParams(System& ioSystem)
 		    "Value's Gaussian mutation prob.",
 		    "Float",
 		    "0.1",
-		    "Single value Gaussian mutation probability for the real-valued GA individual."
+		    "Single value Gaussian mutation probability for the real-valued individual."
 		);
 		mMutateFloatPb = castHandleT<Float>(
 		                     ioSystem.getRegister().insertEntry(mMutateFloatPbName, new Float(0.1f), lDescription));
@@ -142,7 +142,7 @@ void GA::MutationGaussianFltVecOp::registerParams(System& ioSystem)
 		    lOSS.str()
 		);
 		mMaxValue = castHandleT<DoubleArray>(
-		                ioSystem.getRegister().insertEntry("ga.float.maxvalue", new DoubleArray(1,DBL_MAX), lDescription));
+		                ioSystem.getRegister().insertEntry("fltvec.float.maxvalue", new DoubleArray(1,DBL_MAX), lDescription));
 	}
 	{
 		std::ostringstream lOSS;
@@ -159,7 +159,7 @@ void GA::MutationGaussianFltVecOp::registerParams(System& ioSystem)
 		    lOSS.str()
 		);
 		mMinValue = castHandleT<DoubleArray>(
-		                ioSystem.getRegister().insertEntry("ga.float.minvalue", new DoubleArray(1,-DBL_MAX), lDescription));
+		                ioSystem.getRegister().insertEntry("fltvec.float.minvalue", new DoubleArray(1,-DBL_MAX), lDescription));
 	}
 	{
 		std::ostringstream lOSS;
@@ -176,7 +176,7 @@ void GA::MutationGaussianFltVecOp::registerParams(System& ioSystem)
 		    lOSS.str()
 		);
 		mIncValue = castHandleT<DoubleArray>(
-		                ioSystem.getRegister().insertEntry("ga.float.inc", new DoubleArray(1,0.0), lDescription));
+		                ioSystem.getRegister().insertEntry("fltvec.float.inc", new DoubleArray(1,0.0), lDescription));
 	}
 	Beagle_StackTraceEndM();
 }
@@ -188,7 +188,7 @@ void GA::MutationGaussianFltVecOp::registerParams(System& ioSystem)
  *  \param ioContext Context of the evolution.
  *  \return True if the individual is effectively mutated, false if not.
  */
-bool GA::MutationGaussianFltVecOp::mutate(Beagle::Individual& ioIndividual, Context& ioContext)
+bool FltVec::MutationGaussianOp::mutate(Beagle::Individual& ioIndividual, Context& ioContext)
 {
 	Beagle_StackTraceBeginM();
 	bool lMutated = false;
@@ -201,7 +201,7 @@ bool GA::MutationGaussianFltVecOp::mutate(Beagle::Individual& ioIndividual, Cont
 	);
 
 	for(unsigned int i=0; i<ioIndividual.size(); i++) {
-		GA::FloatVector::Handle lVector = castHandleT<GA::FloatVector>(ioIndividual[i]);
+		FltVec::FloatVector::Handle lVector = castHandleT<FltVec::FloatVector>(ioIndividual[i]);
 		Beagle_LogVerboseM(
 		    ioContext.getSystem().getLogger(),
 		    string("Gaussian mutation the ")+uint2ordinal(i+1)+" float vector"
@@ -223,9 +223,13 @@ bool GA::MutationGaussianFltVecOp::mutate(Beagle::Individual& ioIndividual, Cont
 				Beagle_AssertM(lSigma>=0.0);
 				const double lMValue = ioContext.getSystem().getRandomizer().rollGaussian(lMu,lSigma);
 				(*lVector)[j] += lMValue;
-				if(lIncVal!=0.0) (*lVector)[j] = lIncVal * round((*lVector)[j] / lIncVal);
 				if((*lVector)[j] > lMaxVal) (*lVector)[j] = lMaxVal;
 				if((*lVector)[j] < lMinVal) (*lVector)[j] = lMinVal;
+				if(std::fabs(lIncVal)>1e-12) {
+					(*lVector)[j] = lIncVal * round((*lVector)[j] / lIncVal);
+					if((*lVector)[j] > lMaxVal) (*lVector)[j] -= lIncVal;
+					if((*lVector)[j] < lMinVal) (*lVector)[j] += lIncVal;
+				}
 				lMutated = true;
 				Beagle_LogDebugM(
 				    ioContext.getSystem().getLogger(),
@@ -261,7 +265,7 @@ bool GA::MutationGaussianFltVecOp::mutate(Beagle::Individual& ioIndividual, Cont
  *  \param inIter XML iterator to use to read mutation operator.
  *  \param ioSystem Evolutionary system.
  */
-void GA::MutationGaussianFltVecOp::readWithSystem(PACC::XML::ConstIterator inIter, System& ioSystem)
+void FltVec::MutationGaussianOp::readWithSystem(PACC::XML::ConstIterator inIter, System& ioSystem)
 {
 	Beagle_StackTraceBeginM();
 	if((inIter->getType()!=PACC::XML::eData) || (inIter->getValue()!=getName())) {
@@ -286,7 +290,7 @@ void GA::MutationGaussianFltVecOp::readWithSystem(PACC::XML::ConstIterator inIte
  *  \param ioStreamer XML streamer to write mutation operator into.
  *  \param inIndent Whether XML output should be indented.
  */
-void GA::MutationGaussianFltVecOp::writeContent(PACC::XML::Streamer& ioStreamer, bool inIndent) const
+void FltVec::MutationGaussianOp::writeContent(PACC::XML::Streamer& ioStreamer, bool inIndent) const
 {
 	Beagle_StackTraceBeginM();
 	Beagle::MutationOp::writeContent(ioStreamer, inIndent);
