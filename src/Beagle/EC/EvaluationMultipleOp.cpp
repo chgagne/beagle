@@ -261,8 +261,7 @@ Fitness::Bag::Handle EvaluationMultipleOp::evaluateIndividuals(Individual::Bag& 
 		}
 		Beagle_LogDebugM(
 		    lContext.getSystem().getLogger(),
-		    uint2ordinal(i+1)+std::string(" case: ")+
-		    lOSS.str()
+		    uint2ordinal(i+1) << " case: " << lOSS.str()
 		);
 
 		// Call evalutateCase()
@@ -347,7 +346,7 @@ void EvaluationMultipleOp::operate(Deme& ioDeme, Context& ioContext)
 	Beagle_LogTraceM(
 	    ioContext.getSystem().getLogger(),
 	    "Evaluating the fitness of the individuals in the " << 
-	    uint2ordinal(ioContext.getDemeIndex()+1 << " deme"
+	    uint2ordinal(ioContext.getDemeIndex()+1) << " deme"
 	);
 
 	Beagle_AssertM( ioDeme.size()!=0 );
@@ -363,7 +362,7 @@ void EvaluationMultipleOp::operate(Deme& ioDeme, Context& ioContext)
 			lEvalVector.push_back(i);
 			Beagle_LogDebugM(
 			    ioContext.getSystem().getLogger(),
-			    std::string("Added ")+uint2ordinal(i+1)+std::string(" individual for evaluation.")
+			    "Added " << uint2ordinal(i+1) << " individual for evaluation."
 			);
 		}
 	}
@@ -425,7 +424,7 @@ void EvaluationMultipleOp::operate(Deme& ioDeme, Context& ioContext)
 		for (unsigned int i=0; i<lIndiCounter; i++) {
 			Beagle_LogDebugM(
 			    ioContext.getSystem().getLogger(),
-			    "Considering fitness of the " << uint2ordinal(lContexts[i]->getIndividualIndex()+1 << " individual"
+			    "Considering fitness of the " << uint2ordinal(lContexts[i]->getIndividualIndex()+1) << " individual"
 			);
 			Beagle_AssertM( i < lFitnessBag->size() );
 			Fitness::Handle lFitness = lFitnessBag->at(i);
@@ -437,9 +436,8 @@ void EvaluationMultipleOp::operate(Deme& ioDeme, Context& ioContext)
 				lHistory->trace(ioContext, std::vector<HistoryID>(), lIndividuals[i], getName(), "evaluation");
 			}
 
-			Beagle_LogObjectM(
+			Beagle_LogVerboseM(
 			    ioContext.getSystem().getLogger(),
-			    Logger::eVerbose,
 			    *lIndividuals[i]->getFitness()
 			);
 		}

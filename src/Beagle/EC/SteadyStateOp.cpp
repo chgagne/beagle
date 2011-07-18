@@ -88,11 +88,10 @@ void SteadyStateOp::operate(Deme& ioDeme, Context& ioContext)
 	Beagle_ValidateParameterM(mElitismKeepSize->getWrappedValue() <= ioDeme.size(),
 	                          "ec.elite.keepsize",
 	                          "The elistism keepsize must be less than the deme size!");
-
 	Beagle_LogTraceM(
-	    ioContext.getSystem().getLogger(),
-	    "Processing using steady-state replacement strategy the " <<
-	    uint2ordinal(ioContext.getDemeIndex()+1) << " deme"
+		ioContext.getSystem().getLogger(),
+		"Processing using steady-state replacement strategy the " <<
+		uint2ordinal(ioContext.getDemeIndex()+1) << " deme"
 	);
 	Beagle_LogTraceM(ioContext.getSystem().getLogger(), (*this));
 

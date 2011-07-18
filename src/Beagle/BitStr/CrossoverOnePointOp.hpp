@@ -77,7 +77,7 @@ public:
 	 */
 	explicit CrossoverOnePointOp(std::string inMatingPbName="bitstr.cx1p.prob",
 	                             std::string inName="BitStr-CrossoverOnePointOp") :
-			BitStr::CrossoverOnePointOpT<BitStr::BitString>(inMatingPbName, inName)
+			EC::CrossoverOnePointOpT<BitStr::BitString>(inMatingPbName, inName)
 	{ }
 
 	virtual ~CrossoverOnePointOp()

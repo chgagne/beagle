@@ -272,7 +272,7 @@ void MigrationMapOp::readWithSystem(PACC::XML::ConstIterator inIter, System& ioS
 		mReplacementOp = castHandleT<SelectionOp>(lOpAlloc->allocate());
 		mReplacementOp->setName(lReplaceOpName);
 	}
-	Beagle_StackTraceEndM("void MigrationMapOp::readWithSystem(PACC::XML::ConstIterator, System&)")
+	Beagle_StackTraceEndM();
 }
 
 

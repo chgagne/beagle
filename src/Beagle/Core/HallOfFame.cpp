@@ -174,25 +174,6 @@ const std::string& HallOfFame::getType() const
 
 
 /*!
- *  \brief Log individuals inserted in the hall-of-fame.
- *  \param inLogLevel Minimal log level needed to log the hall-of-fame.
- *  \param ioContext Context to use.
- */
-void HallOfFame::log(Logger::LogLevel inLogLevel, Context& ioContext) const
-{
-	Beagle_StackTraceBeginM();
-	if(ioContext.getSystem().getLogger().shouldLog(inLogLevel) == false) return;
-	ioContext.getSystem().getLogger().log("Individuals of hall-of-fame are following", inLogLevel, __FILE__, __PRETTY_FUNCTION__);
-	for(unsigned int i=0; i<size(); ++i) {
-		std::ostringstream lOSS;
-		lOSS << *(*this)[i].mIndividual;
-		ioContext.getSystem().getLogger().log(lOSS.str(), inLogLevel, __FILE__, __PRETTY_FUNCTION__);
-	}
-	Beagle_StackTraceEndM();
-}
-
-
-/*!
  *  \brief Read a hall-of-fame from an XML subtree.
  *  \param inIter XML iterator to read the hall-of-fame from.
  *  \param ioContext Evolutionary context to use to read the hall-of-fame.
@@ -345,10 +326,7 @@ bool HallOfFame::updateWithDeme(unsigned int inSizeHOF, const Deme& inDeme, Cont
 			HallOfFame::Entry lEntry(lIndivCopy, ioContext.getGeneration(), ioContext.getDemeIndex());
 			mEntries.push_back(lEntry);
 			std::push_heap(mEntries.begin(), mEntries.end(), std::greater<HallOfFame::Entry>());
-			Beagle_LogObjectDebugM(
-			    ioContext.getSystem().getLogger(),
-			    *lTempPop[0]
-			);
+			Beagle_LogDebugM(ioContext.getSystem().getLogger(), *lTempPop[0]);
 			++lAddedIndividuals;
 			lHOFModified = true;
 		}

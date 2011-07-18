@@ -112,11 +112,11 @@ void FltVec::Package::configure(System& ioSystem)
  *
  *  FltVec::Package depends on EC::Package.
  */
-EC::Package::Bag FltVec::Package::listDependencies(void)
+PackageAbstract::Bag FltVec::Package::listDependencies(void)
 {
 	Beagle_StackTraceBeginM();
 	PackageAbstract::Bag lDependencies;
-	lDependencies.push_back(new PackageBase());
+	lDependencies.push_back(new EC::Package());
 	return lDependencies;
 	Beagle_StackTraceEndM();
 }

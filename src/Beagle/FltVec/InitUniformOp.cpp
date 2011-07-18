@@ -165,10 +165,7 @@ void FltVec::InitUniformOp::initIndividual(Beagle::Individual& outIndividual, Co
 		}
 	}
 
-	Beagle_LogObjectDebugM(
-	    ioContext.getSystem().getLogger(),
-	    *lFloatVector
-	);
+	Beagle_LogDebugM(ioContext.getSystem().getLogger(), *lFloatVector);
 	Beagle_StackTraceEndM();
 }
 

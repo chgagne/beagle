@@ -40,7 +40,6 @@
 
 #include "Beagle/Core.hpp"
 #include "Beagle/EC.hpp"
-#include "beagle/CrossoverOp.hpp"
 
 
 namespace Beagle

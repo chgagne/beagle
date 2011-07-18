@@ -126,10 +126,7 @@ void FltVec::InitUniformQROp::initIndividual(Beagle::Individual& outIndividual, 
 			if((*lFloatVector)[j] < lMinVal) (*lFloatVector)[j] += lIncVal;
 		}
 	}
-	Beagle_LogObjectDebugM(
-	    ioContext.getSystem().getLogger(),
-	    *lFloatVector
-	);
+	Beagle_LogDebugM(ioContext.getSystem().getLogger(), *lFloatVector);
 	Beagle_StackTraceEndM();
 }
 

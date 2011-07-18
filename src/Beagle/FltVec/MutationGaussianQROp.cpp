@@ -58,11 +58,11 @@ FltVec::MutationGaussianQROp::MutationGaussianQROp(std::string inMutationPbName,
         std::string inMutateGaussMuName,
         std::string inMutateGaussSigmaName,
         std::string inName) :
-		FltVec::MutationGaussianFltVecOp(inMutationPbName,
-		                                 inMutateFloatPbName,
-		                                 inMutateGaussMuName,
-		                                 inMutateGaussSigmaName,
-		                                 inName)
+		FltVec::MutationGaussianOp(inMutationPbName,
+		                           inMutateFloatPbName,
+		                           inMutateGaussMuName,
+		                           inMutateGaussSigmaName,
+		                           inName)
 { }
 
 
@@ -73,7 +73,7 @@ FltVec::MutationGaussianQROp::MutationGaussianQROp(std::string inMutationPbName,
 void FltVec::MutationGaussianQROp::registerParams(System& ioSystem)
 {
 	Beagle_StackTraceBeginM();
-	FltVec::MutationGaussianFltVecOp::registerParams(ioSystem);
+	FltVec::MutationGaussianOp::registerParams(ioSystem);
 	Component::Handle lQRComponent = ioSystem.haveComponent("QuasiRandom");
 	if(lQRComponent == NULL) ioSystem.addComponent(new QuasiRandom);
 	Beagle_StackTraceEndM();
@@ -87,7 +87,7 @@ void FltVec::MutationGaussianQROp::registerParams(System& ioSystem)
 void FltVec::MutationGaussianQROp::init(System& ioSystem)
 {
 	Beagle_StackTraceBeginM();
-	FltVec::MutationGaussianFltVecOp::init(ioSystem);
+	FltVec::MutationGaussianOp::init(ioSystem);
 	QuasiRandom::Handle lQRComponent =
 	    castHandleT<QuasiRandom>(ioSystem.getComponent("QuasiRandom"));
 	if(lQRComponent->getDimensionality() == 0) {
@@ -130,10 +130,7 @@ bool FltVec::MutationGaussianQROp::mutate(Beagle::Individual& ioIndividual, Cont
 		    ioContext.getSystem().getLogger(),
 		    "Gaussian derandomized mutation the " << uint2ordinal(i+1) << " float vector"
 		);
-		Beagle_LogObjectDebugM(
-		    ioContext.getSystem().getLogger(),
-		    *lVector
-		);
+		Beagle_LogDebugM(ioContext.getSystem().getLogger(), *lVector);
 
 		QuasiRandom::Handle lQRComponent =
 		    castHandleT<QuasiRandom>(ioContext.getSystem().getComponent("QuasiRandom"));
@@ -174,7 +171,7 @@ bool FltVec::MutationGaussianQROp::mutate(Beagle::Individual& ioIndividual, Cont
 			    ioContext.getSystem().getLogger(),
 			    "The float vector has been mutated"
 			);
-			Beagle_LogObjectDebugM(
+			Beagle_LogDebugM(
 			    ioContext.getSystem().getLogger(),
 			    *lVector
 			);

@@ -77,7 +77,7 @@ public:
 	 */
 	explicit CrossoverTwoPointsOp(std::string inMatingPbName="bitstr.cx2p.prob",
 	                              std::string inName="BitStr-CrossoverTwoPointsOp") :
-			BitStr::CrossoverTwoPointsOpT<BitStr::BitString>(inMatingPbName, inName)
+			EC::CrossoverTwoPointsOpT<BitStr::BitString>(inMatingPbName, inName)
 	{ }
 
 	virtual ~CrossoverTwoPointsOp()

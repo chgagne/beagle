@@ -54,19 +54,19 @@ namespace FltVec
  *  \brief Real-valued Gaussian mutation operator class.
  *  \ingroup FltVecF
  */
-class MutationGaussianOp : public MutationOp
+class MutationGaussianOp : public EC::MutationOp
 {
 
 public:
 
 	//! FltVec::MutationGaussianOp allocator type.
-	typedef AllocatorT<MutationGaussianOp,MutationOp::Alloc>
+	typedef AllocatorT<MutationGaussianOp,EC::MutationOp::Alloc>
 	Alloc;
 	//! FltVec::MutationGaussianOp handle type.
-	typedef PointerT<MutationGaussianOp,MutationOp::Handle>
+	typedef PointerT<MutationGaussianOp,EC::MutationOp::Handle>
 	Handle;
 	//! FltVec::MutationGaussianOp bag type.
-	typedef ContainerT<MutationGaussianOp,MutationOp::Bag>
+	typedef ContainerT<MutationGaussianOp,EC::MutationOp::Bag>
 	Bag;
 
 	explicit MutationGaussianOp(std::string inMutationPbName="fltvec.mutgauss.indpb",

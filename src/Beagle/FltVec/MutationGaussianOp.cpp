@@ -206,10 +206,7 @@ bool FltVec::MutationGaussianOp::mutate(Beagle::Individual& ioIndividual, Contex
 		    ioContext.getSystem().getLogger(),
 		    string("Gaussian mutation the ")+uint2ordinal(i+1)+" float vector"
 		);
-		Beagle_LogObjectDebugM(
-		    ioContext.getSystem().getLogger(),
-		    *lVector
-		);
+		Beagle_LogDebugM(ioContext.getSystem().getLogger(), *lVector);
 		for(unsigned int j=0; j<lVector->size(); j++) {
 			const float lRolledPb = ioContext.getSystem().getRandomizer().rollUniform();
 			if(lRolledPb <= mMutateFloatPb->getWrappedValue()) {
@@ -244,15 +241,9 @@ bool FltVec::MutationGaussianOp::mutate(Beagle::Individual& ioIndividual, Contex
 			    ioContext.getSystem().getLogger(),
 			    "The float vector has been mutated"
 			);
-			Beagle_LogObjectDebugM(
-			    ioContext.getSystem().getLogger(),
-			    *lVector
-			);
+			Beagle_LogDebugM(ioContext.getSystem().getLogger(), *lVector);
 		} else {
-			Beagle_LogVerboseM(
-			    ioContext.getSystem().getLogger(),
-			    "The float vector has not been mutated"
-			);
+			Beagle_LogVerboseM(ioContext.getSystem().getLogger(), "The float vector has not been mutated");
 		}
 	}
 	return lMutated;
@@ -293,7 +284,7 @@ void FltVec::MutationGaussianOp::readWithSystem(PACC::XML::ConstIterator inIter,
 void FltVec::MutationGaussianOp::writeContent(PACC::XML::Streamer& ioStreamer, bool inIndent) const
 {
 	Beagle_StackTraceBeginM();
-	Beagle::MutationOp::writeContent(ioStreamer, inIndent);
+	EC::MutationOp::writeContent(ioStreamer, inIndent);
 	ioStreamer.insertAttribute("mutfloatpb", mMutateFloatPbName);
 	ioStreamer.insertAttribute("mutgaussmu", mMutateGaussMuName);
 	ioStreamer.insertAttribute("mutgausssigma", mMutateGaussSigmaName);

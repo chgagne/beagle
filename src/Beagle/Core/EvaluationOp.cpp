@@ -330,15 +330,7 @@ void EvaluationOp::registerParams(System& ioSystem)
 Fitness::Handle EvaluationOp::test(Individual::Handle inIndividual, System::Handle ioSystem)
 {
 	Beagle_StackTraceBeginM();
-	Beagle_LogInfoM(
-	    ioSystem->getLogger(),
-	    std::string("Testing the following individual:")
-	);
-	Beagle_LogObjectM(
-	    ioSystem->getLogger(),
-	    Beagle::Logger::eInfo,
-	    *inIndividual
-	);
+	Beagle_LogInfoM(ioSystem->getLogger(), "Testing the following individual:" << (*inIndividual));
 
 	Context::Alloc::Handle lContextAlloc =
 	    castHandleT<Context::Alloc>(ioSystem->getFactory().getConceptAllocator("Context"));
@@ -347,10 +339,7 @@ Fitness::Handle EvaluationOp::test(Individual::Handle inIndividual, System::Hand
 	lContext->setIndividualHandle(inIndividual);
 	Fitness::Handle lFitness = evaluate(*inIndividual, *lContext);
 
-	Beagle_LogInfoM(
-	    ioSystem->getLogger(),
-	    "New fitness of the individual: " << *lFitness
-	);
+	Beagle_LogInfoM(ioSystem->getLogger(), "New fitness of the individual: " << *lFitness);
 
 	return lFitness;
 	Beagle_StackTraceEndM();
@@ -379,13 +368,10 @@ void EvaluationOp::updateHallOfFameWithDeme(Deme& ioDeme, Context& ioContext)
 			ioDeme.addMember(lHoF);
 		}
 		lHoF->updateWithDeme(mDemeHOFSize->getWrappedValue(), ioDeme, ioContext);
-		lHoF->log(Logger::eVerbose, ioContext);
+		Beagle_LogVerboseM(ioContext.getSystem().getLogger(), *lHoF);
 	}
 	if(mVivaHOFSize->getWrappedValue() > 0) {
-		Beagle_LogDetailedM(
-		    ioContext.getSystem().getLogger(),
-		    "Updating the vivarium's hall-of-fame"
-		);
+		Beagle_LogDetailedM(ioContext.getSystem().getLogger(), "Updating the vivarium's hall-of-fame");
 		HallOfFame::Handle lHoF = ioContext.getVivarium().getHallOfFame();
 		if(lHoF == NULL) {
 			const Factory& lFactory = ioContext.getSystem().getFactory();
@@ -395,7 +381,7 @@ void EvaluationOp::updateHallOfFameWithDeme(Deme& ioDeme, Context& ioContext)
 			ioContext.getVivarium().addMember(lHoF);
 		}
 		lHoF->updateWithDeme(mVivaHOFSize->getWrappedValue(), ioDeme, ioContext);
-		lHoF->log(Logger::eVerbose, ioContext);
+		Beagle_LogVerboseM(ioContext.getSystem().getLogger(), *lHoF);
 	}
 	Beagle_StackTraceEndM();
 }

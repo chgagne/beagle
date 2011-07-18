@@ -101,7 +101,6 @@ public:
 	virtual void                copy(const Member& inOriginal, System& ioSystem);
 	virtual const std::string&  getName() const;
 	virtual const std::string&  getType() const;
-	void                        log(Logger::LogLevel inLogLevel, Context& ioContext) const;
 	virtual void                readWithContext(PACC::XML::ConstIterator inIter, Context& ioContext);
 	void                        sort();
 	virtual bool                updateWithDeme(unsigned int inSizeHOF, const Deme& inDeme, Context& ioContext);

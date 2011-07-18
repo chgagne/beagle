@@ -53,19 +53,19 @@ namespace FltVec
  *  \brief Real-valued genotype derandomized Gaussian initialization operator class.
  *  \ingroup FltVecF
  */
-class InitGaussianQROp : public FltVec::InitUniformOp
+class InitGaussianQROp : public FltVec::InitGaussianOp
 {
 
 public:
 
 	//! FltVec::InitGaussianQROp allocator type.
-	typedef AllocatorT<InitGaussianQROp,FltVec::InitUniformOp::Alloc>
+	typedef AllocatorT<InitGaussianQROp,FltVec::InitGaussianOp::Alloc>
 	Alloc;
 	//! FltVec::InitGaussianQROp handle type.
-	typedef PointerT<InitGaussianQROp,FltVec::InitUniformOp::Handle>
+	typedef PointerT<InitGaussianQROp,FltVec::InitGaussianOp::Handle>
 	Handle;
 	//! FltVec::InitGaussianQROp bag type.
-	typedef ContainerT<InitGaussianQROp,FltVec::InitUniformOp::Bag>
+	typedef ContainerT<InitGaussianQROp,FltVec::InitGaussianOp::Bag>
 	Bag;
 
 	explicit InitGaussianQROp(unsigned int inFloatVectorSize=0,

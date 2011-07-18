@@ -73,7 +73,7 @@ void BitStr::MutationFlipBitOp::registerParams(System& ioSystem)
 		mMutationProba = castHandleT<Double>(
 		                     ioSystem.getRegister().insertEntry(mMutationPbName, new Double(1.0f), lDescription));
 	}
-	Beagle::MutationOp::registerParams(ioSystem);
+	EC::MutationOp::registerParams(ioSystem);
 	{
 		Register::Description lDescription(
 		    "Flip mutation probability",
@@ -123,7 +123,7 @@ bool BitStr::MutationFlipBitOp::mutate(Beagle::Individual& ioIndividual, Context
 			    ioContext.getSystem().getLogger(),
 			    std::string("The bitstring has been flip mutated")
 			);
-			Beagle_LogObjectDebugM(ioContext.getSystem().getLogger(), *lBS);
+			Beagle_LogDebugM(ioContext.getSystem().getLogger(), *lBS);
 		} else {
 			Beagle_LogVerboseM(
 			    ioContext.getSystem().getLogger(),
@@ -165,7 +165,7 @@ void BitStr::MutationFlipBitOp::readWithSystem(PACC::XML::ConstIterator inIter, 
 void BitStr::MutationFlipBitOp::writeContent(PACC::XML::Streamer& ioStreamer, bool inIndent) const
 {
 	Beagle_StackTraceBeginM();
-	Beagle::MutationOp::writeContent(ioStreamer, inIndent);
+	EC::MutationOp::writeContent(ioStreamer, inIndent);
 	ioStreamer.insertAttribute("mutbitpb", mBitMutatePbName);
 	Beagle_StackTraceEndM();
 }

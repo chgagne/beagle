@@ -62,8 +62,7 @@
  *  \ingroup Sys
  */
 #define Beagle_LogBasicM(ioLogger, inMessage) \
-if(ioLogger.shouldLog(Beagle::Logger::eBasic)) {std::ostringstream lOSS; lOSS << inMessage; ioLogger.log(lOSS.str(), Beagle::Logger::eBasic, __FILE__, __PRETTY_FUNCTION__);}
-
+if(ioLogger.shouldLog(Beagle::Logger::eBasic)) {Beagle::Logger::LogLine lLogLine(ioLogger,Beagle::Logger::eBasic,__FILE__,__PRETTY_FUNCTION__); lLogLine << inMessage;}
 /*!
  *  \def Beagle_LogStatsM
  *  \brief Log given message if log level is equal to or more than "Stats (2)".
@@ -72,8 +71,7 @@ if(ioLogger.shouldLog(Beagle::Logger::eBasic)) {std::ostringstream lOSS; lOSS <<
  *  \ingroup Sys
  */
 #define Beagle_LogStatsM(ioLogger, inMessage) \
-if(ioLogger.shouldLog(Beagle::Logger::eStats)) {std::ostringstream lOSS; lOSS << inMessage; ioLogger.log(lOSS.str(), Beagle::Logger::eStats, __FILE__, __PRETTY_FUNCTION__);}
-
+if(ioLogger.shouldLog(Beagle::Logger::eStats)) {Beagle::Logger::LogLine lLogLine(ioLogger,Beagle::Logger::eStats,__FILE__,__PRETTY_FUNCTION__); lLogLine << inMessage;}
 /*!
  *  \def Beagle_LogInfoM
  *  \brief Log given message if log level is equal to or more than "Info (3)".
@@ -82,7 +80,7 @@ if(ioLogger.shouldLog(Beagle::Logger::eStats)) {std::ostringstream lOSS; lOSS <<
  *  \ingroup Sys
  */
 #define Beagle_LogInfoM(ioLogger, inMessage) \
-if(ioLogger.shouldLog(Beagle::Logger::eInfo)) {std::ostringstream lOSS; lOSS << inMessage; ioLogger.log(lOSS.str(), Beagle::Logger::eInfo, __FILE__, __PRETTY_FUNCTION__);}
+if(ioLogger.shouldLog(Beagle::Logger::eInfo)) {Beagle::Logger::LogLine lLogLine(ioLogger,Beagle::Logger::eInfo,__FILE__,__PRETTY_FUNCTION__); lLogLine << inMessage;}
 
 /*!
  *  \def Beagle_LogDetailedM
@@ -92,8 +90,7 @@ if(ioLogger.shouldLog(Beagle::Logger::eInfo)) {std::ostringstream lOSS; lOSS << 
  *  \ingroup Sys
  */
 #define Beagle_LogDetailedM(ioLogger, inMessage) \
-if(ioLogger.shouldLog(Beagle::Logger::eDetailed)) {std::ostringstream lOSS; lOSS << inMessage; ioLogger.log(lOSS.str(), Beagle::Logger::eDetailed, __FILE__, __PRETTY_FUNCTION__);}
-
+if(ioLogger.shouldLog(Beagle::Logger::eDetailed)) {Beagle::Logger::LogLine lLogLine(ioLogger,Beagle::Logger::eDetailed,__FILE__,__PRETTY_FUNCTION__); lLogLine << inMessage;}
 /*!
  *  \def Beagle_LogTraceM
  *  \brief Log given message if log level is equal to or more than "Trace (5)".
@@ -102,7 +99,7 @@ if(ioLogger.shouldLog(Beagle::Logger::eDetailed)) {std::ostringstream lOSS; lOSS
  *  \ingroup Sys
  */
 #define Beagle_LogTraceM(ioLogger, inMessage) \
-if(ioLogger.shouldLog(Beagle::Logger::eTrace)) {std::ostringstream lOSS; lOSS << inMessage; ioLogger.log(lOSS.str(), Beagle::Logger::eTrace, __FILE__, __PRETTY_FUNCTION__);}
+if(ioLogger.shouldLog(Beagle::Logger::eTrace)) {Beagle::Logger::LogLine lLogLine(ioLogger,Beagle::Logger::eTrace,__FILE__,__PRETTY_FUNCTION__); lLogLine << inMessage;}
 
 /*!
  *  \def Beagle_LogVerboseM
@@ -114,7 +111,7 @@ if(ioLogger.shouldLog(Beagle::Logger::eTrace)) {std::ostringstream lOSS; lOSS <<
  */
 #ifndef BEAGLE_NDEBUG
 #define Beagle_LogVerboseM(ioLogger, inMessage) \
-if(ioLogger.shouldLog(Beagle::Logger::eVerbose)) {std::ostringstream lOSS; lOSS << inMessage; ioLogger.log(lOSS.str(), Beagle::Logger::eVerbose, __FILE__, __PRETTY_FUNCTION__);}
+if(ioLogger.shouldLog(Beagle::Logger::eVerbose)) {Beagle::Logger::LogLine lLogLine(ioLogger,Beagle::Logger::eVerbose,__FILE__,__PRETTY_FUNCTION__); lLogLine << inMessage;}
 #else  // BEAGLE_NDEBUG
 #define Beagle_LogVerboseM(ioLogger, inMessage)
 #endif // BEAGLE_NDEBUG
@@ -130,7 +127,7 @@ if(ioLogger.shouldLog(Beagle::Logger::eVerbose)) {std::ostringstream lOSS; lOSS 
  */
 #if defined (BEAGLE_FULL_DEBUG) && ! defined (BEAGLE_NDEBUG)
 #define Beagle_LogDebugM(ioLogger, inMessage) \
-if(ioLogger.shouldLog(Beagle::Logger::eDebug)) {std::ostringstream lOSS; lOSS << inMessage; ioLogger.log(lOSS.str(), Beagle::Logger::eDebug, __FILE__, __PRETTY_FUNCTION__);}
+if(ioLogger.shouldLog(Beagle::Logger::eDebug)) {Beagle::Logger::LogLine lLogLine(ioLogger,Beagle::Logger::eDebug,__FILE__,__PRETTY_FUNCTION__); lLogLine << inMessage;}
 #else  // defined (BEAGLE_FULL_DEBUG) && ! defined (BEAGLE_NDEBUG)
 #define Beagle_LogDebugM(ioLogger, inMessage)
 #endif // defined (BEAGLE_FULL_DEBUG) && ! defined (BEAGLE_NDEBUG)
@@ -187,6 +184,47 @@ public:
 		eDebug=7      //!< Debug (enabled only in full debug mode).
 	};
 
+    /*!
+     *  \brief Internal class, used for efficient management and printing of log messages.
+     */
+    class LogLine : public std::ostringstream {
+		
+	public:
+		
+		/*!
+		 *  \brief Construct a Logger::LogLine object.
+		 *  \param inLogger Logger in which logging is done.
+		 *  \param inLevel Level of logging.
+		 *  \param inFile Name of file in which log is produced.
+		 *  \param inFunction Name of function in which log is produced.
+		 */
+		LogLine(Logger& inLogger, Logger::LogLevel inLevel, std::string inFile, std::string inFunction) :
+			mLogger(inLogger),
+			mLevel(inLevel),
+			mFile(inFile),
+			mFunction(inFunction),
+			mObject(NULL)
+		{ }
+		
+		/*!
+		 *  \brief Close a log line by emptying it.
+		 */
+		~LogLine() {
+			Beagle_StackTraceBeginM();
+			std::string lStr = str();
+			if(mObject == NULL) mLogger.log(lStr, mLevel, mFile, mFunction);
+			else if(lStr.empty()) mLogger.log(*mObject, mLevel, mFile, mFunction);
+			else mLogger.log(mObject->serialize() + lStr, mLevel, mFile, mFunction);
+			Beagle_StackTraceEndM();	
+		}
+
+		Logger&                mLogger;    //!< Logger in which logging is made.
+		Logger::LogLevel       mLevel;     //!< Level used for the message.
+		std::string            mFile;      //!< File in which message is produced.
+		std::string            mFunction;  //!< Exact function in which message is produced.
+		Beagle::Object const*  mObject;    //!< Object logged.
+	};
+
 	//! Logger allocator type.
 	typedef AbstractAllocT<Logger,Component::Alloc> Alloc;
 	//! Logger handle type.
@@ -210,6 +248,7 @@ public:
 	         unsigned int inLevel,
 	         std::string inFile,
 	         std::string inFunction);
+	
 	void log(const Object& inObject,
 	         unsigned int inLevel,
 	         std::string inFile,
@@ -300,5 +339,201 @@ protected:
 };
 
 }
+
+
+/*!
+ *  \brief Insert a bool in the log line.
+ *  \param ioLogLine Log line used.
+ *  \param inValue Value to log.
+ *  \return A reference to log line objet.
+ */
+inline Beagle::Logger::LogLine& operator<<(Beagle::Logger::LogLine& ioLogLine, bool inValue)
+{
+	Beagle_StackTraceBeginM();
+	std::ostringstream& lOSS = ioLogLine;
+	lOSS << inValue;
+	return ioLogLine;
+	Beagle_StackTraceEndM();
+}
+
+
+/*!
+ *  \brief Insert a short in the log line.
+ *  \param ioLogLine Log line used.
+ *  \param inValue Value to log.
+ *  \return A reference to log line objet.
+ */
+inline Beagle::Logger::LogLine& operator<<(Beagle::Logger::LogLine& ioLogLine, short inValue)
+{
+	Beagle_StackTraceBeginM();
+	std::ostringstream& lOSS = ioLogLine;
+	lOSS << inValue;
+	return ioLogLine;
+	Beagle_StackTraceEndM();
+}
+
+
+/*!
+ *  \brief Insert an unsigned short in the log line.
+ *  \param ioLogLine Log line used.
+ *  \param inValue Value to log.
+ *  \return A reference to log line objet.
+ */
+inline Beagle::Logger::LogLine& operator<<(Beagle::Logger::LogLine& ioLogLine, unsigned short inValue)
+{
+	Beagle_StackTraceBeginM();
+	std::ostringstream& lOSS = ioLogLine;
+	lOSS << inValue;
+	return ioLogLine;
+	Beagle_StackTraceEndM();
+}
+
+
+/*!
+ *  \brief Insert an int in the log line.
+ *  \param ioLogLine Log line used.
+ *  \param inValue Value to log.
+ *  \return A reference to log line objet.
+ */
+inline Beagle::Logger::LogLine& operator<<(Beagle::Logger::LogLine& ioLogLine, int inValue)
+{
+	Beagle_StackTraceBeginM();
+	std::ostringstream& lOSS = ioLogLine;
+	lOSS << inValue;
+	return ioLogLine;
+	Beagle_StackTraceEndM();
+}
+
+
+/*!
+ *  \brief Insert an unsigned int in the log line.
+ *  \param ioLogLine Log line used.
+ *  \param inValue Value to log.
+ *  \return A reference to log line objet.
+ */
+inline Beagle::Logger::LogLine& operator<<(Beagle::Logger::LogLine& ioLogLine, unsigned int inValue)
+{
+	Beagle_StackTraceBeginM();
+	std::ostringstream& lOSS = ioLogLine;
+	lOSS << inValue;
+	return ioLogLine;
+	Beagle_StackTraceEndM();
+}
+
+
+/*!
+ *  \brief Insert a long in the log line.
+ *  \param ioLogLine Log line used.
+ *  \param inValue Value to log.
+ *  \return A reference to log line objet.
+ */
+inline Beagle::Logger::LogLine& operator<<(Beagle::Logger::LogLine& ioLogLine, long inValue)
+{
+	Beagle_StackTraceBeginM();
+	std::ostringstream& lOSS = ioLogLine;
+	lOSS << inValue;
+	return ioLogLine;
+	Beagle_StackTraceEndM();
+}
+
+
+/*!
+ *  \brief Insert an unsigned long in the log line.
+ *  \param ioLogLine Log line used.
+ *  \param inValue Value to log.
+ *  \return A reference to log line objet.
+ */
+inline Beagle::Logger::LogLine& operator<<(Beagle::Logger::LogLine& ioLogLine, unsigned long inValue)
+{
+	Beagle_StackTraceBeginM();
+	std::ostringstream& lOSS = ioLogLine;
+	lOSS << inValue;
+	return ioLogLine;
+	Beagle_StackTraceEndM();
+}
+
+
+/*!
+ *  \brief Insert a float in the log line.
+ *  \param ioLogLine Log line used.
+ *  \param inValue Value to log.
+ *  \return A reference to log line objet.
+ */
+inline Beagle::Logger::LogLine& operator<<(Beagle::Logger::LogLine& ioLogLine, float inValue)
+{
+	Beagle_StackTraceBeginM();
+	std::ostringstream& lOSS = ioLogLine;
+	lOSS << inValue;
+	return ioLogLine;
+	Beagle_StackTraceEndM();
+}
+
+
+/*!
+ *  \brief Insert a double in the log line.
+ *  \param ioLogLine Log line used.
+ *  \param inValue Value to log.
+ *  \return A reference to log line objet.
+ */
+inline Beagle::Logger::LogLine& operator<<(Beagle::Logger::LogLine& ioLogLine, double inValue)
+{
+	Beagle_StackTraceBeginM();
+	std::ostringstream& lOSS = ioLogLine;
+	lOSS << inValue;
+	return ioLogLine;
+	Beagle_StackTraceEndM();
+}
+
+
+/*!
+ *  \brief Insert a char* in the log line.
+ *  \param ioLogLine Log line used.
+ *  \param inValue Value to log.
+ *  \return A reference to log line objet.
+ */
+inline Beagle::Logger::LogLine& operator<<(Beagle::Logger::LogLine& ioLogLine, const char* inValue)
+{
+	Beagle_StackTraceBeginM();
+	std::ostringstream& lOSS = ioLogLine;
+	lOSS << inValue;
+	return ioLogLine;
+	Beagle_StackTraceEndM();
+}
+
+
+/*!
+ *  \brief Insert a std::string in the log line.
+ *  \param ioLogLine Log line used.
+ *  \param inValue Value to log.
+ *  \return A reference to log line objet.
+ */
+inline Beagle::Logger::LogLine& operator<<(Beagle::Logger::LogLine& ioLogLine, std::string inValue)
+{
+	Beagle_StackTraceBeginM();
+	std::ostringstream& lOSS = ioLogLine;
+	lOSS << inValue;
+	return ioLogLine;
+	Beagle_StackTraceEndM();
+}
+
+
+/*!
+ *  \brief Insert a Beagle::Object in the log line.
+ *  \param ioLogLine Log line used.
+ *  \param inObject Beagle Object to log.
+ *  \return A reference to log line objet.
+ */
+inline Beagle::Logger::LogLine& operator<<(Beagle::Logger::LogLine& ioLogLine, const Beagle::Object& inObject)
+{
+	Beagle_StackTraceBeginM();
+	if(ioLogLine.str().empty()) ioLogLine.mObject = &inObject;
+	else {
+		std::ostringstream& lOSS = ioLogLine;
+		lOSS << inObject.serialize();
+	}
+	return ioLogLine;
+	Beagle_StackTraceEndM();
+}
+
 
 #endif // Beagle_Core_Logger_hpp

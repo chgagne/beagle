@@ -143,7 +143,7 @@ const std::string& FitnessSimple::getType() const
 	Beagle_StackTraceBeginM();
 	const static std::string lType("FitnessSimple");
 	return lType;
-	Beagle_StackTraceEndM("const std::string& FitnessSimple::getType() const")
+	Beagle_StackTraceEndM();
 }
 
 

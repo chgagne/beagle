@@ -80,7 +80,7 @@ public:
 	explicit CrossoverUniformOp(std::string inMatingPbName="bitstr.cxunif.prob",
 	                            std::string inDistribPbName="bitstr.cxunif.distribprob",
 	                            std::string inName="BitStr-CrossoverUniformOp") :
-			BitStr::CrossoverUniformOpT<BitStr::BitString>(inMatingPbName, inDistribPbName, inName)
+			EC::CrossoverUniformOpT<BitStr::BitString>(inMatingPbName, inDistribPbName, inName)
 	{ }
 
 	virtual ~CrossoverUniformOp()

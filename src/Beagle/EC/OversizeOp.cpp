@@ -103,11 +103,7 @@ void OversizeOp::operate(Deme& ioDeme, Context& ioContext)
 	    string("Using oversize replacement strategy to process the ")+
 	    uint2ordinal(ioContext.getDemeIndex()+1)+" deme"
 	);
-	Beagle_LogObjectM(
-	    ioContext.getSystem().getLogger(),
-	    Logger::eTrace,
-	    (*this)
-	);
+	Beagle_LogTraceM(ioContext.getSystem().getLogger(), (*this));
 
 	RouletteT<unsigned int> lRoulette;
 	buildRoulette(lRoulette, ioContext);

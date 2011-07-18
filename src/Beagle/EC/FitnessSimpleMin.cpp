@@ -80,7 +80,7 @@ const std::string& FitnessSimpleMin::getType() const
 	Beagle_StackTraceBeginM();
 	const static std::string lType("FitnessSimpleMin");
 	return lType;
-	Beagle_StackTraceEndM("const std::string& FitnessSimpleMin::getType() const")
+	Beagle_StackTraceEndM();
 }
 
 

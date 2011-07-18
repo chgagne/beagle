@@ -133,11 +133,7 @@ void OneCommaLambdaAdaptedOp::operate(Deme& ioDeme, Context& ioContext)
 	    std::string("Using (1,lambda_adapt) replacement strategy to process the ")+
 	    uint2ordinal(ioContext.getDemeIndex()+1)+" deme"
 	);
-	Beagle_LogObjectM(
-	    ioContext.getSystem().getLogger(),
-	    Logger::eTrace,
-	    (*this)
-	);
+	Beagle_LogTraceM(ioContext.getSystem().getLogger(), (*this));
 
 	Beagle_AssertM(ioDeme.size() == 1);
 	Beagle_AssertM(mLambda->getWrappedValue() >= 1);
@@ -197,24 +193,18 @@ void OneCommaLambdaAdaptedOp::operate(Deme& ioDeme, Context& ioContext)
 		if(lNewLambda < mMinLambda->getWrappedValue()) lNewLambda = mMinLambda->getWrappedValue();
 		if(lNewLambda > mMaxLambda->getWrappedValue()) lNewLambda = mMaxLambda->getWrappedValue();
 		mLambda->getWrappedValue() = lNewLambda;
-		std::ostringstream lOSS;
-		lOSS << "No offspring better than the parent, lambda value has ";
-		lOSS << "been increased to " << lNewLambda << " offsprings per generation";
 		Beagle_LogDetailedM(
 		    ioContext.getSystem().getLogger(),
-		    "replacement-strategy", "Beagle::OneCommaLambdaAdaptedOp",
-		    lOSS.str()
+		    "No offspring better than the parent, lambda value has been increased to " << 
+			lNewLambda << " offsprings per generation"
 		);
 	}
 	// One good offspring, everything is ok
 	else {
-		std::ostringstream lOSS;
-		lOSS << "One offspring better than the parent is correct, ";
-		lOSS << "lambda value (" << mLambda->getWrappedValue() << ") is unchanged";
 		Beagle_LogDetailedM(
 		    ioContext.getSystem().getLogger(),
-		    "replacement-strategy", "Beagle::OneCommaLambdaAdaptedOp",
-		    lOSS.str()
+		    "One offspring better than the parent is correct, lambda value (" <<
+			mLambda->getWrappedValue() << ") is unchanged"
 		);
 	}
 

@@ -138,11 +138,11 @@ bool Beagle::FltVec::CrossoverSBXOp::mate(Beagle::Individual& ioIndiv1,
 	unsigned int lNbGenotypes = minOf<unsigned int>(ioIndiv1.size(), ioIndiv2.size());
 	if(lNbGenotypes==0) return false;
 
-	Beagle_LogObjectDebugM(
+	Beagle_LogDebugM(
 	    ioContext1.getSystem().getLogger(),
 	    ioIndiv1
 	);
-	Beagle_LogObjectDebugM(
+	Beagle_LogDebugM(
 	    ioContext1.getSystem().getLogger(),
 	    ioIndiv2
 	);
@@ -169,11 +169,11 @@ bool Beagle::FltVec::CrossoverSBXOp::mate(Beagle::Individual& ioIndiv1,
 		}
 	}
 
-	Beagle_LogObjectDebugM(
+	Beagle_LogDebugM(
 	    ioContext1.getSystem().getLogger(),
 	    ioIndiv1
 	);
-	Beagle_LogObjectDebugM(
+	Beagle_LogDebugM(
 	    ioContext1.getSystem().getLogger(),
 	    ioIndiv2
 	);

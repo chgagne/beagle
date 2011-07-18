@@ -145,8 +145,8 @@ void LoggerXML::outputMessage(const std::string& inMessage,
 		{
 			mStreamerConsole.openTag("Log", false);
 			if(mShowLevel->getWrappedValue()) mStreamerConsole.insertAttribute("level", uint2str(inLevel));
-			if(mShowType->getWrappedValue())  mStreamerConsole.insertAttribute("file",  inFile);
-			if(mShowClass->getWrappedValue()) mStreamerConsole.insertAttribute("function", inFunction);
+			if(mShowFile->getWrappedValue())  mStreamerConsole.insertAttribute("file",  inFile);
+			if(mShowFunction->getWrappedValue()) mStreamerConsole.insertAttribute("function", inFunction);
 			if(mShowTime->getWrappedValue())  mStreamerConsole.insertAttribute("time", PACC::Date().get("%X"));
 			mStreamerConsole.insertStringContent(inMessage, false);
 			mStreamerConsole.closeTag();
@@ -154,13 +154,13 @@ void LoggerXML::outputMessage(const std::string& inMessage,
 	}
 
 	// log to file
-	if(mFileNameLevel->getWrappedValue() >= inLevel && !mFileName->getWrappedValue().empty()) {
+	if(mFileLevel->getWrappedValue() >= inLevel && !mFileName->getWrappedValue().empty()) {
 #pragma omp critical (Beagle_Logger_Log_File)
 		{
 			mStreamerFile.openTag("Log", false);
 			if(mShowLevel->getWrappedValue()) mStreamerFile.insertAttribute("level", uint2str(inLevel));
-			if(mShowType->getWrappedValue())  mStreamerFile.insertAttribute("file",  inFile);
-			if(mShowClass->getWrappedValue()) mStreamerFile.insertAttribute("function", inFunction);
+			if(mShowFile->getWrappedValue())  mStreamerFile.insertAttribute("file",  inFile);
+			if(mShowFunction->getWrappedValue()) mStreamerFile.insertAttribute("function", inFunction);
 			if(mShowTime->getWrappedValue())  mStreamerFile.insertAttribute("time", PACC::Date().get("%X"));
 			mStreamerFile.insertStringContent(inMessage, false);
 			mStreamerFile.closeTag();
@@ -189,8 +189,8 @@ void LoggerXML::outputObject(const Object& inObject, unsigned int inLevel, const
 		{
 			mStreamerConsole.openTag("Log", true);
 			if(mShowLevel->getWrappedValue()) mStreamerConsole.insertAttribute("level", uint2str(inLevel));
-			if(mShowType->getWrappedValue())  mStreamerConsole.insertAttribute("file",  inFile);
-			if(mShowClass->getWrappedValue()) mStreamerConsole.insertAttribute("function", inFunction);
+			if(mShowFile->getWrappedValue())  mStreamerConsole.insertAttribute("file",  inFile);
+			if(mShowFunction->getWrappedValue()) mStreamerConsole.insertAttribute("function", inFunction);
 			if(mShowTime->getWrappedValue())  mStreamerConsole.insertAttribute("time", PACC::Date().get("%X"));
 			inObject.write(mStreamerConsole, true);
 			mStreamerConsole.closeTag();
@@ -198,13 +198,13 @@ void LoggerXML::outputObject(const Object& inObject, unsigned int inLevel, const
 	}
 
 	// log to file
-	if(mFileNameLevel->getWrappedValue() >= inLevel && !mFileName->getWrappedValue().empty()) {
+	if(mFileLevel->getWrappedValue() >= inLevel && !mFileName->getWrappedValue().empty()) {
 #pragma omp critical (Beagle_Logger_Log_File)
 		{
 			mStreamerFile.openTag("Log", true);
 			if(mShowLevel->getWrappedValue()) mStreamerFile.insertAttribute("level", uint2str(inLevel));
-			if(mShowType->getWrappedValue())  mStreamerFile.insertAttribute("file",  inFile);
-			if(mShowClass->getWrappedValue()) mStreamerFile.insertAttribute("function", inFunction);
+			if(mShowFile->getWrappedValue())  mStreamerFile.insertAttribute("file",  inFile);
+			if(mShowFunction->getWrappedValue()) mStreamerFile.insertAttribute("function", inFunction);
 			if(mShowTime->getWrappedValue())  mStreamerFile.insertAttribute("time", PACC::Date().get("%X"));
 			inObject.write(mStreamerFile, true);
 			mStreamerFile.closeTag();
@@ -225,7 +225,7 @@ bool LoggerXML::shouldLog(unsigned int inLevel) const
 	Beagle_StackTraceBeginM();
 	return (!isInitialized()) || 
 	       (mConsoleLevel->getWrappedValue() >= inLevel) ||
-	       ((mFileNameLevel->getWrappedValue() >= inLevel) && !mFileName->getWrappedValue().empty()));
+	       ((mFileLevel->getWrappedValue() >= inLevel) && (!mFileName->getWrappedValue().empty()));
 	Beagle_StackTraceEndM();	
 }
 

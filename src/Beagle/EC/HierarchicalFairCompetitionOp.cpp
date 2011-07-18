@@ -149,8 +149,7 @@ void HierarchicalFairCompetitionOp::operate(Deme& ioDeme, Context& ioContext)
 	// Log some information.
 	Beagle_LogTraceM(
 	    ioContext.getSystem().getLogger(),
-	    std::string("Applying HFC migration to the ")+uint2ordinal(ioContext.getDemeIndex())+
-	    std::string(" deme")
+	    "Applying HFC migration to the " << uint2ordinal(ioContext.getDemeIndex()) << " deme"
 	);
 
 	// If the deme is changed.
@@ -274,9 +273,9 @@ HierarchicalFairCompetitionOp::generateIndividuals(unsigned int inN,
 	Beagle_StackTraceBeginM();
 	Beagle_NonNullPointerAssertM(getRootNode());
 	Beagle_LogTraceM(
-	    ioContext.getSystem().getLogger(),
-	    "Processing using HFC replacement strategy the " <<
-	    uint2ordinal(ioContext.getDemeIndex()+1 << " deme"
+		ioContext.getSystem().getLogger(),
+		"Processing using HFC replacement strategy the" <<
+		uint2ordinal(ioContext.getDemeIndex()+1) << " deme"
 	);
 	Beagle_LogTraceM(ioContext.getSystem().getLogger(), (*this));
 

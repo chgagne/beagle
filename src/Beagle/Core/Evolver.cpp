@@ -568,10 +568,7 @@ void Evolver::readMilestone(const std::string& inFileName, System& ioSystem)
 	if(lStream.good() == false) {
 		throw Beagle_RunTimeExceptionM(std::string("Could not open file '")+inFileName+"'");
 	}
-	Beagle_LogBasicM(
-	    ioSystem.getLogger(),
-	    "Reading evolver and system configuration from milestone file '" << inFileName << "'"
-	);
+	Beagle_LogBasicM(ioSystem.getLogger(), "Reading evolver and system configuration from milestone file'" << inFileName << "'");
 	PACC::XML::Document lDocument(lStream, inFileName);
 	lStream.close();
 

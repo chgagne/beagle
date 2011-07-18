@@ -466,11 +466,7 @@ void System::parseCommandLine(int inArgc, char** inArgv)
 					getRegister().readFromFile(lValue, *this);
 				} else if(lName == "system" || lName == "ec.conf.file") {
 					if (lName=="ec.conf.file") {
-						Beagle_LogBasicM(
-						    getLogger(),
-						    "init", "Beagle::System",
-						    "The register variable 'ec.conf.file' is DEPRECATED, please use 'system' instead."
-						);
+						Beagle_LogBasicM(getLogger(), "The register variable 'ec.conf.file' is DEPRECATED, please use 'system' instead.");
 					}
 					// read system configuration
 					readFromFile(lValue);
