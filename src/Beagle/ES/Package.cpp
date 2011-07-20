@@ -41,7 +41,7 @@ using namespace Beagle;
  *  \brief Construct package with ES objects.
  */
 ES::Package::Package() :
-		EC::PackageAbstract("ES-Package")
+		PackageAbstract("ES-Package")
 { }
 
 
@@ -90,10 +90,10 @@ void ES::Package::configure(System& ioSystem)
  *
  *  ES::Package depends on EC::Package and FltVec::Package.
  */
-Package::Bag ES::Package::listDependencies(void)
+PackageAbstract::Bag ES::Package::listDependencies(void)
 {
 	Beagle_StackTraceBeginM();
-	Package::Bag lDependencies;
+	PackageAbstract::Bag lDependencies;
 	lDependencies.push_back(new EC::Package());
 	lDependencies.push_back(new FltVec::Package());
 	return lDependencies;

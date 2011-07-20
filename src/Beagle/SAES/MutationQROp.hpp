@@ -54,7 +54,7 @@ namespace SAES
  *  \brief SA-ES derandomized mutation operator class.
  *  \ingroup SAESF
  */
-class MutationQROp : public SAES::MutationESVecOp
+class MutationQROp : public SAES::MutationOp
 {
 
 public:

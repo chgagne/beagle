@@ -25,8 +25,8 @@
  */
 
 /*!
- *  \file   Beagle/SAES/InitialisationOp.cpp
- *  \brief  Source code of class SAES::InitialisationOp.
+ *  \file   Beagle/SAES/InitializationOp.cpp
+ *  \brief  Source code of class SAES::InitializationOp.
  *  \author Christian Gagne
  *  \author Marc Parizeau
  *  $Revision: 1.21 $
@@ -48,10 +48,10 @@ using namespace Beagle;
  *  \param inReproProbaName Reproduction probability parameter name used in register.
  *  \param inName Name of the operator.
  */
-SAES::InitialisationOp::InitialisationOp(unsigned int inVectorSize,
+SAES::InitializationOp::InitializationOp(unsigned int inVectorSize,
                                          std::string inReproProbaName,
                                          std::string inName) :
-		InitializationOp(inReproProbaName, inName),
+		EC::InitializationOp(inReproProbaName, inName),
 		mVectorSize(new UInt(inVectorSize))
 { }
 
@@ -60,7 +60,7 @@ SAES::InitialisationOp::InitialisationOp(unsigned int inVectorSize,
  *  \brief Register the parameters of the SA-ES initialization operator.
  *  \param ioSystem System of the evolution.
  */
-void SAES::InitialisationOp::registerParams(System& ioSystem)
+void SAES::InitializationOp::registerParams(System& ioSystem)
 {
 	Beagle_StackTraceBeginM();
 	InitializationOp::registerParams(ioSystem);
@@ -111,7 +111,7 @@ void SAES::InitialisationOp::registerParams(System& ioSystem)
 		    "0.0",
 		    "Mean of values used when initializing SA-ES vectors."
 		);
-		mMeanInitValue = castHandleT<Double>(
+		mMeanInitValue = castHandleT<DoubleArray>(
 		                         ioSystem.getRegister().insertEntry("saes.init.mean", new DoubleArray(1,0.0), lDescription));
 	}
 	{
@@ -121,7 +121,7 @@ void SAES::InitialisationOp::registerParams(System& ioSystem)
 		    "1.0",
 		    "Initial strategy parameter value used to initialize SA-ES vectors."
 		);
-		mInitStrategyValue = castHandleT<Double>(
+		mInitStrategyValue = castHandleT<DoubleArray>(
 		                         ioSystem.getRegister().insertEntry("saes.init.strategy", new DoubleArray(1,1.0), lDescription));
 	}
 	Beagle_StackTraceEndM();
@@ -138,12 +138,12 @@ void SAES::InitialisationOp::registerParams(System& ioSystem)
  *  is given using random numbers following a Gaussian distribution of mean given by parameter
  *  "saes.init.mean" and standard deviation equal to initial strategy parameter value.
  */
-void SAES::InitialisationOp::initIndividual(Beagle::Individual& outIndividual, Context& ioContext)
+void SAES::InitializationOp::initIndividual(Beagle::Individual& outIndividual, Context& ioContext)
 {
 	Beagle_StackTraceBeginM();
 #ifndef BEAGLE_NDEBUG
 	if(mVectorSize->getWrappedValue() == 0) {
-		std::string lMessage = "SAES::InitialisationOp::initIndividual: ";
+		std::string lMessage = "SAES::InitializationOp::initIndividual: ";
 		lMessage += "SA-ES vector size parameter is zero; ";
 		lMessage += "could not initialize the individuals!";
 		throw Beagle_RunTimeExceptionM(lMessage);

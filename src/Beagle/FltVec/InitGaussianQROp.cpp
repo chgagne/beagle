@@ -110,7 +110,6 @@ void FltVec::InitGaussianQROp::initIndividual(Beagle::Individual& outIndividual,
 	lVector->resize(mFloatVectorSize->getWrappedValue());
 	outIndividual.clear();
 	outIndividual.push_back(lVector);
-	Vector lQRValues(mFloatVectorSize->getWrappedValue());
 	QuasiRandom::Handle lQRComponent =
 	    castHandleT<QuasiRandom>(ioContext.getSystem().getComponent("QuasiRandom"));
 	Vector lQRValues(lVector->size());
@@ -122,7 +121,7 @@ void FltVec::InitGaussianQROp::initIndividual(Beagle::Individual& outIndividual,
 		const double lIncVal = j<mIncValue->size() ? (*mIncValue)[j] : mIncValue->back();
 		const double lMean   = j<mMean->size() ? (*mMean)[j] : mMean->back();
 		const double lStdev  = j<mStdev->size() ? (*mStdev)[j] : mStdev->back();
-		(*lVector)[j] = (lQRValues[j] * lSigma) + lMu;
+		(*lVector)[j] = (lQRValues[j] * lStdev) + lMean;
 		if((*lVector)[j] > lMaxVal) (*lVector)[j] = lMaxVal;
 		if((*lVector)[j] < lMinVal) (*lVector)[j] = lMinVal;
 		if(std::fabs(lIncVal)>1e-12) {
@@ -131,7 +130,7 @@ void FltVec::InitGaussianQROp::initIndividual(Beagle::Individual& outIndividual,
 			if((*lVector)[j] < lMinVal) (*lVector)[j] += lIncVal;
 		}
 	}
-	Beagle_LogObjectDebugM(
+	Beagle_LogDebugM(
 	    ioContext.getSystem().getLogger(),
 	    *lVector
 	);

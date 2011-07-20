@@ -54,19 +54,19 @@ namespace ES
  *  \brief Operator class to adapt mutation sigma according to the 1/5th-rule.
  *  \ingroup ESF
  */
-class AdaptOneFifthRuleOp : public EC::BreederOp
+class AdaptOneFifthRuleOp : public BreederOp
 {
 
 public:
 
 	//! ES::AdaptOneFifthRuleOp allocator type.
-	typedef AllocatorT<AdaptOneFifthRuleOp,EC::BreederOp::Alloc>
+	typedef AllocatorT<AdaptOneFifthRuleOp,BreederOp::Alloc>
 	Alloc;
 	//! ES::AdaptOneFifthRuleOp handle type.
-	typedef PointerT<AdaptOneFifthRuleOp,EC::BreederOp::Handle>
+	typedef PointerT<AdaptOneFifthRuleOp,BreederOp::Handle>
 	Handle;
 	//! ES::AdaptOneFifthRuleOp bag type.
-	typedef ContainerT<AdaptOneFifthRuleOp,EC::BreederOp::Bag>
+	typedef ContainerT<AdaptOneFifthRuleOp,BreederOp::Bag>
 	Bag;
 
 	explicit AdaptOneFifthRuleOp(std::string inSigmaName="fltvec.mutgauss.sigma",

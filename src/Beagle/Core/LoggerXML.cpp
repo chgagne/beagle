@@ -124,7 +124,7 @@ void LoggerXML::init(System& ioSystem)
 }
 
 /*!
- *  \brief Output message to console and file devices.
+ *  \brief Log message to console and file devices.
  *  \param inMessage Message to log.
  *  \param inLevel Log level of message.
  *  \param inFile Source file of message.
@@ -132,12 +132,19 @@ void LoggerXML::init(System& ioSystem)
  *
  *  This method outputs messages in XML format.
  */
-void LoggerXML::outputMessage(const std::string& inMessage,
-                              unsigned int inLevel,
-                              const std::string& inFile,
-                              const std::string& inFunction)
+void LoggerXML::logMessage(const std::string& inMessage,
+                           unsigned int inLevel,
+                           const std::string& inFile,
+                           const std::string& inFunction)
 {
 	Beagle_StackTraceBeginM();
+
+	if(isInitialized() == false) {
+		std::ostringstream lOSS;
+		lOSS << "Logger is not initialized, therefore logging is impossible. Logging before the initialization phase ";
+		lOSS << "should be done through the log buffer, for instance by using macro Beagle_AddToLogBufferM.";
+		throw Beagle_InternalExceptionM(lOSS.str());
+	}
 
 	// log to console
 	if(mConsoleLevel->getWrappedValue() >= inLevel) {
@@ -171,7 +178,7 @@ void LoggerXML::outputMessage(const std::string& inMessage,
 }
 
 /*!
- *  \brief Output serialized object to console and file devices.
+ *  \brief Log serialized object to console and file devices.
  *  \param inObject Object to log.
  *  \param inLevel Log level of message.
  *  \param inFile Source filename of message.
@@ -179,11 +186,18 @@ void LoggerXML::outputMessage(const std::string& inMessage,
  *
  *  This method outputs the serialized objects in XML format.
  */
-void LoggerXML::outputObject(const Object& inObject, unsigned int inLevel, const std::string& inFile, const std::string& inFunction)
+void LoggerXML::logObject(const Object& inObject, unsigned int inLevel, const std::string& inFile, const std::string& inFunction)
 {
 	Beagle_StackTraceBeginM();
 
-	// log to console
+	if(isInitialized() == false) {
+		std::ostringstream lOSS;
+		lOSS << "Logger is not initialized, therefore logging is impossible. Logging before the initialization phase ";
+		lOSS << "should be done through the log buffer, for instance by using macro Beagle_AddToLogBufferM.";
+		throw Beagle_InternalExceptionM(lOSS.str());
+	}
+
+	// Log to console
 	if(mConsoleLevel->getWrappedValue() >= inLevel) {
 #pragma omp critical (Beagle_Logger_Log_Console)
 		{
@@ -197,7 +211,7 @@ void LoggerXML::outputObject(const Object& inObject, unsigned int inLevel, const
 		}
 	}
 
-	// log to file
+	// Log to file
 	if(mFileLevel->getWrappedValue() >= inLevel && !mFileName->getWrappedValue().empty()) {
 #pragma omp critical (Beagle_Logger_Log_File)
 		{
@@ -212,21 +226,6 @@ void LoggerXML::outputObject(const Object& inObject, unsigned int inLevel, const
 	}
 
 	Beagle_StackTraceEndM();
-}
-
-
-/*!
- *  \brief Check whether message should be logged.
- *  \param inLevel Log level of message.
- *  \return True if message will be logged, not if it is discarted.
- */
-bool LoggerXML::shouldLog(unsigned int inLevel) const
-{
-	Beagle_StackTraceBeginM();
-	return (!isInitialized()) || 
-	       (mConsoleLevel->getWrappedValue() >= inLevel) ||
-	       ((mFileLevel->getWrappedValue() >= inLevel) && (!mFileName->getWrappedValue().empty()));
-	Beagle_StackTraceEndM();	
 }
 
 

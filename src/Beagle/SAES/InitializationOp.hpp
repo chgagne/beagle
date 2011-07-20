@@ -25,16 +25,16 @@
  */
 
 /*!
- *  \file   Beagle/SAES/InitialisationOp.hpp
- *  \brief  Definition of the class SAES::InitialisationOp.
+ *  \file   Beagle/SAES/InitializationOp.hpp
+ *  \brief  Definition of the class SAES::InitializationOp.
  *  \author Christian Gagne
  *  \author Marc Parizeau
  *  $Revision: 1.14 $
  *  $Date: 2007/08/08 19:26:34 $
  */
 
-#ifndef Beagle_SAES_InitialisationOp_hpp
-#define Beagle_SAES_InitialisationOp_hpp
+#ifndef Beagle_SAES_InitializationOp_hpp
+#define Beagle_SAES_InitializationOp_hpp
 
 #include <string>
 
@@ -49,7 +49,7 @@ namespace SAES
 {
 
 /*!
- *  \class InitialisationOp Beagle/SAES/InitialisationOp.hpp "Beagle/SAES/InitialisationOp.hpp"
+ *  \class InitializationOp Beagle/SAES/InitializationOp.hpp "Beagle/SAES/InitializationOp.hpp"
  *  \brief SA-ES genotype initialization operator class.
  *  \ingroup SAESF
  *
@@ -60,25 +60,25 @@ namespace SAES
  *  around the mean, with the initial strategy value as standard deviation.
  *
  */
-class InitialisationOp : public EC::InitializationOp
+class InitializationOp : public EC::InitializationOp
 {
 
 public:
 
-	//! SAES::InitialisationOp allocator type.
-	typedef AllocatorT<InitialisationOp,EC::InitializationOp::Alloc>
+	//! SAES::InitializationOp allocator type.
+	typedef AllocatorT<InitializationOp,EC::InitializationOp::Alloc>
 	Alloc;
-	//! SAES::InitialisationOp handle type.
-	typedef PointerT<InitialisationOp,EC::InitializationOp::Handle>
+	//! SAES::InitializationOp handle type.
+	typedef PointerT<InitializationOp,EC::InitializationOp::Handle>
 	Handle;
-	//! SAES::InitialisationOp bag type.
-	typedef ContainerT<InitialisationOp,EC::InitializationOp::Bag>
+	//! SAES::InitializationOp bag type.
+	typedef ContainerT<InitializationOp,EC::InitializationOp::Bag>
 	Bag;
 
-	explicit InitialisationOp(unsigned int inVectorSize=0,
+	explicit InitializationOp(unsigned int inVectorSize=0,
 	                          std::string inReproProbaName="ec.repro.prob",
-	                          std::string inName="SAES-InitialisationOp");
-	virtual ~InitialisationOp()
+	                          std::string inName="SAES-InitializationOp");
+	virtual ~InitializationOp()
 	{ }
 
 	virtual void registerParams(System& ioSystem);
@@ -118,4 +118,4 @@ protected:
 }
 }
 
-#endif // Beagle_SAES_InitialisationOp_hpp
+#endif // Beagle_SAES_InitializationOp_hpp

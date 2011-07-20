@@ -44,6 +44,7 @@
 
 namespace Beagle
 {
+	
 namespace SAES
 {
 
@@ -52,24 +53,24 @@ namespace SAES
  *  \brief SA-ES vectors derandomized initialization operator class.
  *  \ingroup SAESF
  */
-class InitializationQROp : public SAES::InitialisationOp
+class InitializationQROp : public SAES::InitializationOp
 {
 
 public:
 
 	//! SAES::InitializationQROp allocator type.
-	typedef AllocatorT<InitializationQROp,SAES::InitialisationOp::Alloc>
+	typedef AllocatorT<InitializationQROp,SAES::InitializationOp::Alloc>
 	Alloc;
 	//! SAES::InitializationQROp handle type.
-	typedef PointerT<InitializationQROp,SAES::InitialisationOp::Handle>
+	typedef PointerT<InitializationQROp,SAES::InitializationOp::Handle>
 	Handle;
 	//! SAES::InitializationQROp bag type.
-	typedef ContainerT<InitializationQROp,SAES::InitialisationOp::Bag>
+	typedef ContainerT<InitializationQROp,SAES::InitializationOp::Bag>
 	Bag;
 
 	explicit InitializationQROp(unsigned int inVectorSize=0,
-	                           std::string inReproProbaName="ec.repro.prob",
-	                           std::string inName="SAES-InitializationQROp");
+	                            std::string inReproProbaName="ec.repro.prob",
+	                            std::string inName="SAES-InitializationQROp");
 	virtual ~InitializationQROp()
 	{ }
 

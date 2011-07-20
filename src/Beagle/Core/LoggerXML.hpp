@@ -66,19 +66,18 @@ public:
 	//! LoggerXML bag type.
 	typedef ContainerT<LoggerXML,Logger::Bag> Bag;
 
-	LoggerXML(void);
-	virtual ~LoggerXML(void);
+	LoggerXML();
+	virtual ~LoggerXML();
 
-	virtual void outputMessage(const std::string& inMessage,
-	                           unsigned int inLevel,
-	                           const std::string& inFile,
-	                           const std::string& inFunction);
-	virtual void outputObject(const Object& inObject,
-	                          unsigned int inLevel,
-	                          const std::string& inFile,
-	                          const std::string& inFunction);
-	virtual bool shouldLog(unsigned int inLevel) const;
 	virtual void init(System& ioSystem);
+	virtual void logMessage(const std::string& inMessage,
+	                        unsigned int inLevel,
+	                        const std::string& inFile,
+	                        const std::string& inFunction);
+	virtual void logObject(const Object& inObject,
+	                       unsigned int inLevel,
+	                       const std::string& inFile,
+	                       const std::string& inFunction);
 	virtual void terminate();
 
 protected:
@@ -87,7 +86,7 @@ protected:
 	PACC::XML::Streamer mStreamerConsole;  //!< Streamer used to output messages at standard output.
 	PACC::XML::Streamer mStreamerFile;     //!< Streamer used to output messages in file.
 
-	friend class AllocatorT<LoggerXML,Logger::Alloc>;  // Necessary to instanticate allocators
+	friend class AllocatorT<LoggerXML,Logger::Alloc>;  // Necessary to instanciate allocators
 	LoggerXML(const LoggerXML&);                       // Disable copy constructor
 	void operator=(const LoggerXML&);                  // Disable copy operator
 

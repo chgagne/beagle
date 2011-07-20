@@ -41,6 +41,36 @@ using namespace Beagle;
 
 
 /*!
+ *  \brief Add a message in the log buffer, required to log before the logger gets initialized.
+ *  \param inMessage Message to log.
+ *  \param inLevel Log level used for message.
+ *  \param inFile Filename where message is created.
+ *  \param inFunction Function name of message.
+ */
+void Logger::addToBuffer(std::string inMessage,
+                         unsigned int inLevel,
+                         std::string inFile,
+                         std::string inFunction)
+{
+	Beagle_StackTraceBeginM();
+	if(isInitialized()) throw Beagle_InternalExceptionM("Cannot add to log buffer once the logger is initialized!");
+	mBuffer.push_back(Logger::Message(inMessage,inLevel,inFile,inFunction));
+	Beagle_StackTraceEndM();
+}
+
+
+/*!
+ *  \brief Copy messages buffer.
+ *  \param inLogger Logger containing message buffer to copy.
+ */
+void Logger::copyBuffer(const Logger& inLogger) {
+	Beagle_StackTraceBeginM();
+	mBuffer = inLogger.mBuffer;
+	Beagle_StackTraceEndM();
+}
+
+
+/*!
  *  \brief Initialize this logger.
  *  \param ioSystem System reference.
  */
@@ -52,74 +82,29 @@ void Logger::init(System& ioSystem)
 	setInitializedFlag(true);
 
 	// Log Beagle version and current log levels
-	log(std::string("Open BEAGLE, version ")+BEAGLE_VERSION, eBasic, __FILE__, __PRETTY_FUNCTION__);
+	logMessage(std::string("Open BEAGLE, version ")+BEAGLE_VERSION, eBasic, __FILE__, __PRETTY_FUNCTION__);
 	if(mConsoleLevel->getWrappedValue() == Logger::eNothing) {
-		log("Console logging is disabled", eBasic, __FILE__, __PRETTY_FUNCTION__);
+		logMessage("Console logging is disabled", eBasic, __FILE__, __PRETTY_FUNCTION__);
 	} else {
-		log(std::string("Setting console log level ")+mConsoleLevel->serialize(), eBasic, __FILE__, __PRETTY_FUNCTION__);
+		logMessage(std::string("Setting console log level ")+mConsoleLevel->serialize(), eBasic, __FILE__, __PRETTY_FUNCTION__);
 	}
 
 	if(mFileName->getWrappedValue().empty()) {
-		log("File logging is disabled", eBasic, __FILE__, __PRETTY_FUNCTION__);
+		logMessage("File logging is disabled", eBasic, __FILE__, __PRETTY_FUNCTION__);
 	} else {
-		log(std::string("Setting file log level ")+mFileLevel->serialize(), eBasic, __FILE__, __PRETTY_FUNCTION__);
-		log(std::string("Logging to file '")+mFileName->serialize()+std::string("'"), eBasic, __FILE__, __PRETTY_FUNCTION__);
+		logMessage(std::string("Setting file log level ")+mFileLevel->serialize(), eBasic, __FILE__, __PRETTY_FUNCTION__);
+		logMessage(std::string("Logging to file '")+mFileName->serialize()+std::string("'"), eBasic, __FILE__, __PRETTY_FUNCTION__);
 	}
 
 	// output buffered messages
 	for(std::list<Message>::const_iterator lIter = mBuffer.begin(); lIter != mBuffer.end(); ++lIter) {
-		outputMessage(lIter->mMessage, lIter->mLevel, lIter->mFile, lIter->mFunction);
+		logMessage(lIter->mMessage, lIter->mLevel, lIter->mFile, lIter->mFunction);
 	}
 	mBuffer.clear();
 
 	Beagle_StackTraceEndM();
 }
 
-/*!
- *  \brief Log string message to console and file.
- *  \param inMessage Message to log.
- *  \param inLevel Log level of message.
- *  \param inFile Source filename where message is produced.
- *  \param inFunction Function name where message is produced.
- *
- *  Message is written only if its log level is equal or higher than the log
- *  level of the device.
- */
-void Logger::log(std::string inMessage, unsigned int inLevel, std::string inFile, std::string inFunction)
-{
-	Beagle_StackTraceBeginM();
-
-	if(isInitialized()) {
-		outputMessage(inMessage, inLevel, inFile, inFunction);
-	} else {
-		mBuffer.push_back(Message(inMessage, inLevel, inFile, inFunction));
-	}
-
-	Beagle_StackTraceEndM();
-}
-
-/*!
- *  \brief Log object to console or file.
- *  \param inObject Object to log.
- *  \param inLevel Log level of message.
- *  \param inFile Source filename where message is produced.
- *  \param inFunction Function name where message is produced.
- *
- *  Message is written only if its log level is equal or higher than the log
- *  level of the device.
- */
-void Logger::log(const Object& inObject, unsigned int inLevel, std::string inFile, std::string inFunction)
-{
-	Beagle_StackTraceBeginM();
-
-	if(isInitialized()) {
-		outputObject(inObject, inLevel, inFile, inFunction);
-	} else {
-		throw Beagle_RunTimeExceptionM("Cannot log an object before logger has been initialized!");
-	}
-
-	Beagle_StackTraceEndM();
-}
 
 /*!
  *  \brief Log current time if log level is equal to than the level associated.
@@ -128,10 +113,8 @@ void Logger::log(const Object& inObject, unsigned int inLevel, std::string inFil
 void Logger::logCurrentTime(unsigned int inLevel)
 {
 	Beagle_StackTraceBeginM();
-
 	std::string lMessage = std::string("Current date and time: ")+PACC::Date().get("%X %d %b %Y");
-	log(lMessage, inLevel, __FILE__, __PRETTY_FUNCTION__);
-
+	logMessage(lMessage, inLevel, __FILE__, __PRETTY_FUNCTION__);
 	Beagle_StackTraceEndM();
 }
 

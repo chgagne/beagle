@@ -36,6 +36,7 @@
 #include "Beagle/FltVec.hpp"
 
 #include <cmath>
+#include <cfloat>
 #include <sstream>
 
 using namespace std;
@@ -203,7 +204,7 @@ void FltVec::InitGaussianOp::initIndividual(Beagle::Individual& outIndividual, C
 		}
 	}
 
-	Beagle_LogObjectDebugM(
+	Beagle_LogDebugM(
 	    ioContext.getSystem().getLogger(),
 	    *lVector
 	);

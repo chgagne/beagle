@@ -25,8 +25,8 @@
  */
 
 /*!
- *  \file   Beagle/SAES/InitialisationQROp.cpp
- *  \brief  Source code of class SAES::InitialisationQROp.
+ *  \file   Beagle/SAES/InitializationQROp.cpp
+ *  \brief  Source code of class SAES::InitializationQROp.
  *  \author Christian Gagne
  *  \author Marc Parizeau
  *  $Revision: 1.7 $
@@ -48,10 +48,10 @@ using namespace Beagle;
  *  \param inReproProbaName Reproduction probability parameter name used in register. 
  *  \param inName Name of the operator.
  */
-SAES::InitialisationQROp::InitialisationQROp(unsigned int inVectorSize,
+SAES::InitializationQROp::InitializationQROp(unsigned int inVectorSize,
                                              std::string inReproProbaName,
                                              std::string inName) :
-		SAES::InitialisationOp(inVectorSize, inReproProbaName, inName)
+		SAES::InitializationOp(inVectorSize, inReproProbaName, inName)
 { }
 
 
@@ -59,10 +59,10 @@ SAES::InitialisationQROp::InitialisationQROp(unsigned int inVectorSize,
  *  \brief Register the parameters of the derandomized ES initialization operator.
  *  \param ioSystem System of the evolution.
  */
-void SAES::InitialisationQROp::registerParams(System& ioSystem)
+void SAES::InitializationQROp::registerParams(System& ioSystem)
 {
 	Beagle_StackTraceBeginM();
-	SAES::InitialisationOp::registerParams(ioSystem);
+	SAES::InitializationOp::registerParams(ioSystem);
 	Component::Handle lQRComponent = ioSystem.haveComponent("QuasiRandom");
 	if(lQRComponent == NULL) ioSystem.addComponent(new QuasiRandom);
 	Beagle_StackTraceEndM();
@@ -73,10 +73,10 @@ void SAES::InitialisationQROp::registerParams(System& ioSystem)
  *  \brief Initialize the derandomized SA-ES initialization operator.
  *  \param ioSystem System of the evolution.
  */
-void SAES::InitialisationQROp::init(System& ioSystem)
+void SAES::InitializationQROp::init(System& ioSystem)
 {
 	Beagle_StackTraceBeginM();
-	SAES::InitialisationOp::init(ioSystem);
+	SAES::InitializationOp::init(ioSystem);
 	QuasiRandom::Handle lQRComponent =
 	    castHandleT<QuasiRandom>(ioSystem.getComponent("QuasiRandom"));
 	if(lQRComponent->getDimensionality() == 0) {
@@ -96,12 +96,12 @@ void SAES::InitialisationQROp::init(System& ioSystem)
  *  is given using random numbers following a Gaussian distribution of mean given by parameter "saes.init.mean"
  *  and standard deviation equal to initial strategy parameter value.
  */
-void SAES::InitialisationQROp::initIndividual(Beagle::Individual& outIndividual, Context& ioContext)
+void SAES::InitializationQROp::initIndividual(Beagle::Individual& outIndividual, Context& ioContext)
 {
 	Beagle_StackTraceBeginM();
 #ifndef BEAGLE_NDEBUG
-	if(lVectorSize->getWrappedValue() == 0) {
-		std::string lMessage = "SAES::InitialisationQROp::initIndividual: ";
+	if(mVectorSize->getWrappedValue() == 0) {
+		std::string lMessage = "SAES::InitializationQROp::initIndividual: ";
 		lMessage += "SA-ES vector size parameter is zero; ";
 		lMessage += "could not initialize the individuals!";
 		throw Beagle_RunTimeExceptionM(lMessage);
@@ -112,14 +112,14 @@ void SAES::InitialisationQROp::initIndividual(Beagle::Individual& outIndividual,
 	SAES::PairVector::Alloc::Handle lVectorAlloc =
 		castHandleT<SAES::PairVector::Alloc>(lFactory.getConceptAllocator("Genotype"));
 	SAES::PairVector::Handle lVector = castHandleT<SAES::PairVector>(lVectorAlloc->allocate());
-	lVector->resize(lVectorSize->getWrappedValue());
+	lVector->resize(mVectorSize->getWrappedValue());
 	outIndividual.clear();
 	outIndividual.push_back(lVector);
-	Vector lQRValues(lVectorSize->getWrappedValue()+1);
+	Vector lQRValues(mVectorSize->getWrappedValue()+1);
 	QuasiRandom::Handle lQRComponent =
 	    castHandleT<QuasiRandom>(ioContext.getSystem().getComponent("QuasiRandom"));
 	lQRComponent->getUniformVector(lQRValues);
-	Beagle_AssertM((lVectorSize->getWrappedValue()+1) == lQRValues.size());
+	Beagle_AssertM((mVectorSize->getWrappedValue()+1) == lQRValues.size());
 	for(unsigned int j=0; j<lVector->size(); ++j) {
 		const double lMaxVal   = j<mMaxValue->size() ? (*mMaxValue)[j] : mMaxValue->back();
 		const double lMinVal   = j<mMinValue->size() ? (*mMinValue)[j] : mMinValue->back();

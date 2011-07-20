@@ -54,25 +54,25 @@ namespace ES
  *  \brief Package for adding objects related to evolutions strategies.
  *  \ingroup ESF
  */
-class Package : public EC::PackageAbstract
+class Package : public PackageAbstract
 {
 
 public:
 
 	//! ES::Package allocator type.
-	typedef AllocatorT< Package, EC::PackageAbstract::Alloc >
+	typedef AllocatorT< Package, PackageAbstract::Alloc >
 	Alloc;
 	//! ES::Package handle type.
-	typedef PointerT< Package, EC::PackageAbstract::Handle >
+	typedef PointerT< Package, PackageAbstract::Handle >
 	Handle;
 	//! ES::Package bag type.
-	typedef ContainerT< Package, EC::PackageAbstract::Bag >
+	typedef ContainerT< Package, PackageAbstract::Bag >
 	Bag;
 
 	explicit Package();
 
-	virtual void          configure(System& ioSystem);
-	virtual Package::Bag  listDependencies(void);
+	virtual void                  configure(System& ioSystem);
+	virtual PackageAbstract::Bag  listDependencies(void);
 
 };
 

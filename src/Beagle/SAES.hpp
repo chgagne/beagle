@@ -54,12 +54,12 @@
 // Beagle generic components
 
 #include "Beagle/Core.hpp"
-#include "Beagle/ES.hpp"
+#include "Beagle/EC.hpp"
 
 // SA-ES framework
 #include "Beagle/SAES/Algorithm.hpp"
-#include "Beagle/SAES/InitialisationOp.hpp"
-#include "Beagle/SAES/InitialisationQROp.hpp"
+#include "Beagle/SAES/InitializationOp.hpp"
+#include "Beagle/SAES/InitializationQROp.hpp"
 #include "Beagle/SAES/MutationOp.hpp"
 #include "Beagle/SAES/MutationQROp.hpp"
 #include "Beagle/SAES/Package.hpp"

@@ -54,17 +54,17 @@ namespace SAES
  *  \brief Algorithm of the anisotropic (\mu,\lambda) self-adaptive evolution strategy.
  *  \ingroup SAESF
  */
-class Algorithm : public EC::Algorithm
+class Algorithm : public Beagle::Algorithm
 {
 
 public:
 
 	//! Algorithm allocator type.
-	typedef AllocatorT< Algorithm, EC::Algorithm::Alloc > Alloc;
+	typedef AllocatorT< Algorithm, Beagle::Algorithm::Alloc > Alloc;
 	//! Algorithm handle type.
-	typedef PointerT< Algorithm, EC::Algorithm::Handle > Handle;
+	typedef PointerT< Algorithm, Beagle::Algorithm::Handle > Handle;
 	//! Algorithm bag type.
-	typedef ContainerT< Algorithm, EC::Algorithm::Bag > Bag;
+	typedef ContainerT< Algorithm, Beagle::Algorithm::Bag > Bag;
 
 	Algorithm(void);
 

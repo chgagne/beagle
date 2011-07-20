@@ -140,7 +140,7 @@ bool SAES::PairVector::isEqual(const Object& inRightObj) const
 	Beagle_StackTraceBeginM();
 	const SAES::PairVector& lRightVector = castObjectT<const SAES::PairVector&>(inRightObj);
 	if(size() != lRightVector.size()) return false;
-	return std::equal(begin(), end(), lRightESV.begin());
+	return std::equal(begin(), end(), lRightVector.begin());
 	Beagle_StackTraceEndM();
 }
 

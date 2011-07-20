@@ -52,7 +52,7 @@ using namespace Beagle;
 SAES::MutationOp::MutationOp(std::string inMutationPbName,
                              std::string inMinStrategyName,
                              std::string inName) :
-		ES::MutationOp(inMutationPbName, inName),
+		EC::MutationOp(inMutationPbName, inName),
 		mMinStrategyName(inMinStrategyName)
 { }
 
@@ -76,7 +76,7 @@ void SAES::MutationOp::registerParams(System& ioSystem)
 	}
 	EC::MutationOp::registerParams(ioSystem);
 	{
-		mMinStrategy = new Double(0.01);
+		mMinStrategy = new DoubleArray(1,0.01);
 		Register::Description lDescription(
 		    "Minimum SA-ES strategy parameter",
 		    "DoubleArray",
@@ -129,7 +129,6 @@ void SAES::MutationOp::registerParams(System& ioSystem)
 bool SAES::MutationOp::mutate(Beagle::Individual& ioIndividual, Context& ioContext)
 {
 	Beagle_StackTraceBeginM();
-	Beagle_ValidateParameterM(mMinStrategy->getWrappedValue()>=0.0,mMinStrategyName,"<0");
 
 	Beagle_LogVerboseM(
 	    ioContext.getSystem().getLogger(),
@@ -137,7 +136,7 @@ bool SAES::MutationOp::mutate(Beagle::Individual& ioIndividual, Context& ioConte
 	);
 
 	for(unsigned int i=0; i<ioIndividual.size(); i++) {
-		SAES::ESVector::Handle lVector = castHandleT<SAES::ESVector>(ioIndividual[i]);
+		SAES::PairVector::Handle lVector = castHandleT<SAES::PairVector>(ioIndividual[i]);
 		Beagle_LogVerboseM(
 		    ioContext.getSystem().getLogger(),
 		    "Mutating the " << uint2ordinal(i+1) << " ES vector"
@@ -161,9 +160,9 @@ bool SAES::MutationOp::mutate(Beagle::Individual& ioIndividual, Context& ioConte
 
 			Beagle_LogDebugM(
 			    ioContext.getSystem().getLogger(),
-			    "SA-ES mutating by adding " << (*lVector)[j].mStrategy * lNi) <<
+			    "SA-ES mutating by adding " << ((*lVector)[j].mStrategy * lNi) <<
 			    " to the value and multiplying the strategy by " <<
-			    std::exp((lTPrime * lN) + (lT * lNi))) <<
+			    std::exp((lTPrime * lN) + (lT * lNi)) <<
 			    " to mutate the pair " << j << " of the vector"
 			);
 		}
@@ -204,7 +203,7 @@ void SAES::MutationOp::readWithSystem(PACC::XML::ConstIterator inIter, System& i
 void SAES::MutationOp::writeContent(PACC::XML::Streamer& ioStreamer, bool inIndent) const
 {
 	Beagle_StackTraceBeginM();
-	Beagle::MutationOp::writeContent(ioStreamer, inIndent);
+	EC::MutationOp::writeContent(ioStreamer, inIndent);
 	ioStreamer.insertAttribute("minstrategy", mMinStrategyName);
 	Beagle_StackTraceEndM();
 }

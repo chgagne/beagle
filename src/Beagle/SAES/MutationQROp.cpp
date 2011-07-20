@@ -52,7 +52,7 @@ using namespace Beagle;
 SAES::MutationQROp::MutationQROp(std::string inMutationPbName,
         std::string inMinStrategyName,
         std::string inName) :
-		SAES::MutationESVecOp(inMutationPbName, inMinStrategyName, inName)
+		SAES::MutationOp(inMutationPbName, inMinStrategyName, inName)
 { }
 
 
@@ -63,7 +63,7 @@ SAES::MutationQROp::MutationQROp(std::string inMutationPbName,
 void SAES::MutationQROp::registerParams(System& ioSystem)
 {
 	Beagle_StackTraceBeginM();
-	SAES::MutationESVecOp::registerParams(ioSystem);
+	SAES::MutationOp::registerParams(ioSystem);
 	Component::Handle lQRComponent = ioSystem.haveComponent("QuasiRandom");
 	if(lQRComponent == NULL) ioSystem.addComponent(new QuasiRandom);
 	Beagle_StackTraceEndM();
@@ -77,14 +77,14 @@ void SAES::MutationQROp::registerParams(System& ioSystem)
 void SAES::MutationQROp::init(System& ioSystem)
 {
 	Beagle_StackTraceBeginM();
-	SAES::MutationESVecOp::init(ioSystem);
+	SAES::MutationOp::init(ioSystem);
 	QuasiRandom::Handle lQRComponent =
 	    castHandleT<QuasiRandom>(ioSystem.getComponent("QuasiRandom"));
 	if(lQRComponent->getDimensionality() == 0) {
 		if(ioSystem.getRegister().isRegistered("es.init.vectorsize")) {
-			UInt::Handle lESVectorSize =
+			UInt::Handle lVectorSize =
 			    castHandleT<UInt>(ioSystem.getRegister()["es.init.vectorsize"]);
-			lQRComponent->reset(lESVectorSize->getWrappedValue()+1, ioSystem.getRandomizer());
+			lQRComponent->reset(lVectorSize->getWrappedValue()+1, ioSystem.getRandomizer());
 		} else {
 			std::ostringstream lOSS;
 			lOSS << "Could not post-initialize operator '" << getName() << "'. Looking for ";
