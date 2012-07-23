@@ -25,85 +25,74 @@
  */
 
 /*!
- *  \file   beagle/GA/src/CrossoverNWOXOp.cpp
- *  \brief  Source code of class GA::CrossoverNWOXOp.
+ *  \file   Beagle/IntVec/CrossoverNWOXOp.cpp
+ *  \brief  Source code of class IntVec::CrossoverNWOXOp.
  *  \author Francois-Michel De Rainville
  *  $Revision: $
  *  $Date: $
  */
 
-#include "beagle/GA.hpp"
+#include "Beagle/IntVec.hpp"
 
 #include <algorithm>
 #include <string>
 
+
 /*!
- *  \brief Construct a GA non-wrapping ordered crossover operator.
+ *  \brief Construct an integer vector non-wrapping ordered crossover operator.
  *  \param inMatingPbName Mating probability parameter name.
  *  \param inName Name of the operator.
  */
-Beagle::GA::CrossoverNWOXOp::CrossoverNWOXOp(std::string inMatingPbName,
-											 std::string inName):
-Beagle::CrossoverOp(inMatingPbName, inName)
+Beagle::IntVec::CrossoverNWOXOp::CrossoverNWOXOp(std::string inMatingPbName,
+											     std::string inName):
+	EC::CrossoverOp(inMatingPbName, inName)
 { }
 
+
 /*!
- *  \brief Register the parameters of the GA non-wrapping ordered crossover operator.
+ *  \brief Register the parameters of the integer vector non-wrapping ordered crossover operator.
  *  \param ioSystem System of the evolution.
  */
-void Beagle::GA::CrossoverNWOXOp::registerParams(Beagle::System& ioSystem)
+void Beagle::IntVec::CrossoverNWOXOp::registerParams(Beagle::System& ioSystem)
 {
 	Beagle_StackTraceBeginM();
 	{
-		Register::Description lDescription(
-										   "Individual non-wrapping ordered crossover pb.",
+		Register::Description lDescription("Individual non-wrapping ordered crossover pb.",
 										   "Double",
 										   "0.3",
-										   "GA non-wrapping ordered crossover probability of a single individual."
-										   );
+										   "Integer vector non-wrapping ordered crossover probability of a single individual.");
 		mMatingProba = castHandleT<Double>(ioSystem.getRegister().insertEntry(mMatingProbaName, new Double(0.3), lDescription));
 	}
-	CrossoverOp::registerParams(ioSystem);
+	EC::CrossoverOp::registerParams(ioSystem);
 	Beagle_StackTraceEndM();
 }
 
 
 /*!
- *  \brief Mate two indice integer vector GA individuals for non-wrapping ordered crossover.
+ *  \brief Mate two indice integer vector individuals for non-wrapping ordered crossover.
  *  \param ioIndiv1   First individual to mate.
  *  \param ioContext1 Evolutionary context of the first individual.
  *  \param ioIndiv2   Second individual to mate.
  *  \param ioContext2 Evolutionary context of the second individual.
  *  \return True if the individuals are effectively mated, false if not.
  */
-bool Beagle::GA::CrossoverNWOXOp::mate(Beagle::Individual& ioIndiv1,
-									   Beagle::Context&    ioContext1,
-									   Beagle::Individual& ioIndiv2,
-									   Beagle::Context&    ioContext2)
+bool Beagle::IntVec::CrossoverNWOXOp::mate(Beagle::Individual& ioIndiv1,
+									   	   Beagle::Context&    ioContext1,
+									       Beagle::Individual& ioIndiv2,
+									       Beagle::Context&    ioContext2)
 {
 	Beagle_StackTraceBeginM();
 	unsigned int lNbGenotypes = minOf<unsigned int>(ioIndiv1.size(), ioIndiv2.size());
 	if(lNbGenotypes == 0) return false;
 	
 	Beagle_LogDebugM(
-					 ioContext1.getSystem().getLogger(),
-					 "crossover", "Beagle::GA::CrossoverNWOXOp",
-					 "Individuals mated (before GA non-wrapping ordered crossover)"
-					 );
-	Beagle_LogObjectDebugM(
-						   ioContext1.getSystem().getLogger(),
-						   "crossover", "Beagle::GA::CrossoverNWOXOp",
-						   ioIndiv1
-						   );
-	Beagle_LogObjectDebugM(
-						   ioContext1.getSystem().getLogger(),
-						   "crossover", "Beagle::GA::CrossoverNWOXOp",
-						   ioIndiv2
-						   );
+		ioContext1.getSystem().getLogger(),
+		"Individuals mated (before integer vector non-wrapping ordered crossover): " << ioIndiv1 << ", " << ioIndiv2
+	);
 	
 	for(unsigned int i=0; i<lNbGenotypes; ++i) {
-		GA::IntegerVector::Handle lIndividual1 = castHandleT<IntegerVector>(ioIndiv1[i]);
-		GA::IntegerVector::Handle lIndividual2 = castHandleT<IntegerVector>(ioIndiv2[i]);
+		IntegerVector::Handle lIndividual1 = castHandleT<IntegerVector>(ioIndiv1[i]);
+		IntegerVector::Handle lIndividual2 = castHandleT<IntegerVector>(ioIndiv2[i]);
 		
 		unsigned int lSize = minOf<unsigned int>(lIndividual1->size(), lIndividual2->size());
 		unsigned int a = ioContext1.getSystem().getRandomizer().rollInteger(0, lSize-1);
@@ -132,7 +121,8 @@ bool Beagle::GA::CrossoverNWOXOp::mate(Beagle::Individual& ioIndiv1,
 		}
 		lChild1.insert(lChild1.begin() + a, lIndividual2->begin() + a, lIndividual2->begin() + (b + 1));
 		lChild2.insert(lChild2.begin() + a, lIndividual1->begin() + a, lIndividual1->begin() + (b + 1));
-		// Transfer the child in the ouput individuals
+		
+		// Transfer the child in the output individuals
 		for(unsigned int j = 0; j < lSize; ++j){
 			(*lIndividual1)[j] = lChild1[j];
 			(*lIndividual2)[j] = lChild2[j];
@@ -143,22 +133,9 @@ bool Beagle::GA::CrossoverNWOXOp::mate(Beagle::Individual& ioIndiv1,
 	}
 	
 	Beagle_LogDebugM(
-					 ioContext1.getSystem().getLogger(),
-					 "crossover", "Beagle::GA::CrossoverNWOXOp",
-					 "Individuals mated (after GA non-wrapping ordered crossover)"
-					 );
-	Beagle_LogObjectDebugM(
-						   ioContext1.getSystem().getLogger(),
-						   "crossover",
-						   "Beagle::GA::CrossoverNWOXOp",
-						   ioIndiv1
-						   );
-	Beagle_LogObjectDebugM(
-						   ioContext1.getSystem().getLogger(),
-						   "crossover",
-						   "Beagle::GA::CrossoverNWOXOp",
-						   ioIndiv2
-						   );
+		ioContext1.getSystem().getLogger(),
+		"Individuals mated (after integer vector non-wrapping ordered crossover): " << ioIndiv1 << ", " << ioIndiv2
+	);
 	
 	return true;
 	Beagle_StackTraceEndM();

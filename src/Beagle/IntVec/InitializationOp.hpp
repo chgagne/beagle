@@ -25,62 +25,54 @@
  */
 
 /*!
- *  \file   beagle/GA/InitIntVecOp.hpp
- *  \brief  Definition of the class GA::InitIntVecOp.
+ *  \file   Beagle/IntVec/InitializationOp.hpp
+ *  \brief  Definition of the class IntVec::InitializationOp.
  *  \author Christian Gagne
  *  \author Marc Parizeau
  *  $Revision: 1.6 $
  *  $Date: 2007/08/08 19:26:34 $
  */
 
-#ifndef Beagle_GA_InitIntVecOp_hpp
-#define Beagle_GA_InitIntVecOp_hpp
+#ifndef Beagle_IntVec_InitializationOp_hpp
+#define Beagle_IntVec_InitializationOp_hpp
 
 #include <string>
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Object.hpp"
-#include "beagle/AllocatorT.hpp"
-#include "beagle/PointerT.hpp"
-#include "beagle/ContainerT.hpp"
-#include "beagle/InitializationOp.hpp"
-#include "beagle/Int.hpp"
-#include "beagle/UInt.hpp"
+#include "Beagle/Core.hpp"
+#include "Beagle/EC.hpp"
+
 
 namespace Beagle
 {
-namespace GA
+namespace IntVec
 {
 
 /*!
- *  \class InitIntVecOp beagle/GA/InitIntVecOp.hpp "beagle/GA/InitIntVecOp.hpp"
- *  \brief Integer-valued GA genotype uniformly distributed initialization operator class.
- *  \ingroup GAF
- *  \ingroup GAIV
+ *  \class InitializationOp Beagle/IntVec/InitializationOp.hpp "Beagle/IntVec/InitializationOp.hpp"
+ *  \brief Integer-valued IntVec genotype uniformly distributed initialization operator class.
+ *  \ingroup IntVecF
  */
-class InitIntVecOp : public InitializationOp
+class InitializationOp : public EC::InitializationOp
 {
 
 public:
 
-	//! GA::InitIntVecOp allocator type.
-	typedef AllocatorT<InitIntVecOp,InitializationOp::Alloc>
+	//! IntVec::InitializationOp allocator type.
+	typedef AllocatorT<InitializationOp,EC::InitializationOp::Alloc>
 	Alloc;
-	//! GA::InitIntVecOp handle type.
-	typedef PointerT<InitIntVecOp,InitializationOp::Handle>
+	//! IntVec::InitializationOp handle type.
+	typedef PointerT<InitializationOp,EC::InitializationOp::Handle>
 	Handle;
-	//! GA::InitIntVecOp bag type.
-	typedef ContainerT<InitIntVecOp,InitializationOp::Bag>
+	//! IntVec::InitializationOp bag type.
+	typedef ContainerT<InitializationOp,EC::InitializationOp::Bag>
 	Bag;
 
-	explicit InitIntVecOp(unsigned int inIntVectorSize=0,
-	                      std::string inReproProbaName="ec.repro.prob",
-	                      std::string inName="GA-InitIntVecOp");
-	virtual ~InitIntVecOp()
+	explicit InitializationOp(unsigned int inIntVectorSize=0,
+	                          std::string inReproProbaName="intvec.repro.prob",
+	                          std::string inName="IntVec-InitializationOp");
+	virtual ~InitializationOp()
 	{ }
 
-	virtual void registerParams(System& ioSystem);
 	virtual void initIndividual(Individual& outIndividual, Context& ioContext);
 
 	/*!
@@ -104,6 +96,8 @@ public:
 		Beagle_StackTraceEndM();
 	}
 
+	virtual void registerParams(System& ioSystem);
+
 protected:
 
 	IntArray::Handle  mMaxInitValue;   //!< Maximum value used to initialize integers.
@@ -115,4 +109,4 @@ protected:
 }
 }
 
-#endif // Beagle_GA_InitIntVecOp_hpp
+#endif // Beagle_IntVec_InitializationOp_hpp

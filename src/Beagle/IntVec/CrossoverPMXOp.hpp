@@ -25,31 +25,30 @@
  */
 
 /*!
- *  \file   beagle/GA/CrossoverPMXOp.hpp
- *  \brief  Definition of the class GA::CrossoverPMXOp.
+ *  \file   Beagle/IntVec/CrossoverPMXOp.hpp
+ *  \brief  Definition of the class IntVec::CrossoverPMXOp.
  *  \author Francois-Michel De Rainville
  *  $Revision: $
  *  $Date: $
  */
 
-#ifndef Beagle_GA_CrossoverPMXOp_hpp
-#define Beagle_GA_CrossoverPMXOp_hpp
+#ifndef Beagle_IntVec_CrossoverPMXOp_hpp
+#define Beagle_IntVec_CrossoverPMXOp_hpp
 
 #include <string>
 
-#include <beagle/config.hpp>
-#include <beagle/macros.hpp>
-#include <beagle/Object.hpp>
-#include <beagle/CrossoverOp.hpp>
+#include <Beagle/Core.hpp>
+#include <Beagle/EC.hpp>
+
 
 namespace Beagle {
-namespace GA {
+namespace IntVec {
 
 /*!
- *  \class CrossoverPMXOp beagle/GA/CrossoverPMXOp.hpp
- *    "beagle/GA/CrossoverPMXOp.hpp"
- *  \brief 
- *  \ingroup GAIV
+ *  \class CrossoverPMXOp Beagle/IntVec/CrossoverPMXOp.hpp
+ *    "Beagle/IntVec/CrossoverPMXOp.hpp"
+ *  \brief Indices integer vector partially matched crossover operator.
+ *  \ingroup IntVecF
  *	\warning This crossover operation may give unexpected results when not applied
  *	  on an indices permutation genotype.
  *
@@ -59,27 +58,29 @@ namespace GA {
  *	the traveling salesman problem", 1985.
  *
  */
-class CrossoverPMXOp : public CrossoverOp {
-public:
-	//! GA::CrossoverPMXOp allocator type.
-	typedef AllocatorT<CrossoverPMXOp,CrossoverOp::Alloc> Alloc;
-	//! GA::CrossoverPMXOp handle type.
-	typedef PointerT<CrossoverPMXOp,CrossoverOp::Handle> Handle;
-	//! GA::CrossoverPMXOp bag type.
-	typedef ContainerT<CrossoverPMXOp,CrossoverOp::Bag> Bag;
+class CrossoverPMXOp : public EC::CrossoverOp {
 	
-	explicit CrossoverPMXOp(std::string inMatingPbName="ga.cxpm.prob",
-	                             std::string inName="GA-CrossoverPMXOp");
+public:
+	
+	//! IntVec::CrossoverPMXOp allocator type.
+	typedef AllocatorT<CrossoverPMXOp,EC::CrossoverOp::Alloc> Alloc;
+	//! IntVec::CrossoverPMXOp handle type.
+	typedef PointerT<CrossoverPMXOp,EC::CrossoverOp::Handle> Handle;
+	//! IntVec::CrossoverPMXOp bag type.
+	typedef ContainerT<CrossoverPMXOp,EC::CrossoverOp::Bag> Bag;
+	
+	explicit CrossoverPMXOp(std::string inMatingPbName="intvec.cxpm.prob",
+	                        std::string inName="IntVec-CrossoverPMXOp");
 	virtual ~CrossoverPMXOp()
 	{ }
 	
-	virtual void registerParams(System& ioSystem);
 	virtual bool mate(Individual& ioIndiv1, Context& ioContext1,
 	                  Individual& ioIndiv2, Context& ioContext2);
+	virtual void registerParams(System& ioSystem);
 	
 };
 	
 }
 }
 
-#endif //Beagle_GA_CrossoverPMXOp_hpp
+#endif //Beagle_IntVec_CrossoverPMXOp_hpp

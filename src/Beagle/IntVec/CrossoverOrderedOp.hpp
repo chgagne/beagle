@@ -25,31 +25,30 @@
  */
 
 /*!
- *  \file   beagle/GA/CrossoverOrderedOp.hpp
- *  \brief  Definition of the class GA::CrossoverOrderedOp.
+ *  \file   Beagle/IntVec/CrossoverOrderedOp.hpp
+ *  \brief  Definition of the class IntVec::CrossoverOrderedOp.
  *  \author Francois-Michel De Rainville
  *  $Revision: $
  *  $Date: $
  */
 
-#ifndef Beagle_GA_CrossoverOrderedOp_hpp
-#define Beagle_GA_CrossoverOrderedOp_hpp
+#ifndef Beagle_IntVec_CrossoverOrderedOp_hpp
+#define Beagle_IntVec_CrossoverOrderedOp_hpp
 
 #include <string>
 
-#include <beagle/config.hpp>
-#include <beagle/macros.hpp>
-#include <beagle/Object.hpp>
-#include <beagle/CrossoverOp.hpp>
+#include <Beagle/Core.hpp>
+#include <Beagle/EC.hpp>
+
 
 namespace Beagle {
-namespace GA {
+namespace IntVec {
 
 /*!
- *  \class CrossoverOrderedOp beagle/GA/CrossoverOrderedOp.hpp
- *    "beagle/GA/CrossoverOrderedOp.hpp"
+ *  \class CrossoverOrderedOp Beagle/IntVec/CrossoverOrderedOp.hpp
+ *    "Beagle/IntVec/CrossoverOrderedOp.hpp"
  *  \brief 
- *  \ingroup GAIV
+ *  \ingroup IntVecF
  *	\warning This crossover operation may give unexpected results when not applied
  *	  on an indices permutation genotype.
  *
@@ -60,26 +59,27 @@ namespace GA {
  *
  */
 class CrossoverOrderedOp : public CrossoverOp {
+
 public:
-	//! GA::CrossoverOrderedOp allocator type.
+	//! IntVec::CrossoverOrderedOp allocator type.
 	typedef AllocatorT<CrossoverOrderedOp,CrossoverOp::Alloc> Alloc;
-	//! GA::CrossoverOrderedOp handle type.
+	//! IntVec::CrossoverOrderedOp handle type.
 	typedef PointerT<CrossoverOrderedOp,CrossoverOp::Handle> Handle;
-	//! GA::CrossoverOrderedOp bag type.
+	//! IntVec::CrossoverOrderedOp bag type.
 	typedef ContainerT<CrossoverOrderedOp,CrossoverOp::Bag> Bag;
 	
-	explicit CrossoverOrderedOp(std::string inMatingPbName="ga.cxo.prob",
-								std::string inName="GA-CrossoverOrderedOp");
+	explicit CrossoverOrderedOp(std::string inMatingPbName="intvec.cxo.prob",
+								std::string inName="IntVec-CrossoverOrderedOp");
 	virtual ~CrossoverOrderedOp()
 	{ }
 	
-	virtual void registerParams(System& ioSystem);
 	virtual bool mate(Individual& ioIndiv1, Context& ioContext1,
 					  Individual& ioIndiv2, Context& ioContext2);
+	virtual void registerParams(System& ioSystem);
 	
 };
 
 }
 }
 
-#endif //Beagle_GA_CrossoverOrderedOp_hpp
+#endif //Beagle_IntVec_CrossoverOrderedOp_hpp

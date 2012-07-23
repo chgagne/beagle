@@ -25,61 +25,64 @@
  */
 
 /*!
- *  \file   beagle/GA/CrossoverCycleOp.hpp
- *  \brief  Definition of the class GA::CrossoverCycleOp.
+ *  \file   Beagle/IntVec/CrossoverCycleOp.hpp
+ *  \brief  Definition of the class IntVec::CrossoverCycleOp.
  *  \author Francois-Michel De Rainville
  *  $Revision: $
  *  $Date: $
  */
 
-#ifndef Beagle_GA_CrossoverCycleOp_hpp
-#define Beagle_GA_CrossoverCycleOp_hpp
+#ifndef Beagle_IntVec_CrossoverCycleOp_hpp
+#define Beagle_IntVec_CrossoverCycleOp_hpp
 
 #include <string>
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Object.hpp"
-#include "beagle/CrossoverOp.hpp"
+#include "Beagle/Core.hpp"
+#include "Beagle/EC.hpp"
 
-namespace Beagle {
-namespace GA {
 
+namespace Beagle
+{
+
+namespace IntVec
+{
 	
 /*!
- *  \class CrossoverCycleOp beagle/GA/CrossoverCycleOp.hpp
- *    "beagle/GA/CrossoverCycleOp.hpp"
+ *  \class CrossoverCycleOp Beagle/IntVec/CrossoverCycleOp.hpp
+ *    "Beagle/IntVec/CrossoverCycleOp.hpp"
  *  \brief 
- *  \ingroup GAIV
+ *  \ingroup IntVecF
  *	\warning This crossover operation may give unexpected results when not applied
  *	  on an indices permutation genotype.
  *
  *  This crossover operation consists in generating two children that exchange the
  *	the values of the parents that are not contained in a cycle. It has been proposed 
- *	by Oliver, Smith and Hollad in "A study of permutation crossover operators on the
+ *	by Oliver, Smith and Holland in "A study of permutation crossover operators on the
  *	traveling salesman problem", 1987.
  *
  */
-class CrossoverCycleOp : public CrossoverOp {
-public:
-	//! GA::CrossoverCycleOp allocator type.
-	typedef AllocatorT<CrossoverCycleOp,CrossoverOp::Alloc> Alloc;
-	//! GA::CrossoverCycleOp handle type.
-	typedef PointerT<CrossoverCycleOp,CrossoverOp::Handle> Handle;
-	//! GA::CrossoverCycleOp bag type.
-	typedef ContainerT<CrossoverCycleOp,CrossoverOp::Bag> Bag;
+class CrossoverCycleOp : public EC::CrossoverOp {
 	
-	explicit CrossoverCycleOp(std::string inMatingPbName="ga.cxc.prob",
-							  std::string inName="GA-CrossoverCycleOp");
+public:
+	//! IntVec::CrossoverCycleOp allocator type.
+	typedef AllocatorT<CrossoverCycleOp,EC::CrossoverOp::Alloc> Alloc;
+	//! IntVec::CrossoverCycleOp handle type.
+	typedef PointerT<CrossoverCycleOp,EC::CrossoverOp::Handle> Handle;
+	//! IntVec::CrossoverCycleOp bag type.
+	typedef ContainerT<CrossoverCycleOp,EC::CrossoverOp::Bag> Bag;
+	
+	explicit CrossoverCycleOp(std::string inMatingPbName="intvec.cxc.prob",
+							  std::string inName="IntVec-CrossoverCycleOp");
 	virtual ~CrossoverCycleOp()
 	{ }
 	
-	virtual void registerParams(System& ioSystem);
 	virtual bool mate(Individual& ioIndiv1, Context& ioContext1,
 					  Individual& ioIndiv2, Context& ioContext2);
+	virtual void registerParams(System& ioSystem);
+					
 };
 
 }
 }
 
-#endif //Beagle_GA_CrossoverCycleOp_hpp
+#endif //Beagle_IntVec_CrossoverCycleOp_hpp

@@ -25,31 +25,33 @@
  */
 
 /*!
- *  \file   beagle/GA/CrossoverNWOXOp.hpp
- *  \brief  Definition of the class GA::CrossoverNWOXOp.
+ *  \file   Beagle/IntVec/CrossoverNWOXOp.hpp
+ *  \brief  Definition of the class IntVec::CrossoverNWOXOp.
  *  \author Francois-Michel De Rainville
  *  $Revision: $
  *  $Date: $
  */
 
-#ifndef Beagle_GA_CrossoverNWOXOp_hpp
-#define Beagle_GA_CrossoverNWOXOp_hpp
+#ifndef Beagle_IntVec_CrossoverNWOXOp_hpp
+#define Beagle_IntVec_CrossoverNWOXOp_hpp
 
 #include <string>
 
-#include <beagle/config.hpp>
-#include <beagle/macros.hpp>
-#include <beagle/Object.hpp>
-#include <beagle/CrossoverOp.hpp>
+#include <Beagle/Core.hpp>
+#include <Beagle/EC.hpp>
 
-namespace Beagle {
-namespace GA {
+
+namespace Beagle
+{
+	
+namespace IntVec
+{
 
 /*!
- *  \class CrossoverNWOXOp beagle/GA/CrossoverNWOXOp.hpp
- *    "beagle/GA/CrossoverNWOXOp.hpp"
+ *  \class CrossoverNWOXOp Beagle/IntVec/CrossoverNWOXOp.hpp
+ *    "Beagle/IntVec/CrossoverNWOXOp.hpp"
  *  \brief 
- *  \ingroup GAIV
+ *  \ingroup IntVecF
  *	\warning This crossover operation may give unexpected results when not applied
  *	  on an indices permutation genotype.
  *
@@ -59,27 +61,27 @@ namespace GA {
  *	Preserving Crossover Operator that Respects Absolute Position", 2006.
  *
  */
-class CrossoverNWOXOp : public CrossoverOp {
+class CrossoverNWOXOp : public EC::CrossoverOp {
 public:
-	//! GA::CrossoverNWOXOp allocator type.
-	typedef AllocatorT<CrossoverNWOXOp,CrossoverOp::Alloc> Alloc;
-	//! GA::CrossoverNWOXOp handle type.
-	typedef PointerT<CrossoverNWOXOp,CrossoverOp::Handle> Handle;
-	//! GA::CrossoverNWOXOp bag type.
-	typedef ContainerT<CrossoverNWOXOp,CrossoverOp::Bag> Bag;
+	//! IntVec::CrossoverNWOXOp allocator type.
+	typedef AllocatorT<CrossoverNWOXOp,EC::CrossoverOp::Alloc> Alloc;
+	//! IntVec::CrossoverNWOXOp handle type.
+	typedef PointerT<CrossoverNWOXOp,EC::CrossoverOp::Handle> Handle;
+	//! IntVec::CrossoverNWOXOp bag type.
+	typedef ContainerT<CrossoverNWOXOp,EC::CrossoverOp::Bag> Bag;
 	
-	explicit CrossoverNWOXOp(std::string inMatingPbName="ga.cxnwo.prob",
-							 std::string inName="GA-CrossoverNWOXOp");
+	explicit CrossoverNWOXOp(std::string inMatingPbName="intvec.cxnwo.prob",
+							 std::string inName="IntVec-CrossoverNWOXOp");
 	virtual ~CrossoverNWOXOp()
 	{ }
 	
-	virtual void registerParams(System& ioSystem);
 	virtual bool mate(Individual& ioIndiv1, Context& ioContext1,
 					  Individual& ioIndiv2, Context& ioContext2);
+	virtual void registerParams(System& ioSystem);
 	
 };
 
 }
 }
 
-#endif //Beagle_GA_CrossoverNWOXOp_hpp
+#endif //Beagle_IntVec_CrossoverNWOXOp_hpp

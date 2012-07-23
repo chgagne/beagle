@@ -25,31 +25,30 @@
  */
 
 /*!
- *  \file   beagle/GA/CrossoverUPMXOp.hpp
- *  \brief  Definition of the class GA::CrossoverUPMXOp.
+ *  \file   Beagle/IntVec/CrossoverUPMXOp.hpp
+ *  \brief  Definition of the class IntVec::CrossoverUPMXOp.
  *  \author Francois-Michel De Rainville
  *  $Revision: $
  *  $Date: $
  */
 
-#ifndef Beagle_GA_CrossoverUPMXOp_hpp
-#define Beagle_GA_CrossoverUPMXOp_hpp
+#ifndef Beagle_IntVec_CrossoverUPMXOp_hpp
+#define Beagle_IntVec_CrossoverUPMXOp_hpp
 
 #include <string>
 
-#include <beagle/config.hpp>
-#include <beagle/macros.hpp>
-#include <beagle/Object.hpp>
-#include <beagle/CrossoverOp.hpp>
+#include <Beagle/Core.hpp>
+#include <Beagle/EC.hpp>
+
 
 namespace Beagle {
-namespace GA {
+namespace IntVec {
 
 /*!
- *  \class CrossoverUPMXOp beagle/GA/CrossoverUPMXOp.hpp
- *    "beagle/GA/CrossoverUPMXOp.hpp"
- *  \brief 
- *  \ingroup GAIV
+ *  \class CrossoverUPMXOp Beagle/IntVec/CrossoverUPMXOp.hpp
+ *    "Beagle/IntVec/CrossoverUPMXOp.hpp"
+ *  \brief Uniform partially matched crossover for indices (integer vector) genotypes.
+ *  \ingroup IntVecF
  *	\warning This crossover operation may give unexpected results when not applied
  *	  on an indices permutation genotype.
  *
@@ -59,25 +58,26 @@ namespace GA {
  *	performance for control parameter optimization", 2000.
  *
  */
-class CrossoverUPMXOp : public CrossoverOp {
-public:
-	//! GA::CrossoverUPMXOp allocator type.
-	typedef AllocatorT<CrossoverUPMXOp,CrossoverOp::Alloc> Alloc;
-	//! GA::CrossoverUPMXOp handle type.
-	typedef PointerT<CrossoverUPMXOp,CrossoverOp::Handle> Handle;
-	//! GA::CrossoverUPMXOp bag type.
-	typedef ContainerT<CrossoverUPMXOp,CrossoverOp::Bag> Bag;
+class CrossoverUPMXOp : public EC::CrossoverOp {
 	
-	explicit CrossoverUPMXOp(std::string inMatingPbName="ga.cxupm.prob",
-							 std::string inDistribPbName="ga.cxupm.distribprob",
-							 std::string inName="GA-CrossoverUPMXOp");
+public:
+	//! IntVec::CrossoverUPMXOp allocator type.
+	typedef AllocatorT<CrossoverUPMXOp,EC::CrossoverOp::Alloc> Alloc;
+	//! IntVec::CrossoverUPMXOp handle type.
+	typedef PointerT<CrossoverUPMXOp,EC::CrossoverOp::Handle> Handle;
+	//! IntVec::CrossoverUPMXOp bag type.
+	typedef ContainerT<CrossoverUPMXOp,EC::CrossoverOp::Bag> Bag;
+	
+	explicit CrossoverUPMXOp(std::string inMatingPbName="intvec.cxupm.prob",
+							 std::string inDistribPbName="intvec.cxupm.distribprob",
+							 std::string inName="IntVec-CrossoverUPMXOp");
 	virtual ~CrossoverUPMXOp()
 	{ }
 	
-	virtual void registerParams(System& ioSystem);
 	virtual bool mate(Individual& ioIndiv1, Context& ioContext1,
 					  Individual& ioIndiv2, Context& ioContext2);
 	virtual void readWithSystem(PACC::XML::ConstIterator inIter, System& ioSystem);
+	virtual void registerParams(System& ioSystem);
 	virtual void writeContent(PACC::XML::Streamer& ioStreamer, bool inIndent=true) const;
 	
 protected:
@@ -89,4 +89,4 @@ protected:
 }
 }
 
-#endif //Beagle_GA_CrossoverUPMXOp_hpp
+#endif //Beagle_IntVec_CrossoverUPMXOp_hpp

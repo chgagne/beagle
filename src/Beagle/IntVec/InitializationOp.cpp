@@ -25,15 +25,15 @@
  */
 
 /*!
- *  \file   beagle/GA/src/InitIntVecOp.cpp
- *  \brief  Source code of class GA::InitIntVecOp.
+ *  \file   Beagle/IntVec/src/InitializationOp.cpp
+ *  \brief  Source code of class IntVec::InitializationOp.
  *  \author Christian Gagne
  *  \author Marc Parizeau
  *  $Revision: 1.11 $
  *  $Date: 2008/03/20 14:01:14 $
  */
 
-#include "beagle/GA.hpp"
+#include "Beagle/IntVec.hpp"
 
 #include <cmath>
 #include <sstream>
@@ -43,27 +43,65 @@ using namespace Beagle;
 
 
 /*!
- *  \brief Construct a GA integer vectors uniformly distributed initialization operator.
+ *  \brief Construct a integer vectors uniformly distributed initialization operator.
  *  \param inIntVectorSize Size of the integer vectors initialized.
  *  \param inReproProbaName Reproduction probability parameter name used in register.
  *  \param inName Name of the operator.
  */
-GA::InitIntVecOp::InitIntVecOp(unsigned int inIntVectorSize,
-                               std::string inReproProbaName,
-                               std::string inName) :
-		InitializationOp(inReproProbaName, inName),
-		mIntVectorSize(new UInt(inIntVectorSize))
+IntVec::InitializationOp::InitializationOp(unsigned int inIntVectorSize,
+                                           std::string inReproProbaName,
+                                           std::string inName) :
+	EC::InitializationOp(inReproProbaName, inName),
+	mIntVectorSize(new UInt(inIntVectorSize))
 { }
 
 
 /*!
- *  \brief Regsiter the parameters of the GA integer vectors uniformly distributed initialization operator.
- *  \param ioSystem System of the evolution.
+ *  \brief Initialize integer-valued individual with numbers uniformly distributed in a given range.
+ *  \param outIndividual Individual to initialize.
+ *  \param ioContext Evolution context.
  */
-void GA::InitIntVecOp::registerParams(System& ioSystem)
+void IntVec::InitializationOp::initIndividual(Beagle::Individual& outIndividual, Context& ioContext)
 {
 	Beagle_StackTraceBeginM();
-	InitializationOp::registerParams(ioSystem);
+#ifndef BEAGLE_NDEBUG
+	if(mIntVectorSize->getWrappedValue() == 0) {
+		string lMessage = "IntVec::InitializationOp::initIndividual: ";
+		lMessage += "integer vector size parameter is zero; ";
+		lMessage += "could not initialize the individuals!";
+		throw Beagle_RunTimeExceptionM(lMessage);
+	}
+#endif // BEAGLE_NDEBUG
+	const Factory& lFactory = ioContext.getSystem().getFactory();
+	IntVec::IntegerVector::Alloc::Handle lIntegerVectorAlloc =
+		castHandleT<IntVec::IntegerVector::Alloc>(lFactory.getConceptAllocator("Genotype"));
+	IntVec::IntegerVector::Handle lIntegerVector = castHandleT<IntVec::IntegerVector>(lIntegerVectorAlloc->allocate());
+	lIntegerVector->resize(mIntVectorSize->getWrappedValue());
+	outIndividual.clear();
+	outIndividual.push_back(lIntegerVector);
+	for(unsigned int j=0; j<lIntegerVector->size(); ++j) {
+		const int lMaxVal = j<mMaxInitValue->size() ? (*mMaxInitValue)[j] : mMaxInitValue->back();
+		const int lMinVal = j<mMinInitValue->size() ? (*mMinInitValue)[j] : mMinInitValue->back();
+		Beagle_AssertM(lMaxVal >= lMinVal);
+		const int lRandVal = (int)ioContext.getSystem().getRandomizer().rollInteger(0,lMaxVal-lMinVal);
+		(*lIntegerVector)[j] = (lRandVal+lMinVal);
+	}
+	Beagle_LogDebugM(
+	    ioContext.getSystem().getLogger(),
+	    "Integer vector initialized as: " << *lIntegerVector
+	);
+	Beagle_StackTraceEndM();
+}
+
+
+/*!
+ *  \brief Regsiter the parameters of the integer vectors uniformly distributed initialization operator.
+ *  \param ioSystem System of the evolution.
+ */
+void IntVec::InitializationOp::registerParams(System& ioSystem)
+{
+	Beagle_StackTraceBeginM();
+	EC::InitializationOp::registerParams(ioSystem);
 	{
 		Register::Description lDescription(
 		    "Initial integer vectors sizes",
@@ -110,49 +148,3 @@ void GA::InitIntVecOp::registerParams(System& ioSystem)
 	}
 	Beagle_StackTraceEndM();
 }
-
-
-/*!
- *  \brief Initialize integer-valued GA individual with numbers uniformly distributed in a given range.
- *  \param outIndividual Individual to initialize.
- *  \param ioContext Evolution context.
- */
-void GA::InitIntVecOp::initIndividual(Beagle::Individual& outIndividual, Context& ioContext)
-{
-	Beagle_StackTraceBeginM();
-#ifndef BEAGLE_NDEBUG
-	if(mIntVectorSize->getWrappedValue() == 0) {
-		string lMessage = "GA::InitIntVecOp::initIndividual: ";
-		lMessage += "integer vector size parameter is zero; ";
-		lMessage += "could not initialize the individuals!";
-		throw Beagle_RunTimeExceptionM(lMessage);
-	}
-#endif // BEAGLE_NDEBUG
-	const Factory& lFactory = ioContext.getSystem().getFactory();
-	GA::IntegerVector::Alloc::Handle lIntegerVectorAlloc =
-		castHandleT<GA::IntegerVector::Alloc>(lFactory.getConceptAllocator("Genotype"));
-	GA::IntegerVector::Handle lIntegerVector = castHandleT<GA::IntegerVector>(lIntegerVectorAlloc->allocate());
-	lIntegerVector->resize(mIntVectorSize->getWrappedValue());
-	outIndividual.clear();
-	outIndividual.push_back(lIntegerVector);
-	for(unsigned int j=0; j<lIntegerVector->size(); ++j) {
-		const int lMaxVal = j<mMaxInitValue->size() ? (*mMaxInitValue)[j] : mMaxInitValue->back();
-		const int lMinVal = j<mMinInitValue->size() ? (*mMinInitValue)[j] : mMinInitValue->back();
-		Beagle_AssertM(lMaxVal >= lMinVal);
-		const int lRandVal = (int)ioContext.getSystem().getRandomizer().rollInteger(0,lMaxVal-lMinVal);
-		(*lIntegerVector)[j] = (lRandVal+lMinVal);
-	}
-	Beagle_LogDebugM(
-	    ioContext.getSystem().getLogger(),
-	    "initialization", "Beagle::GA::InitIntVecOp",
-	    "Integer vector initialized as"
-	);
-	Beagle_LogObjectDebugM(
-	    ioContext.getSystem().getLogger(),
-	    "initialization",
-	    "Beagle::GA::InitIntVecOp",
-	    *lIntegerVector
-	);
-	Beagle_StackTraceEndM();
-}
-

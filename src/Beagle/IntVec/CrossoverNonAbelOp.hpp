@@ -25,31 +25,30 @@
  */
 
 /*!
- *  \file   beagle/GA/CrossoverNonAbelOp.hpp
- *  \brief  Definition of the class GA::CrossoverNonAbel.
+ *  \file   Beagle/IntVec/CrossoverNonAbelOp.hpp
+ *  \brief  Definition of the class IntVec::CrossoverNonAbel.
  *  \author Francois-Michel De Rainville
  *  $Revision: $
  *  $Date: $
  */
 
-#ifndef Beagle_GA_CrossoverNonAbelOp_hpp
-#define Beagle_GA_CrossoverNonAbelOp_hpp
+#ifndef Beagle_IntVec_CrossoverNonAbelOp_hpp
+#define Beagle_IntVec_CrossoverNonAbelOp_hpp
 
 #include <string>
 
-#include <beagle/config.hpp>
-#include <beagle/macros.hpp>
-#include <beagle/Object.hpp>
-#include <beagle/CrossoverOp.hpp>
+#include <Beagle/Core.hpp>
+#include <Beagle/EC.hpp>
 
 namespace Beagle {
-namespace GA {
+
+namespace IntVec {
 
 /*!
- *  \class CrossoverNonAbelOp beagle/GA/CrossoverNonAbelOp.hpp
- *    "beagle/GA/CrossoverNonAbelOp.hpp"
+ *  \class CrossoverNonAbelOp Beagle/IntVec/CrossoverNonAbelOp.hpp
+ *    "Beagle/IntVec/CrossoverNonAbelOp.hpp"
  *  \brief 
- *  \ingroup GAIV
+ *  \ingroup IntVecF
  *	\warning This crossover operation may give unexpected results when not applied
  *	  on an indices permutation genotype.
  *
@@ -59,27 +58,27 @@ namespace GA {
  *	genetic algorithms for NP-complete combinatorial optimization problems", 1993.
  *
  */
-class CrossoverNonAbelOp : public CrossoverOp {
+class CrossoverNonAbelOp : public EC::CrossoverOp {
 public:
-	//! GA::CrossoverNonAbel allocator type.
-	typedef AllocatorT<CrossoverNonAbelOp,CrossoverOp::Alloc> Alloc;
-	//! GA::CrossoverNonAbel handle type.
-	typedef PointerT<CrossoverNonAbelOp,CrossoverOp::Handle> Handle;
-	//! GA::CrossoverNonAbel bag type.
-	typedef ContainerT<CrossoverNonAbelOp,CrossoverOp::Bag> Bag;
+	//! IntVec::CrossoverNonAbel allocator type.
+	typedef AllocatorT<CrossoverNonAbelOp,EC::CrossoverOp::Alloc> Alloc;
+	//! IntVec::CrossoverNonAbel handle type.
+	typedef PointerT<CrossoverNonAbelOp,EC::CrossoverOp::Handle> Handle;
+	//! IntVec::CrossoverNonAbel bag type.
+	typedef ContainerT<CrossoverNonAbelOp,EC::CrossoverOp::Bag> Bag;
 	
-	explicit CrossoverNonAbelOp(std::string inMatingPbName="ga.cxna.prob",
-								std::string inName="GA-CrossoverNonAbelOp");
+	explicit CrossoverNonAbelOp(std::string inMatingPbName="intvec.cxna.prob",
+								std::string inName="IntVec-CrossoverNonAbelOp");
 	virtual ~CrossoverNonAbelOp()
 	{ }
 	
-	virtual void registerParams(System& ioSystem);
 	virtual bool mate(Individual& ioIndiv1, Context& ioContext1,
 					  Individual& ioIndiv2, Context& ioContext2);
+	virtual void registerParams(System& ioSystem);
 	
 };
 
 }
 }
 
-#endif
+#endif // Beagle_IntVec_CrossoverNonAbelOp_hpp

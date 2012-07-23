@@ -25,63 +25,62 @@
  */
 
 /*!
- *  \file   beagle/GA/CrossoverIndicesIntVecOp.hpp
- *  \brief  Definition of the class GA::CrossoverIndicesIntVecOp.
+ *  \file   Beagle/IntVec/CrossoverIndicesOp.hpp
+ *  \brief  Definition of the class IntVec::CrossoverIndicesOp.
  *  \author Christian Gagne
  *  \author Marc Parizeau
  *  $Revision: 1.6 $
  *  $Date: 2007/08/08 19:26:34 $
  */
 
-#ifndef Beagle_GA_CrossoverIndicesIntVecOp_hpp
-#define Beagle_GA_CrossoverIndicesIntVecOp_hpp
+#ifndef Beagle_IntVec_CrossoverIndicesOp_hpp
+#define Beagle_IntVec_CrossoverIndicesOp_hpp
 
 #include <string>
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Object.hpp"
-#include "beagle/CrossoverOp.hpp"
+#include "Beagle/Core.hpp"
+#include "Beagle/EC.hpp"
+
 
 namespace Beagle
 {
-namespace GA
+	
+namespace IntVec
 {
 
 /*!
- *  \class CrossoverIndicesIntVecOp beagle/GA/CrossoverIndicesIntVecOp.hpp
- *    "beagle/GA/CrossoverIndicesIntVecOp.hpp"
- *  \brief Indices integer vector GA crossover operator class.
- *  \ingroup GAF
- *  \ingroup GAIV
+ *  \class CrossoverIndicesOp Beagle/IntVec/CrossoverIndicesOp.hpp
+ *    "Beagle/IntVec/CrossoverIndicesOp.hpp"
+ *  \brief Indices integer vector crossover operator class.
+ *  \ingroup IntVecF
  */
-class CrossoverIndicesIntVecOp : public CrossoverOp
+class CrossoverIndicesOp : public EC::CrossoverOp
 {
 
 public:
 
-	//! GA::CrossoverIndicesIntVecOp allocator type.
-	typedef AllocatorT<CrossoverIndicesIntVecOp,CrossoverOp::Alloc>
+	//! IntVec::CrossoverIndicesOp allocator type.
+	typedef AllocatorT<CrossoverIndicesOp,EC::CrossoverOp::Alloc>
 	Alloc;
-	//! GA::CrossoverIndicesIntVecOp handle type.
-	typedef PointerT<CrossoverIndicesIntVecOp,CrossoverOp::Handle>
+	//! IntVec::CrossoverIndicesOp handle type.
+	typedef PointerT<CrossoverIndicesOp,EC::CrossoverOp::Handle>
 	Handle;
-	//! GA::CrossoverIndicesIntVecOp bag type.
-	typedef ContainerT<CrossoverIndicesIntVecOp,CrossoverOp::Bag>
+	//! IntVec::CrossoverIndicesOp bag type.
+	typedef ContainerT<CrossoverIndicesOp,EC::CrossoverOp::Bag>
 	Bag;
 
-	explicit CrossoverIndicesIntVecOp(std::string inMatingPbName="ga.cxind.prob",
-	                                  std::string inName="GA-CrossoverIndicesIntVecOp");
-	virtual ~CrossoverIndicesIntVecOp()
+	explicit CrossoverIndicesOp(std::string inMatingPbName="intvec.cxind.prob",
+	                            std::string inName="IntVec-CrossoverIndicesOp");
+	virtual ~CrossoverIndicesOp()
 	{ }
 
-	virtual void registerParams(System& ioSystem);
 	virtual bool mate(Individual& ioIndiv1, Context& ioContext1,
 	                  Individual& ioIndiv2, Context& ioContext2);
-
+	virtual void registerParams(System& ioSystem);
+	
 };
 
 }
 }
 
-#endif // Beagle_GA_CrossoverIndicesIntVecOp_hpp
+#endif // Beagle_IntVec_CrossoverIndicesOp_hpp

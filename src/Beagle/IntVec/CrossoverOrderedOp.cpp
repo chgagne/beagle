@@ -25,85 +25,52 @@
  */
 
 /*!
- *  \file   beagle/GA/src/CrossoverOrderedOp.cpp
- *  \brief  Source code of class GA::CrossoverOrderedOp.
+ *  \file   Beagle/IntVec/CrossoverOrderedOp.cpp
+ *  \brief  Source code of class IntVec::CrossoverOrderedOp.
  *  \author Francois-Michel De Rainville
  *  $Revision: $
  *  $Date: $
  */
 
-#include "beagle/GA.hpp"
+#include "Beagle/IntVec.hpp"
 
 #include <algorithm>
 #include <string>
 
+
 /*!
- *  \brief Construct a GA ordered crossover operator.
+ *  \brief Construct a IntVec ordered crossover operator.
  *  \param inMatingPbName Mating probability parameter name.
  *  \param inName Name of the operator.
  */
-Beagle::GA::CrossoverOrderedOp::CrossoverOrderedOp(std::string inMatingPbName,
-												   std::string inName):
-Beagle::CrossoverOp(inMatingPbName, inName)
+Beagle::IntVec::CrossoverOrderedOp::CrossoverOrderedOp(std::string inMatingPbName, std::string inName):
+	EC::CrossoverOp(inMatingPbName, inName)
 { }
 
-/*!
- *  \brief Register the parameters of the GA ordered crossover operator.
- *  \param ioSystem System of the evolution.
- */
-void Beagle::GA::CrossoverOrderedOp::registerParams(Beagle::System& ioSystem)
-{
-	Beagle_StackTraceBeginM();
-	{
-		Register::Description lDescription(
-										   "Individual ordered crossover pb.",
-										   "Double",
-										   "0.3",
-										   "GA ordered crossover probability of a single individual."
-										   );
-		mMatingProba = castHandleT<Double>(ioSystem.getRegister().insertEntry(mMatingProbaName, new Double(0.3), lDescription));
-	}
-	CrossoverOp::registerParams(ioSystem);
-	Beagle_StackTraceEndM();
-}
-
 
 /*!
- *  \brief Mate two indice integer vector GA individuals for ordered crossover.
+ *  \brief Mate two indice integer vector individuals for ordered crossover.
  *  \param ioIndiv1   First individual to mate.
  *  \param ioContext1 Evolutionary context of the first individual.
  *  \param ioIndiv2   Second individual to mate.
  *  \param ioContext2 Evolutionary context of the second individual.
  *  \return True if the individuals are effectively mated, false if not.
  */
-bool Beagle::GA::CrossoverOrderedOp::mate(Beagle::Individual& ioIndiv1,
-										  Beagle::Context&    ioContext1,
-										  Beagle::Individual& ioIndiv2,
-										  Beagle::Context&    ioContext2)
+bool Beagle::IntVec::CrossoverOrderedOp::mate(Beagle::Individual& ioIndiv1,
+										      Beagle::Context&    ioContext1,
+										      Beagle::Individual& ioIndiv2,
+										      Beagle::Context&    ioContext2)
 {
 	Beagle_StackTraceBeginM();
 	unsigned int lNbGenotypes = minOf<unsigned int>(ioIndiv1.size(), ioIndiv2.size());
 	if(lNbGenotypes == 0) return false;
 	
-	Beagle_LogDebugM(
-					 ioContext1.getSystem().getLogger(),
-					 "crossover", "Beagle::GA::CrossoverOrderedOp",
-					 "Individuals mated (before GA ordered crossover)"
-					 );
-	Beagle_LogObjectDebugM(
-						   ioContext1.getSystem().getLogger(),
-						   "crossover", "Beagle::GA::CrossoverOrderedOp",
-						   ioIndiv1
-						   );
-	Beagle_LogObjectDebugM(
-						   ioContext1.getSystem().getLogger(),
-						   "crossover", "Beagle::GA::CrossoverOrderedOp",
-						   ioIndiv2
-						   );
+	Beagle_LogDebugM(ioContext1.getSystem().getLogger(),
+					 "Individuals mated (before IntVec ordered crossover): " << ioIndiv1 << ", " << ioIndiv2);
 	
 	for(unsigned int i=0; i<lNbGenotypes; ++i) {
-		GA::IntegerVector::Handle lIndividual1 = castHandleT<IntegerVector>(ioIndiv1[i]);
-		GA::IntegerVector::Handle lIndividual2 = castHandleT<IntegerVector>(ioIndiv2[i]);
+		IntVec::IntegerVector::Handle lIndividual1 = castHandleT<IntegerVector>(ioIndiv1[i]);
+		IntVec::IntegerVector::Handle lIndividual2 = castHandleT<IntegerVector>(ioIndiv2[i]);
 		
 		unsigned int lSize = minOf<unsigned int>(lIndividual1->size(), lIndividual2->size());
 		unsigned int a = ioContext1.getSystem().getRandomizer().rollInteger(0, lSize-1);
@@ -149,24 +116,28 @@ bool Beagle::GA::CrossoverOrderedOp::mate(Beagle::Individual& ioIndiv1,
 		delete[] lHoleSet2;
 	}
 	
-	Beagle_LogDebugM(
-					 ioContext1.getSystem().getLogger(),
-					 "crossover", "Beagle::GA::CrossoverOrderedOp",
-					 "Individuals mated (after GA ordered crossover)"
-					 );
-	Beagle_LogObjectDebugM(
-						   ioContext1.getSystem().getLogger(),
-						   "crossover",
-						   "Beagle::GA::CrossoverOrderedOp",
-						   ioIndiv1
-						   );
-	Beagle_LogObjectDebugM(
-						   ioContext1.getSystem().getLogger(),
-						   "crossover",
-						   "Beagle::GA::CrossoverOrderedOp",
-						   ioIndiv2
-						   );
+	Beagle_LogDebugM(ioContext1.getSystem().getLogger(),
+					 "Individuals mated (after IntVec ordered crossover): " << ioIndiv1 << ", " << ioIndiv2);
 	
 	return true;
+	Beagle_StackTraceEndM();
+}
+
+
+/*!
+ *  \brief Register the parameters of the integer vector ordered crossover operator.
+ *  \param ioSystem System of the evolution.
+ */
+void Beagle::IntVec::CrossoverOrderedOp::registerParams(Beagle::System& ioSystem)
+{
+	Beagle_StackTraceBeginM();
+	{
+		Register::Description lDescription("Individual ordered crossover pb.",
+										   "Double",
+										   "0.3",
+										   "IntVec ordered crossover probability of a single individual.");
+		mMatingProba = castHandleT<Double>(ioSystem.getRegister().insertEntry(mMatingProbaName, new Double(0.3), lDescription));
+	}
+	CrossoverOp::registerParams(ioSystem);
 	Beagle_StackTraceEndM();
 }

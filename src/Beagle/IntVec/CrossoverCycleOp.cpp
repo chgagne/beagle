@@ -25,14 +25,14 @@
  */
 
 /*!
- *  \file   beagle/GA/src/CrossoverCycleOp.cpp
- *  \brief  Source code of class GA::CrossoverCycleOp.
+ *  \file   Beagle/IntVec/CrossoverCycleOp.cpp
+ *  \brief  Source code of class IntVec::CrossoverCycleOp.
  *  \author Francois-Michel De Rainville
  *  $Revision: $
  *  $Date: $
  */
 
-#include "beagle/GA.hpp"
+#include "Beagle/IntVec.hpp"
 
 #include <algorithm>
 #include <string>
@@ -59,21 +59,21 @@ typedef std::map<int, int> CCXMap;
 
 
 /*!
- *  \brief Construct a GA cycle crossover operator.
+ *  \brief Construct a IntVec cycle crossover operator.
  *  \param inMatingPbName Mating probability parameter name.
  *  \param inName Name of the operator.
  */
-Beagle::GA::CrossoverCycleOp::CrossoverCycleOp(std::string inMatingPbName,
-											   std::string inName):
-Beagle::CrossoverOp(inMatingPbName, inName)
+Beagle::IntVec::CrossoverCycleOp::CrossoverCycleOp(std::string inMatingPbName,
+                                                   std::string inName) :
+	EC::CrossoverOp(inMatingPbName, inName)
 { }
 
 
 /*!
- *  \brief Register the parameters of the GA cycle crossover operator.
+ *  \brief Register the parameters of the IntVec cycle crossover operator.
  *  \param ioSystem System of the evolution.
  */
-void Beagle::GA::CrossoverCycleOp::registerParams(Beagle::System& ioSystem)
+void Beagle::IntVec::CrossoverCycleOp::registerParams(Beagle::System& ioSystem)
 {
 	Beagle_StackTraceBeginM();
 	{
@@ -81,7 +81,7 @@ void Beagle::GA::CrossoverCycleOp::registerParams(Beagle::System& ioSystem)
 			"Individual cycle crossover pb.",
 			"Double",
 			"0.3",
-			"GA cycle crossover probability of a single individual."
+			"IntVec cycle crossover probability of a single individual."
 		);
 		mMatingProba = castHandleT<Double>(ioSystem.getRegister().insertEntry(mMatingProbaName, new Double(0.3f), lDescription));
 	}
@@ -91,41 +91,30 @@ void Beagle::GA::CrossoverCycleOp::registerParams(Beagle::System& ioSystem)
 
 
 /*!
- *  \brief Mate two indices integer vector GA individuals for cycle crossover.
+ *  \brief Mate two indices integer vector IntVec individuals for cycle crossover.
  *  \param ioIndiv1   First individual to mate.
  *  \param ioContext1 Evolutionary context of the first individual.
  *  \param ioIndiv2   Second individual to mate.
  *  \param ioContext2 Evolutionary context of the second individual.
  *  \return True if the individuals are effectively mated, false if not.
  */
-bool Beagle::GA::CrossoverCycleOp::mate(Beagle::Individual& ioIndiv1,
-									   Beagle::Context&    ioContext1,
-									   Beagle::Individual& ioIndiv2,
-									   Beagle::Context&    ioContext2)
+bool Beagle::IntVec::CrossoverCycleOp::mate(Beagle::Individual& ioIndiv1,
+                                            Beagle::Context&    ioContext1,
+											Beagle::Individual& ioIndiv2,
+											Beagle::Context&    ioContext2)
 {
 	Beagle_StackTraceBeginM();
 	unsigned int lNbGenotypes = minOf<unsigned int>(ioIndiv1.size(), ioIndiv2.size());
 	if(lNbGenotypes == 0) return false;
 	
 	Beagle_LogDebugM(
-					 ioContext1.getSystem().getLogger(),
-					 "crossover", "Beagle::GA::CrossoverCycleOp",
-					 "Individuals mated (before GA cycle crossover)"
-					 );
-	Beagle_LogObjectDebugM(
-						   ioContext1.getSystem().getLogger(),
-						   "crossover", "Beagle::GA::CrossoverCycleOp",
-						   ioIndiv1
-						   );
-	Beagle_LogObjectDebugM(
-						   ioContext1.getSystem().getLogger(),
-						   "crossover", "Beagle::GA::CrossoverCycleOp",
-						   ioIndiv2
-						   );
+		ioContext1.getSystem().getLogger(),
+		"Individuals mated (before integer vector cycle crossover): " << ioIndiv1 << ", " << ioIndiv2
+	);
 	
 	for(unsigned int i=0; i<lNbGenotypes; ++i) {
-		GA::IntegerVector::Handle lIndividual1 = castHandleT<IntegerVector>(ioIndiv1[i]);
-		GA::IntegerVector::Handle lIndividual2 = castHandleT<IntegerVector>(ioIndiv2[i]);
+		IntVec::IntegerVector::Handle lIndividual1 = castHandleT<IntegerVector>(ioIndiv1[i]);
+		IntVec::IntegerVector::Handle lIndividual2 = castHandleT<IntegerVector>(ioIndiv2[i]);
 
 		unsigned int lSize = minOf<unsigned int>(lIndividual1->size(), lIndividual2->size());
 		CCXMap lParent1;
@@ -165,22 +154,9 @@ bool Beagle::GA::CrossoverCycleOp::mate(Beagle::Individual& ioIndiv1,
 	}
 	
 	Beagle_LogDebugM(
-					 ioContext1.getSystem().getLogger(),
-					 "crossover", "Beagle::GA::CrossoverCycleOp",
-					 "Individuals mated (after GA cycle crossover)"
-					 );
-	Beagle_LogObjectDebugM(
-						   ioContext1.getSystem().getLogger(),
-						   "crossover",
-						   "Beagle::GA::CrossoverCycleOp",
-						   ioIndiv1
-						   );
-	Beagle_LogObjectDebugM(
-						   ioContext1.getSystem().getLogger(),
-						   "crossover",
-						   "Beagle::GA::CrossoverCycleOp",
-						   ioIndiv2
-						   );
+		ioContext1.getSystem().getLogger(),
+		"Individuals mated (after integer vector cycle crossover): " << ioIndiv1 << ", " << ioIndiv2;
+	);
 	
 	return true;
 	Beagle_StackTraceEndM();

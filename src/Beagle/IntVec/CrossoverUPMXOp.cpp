@@ -25,102 +25,55 @@
  */
 
 /*!
- *  \file   beagle/GA/src/CrossoverUPMXOp.cpp
- *  \brief  Source code of class GA::CrossoverUPMXOp.
+ *  \file   Beagle/IntVec/CrossoverUPMXOp.cpp
+ *  \brief  Source code of class IntVec::CrossoverUPMXOp.
  *  \author Francois-Michel De Rainville
  *  $Revision: $
  *  $Date: $
  */
 
-#include "beagle/GA.hpp"
+#include "Beagle/IntVec.hpp"
 
 #include <algorithm>
 #include <string>
 
+
 /*!
- *  \brief Construct a GA uniform partialy matched crossover operator.
+ *  \brief Construct a IntVec uniform partialy matched crossover operator.
  *  \param inMatingPbName Mating probability parameter name.
  *  \param inMatchPbName Distribution probability parameter name.
  *  \param inName Name of the operator.
  */
-Beagle::GA::CrossoverUPMXOp::CrossoverUPMXOp(std::string inMatingPbName,
-											 std::string inDistribPbName,
-											 std::string inName):
-Beagle::CrossoverOp(inMatingPbName, inName), mDistribProbaName(inDistribPbName)
+Beagle::IntVec::CrossoverUPMXOp::CrossoverUPMXOp(std::string inMatingPbName,
+									    		 std::string inDistribPbName,
+											     std::string inName):
+	EC::CrossoverOp(inMatingPbName, inName), mDistribProbaName(inDistribPbName)
 { }
 
-/*!
- *  \brief Register the parameters of the GA uniform partialy matched crossover operator.
- *  \param ioSystem System of the evolution.
- */
-void Beagle::GA::CrossoverUPMXOp::registerParams(Beagle::System& ioSystem)
-{
-	Beagle_StackTraceBeginM();
-	{
-		Register::Description lDescription(
-			"Individual uniform partialy mixed crossover pb.",
-			"Double",
-			"0.3",
-			"GA uniform partialy mixed crossover probability of a single individual."
-		);
-		mMatingProba = castHandleT<Double>(ioSystem.getRegister().insertEntry(mMatingProbaName, new Double(0.3f), lDescription));
-	}
-	CrossoverOp::registerParams(ioSystem);
-	{
-		std::ostringstream lOSS;
-		lOSS << "Uniform partialy matched GA crossover distribution probability of matching ";
-		lOSS << "two elements at a same location. Value of 0.5 means that half of the elements will ";
-		lOSS << "be matched and swapped. Value of 0.25 means that 25% of the elements will ";
-		lOSS << "be matched and swapped resulting generaly in a 50% (or less) crossover. ";
-		Register::Description lDescription(
-										   "Uniform matching distribution prob.",
-										   "Float",
-										   "0.25",
-										   lOSS.str()
-										   );
-		mDistribProba = castHandleT<Float>(
-										ioSystem.getRegister().insertEntry(mDistribProbaName, new Float(0.25f), lDescription));
-	}
-	Beagle_StackTraceEndM();
-}
-
 
 /*!
- *  \brief Mate two indice integer vector GA individuals for uniform partialy matched crossover.
+ *  \brief Mate two indice integer vector IntVec individuals for uniform partialy matched crossover.
  *  \param ioIndiv1   First individual to mate.
  *  \param ioContext1 Evolutionary context of the first individual.
  *  \param ioIndiv2   Second individual to mate.
  *  \param ioContext2 Evolutionary context of the second individual.
  *  \return True if the individuals are effectively mated, false if not.
  */
-bool Beagle::GA::CrossoverUPMXOp::mate(Beagle::Individual& ioIndiv1,
-									   Beagle::Context&    ioContext1,
-									   Beagle::Individual& ioIndiv2,
-									   Beagle::Context&    ioContext2)
+bool Beagle::IntVec::CrossoverUPMXOp::mate(Beagle::Individual& ioIndiv1,
+									       Beagle::Context&    ioContext1,
+									       Beagle::Individual& ioIndiv2,
+									       Beagle::Context&    ioContext2)
 {
 	Beagle_StackTraceBeginM();
 	unsigned int lNbGenotypes = minOf<unsigned int>(ioIndiv1.size(), ioIndiv2.size());
 	if(lNbGenotypes == 0) return false;
 	
-	Beagle_LogDebugM(
-					 ioContext1.getSystem().getLogger(),
-					 "crossover", "Beagle::GA::CrossoverUPMXOp",
-					 "Individuals mated (before GA uniform partily matched crossover)"
-					 );
-	Beagle_LogObjectDebugM(
-						   ioContext1.getSystem().getLogger(),
-						   "crossover", "Beagle::GA::CrossoverUPMXOp",
-						   ioIndiv1
-						   );
-	Beagle_LogObjectDebugM(
-						   ioContext1.getSystem().getLogger(),
-						   "crossover", "Beagle::GA::CrossoverUPMXOp",
-						   ioIndiv2
-						   );
+	Beagle_LogDebugM(ioContext1.getSystem().getLogger(),
+					 "Individuals mated (before uniform partially matched crossover): " << ioIndiv1 << ", " << ioIndiv2);
 	
 	for(unsigned int i=0; i<lNbGenotypes; ++i) {
-		GA::IntegerVector::Handle lIndividual1 = castHandleT<IntegerVector>(ioIndiv1[i]);
-		GA::IntegerVector::Handle lIndividual2 = castHandleT<IntegerVector>(ioIndiv2[i]);
+		IntVec::IntegerVector::Handle lIndividual1 = castHandleT<IntegerVector>(ioIndiv1[i]);
+		IntVec::IntegerVector::Handle lIndividual2 = castHandleT<IntegerVector>(ioIndiv2[i]);
 		
 		Beagle_AssertM(lIndividual1->size() == lIndividual2->size());
 		
@@ -153,23 +106,8 @@ bool Beagle::GA::CrossoverUPMXOp::mate(Beagle::Individual& ioIndiv1,
 		delete[] lPos2;
 	}
 	
-	Beagle_LogDebugM(
-					 ioContext1.getSystem().getLogger(),
-					 "crossover", "Beagle::GA::CrossoverUPMXOp",
-					 "Individuals mated (after GA uniform partialy matched crossover)"
-					 );
-	Beagle_LogObjectDebugM(
-						   ioContext1.getSystem().getLogger(),
-						   "crossover",
-						   "Beagle::GA::CrossoverUPMXOp",
-						   ioIndiv1
-						   );
-	Beagle_LogObjectDebugM(
-						   ioContext1.getSystem().getLogger(),
-						   "crossover",
-						   "Beagle::GA::CrossoverUPMXOp",
-						   ioIndiv2
-						   );
+	Beagle_LogDebugM(ioContext1.getSystem().getLogger(),
+					 "Individuals mated (after uniform partially matched crossover): " << ioIndiv1 << ", " << ioIndiv2);
 	
 	return true;
 	Beagle_StackTraceEndM();
@@ -181,7 +119,7 @@ bool Beagle::GA::CrossoverUPMXOp::mate(Beagle::Individual& ioIndiv1,
  *  \param inIter XML iterator to use to read crossover operator.
  *  \param ioSystem Evolutionary system.
  */
-void Beagle::GA::CrossoverUPMXOp::readWithSystem(PACC::XML::ConstIterator inIter, System& ioSystem)
+void Beagle::IntVec::CrossoverUPMXOp::readWithSystem(PACC::XML::ConstIterator inIter, System& ioSystem)
 {
 	Beagle_StackTraceBeginM();
 	if((inIter->getType()!=PACC::XML::eData) || (inIter->getValue()!=getName())) {
@@ -201,14 +139,47 @@ void Beagle::GA::CrossoverUPMXOp::readWithSystem(PACC::XML::ConstIterator inIter
 
 
 /*!
+ *  \brief Register the parameters of the integer vector uniform partialy matched crossover operator.
+ *  \param ioSystem System of the evolution.
+ */
+void Beagle::IntVec::CrossoverUPMXOp::registerParams(Beagle::System& ioSystem)
+{
+	Beagle_StackTraceBeginM();
+	{
+		Register::Description lDescription(
+			"Individual uniform partialy mixed crossover pb.",
+			"Double",
+			"0.3",
+			"Integer vector uniform partialy mixed crossover probability of a single individual."
+		);
+		mMatingProba = castHandleT<Double>(ioSystem.getRegister().insertEntry(mMatingProbaName, new Double(0.3f), lDescription));
+	}
+	EC::CrossoverOp::registerParams(ioSystem);
+	{
+		std::ostringstream lOSS;
+		lOSS << "Uniform partialy matched IntVec crossover distribution probability of matching ";
+		lOSS << "two elements at a same location. Value of 0.5 means that half of the elements will ";
+		lOSS << "be matched and swapped. Value of 0.25 means that 25% of the elements will ";
+		lOSS << "be matched and swapped resulting generaly in a 50% (or less) crossover. ";
+		Register::Description lDescription("Uniform matching distribution prob.",
+										   "Float",
+										   "0.25",
+										   lOSS.str());
+		mDistribProba = castHandleT<Float>(ioSystem.getRegister().insertEntry(mDistribProbaName, new Float(0.25f), lDescription));
+	}
+	Beagle_StackTraceEndM();
+}
+
+
+/*!
  *  \brief Write uniform partialy matched crossover operator into XML streamer.
  *  \param ioStreamer XML streamer to write crossover operator into.
  *  \param inIndent Whether XML output should be indented.
  */
-void Beagle::GA::CrossoverUPMXOp::writeContent(PACC::XML::Streamer& ioStreamer, bool inIndent) const
+void Beagle::IntVec::CrossoverUPMXOp::writeContent(PACC::XML::Streamer& ioStreamer, bool inIndent) const
 {
 	Beagle_StackTraceBeginM();
-	CrossoverOp::writeContent(ioStreamer, inIndent);
+	EC::CrossoverOp::writeContent(ioStreamer, inIndent);
 	ioStreamer.insertAttribute("distrpb", mDistribProbaName);
 	Beagle_StackTraceEndM();
 }

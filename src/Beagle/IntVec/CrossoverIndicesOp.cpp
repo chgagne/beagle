@@ -25,15 +25,15 @@
  */
 
 /*!
- *  \file   beagle/GA/src/CrossoverIndicesIntVecOp.cpp
- *  \brief  Source code of class GA::CrossoverIndicesIntVecOp.
+ *  \file   Beagle/IntVec/CrossoverIndicesOp.cpp
+ *  \brief  Source code of class IntVec::CrossoverIndicesOp.
  *  \author Christian Gagne
  *  \author Marc Parizeau
  *  $Revision: 1.10 $
  *  $Date: 2007/08/17 18:09:10 $
  */
 
-#include "beagle/GA.hpp"
+#include "Beagle/IntVec.hpp"
 
 #include <algorithm>
 #include <string>
@@ -46,9 +46,9 @@ using namespace Beagle;
  *  \param inMatingPbName Mating probability parameter name.
  *  \param inName Name of the operator.
  */
-Beagle::GA::CrossoverIndicesIntVecOp::CrossoverIndicesIntVecOp(std::string inMatingPbName,
-        std::string inName) :
-		CrossoverOp(inMatingPbName, inName)
+Beagle::IntVec::CrossoverIndicesOp::CrossoverIndicesOp(std::string inMatingPbName,
+                                                       std::string inName) :
+		EC::CrossoverOp(inMatingPbName, inName)
 { }
 
 
@@ -56,7 +56,7 @@ Beagle::GA::CrossoverIndicesIntVecOp::CrossoverIndicesIntVecOp(std::string inMat
  *  \brief Register the parameters of the indices integer vector operator.
  *  \param ioSystem System of the evolution.
  */
-void Beagle::GA::CrossoverIndicesIntVecOp::registerParams(Beagle::System& ioSystem)
+void Beagle::IntVec::CrossoverIndicesOp::registerParams(Beagle::System& ioSystem)
 {
 	Beagle_StackTraceBeginM();
 	{
@@ -69,23 +69,23 @@ void Beagle::GA::CrossoverIndicesIntVecOp::registerParams(Beagle::System& ioSyst
 		mMatingProba = castHandleT<Double>(
 		                   ioSystem.getRegister().insertEntry(mMatingProbaName, new Double(0.3f), lDescription));
 	}
-	CrossoverOp::registerParams(ioSystem);
+	EC::CrossoverOp::registerParams(ioSystem);
 	Beagle_StackTraceEndM();
 }
 
 
 /*!
- *  \brief Mate two GA individuals for indices integer vector crossover.
+ *  \brief Mate two IntVec individuals for indices integer vector crossover.
  *  \param ioIndiv1   First individual to mate.
  *  \param ioContext1 Evolutionary context of the first individual.
  *  \param ioIndiv2   Second individual to mate.
  *  \param ioContext2 Evolutionary context of the second individual.
  *  \return True if the individuals are effectively mated, false if not.
  */
-bool Beagle::GA::CrossoverIndicesIntVecOp::mate(Beagle::Individual& ioIndiv1,
-        Beagle::Context&    ioContext1,
-        Beagle::Individual& ioIndiv2,
-        Beagle::Context&    ioContext2)
+bool Beagle::IntVec::CrossoverIndicesOp::mate(Beagle::Individual& ioIndiv1,
+                                              Beagle::Context&    ioContext1,
+                                              Beagle::Individual& ioIndiv2,
+                                              Beagle::Context&    ioContext2)
 {
 	Beagle_StackTraceBeginM();
 	unsigned int lNbGenotypes = minOf<unsigned int>(ioIndiv1.size(), ioIndiv2.size());
@@ -93,25 +93,14 @@ bool Beagle::GA::CrossoverIndicesIntVecOp::mate(Beagle::Individual& ioIndiv1,
 
 	Beagle_LogDebugM(
 	    ioContext1.getSystem().getLogger(),
-	    "crossover", "Beagle::GA::CrossoverIndicesIntVecOp",
-	    "Individuals mated (before indices integer vector crossover)"
-	);
-	Beagle_LogObjectDebugM(
-	    ioContext1.getSystem().getLogger(),
-	    "crossover", "Beagle::GA::CrossoverIndicesIntVecOp",
-	    ioIndiv1
-	);
-	Beagle_LogObjectDebugM(
-	    ioContext1.getSystem().getLogger(),
-	    "crossover", "Beagle::GA::CrossoverIndicesIntVecOp",
-	    ioIndiv2
+	    "Individuals mated (before indices integer vector crossover): " << ioIndiv1 << ", " << ioIndiv2
 	);
 
 	for(unsigned int i=0; i<lNbGenotypes; ++i) {
-		GA::IntegerVector::Handle lIntVector1 = castHandleT<IntegerVector>(ioIndiv1[i]);
+		IntVec::IntegerVector::Handle lIntVector1 = castHandleT<IntegerVector>(ioIndiv1[i]);
 		std::deque<int> lIntVecCopy1(lIntVector1->begin(), lIntVector1->end());
 		std::vector<bool> lSelected1(lIntVecCopy1.size(), false);
-		GA::IntegerVector::Handle lIntVector2 = castHandleT<IntegerVector>(ioIndiv2[i]);
+		IntVec::IntegerVector::Handle lIntVector2 = castHandleT<IntegerVector>(ioIndiv2[i]);
 		std::deque<int> lIntVecCopy2(lIntVector2->begin(), lIntVector2->end());
 		std::vector<bool> lSelected2(lIntVecCopy2.size(), false);
 		const unsigned int lSumSize = lIntVector1->size() + lIntVector2->size();
@@ -161,20 +150,7 @@ bool Beagle::GA::CrossoverIndicesIntVecOp::mate(Beagle::Individual& ioIndiv1,
 	Beagle_LogDebugM(
 	    ioContext1.getSystem().getLogger(),
 	    "crossover",
-	    "Beagle::GA::CrossoverIndicesIntVecOp",
-	    "Individuals mated (after indices integer vector crossover)"
-	);
-	Beagle_LogObjectDebugM(
-	    ioContext1.getSystem().getLogger(),
-	    "crossover",
-	    "Beagle::GA::CrossoverIndicesIntVecOp",
-	    ioIndiv1
-	);
-	Beagle_LogObjectDebugM(
-	    ioContext1.getSystem().getLogger(),
-	    "crossover",
-	    "Beagle::GA::CrossoverIndicesIntVecOp",
-	    ioIndiv2
+	    "Individuals mated (after indices integer vector crossover): " << ioIndiv1 << ", " << ioIndiv2
 	);
 
 	return true;

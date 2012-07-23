@@ -25,15 +25,15 @@
  */
 
 /*!
- *  \file   beagle/GA/src/InitQRIntVecOp.cpp
- *  \brief  Source code of class GA::InitQRIntVecOp.
+ *  \file   Beagle/IntVec/InitUniformQROp.cpp
+ *  \brief  Source code of class IntVec::InitUniformQROp.
  *  \author Christian Gagne
  *  \author Marc Parizeau
  *  $Revision: 1.6 $
  *  $Date: 2007/08/17 18:09:10 $
  */
 
-#include "beagle/GA.hpp"
+#include "Beagle/IntVec.hpp"
 
 #include <cmath>
 #include <sstream>
@@ -43,26 +43,26 @@ using namespace Beagle;
 
 
 /*!
- *  \brief Construct a GA integer vectors quasi-random initialization operator.
+ *  \brief Construct a integer vectors quasi-random initialization operator.
  *  \param inIntVectorSize Size of the integer vectors initialized.
  *  \param inReproProbaName Reproduction probability parameter name used in register.
  *  \param inName Name of the operator.
  */
-GA::InitQRIntVecOp::InitQRIntVecOp(unsigned int inIntVectorSize,
-                                   std::string inReproProbaName,
-                                   std::string inName) :
-		GA::InitIntVecOp(inIntVectorSize, inReproProbaName, inName)
+IntVec::InitUniformQROp::InitUniformQROp(unsigned int inIntVectorSize,
+                                         std::string inReproProbaName,
+                                         std::string inName) :
+		IntVec::InitializationOp(inIntVectorSize, inReproProbaName, inName)
 { }
 
 
 /*!
- *  \brief Register the parameters of the GA integer vectors quasi-random initialization operator.
+ *  \brief Register the parameters of the integer vectors quasi-random initialization operator.
  *  \param ioSystem System of the evolution.
  */
-void GA::InitQRIntVecOp::registerParams(System& ioSystem)
+void IntVec::InitUniformQROp::registerParams(System& ioSystem)
 {
 	Beagle_StackTraceBeginM();
-	GA::InitIntVecOp::registerParams(ioSystem);
+	IntVec::InitializationOp::registerParams(ioSystem);
 	Component::Handle lQRComponent = ioSystem.haveComponent("QuasiRandom");
 	if(lQRComponent == NULL) ioSystem.addComponent(new QuasiRandom);
 	Beagle_StackTraceEndM();
@@ -73,10 +73,10 @@ void GA::InitQRIntVecOp::registerParams(System& ioSystem)
  *  \brief Initialize the quasi-random ES initialization operator.
  *  \param ioSystem System of the evolution.
  */
-void GA::InitQRIntVecOp::init(System& ioSystem)
+void IntVec::InitUniformQROp::init(System& ioSystem)
 {
 	Beagle_StackTraceBeginM();
-	GA::InitIntVecOp::init(ioSystem);
+	IntVec::InitializationOp::init(ioSystem);
 	QuasiRandom::Handle lQRComponent =
 	    castHandleT<QuasiRandom>(ioSystem.getComponent("QuasiRandom"));
 	if(lQRComponent->getDimensionality() == 0) {
@@ -87,25 +87,25 @@ void GA::InitQRIntVecOp::init(System& ioSystem)
 
 
 /*!
- *  \brief Initialize integer-valued GA individual with numbers uniformly distributed in a given range.
+ *  \brief Initialize integer-valued IntVec individual with numbers uniformly distributed in a given range.
  *  \param outIndividual Individual to initialize.
  *  \param ioContext Evolution context.
  */
-void GA::InitQRIntVecOp::initIndividual(Beagle::Individual& outIndividual, Context& ioContext)
+void IntVec::InitUniformQROp::initIndividual(Beagle::Individual& outIndividual, Context& ioContext)
 {
 	Beagle_StackTraceBeginM();
 #ifndef BEAGLE_NDEBUG
 	if(mIntVectorSize->getWrappedValue() == 0) {
-		string lMessage = "GA::InitQRIntVecOp::initIndividual: ";
+		string lMessage = "IntVec::InitUniformQROp::initIndividual: ";
 		lMessage += "integer vector size parameter is zero; ";
 		lMessage += "could not initialize the individuals!";
 		throw Beagle_RunTimeExceptionM(lMessage);
 	}
 #endif // BEAGLE_NDEBUG
 	const Factory& lFactory = ioContext.getSystem().getFactory();
-	GA::IntegerVector::Alloc::Handle lIntegerVectorAlloc =
-		castHandleT<GA::IntegerVector::Alloc>(lFactory.getConceptAllocator("Genotype"));
-	GA::IntegerVector::Handle lIntegerVector = castHandleT<GA::IntegerVector>(lIntegerVectorAlloc->allocate());
+	IntVec::IntegerVector::Alloc::Handle lIntegerVectorAlloc =
+		castHandleT<IntVec::IntegerVector::Alloc>(lFactory.getConceptAllocator("Genotype"));
+	IntVec::IntegerVector::Handle lIntegerVector = castHandleT<IntVec::IntegerVector>(lIntegerVectorAlloc->allocate());
 	lIntegerVector->resize(mIntVectorSize->getWrappedValue());
 	outIndividual.clear();
 	outIndividual.push_back(lIntegerVector);
@@ -122,13 +122,7 @@ void GA::InitQRIntVecOp::initIndividual(Beagle::Individual& outIndividual, Conte
 	for(unsigned int j=0; j<lIntegerVector->size(); ++j) (*lIntegerVector)[j] = lQRValues[j];
 	Beagle_LogDebugM(
 	    ioContext.getSystem().getLogger(),
-	    "initialization", "Beagle::GA::InitQRIntVecOp",
-	    "Integer vector initialized as"
-	);
-	Beagle_LogObjectDebugM(
-	    ioContext.getSystem().getLogger(),
-	    "initialization", "Beagle::GA::InitQRIntVecOp",
-	    *lIntegerVector
+	    "Integer vector initialized as: " << *lIntegerVector
 	);
 	Beagle_StackTraceEndM();
 }
