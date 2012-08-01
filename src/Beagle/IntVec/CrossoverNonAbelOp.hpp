@@ -47,7 +47,7 @@ namespace IntVec {
 /*!
  *  \class CrossoverNonAbelOp Beagle/IntVec/CrossoverNonAbelOp.hpp
  *    "Beagle/IntVec/CrossoverNonAbelOp.hpp"
- *  \brief 
+ *  \brief Non-Abel crossover over indices permutation genotypes.
  *  \ingroup IntVecF
  *	\warning This crossover operation may give unexpected results when not applied
  *	  on an indices permutation genotype.

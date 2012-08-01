@@ -47,7 +47,8 @@
 Beagle::IntVec::CrossoverUPMXOp::CrossoverUPMXOp(std::string inMatingPbName,
 									    		 std::string inDistribPbName,
 											     std::string inName):
-	EC::CrossoverOp(inMatingPbName, inName), mDistribProbaName(inDistribPbName)
+	EC::CrossoverOp(inMatingPbName, inName),
+	mDistribProbaName(inDistribPbName)
 { }
 
 
@@ -68,8 +69,10 @@ bool Beagle::IntVec::CrossoverUPMXOp::mate(Beagle::Individual& ioIndiv1,
 	unsigned int lNbGenotypes = minOf<unsigned int>(ioIndiv1.size(), ioIndiv2.size());
 	if(lNbGenotypes == 0) return false;
 	
-	Beagle_LogDebugM(ioContext1.getSystem().getLogger(),
-					 "Individuals mated (before uniform partially matched crossover): " << ioIndiv1 << ", " << ioIndiv2);
+	Beagle_LogDebugM(
+	    ioContext1.getSystem().getLogger(),
+		"Individuals mated (before uniform partially matched crossover): " << ioIndiv1 << ", " << ioIndiv2
+	);
 	
 	for(unsigned int i=0; i<lNbGenotypes; ++i) {
 		IntVec::IntegerVector::Handle lIndividual1 = castHandleT<IntegerVector>(ioIndiv1[i]);
@@ -106,8 +109,10 @@ bool Beagle::IntVec::CrossoverUPMXOp::mate(Beagle::Individual& ioIndiv1,
 		delete[] lPos2;
 	}
 	
-	Beagle_LogDebugM(ioContext1.getSystem().getLogger(),
-					 "Individuals mated (after uniform partially matched crossover): " << ioIndiv1 << ", " << ioIndiv2);
+	Beagle_LogDebugM(
+	  ioContext1.getSystem().getLogger(),
+	  "Individuals mated (after uniform partially matched crossover): " << ioIndiv1 << ", " << ioIndiv2
+	);
 	
 	return true;
 	Beagle_StackTraceEndM();
@@ -162,10 +167,10 @@ void Beagle::IntVec::CrossoverUPMXOp::registerParams(Beagle::System& ioSystem)
 		lOSS << "be matched and swapped. Value of 0.25 means that 25% of the elements will ";
 		lOSS << "be matched and swapped resulting generaly in a 50% (or less) crossover. ";
 		Register::Description lDescription("Uniform matching distribution prob.",
-										   "Float",
+										   "Double",
 										   "0.25",
 										   lOSS.str());
-		mDistribProba = castHandleT<Float>(ioSystem.getRegister().insertEntry(mDistribProbaName, new Float(0.25f), lDescription));
+		mDistribProba = castHandleT<Double>(ioSystem.getRegister().insertEntry(mDistribProbaName, new Double(0.25), lDescription));
 	}
 	Beagle_StackTraceEndM();
 }

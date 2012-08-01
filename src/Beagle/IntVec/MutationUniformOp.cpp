@@ -25,41 +25,119 @@
  */
 
 /*!
- *  \file   beagle/GA/src/MutationUniformIntVecOp.cpp
- *  \brief  Source code of class GA::MutationUniformIntVecOp.
+ *  \file   Beagle/IntVec/MutationUniformOp.cpp
+ *  \brief  Source code of class IntVec::MutationUniformOp.
  *  \author Christian Gagne
  *  \author Marc Parizeau
  *  $Revision: 1.15 $
  *  $Date: 2008/03/20 14:01:14 $
  */
 
-#include "beagle/GA.hpp"
+#include "Beagle/IntVec.hpp"
 
-#include <algorithm>
-#include <string>
 
 using namespace Beagle;
 
 
 /*!
- *  \brief Construct an integer vector GA uniform mutation operator.
+ *  \brief Construct an integer vector uniform mutation operator.
  *  \param inMutationPbName Mutation probability parameter name used in register.
  *  \param inIntMutatePbName Mutation integer probability parameter name used in register.
  *  \param inName Name of the operator.
  */
-GA::MutationUniformIntVecOp::MutationUniformIntVecOp(std::string inMutationPbName,
+IntVec::MutationUniformOp::MutationUniformOp(std::string inMutationPbName,
         std::string inIntMutatePbName,
         std::string inName) :
-		Beagle::MutationOp(inMutationPbName, inName),
-		mIntMutatePbName(inIntMutatePbName)
+	EC::MutationOp(inMutationPbName, inName),
+	mIntMutatePbName(inIntMutatePbName)
 { }
 
 
 /*!
- *  \brief Register the parameters of the integer vector GA uniform mutation operator.
+ *  \brief Uniformly mutate an integer vector IntVec individual.
+ *  \param ioIndividual IntVec individual to mutate.
+ *  \param ioContext Context of the evolution.
+ *  \return True if the individual is effectively mutated, false if not.
+ */
+bool IntVec::MutationUniformOp::mutate(Beagle::Individual& ioIndividual, Context& ioContext)
+{
+	Beagle_StackTraceBeginM();
+	Beagle_ValidateParameterM(mIntMutateProba->getWrappedValue()>=0.0, mIntMutatePbName, "<0");
+
+	bool lMutated = false;
+	Beagle_LogVerboseM(
+	    ioContext.getSystem().getLogger(),
+	    "Integer uniform mutation probability is: " << dbl2str(mIntMutateProba->getWrappedValue())
+	);
+
+	for(unsigned int i=0; i<ioIndividual.size(); i++) {
+		IntVec::IntegerVector::Handle lIV = castHandleT<IntVec::IntegerVector>(ioIndividual[i]);
+		Beagle_LogVerboseM(
+		    ioContext.getSystem().getLogger(),
+		    "Uniformly mutating the " << uint2ordinal(i+1) << " integer vector"
+		);
+		Beagle_LogDebugM(
+		    ioContext.getSystem().getLogger(),
+		    *lIV
+		);
+		for(unsigned int j=0; j<lIV->size(); j++) {
+			double lRolledPb = ioContext.getSystem().getRandomizer().rollUniform();
+			if(lRolledPb <= mIntMutateProba->getWrappedValue()) {
+				const int lMaxVal = j<mMaxValue->size() ? (*mMaxValue)[j] : mMaxValue->back();
+				const int lMinVal = j<mMinValue->size() ? (*mMinValue)[j] : mMinValue->back();
+				Beagle_AssertM(lMaxVal >= lMinVal);
+				const int lRandVal = (int)ioContext.getSystem().getRandomizer().rollInteger(0,lMaxVal-lMinVal);
+				(*lIV)[j] = (lRandVal+lMinVal);
+				lMutated = true;
+			}
+		}
+		if(lMutated) {
+			Beagle_LogVerboseM(
+			    ioContext.getSystem().getLogger(),
+			    "The integer vector has been uniformly mutated"
+			);
+			Beagle_LogDebugM(
+			    ioContext.getSystem().getLogger(),
+			    *lIV
+			);
+		} else {
+			Beagle_LogVerboseM(
+			    ioContext.getSystem().getLogger(),
+			    "The integer vector has not been mutated"
+			);
+		}
+	}
+	return lMutated;
+	Beagle_StackTraceEndM();
+}
+
+
+/*!
+ *  \brief Read a uniform mutation operator from XML subtree.
+ *  \param inIter XML iterator to use to read mutation operator.
+ *  \param ioSystem Evolutionary system.
+ */
+void IntVec::MutationUniformOp::readWithSystem(PACC::XML::ConstIterator inIter, System& ioSystem)
+{
+	Beagle_StackTraceBeginM();
+	if((inIter->getType()!=PACC::XML::eData) || (inIter->getValue()!=getName())) {
+		std::ostringstream lOSS;
+		lOSS << "tag <" << getName() << "> expected!" << std::flush;
+		throw Beagle_IOExceptionNodeM(*inIter, lOSS.str());
+	}
+	std::string lMutationPbReadName = inIter->getAttribute("mutationpb");
+	if(lMutationPbReadName.empty() == false) mMutationPbName = lMutationPbReadName;
+	std::string lIntMutatePbReadName = inIter->getAttribute("mutintpb");
+	if(lIntMutatePbReadName.empty() == false) mIntMutatePbName = lIntMutatePbReadName;
+	Beagle_StackTraceEndM();
+}
+
+
+/*!
+ *  \brief Register the parameters of the integer vector uniform mutation operator.
  *  \param ioSystem System of the evolution.
  */
-void GA::MutationUniformIntVecOp::registerParams(System& ioSystem)
+void IntVec::MutationUniformOp::registerParams(System& ioSystem)
 {
 	Beagle_StackTraceBeginM();
 	{
@@ -67,21 +145,21 @@ void GA::MutationUniformIntVecOp::registerParams(System& ioSystem)
 		    "Individual unif. mutation prob.",
 		    "Double",
 		    "0.1",
-		    "Integer vector uniform mutation probability for each GA individual."
+		    "Integer vector uniform mutation probability for each IntVec individual."
 		);
 		mMutationProba = castHandleT<Double>(
-		                     ioSystem.getRegister().insertEntry(mMutationPbName, new Double(0.1f), lDescription));
+		                     ioSystem.getRegister().insertEntry(mMutationPbName, new Double(0.1), lDescription));
 	}
 	Beagle::MutationOp::registerParams(ioSystem);
 	{
 		Register::Description lDescription(
 		    "Int unif. mutation probability",
-		    "Float",
+		    "Double",
 		    "0.1",
 		    "Probability for each integer to be modified by mutation, when an individual is mutated."
 		);
-		mIntMutateProba = castHandleT<Float>(
-		                      ioSystem.getRegister().insertEntry(mIntMutatePbName, new Float(0.1f), lDescription));
+		mIntMutateProba = castHandleT<Double>(
+		                      ioSystem.getRegister().insertEntry(mIntMutatePbName, new Double(0.1), lDescription));
 	}
 	{
 		std::ostringstream lOSS;
@@ -122,98 +200,11 @@ void GA::MutationUniformIntVecOp::registerParams(System& ioSystem)
 
 
 /*!
- *  \brief Uniformly mutate an integer vector GA individual.
- *  \param ioIndividual GA individual to mutate.
- *  \param ioContext Context of the evolution.
- *  \return True if the individual is effectively mutated, false if not.
- */
-bool GA::MutationUniformIntVecOp::mutate(Beagle::Individual& ioIndividual, Context& ioContext)
-{
-	Beagle_StackTraceBeginM();
-	Beagle_ValidateParameterM(mIntMutateProba->getWrappedValue()>=0.0, mIntMutatePbName, "<0");
-
-	bool lMutated = false;
-	Beagle_LogVerboseM(
-	    ioContext.getSystem().getLogger(),
-	    "mutation", "Beagle::GA::MutationUniformIntVecOp",
-	    std::string("Integer uniform mutation probability is: ")+
-	    dbl2str(mIntMutateProba->getWrappedValue())
-	);
-
-	for(unsigned int i=0; i<ioIndividual.size(); i++) {
-		GA::IntegerVector::Handle lIV = castHandleT<GA::IntegerVector>(ioIndividual[i]);
-		Beagle_LogVerboseM(
-		    ioContext.getSystem().getLogger(),
-		    "mutation", "Beagle::GA::MutationUniformIntVecOp",
-		    std::string("Uniformly mutating the ")+uint2ordinal(i+1)+" integer vector"
-		);
-		Beagle_LogObjectDebugM(
-		    ioContext.getSystem().getLogger(),
-		    "mutation", "Beagle::GA::MutationUniformIntVecOp",
-		    *lIV
-		);
-		for(unsigned int j=0; j<lIV->size(); j++) {
-			double lRolledPb = ioContext.getSystem().getRandomizer().rollUniform();
-			if(lRolledPb <= mIntMutateProba->getWrappedValue()) {
-				const int lMaxVal = j<mMaxValue->size() ? (*mMaxValue)[j] : mMaxValue->back();
-				const int lMinVal = j<mMinValue->size() ? (*mMinValue)[j] : mMinValue->back();
-				Beagle_AssertM(lMaxVal >= lMinVal);
-				const int lRandVal = (int)ioContext.getSystem().getRandomizer().rollInteger(0,lMaxVal-lMinVal);
-				(*lIV)[j] = (lRandVal+lMinVal);
-				lMutated = true;
-			}
-		}
-		if(lMutated) {
-			Beagle_LogVerboseM(
-			    ioContext.getSystem().getLogger(),
-			    "mutation", "Beagle::GA::MutationUniformIntVecOp",
-			    std::string("The integer vector has been uniformly mutated")
-			);
-			Beagle_LogObjectDebugM(
-			    ioContext.getSystem().getLogger(),
-			    "mutation", "Beagle::GA::MutationUniformIntVecOp",
-			    *lIV
-			);
-		} else {
-			Beagle_LogVerboseM(
-			    ioContext.getSystem().getLogger(),
-			    "mutation", "Beagle::GA::MutationUniformIntVecOp",
-			    std::string("The integer vector has not been mutated")
-			);
-		}
-	}
-	return lMutated;
-	Beagle_StackTraceEndM();
-}
-
-
-/*!
- *  \brief Read a uniform mutation operator from XML subtree.
- *  \param inIter XML iterator to use to read mutation operator.
- *  \param ioSystem Evolutionary system.
- */
-void GA::MutationUniformIntVecOp::readWithSystem(PACC::XML::ConstIterator inIter, System& ioSystem)
-{
-	Beagle_StackTraceBeginM();
-	if((inIter->getType()!=PACC::XML::eData) || (inIter->getValue()!=getName())) {
-		std::ostringstream lOSS;
-		lOSS << "tag <" << getName() << "> expected!" << std::flush;
-		throw Beagle_IOExceptionNodeM(*inIter, lOSS.str());
-	}
-	std::string lMutationPbReadName = inIter->getAttribute("mutationpb");
-	if(lMutationPbReadName.empty() == false) mMutationPbName = lMutationPbReadName;
-	std::string lIntMutatePbReadName = inIter->getAttribute("mutintpb");
-	if(lIntMutatePbReadName.empty() == false) mIntMutatePbName = lIntMutatePbReadName;
-	Beagle_StackTraceEndM();
-}
-
-
-/*!
  *  \brief Write uniform mutation operator into XML streamer.
  *  \param ioStreamer XML streamer to write mutation operator into.
  *  \param inIndent Whether XML output should be indented.
  */
-void GA::MutationUniformIntVecOp::writeContent(PACC::XML::Streamer& ioStreamer, bool inIndent) const
+void IntVec::MutationUniformOp::writeContent(PACC::XML::Streamer& ioStreamer, bool inIndent) const
 {
 	Beagle_StackTraceBeginM();
 	Beagle::MutationOp::writeContent(ioStreamer, inIndent);

@@ -25,8 +25,8 @@
  */
 
 /*!
- *  \file   beagle/GA/IntegerVector.hpp
- *  \brief  Definition of the type GA::IntegerVector.
+ *  \file   Beagle/IntVec/IntegerVector.hpp
+ *  \brief  Definition of the type IntVec::IntegerVector.
  *  \author Christian Gagne
  *  \author Marc Parizeau
  *  $Revision: 1.6 $
@@ -34,36 +34,28 @@
  */
 
 /*!
- *  \defgroup GAIV Integer-valued GA
- *  \ingroup GAF
- *  \brief Integer-valued GA representation, operators and evolvers, part of the GA framework.
+ *  \defgroup IntVecIV Integer-valued IntVec
+ *  \ingroup IntVecF
+ *  \brief Integer-valued representation, operators and evolvers, part of the IntVec framework.
  */
 
-#ifndef Beagle_GA_IntegerVector_hpp
-#define Beagle_GA_IntegerVector_hpp
+#ifndef Beagle_IntVec_IntegerVector_hpp
+#define Beagle_IntVec_IntegerVector_hpp
+
+#include "Beagle/IntVec.hpp"
 
 #include <vector>
-
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Object.hpp"
-#include "beagle/Allocator.hpp"
-#include "beagle/Pointer.hpp"
-#include "beagle/Container.hpp"
-#include "beagle/ContainerT.hpp"
-#include "beagle/Genotype.hpp"
 
 
 namespace Beagle
 {
-namespace GA
+namespace IntVec
 {
 
 /*!
- *  \class IntegerVector beagle/GA/IntegerVector.hpp "beagle/GA/IntegerVector.hpp"
- *  \brief Integer-valued GA genotype class.
- *  \ingroup GAF
- *  \ingroup GAIV
+ *  \class IntegerVector Beagle/IntVec/IntegerVector.hpp "Beagle/IntVec/IntegerVector.hpp"
+ *  \brief Integer-valued genotype class.
+ *  \ingroup IntVecF
  */
 class IntegerVector : public Genotype, public std::vector<int>
 {
@@ -82,10 +74,10 @@ public:
 	virtual void                copy(const Member& inOriginal, System& ioSystem);
 	virtual unsigned int        getSize() const;
 	virtual const std::string&  getType() const;
-	virtual void				swap(unsigned int inI, unsigned inJ);
 	virtual bool                isEqual(const Object& inRightObj) const;
 	virtual bool                isLess(const Object& inRightObj) const;
 	virtual void                readWithContext(PACC::XML::ConstIterator inIter, Context& ioContext);
+	virtual void				swap(unsigned int inI, unsigned inJ);
 	virtual void                writeContent(PACC::XML::Streamer& ioStreamer, bool inIndent=true) const;
 
 };
@@ -93,4 +85,4 @@ public:
 }
 }
 
-#endif // Beagle_GA_IntegerVector_hpp
+#endif // Beagle_IntVec_IntegerVector_hpp

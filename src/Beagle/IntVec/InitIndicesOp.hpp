@@ -25,62 +25,52 @@
  */
 
 /*!
- *  \file   beagle/GA/InitIndicesIntVecOp.hpp
- *  \brief  Definition of the class GA::InitIndicesIntVecOp.
+ *  \file   Beagle/IntVec/InitIndicesOp.hpp
+ *  \brief  Definition of the class IntVec::InitIndicesOp.
  *  \author Christian Gagne
  *  \author Marc Parizeau
  *  $Revision: 1.6 $
  *  $Date: 2007/08/08 19:26:34 $
  */
 
-#ifndef Beagle_GA_InitIndicesIntVecOp_hpp
-#define Beagle_GA_InitIndicesIntVecOp_hpp
+#ifndef Beagle_IntVec_InitIndicesOp_hpp
+#define Beagle_IntVec_InitIndicesOp_hpp
 
-#include <string>
+#include "Beagle/IntVec.hpp"
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Object.hpp"
-#include "beagle/AllocatorT.hpp"
-#include "beagle/PointerT.hpp"
-#include "beagle/ContainerT.hpp"
-#include "beagle/InitializationOp.hpp"
-#include "beagle/Int.hpp"
-#include "beagle/UInt.hpp"
 
 namespace Beagle
 {
-namespace GA
+namespace IntVec
 {
 
+
 /*!
- *  \class InitIndicesIntVecOp beagle/GA/InitIndicesIntVecOp.hpp "beagle/GA/InitIndicesIntVecOp.hpp"
- *  \brief Integer-valued GA genotype uniformly distributed initialization operator class.
- *  \ingroup GAF
- *  \ingroup GAIV
+ *  \class InitIndicesOp Beagle/IntVec/InitIndicesOp.hpp "Beagle/IntVec/InitIndicesOp.hpp"
+ *  \brief Integer-valued genotype uniformly distributed initialization operator class.
+ *  \ingroup IntVecF
  */
-class InitIndicesIntVecOp : public InitializationOp
+class InitIndicesOp : public EC::InitializationOp
 {
 
 public:
 
-	//! GA::InitIndicesIntVecOp allocator type.
-	typedef AllocatorT<InitIndicesIntVecOp,InitializationOp::Alloc>
+	//! IntVec::InitIndicesOp allocator type.
+	typedef AllocatorT<InitIndicesOp,EC::InitializationOp::Alloc>
 	Alloc;
-	//! GA::InitIndicesIntVecOp handle type.
-	typedef PointerT<InitIndicesIntVecOp,InitializationOp::Handle>
+	//! IntVec::InitIndicesOp handle type.
+	typedef PointerT<InitIndicesOp,EC::InitializationOp::Handle>
 	Handle;
-	//! GA::InitIndicesIntVecOp bag type.
-	typedef ContainerT<InitIndicesIntVecOp,InitializationOp::Bag>
+	//! IntVec::InitIndicesOp bag type.
+	typedef ContainerT<InitIndicesOp,EC::InitializationOp::Bag>
 	Bag;
 
-	explicit InitIndicesIntVecOp(unsigned int inIntVectorSize=0,
-	                             std::string inReproProbaName="ec.repro.prob",
-	                             std::string inName="GA-InitIndicesIntVecOp");
-	virtual ~InitIndicesIntVecOp()
+	explicit InitIndicesOp(unsigned int inIntVectorSize=0,
+	                       std::string inReproProbaName="ec.repro.prob",
+	                       std::string inName="IntVec-InitIndicesOp");
+	virtual ~InitIndicesOp()
 	{ }
 
-	virtual void registerParams(System& ioSystem);
 	virtual void initIndividual(Individual& outIndividual, Context& ioContext);
 
 	/*!
@@ -104,13 +94,15 @@ public:
 		Beagle_StackTraceEndM();
 	}
 
+	virtual void registerParams(System& ioSystem);
+
 protected:
 
-	UInt::Handle      mIntVectorSize;  //!< Individual integer vectors size.
+	UInt::Handle mIntVectorSize;  //!< Individual integer vectors size.
 
 };
 
 }
 }
 
-#endif // Beagle_GA_InitIndicesIntVecOp_hpp
+#endif // Beagle_IntVec_InitIndicesOp_hpp

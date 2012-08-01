@@ -65,8 +65,10 @@ bool Beagle::IntVec::CrossoverOrderedOp::mate(Beagle::Individual& ioIndiv1,
 	unsigned int lNbGenotypes = minOf<unsigned int>(ioIndiv1.size(), ioIndiv2.size());
 	if(lNbGenotypes == 0) return false;
 	
-	Beagle_LogDebugM(ioContext1.getSystem().getLogger(),
-					 "Individuals mated (before IntVec ordered crossover): " << ioIndiv1 << ", " << ioIndiv2);
+	Beagle_LogDebugM(
+		ioContext1.getSystem().getLogger(),
+		"Individuals mated (before IntVec ordered crossover): " << ioIndiv1 << ", " << ioIndiv2
+	);
 	
 	for(unsigned int i=0; i<lNbGenotypes; ++i) {
 		IntVec::IntegerVector::Handle lIndividual1 = castHandleT<IntegerVector>(ioIndiv1[i]);
@@ -116,8 +118,10 @@ bool Beagle::IntVec::CrossoverOrderedOp::mate(Beagle::Individual& ioIndiv1,
 		delete[] lHoleSet2;
 	}
 	
-	Beagle_LogDebugM(ioContext1.getSystem().getLogger(),
-					 "Individuals mated (after IntVec ordered crossover): " << ioIndiv1 << ", " << ioIndiv2);
+	Beagle_LogDebugM(
+		ioContext1.getSystem().getLogger(),
+		"Individuals mated (after IntVec ordered crossover): " << ioIndiv1 << ", " << ioIndiv2
+	);
 	
 	return true;
 	Beagle_StackTraceEndM();

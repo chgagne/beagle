@@ -25,64 +25,55 @@
  */
 
 /*!
- *  \file   beagle/GA/MutationQRUniformIntVecOp.hpp
- *  \brief  Definition of the class GA::MutationQRUniformIntVecOp.
+ *  \file   Beagle/IntVec/MutationUniformQROp.hpp
+ *  \brief  Definition of the class IntVec::MutationUniformQROp.
  *  \author Christian Gagne
  *  \author Marc Parizeau
  *  $Revision: 1.5 $
  *  $Date: 2007/08/08 19:26:34 $
  */
 
-#ifndef Beagle_GA_MutationQRUniformIntVecOp_hpp
-#define Beagle_GA_MutationQRUniformIntVecOp_hpp
+#ifndef Beagle_IntVec_MutationUniformQROp_hpp
+#define Beagle_IntVec_MutationUniformQROp_hpp
 
-#include <string>
+#include "Beagle/IntVec.hpp"
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Object.hpp"
-#include "beagle/MutationOp.hpp"
-#include "beagle/GA/MutationUniformIntVecOp.hpp"
 
 namespace Beagle
 {
-namespace GA
+namespace IntVec
 {
 
 /*!
- *  \class MutationQRUniformIntVecOp beagle/GA/MutationQRUniformIntVecOp.hpp "beagle/GA/MutationQRUniformIntVecOp.hpp"
- *  \brief Integer vector GA quasi-random operator class.
- *  \ingroup GAF
- *  \ingroup GAIV
+ *  \class MutationUniformQROp Beagle/IntVec/MutationUniformQROp.hpp "Beagle/IntVec/MutationUniformQROp.hpp"
+ *  \brief Integer vector uniform mutation quasi-random operator class.
+ *  \ingroup IntVecF
  */
-class MutationQRUniformIntVecOp : public GA::MutationUniformIntVecOp
+class MutationUniformQROp : public IntVec::MutationUniformOp
 {
 
 public:
 
-	//! GA::MutationQRUniformIntVecOp allocator type.
-	typedef AllocatorT<MutationQRUniformIntVecOp,GA::MutationUniformIntVecOp::Alloc>
-	Alloc;
-	//! GA::MutationQRUniformIntVecOp handle type.
-	typedef PointerT<MutationQRUniformIntVecOp,GA::MutationUniformIntVecOp::Handle>
-	Handle;
-	//! GA::MutationQRUniformIntVecOp bag type.
-	typedef ContainerT<MutationQRUniformIntVecOp,GA::MutationUniformIntVecOp::Bag>
-	Bag;
+	//! IntVec::MutationUniformQROp allocator type.
+	typedef AllocatorT<MutationUniformQROp,IntVec::MutationUniformOp::Alloc> Alloc;
+	//! IntVec::MutationUniformQROp handle type.
+	typedef PointerT<MutationUniformQROp,IntVec::MutationUniformOp::Handle>	Handle;
+	//! IntVec::MutationUniformQROp bag type.
+	typedef ContainerT<MutationUniformQROp,IntVec::MutationUniformOp::Bag> Bag;
 
-	explicit MutationQRUniformIntVecOp(std::string inMutationPbName="ga.mutunif.indpb",
-	                                   std::string inIntMutatePbName="ga.mutunif.intpb",
-	                                   std::string inName="GA-MutationQRUniformIntVecOp");
-	virtual ~MutationQRUniformIntVecOp()
+	explicit MutationUniformQROp(std::string inMutationPbName="intvec.mutunif.indpb",
+	                             std::string inIntMutatePbName="intvec.mutunif.intpb",
+	                             std::string inName="IntVec-MutationUniformQROp");
+	virtual ~MutationUniformQROp()
 	{ }
 
-	virtual void registerParams(System& ioSystem);
 	virtual void init(System& ioSystem);
 	virtual bool mutate(Beagle::Individual& ioIndividual, Context& ioContext);
+	virtual void registerParams(System& ioSystem);
 
 };
 
 }
 }
 
-#endif // Beagle_GA_MutationQRUniformIntVecOp_hpp
+#endif // Beagle_IntVec_MutationUniformQROp_hpp

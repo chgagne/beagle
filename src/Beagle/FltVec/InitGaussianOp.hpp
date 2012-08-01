@@ -69,7 +69,7 @@ public:
 	Bag;
 
 	explicit InitGaussianOp(unsigned int inFloatVectorSize=0,
-	                        std::string inReproProbaName="fltvec.repro.prob",
+	                        std::string inReproProbaName="ec.repro.prob",
 	                        std::string inName="FltVec-InitGaussianOp");
 	virtual ~InitGaussianOp()
 	{ }

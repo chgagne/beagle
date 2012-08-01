@@ -41,13 +41,16 @@
 #include <Beagle/EC.hpp>
 
 
-namespace Beagle {
-namespace IntVec {
+namespace Beagle
+{
+
+namespace IntVec
+{
 
 /*!
  *  \class CrossoverPMXOp Beagle/IntVec/CrossoverPMXOp.hpp
  *    "Beagle/IntVec/CrossoverPMXOp.hpp"
- *  \brief Indices integer vector partially matched crossover operator.
+ *  \brief Partially matched crossover over indices permutation genotypes.
  *  \ingroup IntVecF
  *	\warning This crossover operation may give unexpected results when not applied
  *	  on an indices permutation genotype.

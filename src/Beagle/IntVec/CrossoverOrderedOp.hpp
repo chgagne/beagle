@@ -41,13 +41,17 @@
 #include <Beagle/EC.hpp>
 
 
-namespace Beagle {
-namespace IntVec {
+namespace Beagle
+{
+
+namespace IntVec 
+{
+
 
 /*!
  *  \class CrossoverOrderedOp Beagle/IntVec/CrossoverOrderedOp.hpp
  *    "Beagle/IntVec/CrossoverOrderedOp.hpp"
- *  \brief 
+ *  \brief Ordered crossover over indices permutation genotypes.
  *  \ingroup IntVecF
  *	\warning This crossover operation may give unexpected results when not applied
  *	  on an indices permutation genotype.

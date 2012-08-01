@@ -68,7 +68,7 @@ public:
 	Bag;
 
 	explicit InitializationOp(unsigned int inIntVectorSize=0,
-	                          std::string inReproProbaName="intvec.repro.prob",
+	                          std::string inReproProbaName="ec.repro.prob",
 	                          std::string inName="IntVec-InitializationOp");
 	virtual ~InitializationOp()
 	{ }

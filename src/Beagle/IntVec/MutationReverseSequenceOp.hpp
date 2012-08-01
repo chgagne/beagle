@@ -25,63 +25,54 @@
  */
 
 /*!
- *  \file   beagle/GA/MutationReverseSequenceOp.hpp
- *  \brief  Definition of the class GA::MutationReverseSequenceOp.
+ *  \file   Beagle/IntVec/MutationReverseSequenceOp.hpp
+ *  \brief  Definition of the class IntVec::MutationReverseSequenceOp.
  *  \author Francois-Michel De Rainville
  *  $Revision: $
  *  $Date: $
  */
 
-#ifndef Beagle_GA_MutationReverseSequenceOp_hpp
-#define Beagle_GA_MutationReverseSequenceOp_hpp
+#ifndef Beagle_IntVec_MutationReverseSequenceOp_hpp
+#define Beagle_IntVec_MutationReverseSequenceOp_hpp
 
-#include <string>
-
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Object.hpp"
-#include "beagle/MutationOp.hpp"
+#include "Beagle/IntVec.hpp"
 
 
 namespace Beagle
 {
-namespace GA
+namespace IntVec
 {
 
 /*!
- *  \class MutationReverseSequenceOp beagle/GA/MutationReverseSequenceOp.hpp "beagle/GA/MutationReverseSequenceOp.hpp"
- *  \brief GA individual reverse sequence mutation operator class.
- *  \ingroup GAF
- *  \ingroup GAIV
+ *  \class MutationReverseSequenceOp Beagle/IntVec/MutationReverseSequenceOp.hpp "Beagle/IntVec/MutationReverseSequenceOp.hpp"
+ *  \brief Indices permutation individual reverse sequence mutation operator class.
+ *  \ingroup IntVecF
  *
  *	This mutation select a sequence in the genotype and simply reverse it.
  */
-class MutationReverseSequenceOp : public Beagle::MutationOp
+class MutationReverseSequenceOp : public EC::MutationOp
 {
 	
 public:
 	
-	//! GA::MutationReverseSequenceOp allocator type.
-	typedef AllocatorT<MutationReverseSequenceOp,Beagle::MutationOp::Alloc>
-		Alloc;
-	//! GA::MutationReverseSequenceOp handle type.
-	typedef PointerT<MutationReverseSequenceOp,Beagle::MutationOp::Handle>
-		Handle;
-	//! GA::MutationReverseSequenceOp bag type.
-	typedef ContainerT<MutationReverseSequenceOp,Beagle::MutationOp::Bag>
-		Bag;
+	//! IntVec::MutationReverseSequenceOp allocator type.
+	typedef AllocatorT<MutationReverseSequenceOp,EC::MutationOp::Alloc> Alloc;
+	//! IntVec::MutationReverseSequenceOp handle type.
+	typedef PointerT<MutationReverseSequenceOp,EC::MutationOp::Handle> Handle;
+	//! IntVec::MutationReverseSequenceOp bag type.
+	typedef ContainerT<MutationReverseSequenceOp,EC::MutationOp::Bag> Bag;
 	
-	explicit MutationReverseSequenceOp(std::string inMutationPbName="ga.mutrev.indpb",
-									 std::string inName="GA-MutationReverseSequenceOp");
+	explicit MutationReverseSequenceOp(std::string inMutationPbName="intvec.mutrev.indpb",
+	                                   std::string inName="IntVec-MutationReverseSequenceOp");
 	virtual ~MutationReverseSequenceOp()
 	{ }
 	
-	virtual void registerParams(System& ioSystem);
 	virtual bool mutate(Beagle::Individual& ioIndividual, Context& ioContext);
+	virtual void registerParams(System& ioSystem);
 	
 };
 
 }
 }
 
-#endif // Beagle_GA_MutationReverseSequenceOp_hpp
+#endif // Beagle_IntVec_MutationReverseSequenceOp_hpp

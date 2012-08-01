@@ -25,15 +25,15 @@
  */
 
 /*!
- *  \file   beagle/GA/src/IntegerVector.cpp
- *  \brief  Source code of class GA::IntegerVector.
+ *  \file   Beagle/IntVec/IntegerVector.cpp
+ *  \brief  Source code of class IntVec::IntegerVector.
  *  \author Christian Gagne
  *  \author Marc Parizeau
  *  $Revision: 1.11 $
  *  $Date: 2007/08/17 18:09:10 $
  */
 
-#include "beagle/GA.hpp"
+#include "Beagle/IntVec.hpp"
 
 #include <algorithm>
 
@@ -41,24 +41,24 @@ using namespace Beagle;
 
 
 /*!
- *  \brief Construct a GA integer vector.
+ *  \brief Construct a IntVec integer vector.
  *  \param inSize Size of the vector.
  *  \param inModel Default values of the integers.
  */
-GA::IntegerVector::IntegerVector(unsigned int inSize, int inModel) :
+IntVec::IntegerVector::IntegerVector(unsigned int inSize, int inModel) :
 		std::vector<int>(inSize, inModel)
 { }
 
 
 /*!
- *  \brief Copy GA integer vector into current.
+ *  \brief Copy IntVec integer vector into current.
  *  \param inOriginal Integer vector to copy.
  *  \param ioSystem Evolutionary system to use for making the copy.
  */
-void GA::IntegerVector::copy(const Member& inOriginal, System& ioSystem)
+void IntVec::IntegerVector::copy(const Member& inOriginal, System& ioSystem)
 {
 	Beagle_StackTraceBeginM();
-	const GA::IntegerVector& lOriginal = castObjectT<const GA::IntegerVector&>(inOriginal);
+	const IntVec::IntegerVector& lOriginal = castObjectT<const IntVec::IntegerVector&>(inOriginal);
 	(*this) = lOriginal;
 	Beagle_StackTraceEndM();
 }
@@ -68,7 +68,7 @@ void GA::IntegerVector::copy(const Member& inOriginal, System& ioSystem)
  *  \brief Return size (length) of genotype.
  *  \return Size (length) of genotype.
  */
-unsigned int GA::IntegerVector::getSize() const
+unsigned int IntVec::IntegerVector::getSize() const
 {
 	Beagle_StackTraceBeginM();
 	return size();
@@ -80,12 +80,12 @@ unsigned int GA::IntegerVector::getSize() const
  *  \brief Get exact type of the genotype.
  *  \return Exact type of the genotype.
  */
-const std::string& GA::IntegerVector::getType() const
+const std::string& IntVec::IntegerVector::getType() const
 {
 	Beagle_StackTraceBeginM();
-	const static std::string lType("GA-IntegerVector");
+	const static std::string lType("IntVec-IntegerVector");
 	return lType;
-	Beagle_StackTraceEndM("const std::string& GA::IntegerVector::getType() const")
+	Beagle_StackTraceEndM();
 }
 
 
@@ -94,13 +94,13 @@ const std::string& GA::IntegerVector::getType() const
  *	\param inI is the index of the first gene to swap.
  *	\param inJ is the index of the second gene to swap.
  */
-void GA::IntegerVector::swap(unsigned int inI, unsigned int inJ)
+void IntVec::IntegerVector::swap(unsigned int inI, unsigned int inJ)
 {
 	Beagle_StackTraceBeginM();
 	Beagle_BoundCheckAssertM(inI, 0, size() -1);
 	Beagle_BoundCheckAssertM(inJ, 0, size() -1);
 	std::swap((*this)[inI], (*this)[inJ]);
-	Beagle_StackTraceEndM("const std::string& GA::IntegerVector::swap(unsigned int, unsigned int) const")
+	Beagle_StackTraceEndM();
 }
 
 
@@ -109,10 +109,10 @@ void GA::IntegerVector::swap(unsigned int inI, unsigned int inJ)
  *  \param  inRightObj Second integer vector used for the comparison.
  *  \return True if integer vectors are equal and of same size, false if not.
  */
-bool GA::IntegerVector::isEqual(const Object& inRightObj) const
+bool IntVec::IntegerVector::isEqual(const Object& inRightObj) const
 {
 	Beagle_StackTraceBeginM();
-	const GA::IntegerVector& lRightVector = castObjectT<const GA::IntegerVector&>(inRightObj);
+	const IntVec::IntegerVector& lRightVector = castObjectT<const IntVec::IntegerVector&>(inRightObj);
 	if(size()!=lRightVector.size()) return false;
 	const std::vector<int>& lLeft = *this;
 	const std::vector<int>& lRight = lRightVector;
@@ -126,10 +126,10 @@ bool GA::IntegerVector::isEqual(const Object& inRightObj) const
  *  \param  inRightObj Second float vector used for the ordering test.
  *  \return True if the actual float vector is before the second, false if not.
  */
-bool GA::IntegerVector::isLess(const Object& inRightObj) const
+bool IntVec::IntegerVector::isLess(const Object& inRightObj) const
 {
 	Beagle_StackTraceBeginM();
-	const GA::IntegerVector& lRightVector = castObjectT<const GA::IntegerVector&>(inRightObj);
+	const IntVec::IntegerVector& lRightVector = castObjectT<const IntVec::IntegerVector&>(inRightObj);
 	if(size()!=lRightVector.size()) return false;
 	const std::vector<int>& lLeft = *this;
 	const std::vector<int>& lRight = lRightVector;
@@ -144,7 +144,7 @@ bool GA::IntegerVector::isLess(const Object& inRightObj) const
  *  \param ioContext Evolutionary context.
  *  \throw Beagle::IOException If a reading error occured (generally bad file format)!
  */
-void GA::IntegerVector::readWithContext(PACC::XML::ConstIterator inIter, Context& ioContext)
+void IntVec::IntegerVector::readWithContext(PACC::XML::ConstIterator inIter, Context& ioContext)
 {
 	Beagle_StackTraceBeginM();
 	if((inIter->getType() != PACC::XML::eData) || (inIter->getValue() != "Genotype")) {
@@ -181,7 +181,7 @@ void GA::IntegerVector::readWithContext(PACC::XML::ConstIterator inIter, Context
  *  \param ioStreamer XML streamer into which the float vector is written.
  *  \param inIndent Whether output should be indented.
  */
-void GA::IntegerVector::writeContent(PACC::XML::Streamer& ioStreamer, bool inIndent) const
+void IntVec::IntegerVector::writeContent(PACC::XML::Streamer& ioStreamer, bool inIndent) const
 {
 	Beagle_StackTraceBeginM();
 	ioStreamer.insertAttribute("size", uint2str(size()));

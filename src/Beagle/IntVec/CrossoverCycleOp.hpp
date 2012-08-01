@@ -50,7 +50,7 @@ namespace IntVec
 /*!
  *  \class CrossoverCycleOp Beagle/IntVec/CrossoverCycleOp.hpp
  *    "Beagle/IntVec/CrossoverCycleOp.hpp"
- *  \brief 
+ *  \brief Cycle crossover over indices permutation genotypes. 
  *  \ingroup IntVecF
  *	\warning This crossover operation may give unexpected results when not applied
  *	  on an indices permutation genotype.

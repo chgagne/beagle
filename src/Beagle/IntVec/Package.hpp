@@ -25,54 +25,43 @@
  */
 
 /*!
- *  \file   beagle/GA/PackageIntegerVector.hpp
- *  \brief  Definition of the class GA::PackageIntegerVector.
+ *  \file   Beagle/IntVec/Package.hpp
+ *  \brief  Definition of the class IntVec::Package.
  *  \author Christian Gagne
  *  $Revision: 1.2 $
  *  $Date: 2007/08/08 19:26:34 $
  */
 
-#ifndef Beagle_GA_PackageIntegerVector_hpp
-#define Beagle_GA_PackageIntegerVector_hpp
+#ifndef Beagle_IntVec_Package_hpp
+#define Beagle_IntVec_Package_hpp
 
-#include <map>
-#include <string>
-
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/System.hpp"
-#include "beagle/Evolver.hpp"
-#include "beagle/Package.hpp"
+#include "Beagle/IntVec.hpp"
 
 
 namespace Beagle
 {
 
-namespace GA
+namespace IntVec
 {
 
 /*!
- *  \class GA::PackageIntegerVector beagle/GA/PackageIntegerVector.hpp "beagle/GA/PackageIntegerVector.hpp"
- *  \brief Package for adding objects related to integer vector GA.
- *  \ingroup GAF
- *  \ingroup GAIV
+ *  \class IntVec::Package Beagle/IntVec/Package.hpp "Beagle/IntVec/Package.hpp"
+ *  \brief Package for adding objects related to integer vector.
+ *  \ingroup IntVecF
  */
-class PackageIntegerVector : public Package
+class Package : public Beagle::Package
 {
 
 public:
 
-	//! GA::PackageIntegerVector allocator type.
-	typedef AllocatorT< PackageIntegerVector, Package::Alloc >
-	Alloc;
-	//! GA::PackageIntegerVector handle type.
-	typedef PointerT< PackageIntegerVector, Package::Handle >
-	Handle;
-	//! GA::PackageIntegerVector bag type.
-	typedef ContainerT< PackageIntegerVector, Package::Bag >
-	Bag;
+	//! IntVec::Package allocator type.
+	typedef AllocatorT< Package, Beagle::Package::Alloc > Alloc;
+	//! IntVec::Package handle type.
+	typedef PointerT< Package, Beagle::Package::Handle > Handle;
+	//! IntVec::Package bag type.
+	typedef ContainerT< Package, Beagle::Package::Bag > Bag;
 
-	explicit PackageIntegerVector(unsigned int inInitSize=0);
+	explicit Package(unsigned int inInitSize=0);
 
 	virtual void          configure(System& ioSystem);
 	virtual Package::Bag  listDependencies(void);
@@ -86,4 +75,4 @@ protected:
 }
 }
 
-#endif // Beagle_GA_PackageIntegerVector_hpp
+#endif // Beagle_IntVec_Package_hpp

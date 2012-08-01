@@ -148,7 +148,7 @@ void CrossoverOp::registerParams(System& ioSystem)
 	    "Single individual crossover probability for a generation."
 	);
 	mMatingProba = castHandleT<Double>(
-	                   ioSystem.getRegister().insertEntry(mMatingProbaName, new Double(0.5f), lDescription));
+	                   ioSystem.getRegister().insertEntry(mMatingProbaName, new Double(0.5), lDescription));
 
 	Beagle_StackTraceEndM();
 }

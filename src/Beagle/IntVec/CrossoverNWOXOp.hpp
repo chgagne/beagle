@@ -50,7 +50,7 @@ namespace IntVec
 /*!
  *  \class CrossoverNWOXOp Beagle/IntVec/CrossoverNWOXOp.hpp
  *    "Beagle/IntVec/CrossoverNWOXOp.hpp"
- *  \brief 
+ *  \brief Non-wrapping order crossover over indices permutation genotypes.
  *  \ingroup IntVecF
  *	\warning This crossover operation may give unexpected results when not applied
  *	  on an indices permutation genotype.

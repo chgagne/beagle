@@ -44,6 +44,7 @@
 
 namespace Beagle
 {
+
 namespace IntVec
 {
 
@@ -75,7 +76,7 @@ public:
 	 *  \param inName Name of the integer vector IntVec two points crossover operator.
 	 */
 	explicit CrossoverTwoPointsOp(std::string inMatingPbName="intvec.cx2p.prob",
-	                                    std::string inName="IntVec-CrossoverTwoPointsOp") :
+	                              std::string inName="IntVec-CrossoverTwoPointsOp") :
 			EC::CrossoverTwoPointsOpT<IntegerVector>(inMatingPbName, inName)
 	{ }
 

@@ -81,8 +81,8 @@ public:
 	virtual void writeContent(PACC::XML::Streamer& ioStreamer, bool inIndent=true) const;
 	
 protected:
-	Float::Handle mDistribProba;		//!< Distribution probability of the uniform partialy matched crossover.
-	std::string   mDistribProbaName;	//!< Name used in the register for the distribution probability.
+	Double::Handle mDistribProba;		//!< Distribution probability of the uniform partialy matched crossover.
+	std::string    mDistribProbaName;	//!< Name used in the register for the distribution probability.
 	
 };
 		

@@ -25,67 +25,58 @@
  */
 
 /*!
- *  \file   beagle/GA/MutationUniformIntVecOp.hpp
- *  \brief  Definition of the class GA::MutationUniformIntVecOp.
+ *  \file   Beagle/IntVec/MutationUniformOp.hpp
+ *  \brief  Definition of the class IntVec::MutationUniformOp.
  *  \author Christian Gagne
  *  \author Marc Parizeau
  *  $Revision: 1.8 $
  *  $Date: 2007/08/08 19:26:34 $
  */
 
-#ifndef Beagle_GA_MutationUniformIntVecOp_hpp
-#define Beagle_GA_MutationUniformIntVecOp_hpp
+#ifndef Beagle_IntVec_MutationUniformOp_hpp
+#define Beagle_IntVec_MutationUniformOp_hpp
 
-#include <string>
-
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Object.hpp"
-#include "beagle/MutationOp.hpp"
+#include "Beagle/IntVec.hpp"
 
 
 namespace Beagle
 {
-namespace GA
+namespace IntVec
 {
 
 /*!
- *  \class MutationUniformIntVecOp beagle/GA/MutationUniformIntVecOp.hpp "beagle/GA/MutationUniformIntVecOp.hpp"
- *  \brief Integer vector GA uniform mutation operator class.
- *  \ingroup GAF
- *  \ingroup GAIV
+ *  \class MutationUniformOp Beagle/IntVec/MutationUniformOp.hpp "Beagle/IntVec/MutationUniformOp.hpp"
+ *  \brief Integer vector uniform mutation operator class.
+ *  \ingroup IntVecF
  */
-class MutationUniformIntVecOp : public Beagle::MutationOp
+class MutationUniformOp : public EC::MutationOp
 {
 
 public:
 
-	//! GA::MutationUniformIntVecOp allocator type.
-	typedef AllocatorT<MutationUniformIntVecOp,Beagle::MutationOp::Alloc>
-	Alloc;
-	//! GA::MutationUniformIntVecOp handle type.
-	typedef PointerT<MutationUniformIntVecOp,Beagle::MutationOp::Handle>
-	Handle;
-	//! GA::MutationUniformIntVecOp bag type.
-	typedef ContainerT<MutationUniformIntVecOp,Beagle::MutationOp::Bag>
-	Bag;
+	//! IntVec::MutationUniformOp allocator type.
+	typedef AllocatorT<MutationUniformOp,EC::MutationOp::Alloc> Alloc;
+	//! IntVec::MutationUniformOp handle type.
+	typedef PointerT<MutationUniformOp,EC::MutationOp::Handle> Handle;
+	//! IntVec::MutationUniformOp bag type.
+	typedef ContainerT<MutationUniformOp,EC::MutationOp::Bag> Bag;
 
-	explicit MutationUniformIntVecOp(std::string inMutationPbName="ga.mutunif.indpb",
-	                                 std::string inIntMutatePbName="ga.mutunif.intpb",
-	                                 std::string inName="GA-MutationUniformIntVecOp");
-	virtual ~MutationUniformIntVecOp()
+	explicit MutationUniformOp(std::string inMutationPbName="intvec.mutunif.indpb",
+		std::string inIntMutatePbName="intvec.mutunif.intpb",
+	    std::string inName="IntVec-MutationUniformOp");
+	virtual ~MutationUniformOp()
 	{ }
 
-	virtual void registerParams(System& ioSystem);
 	virtual bool mutate(Beagle::Individual& ioIndividual, Context& ioContext);
 	virtual void readWithSystem(PACC::XML::ConstIterator inIter, System& ioSystem);
+	virtual void registerParams(System& ioSystem);
 	virtual void writeContent(PACC::XML::Streamer& ioStreamer, bool inIndent=true) const;
 
 protected:
 
 	IntArray::Handle mMaxValue;         //!< Integers maximum value.
 	IntArray::Handle mMinValue;         //!< Integers minimum value.
-	Float::Handle    mIntMutateProba;   //!< Single integer mutation probability.
+	Double::Handle   mIntMutateProba;   //!< Single integer mutation probability.
 	std::string      mIntMutatePbName;  //!< Single integer mutation probability parameter name.
 
 };
@@ -93,4 +84,4 @@ protected:
 }
 }
 
-#endif // Beagle_GA_MutationUniformIntVecOp_hpp
+#endif // Beagle_IntVec_MutationUniformOp_hpp

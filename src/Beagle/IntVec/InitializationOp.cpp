@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   Beagle/IntVec/src/InitializationOp.cpp
+ *  \file   Beagle/IntVec/InitializationOp.cpp
  *  \brief  Source code of class IntVec::InitializationOp.
  *  \author Christian Gagne
  *  \author Marc Parizeau

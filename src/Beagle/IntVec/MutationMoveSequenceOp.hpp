@@ -25,64 +25,60 @@
  */
 
 /*!
- *  \file   beagle/GA/MutationMoveSequenceOp.hpp
- *  \brief  Definition of the class GA::MutationMoveSequenceOp.
+ *  \file   Beagle/IntVec/MutationMoveSequenceOp.hpp
+ *  \brief  Definition of the class IntVec::MutationMoveSequenceOp.
  *  \author Francois-Michel De Rainville
  *  $Revision: $
  *  $Date: $
  */
 
-#ifndef Beagle_GA_MutationMoveSequenceOp_hpp
-#define Beagle_GA_MutationMoveSequenceOp_hpp
+#ifndef Beagle_IntVec_MutationMoveSequenceOp_hpp
+#define Beagle_IntVec_MutationMoveSequenceOp_hpp
 
 #include <string>
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Object.hpp"
-#include "beagle/MutationOp.hpp"
+#include "Beagle/IntVec.hpp"
 
 
 namespace Beagle
 {
-namespace GA
+namespace IntVec
 {
 
 /*!
- *  \class MutationMoveSequenceOp beagle/GA/MutationMoveSequenceOp.hpp "beagle/GA/MutationMoveSequenceOp.hpp"
- *  \brief GA individual move sequence mutation operator class.
- *  \ingroup GAF
- *  \ingroup GAIV
+ *  \class MutationMoveSequenceOp Beagle/IntVec/MutationMoveSequenceOp.hpp "Beagle/IntVec/MutationMoveSequenceOp.hpp"
+ *  \brief IntVec individual move sequence mutation operator class.
+ *  \ingroup IntVecF
  *
  *	This mutation select a select a sequence in the genotype and move it elsewhere
  *	using a copy of the standard rotation algorithm.
  */
-class MutationMoveSequenceOp : public Beagle::MutationOp
+class MutationMoveSequenceOp : public EC::MutationOp
 {
 	
 public:
 	
-	//! GA::MutationMoveSequenceOp allocator type.
-	typedef AllocatorT<MutationMoveSequenceOp,Beagle::MutationOp::Alloc>
+	//! IntVec::MutationMoveSequenceOp allocator type.
+	typedef AllocatorT<MutationMoveSequenceOp,EC::MutationOp::Alloc>
 		Alloc;
-	//! GA::MutationMoveSequenceOp handle type.
-	typedef PointerT<MutationMoveSequenceOp,Beagle::MutationOp::Handle>
+	//! IntVec::MutationMoveSequenceOp handle type.
+	typedef PointerT<MutationMoveSequenceOp,EC::MutationOp::Handle>
 		Handle;
-	//! GA::MutationMoveSequenceOp bag type.
-	typedef ContainerT<MutationMoveSequenceOp,Beagle::MutationOp::Bag>
+	//! IntVec::MutationMoveSequenceOp bag type.
+	typedef ContainerT<MutationMoveSequenceOp,EC::MutationOp::Bag>
 		Bag;
 	
-	explicit MutationMoveSequenceOp(std::string inMutationPbName="ga.mutmov.indpb",
-									   std::string inName="GA-MutationMoveSequenceOp");
+	explicit MutationMoveSequenceOp(std::string inMutationPbName="intvec.mutmov.indpb",
+									   std::string inName="IntVec-MutationMoveSequenceOp");
 	virtual ~MutationMoveSequenceOp()
 	{ }
 	
-	virtual void registerParams(System& ioSystem);
 	virtual bool mutate(Beagle::Individual& ioIndividual, Context& ioContext);
-	
+	virtual void registerParams(System& ioSystem);
+		
 };
 
 }
 }
 
-#endif // Beagle_GA_MutationMoveSequenceOp_hpp
+#endif // Beagle_IntVec_MutationMoveSequenceOp_hpp

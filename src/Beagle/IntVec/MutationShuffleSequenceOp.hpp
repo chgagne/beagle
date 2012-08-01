@@ -25,63 +25,55 @@
  */
 
 /*!
- *  \file   beagle/GA/MutationShuffleSequenceOp.hpp
- *  \brief  Definition of the class GA::MutationReverseSequenceOp.
+ *  \file   Beagle/IntVec/MutationShuffleSequenceOp.hpp
+ *  \brief  Definition of the class IntVec::MutationReverseSequenceOp.
  *  \author Francois-Michel De Rainville
  *  $Revision: $
  *  $Date: $
  */
 
-#ifndef Beagle_GA_MutationShuffleSequenceOp_hpp
-#define Beagle_GA_MutationShuffleSequenceOp_hpp
+#ifndef Beagle_IntVec_MutationShuffleSequenceOp_hpp
+#define Beagle_IntVec_MutationShuffleSequenceOp_hpp
 
+#include "Beagle/IntVec.hpp"
 #include <string>
-
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Object.hpp"
-#include "beagle/MutationOp.hpp"
 
 
 namespace Beagle
 {
-namespace GA
+namespace IntVec
 {
 
 /*!
- *  \class MutationShuffleSequenceOp beagle/GA/MutationShuffleSequenceOp.hpp "beagle/GA/MutationShuffleSequenceOp.hpp"
- *  \brief GA individual shuffle sequence mutation operator class.
- *  \ingroup GAF
- *  \ingroup GAIV
+ *  \class MutationShuffleSequenceOp Beagle/IntVec/MutationShuffleSequenceOp.hpp "Beagle/IntVec/MutationShuffleSequenceOp.hpp"
+ *  \brief Indices permutation individual shuffle sequence mutation operator class.
+ *  \ingroup IntVecF
  *
  *	This mutation select a sequence in the genotype and shuffle the values in it.
  */
-class MutationShuffleSequenceOp : public Beagle::MutationOp
+class MutationShuffleSequenceOp : public EC::MutationOp
 {
 	
 public:
 	
-	//! GA::MutationShuffleSequenceOp allocator type.
-	typedef AllocatorT<MutationShuffleSequenceOp,Beagle::MutationOp::Alloc>
-		Alloc;
-	//! GA::MutationShuffleSequenceOp handle type.
-	typedef PointerT<MutationShuffleSequenceOp,Beagle::MutationOp::Handle>
-		Handle;
-	//! GA::MutationShuffleSequenceOp bag type.
-	typedef ContainerT<MutationShuffleSequenceOp,Beagle::MutationOp::Bag>
-		Bag;
+	//! IntVec::MutationShuffleSequenceOp allocator type.
+	typedef AllocatorT<MutationShuffleSequenceOp,EC::MutationOp::Alloc> Alloc;
+	//! IntVec::MutationShuffleSequenceOp handle type.
+	typedef PointerT<MutationShuffleSequenceOp,EC::MutationOp::Handle> Handle;
+	//! IntVec::MutationShuffleSequenceOp bag type.
+	typedef ContainerT<MutationShuffleSequenceOp,EC::MutationOp::Bag> Bag;
 	
-	explicit MutationShuffleSequenceOp(std::string inMutationPbName="ga.mutshf.indpb",
-									std::string inName="GA-MutationShuffleSequenceOp");
+	explicit MutationShuffleSequenceOp(std::string inMutationPbName="intvec.mutshf.indpb",
+	                                   std::string inName="IntVec-MutationShuffleSequenceOp");
 	virtual ~MutationShuffleSequenceOp()
 	{ }
 	
-	virtual void registerParams(System& ioSystem);
 	virtual bool mutate(Beagle::Individual& ioIndividual, Context& ioContext);
+	virtual void registerParams(System& ioSystem);
 	
 };
 
 }
 }
 
-#endif // Beagle_GA_MutationShuffleSequenceOp_hpp
+#endif // Beagle_IntVec_MutationShuffleSequenceOp_hpp

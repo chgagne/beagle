@@ -25,14 +25,14 @@
  */
 
 /*!
- *  \file   beagle/GA/src/MutationShuffleSequenceOp.cpp
- *  \brief  Source code of class GA::MutationShuffleSequenceOp.
+ *  \file   Beagle/IntVec/MutationShuffleSequenceOp.cpp
+ *  \brief  Source code of class IntVec::MutationShuffleSequenceOp.
  *  \author Francois-Michel De Rainville
  *  $Revision: $
  *  $Date: $
  */
 
-#include "beagle/GA.hpp"
+#include "Beagle/IntVec.hpp"
 
 #include <algorithm>
 #include <string>
@@ -41,45 +41,45 @@ using namespace Beagle;
 
 
 /*!
- *  \brief Construct an GA shuffle sequence mutation operator.
+ *  \brief Construct an shuffle sequence mutation operator.
  *  \param inMutationPbName Mutation probability parameter name used in register.
  *  \param inName Name of the operator.
  */
-GA::MutationShuffleSequenceOp::MutationShuffleSequenceOp(std::string inMutationPbName,
-														 std::string inName) :
-Beagle::MutationOp(inMutationPbName, inName)
+IntVec::MutationShuffleSequenceOp::MutationShuffleSequenceOp(std::string inMutationPbName,
+														     std::string inName) :
+    EC::MutationOp(inMutationPbName, inName)
 { }
 
 
 /*!
- *  \brief Register the parameters of the GA shuffle sequence mutation operator.
+ *  \brief Register the parameters of the indices permutation shuffle sequence mutation operator.
  *  \param ioSystem System of the evolution.
  */
-void GA::MutationShuffleSequenceOp::registerParams(System& ioSystem)
+void IntVec::MutationShuffleSequenceOp::registerParams(System& ioSystem)
 {
 	Beagle_StackTraceBeginM();
 	{
 		Register::Description lDescription(
-										   "Individual reverse sequence mutation prob.",
-										   "Double",
-										   "0.1",
-										   "Reverse sequence mutation probability for each GA individual."
-										   );
+		    "Individual reverse sequence mutation prob.",
+			"Double",
+			"0.1",
+			"Reverse sequence mutation probability for each IntVec individual."
+		);
 		mMutationProba = castHandleT<Double>(
-											ioSystem.getRegister().insertEntry(mMutationPbName, new Double(0.1), lDescription));
+		    ioSystem.getRegister().insertEntry(mMutationPbName, new Double(0.1), lDescription));
 	}
-	Beagle::MutationOp::registerParams(ioSystem);
+	EC::MutationOp::registerParams(ioSystem);
 	Beagle_StackTraceEndM();
 }
 
 
 /*!
- *  \brief Mutate by shuffling a sequence of the genotype of a GA individual.
- *  \param ioIndividual GA individual to mutate.
+ *  \brief Mutate by shuffling a sequence of the genotype of a IntVec individual.
+ *  \param ioIndividual IntVec individual to mutate.
  *  \param ioContext Context of the evolution.
  *  \return True if the individual is effectively mutated, false if not.
  */
-bool GA::MutationShuffleSequenceOp::mutate(Beagle::Individual& ioIndividual, Context& ioContext)
+bool IntVec::MutationShuffleSequenceOp::mutate(Beagle::Individual& ioIndividual, Context& ioContext)
 {
 	Beagle_StackTraceBeginM();
 	
@@ -87,20 +87,13 @@ bool GA::MutationShuffleSequenceOp::mutate(Beagle::Individual& ioIndividual, Con
 	
 	for(unsigned int i=0; i<ioIndividual.size(); i++) {
 		Beagle_LogVerboseM(
-						   ioContext.getSystem().getLogger(),
-						   "mutation", "Beagle::GA::MutationShuffleSequenceOp",
-						   std::string("Reversing a sequence of the ")+uint2ordinal(i+1)+" individual's genotype"
-						   );
+			ioContext.getSystem().getLogger(),
+			"Reversing a sequence of the " << uint2ordinal(i+1) << " individual's genotype"
+		);
 		Beagle_LogDebugM(
-						 ioContext.getSystem().getLogger(),
-						 "mutation", "Beagle::GA::MutationShuffleSequenceOp",
-						 "The individual's genotype before GA reverse sequence mutation"
-						 );
-		Beagle_LogObjectDebugM(
-							   ioContext.getSystem().getLogger(),
-							   "mutation", "Beagle::GA::MutationShuffleSequenceOp",
-							   *ioIndividual[i]
-							   );
+			ioContext.getSystem().getLogger(),
+			"The individual's genotype before IntVec reverse sequence mutation: " << *ioIndividual[i]
+		);
 		
 		unsigned int a = ioContext.getSystem().getRandomizer().rollInteger(0, ioIndividual[i]->getSize()-1);
 		unsigned int b = ioContext.getSystem().getRandomizer().rollInteger(0, ioIndividual[i]->getSize()-1);
@@ -112,26 +105,18 @@ bool GA::MutationShuffleSequenceOp::mutate(Beagle::Individual& ioIndividual, Con
 		
 		if(lMutated) {
 			Beagle_LogVerboseM(
-							   ioContext.getSystem().getLogger(),
-							   "mutation", "Beagle::GA::MutationShuffleSequenceOp",
-							   std::string("The individual's genotype has been shuffle mutated")
-							   );
+				ioContext.getSystem().getLogger(),
+				"The individual's genotype has been shuffle mutated"
+			);
 			Beagle_LogDebugM(
-							 ioContext.getSystem().getLogger(),
-							 "mutation", "Beagle::GA::MutationShuffleSequenceOp",
-							 "The individual's genotype after GA shuffle mutation"
-							 );
-			Beagle_LogObjectDebugM(
-								   ioContext.getSystem().getLogger(),
-								   "mutation", "Beagle::GA::MutationShuffleSequenceOp",
-								   *ioIndividual[i]
-								   );
+				ioContext.getSystem().getLogger(),
+				"The individual's genotype after shuffle mutation: " << *ioIndividual[i]
+			);
 		} else {
 			Beagle_LogVerboseM(
-							   ioContext.getSystem().getLogger(),
-							   "mutation", "Beagle::GA::MutationShuffleSequenceOp",
-							   std::string("The individual's genotype has not been mutated")
-							   );
+				ioContext.getSystem().getLogger(),
+				"The individual's genotype has not been mutated"
+			);
 		}
 	}
 	return lMutated;
