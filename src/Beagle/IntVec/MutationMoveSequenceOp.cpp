@@ -47,7 +47,7 @@ using namespace Beagle;
  */
 IntVec::MutationMoveSequenceOp::MutationMoveSequenceOp(std::string inMutationPbName,
                                                        std::string inName) :
-												Beagle::MutationOp(inMutationPbName, inName)
+	EC::MutationOp(inMutationPbName, inName)
 { }
 
 
@@ -138,6 +138,6 @@ void IntVec::MutationMoveSequenceOp::registerParams(System& ioSystem)
 		mMutationProba = castHandleT<Double>(
 			ioSystem.getRegister().insertEntry(mMutationPbName, new Double(0.1), lDescription));
 	}
-	Beagle::MutationOp::registerParams(ioSystem);
+	EC::MutationOp::registerParams(ioSystem);
 	Beagle_StackTraceEndM();
 }

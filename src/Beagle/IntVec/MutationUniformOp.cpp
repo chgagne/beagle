@@ -150,7 +150,7 @@ void IntVec::MutationUniformOp::registerParams(System& ioSystem)
 		mMutationProba = castHandleT<Double>(
 		                     ioSystem.getRegister().insertEntry(mMutationPbName, new Double(0.1), lDescription));
 	}
-	Beagle::MutationOp::registerParams(ioSystem);
+	EC::MutationOp::registerParams(ioSystem);
 	{
 		Register::Description lDescription(
 		    "Int unif. mutation probability",
@@ -207,7 +207,7 @@ void IntVec::MutationUniformOp::registerParams(System& ioSystem)
 void IntVec::MutationUniformOp::writeContent(PACC::XML::Streamer& ioStreamer, bool inIndent) const
 {
 	Beagle_StackTraceBeginM();
-	Beagle::MutationOp::writeContent(ioStreamer, inIndent);
+	EC::MutationOp::writeContent(ioStreamer, inIndent);
 	ioStreamer.insertAttribute("mutintpb", mIntMutatePbName);
 	Beagle_StackTraceEndM();
 }

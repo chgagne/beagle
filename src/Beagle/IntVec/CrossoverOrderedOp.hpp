@@ -62,15 +62,15 @@ namespace IntVec
  *	optimization and machine learning", 1989.
  *
  */
-class CrossoverOrderedOp : public CrossoverOp {
+class CrossoverOrderedOp : public EC::CrossoverOp {
 
 public:
 	//! IntVec::CrossoverOrderedOp allocator type.
-	typedef AllocatorT<CrossoverOrderedOp,CrossoverOp::Alloc> Alloc;
+	typedef AllocatorT<CrossoverOrderedOp,EC::CrossoverOp::Alloc> Alloc;
 	//! IntVec::CrossoverOrderedOp handle type.
-	typedef PointerT<CrossoverOrderedOp,CrossoverOp::Handle> Handle;
+	typedef PointerT<CrossoverOrderedOp,EC::CrossoverOp::Handle> Handle;
 	//! IntVec::CrossoverOrderedOp bag type.
-	typedef ContainerT<CrossoverOrderedOp,CrossoverOp::Bag> Bag;
+	typedef ContainerT<CrossoverOrderedOp,EC::CrossoverOp::Bag> Bag;
 	
 	explicit CrossoverOrderedOp(std::string inMatingPbName="intvec.cxo.prob",
 								std::string inName="IntVec-CrossoverOrderedOp");

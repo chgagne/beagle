@@ -25,8 +25,8 @@
  */
 
 /*!
- *  \file   beagle/GA.hpp
- *  \brief  File to include to import all the GA specific Beagle classes.
+ *  \file   Beagle/IntVec.hpp
+ *  \brief  File to include to import all classes specific to the integer vector representation.
  *  \author Christian Gagne
  *  \author Marc Parizeau
  *  $Revision: 1.30 $
@@ -34,105 +34,54 @@
  */
 
 /*!
- *  \namespace Beagle::GA
- *  \brief     Namespace of all the classes of the Open Beagle GA framework.
- *  \ingroup GAF
+ *  \namespace Beagle::IntVec
+ *  \brief     Namespace of all the classes of the integer vector representation library.
+ *  \ingroup IntVecF
  */
 
 /*!
- *  \defgroup GAF GA Framework
- *  \brief Specialized framework for genetic algorithms.
+ *  \defgroup IntVecF Integer Vector Representation Framework
+ *  \brief Specialized framework for integer vector genotype individuals.
  *
- *  Genetic algorithm framework encompass all the vector-based representations of
- *  fixed and variable length. This actually includes three representations:
- *  classical bitstring GA, real-valued GA and evolution strategy (even if historically
- *  this is a distinct EC flavor). Several generic crossover operators are defined as
- *  template, with class instantiation for the three actual representations. An evolver is
- *  also defined for each representation. The framework is defined to be the futur repository
- *  of linear EC representation, except those related to linear GP, which will belong to a different
- *  framework.
+ *  This framework encompass all classes related to the integer vector representation.
+ *  This include the usual variety of initialization, crossover, and mutation operators relevant
+ *  to linear representation. It also includes the possibility to use the integer vector
+ *  genotypes as permutation of indices individuals, where each individual represents a permutation
+ *  of values between 0 and n-1, where n is the size of the integer vectors. Several crossover and
+ *  mutation operators have been defined to support such a indices permutation genotypes.
  *
  */
 
-#ifndef Beagle_GA_hpp
-#define Beagle_GA_hpp
-
+#ifndef Beagle_IntVec_hpp
+#define Beagle_IntVec_hpp
 
 // Beagle generic components
 
-#include "beagle/Beagle.hpp"
+#include "Beagle/Core.hpp"
+#include "Beagle/EC.hpp"
 
-// GA framework
+// IntVec framework
 
-#include "beagle/GA/BitString.hpp"
-#include "beagle/GA/FloatVector.hpp"
-#include "beagle/GA/ESVector.hpp"
-#include "beagle/GA/IntegerVector.hpp"
-#include "beagle/GA/CMAHolder.hpp"
-#include "beagle/GA/CrossoverBlendESVecOp.hpp"
-#include "beagle/GA/CrossoverBlendFltVecOp.hpp"
-#include "beagle/GA/CrossoverCycleOp.hpp"
-#include "beagle/GA/CrossoverIndicesIntVecOp.hpp"
-#include "beagle/GA/CrossoverNonAbelOp.hpp"
-#include "beagle/GA/CrossoverNWOXOp.hpp"
-#include "beagle/GA/CrossoverOnePointBitStrOp.hpp"
-#include "beagle/GA/CrossoverOnePointESVecOp.hpp"
-#include "beagle/GA/CrossoverOnePointFltVecOp.hpp"
-#include "beagle/GA/CrossoverOnePointIntVecOp.hpp"
-#include "beagle/GA/CrossoverOnePointOpT.hpp"
-#include "beagle/GA/CrossoverOrderedOp.hpp"
-#include "beagle/GA/CrossoverPMXOp.hpp"
-#include "beagle/GA/CrossoverSBXFltVecOp.hpp"
-#include "beagle/GA/CrossoverTwoPointsBitStrOp.hpp"
-#include "beagle/GA/CrossoverTwoPointsESVecOp.hpp"
-#include "beagle/GA/CrossoverTwoPointsFltVecOp.hpp"
-#include "beagle/GA/CrossoverTwoPointsIntVecOp.hpp"
-#include "beagle/GA/CrossoverTwoPointsOpT.hpp"
-#include "beagle/GA/CrossoverUniformBitStrOp.hpp"
-#include "beagle/GA/CrossoverUniformESVecOp.hpp"
-#include "beagle/GA/CrossoverUniformFltVecOp.hpp"
-#include "beagle/GA/CrossoverUniformIntVecOp.hpp"
-#include "beagle/GA/CrossoverUniformOpT.hpp"
-#include "beagle/GA/CrossoverUPMXOp.hpp"
-#include "beagle/GA/InitBitStrOp.hpp"
-#include "beagle/GA/InitBitStrRampedOp.hpp"
-#include "beagle/GA/InitCMAFltVecOp.hpp"
-#include "beagle/GA/InitESVecOp.hpp"
-#include "beagle/GA/InitFltVecOp.hpp"
-#include "beagle/GA/InitIndicesIntVecOp.hpp"
-#include "beagle/GA/InitIntVecOp.hpp"
-#include "beagle/GA/InitQRESVecOp.hpp"
-#include "beagle/GA/InitQRFltVecOp.hpp"
-#include "beagle/GA/InitQRIntVecOp.hpp"
-#include "beagle/GA/MutationCMAFltVecOp.hpp"
-#include "beagle/GA/MutationESVecOp.hpp"
-#include "beagle/GA/MutationFlipBitStrOp.hpp"
-#include "beagle/GA/MutationGaussianFltVecOp.hpp"
-#include "beagle/GA/MutationMoveSequenceOp.hpp"
-#include "beagle/GA/MutationShuffleIntVecOp.hpp"
-#include "beagle/GA/MutationUniformIntVecOp.hpp"
-#include "beagle/GA/MutationQRCMAFltVecOp.hpp"
-#include "beagle/GA/MutationQRGaussianFltVecOp.hpp"
-#include "beagle/GA/MutationQRESVecOp.hpp"
-#include "beagle/GA/MutationQRUniformIntVecOp.hpp"
-#include "beagle/GA/MutationReverseSequenceOp.hpp"
-#include "beagle/GA/MutationShuffleSequenceOp.hpp"
-#include "beagle/GA/RecombinationFltVecOp.hpp"
-#include "beagle/GA/RecombinationWeightedFltVecOp.hpp"
-#include "beagle/GA/RecombinationESVecOp.hpp"
-#include "beagle/GA/RecombinationWeightedESVecOp.hpp"
-#include "beagle/GA/MuWCommaLambdaCMAFltVecOp.hpp"
-#include "beagle/GA/TermCMAOp.hpp"
-#include "beagle/GA/AdaptOneFifthRuleFltVecOp.hpp"
-#include "beagle/GA/AlgoCMAES.hpp"
-#include "beagle/GA/AlgoESOneFifthRule.hpp"
-#include "beagle/GA/AlgoSAESComma.hpp"
-#include "beagle/GA/AlgoSAESPlus.hpp"
-#include "beagle/GA/PackageBitString.hpp"
-#include "beagle/GA/PackageCMAES.hpp"
-#include "beagle/GA/PackageES.hpp"
-#include "beagle/GA/PackageFloatVector.hpp"
-#include "beagle/GA/PackageIntegerVector.hpp"
+#include "Beagle/IntVec/IntegerVector.hpp"
+#include "Beagle/IntVec/CrossoverCycleOp.hpp"
+#include "Beagle/IntVec/CrossoverIndicesOp.hpp"
+#include "Beagle/IntVec/CrossoverNWOXOp.hpp"
+#include "Beagle/IntVec/CrossoverNonAbelOp.hpp"
+#include "Beagle/IntVec/CrossoverOnePointOp.hpp"
+#include "Beagle/IntVec/CrossoverOrderedOp.hpp"
+#include "Beagle/IntVec/CrossoverPMXOp.hpp"
+#include "Beagle/IntVec/CrossoverTwoPointsOp.hpp"
+#include "Beagle/IntVec/CrossoverUPMXOp.hpp"
+#include "Beagle/IntVec/CrossoverUniformOp.hpp"
+#include "Beagle/IntVec/InitIndicesOp.hpp"
+#include "Beagle/IntVec/InitializationOp.hpp"
+#include "Beagle/IntVec/InitializationQROp.hpp"
+#include "Beagle/IntVec/MutationMoveSequenceOp.hpp"
+#include "Beagle/IntVec/MutationReverseSequenceOp.hpp"
+#include "Beagle/IntVec/MutationShuffleOp.hpp"
+#include "Beagle/IntVec/MutationShuffleSequenceOp.hpp"
+#include "Beagle/IntVec/MutationUniformOp.hpp"
+#include "Beagle/IntVec/MutationUniformQROp.hpp"
+#include "Beagle/IntVec/Package.hpp"
 
-#endif // Beagle_GA_hpp
-
+#endif // Beagle_IntVec_hpp

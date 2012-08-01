@@ -1,14 +1,14 @@
 # CMakeLists
 #
 # CMake configuration for generating build system of Open BEAGLE
-# Copyright (C) 2009-2011
+# Copyright (C) 2009-2012
 #
 # Christian Gagne <christian.gagne@gel.ulaval.ca>
 # Marc-Andre Gardner <marc-andre.gardner.1@ulaval.ca>
 # Felix-Antoine Fortin <felix-antoine.fortin.1@ulaval.ca>
 # Francois-Michel De Rainville <francois-michel.de-rainville.1@ulaval.ca>
 #
-# Date: 17/07/2011
+# Date: 01/08/2012
 
 # Minimal CMake version
 cmake_minimum_required(VERSION 2.6)
@@ -22,7 +22,7 @@ endif(COMMAND cmake_policy)
 # Set project variables
 project(OpenBEAGLE C CXX)
 set(BEAGLE_PACKAGE OpenBEAGLE)
-set(BEAGLE_VERSION 4.0.0)
+set(BEAGLE_VERSION 4.1.0)
 if(APPLE)
 	option(BEAGLE_CREATE_DMG "Do you want to create a pkg package for Open BEAGLE?" OFF)
 elseif(WIN32)
@@ -477,6 +477,7 @@ file(GLOB BEAGLE_CORE_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/Core/*.cpp")
 file(GLOB BEAGLE_EC_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/EC/*.cpp")
 file(GLOB BEAGLE_BITSTR_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/BitStr/*.cpp")
 file(GLOB BEAGLE_FLTVEC_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/FltVec/*.cpp")
+file(GLOB BEAGLE_INTVEC_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/IntVec/*.cpp")
 file(GLOB BEAGLE_ES_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/ES/*.cpp")
 file(GLOB BEAGLE_SAES_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/SAES/*.cpp")
 
@@ -485,6 +486,7 @@ file(GLOB BEAGLE_CORE_HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/Core/*.hpp
 file(GLOB BEAGLE_EC_HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/EC/*.hpp")
 file(GLOB BEAGLE_BITSTR_HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/BitStr/*.hpp")
 file(GLOB BEAGLE_FLTVEC_HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/FltVec/*.hpp")
+file(GLOB BEAGLE_INTVEC_HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/IntVec/*.hpp")
 file(GLOB BEAGLE_ES_HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/ES/*.hpp")
 file(GLOB BEAGLE_SAES_HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/SAES/*.hpp")
 
@@ -505,6 +507,8 @@ if(CMAKE_FAST_COMPILATION)
     set(BEAGLE_BITSTR_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/BitStr/libBeagle-BitStr.cpp")
     AllFilesInOne("${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/FltVec/libBeagle-FltVec.cpp" ${BEAGLE_FLTVEC_SRC})
     set(BEAGLE_FLTVEC_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/FltVec/libBeagle-FltVec.cpp")
+    AllFilesInOne("${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/IntVec/libBeagle-IntVec.cpp" ${BEAGLE_INTVEC_SRC})
+    set(BEAGLE_INTVEC_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/IntVec/libBeagle-IntVec.cpp")
     AllFilesInOne("${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/ES/libBeagle-ES.cpp" ${BEAGLE_ES_SRC})
     set(BEAGLE_ES_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/ES/libBeagle-ES.cpp")
     AllFilesInOne("${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/ES/libBeagle-SAES.cpp" ${BEAGLE_SAES_SRC})
@@ -516,6 +520,7 @@ else(CMAKE_FAST_COMPILATION)
     file(REMOVE "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/EC/libBeagle-EC.cpp")
     file(REMOVE "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/BitStr/libBeagle-BitStr.cpp")
     file(REMOVE "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/FltVec/libBeagle-FltVec.cpp")
+    file(REMOVE "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/FltVec/libBeagle-IntVec.cpp")
     file(REMOVE "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/FltVec/libBeagle-ES.cpp")
     file(REMOVE "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/FltVec/libBeagle-SAES.cpp")
 endif(CMAKE_FAST_COMPILATION)
@@ -583,7 +588,7 @@ install(FILES ${BEAGLE_BITSTR_HEADERS} DESTINATION include/Beagle/BitStr)
 install(TARGETS Beagle-BitStr DESTINATION lib)
 
 # Create Beagle-FltVec library target
-add_library(Beagle-FltVec ${BEAGLE_LIBRARY_TYPE} ${BEAGLE_FLTVEC_SRC})
+add_library(Beagle-FltVec ${BEAGLE_LIBRARY_TYPE} ${BEAGLE_INTVEC_SRC})
 target_link_libraries(Beagle-FltVec Beagle-EC Beagle-Core pacc)
 if(ZLIB_FOUND)
     target_link_libraries(Beagle-FltVec ${ZLIB_LIBRARY})
@@ -596,10 +601,29 @@ endif(BUILD_STATIC_LIB)
 if(COMPILER_SUPPORTS_C0X AND BEAGLE_USE_C0x)
     set_target_properties(Beagle-FltVec PROPERTIES COMPILE_FLAGS "-std=c++0x")
 endif(COMPILER_SUPPORTS_C0X AND BEAGLE_USE_C0x)
-MoveConfigFiles("${BEAGLE_FLTVEC_HEADERS}" "${BEAGLE_OUTPUT_DIR}/include/Beagle/FltVec" false)
+MoveConfigFiles("${BEAGLE_INTVEC_HEADERS}" "${BEAGLE_OUTPUT_DIR}/include/Beagle/FltVec" false)
 install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/FltVec.hpp DESTINATION include/Beagle)
-install(FILES ${BEAGLE_FLTVEC_HEADERS} DESTINATION include/Beagle/FltVec)
+install(FILES ${BEAGLE_INTVEC_HEADERS} DESTINATION include/Beagle/FltVec)
 install(TARGETS Beagle-FltVec DESTINATION lib)
+
+# Create Beagle-IntVec library target
+add_library(Beagle-IntVec ${BEAGLE_LIBRARY_TYPE} ${BEAGLE_INTVEC_SRC})
+target_link_libraries(Beagle-IntVec Beagle-EC Beagle-Core pacc)
+if(ZLIB_FOUND)
+    target_link_libraries(Beagle-IntVec ${ZLIB_LIBRARY})
+endif(ZLIB_FOUND)
+if(BUILD_STATIC_LIB)
+    set_target_properties(Beagle-IntVec PROPERTIES VERSION ${BEAGLE_VERSION} ARCHIVE_OUTPUT_DIRECTORY "${BEAGLE_OUTPUT_DIR}/lib")
+else(BUILD_STATIC_LIB)
+    set_target_properties(Beagle-IntVec PROPERTIES VERSION ${BEAGLE_VERSION} LIBRARY_OUTPUT_DIRECTORY "${BEAGLE_OUTPUT_DIR}/lib")
+endif(BUILD_STATIC_LIB)
+if(COMPILER_SUPPORTS_C0X AND BEAGLE_USE_C0x)
+    set_target_properties(Beagle-IntVec PROPERTIES COMPILE_FLAGS "-std=c++0x")
+endif(COMPILER_SUPPORTS_C0X AND BEAGLE_USE_C0x)
+MoveConfigFiles("${BEAGLE_INTVEC_HEADERS}" "${BEAGLE_OUTPUT_DIR}/include/Beagle/IntVec" false)
+install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/IntVec.hpp DESTINATION include/Beagle)
+install(FILES ${BEAGLE_INTVEC_HEADERS} DESTINATION include/Beagle/IntVec)
+install(TARGETS Beagle-IntVec DESTINATION lib)
 
 # Create Beagle-ES library target
 add_library(Beagle-ES ${BEAGLE_LIBRARY_TYPE} ${BEAGLE_ES_SRC})

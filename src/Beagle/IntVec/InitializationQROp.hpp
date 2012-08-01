@@ -25,16 +25,16 @@
  */
 
 /*!
- *  \file   Beagle/IntVec/InitUniformQROp.hpp
- *  \brief  Definition of the class IntVec::InitUniformQROp.
+ *  \file   Beagle/IntVec/InitializationQROp.hpp
+ *  \brief  Definition of the class IntVec::InitializationQROp.
  *  \author Christian Gagne
  *  \author Marc Parizeau
  *  $Revision: 1.5 $
  *  $Date: 2007/08/08 19:26:34 $
  */
 
-#ifndef Beagle_IntVec_InitUniformQROp_hpp
-#define Beagle_IntVec_InitUniformQROp_hpp
+#ifndef Beagle_IntVec_InitializationQROp_hpp
+#define Beagle_IntVec_InitializationQROp_hpp
 
 #include <string>
 
@@ -49,29 +49,29 @@ namespace IntVec
 {
 
 /*!
- *  \class InitUniformQROp Beagle/IntVec/InitUniformQROp.hpp "Beagle/IntVec/InitUniformQROp.hpp"
+ *  \class InitializationQROp Beagle/IntVec/InitializationQROp.hpp "Beagle/IntVec/InitializationQROp.hpp"
  *  \brief Integer-valued genotype quasi-random initialization operator class.
  *  \ingroup IntVecF
  */
-class InitUniformQROp : public IntVec::InitializationOp
+class InitializationQROp : public IntVec::InitializationOp
 {
 
 public:
 
-	//! IntVec::InitUniformQROp allocator type.
-	typedef AllocatorT<InitUniformQROp,IntVec::InitializationOp::Alloc>
+	//! IntVec::InitializationQROp allocator type.
+	typedef AllocatorT<InitializationQROp,IntVec::InitializationOp::Alloc>
 	Alloc;
-	//! IntVec::InitUniformQROp handle type.
-	typedef PointerT<InitUniformQROp,IntVec::InitializationOp::Handle>
+	//! IntVec::InitializationQROp handle type.
+	typedef PointerT<InitializationQROp,IntVec::InitializationOp::Handle>
 	Handle;
-	//! IntVec::InitUniformQROp bag type.
-	typedef ContainerT<InitUniformQROp,IntVec::InitializationOp::Bag>
+	//! IntVec::InitializationQROp bag type.
+	typedef ContainerT<InitializationQROp,IntVec::InitializationOp::Bag>
 	Bag;
 
-	explicit InitUniformQROp(unsigned int inIntVectorSize=0,
+	explicit InitializationQROp(unsigned int inIntVectorSize=0,
 	                        std::string inReproProbaName="ec.repro.prob",
-	                        std::string inName="IntVec-InitUniformQROp");
-	virtual ~InitUniformQROp()
+	                        std::string inName="IntVec-InitializationQROp");
+	virtual ~InitializationQROp()
 	{ }
 
 	virtual void init(System& ioSystem);
@@ -83,4 +83,4 @@ public:
 }
 }
 
-#endif // Beagle_IntVec_InitUniformQROp_hpp
+#endif // Beagle_IntVec_InitializationQROp_hpp

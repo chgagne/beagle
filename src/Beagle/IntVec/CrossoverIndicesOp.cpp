@@ -149,7 +149,6 @@ bool Beagle::IntVec::CrossoverIndicesOp::mate(Beagle::Individual& ioIndiv1,
 
 	Beagle_LogDebugM(
 	    ioContext1.getSystem().getLogger(),
-	    "crossover",
 	    "Individuals mated (after indices integer vector crossover): " << ioIndiv1 << ", " << ioIndiv2
 	);
 

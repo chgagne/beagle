@@ -25,8 +25,8 @@
  */
 
 /*!
- *  \file   Beagle/IntVec/MutationShuffleIntVecOp.cpp
- *  \brief  Source code of class IntVec::MutationShuffleIntVecOp.
+ *  \file   Beagle/IntVec/MutationShuffleOp.cpp
+ *  \brief  Source code of class IntVec::MutationShuffleOp.
  *  \author Christian Gagne
  *  \author Marc Parizeau
  *  $Revision: 1.14 $
@@ -47,7 +47,7 @@ using namespace Beagle;
  *  \param inIntMutatePbName Mutation integer probability parameter name used in register.
  *  \param inName Name of the operator.
  */
-IntVec::MutationShuffleIntVecOp::MutationShuffleIntVecOp(std::string inMutationPbName,
+IntVec::MutationShuffleOp::MutationShuffleOp(std::string inMutationPbName,
         std::string inIntMutatePbName,
         std::string inName) :
 	EC::MutationOp(inMutationPbName, inName),
@@ -61,7 +61,7 @@ IntVec::MutationShuffleIntVecOp::MutationShuffleIntVecOp(std::string inMutationP
  *  \param ioContext Context of the evolution.
  *  \return True if the individual is effectively mutated, false if not.
  */
-bool IntVec::MutationShuffleIntVecOp::mutate(Beagle::Individual& ioIndividual, Context& ioContext)
+bool IntVec::MutationShuffleOp::mutate(Beagle::Individual& ioIndividual, Context& ioContext)
 {
 	Beagle_StackTraceBeginM();
 	Beagle_ValidateParameterM(mIntMutateProba->getWrappedValue()>=0.0, mIntMutatePbName, "<0");
@@ -121,7 +121,7 @@ bool IntVec::MutationShuffleIntVecOp::mutate(Beagle::Individual& ioIndividual, C
  *  \param inIter XML iterator to use to read mutation operator.
  *  \param inOpMap
  */
-void IntVec::MutationShuffleIntVecOp::readWithSystem(PACC::XML::ConstIterator inIter, System& ioSystem)
+void IntVec::MutationShuffleOp::readWithSystem(PACC::XML::ConstIterator inIter, System& ioSystem)
 {
 	Beagle_StackTraceBeginM();
 	if((inIter->getType()!=PACC::XML::eData) || (inIter->getValue()!=getName())) {
@@ -141,7 +141,7 @@ void IntVec::MutationShuffleIntVecOp::readWithSystem(PACC::XML::ConstIterator in
  *  \brief Register the parameters of the integer vector IntVec shuffle mutation operator.
  *  \param ioSystem System of the evolution.
  */
-void IntVec::MutationShuffleIntVecOp::registerParams(System& ioSystem)
+void IntVec::MutationShuffleOp::registerParams(System& ioSystem)
 {
 	Beagle_StackTraceBeginM();
 	{
@@ -154,7 +154,7 @@ void IntVec::MutationShuffleIntVecOp::registerParams(System& ioSystem)
 		mMutationProba = castHandleT<Double>(
 		                     ioSystem.getRegister().insertEntry(mMutationPbName, new Double(0.1f), lDescription));
 	}
-	Beagle::MutationOp::registerParams(ioSystem);
+	EC::MutationOp::registerParams(ioSystem);
 	{
 		Register::Description lDescription(
 		    "Int shuffle mutation probability",
@@ -174,10 +174,10 @@ void IntVec::MutationShuffleIntVecOp::registerParams(System& ioSystem)
  *  \param ioStreamer XML streamer to write mutation operator into.
  *  \param inIndent Whether XML output should be indented.
  */
-void IntVec::MutationShuffleIntVecOp::writeContent(PACC::XML::Streamer& ioStreamer, bool inIndent) const
+void IntVec::MutationShuffleOp::writeContent(PACC::XML::Streamer& ioStreamer, bool inIndent) const
 {
 	Beagle_StackTraceBeginM();
-	Beagle::MutationOp::writeContent(ioStreamer, inIndent);
+	EC::MutationOp::writeContent(ioStreamer, inIndent);
 	ioStreamer.insertAttribute("mutintpb", mIntMutatePbName);
 	Beagle_StackTraceEndM();
 }

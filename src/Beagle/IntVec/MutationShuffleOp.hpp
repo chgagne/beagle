@@ -25,16 +25,16 @@
  */
 
 /*!
- *  \file   Beagle/IntVec/MutationShuffleIntVecOp.hpp
- *  \brief  Definition of the class IntVec::MutationShuffleIntVecOp.
+ *  \file   Beagle/IntVec/MutationShuffleOp.hpp
+ *  \brief  Definition of the class IntVec::MutationShuffleOp.
  *  \author Christian Gagne
  *  \author Marc Parizeau
  *  $Revision: 1.8 $
  *  $Date: 2007/08/08 19:26:34 $
  */
 
-#ifndef Beagle_IntVec_MutationShuffleIntVecOp_hpp
-#define Beagle_IntVec_MutationShuffleIntVecOp_hpp
+#ifndef Beagle_IntVec_MutationShuffleOp_hpp
+#define Beagle_IntVec_MutationShuffleOp_hpp
 
 #include "Beagle/IntVec.hpp"
 
@@ -45,29 +45,29 @@ namespace IntVec
 {
 
 /*!
- *  \class MutationShuffleIntVecOp Beagle/IntVec/MutationShuffleIntVecOp.hpp "Beagle/IntVec/MutationShuffleIntVecOp.hpp"
+ *  \class MutationShuffleOp Beagle/IntVec/MutationShuffleOp.hpp "Beagle/IntVec/MutationShuffleOp.hpp"
  *  \brief Indices permutation vector shuffle mutation operator class.
  *  \ingroup IntVecF
  */
-class MutationShuffleIntVecOp : public EC::MutationOp
+class MutationShuffleOp : public EC::MutationOp
 {
 
 public:
 
-	//! IntVec::MutationShuffleIntVecOp allocator type.
-	typedef AllocatorT<MutationShuffleIntVecOp,EC::MutationOp::Alloc>
+	//! IntVec::MutationShuffleOp allocator type.
+	typedef AllocatorT<MutationShuffleOp,EC::MutationOp::Alloc>
 	Alloc;
-	//! IntVec::MutationShuffleIntVecOp handle type.
-	typedef PointerT<MutationShuffleIntVecOp,EC::MutationOp::Handle>
+	//! IntVec::MutationShuffleOp handle type.
+	typedef PointerT<MutationShuffleOp,EC::MutationOp::Handle>
 	Handle;
-	//! IntVec::MutationShuffleIntVecOp bag type.
-	typedef ContainerT<MutationShuffleIntVecOp,EC::MutationOp::Bag>
+	//! IntVec::MutationShuffleOp bag type.
+	typedef ContainerT<MutationShuffleOp,EC::MutationOp::Bag>
 	Bag;
 
-	explicit MutationShuffleIntVecOp(std::string inMutationPbName="intvec.mutshuf.indpb",
+	explicit MutationShuffleOp(std::string inMutationPbName="intvec.mutshuf.indpb",
 	                                 std::string inIntMutatePbName="intvec.mutshuf.intpb",
-	                                 std::string inName="IntVec-MutationShuffleIntVecOp");
-	virtual ~MutationShuffleIntVecOp()
+	                                 std::string inName="IntVec-MutationShuffleOp");
+	virtual ~MutationShuffleOp()
 	{ }
 
 	virtual bool mutate(Beagle::Individual& ioIndividual, Context& ioContext);
@@ -85,4 +85,4 @@ protected:
 }
 }
 
-#endif // Beagle_IntVec_MutationShuffleIntVecOp_hpp
+#endif // Beagle_IntVec_MutationShuffleOp_hpp

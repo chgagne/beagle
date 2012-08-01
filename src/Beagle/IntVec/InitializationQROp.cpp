@@ -25,8 +25,8 @@
  */
 
 /*!
- *  \file   Beagle/IntVec/InitUniformQROp.cpp
- *  \brief  Source code of class IntVec::InitUniformQROp.
+ *  \file   Beagle/IntVec/InitializationQROp.cpp
+ *  \brief  Source code of class IntVec::InitializationQROp.
  *  \author Christian Gagne
  *  \author Marc Parizeau
  *  $Revision: 1.6 $
@@ -48,7 +48,7 @@ using namespace Beagle;
  *  \param inReproProbaName Reproduction probability parameter name used in register.
  *  \param inName Name of the operator.
  */
-IntVec::InitUniformQROp::InitUniformQROp(unsigned int inIntVectorSize,
+IntVec::InitializationQROp::InitializationQROp(unsigned int inIntVectorSize,
                                          std::string inReproProbaName,
                                          std::string inName) :
 		IntVec::InitializationOp(inIntVectorSize, inReproProbaName, inName)
@@ -59,7 +59,7 @@ IntVec::InitUniformQROp::InitUniformQROp(unsigned int inIntVectorSize,
  *  \brief Register the parameters of the integer vectors quasi-random initialization operator.
  *  \param ioSystem System of the evolution.
  */
-void IntVec::InitUniformQROp::registerParams(System& ioSystem)
+void IntVec::InitializationQROp::registerParams(System& ioSystem)
 {
 	Beagle_StackTraceBeginM();
 	IntVec::InitializationOp::registerParams(ioSystem);
@@ -73,7 +73,7 @@ void IntVec::InitUniformQROp::registerParams(System& ioSystem)
  *  \brief Initialize the quasi-random ES initialization operator.
  *  \param ioSystem System of the evolution.
  */
-void IntVec::InitUniformQROp::init(System& ioSystem)
+void IntVec::InitializationQROp::init(System& ioSystem)
 {
 	Beagle_StackTraceBeginM();
 	IntVec::InitializationOp::init(ioSystem);
@@ -91,12 +91,12 @@ void IntVec::InitUniformQROp::init(System& ioSystem)
  *  \param outIndividual Individual to initialize.
  *  \param ioContext Evolution context.
  */
-void IntVec::InitUniformQROp::initIndividual(Beagle::Individual& outIndividual, Context& ioContext)
+void IntVec::InitializationQROp::initIndividual(Beagle::Individual& outIndividual, Context& ioContext)
 {
 	Beagle_StackTraceBeginM();
 #ifndef BEAGLE_NDEBUG
 	if(mIntVectorSize->getWrappedValue() == 0) {
-		string lMessage = "IntVec::InitUniformQROp::initIndividual: ";
+		string lMessage = "IntVec::InitializationQROp::initIndividual: ";
 		lMessage += "integer vector size parameter is zero; ";
 		lMessage += "could not initialize the individuals!";
 		throw Beagle_RunTimeExceptionM(lMessage);

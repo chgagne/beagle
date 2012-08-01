@@ -49,22 +49,22 @@ namespace IntVec
  *  \brief Package for adding objects related to integer vector.
  *  \ingroup IntVecF
  */
-class Package : public Beagle::Package
+class Package : public PackageAbstract
 {
 
 public:
 
 	//! IntVec::Package allocator type.
-	typedef AllocatorT< Package, Beagle::Package::Alloc > Alloc;
+	typedef AllocatorT< Package, PackageAbstract::Alloc > Alloc;
 	//! IntVec::Package handle type.
-	typedef PointerT< Package, Beagle::Package::Handle > Handle;
+	typedef PointerT< Package, PackageAbstract::Handle > Handle;
 	//! IntVec::Package bag type.
-	typedef ContainerT< Package, Beagle::Package::Bag > Bag;
+	typedef ContainerT< Package, PackageAbstract::Bag > Bag;
 
 	explicit Package(unsigned int inInitSize=0);
 
-	virtual void          configure(System& ioSystem);
-	virtual Package::Bag  listDependencies(void);
+	virtual void                  configure(System& ioSystem);
+	virtual PackageAbstract::Bag  listDependencies(void);
 
 protected:
 

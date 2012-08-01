@@ -63,9 +63,10 @@ bool IntVec::MutationReverseSequenceOp::mutate(Beagle::Individual& ioIndividual,
 	bool lMutated = false;
 	
 	for(unsigned int i=0; i<ioIndividual.size(); i++) {
+		
 		Beagle_LogVerboseM(
 			ioContext.getSystem().getLogger(),
-			"Reversing a sequence of the " << uint2ordinal(i+1) << " individual's genotype"
+			"Reversing a sequence of the " << uint2ordinal(i+1) << " individual's genotype"
 		);
 		Beagle_LogDebugM(
 			ioContext.getSystem().getLogger(),
