@@ -74,13 +74,14 @@ Christian Gagné and Marc Parizeau, [Genericity in Evolutionary Computation Soft
 ```
 @article{Gagne2006,
     author    = { Christian Gagn\'e and Marc Parizeau },
-    title     = { Genericity in Evolutionary Computation Software Tools:
-	              Principles and Case Study },
+    title     = { Genericity in Evolutionary Computation 
+		          Software Tools: Principles and Case Study },
     volume    = { 15 },
     number    = { 2 },
     pages     = { 173-194 },
     year      = { 2006 },
-    journal   = { International Journal on Artificial Intelligence Tools },
+    journal   = { International Journal on Artificial 
+		          Intelligence Tools },
 }
 ```
 
