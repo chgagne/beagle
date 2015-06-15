@@ -71,17 +71,17 @@ This is free software which we are proud to provide to the community. If you are
 If you are publishing scientific papers on work using Open BEAGLE please cite the following reference.
 
 Christian Gagné and Marc Parizeau, [Genericity in Evolutionary Computation Software Tools: Principles and Case Study](http://vision.gel.ulaval.ca/en/publications/Id_605/PublDetails.php), _International Journal on Artificial Intelligence Tools_, vol. 15, num. 2, p. 173-194, 2006.
+
 ```
 @article{Gagne2006,
     author    = { Christian Gagn\'e and Marc Parizeau },
-    title     = { Genericity in Evolutionary Computation 
-		          Software Tools: Principles and Case Study },
+    title     = { Genericity in Evolutionary Computation Software Tools:
+		          Principles and Case Study },
     volume    = { 15 },
     number    = { 2 },
     pages     = { 173-194 },
     year      = { 2006 },
-    journal   = { International Journal on Artificial 
-		          Intelligence Tools },
+    journal   = { International Journal on Artificial Intelligence Tools },
 }
 ```
 
