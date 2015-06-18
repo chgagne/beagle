@@ -428,7 +428,7 @@ if(OPENMP_FOUND)
 			message(STATUS "Compiling with GNU, parallel version of STL algorithms will be used if they are available.")
 			execute_process(COMMAND ${CMAKE_CXX_COMPILER} -dumpversion OUTPUT_VARIABLE CMAKE_CXX_COMPILER_VERSION)
 			
-			if(CMAKE_CXX_COMPILER_VERSION MATCHES "4?\\.[3-9]?\\.[0-9]")
+			if(NOT CMAKE_CXX_COMPILER_VERSION VERSION_LESS 4.3)
 				message(STATUS "GCC ${CMAKE_CXX_COMPILER_VERSION} found, enabling parallel STL")
 
 				set(CMAKE_REQUIRED_FLAGS "-L${PACC_LIB_FOUND_DIR} -I${PACC_INCLUDE_FOUND_DIR} -lpacc -fopenmp -D_GLIBCXX_PARALLEL")
@@ -441,9 +441,9 @@ if(OPENMP_FOUND)
 					add_definitions(-D_GLIBCXX_PARALLEL)
 				endif(NOT PACC_HAVE_PARALLEL_STL)
 				set(CMAKE_REQUIRED_FLAGS)		# Unset modified CMake variables
-			else(CMAKE_CXX_COMPILER_VERSION MATCHES "4?\\.[3-9]?\\.[0-9]")
+			else(NOT CMAKE_CXX_COMPILER_VERSION VERSION_LESS 4.3)
 				message(STATUS "Parallel STL requires GCC >= 4.3, you are using ${CMAKE_CXX_COMPILER_VERSION}")
-			endif(CMAKE_CXX_COMPILER_VERSION MATCHES "4?\\.[3-9]?\\.[0-9]")			
+			endif(NOT CMAKE_CXX_COMPILER_VERSION VERSION_LESS 4.3)			
 		endif(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
 	endif(NOT BEAGLE_OMP_MODE MATCHES "NONE")
 
