@@ -70,11 +70,6 @@
 #include "Beagle/config.hpp"
 #include "Beagle/macros.hpp"
 
-// Open MP helper functions
-#if defined(BEAGLE_USE_OMP_R) || defined(BEAGLE_USE_OMP_NR)
-#include "Beagle/Core/OpenMP.hpp"
-#endif
-
 // Headers of Open BEAGLE core classes and functions
 #include "Beagle/Core/Object.hpp"
 #include "Beagle/Core/Pointer.hpp"
@@ -155,6 +150,11 @@
 #include "Beagle/Core/Algorithm.hpp"
 #include "Beagle/Core/PackageAbstract.hpp"
 #include "Beagle/Core/Package.hpp"
+
+// Open MP helper functions
+#if defined(BEAGLE_USE_OMP_R) || defined(BEAGLE_USE_OMP_NR)
+#include "Beagle/Core/OpenMP.hpp"
+#endif
 
 #ifdef BEAGLE_HAVE_OPENMP
 #include "Beagle/Core/OpenMP.hpp"

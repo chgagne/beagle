@@ -33,7 +33,7 @@
  *  $Date: 2007/08/17 18:09:10 $
  */
 
-#include "beagle/BitStr.hpp"
+#include "Beagle/BitStr.hpp"
 
 #include <sstream>
 
