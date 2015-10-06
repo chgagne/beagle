@@ -36,19 +36,19 @@
 #ifndef Beagle_ParetoFrontHOF_hpp
 #define Beagle_ParetoFrontHOF_hpp
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Object.hpp"
-#include "beagle/Pointer.hpp"
-#include "beagle/PointerT.hpp"
-#include "beagle/Allocator.hpp"
-#include "beagle/AllocatorT.hpp"
-#include "beagle/Container.hpp"
-#include "beagle/ContainerT.hpp"
-#include "beagle/Individual.hpp"
-#include "beagle/Logger.hpp"
-#include "beagle/HallOfFame.hpp"
-#include "beagle/Deme.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Object.hpp"
+#include "Beagle/Core/Pointer.hpp"
+#include "Beagle/Core/PointerT.hpp"
+#include "Beagle/Core/Allocator.hpp"
+#include "Beagle/Core/AllocatorT.hpp"
+#include "Beagle/Core/Container.hpp"
+#include "Beagle/Core/ContainerT.hpp"
+#include "Beagle/Core/Individual.hpp"
+#include "Beagle/Core/Logger.hpp"
+#include "Beagle/Core/HallOfFame.hpp"
+#include "Beagle/Core/Deme.hpp"
 
 namespace Beagle
 {

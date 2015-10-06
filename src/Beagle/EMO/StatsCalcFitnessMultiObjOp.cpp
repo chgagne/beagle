@@ -33,7 +33,7 @@
  *  $Date: 2007/08/17 18:09:14 $
  */
 
-#include "beagle/Beagle.hpp"
+#include "Beagle/EMO.hpp"
 
 #include <cmath>
 #include <sstream>
@@ -46,7 +46,7 @@ using namespace Beagle;
  *  \param inName Name of the operator.
  */
 StatsCalcFitnessMultiObjOp::StatsCalcFitnessMultiObjOp(std::string inName) :
-		StatsCalculateOp(inName)
+		EC::StatsCalculateOp(inName)
 { }
 
 

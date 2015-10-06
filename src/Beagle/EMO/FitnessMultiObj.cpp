@@ -33,7 +33,7 @@
  *  $Date: 2007/08/17 18:09:13 $
  */
 
-#include "beagle/Beagle.hpp"
+#include "Beagle/EMO.hpp"
 
 using namespace Beagle;
 
@@ -136,7 +136,7 @@ double FitnessMultiObj::getObjective(unsigned int inObjIndex) const
 		throw Beagle_RunTimeExceptionM(lOSS.str());
 	}
 	return (*this)[inObjIndex];
-	Beagle_StackTraceEndM("double FitnessMultiObj::getObjective(unsigned int) const")
+	Beagle_StackTraceEndM()
 }
 
 
@@ -149,7 +149,7 @@ const std::string& FitnessMultiObj::getType() const
 	Beagle_StackTraceBeginM();
 	const static std::string lType("FitnessMultiObj");
 	return lType;
-	Beagle_StackTraceEndM("const std::string& FitnessMultiObj::getType() const")
+	Beagle_StackTraceEndM()
 }
 
 

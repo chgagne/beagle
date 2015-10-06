@@ -33,7 +33,7 @@
  *  $Date: 2007/08/17 18:09:14 $
  */
 
-#include "beagle/Beagle.hpp"
+#include "Beagle/EMO.hpp"
 
 #include <algorithm>
 

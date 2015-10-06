@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/NSGA2Op.hpp
+ *  \file   Beagle/NSGA2Op.hpp
  *  \brief  Definition of the class NSGA2Op.
  *  \author Christian Gagne
  *  \author Marc Parizeau
@@ -37,26 +37,26 @@
 #ifndef Beagle_NSGA2Op_hpp
 #define Beagle_NSGA2Op_hpp
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Object.hpp"
-#include "beagle/Pointer.hpp"
-#include "beagle/PointerT.hpp"
-#include "beagle/Allocator.hpp"
-#include "beagle/AllocatorT.hpp"
-#include "beagle/AbstractAllocT.hpp"
-#include "beagle/Container.hpp"
-#include "beagle/ContainerT.hpp"
-#include "beagle/Operator.hpp"
-#include "beagle/ReplacementStrategyOp.hpp"
-#include "beagle/Fitness.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Object.hpp"
+#include "Beagle/Core/Pointer.hpp"
+#include "Beagle/Core/PointerT.hpp"
+#include "Beagle/Core/Allocator.hpp"
+#include "Beagle/Core/AllocatorT.hpp"
+#include "Beagle/Core/AbstractAllocT.hpp"
+#include "Beagle/Core/Container.hpp"
+#include "Beagle/Core/ContainerT.hpp"
+#include "Beagle/Core/Operator.hpp"
+#include "Beagle/Core/ReplacementStrategyOp.hpp"
+#include "Beagle/Core/Fitness.hpp"
 
 
 namespace Beagle
 {
 
 /*!
- *  \class NSGA2Op beagle/NSGA2Op.hpp "beagle/NSGA2Op.hpp"
+ *  \class NSGA2Op Beagle/NSGA2Op.hpp "Beagle/NSGA2Op.hpp"
  *  \brief NSGA2 multiobjective replacement strategy operator class.
  *  \ingroup ECF
  *  \ingroup Op

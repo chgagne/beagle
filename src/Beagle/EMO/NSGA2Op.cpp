@@ -33,7 +33,7 @@
  *  $Date: 2009/01/21 20:28:16 $
  */
 
-#include "beagle/Beagle.hpp"
+#include "Beagle/EMO.hpp"
 
 #include <cfloat>
 #include <float.h>     // To get FLT_MAX on Borland C++ Builder
@@ -185,7 +185,7 @@ void NSGA2Op::applyAsStandardOperator(Deme& ioDeme, Context& ioContext)
 	Beagle_LogVerboseM(
 	    ioContext.getSystem().getLogger(),
 	    "Computing crowding distance on the " << uint2ordinal(lParetoFronts.size()) <<
-	    " Pareto front, which is made of " << lParetoFronts.back().size()) << " individuals"
+	    " Pareto front, which is made of " << uint2ordinal(lParetoFronts.back().size()) << " individuals"
 	);
 	evalCrowdingDistance(lDistances, lLastFrontIndiv);
 	for(unsigned int m=0; lIndexDeme<lDesiredPopSize; ++m) {

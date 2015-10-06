@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/PackageMultiObj.hpp
+ *  \file   Beagle/PackageMultiObj.hpp
  *  \brief  Definition of the class PackageMultiObj.
  *  \author Christian Gagne
  *  $Revision: 1.2 $
@@ -38,40 +38,40 @@
 #include <map>
 #include <string>
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/System.hpp"
-#include "beagle/Evolver.hpp"
-#include "beagle/Package.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/System.hpp"
+#include "Beagle/Core/Evolver.hpp"
+#include "Beagle/Core/Package.hpp"
 
 
 namespace Beagle
 {
 
 /*!
- *  \class PackageMultiObj beagle/PackageMultiObj.hpp "beagle/PackageMultiObj.hpp"
+ *  \class PackageMultiObj Beagle/PackageMultiObj.hpp "Beagle/PackageMultiObj.hpp"
  *  \brief Package for adding objects related to multiobjective optimization.
  *  \ingroup ECF
  *  \ingroup MultiObj
  */
-class PackageMultiObj : public Package
+class PackageMultiObj : public PackageAbstract
 {
 
 public:
 
 	//! PackageMultiObj allocator type.
-	typedef AllocatorT< PackageMultiObj, Package::Alloc > Alloc;
+	typedef AllocatorT< PackageMultiObj, PackageAbstract::Alloc > Alloc;
 	//! PackageMultiObj handle type.
-	typedef PointerT< PackageMultiObj, Package::Handle > Handle;
+	typedef PointerT< PackageMultiObj, PackageAbstract::Handle > Handle;
 	//! PackageMultiObj bag type.
-	typedef ContainerT< PackageMultiObj, Package::Bag > Bag;
+	typedef ContainerT< PackageMultiObj, PackageAbstract::Bag > Bag;
 
 	PackageMultiObj(void);
 	virtual ~PackageMultiObj()
 	{ }
 
 	virtual void         configure(System& ioSystem);
-	virtual Package::Bag listDependencies(void);
+	virtual PackageAbstract::Bag listDependencies(void);
 };
 
 }

@@ -32,7 +32,7 @@
  *  $Date: 2007/08/09 21:39:53 $
  */
 
-#include "beagle/Beagle.hpp"
+#include "Beagle/EMO.hpp"
 
 using namespace Beagle;
 
@@ -41,7 +41,7 @@ using namespace Beagle;
  *  \brief Construct package with multi-objective optimization objects.
  */
 PackageMultiObj::PackageMultiObj(void) :
-		Package("PackageMultiObj")
+		PackageAbstract("PackageMultiObj")
 { }
 
 
@@ -93,11 +93,11 @@ void PackageMultiObj::configure(System& ioSystem)
  *
  *  PackageMultiObj depends on PackageBase.
  */
-Package::Bag PackageMultiObj::listDependencies(void)
+PackageAbstract::Bag PackageMultiObj::listDependencies(void)
 {
 	Beagle_StackTraceBeginM();
-	Package::Bag lDependencies;
-	lDependencies.push_back(new PackageBase());
+	PackageAbstract::Bag lDependencies;
+	lDependencies.push_back(new EC::Package());
 	return lDependencies;
 	Beagle_StackTraceEndM();
 }

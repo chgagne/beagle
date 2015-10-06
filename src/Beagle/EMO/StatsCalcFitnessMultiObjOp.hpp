@@ -36,21 +36,21 @@
 #ifndef Beagle_StatsCalcFitnessMultiObjOp_hpp
 #define Beagle_StatsCalcFitnessMultiObjOp_hpp
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Object.hpp"
-#include "beagle/Pointer.hpp"
-#include "beagle/PointerT.hpp"
-#include "beagle/Allocator.hpp"
-#include "beagle/AllocatorT.hpp"
-#include "beagle/Container.hpp"
-#include "beagle/ContainerT.hpp"
-#include "beagle/WrapperT.hpp"
-#include "beagle/Operator.hpp"
-#include "beagle/Stats.hpp"
-#include "beagle/Vivarium.hpp"
-#include "beagle/Context.hpp"
-#include "beagle/StatsCalculateOp.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Object.hpp"
+#include "Beagle/Core/Pointer.hpp"
+#include "Beagle/Core/PointerT.hpp"
+#include "Beagle/Core/Allocator.hpp"
+#include "Beagle/Core/AllocatorT.hpp"
+#include "Beagle/Core/Container.hpp"
+#include "Beagle/Core/ContainerT.hpp"
+#include "Beagle/Core/WrapperT.hpp"
+#include "Beagle/Core/Operator.hpp"
+#include "Beagle/Core/Stats.hpp"
+#include "Beagle/Core/Vivarium.hpp"
+#include "Beagle/Core/Context.hpp"
+#include "Beagle/EC/StatsCalculateOp.hpp"
 
 namespace Beagle
 {
@@ -66,7 +66,7 @@ namespace Beagle
  *  \ingroup FitStats
  *  \ingroup MultiObj
  */
-class StatsCalcFitnessMultiObjOp : public StatsCalculateOp
+class StatsCalcFitnessMultiObjOp : public EC::StatsCalculateOp
 {
 
 public:
