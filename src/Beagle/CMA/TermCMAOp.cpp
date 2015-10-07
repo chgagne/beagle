@@ -33,7 +33,7 @@
  *  $Date: 2007/08/10 20:32:21 $
  */
 
-#include "beagle/GA.hpp"
+#include "Beagle/CMA.hpp"
 
 using namespace Beagle;
 
@@ -42,8 +42,8 @@ using namespace Beagle;
  *  \brief Construct a termination operator for CMA-ES.
  *  \param inName Name of the operator.
  */
-GA::TermCMAOp::TermCMAOp(std::string inName) :
-		TerminationOp(inName)
+CMA::TermCMAOp::TermCMAOp(std::string inName) :
+		EC::TerminationOp(inName)
 { }
 
 
@@ -51,7 +51,7 @@ GA::TermCMAOp::TermCMAOp(std::string inName) :
  *  \brief Register the parameters of the operator.
  *  \param ioSystem Reference to the evolutionary system.
  */
-void GA::TermCMAOp::registerParams(System& ioSystem)
+void CMA::TermCMAOp::registerParams(System& ioSystem)
 {
 	Beagle_StackTraceBeginM();
 	TerminationOp::registerParams(ioSystem);
@@ -95,7 +95,7 @@ void GA::TermCMAOp::registerParams(System& ioSystem)
  *  \param ioContext Actual evolution context.
  *  \return True if the ending criterion is reached, false if not.
  */
-bool GA::TermCMAOp::terminate(const Deme& ioDeme, Context& ioContext)
+bool CMA::TermCMAOp::terminate(const Deme& ioDeme, Context& ioContext)
 {
 	Beagle_StackTraceBeginM();
 
@@ -112,10 +112,10 @@ bool GA::TermCMAOp::terminate(const Deme& ioDeme, Context& ioContext)
 	Component::Handle lHolderComponent = ioContext.getSystem().getComponent("CMAHolder");
 	if(lHolderComponent==NULL)
 		throw Beagle_RunTimeExceptionM("No CMA holder component found in the system!");
-	GA::CMAHolder::Handle lCMAHolder = castHandleT<GA::CMAHolder>(lHolderComponent);
+	CMA::CMAHolder::Handle lCMAHolder = castHandleT<CMA::CMAHolder>(lHolderComponent);
 	if(lCMAHolder==NULL)
 		throw Beagle_RunTimeExceptionM("Component named 'CMAHolder' found is not of the good type!");
-	GA::CMAHolder::iterator lIterVal = lCMAHolder->find(ioContext.getDemeIndex());
+	CMA::CMAHolder::iterator lIterVal = lCMAHolder->find(ioContext.getDemeIndex());
 	if(lIterVal == lCMAHolder->end()) {
 		Beagle_LogTraceM(
 		    ioContext.getSystem().getLogger(),
@@ -123,7 +123,7 @@ bool GA::TermCMAOp::terminate(const Deme& ioDeme, Context& ioContext)
 		);
 		return false;
 	}
-	GA::CMAValues& lValues = lIterVal->second;
+	CMA::CMAValues& lValues = lIterVal->second;
 
 	// Get dimensionality of the problem.
 	const unsigned int lN = lValues.mD.size();

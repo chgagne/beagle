@@ -38,19 +38,20 @@
 
 #include <string>
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Object.hpp"
-#include "beagle/AllocatorT.hpp"
-#include "beagle/PointerT.hpp"
-#include "beagle/ContainerT.hpp"
-#include "beagle/InitializationOp.hpp"
-#include "beagle/GA/InitFltVecOp.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Object.hpp"
+#include "Beagle/Core/AllocatorT.hpp"
+#include "Beagle/Core/PointerT.hpp"
+#include "Beagle/Core/ContainerT.hpp"
+#include "Beagle/EC/InitializationOp.hpp"
+#include "Beagle/FltVec.hpp"
+#include "Beagle/CMA/InitCMAFltVecOp.hpp"
 
 
 namespace Beagle
 {
-namespace GA
+namespace CMA
 {
 
 /*!
@@ -64,19 +65,19 @@ namespace GA
  *  This approach is suitable to the CMA-ES algorithm, which start from only one initial
  *  random point.
  */
-class InitCMAFltVecOp : public GA::InitFltVecOp
+class InitCMAFltVecOp : public FltVec::InitGaussianOp
 {
 
 public:
 
 	//! GA::InitCMAFltVecOp allocator type.
-	typedef AllocatorT<InitCMAFltVecOp,GA::InitFltVecOp::Alloc>
+	typedef AllocatorT<InitCMAFltVecOp,FltVec::InitGaussianOp::Alloc>
 	Alloc;
 	//! GA::InitCMAFltVecOp handle type.
-	typedef PointerT<InitCMAFltVecOp,GA::InitFltVecOp::Handle>
+	typedef PointerT<InitCMAFltVecOp,FltVec::InitGaussianOp::Handle>
 	Handle;
 	//! GA::InitCMAFltVecOp bag type.
-	typedef ContainerT<InitCMAFltVecOp,GA::InitFltVecOp::Bag>
+	typedef ContainerT<InitCMAFltVecOp,FltVec::InitGaussianOp::Bag>
 	Bag;
 
 	explicit InitCMAFltVecOp(unsigned int inFloatVectorSize=0,

@@ -38,15 +38,15 @@
 #include <map>
 #include <string>
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Algorithm.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Algorithm.hpp"
 
 
 namespace Beagle
 {
 
-namespace GA
+namespace CMA
 {
 
 /*!

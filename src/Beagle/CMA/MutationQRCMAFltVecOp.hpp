@@ -37,16 +37,16 @@
 
 #include <string>
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Object.hpp"
-#include "beagle/MutationOp.hpp"
-#include "beagle/GA/MutationCMAFltVecOp.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Object.hpp"
+#include "Beagle/EC/MutationOp.hpp"
+#include "Beagle/CMA/MutationCMAFltVecOp.hpp"
 
 
 namespace Beagle
 {
-namespace GA
+namespace CMA
 {
 
 /*!
@@ -68,19 +68,19 @@ namespace GA
  *  in Evolution Strategies. Evolutionary Computation, 9(2), pp. 159-195.
  *  See also: http://www.bionik.tu-berlin.de/user/niko/cmaes_inmatlab.html
  */
-class MutationQRCMAFltVecOp : public GA::MutationCMAFltVecOp
+class MutationQRCMAFltVecOp : public MutationCMAFltVecOp
 {
 
 public:
 
 	//! GA::MutationQRCMAFltVecOp allocator type.
-	typedef AllocatorT<MutationQRCMAFltVecOp,GA::MutationCMAFltVecOp::Alloc>
+	typedef AllocatorT<MutationQRCMAFltVecOp,MutationCMAFltVecOp::Alloc>
 	Alloc;
 	//! GA::MutationQRCMAFltVecOp handle type.
-	typedef PointerT<MutationQRCMAFltVecOp,GA::MutationCMAFltVecOp::Handle>
+	typedef PointerT<MutationQRCMAFltVecOp,MutationCMAFltVecOp::Handle>
 	Handle;
 	//! GA::MutationQRCMAFltVecOp bag type.
-	typedef ContainerT<MutationQRCMAFltVecOp,GA::MutationCMAFltVecOp::Bag>
+	typedef ContainerT<MutationQRCMAFltVecOp,MutationCMAFltVecOp::Bag>
 	Bag;
 
 	explicit MutationQRCMAFltVecOp(std::string inMutationPbName="ga.cmaes.mutpb",

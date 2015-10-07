@@ -32,7 +32,7 @@
  *  $Date: 2007/08/17 18:09:10 $
  */
 
-#include "beagle/GA.hpp"
+#include "Beagle/CMA.hpp"
 
 using namespace Beagle;
 
@@ -40,7 +40,7 @@ using namespace Beagle;
 /*!
  *  \brief Construct CMA-ES evolutionary algorithm.
  */
-GA::AlgoCMAES::AlgoCMAES(void) :
+CMA::AlgoCMAES::AlgoCMAES(void) :
 		Algorithm("GA-AlgoCMAES")
 { }
 
@@ -51,7 +51,7 @@ GA::AlgoCMAES::AlgoCMAES(void) :
  *  \param ioSystem Evolutionary system.
  *
  */
-void GA::AlgoCMAES::configure(Evolver& ioEvolver, System& ioSystem)
+void CMA::AlgoCMAES::configure(Evolver& ioEvolver, System& ioSystem)
 {
 	Beagle_StackTraceBeginM();
 
@@ -63,54 +63,54 @@ void GA::AlgoCMAES::configure(Evolver& ioEvolver, System& ioSystem)
 	EvaluationOp::Alloc::Handle lEvalOpAlloc =
 	    castHandleT<EvaluationOp::Alloc>(lFactory.getAllocator(lEvalOpName));
 	std::string lSelectOpName = "SelectRandomOp";
-	SelectionOp::Alloc::Handle lSelectOpAlloc =
-	    castHandleT<SelectionOp::Alloc>(lFactory.getAllocator(lSelectOpName));
+	EC::SelectionOp::Alloc::Handle lSelectOpAlloc =
+	    castHandleT<EC::SelectionOp::Alloc>(lFactory.getAllocator(lSelectOpName));
 	std::string lInitOpName = lFactory.getConceptTypeName("InitializationOp");
-	InitializationOp::Alloc::Handle lInitOpAlloc =
-	    castHandleT<InitializationOp::Alloc>(lFactory.getAllocator(lInitOpName));
+	EC::InitializationOp::Alloc::Handle lInitOpAlloc =
+	    castHandleT<EC::InitializationOp::Alloc>(lFactory.getAllocator(lInitOpName));
 	std::string lMutOpName = "GA-MutationCMAFltVecOp";
-	MutationOp::Alloc::Handle lMutOpAlloc =
-	    castHandleT<MutationOp::Alloc>(lFactory.getAllocator(lMutOpName));
+	EC::MutationOp::Alloc::Handle lMutOpAlloc =
+	    castHandleT<EC::MutationOp::Alloc>(lFactory.getAllocator(lMutOpName));
 	std::string lMigOpName = lFactory.getConceptTypeName("MigrationOp");
-	MigrationOp::Alloc::Handle lMigOpAlloc =
-	    castHandleT<MigrationOp::Alloc>(lFactory.getAllocator(lMigOpName));
+	EC::MigrationOp::Alloc::Handle lMigOpAlloc =
+	    castHandleT<EC::MigrationOp::Alloc>(lFactory.getAllocator(lMigOpName));
 	std::string lStatsCalcOpName = lFactory.getConceptTypeName("StatsCalculateOp");
-	StatsCalculateOp::Alloc::Handle lStatsCalcOpAlloc =
-	    castHandleT<StatsCalculateOp::Alloc>(lFactory.getAllocator(lStatsCalcOpName));
+	EC::StatsCalculateOp::Alloc::Handle lStatsCalcOpAlloc =
+	    castHandleT<EC::StatsCalculateOp::Alloc>(lFactory.getAllocator(lStatsCalcOpName));
 	std::string lTermOpName = lFactory.getConceptTypeName("TerminationOp");
-	TerminationOp::Alloc::Handle lTermOpAlloc =
-	    castHandleT<TerminationOp::Alloc>(lFactory.getAllocator(lTermOpName));
+	EC::TerminationOp::Alloc::Handle lTermOpAlloc =
+	    castHandleT<EC::TerminationOp::Alloc>(lFactory.getAllocator(lTermOpName));
 	std::string lMsWriteOpName = "MilestoneWriteOp";
-	MilestoneWriteOp::Alloc::Handle lMsWriteOpAlloc =
-	    castHandleT<MilestoneWriteOp::Alloc>(lFactory.getAllocator(lMsWriteOpName));
+	EC::MilestoneWriteOp::Alloc::Handle lMsWriteOpAlloc =
+	    castHandleT<EC::MilestoneWriteOp::Alloc>(lFactory.getAllocator(lMsWriteOpName));
 	std::string lMCLOpName = "GA-MuWCommaLambdaCMAFltVecOp";
-	GA::MuWCommaLambdaCMAFltVecOp::Alloc::Handle lMCLOpAlloc =
-	    castHandleT<GA::MuWCommaLambdaCMAFltVecOp::Alloc>(lFactory.getAllocator(lMCLOpName));
+	CMA::MuWCommaLambdaCMAFltVecOp::Alloc::Handle lMCLOpAlloc =
+	    castHandleT<CMA::MuWCommaLambdaCMAFltVecOp::Alloc>(lFactory.getAllocator(lMCLOpName));
 
 	// Clear bootstrap and mainloop sets
 	ioEvolver.getBootStrapSet().clear();
 	ioEvolver.getMainLoopSet().clear();
 
 	// Set the boostrap operator set
-	InitializationOp::Handle lInitOpBS = castHandleT<InitializationOp>(lInitOpAlloc->allocate());
+	EC::InitializationOp::Handle lInitOpBS = castHandleT<EC::InitializationOp>(lInitOpAlloc->allocate());
 	lInitOpBS->setName(lInitOpName);
 	ioEvolver.getBootStrapSet().push_back(lInitOpBS);
 	EvaluationOp::Handle lEvalOpBS = castHandleT<EvaluationOp>(lEvalOpAlloc->allocate());
 	lEvalOpBS->setName(lEvalOpName);
 	ioEvolver.getBootStrapSet().push_back(lEvalOpBS);
-	StatsCalculateOp::Handle lStatsCalcOpBS = castHandleT<StatsCalculateOp>(lStatsCalcOpAlloc->allocate());
+	EC::StatsCalculateOp::Handle lStatsCalcOpBS = castHandleT<EC::StatsCalculateOp>(lStatsCalcOpAlloc->allocate());
 	lStatsCalcOpBS->setName(lStatsCalcOpName);
 	ioEvolver.getBootStrapSet().push_back(lStatsCalcOpBS);
-	TerminationOp::Handle lTermOpBS = castHandleT<TerminationOp>(lTermOpAlloc->allocate());
+	EC::TerminationOp::Handle lTermOpBS = castHandleT<EC::TerminationOp>(lTermOpAlloc->allocate());
 	lTermOpBS->setName(lTermOpName);
 	ioEvolver.getBootStrapSet().push_back(lTermOpBS);
-	MilestoneWriteOp::Handle lMsWriteOpBS = castHandleT<MilestoneWriteOp>(lMsWriteOpAlloc->allocate());
+	EC::MilestoneWriteOp::Handle lMsWriteOpBS = castHandleT<EC::MilestoneWriteOp>(lMsWriteOpAlloc->allocate());
 	lMsWriteOpBS->setName(lMsWriteOpName);
 	ioEvolver.getBootStrapSet().push_back(lMsWriteOpBS);
 
 	// Set the mainloop operator set
-	GA::MuWCommaLambdaCMAFltVecOp::Handle lMCLOp =
-	    castHandleT<GA::MuWCommaLambdaCMAFltVecOp>(lMCLOpAlloc->allocate());
+	CMA::MuWCommaLambdaCMAFltVecOp::Handle lMCLOp =
+	    castHandleT<CMA::MuWCommaLambdaCMAFltVecOp>(lMCLOpAlloc->allocate());
 	lMCLOp->setName(lMCLOpName);
 	ioEvolver.getMainLoopSet().push_back(lMCLOp);
 
@@ -121,26 +121,26 @@ void GA::AlgoCMAES::configure(Evolver& ioEvolver, System& ioSystem)
 	lEvalNode->getBreederOp()->setName(lEvalOpName);
 	BreederNode::Handle lMutNode = new BreederNode;
 	lEvalNode->setFirstChild(lMutNode);
-	lMutNode->setBreederOp(castHandleT<MutationOp>(lMutOpAlloc->allocate()));
+	lMutNode->setBreederOp(castHandleT<EC::MutationOp>(lMutOpAlloc->allocate()));
 	lMutNode->getBreederOp()->setName(lMutOpName);
 	BreederNode::Handle lSelectMutNode = new BreederNode;
 	lMutNode->setFirstChild(lSelectMutNode);
-	lSelectMutNode->setBreederOp(castHandleT<SelectionOp>(lSelectOpAlloc->allocate()));
+	lSelectMutNode->setBreederOp(castHandleT<EC::SelectionOp>(lSelectOpAlloc->allocate()));
 	lSelectMutNode->getBreederOp()->setName(lSelectOpName);
 
 	// Set remaining operators of mainloop
-	MigrationOp::Handle lMigOpML = castHandleT<MigrationOp>(lMigOpAlloc->allocate());
+	EC::MigrationOp::Handle lMigOpML = castHandleT<EC::MigrationOp>(lMigOpAlloc->allocate());
 	lMigOpML->setName(lMigOpName);
 	ioEvolver.getMainLoopSet().push_back(lMigOpML);
-	StatsCalculateOp::Handle lStatsCalcOpML =
-	    castHandleT<StatsCalculateOp>(lStatsCalcOpAlloc->allocate());
+	EC::StatsCalculateOp::Handle lStatsCalcOpML =
+	    castHandleT<EC::StatsCalculateOp>(lStatsCalcOpAlloc->allocate());
 	lStatsCalcOpML->setName(lStatsCalcOpName);
 	ioEvolver.getMainLoopSet().push_back(lStatsCalcOpML);
-	TerminationOp::Handle lTermOpML = castHandleT<TerminationOp>(lTermOpAlloc->allocate());
+	EC::TerminationOp::Handle lTermOpML = castHandleT<EC::TerminationOp>(lTermOpAlloc->allocate());
 	lTermOpML->setName(lTermOpName);
 	ioEvolver.getMainLoopSet().push_back(lTermOpML);
-	MilestoneWriteOp::Handle lMsWriteOpML =
-	    castHandleT<MilestoneWriteOp>(lMsWriteOpAlloc->allocate());
+	EC::MilestoneWriteOp::Handle lMsWriteOpML =
+	    castHandleT<EC::MilestoneWriteOp>(lMsWriteOpAlloc->allocate());
 	lMsWriteOpML->setName(lMsWriteOpName);
 	ioEvolver.getMainLoopSet().push_back(lMsWriteOpML);
 

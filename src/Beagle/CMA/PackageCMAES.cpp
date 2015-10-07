@@ -32,7 +32,8 @@
  *  $Date: 2007/09/17 17:25:49 $
  */
 
-#include "beagle/GA.hpp"
+#include "Beagle/CMA.hpp"
+#include "Beagle/FltVec.hpp"
 
 using namespace Beagle;
 
@@ -40,8 +41,8 @@ using namespace Beagle;
 /*!
  *  \brief Construct package with CMA-ES objects.
  */
-GA::PackageCMAES::PackageCMAES(unsigned int inInitSize) :
-		Package("GA-PackageCMAES"),
+CMA::PackageCMAES::PackageCMAES(unsigned int inInitSize) :
+		PackageAbstract("GA-PackageCMAES"),
 		mInitSize(inInitSize)
 { }
 
@@ -50,20 +51,20 @@ GA::PackageCMAES::PackageCMAES(unsigned int inInitSize) :
  *  \brief Configure system by adding necessary components into it.
  *  \param ioSystem System to configure.
  */
-void GA::PackageCMAES::configure(System& ioSystem)
+void CMA::PackageCMAES::configure(System& ioSystem)
 {
 	Beagle_StackTraceBeginM();
 	Factory& lFactory = ioSystem.getFactory();
 
 	// Add available basic types to the factory
-	lFactory.insertAllocator("Beagle::GA::AlgoCMAES", new GA::AlgoCMAES::Alloc);
-	lFactory.insertAllocator("Beagle::GA::CMAHolder", new GA::CMAHolder::Alloc);
-	lFactory.insertAllocator("Beagle::GA::InitCMAFltVecOp", new GA::InitCMAFltVecOp::Alloc);
-	lFactory.insertAllocator("Beagle::GA::MutationCMAFltVecOp", new GA::MutationCMAFltVecOp::Alloc);
-	lFactory.insertAllocator("Beagle::GA::MutationQRCMAFltVecOp", new GA::MutationQRCMAFltVecOp::Alloc);
-	lFactory.insertAllocator("Beagle::GA::MuWCommaLambdaCMAFltVecOp", new GA::MuWCommaLambdaCMAFltVecOp::Alloc);
-	lFactory.insertAllocator("Beagle::GA::PackageCMAES", new GA::PackageCMAES::Alloc);
-	lFactory.insertAllocator("Beagle::GA::TermCMAOp", new GA::TermCMAOp::Alloc);
+	lFactory.insertAllocator("Beagle::GA::AlgoCMAES", new CMA::AlgoCMAES::Alloc);
+	lFactory.insertAllocator("Beagle::GA::CMAHolder", new CMA::CMAHolder::Alloc);
+	lFactory.insertAllocator("Beagle::GA::InitCMAFltVecOp", new CMA::InitCMAFltVecOp::Alloc);
+	lFactory.insertAllocator("Beagle::GA::MutationCMAFltVecOp", new CMA::MutationCMAFltVecOp::Alloc);
+	lFactory.insertAllocator("Beagle::GA::MutationQRCMAFltVecOp", new CMA::MutationQRCMAFltVecOp::Alloc);
+	lFactory.insertAllocator("Beagle::GA::MuWCommaLambdaCMAFltVecOp", new CMA::MuWCommaLambdaCMAFltVecOp::Alloc);
+	lFactory.insertAllocator("Beagle::GA::PackageCMAES", new CMA::PackageCMAES::Alloc);
+	lFactory.insertAllocator("Beagle::GA::TermCMAOp", new CMA::TermCMAOp::Alloc);
 
 	// Aliases to short name of operators
 	lFactory.aliasAllocator("Beagle::GA::AlgoCMAES", "GA-AlgoCMAES");
@@ -111,12 +112,12 @@ void GA::PackageCMAES::configure(System& ioSystem)
  *
  *  GA::PackageCMAES depends on PackageBase and GA::PackageFloatVector.
  */
-Package::Bag GA::PackageCMAES::listDependencies(void)
+PackageAbstract::Bag CMA::PackageCMAES::listDependencies(void)
 {
 	Beagle_StackTraceBeginM();
-	Package::Bag lDependencies;
-	lDependencies.push_back(new PackageBase());
-	lDependencies.push_back(new GA::PackageFloatVector(mInitSize));
+	PackageAbstract::Bag lDependencies;
+	lDependencies.push_back(new EC::Package());
+	lDependencies.push_back(new FltVec::Package(mInitSize));
 	return lDependencies;
 	Beagle_StackTraceEndM();
 }
