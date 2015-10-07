@@ -34,7 +34,7 @@
  *  $Date: 2007/08/17 18:09:11 $
  */
 
-#include "beagle/GP.hpp"
+#include "Beagle/GP.hpp"
 
 #include <algorithm>
 #include <string>
@@ -51,7 +51,7 @@ using namespace Beagle;
 GP::MutationSwapSubtreeOp::MutationSwapSubtreeOp(std::string inMutationPbName,
         std::string inDistribPbName,
         std::string inName) :
-		Beagle::MutationOp(inMutationPbName, inName),
+		Beagle::EC::MutationOp(inMutationPbName, inName),
 		mDistribPbName(inDistribPbName)
 { }
 
@@ -78,7 +78,7 @@ void GP::MutationSwapSubtreeOp::registerParams(Beagle::System& ioSystem)
 		mMutationProba = castHandleT<Double>(
 		                     ioSystem.getRegister().insertEntry(mMutationPbName, new Double(0.0f), lProbaDescription));
 	}
-	Beagle::MutationOp::registerParams(ioSystem);
+	Beagle::EC::MutationOp::registerParams(ioSystem);
 	{
 		std::ostringstream lOSS;
 		lOSS << "Probability that a swap subtree is internal ";
@@ -160,14 +160,10 @@ bool GP::MutationSwapSubtreeOp::mutate(Beagle::Individual& ioIndividual, Beagle:
 	// Some outputs.
 	Beagle_LogDebugM(
 	    lContext1.getSystem().getLogger(),
-	    "mutation",
-	    "Beagle::GP::MutationSwapSubtreeOp",
 	    "Individual tried for swap subtree mutation (before)"
 	);
-	Beagle_LogObjectDebugM(
+	Beagle_LogDebugM(
 	    lContext1.getSystem().getLogger(),
-	    "mutation",
-	    "Beagle::GP::MutationSwapSubtreeOp",
 	    lGPIndiv
 	);
 
@@ -197,7 +193,6 @@ bool GP::MutationSwapSubtreeOp::mutate(Beagle::Individual& ioIndividual, Beagle:
 		// Some outputs.
 		Beagle_LogVerboseM(
 		    lContext1.getSystem().getLogger(),
-		    "mutation", "Beagle::GP::MutationSwapSubtreeOp",
 		    std::string("Trying a swap subtree mutation of the ")+uint2ordinal(lChoosenTree+1)+
 		    std::string(" tree")
 		);
@@ -276,7 +271,6 @@ bool GP::MutationSwapSubtreeOp::mutate(Beagle::Individual& ioIndividual, Beagle:
 			if(lTreeClone1->getTreeDepth() > lMaxTreeDepth) {
 				Beagle_LogVerboseM(
 				    lContext1.getSystem().getLogger(),
-				    "mutation", "Beagle::GP::MutationSwapSubtreeOp",
 				    "Tree maximum depth exceeded. GP swap subtree mutation invalid."
 				);
 				continue;
@@ -285,7 +279,6 @@ bool GP::MutationSwapSubtreeOp::mutate(Beagle::Individual& ioIndividual, Beagle:
 			lGPIndiv[lChoosenTree] = lTreeClone1;
 			Beagle_LogVerboseM(
 			    lContext1.getSystem().getLogger(),
-			    "mutation", "Beagle::GP::MutationSwapSubtreeOp",
 			    "GP swap subtree mutation valid"
 			);
 			lMatingDone = true;
@@ -319,7 +312,6 @@ bool GP::MutationSwapSubtreeOp::mutate(Beagle::Individual& ioIndividual, Beagle:
 
 			Beagle_LogVerboseM(
 			    lContext1.getSystem().getLogger(),
-			    "mutation", "Beagle::GP::MutationSwapSubtreeOp",
 			    std::string("Trying an external swap subtree mutation of the ")+uint2ordinal(lNode1+1)+
 			    std::string(" node with the subtree to the ")+uint2ordinal(lNode2+1)+
 			    std::string(" node")
@@ -354,7 +346,6 @@ bool GP::MutationSwapSubtreeOp::mutate(Beagle::Individual& ioIndividual, Beagle:
 			if(lTreeClone1->getTreeDepth() > lMaxTreeDepth) {
 				Beagle_LogVerboseM(
 				    lContext1.getSystem().getLogger(),
-				    "mutation", "Beagle::GP::MutationSwapSubtreeOp",
 				    "Tree maximum depth exceeded. GP swap subtree mutation invalid."
 				);
 				continue;
@@ -363,7 +354,6 @@ bool GP::MutationSwapSubtreeOp::mutate(Beagle::Individual& ioIndividual, Beagle:
 			lGPIndiv[lChoosenTree] = lTreeClone1;
 			Beagle_LogVerboseM(
 			    lContext1.getSystem().getLogger(),
-			    "mutation", "Beagle::GP::MutationSwapSubtreeOp",
 			    "GP swap subtree mutation valid"
 			);
 			lMatingDone = true;
@@ -378,20 +368,15 @@ bool GP::MutationSwapSubtreeOp::mutate(Beagle::Individual& ioIndividual, Beagle:
 	if(lMatingDone) {
 		Beagle_LogDebugM(
 		    lContext1.getSystem().getLogger(),
-		    "mutation",
-		    "Beagle::GP::MutationSwapSubtreeOp",
 		    "Individual after swap subtree mutation"
 		);
-		Beagle_LogObjectDebugM(
+		Beagle_LogDebugM(
 		    lContext1.getSystem().getLogger(),
-		    "mutation",
-		    "Beagle::GP::MutationSwapSubtreeOp",
 		    lGPIndiv
 		);
 	} else {
 		Beagle_LogVerboseM(
 		    lContext1.getSystem().getLogger(),
-		    "mutation", "Beagle::GP::MutationSwapSubtreeOp",
 		    "No GP swap subtree mutation done"
 		);
 	}
@@ -472,7 +457,7 @@ void GP::MutationSwapSubtreeOp::readWithSystem(PACC::XML::ConstIterator inIter, 
 void GP::MutationSwapSubtreeOp::writeContent(PACC::XML::Streamer& ioStreamer, bool inIndent) const
 {
 	Beagle_StackTraceBeginM();
-	Beagle::MutationOp::writeContent(ioStreamer, inIndent);
+	Beagle::EC::MutationOp::writeContent(ioStreamer, inIndent);
 	ioStreamer.insertAttribute("distrpb", mDistribPbName);
 	Beagle_StackTraceEndM();
 }

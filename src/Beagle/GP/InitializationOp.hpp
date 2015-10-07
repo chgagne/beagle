@@ -29,17 +29,17 @@
 
 #include <string>
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Object.hpp"
-#include "beagle/AbstractAllocT.hpp"
-#include "beagle/PointerT.hpp"
-#include "beagle/ContainerT.hpp"
-#include "beagle/Operator.hpp"
-#include "beagle/BreederOp.hpp"
-#include "beagle/UInt.hpp"
-#include "beagle/String.hpp"
-#include "beagle/Individual.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Object.hpp"
+#include "Beagle/Core/AbstractAllocT.hpp"
+#include "Beagle/Core/PointerT.hpp"
+#include "Beagle/Core/ContainerT.hpp"
+#include "Beagle/Core/Operator.hpp"
+#include "Beagle/Core/BreederOp.hpp"
+#include "Beagle/Core/UInt.hpp"
+#include "Beagle/Core/String.hpp"
+#include "Beagle/Core/Individual.hpp"
 
 
 namespace Beagle
@@ -54,19 +54,19 @@ namespace GP
  *  \ingroup GPOp
  *  \ingroup GPPop
  */
-class InitializationOp : public Beagle::InitializationOp
+class InitializationOp : public Beagle::EC::InitializationOp
 {
 
 public:
 
 	//! InitializationOp allocator type.
-	typedef AbstractAllocT<InitializationOp,InitializationOp::Alloc>
+	typedef AbstractAllocT<InitializationOp,Beagle::EC::InitializationOp::Alloc>
 	Alloc;
 	//! InitializationOp handle type.
-	typedef PointerT<InitializationOp,InitializationOp::Handle>
+	typedef PointerT<InitializationOp,Beagle::EC::InitializationOp::Handle>
 	Handle;
 	//! InitializationOp  bag type.
-	typedef ContainerT<InitializationOp,InitializationOp::Bag>
+	typedef ContainerT<InitializationOp,Beagle::EC::InitializationOp::Bag>
 	Bag;
 
 	explicit InitializationOp(std::string inReproProbaName="ec.repro.prob",

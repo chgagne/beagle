@@ -36,9 +36,9 @@
 #ifndef Beagle_GP_PrimitiveInline_hpp
 #define Beagle_GP_PrimitiveInline_hpp
 
-#include "beagle/GP/Tree.hpp"
-#include "beagle/GP/Context.hpp"
-#include "beagle/GP/Primitive.hpp"
+#include "Beagle/GP/Tree.hpp"
+#include "Beagle/GP/Context.hpp"
+#include "Beagle/GP/Primitive.hpp"
 
 
 /*!
@@ -81,7 +81,6 @@ inline void Beagle::GP::Primitive::getArgument(unsigned int inN,
 	ioContext.pushCallStack(lNodeIndex);
 	Beagle_LogDebugM(
 	    ioContext.getSystem().getLogger(),
-	    "primitive", "Beagle::GP::Primitive",
 	    std::string("Executing the primitive '")+
 	    lActualTree[lNodeIndex].mPrimitive->getName()+std::string("' of the ")+uint2ordinal(lNodeIndex+1)+
 	    std::string(" node of the ")+uint2ordinal(ioContext.getGenotypeIndex()+1)+" tree"
@@ -123,7 +122,6 @@ inline void Beagle::GP::Primitive::getArguments(Beagle::GP::Datum outResults[],
 		GP::Datum* lResultsI = reinterpret_cast<GP::Datum*>(lCharResults + (i*inSizeTDatum));
 		Beagle_LogDebugM(
 		    ioContext.getSystem().getLogger(),
-		    "primitive", "Beagle::GP::Primitive",
 		    std::string("Executing the primitive '")+
 		    lActualTree[lNodeIndex].mPrimitive->getName()+std::string("' of the ")+
 		    uint2ordinal(lNodeIndex+1)+std::string(" node of the ")+
@@ -156,7 +154,6 @@ inline void Beagle::GP::Primitive::get1stArgument(Beagle::GP::Datum& outResult,
 	ioContext.pushCallStack(lNodeIndex);
 	Beagle_LogDebugM(
 	    ioContext.getSystem().getLogger(),
-	    "primitive", "Beagle::GP::Primitive",
 	    std::string("Executing the primitive '")+
 	    ioContext.getGenotype()[lNodeIndex].mPrimitive->getName()+std::string("' of the ")+
 	    uint2ordinal(lNodeIndex+1)+std::string(" node of the ")+
@@ -165,7 +162,6 @@ inline void Beagle::GP::Primitive::get1stArgument(Beagle::GP::Datum& outResult,
 	ioContext.getGenotype()[lNodeIndex].mPrimitive->execute(outResult, ioContext);
 	Beagle_LogDebugM(
 	    ioContext.getSystem().getLogger(),
-	    "primitive", "Beagle::GP::Primitive",
 	    std::string("Result of executing '")+
 	    ioContext.getGenotype()[lNodeIndex].mPrimitive->getName()+std::string("': ")+
 	    outResult.serialize()
@@ -196,7 +192,6 @@ inline void Beagle::GP::Primitive::get2ndArgument(Beagle::GP::Datum& outResult,
 	ioContext.pushCallStack(lNodeIndex);
 	Beagle_LogDebugM(
 	    ioContext.getSystem().getLogger(),
-	    "primitive", "Beagle::GP::Primitive",
 	    std::string("Executing the primitive '")+
 	    lActualTree[lNodeIndex].mPrimitive->getName()+std::string("' of the ")+
 	    uint2ordinal(lNodeIndex+1)+std::string(" node of the ")+
@@ -229,7 +224,6 @@ inline void Beagle::GP::Primitive::get3rdArgument(Beagle::GP::Datum& outResult,
 	ioContext.pushCallStack(lNodeIndex);
 	Beagle_LogDebugM(
 	    ioContext.getSystem().getLogger(),
-	    "primitive", "Beagle::GP::Primitive",
 	    std::string("Executing the primitive '")+
 	    lActualTree[lNodeIndex].mPrimitive->getName()+std::string("' of the ")+
 	    uint2ordinal(lNodeIndex+1)+std::string(" node of the ")+

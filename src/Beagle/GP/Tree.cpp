@@ -33,7 +33,7 @@
  *  $Date: 2007/08/17 18:09:11 $
  */
 
-#include "beagle/GP.hpp"
+#include "Beagle/GP.hpp"
 
 #include <algorithm>
 
@@ -269,7 +269,7 @@ const std::string& GP::Tree::getType() const
 	Beagle_StackTraceBeginM();
 	const static std::string lType("GP-Tree");
 	return lType;
-	Beagle_StackTraceEndM("const std::string& GP::Tree::getType() const")
+	Beagle_StackTraceEndM();
 }
 
 
@@ -284,7 +284,7 @@ void GP::Tree::swap(unsigned int inI, unsigned int inJ)
 	Beagle_BoundCheckAssertM(inI, 0, size() -1);
 	Beagle_BoundCheckAssertM(inJ, 0, size() -1);
 	std::swap((*this)[inI], (*this)[inJ]);
-	Beagle_StackTraceEndM("const std::string& GP::Tree::swap(unsigned int, unsigned int) const")
+	Beagle_StackTraceEndM();
 }
 
 
@@ -322,22 +322,16 @@ void GP::Tree::interpret(GP::Datum& outResult, GP::Context& ioContext)
 	ioContext.setGenotypeHandle(Handle(this));
 	Beagle_LogVerboseM(
 	    ioContext.getSystem().getLogger(),
-	    "gptree",
-	    "Beagle::GP::Tree",
 	    std::string("Interpreting the ")+uint2ordinal(lTreeIndex+1)+
 	    std::string(" tree of the ")+uint2ordinal(ioContext.getIndividualIndex()+1)+
 	    std::string(" individual")
 	);
-	Beagle_LogObjectDebugM(
+	Beagle_LogDebugM(
 	    ioContext.getSystem().getLogger(),
-	    "gptree",
-	    "Beagle::GP::Tree",
 	    ioContext.getGenotype()
 	);
 	Beagle_LogDebugM(
 	    ioContext.getSystem().getLogger(),
-	    "gptree",
-	    "Beagle::GP::Tree",
 	    std::string("Executing the tree root node '")+(*this)[0].mPrimitive->getName()+"'"
 	);
 	ioContext.setNodesExecutionCount(0);
@@ -349,7 +343,6 @@ void GP::Tree::interpret(GP::Datum& outResult, GP::Context& ioContext)
 	ioContext.checkExecutionTime();
 	Beagle_LogDebugM(
 	    ioContext.getSystem().getLogger(),
-	    "gptree", "Beagle::GP::Tree",
 	    std::string("Result of executing the ")+uint2ordinal(ioContext.getGenotypeIndex()+1)+
 	    std::string(" tree: ")+outResult.serialize()
 	);
@@ -460,13 +453,11 @@ void GP::Tree::readWithContext(PACC::XML::ConstIterator inIter, Beagle::Context&
 
 	Beagle_LogDebugM(
 	    ioContext.getSystem().getLogger(),
-	    "gptree", "Beagle::GP::Tree",
 	    std::string("Result of reading tree:")
 	);
 
-	Beagle_LogObjectDebugM(
+	Beagle_LogDebugM(
 	    ioContext.getSystem().getLogger(),
-	    "gptree", "Beagle::GP::Tree",
 	    *this
 	);
 
@@ -604,7 +595,6 @@ bool GP::Tree::validateSubTree(unsigned int inNodeIndex, GP::Context& ioContext)
 	if((*this)[inNodeIndex].mPrimitive->validate(ioContext) == false) {
 		Beagle_LogVerboseM(
 		    ioContext.getSystem().getLogger(),
-		    "tree", "Beagle::GP::Tree",
 		    std::string("Subtree validation failed because the primitive ('")+
 		    (*this)[inNodeIndex].mPrimitive->getName()+std::string("', ")+
 		    uint2ordinal(inNodeIndex+1)+std::string(" node) failed validation.")

@@ -38,20 +38,20 @@
 
 #include <string>
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Object.hpp"
-#include "beagle/PointerT.hpp"
-#include "beagle/AllocatorT.hpp"
-#include "beagle/ContainerT.hpp"
-#include "beagle/Operator.hpp"
-#include "beagle/System.hpp"
-#include "beagle/Context.hpp"
-#include "beagle/Float.hpp"
-#include "beagle/String.hpp"
-#include "beagle/GP/Context.hpp"
-#include "beagle/GP/Tree.hpp"
-#include "beagle/GP/Individual.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Object.hpp"
+#include "Beagle/Core/PointerT.hpp"
+#include "Beagle/Core/AllocatorT.hpp"
+#include "Beagle/Core/ContainerT.hpp"
+#include "Beagle/Core/Operator.hpp"
+#include "Beagle/Core/System.hpp"
+#include "Beagle/Core/Context.hpp"
+#include "Beagle/Core/Float.hpp"
+#include "Beagle/Core/String.hpp"
+#include "Beagle/GP/Context.hpp"
+#include "Beagle/GP/Tree.hpp"
+#include "Beagle/GP/Individual.hpp"
 
 namespace Beagle
 {
