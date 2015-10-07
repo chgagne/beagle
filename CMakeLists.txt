@@ -482,39 +482,31 @@ file(GLOB BEAGLE_FLTVEC_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/FltVec/*.cpp
 file(GLOB BEAGLE_INTVEC_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/IntVec/*.cpp")
 file(GLOB BEAGLE_ES_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/ES/*.cpp")
 file(GLOB BEAGLE_SAES_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/SAES/*.cpp")
+<<<<<<< HEAD
 file(GLOB BEAGLE_EMO_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/EMO/*.cpp")
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> Refactoring of GP
->>>>>>> Refactoring of STGP
-=======
->>>>>>> Refactoring of GP
 file(GLOB BEAGLE_GP_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/GP/*.cpp")
-file(GLOB BEAGLE_STGP_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/STGP/*.cpp")
 <<<<<<< HEAD
-=======
->>>>>>> Refactoring of STGP
-=======
-file(GLOB BEAGLE_GP_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/GP/*.cpp")
->>>>>>> Refactoring of GP
+<<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> Refactoring of GP
-=======
 =======
 file(GLOB BEAGLE_STGP_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/STGP/*.cpp")
 >>>>>>> Refactoring of STGP
-<<<<<<< HEAD
->>>>>>> Refactoring of STGP
-=======
 =======
 file(GLOB BEAGLE_GP_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/GP/*.cpp")
 >>>>>>> Refactoring of GP
+=======
+file(GLOB BEAGLE_STGP_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/STGP/*.cpp")
+>>>>>>> Refactoring of STGP
+=======
+file(GLOB BEAGLE_GP_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/GP/*.cpp")
 >>>>>>> Refactoring of GP
+=======
+file(GLOB BEAGLE_STGP_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/STGP/*.cpp")
+>>>>>>> Refactoring of STGP
 
 # Glob headers
 file(GLOB BEAGLE_CORE_HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/Core/*.hpp")
@@ -524,31 +516,25 @@ file(GLOB BEAGLE_FLTVEC_HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/FltVec/*
 file(GLOB BEAGLE_INTVEC_HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/IntVec/*.hpp")
 file(GLOB BEAGLE_ES_HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/ES/*.hpp")
 file(GLOB BEAGLE_SAES_HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/SAES/*.hpp")
+<<<<<<< HEAD
 file(GLOB BEAGLE_EMO_HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/EMO/*.hpp")
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
-<<<<<<< HEAD
-=======
->>>>>>> Refactoring of GP
 file(GLOB BEAGLE_GP_HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/GP/*.hpp")
-file(GLOB BEAGLE_STGP_HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/STGP/*.hpp")
 <<<<<<< HEAD
+>>>>>>> Refactoring of GP
 =======
+file(GLOB BEAGLE_STGP_HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/STGP/*.hpp")
 >>>>>>> Refactoring of STGP
 =======
 file(GLOB BEAGLE_GP_HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/GP/*.hpp")
 <<<<<<< HEAD
->>>>>>> Refactoring of GP
 <<<<<<< HEAD
 >>>>>>> Refactoring of GP
-=======
 =======
 file(GLOB BEAGLE_STGP_HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/STGP/*.hpp")
 >>>>>>> Refactoring of STGP
-<<<<<<< HEAD
->>>>>>> Refactoring of STGP
-=======
 =======
 file(GLOB BEAGLE_GP_HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/GP/*.hpp")
 >>>>>>> Refactoring of GP
@@ -580,39 +566,20 @@ if(CMAKE_FAST_COMPILATION)
     AllFilesInOne("${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/SAES/libBeagle-SAES.cpp" ${BEAGLE_SAES_SRC})
     set(BEAGLE_SAES_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/SAES/libBeagle-SAES.cpp")
 <<<<<<< HEAD
-=======
 <<<<<<< HEAD
 <<<<<<< HEAD
->>>>>>> Refactoring of GP
     AllFilesInOne("${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/EMO/libBeagle-EMO.cpp" ${BEAGLE_EMO_SRC})
     set(BEAGLE_EMO_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/EMO/libBeagle-EMO.cpp")
 <<<<<<< HEAD
 =======
-<<<<<<< HEAD
-=======
->>>>>>> Refactoring of GP
-    AllFilesInOne("${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/GP/libBeagle-GP.cpp" ${BEAGLE_GP_SRC})
-    set(BEAGLE_GP_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/GP/libBeagle-GP.cpp")
-    AllFilesInOne("${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/STGP/libBeagle-STGP.cpp" ${BEAGLE_STGP_SRC})
-    set(BEAGLE_STGP_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/STGP/libBeagle-STGP.cpp")
-<<<<<<< HEAD
-=======
->>>>>>> Refactoring of STGP
-=======
     AllFilesInOne("${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/GP/libBeagle-GP.cpp" ${BEAGLE_GP_SRC})
     set(BEAGLE_GP_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/GP/libBeagle-GP.cpp")
 <<<<<<< HEAD
 >>>>>>> Refactoring of GP
-<<<<<<< HEAD
->>>>>>> Refactoring of GP
-=======
 =======
     AllFilesInOne("${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/STGP/libBeagle-STGP.cpp" ${BEAGLE_STGP_SRC})
     set(BEAGLE_STGP_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/STGP/libBeagle-STGP.cpp")
 >>>>>>> Refactoring of STGP
-<<<<<<< HEAD
->>>>>>> Refactoring of STGP
-=======
 =======
     AllFilesInOne("${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/GP/libBeagle-GP.cpp" ${BEAGLE_GP_SRC})
     set(BEAGLE_GP_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/GP/libBeagle-GP.cpp")
@@ -622,6 +589,19 @@ if(CMAKE_FAST_COMPILATION)
     AllFilesInOne("${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/STGP/libBeagle-STGP.cpp" ${BEAGLE_STGP_SRC})
     set(BEAGLE_STGP_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/STGP/libBeagle-STGP.cpp")
 >>>>>>> Refactoring of STGP
+=======
+    AllFilesInOne("${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/GP/libBeagle-GP.cpp" ${BEAGLE_GP_SRC})
+    set(BEAGLE_GP_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/GP/libBeagle-GP.cpp")
+<<<<<<< HEAD
+>>>>>>> Refactoring of GP
+=======
+    AllFilesInOne("${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/STGP/libBeagle-STGP.cpp" ${BEAGLE_STGP_SRC})
+    set(BEAGLE_STGP_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/STGP/libBeagle-STGP.cpp")
+>>>>>>> Refactoring of STGP
+=======
+    AllFilesInOne("${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/GP/libBeagle-GP.cpp" ${BEAGLE_GP_SRC})
+    set(BEAGLE_GP_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/GP/libBeagle-GP.cpp")
+>>>>>>> Refactoring of GP
 	message(STATUS "Include files generated...")
 else(CMAKE_FAST_COMPILATION)
 	message(STATUS "Using normal compilation mode...")
@@ -646,6 +626,7 @@ else(CMAKE_FAST_COMPILATION)
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> Refactoring of GP
 =======
 =======
@@ -655,8 +636,12 @@ else(CMAKE_FAST_COMPILATION)
 =======
 >>>>>>> Refactoring of GP
 =======
+=======
+>>>>>>> Refactoring of GP
     file(REMOVE "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/STGP/libBeagle-STGP.cpp")
 >>>>>>> Refactoring of STGP
+=======
+>>>>>>> Refactoring of GP
 endif(CMAKE_FAST_COMPILATION)
 
 # Include headers required
