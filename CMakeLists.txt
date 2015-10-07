@@ -568,6 +568,7 @@ if(CMAKE_FAST_COMPILATION)
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     AllFilesInOne("${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/EMO/libBeagle-EMO.cpp" ${BEAGLE_EMO_SRC})
     set(BEAGLE_EMO_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/EMO/libBeagle-EMO.cpp")
 <<<<<<< HEAD
@@ -599,6 +600,10 @@ if(CMAKE_FAST_COMPILATION)
     set(BEAGLE_STGP_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/STGP/libBeagle-STGP.cpp")
 >>>>>>> Refactoring of STGP
 =======
+=======
+    AllFilesInOne("${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/EMO/libBeagle-EMO.cpp" ${BEAGLE_EMO_SRC})
+    set(BEAGLE_EMO_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/EMO/libBeagle-EMO.cpp")
+>>>>>>> Refactoring of GP
     AllFilesInOne("${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/GP/libBeagle-GP.cpp" ${BEAGLE_GP_SRC})
     set(BEAGLE_GP_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/GP/libBeagle-GP.cpp")
 >>>>>>> Refactoring of GP
