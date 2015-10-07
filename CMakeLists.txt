@@ -544,6 +544,9 @@ else(CMAKE_FAST_COMPILATION)
     file(REMOVE "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/FltVec/libBeagle-SAES.cpp")
     file(REMOVE "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/GP/libBeagle-GP.cpp")
     file(REMOVE "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/STGP/libBeagle-STGP.cpp")
+<<<<<<< HEAD
+>>>>>>> Refactoring of STGP
+=======
 >>>>>>> Refactoring of STGP
 endif(CMAKE_FAST_COMPILATION)
 
