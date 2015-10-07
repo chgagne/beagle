@@ -54,8 +54,8 @@
  *
  */
 
-#ifndef Beagle_GA_hpp
-#define Beagle_GA_hpp
+#ifndef Beagle_EMO_hpp
+#define Beagle_EMO_hpp
 
 
 // Beagle generic components
