@@ -39,20 +39,20 @@
 
 #include <string>
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Object.hpp"
-#include "beagle/MutationOp.hpp"
-#include "beagle/UInt.hpp"
-#include "beagle/Float.hpp"
-#include "beagle/Bool.hpp"
-#include "beagle/GP/Context.hpp"
-#include "beagle/GP/Individual.hpp"
-#include "beagle/GP/MutationSwapSubtreeOp.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Object.hpp"
+#include "Beagle/EC/MutationOp.hpp"
+#include "Beagle/Core/UInt.hpp"
+#include "Beagle/Core/Float.hpp"
+#include "Beagle/Core/Bool.hpp"
+#include "Beagle/GP/Context.hpp"
+#include "Beagle/GP/Individual.hpp"
+#include "Beagle/GP/MutationSwapSubtreeOp.hpp"
 
 namespace Beagle
 {
-namespace GP
+namespace STGP
 {
 
 /*!
@@ -67,19 +67,19 @@ namespace GP
  *  done by exchanging two subtrees of the same individual, where the two subtrees are not within 
  *  the other subtree.
  */
-class MutationSwapSubtreeConstrainedOp : public MutationSwapSubtreeOp
+class MutationSwapSubtreeConstrainedOp : public GP::MutationSwapSubtreeOp
 {
 
 public:
 
 	//! GP::MutationSwapSubtreeConstrainedOp allocator type.
-	typedef AllocatorT<MutationSwapSubtreeConstrainedOp,MutationSwapSubtreeOp::Alloc>
+	typedef AllocatorT<MutationSwapSubtreeConstrainedOp,GP::MutationSwapSubtreeOp::Alloc>
 	Alloc;
 	//! GP::MutationSwapSubtreeConstrainedOp handle type.
-	typedef PointerT<MutationSwapSubtreeConstrainedOp,MutationSwapSubtreeOp::Handle>
+	typedef PointerT<MutationSwapSubtreeConstrainedOp,GP::MutationSwapSubtreeOp::Handle>
 	Handle;
 	//! GP::MutationSwapSubtreeConstrainedOp bag type.
-	typedef ContainerT<MutationSwapSubtreeConstrainedOp,MutationSwapSubtreeOp::Bag>
+	typedef ContainerT<MutationSwapSubtreeConstrainedOp,GP::MutationSwapSubtreeOp::Bag>
 	Bag;
 
 	explicit MutationSwapSubtreeConstrainedOp(std::string inMutationPbName="gp.mutsst.indpb",
