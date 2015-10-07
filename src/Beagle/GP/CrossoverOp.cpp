@@ -33,7 +33,7 @@
  *  $Date: 2007/08/17 18:09:11 $
  */
 
-#include "beagle/GP.hpp"
+#include "Beagle/GP.hpp"
 
 #include <algorithm>
 #include <string>
@@ -50,7 +50,7 @@ using namespace Beagle;
 GP::CrossoverOp::CrossoverOp(std::string inMatingPbName,
                              std::string inDistribPbName,
                              std::string inName) :
-		Beagle::CrossoverOp(inMatingPbName, inName),
+		Beagle::EC::CrossoverOp(inMatingPbName, inName),
 		mDistribPbName(inDistribPbName)
 { }
 
@@ -72,7 +72,7 @@ void GP::CrossoverOp::registerParams(Beagle::System& ioSystem)
 		mMatingProba = castHandleT<Double>(
 		                   ioSystem.getRegister().insertEntry(mMatingProbaName, new Double(0.8f), lDescription));
 	}
-	Beagle::CrossoverOp::registerParams(ioSystem);
+	Beagle::EC::CrossoverOp::registerParams(ioSystem);
 	{
 		std::ostringstream lOSS;
 		lOSS << "Probability that a crossover point is a branch ";
@@ -152,20 +152,14 @@ bool GP::CrossoverOp::mate(Beagle::Individual& ioIndiv1, Beagle::Context& ioCont
 
 	Beagle_LogDebugM(
 	    ioContext1.getSystem().getLogger(),
-	    "crossover",
-	    "Beagle::GP::CrossoverOp",
 	    "Individuals to mate (before GP crossover)"
 	);
-	Beagle_LogObjectDebugM(
+	Beagle_LogDebugM(
 	    ioContext1.getSystem().getLogger(),
-	    "crossover",
-	    "Beagle::GP::CrossoverOp",
 	    lIndiv1
 	);
-	Beagle_LogObjectDebugM(
+	Beagle_LogDebugM(
 	    ioContext1.getSystem().getLogger(),
-	    "crossover",
-	    "Beagle::GP::CrossoverOp",
 	    lIndiv2
 	);
 
@@ -211,7 +205,6 @@ bool GP::CrossoverOp::mate(Beagle::Individual& ioIndiv1, Beagle::Context& ioCont
 		if(lSizeIndiv2==0) {
 			Beagle_LogVerboseM(
 			    ioContext1.getSystem().getLogger(),
-			    "crossover", "Beagle::GP::CrossoverConstrainedOp",
 			    std::string("Crossover attempt failed:  The tree chosen from the first individual has")+
 			    " a primitive set index of "+uint2str(lPrimitiveSetIndex1)+
 			    " and there are no trees in the second individual with that primitive set index"
@@ -253,7 +246,6 @@ bool GP::CrossoverOp::mate(Beagle::Individual& ioIndiv1, Beagle::Context& ioCont
 		if(lNewDepthTree1 > lMaxTreeDepth) {
 			Beagle_LogVerboseM(
 			    ioContext1.getSystem().getLogger(),
-			    "crossover", "Beagle::GP::CrossoverConstrainedOp",
 			    std::string("Crossover attempt failed because the depth of the resulting tree in the ")+
 			    std::string("first individual would exceed the depth constraint")
 			);
@@ -268,7 +260,6 @@ bool GP::CrossoverOp::mate(Beagle::Individual& ioIndiv1, Beagle::Context& ioCont
 		if(lNewDepthTree2 > lMaxTreeDepth) {
 			Beagle_LogVerboseM(
 			    ioContext1.getSystem().getLogger(),
-			    "crossover", "Beagle::GP::CrossoverConstrainedOp",
 			    std::string("Crossover attempt failed because the depth of the resulting tree in the ")+
 			    std::string("second individual would exceed the depth constraint")
 			);
@@ -278,14 +269,12 @@ bool GP::CrossoverOp::mate(Beagle::Individual& ioIndiv1, Beagle::Context& ioCont
 		// Mate the trees.
 		Beagle_LogVerboseM(
 		    ioContext1.getSystem().getLogger(),
-		    "crossover", "Beagle::GP::CrossoverOp",
 		    std::string("Trying to mate the ")+uint2ordinal(lChoosenTree1+1)+
 		    std::string(" tree of the first individual with the ")+uint2ordinal(lChoosenTree2+1)+
 		    std::string(" tree of the second individual")
 		);
 		Beagle_LogVerboseM(
 		    ioContext1.getSystem().getLogger(),
-		    "crossover", "Beagle::GP::CrossoverOp",
 		    std::string("Trying to exchange the ")+uint2ordinal(lChoosenNode1+1)+
 		    std::string(" node of the first tree with the ")+uint2ordinal(lChoosenNode2+1)+
 		    std::string(" node of the second tree")
@@ -296,7 +285,6 @@ bool GP::CrossoverOp::mate(Beagle::Individual& ioIndiv1, Beagle::Context& ioCont
 		lMatingDone = true;
 		Beagle_LogVerboseM(
 		    ioContext1.getSystem().getLogger(),
-		    "crossover", "Beagle::GP::CrossoverOp",
 		    "GP crossover valid"
 		);
 		break;   // The crossover is valid.
@@ -311,26 +299,19 @@ bool GP::CrossoverOp::mate(Beagle::Individual& ioIndiv1, Beagle::Context& ioCont
 	if(lMatingDone) {
 		Beagle_LogDebugM(
 		    ioContext1.getSystem().getLogger(),
-		    "crossover",
-		    "Beagle::GP::CrossoverOp",
 		    "Individuals mated (after GP crossover)"
 		);
-		Beagle_LogObjectDebugM(
+		Beagle_LogDebugM(
 		    ioContext1.getSystem().getLogger(),
-		    "crossover",
-		    "Beagle::GP::CrossoverOp",
 		    lIndiv1
 		);
-		Beagle_LogObjectDebugM(
+		Beagle_LogDebugM(
 		    ioContext1.getSystem().getLogger(),
-		    "crossover",
-		    "Beagle::GP::CrossoverOp",
 		    lIndiv2
 		);
 	} else {
 		Beagle_LogVerboseM(
 		    ioContext1.getSystem().getLogger(),
-		    "crossover", "Beagle::GP::CrossoverOp",
 		    "No GP crossover done"
 		);
 	}
@@ -407,7 +388,7 @@ void GP::CrossoverOp::readWithSystem(PACC::XML::ConstIterator inIter, System& io
 void GP::CrossoverOp::writeContent(PACC::XML::Streamer& ioStreamer, bool inIndent) const
 {
 	Beagle_StackTraceBeginM();
-	Beagle::CrossoverOp::writeContent(ioStreamer, inIndent);
+	Beagle::EC::CrossoverOp::writeContent(ioStreamer, inIndent);
 	ioStreamer.insertAttribute("distrpb", mDistribPbName);
 	Beagle_StackTraceEndM();
 }

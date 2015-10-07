@@ -34,7 +34,7 @@
  *  $Date: 2007/08/17 18:09:11 $
  */
 
-#include "beagle/GP.hpp"
+#include "Beagle/GP.hpp"
 
 #ifdef BEAGLE_HAVE_RTTI
 #include <typeinfo>
@@ -155,7 +155,6 @@ void GP::Argument::execute(GP::Datum& outResult, GP::Context& ioContext)
 	Beagle_StackTraceBeginM();
 	Beagle_LogDebugM(
 	    ioContext.getSystem().getLogger(),
-	    "evaluation", "Beagle::GP::Argument",
 	    std::string("Executing the ")+uint2ordinal(mIndex+1)+" argument"
 	);
 	switch (mSharedData->mEvalMode) {
@@ -175,7 +174,6 @@ void GP::Argument::execute(GP::Datum& outResult, GP::Context& ioContext)
 		if((*mSharedData->mCaches.back())[mIndex]!=NULL) {
 			Beagle_LogDebugM(
 			    ioContext.getSystem().getLogger(),
-			    "evaluation", "Beagle::GP::Argument",
 			    "Getting result from the cache"
 			);
 			mSharedData->mTypeAllocator->copy(outResult, *(*mSharedData->mCaches.back())[mIndex]);
@@ -187,7 +185,6 @@ void GP::Argument::execute(GP::Datum& outResult, GP::Context& ioContext)
 			(*lCurrentCache)[mIndex] = mSharedData->mTypeAllocator->clone(outResult);
 			Beagle_LogDebugM(
 			    ioContext.getSystem().getLogger(),
-			    "evaluation", "Beagle::GP::Argument",
 			    "Result added to cache"
 			);
 		}
@@ -204,7 +201,6 @@ void GP::Argument::forceEvaluation(GP::Datum& outResult, GP::Context& ioContext)
 {
 	Beagle_LogDebugM(
 	    ioContext.getSystem().getLogger(),
-	    "evaluation", "Beagle::GP::Argument",
 	    std::string("Evaluating the ")+uint2ordinal(mIndex+1)+" argument"
 	);
 

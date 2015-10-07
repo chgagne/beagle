@@ -33,7 +33,7 @@
  *  $Date: 2007/08/10 20:32:21 $
  */
 
-#include "beagle/GP.hpp"
+#include "Beagle/GP.hpp"
 
 #include <string>
 
@@ -84,7 +84,6 @@ void GP::EvaluationOp::setValue(std::string inName,
 	bool lValueFound = false;
 	Beagle_LogDebugM(
 	    ioContext.getSystem().getLogger(),
-	    "evaluation", "Beagle::GP::EvaluationOp",
 	    std::string("Setting the primitives named '")+inName+
 	    std::string("' to the value: ")+inValue.serialize()
 	);

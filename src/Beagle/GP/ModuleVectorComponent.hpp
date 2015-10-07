@@ -36,15 +36,15 @@
 #ifndef ModuleVectorComponent_hpp
 #define ModuleVectorComponent_hpp
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Object.hpp"
-#include "beagle/PointerT.hpp"
-#include "beagle/AllocatorT.hpp"
-#include "beagle/ContainerT.hpp"
-#include "beagle/Component.hpp"
-#include "beagle/RouletteT.hpp"
-#include "beagle/GP/Tree.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Object.hpp"
+#include "Beagle/Core/PointerT.hpp"
+#include "Beagle/Core/AllocatorT.hpp"
+#include "Beagle/Core/ContainerT.hpp"
+#include "Beagle/Core/Component.hpp"
+#include "Beagle/Core/RouletteT.hpp"
+#include "Beagle/GP/Tree.hpp"
 
 
 namespace Beagle
