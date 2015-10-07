@@ -33,7 +33,7 @@
  *  $Date: 2007/08/17 18:09:11 $
  */
 
-#include "Beagle/GP.hpp"
+#include "beagle/GP.hpp"
 
 #include <algorithm>
 #include <string>
@@ -50,7 +50,7 @@ using namespace Beagle;
 GP::MutationSwapOp::MutationSwapOp(std::string inMutationPbName,
                                    std::string inDistribPbName,
                                    std::string inName) :
-		Beagle::EC::MutationOp(inMutationPbName, inName),
+		Beagle::MutationOp(inMutationPbName, inName),
 		mDistribPbName(inDistribPbName)
 { }
 
@@ -77,7 +77,7 @@ void GP::MutationSwapOp::registerParams(Beagle::System& ioSystem)
 		mMutationProba = castHandleT<Double>(
 		                     ioSystem.getRegister().insertEntry(mMutationPbName, new Double(0.05f), lDescription));
 	}
-	Beagle::EC::MutationOp::registerParams(ioSystem);
+	Beagle::MutationOp::registerParams(ioSystem);
 	{
 		std::ostringstream lOSS;
 		lOSS << "Probability that a swap mutation point is a branch (node with sub-trees). ";
@@ -134,10 +134,14 @@ bool GP::MutationSwapOp::mutate(Beagle::Individual& ioIndividual, Beagle::Contex
 
 	Beagle_LogDebugM(
 	    ioContext.getSystem().getLogger(),
+	    "mutation",
+	    "Beagle::GP::MutationSwapOp",
 	    "Individual before GP swap mutation"
 	);
-	Beagle_LogDebugM(
+	Beagle_LogObjectDebugM(
 	    ioContext.getSystem().getLogger(),
+	    "mutation",
+	    "Beagle::GP::MutationSwapOp",
 	    ioIndividual
 	);
 
@@ -152,6 +156,7 @@ bool GP::MutationSwapOp::mutate(Beagle::Individual& ioIndividual, Beagle::Contex
 
 	Beagle_LogVerboseM(
 	    ioContext.getSystem().getLogger(),
+	    "mutation", "Beagle::GP::MutationSwapOp",
 	    std::string("Swap mutating the ")+uint2ordinal(lChosenNode+1)+
 	    std::string(" node (primitive: '")+lOriginalPrimitive->getName()+
 	    std::string("' nb args: ")+uint2str(lOriginalPrimitive->getNumberArguments())+
@@ -166,6 +171,7 @@ bool GP::MutationSwapOp::mutate(Beagle::Individual& ioIndividual, Beagle::Contex
 	if (lChosenPrimitive==NULL) {
 		Beagle_LogVerboseM(
 		    ioContext.getSystem().getLogger(),
+		    "mutation", "Beagle::GP::MutationSwapOp",
 		    std::string("Swap mutation failed because no primitive could be found that had ")+
 		    uint2str(lNbArgsPrimit)+std::string(" arguments")
 		);
@@ -173,6 +179,7 @@ bool GP::MutationSwapOp::mutate(Beagle::Individual& ioIndividual, Beagle::Contex
 	} else {
 		Beagle_LogDebugM(
 		    ioContext.getSystem().getLogger(),
+		    "mutation", "Beagle::GP::MutationSwapOp",
 		    std::string("Swap mutation chose primitive '")+lChosenPrimitive->getName()+std::string("'")
 		);
 	}
@@ -186,10 +193,13 @@ bool GP::MutationSwapOp::mutate(Beagle::Individual& ioIndividual, Beagle::Contex
 
 	Beagle_LogDebugM(
 	    ioContext.getSystem().getLogger(),
+	    "mutation", "Beagle::GP::MutationSwapOp",
 	    "Individual after GP swap mutation"
 	);
-	Beagle_LogDebugM(
+	Beagle_LogObjectDebugM(
 	    ioContext.getSystem().getLogger(),
+	    "mutation",
+	    "Beagle::GP::MutationSwapOp",
 	    ioIndividual
 	);
 
@@ -227,7 +237,7 @@ void GP::MutationSwapOp::readWithSystem(PACC::XML::ConstIterator inIter, System&
 void GP::MutationSwapOp::writeContent(PACC::XML::Streamer& ioStreamer, bool inIndent) const
 {
 	Beagle_StackTraceBeginM();
-	Beagle::EC::MutationOp::writeContent(ioStreamer, inIndent);
+	Beagle::MutationOp::writeContent(ioStreamer, inIndent);
 	ioStreamer.insertAttribute("distrpb", mDistribPbName);
 	Beagle_StackTraceEndM();
 }

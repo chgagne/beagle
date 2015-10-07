@@ -33,7 +33,7 @@
  *  $Date: 2007/08/17 20:57:59 $
  */
 
-#include "Beagle/GP.hpp"
+#include "beagle/GP.hpp"
 
 #include <cmath>
 #include <sstream>
@@ -46,7 +46,7 @@ using namespace Beagle;
  *  \param inName Name of the operator.
  */
 GP::StatsCalcFitnessSimpleOp::StatsCalcFitnessSimpleOp(std::string inName) :
-		Beagle::EC::StatsCalcFitnessSimpleOp(inName)
+		Beagle::StatsCalcFitnessSimpleOp(inName)
 { }
 
 
@@ -92,8 +92,8 @@ void GP::StatsCalcFitnessSimpleOp::calculateStatsDeme(Beagle::Stats& outStats,
 
 	const GP::Individual::Handle lFirstIndiv =
 	    castHandleT<GP::Individual>(ioDeme[0]);
-	const EC::FitnessSimple::Handle lFirstIndivFitness =
-	    castHandleT<EC::FitnessSimple>(lFirstIndiv->getFitness());
+	const FitnessSimple::Handle lFirstIndivFitness =
+	    castHandleT<FitnessSimple>(lFirstIndiv->getFitness());
 
 	if(ioDeme.size() == 1) {
 		outStats.setGenerationValues(std::string("deme")+uint2str(ioContext.getDemeIndex()),
@@ -137,8 +137,8 @@ void GP::StatsCalcFitnessSimpleOp::calculateStatsDeme(Beagle::Stats& outStats,
 
 		const GP::Individual::Handle lIndiv =
 		    castHandleT<GP::Individual>(ioDeme[i]);
-		const EC::FitnessSimple::Handle lIndivFitness =
-		    castHandleT<EC::FitnessSimple>(lIndiv->getFitness());
+		const FitnessSimple::Handle lIndivFitness =
+		    castHandleT<FitnessSimple>(lIndiv->getFitness());
 
 		lSum     += (double)lIndivFitness->getValue();
 		lPow2Sum += pow2Of<double>((double)lIndivFitness->getValue());

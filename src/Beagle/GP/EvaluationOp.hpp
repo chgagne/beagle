@@ -38,16 +38,16 @@
 
 #include <string>
 
-#include "Beagle/config.hpp"
-#include "Beagle/macros.hpp"
-#include "Beagle/Core/Object.hpp"
-#include "Beagle/Core/AbstractAllocT.hpp"
-#include "Beagle/Core/PointerT.hpp"
-#include "Beagle/Core/ContainerT.hpp"
-#include "Beagle/Core/EvaluationOp.hpp"
-#include "Beagle/GP/Individual.hpp"
-#include "Beagle/GP/Context.hpp"
-#include "Beagle/GP/Datum.hpp"
+#include "beagle/config.hpp"
+#include "beagle/macros.hpp"
+#include "beagle/Object.hpp"
+#include "beagle/AbstractAllocT.hpp"
+#include "beagle/PointerT.hpp"
+#include "beagle/ContainerT.hpp"
+#include "beagle/EvaluationOp.hpp"
+#include "beagle/GP/Individual.hpp"
+#include "beagle/GP/Context.hpp"
+#include "beagle/GP/Datum.hpp"
 
 
 namespace Beagle

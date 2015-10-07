@@ -33,7 +33,7 @@
  *  $Date: 2007/08/08 19:26:40 $
  */
 
-#include "Beagle/STGP.hpp"
+#include "beagle/GP.hpp"
 
 #include <sstream>
 
@@ -49,9 +49,9 @@ using namespace Beagle;
  *  \param inReproProbaName Reproduction probability parameter name used in register.
  *  \param inName Name of the operator.
  */
-STGP::InitGrowConstrainedOp::InitGrowConstrainedOp(std::string inReproProbaName,
+GP::InitGrowConstrainedOp::InitGrowConstrainedOp(std::string inReproProbaName,
         std::string inName) :
-        GP::InitGrowOp(inReproProbaName, inName),
+		InitGrowOp(inReproProbaName, inName),
 		mNumberAttempts(NULL)
 { }
 
@@ -64,7 +64,7 @@ STGP::InitGrowConstrainedOp::InitGrowConstrainedOp(std::string inReproProbaName,
  *  \param ioContext Evolutionary context.
  *  \return Generated sub-tree size.
  */
-unsigned int STGP::InitGrowConstrainedOp::initConstrainedSubTreeGrow(GP::Tree& ioTree,
+unsigned int GP::InitGrowConstrainedOp::initConstrainedSubTreeGrow(GP::Tree& ioTree,
         unsigned int inMinDepth,
         unsigned int inMaxDepth,
         GP::Context& ioContext) const
@@ -167,7 +167,7 @@ unsigned int STGP::InitGrowConstrainedOp::initConstrainedSubTreeGrow(GP::Tree& i
  *  \brief Register the parameters of the constrained GP tree "grow" intialization operator.
  *  \param ioSystem System of the evolution.
  */
-void STGP::InitGrowConstrainedOp::registerParams(Beagle::System& ioSystem)
+void GP::InitGrowConstrainedOp::registerParams(Beagle::System& ioSystem)
 {
 	Beagle_StackTraceBeginM();
 	InitGrowOp::registerParams(ioSystem);
@@ -197,7 +197,7 @@ void STGP::InitGrowConstrainedOp::registerParams(Beagle::System& ioSystem)
  *  \param ioContext Evolutionary context.
  *  \return Size of newly initialized tree.
  */
-unsigned int STGP::InitGrowConstrainedOp::initTree(GP::Tree& outTree,
+unsigned int GP::InitGrowConstrainedOp::initTree(GP::Tree& outTree,
         unsigned int inMinDepth,
         unsigned int inMaxDepth,
         GP::Context& ioContext) const
@@ -207,6 +207,7 @@ unsigned int STGP::InitGrowConstrainedOp::initTree(GP::Tree& outTree,
 	if (mKozaGrow->getWrappedValue()) {
 		Beagle_LogVerboseM(
 		    ioContext.getSystem().getLogger(),
+		    "initialization", "Beagle::GP::InitGrowConstrainedOp",
 		    "Setting the minimum depth to 2 (as per 'gp.init.kozagrow')"
 		);
 		inMinDepth=2;
@@ -217,6 +218,7 @@ unsigned int STGP::InitGrowConstrainedOp::initTree(GP::Tree& outTree,
 
 	Beagle_LogVerboseM(
 	    ioContext.getSystem().getLogger(),
+	    "initialization", "Beagle::GP::InitGrowConstrainedOp",
 	    std::string("Using the constrained \'grow\' method (with maximum depth ")+uint2str(inMaxDepth)+
 	    std::string(" and minimum depth ")+uint2str(inMinDepth)+std::string(") to initialize the ")+
 	    uint2ordinal(ioContext.getGenotypeIndex()+1)+std::string(" tree")

@@ -38,15 +38,15 @@
 
 #include <string>
 
-#include "Beagle/config.hpp"
-#include "Beagle/macros.hpp"
-#include "Beagle/Core/Object.hpp"
-#include "Beagle/EC/CrossoverOp.hpp"
-#include "Beagle/Core/Float.hpp"
-#include "Beagle/Core/UInt.hpp"
-#include "Beagle/Core/Bool.hpp"
-#include "Beagle/GP/Tree.hpp"
-#include "Beagle/GP/Individual.hpp"
+#include "beagle/config.hpp"
+#include "beagle/macros.hpp"
+#include "beagle/Object.hpp"
+#include "beagle/CrossoverOp.hpp"
+#include "beagle/Float.hpp"
+#include "beagle/UInt.hpp"
+#include "beagle/Bool.hpp"
+#include "beagle/GP/Tree.hpp"
+#include "beagle/GP/Individual.hpp"
 
 namespace Beagle
 {
@@ -59,19 +59,19 @@ namespace GP
  *  \ingroup GPF
  *  \ingroup GPOp
  */
-class CrossoverOp : public Beagle::EC::CrossoverOp
+class CrossoverOp : public Beagle::CrossoverOp
 {
 
 public:
 
 	//! GP::CrossoverOp allocator type.
-	typedef AllocatorT<CrossoverOp,Beagle::EC::CrossoverOp::Alloc>
+	typedef AllocatorT<CrossoverOp,Beagle::CrossoverOp::Alloc>
 	Alloc;
 	//! GP::CrossoverOp handle type.
-	typedef PointerT<CrossoverOp,Beagle::EC::CrossoverOp::Handle>
+	typedef PointerT<CrossoverOp,Beagle::CrossoverOp::Handle>
 	Handle;
 	//! GP::CrossoverOp bag type.
-	typedef ContainerT<CrossoverOp,Beagle::EC::CrossoverOp::Bag>
+	typedef ContainerT<CrossoverOp,Beagle::CrossoverOp::Bag>
 	Bag;
 
 	explicit CrossoverOp(std::string inMatingPbName="gp.cx.indpb",

@@ -33,7 +33,7 @@
  *  $Date: 2007/08/08 19:26:40 $
  */
 
-#include "Beagle/STGP.hpp"
+#include "beagle/GP.hpp"
 
 #include <sstream>
 
@@ -49,9 +49,9 @@ using namespace Beagle;
  *  \param inReproProbaName Reproduction probability parameter name used in register.
  *  \param inName Name of the operator.
  */
-STGP::InitFullConstrainedOp::InitFullConstrainedOp(std::string inReproProbaName,
+GP::InitFullConstrainedOp::InitFullConstrainedOp(std::string inReproProbaName,
         std::string inName) :
-        GP::InitFullOp(inReproProbaName, inName),
+		InitFullOp(inReproProbaName, inName),
 		mNumberAttempts(NULL)
 { }
 
@@ -63,7 +63,7 @@ STGP::InitFullConstrainedOp::InitFullConstrainedOp(std::string inReproProbaName,
  *  \param ioContext Evolutionary context.
  *  \return Generated sub-tree size.
  */
-unsigned int STGP::InitFullConstrainedOp::initConstrainedSubTreeFull(GP::Tree& ioTree,
+unsigned int GP::InitFullConstrainedOp::initConstrainedSubTreeFull(GP::Tree& ioTree,
         unsigned int inSubTreeDepth,
         GP::Context& ioContext) const
 {
@@ -141,6 +141,7 @@ unsigned int STGP::InitFullConstrainedOp::initConstrainedSubTreeFull(GP::Tree& i
 		} else {
 			Beagle_LogDebugM(
 			    ioContext.getSystem().getLogger(),
+			    "initialization", "Beagle::GP::InitFullConstrainedOp",
 			    "Primitive failed validation testing"
 			);
 		}
@@ -149,6 +150,7 @@ unsigned int STGP::InitFullConstrainedOp::initConstrainedSubTreeFull(GP::Tree& i
 	}
 	Beagle_LogDebugM(
 	    ioContext.getSystem().getLogger(),
+	    "initialization", "Beagle::GP::InitFullConstrainedOp",
 	    "Could not correctly initialize this node; backtracking instead."
 	);
 	return 0; // Could not initialize this node correctly, backtracking instead.
@@ -160,7 +162,7 @@ unsigned int STGP::InitFullConstrainedOp::initConstrainedSubTreeFull(GP::Tree& i
  *  \brief Register the parameters of the GP "full" intialization operator.
  *  \param ioSystem System of the evolution.
  */
-void STGP::InitFullConstrainedOp::registerParams(Beagle::System& ioSystem)
+void GP::InitFullConstrainedOp::registerParams(Beagle::System& ioSystem)
 {
 	Beagle_StackTraceBeginM();
 	InitFullOp::registerParams(ioSystem);
@@ -182,7 +184,7 @@ void STGP::InitFullConstrainedOp::registerParams(Beagle::System& ioSystem)
  *  \param inMaxDepth Maximum depth to make tree.
  *  \param ioContext Evolutionary context.
  */
-unsigned int STGP::InitFullConstrainedOp::initTree(GP::Tree& outTree,
+unsigned int GP::InitFullConstrainedOp::initTree(GP::Tree& outTree,
         unsigned int inMinDepth,
         unsigned int inMaxDepth,
         GP::Context &ioContext) const
@@ -194,6 +196,7 @@ unsigned int STGP::InitFullConstrainedOp::initTree(GP::Tree& outTree,
 
 	Beagle_LogVerboseM(
 	    ioContext.getSystem().getLogger(),
+	    "initialization", "Beagle::GP::InitFullConstrainedOp",
 	    std::string("Using the constrained \'full\' method (with depth ")+
 	    uint2str(lDepth)+std::string(") to initialize the ")+
 	    uint2ordinal(ioContext.getGenotypeIndex()+1)+std::string(" tree.")

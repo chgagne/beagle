@@ -38,15 +38,15 @@
 
 #include <string>
 
-#include "Beagle/config.hpp"
-#include "Beagle/macros.hpp"
-#include "Beagle/Core/Object.hpp"
-#include "Beagle/EC/MutationOp.hpp"
-#include "Beagle/Core/UInt.hpp"
-#include "Beagle/Core/Float.hpp"
-#include "Beagle/Core/Bool.hpp"
-#include "Beagle/GP/Context.hpp"
-#include "Beagle/GP/Individual.hpp"
+#include "beagle/config.hpp"
+#include "beagle/macros.hpp"
+#include "beagle/Object.hpp"
+#include "beagle/MutationOp.hpp"
+#include "beagle/UInt.hpp"
+#include "beagle/Float.hpp"
+#include "beagle/Bool.hpp"
+#include "beagle/GP/Context.hpp"
+#include "beagle/GP/Individual.hpp"
 
 namespace Beagle
 {
@@ -71,19 +71,19 @@ namespace GP
  *  \ingroup GPF
  *  \ingroup GPOp
  */
-class MutationShrinkOp : public Beagle::EC::MutationOp
+class MutationShrinkOp : public Beagle::MutationOp
 {
 
 public:
 
 	//! GP::MutationShrinkOp allocator type.
-	typedef AllocatorT<MutationShrinkOp,Beagle::EC::MutationOp::Alloc>
+	typedef AllocatorT<MutationShrinkOp,Beagle::MutationOp::Alloc>
 	Alloc;
 	//! GP::MutationShrinkOp handle type.
-	typedef PointerT<MutationShrinkOp,Beagle::EC::MutationOp::Handle>
+	typedef PointerT<MutationShrinkOp,Beagle::MutationOp::Handle>
 	Handle;
 	//! GP::MutationShrinkOp bag type.
-	typedef ContainerT<MutationShrinkOp,Beagle::EC::MutationOp::Bag>
+	typedef ContainerT<MutationShrinkOp,Beagle::MutationOp::Bag>
 	Bag;
 
 	explicit MutationShrinkOp(std::string inMutationPbName="gp.mutshrink.indpb",

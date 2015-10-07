@@ -33,7 +33,7 @@
  *  $Date: 2007/08/17 20:57:59 $
  */
 
-#include "Beagle/GP.hpp"
+#include "beagle/GP.hpp"
 
 #include <cmath>
 #include <sstream>
@@ -46,7 +46,7 @@ using namespace Beagle;
  *  \param inName Name of the operator.
  */
 GP::StatsCalcFitnessKozaOp::StatsCalcFitnessKozaOp(std::string inName) :
-		EC::StatsCalculateOp(inName)
+		StatsCalculateOp(inName)
 { }
 
 

@@ -37,7 +37,7 @@
 #ifndef Beagle_GP_IfThenElseT_hpp
 #define Beagle_GP_IfThenElseT_hpp
 
-#include "Beagle/GP/Primitive.hpp"
+#include "beagle/GP/Primitive.hpp"
 
 #ifdef BEAGLE_HAVE_RTTI
 #include <typeinfo>

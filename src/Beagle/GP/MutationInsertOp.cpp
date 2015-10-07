@@ -32,7 +32,7 @@
  *  $Date: 2007/08/17 18:09:11 $
  */
 
-#include "Beagle/GP.hpp"
+#include "beagle/GP.hpp"
 
 #include <algorithm>
 #include <string>
@@ -47,7 +47,7 @@ using namespace Beagle;
  */
 GP::MutationInsertOp::MutationInsertOp(std::string inMutationPbName,
                                        std::string inName) :
-		Beagle::EC::MutationOp(inMutationPbName, inName)
+		Beagle::MutationOp(inMutationPbName, inName)
 { }
 
 
@@ -72,7 +72,7 @@ void GP::MutationInsertOp::registerParams(Beagle::System& ioSystem)
 		mMutationProba = castHandleT<Double>(
 		                     ioSystem.getRegister().insertEntry(mMutationPbName, new Double(0.05f), lProbaDescription));
 	}
-	Beagle::EC::MutationOp::registerParams(ioSystem);
+	Beagle::MutationOp::registerParams(ioSystem);
 	{
 		Register::Description lDescription(
 		    "Maximum tree depth",
@@ -113,6 +113,7 @@ bool GP::MutationInsertOp::mutate(Beagle::Individual& ioIndividual, Beagle::Cont
 
 	Beagle_LogDetailedM(
 	    ioContext.getSystem().getLogger(),
+	    "mutation", "Beagle::GP::MutationInsertOp",
 	    std::string("Mutating individual with GP::MutationInsertOp")
 	);
 
@@ -129,8 +130,9 @@ bool GP::MutationInsertOp::mutate(Beagle::Individual& ioIndividual, Beagle::Cont
 	const unsigned int lOldGenotypeIndex = lContext.getGenotypeIndex();
 	const GP::Tree::Handle lOldGenotypeHandle = lContext.getGenotypeHandle();
 
-	Beagle_LogDebugM(
+	Beagle_LogObjectDebugM(
 	    ioContext.getSystem().getLogger(),
+	    "mutation", "Beagle::GP::MutationInsertOp",
 	    ioIndividual
 	);
 
@@ -154,6 +156,7 @@ bool GP::MutationInsertOp::mutate(Beagle::Individual& ioIndividual, Beagle::Cont
 		if(lMutationDepth > lMaxTreeDepth) {
 			Beagle_LogDebugM(
 			    ioContext.getSystem().getLogger(),
+			    "mutation", "Beagle::GP::MutationInsertOp",
 			    std::string("Insert mutation attempt failed as the generated tree will exceed ")+
 			    std::string("maximum allowed tree depth")
 			);
@@ -163,6 +166,7 @@ bool GP::MutationInsertOp::mutate(Beagle::Individual& ioIndividual, Beagle::Cont
 		// Create new tree
 		Beagle_LogDebugM(
 		    ioContext.getSystem().getLogger(),
+		    "mutation", "Beagle::GP::MutationInsertOp",
 		    std::string("Creating new tree")
 		);
 		GP::Tree::Handle lNewTree = castHandleT<GP::Tree>(lTreeAlloc->allocate());
@@ -176,6 +180,7 @@ bool GP::MutationInsertOp::mutate(Beagle::Individual& ioIndividual, Beagle::Cont
 		// Copy unchanged part of original tree into new tree
 		Beagle_LogDebugM(
 		    ioContext.getSystem().getLogger(),
+		    "mutation", "Beagle::GP::MutationInsertOp",
 		    std::string("Copying unchanged part of original tree to new tree")
 		);
 		lNewTree->insert(lNewTree->end(),
@@ -189,6 +194,7 @@ bool GP::MutationInsertOp::mutate(Beagle::Individual& ioIndividual, Beagle::Cont
 		if(lBranchInserted==NULL) {
 			Beagle_LogDebugM(
 			    ioContext.getSystem().getLogger(),
+			    "mutation", "Beagle::GP::MutationInsertOp",
 			    std::string("Insert mutation attempt failed as it seems impossible to select a branch ")+
 			    std::string("primitive in the actual context")
 			);
@@ -198,6 +204,7 @@ bool GP::MutationInsertOp::mutate(Beagle::Individual& ioIndividual, Beagle::Cont
 		}
 		Beagle_LogDebugM(
 		    ioContext.getSystem().getLogger(),
+		    "mutation", "Beagle::GP::MutationInsertOp",
 		    std::string("Branch primitive to be inserted by mutation is primitive '")+
 		    lBranchInserted->getName()+std::string("'")
 		);
@@ -234,6 +241,7 @@ bool GP::MutationInsertOp::mutate(Beagle::Individual& ioIndividual, Beagle::Cont
 		if(lArgsGenFailed) {
 			Beagle_LogDebugM(
 			    ioContext.getSystem().getLogger(),
+			    "mutation", "Beagle::GP::MutationInsertOp",
 			    std::string("Insert mutation attempt failed as it seems impossible to select a terminal ")+
 			    std::string("primitive under the inserted branch in the actual context")
 			);
@@ -252,6 +260,7 @@ bool GP::MutationInsertOp::mutate(Beagle::Individual& ioIndividual, Beagle::Cont
 		// Correct subtree size data and terminate mutation process
 		Beagle_LogDebugM(
 		    ioContext.getSystem().getLogger(),
+		    "mutation", "Beagle::GP::MutationInsertOp",
 		    std::string("Correcting the 'mSubTreeSize' fields of tree")
 		);
 		lContext.popCallStack();
@@ -265,10 +274,12 @@ bool GP::MutationInsertOp::mutate(Beagle::Individual& ioIndividual, Beagle::Cont
 		lOSS << " of the " << uint2ordinal(lChosenTree) << " tree of the actual individual";
 		Beagle_LogTraceM(
 		    ioContext.getSystem().getLogger(),
+		    "mutation", "Beagle::GP::MutationInsertOp",
 		    lOSS.str()
 		);
-		Beagle_LogDebugM(
+		Beagle_LogObjectDebugM(
 		    ioContext.getSystem().getLogger(),
+		    "mutation", "Beagle::GP::MutationInsertOp",
 		    ioIndividual
 		);
 		lContext.emptyCallStack();
@@ -283,6 +294,7 @@ bool GP::MutationInsertOp::mutate(Beagle::Individual& ioIndividual, Beagle::Cont
 	lContext.setGenotypeHandle(lOldGenotypeHandle);
 	Beagle_LogTraceM(
 	    ioContext.getSystem().getLogger(),
+	    "mutation", "Beagle::GP::MutationInsertOp",
 	    std::string("All insert mutation attempts failed; ")+
 	    std::string("resuming from mutation without modifying the individual")
 	);

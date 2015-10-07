@@ -32,7 +32,7 @@
  *  $Date: 2007/09/17 17:25:49 $
  */
 
-#include "Beagle/STGP.hpp"
+#include "beagle/GP.hpp"
 
 using namespace Beagle;
 
@@ -40,8 +40,8 @@ using namespace Beagle;
 /*!
  *  \brief Construct package with constrained GP operators.
  */
-STGP::PackageConstrained::PackageConstrained() :
-		Beagle::PackageAbstract("GP-PackageConstrained"),
+GP::PackageConstrained::PackageConstrained() :
+		Beagle::Package("GP-PackageConstrained"),
 		mPrimitiveSuperSet(new GP::PrimitiveSuperSet)
 { }
 
@@ -50,8 +50,8 @@ STGP::PackageConstrained::PackageConstrained() :
  *  \brief Construct package with constrained GP operators.
  *  \param inPrimitiveSuperSet Super set of primitives to use.
  */
-STGP::PackageConstrained::PackageConstrained(GP::PrimitiveSuperSet::Handle inPrimitiveSuperSet) :
-		Beagle::PackageAbstract("GP-PackageConstrained"),
+GP::PackageConstrained::PackageConstrained(GP::PrimitiveSuperSet::Handle inPrimitiveSuperSet) :
+		Beagle::Package("GP-PackageConstrained"),
 		mPrimitiveSuperSet(inPrimitiveSuperSet)
 { }
 
@@ -60,8 +60,8 @@ STGP::PackageConstrained::PackageConstrained(GP::PrimitiveSuperSet::Handle inPri
  *  \brief Construct package with constrained GP operators.
  *  \param inPrimitiveSet Set of primitives to use.
  */
-STGP::PackageConstrained::PackageConstrained(GP::PrimitiveSet::Handle inPrimitiveSet) :
-		Beagle::PackageAbstract("GP-PackageConstrained"),
+GP::PackageConstrained::PackageConstrained(GP::PrimitiveSet::Handle inPrimitiveSet) :
+		Beagle::Package("GP-PackageConstrained"),
 		mPrimitiveSuperSet(new GP::PrimitiveSuperSet)
 {
 	Beagle_StackTraceBeginM();
@@ -74,23 +74,23 @@ STGP::PackageConstrained::PackageConstrained(GP::PrimitiveSet::Handle inPrimitiv
  *  \brief Configure system by adding necessary components into it.
  *  \param ioSystem System to configure.
  */
-void STGP::PackageConstrained::configure(Beagle::System& ioSystem)
+void GP::PackageConstrained::configure(Beagle::System& ioSystem)
 {
 	Beagle_StackTraceBeginM();
 	Factory& lFactory = ioSystem.getFactory();
 
 	// Add available basic types to the factory
-	lFactory.insertAllocator("Beagle::GP::CrossoverConstrainedOp", new STGP::CrossoverConstrainedOp::Alloc);
-	lFactory.insertAllocator("Beagle::GP::InitFullConstrainedOp", new STGP::InitFullConstrainedOp::Alloc);
-	lFactory.insertAllocator("Beagle::GP::InitGrowConstrainedOp", new STGP::InitGrowConstrainedOp::Alloc);
-	lFactory.insertAllocator("Beagle::GP::InitHalfConstrainedOp", new STGP::InitHalfConstrainedOp::Alloc);
-	lFactory.insertAllocator("Beagle::GP::MutationInsertConstrainedOp", new STGP::MutationInsertConstrainedOp::Alloc);
-	lFactory.insertAllocator("Beagle::GP::MutationShrinkConstrainedOp", new STGP::MutationShrinkConstrainedOp::Alloc);
-	lFactory.insertAllocator("Beagle::GP::MutationStandardConstrainedOp", new STGP::MutationStandardConstrainedOp::Alloc);
-	lFactory.insertAllocator("Beagle::GP::MutationSwapConstrainedOp", new STGP::MutationSwapConstrainedOp::Alloc);
-	lFactory.insertAllocator("Beagle::GP::MutationSwapSubtreeConstrainedOp", new STGP::MutationSwapSubtreeConstrainedOp::Alloc);
-	lFactory.insertAllocator("Beagle::GP::PackageConstrained", new STGP::PackageConstrained::Alloc);
-	lFactory.insertAllocator("Beagle::GP::ValidateOp", new STGP::ValidateOp::Alloc);
+	lFactory.insertAllocator("Beagle::GP::CrossoverConstrainedOp", new GP::CrossoverConstrainedOp::Alloc);
+	lFactory.insertAllocator("Beagle::GP::InitFullConstrainedOp", new GP::InitFullConstrainedOp::Alloc);
+	lFactory.insertAllocator("Beagle::GP::InitGrowConstrainedOp", new GP::InitGrowConstrainedOp::Alloc);
+	lFactory.insertAllocator("Beagle::GP::InitHalfConstrainedOp", new GP::InitHalfConstrainedOp::Alloc);
+	lFactory.insertAllocator("Beagle::GP::MutationInsertConstrainedOp", new GP::MutationInsertConstrainedOp::Alloc);
+	lFactory.insertAllocator("Beagle::GP::MutationShrinkConstrainedOp", new GP::MutationShrinkConstrainedOp::Alloc);
+	lFactory.insertAllocator("Beagle::GP::MutationStandardConstrainedOp", new GP::MutationStandardConstrainedOp::Alloc);
+	lFactory.insertAllocator("Beagle::GP::MutationSwapConstrainedOp", new GP::MutationSwapConstrainedOp::Alloc);
+	lFactory.insertAllocator("Beagle::GP::MutationSwapSubtreeConstrainedOp", new GP::MutationSwapSubtreeConstrainedOp::Alloc);
+	lFactory.insertAllocator("Beagle::GP::PackageConstrained", new GP::PackageConstrained::Alloc);
+	lFactory.insertAllocator("Beagle::GP::ValidateOp", new GP::ValidateOp::Alloc);
 
 	// Set aliases
 	lFactory.aliasAllocator("Beagle::GP::CrossoverConstrainedOp", "GP-CrossoverConstrainedOp");
@@ -120,11 +120,11 @@ void STGP::PackageConstrained::configure(Beagle::System& ioSystem)
  *
  *  GP::PackageConstrained depends on Beagle::PackageBase and GP::PackageBase.
  */
-Beagle::PackageAbstract::Bag STGP::PackageConstrained::listDependencies(void)
+Beagle::Package::Bag GP::PackageConstrained::listDependencies(void)
 {
 	Beagle_StackTraceBeginM();
-	PackageAbstract::Bag lDependencies;
-	lDependencies.push_back(new EC::Package());
+	Package::Bag lDependencies;
+	lDependencies.push_back(new Beagle::PackageBase());
 	lDependencies.push_back(new GP::PackageBase(mPrimitiveSuperSet));
 	return lDependencies;
 	Beagle_StackTraceEndM();

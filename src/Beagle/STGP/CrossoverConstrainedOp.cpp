@@ -33,7 +33,7 @@
  *  $Date: 2007/08/17 18:09:11 $
  */
 
-#include "Beagle/STGP.hpp"
+#include "beagle/GP.hpp"
 
 #include <algorithm>
 #include <string>
@@ -47,7 +47,7 @@ using namespace Beagle;
  *  \param inDistribPbName Distribution probability parameter name used in register.
  *  \param inName Name of the operator.
  */
-STGP::CrossoverConstrainedOp::CrossoverConstrainedOp(std::string inMatingPbName,
+GP::CrossoverConstrainedOp::CrossoverConstrainedOp(std::string inMatingPbName,
         std::string inDistribPbName,
         std::string inName) :
 		Beagle::GP::CrossoverOp(inMatingPbName, inDistribPbName, inName)
@@ -65,7 +65,7 @@ STGP::CrossoverConstrainedOp::CrossoverConstrainedOp(std::string inMatingPbName,
  *  \param ioContext Evolutionary context.
  *  \return Max depth of subtree processed.
  */
-unsigned int STGP::CrossoverConstrainedOp::buildRoulette(
+unsigned int GP::CrossoverConstrainedOp::buildRoulette(
     RouletteT< std::pair<unsigned int,unsigned int> >& ioRoulette,
     bool inSelectABranch,
     unsigned int inMaxSubTreeDepth,
@@ -119,7 +119,7 @@ unsigned int STGP::CrossoverConstrainedOp::buildRoulette(
  *  \param ioContext Evolutionary context.
  *  \return Max depth of subtree processed.
  */
-unsigned int STGP::CrossoverConstrainedOp::buildRouletteWithType(
+unsigned int GP::CrossoverConstrainedOp::buildRouletteWithType(
     RouletteT< std::pair<unsigned int,unsigned int> >& ioRoulette,
     bool inSelectABranch,
     const std::type_info* inNodeReturnType,
@@ -174,7 +174,7 @@ unsigned int STGP::CrossoverConstrainedOp::buildRouletteWithType(
  *  \param ioContext2 Evolutionary context of the second individual.
  *  \return True if the individuals are effectively mated, false if not.
  */
-bool STGP::CrossoverConstrainedOp::mate(Beagle::Individual& ioIndiv1, Beagle::Context& ioContext1,
+bool GP::CrossoverConstrainedOp::mate(Beagle::Individual& ioIndiv1, Beagle::Context& ioContext1,
                                       Beagle::Individual& ioIndiv2, Beagle::Context& ioContext2)
 {
 	Beagle_StackTraceBeginM();
@@ -202,14 +202,20 @@ bool STGP::CrossoverConstrainedOp::mate(Beagle::Individual& ioIndiv1, Beagle::Co
 
 	Beagle_LogDebugM(
 	    ioContext1.getSystem().getLogger(),
+	    "crossover",
+	    "Beagle::GP::CrossoverConstrainedOp",
 	    "Individuals to mate (before constrained GP crossover)"
 	);
-	Beagle_LogDebugM(
+	Beagle_LogObjectDebugM(
 	    ioContext1.getSystem().getLogger(),
+	    "crossover",
+	    "Beagle::GP::CrossoverConstrainedOp",
 	    lIndiv1
 	);
-	Beagle_LogDebugM(
+	Beagle_LogObjectDebugM(
 	    ioContext1.getSystem().getLogger(),
+	    "crossover",
+	    "Beagle::GP::CrossoverConstrainedOp",
 	    lIndiv2
 	);
 
@@ -281,6 +287,7 @@ bool STGP::CrossoverConstrainedOp::mate(Beagle::Individual& ioIndiv1, Beagle::Co
 		if(lGoodSelect==false) {
 			Beagle_LogVerboseM(
 			    ioContext1.getSystem().getLogger(),
+			    "crossover", "Beagle::GP::CrossoverConstrainedOp",
 			    std::string("Crossover attempt failed: it seems there is no corresponding nodes in second ")+
 			    std::string("individual that would meet all the constraints")
 			);
@@ -295,6 +302,7 @@ bool STGP::CrossoverConstrainedOp::mate(Beagle::Individual& ioIndiv1, Beagle::Co
 		// Mate the trees.
 		Beagle_LogVerboseM(
 		    ioContext1.getSystem().getLogger(),
+		    "crossover", "Beagle::GP::CrossoverConstrainedOp",
 		    std::string("Trying to exchange the ")+uint2ordinal(lChoosenNode1+1)+
 		    std::string(" node of the ")+uint2ordinal(lChoosenTree1+1)+
 		    std::string(" tree of the first individual with the ")+uint2ordinal(lChoosenNode2+1)+
@@ -314,12 +322,14 @@ bool STGP::CrossoverConstrainedOp::mate(Beagle::Individual& ioIndiv1, Beagle::Co
 			lMatingDone = true;
 			Beagle_LogVerboseM(
 			    ioContext1.getSystem().getLogger(),
+			    "crossover", "Beagle::GP::CrossoverConstrainedOp",
 			    "Constrained tree GP crossover valid"
 			);
 			break; // The crossover is valid.
 		} else {   // Undo crossover.
 			Beagle_LogVerboseM(
 			    ioContext1.getSystem().getLogger(),
+			    "crossover", "Beagle::GP::CrossoverConstrainedOp",
 			    "Crossover attempt failed because one of the resulting trees was invalid"
 			);
 			mateTrees(lTree1, lChoosenNode1, lContext1, lTree2, lChoosenNode2, lContext2);
@@ -336,19 +346,26 @@ bool STGP::CrossoverConstrainedOp::mate(Beagle::Individual& ioIndiv1, Beagle::Co
 	if(lMatingDone) {
 		Beagle_LogDebugM(
 		    ioContext1.getSystem().getLogger(),
+		    "crossover",
+		    "Beagle::GP::CrossoverConstrainedOp",
 		    "Individuals mated (after constrained tree GP crossover)"
 		);
-		Beagle_LogDebugM(
+		Beagle_LogObjectDebugM(
 		    ioContext1.getSystem().getLogger(),
+		    "crossover",
+		    "Beagle::GP::CrossoverConstrainedOp",
 		    lIndiv1
 		);
-		Beagle_LogDebugM(
+		Beagle_LogObjectDebugM(
 		    ioContext1.getSystem().getLogger(),
+		    "crossover",
+		    "Beagle::GP::CrossoverConstrainedOp",
 		    lIndiv2
 		);
 	} else {
 		Beagle_LogVerboseM(
 		    ioContext1.getSystem().getLogger(),
+		    "crossover", "Beagle::GP::CrossoverConstrainedOp",
 		    "No constrained tree GP crossover done"
 		);
 	}
@@ -370,7 +387,7 @@ bool STGP::CrossoverConstrainedOp::mate(Beagle::Individual& ioIndiv1, Beagle::Co
  *  \param ioContext Evolutionary context.
  *  \return True if there was node to select, false if no node respected all constraints.
  */
-bool STGP::CrossoverConstrainedOp::selectNodeToMate(unsigned int& outSelectTreeIndex,
+bool GP::CrossoverConstrainedOp::selectNodeToMate(unsigned int& outSelectTreeIndex,
         unsigned int& outSelectNodeIndex,
         bool inSelectABranch,
         unsigned int inPrimitSetIndex,
@@ -423,7 +440,7 @@ bool STGP::CrossoverConstrainedOp::selectNodeToMate(unsigned int& outSelectTreeI
  *  \param ioContext Evolutionary context.
  *  \return True if there was node to select, false if no node respected all constraints.
  */
-bool STGP::CrossoverConstrainedOp::selectNodeToMateWithType(unsigned int& outSelectTreeIndex,
+bool GP::CrossoverConstrainedOp::selectNodeToMateWithType(unsigned int& outSelectTreeIndex,
         unsigned int& outSelectNodeIndex,
         bool inSelectABranch,
         const std::type_info* inNodeReturnType,

@@ -33,7 +33,7 @@
  *  $Date: 2007/08/17 18:09:11 $
  */
 
-#include "Beagle/GP.hpp"
+#include "beagle/GP.hpp"
 
 #include <cmath>
 #include <cfloat>
@@ -46,7 +46,7 @@ using namespace Beagle;
  *  \brief Default construct a Koza's fitness object.
  */
 GP::FitnessKoza::FitnessKoza() :
-		EC::FitnessSimple(),
+		FitnessSimple(),
 		mAdjustedFitness(0.),
 		mStandardizedFitness(0.),
 		mRawFitness(0.),
@@ -87,7 +87,7 @@ const std::string& GP::FitnessKoza::getType() const
 	Beagle_StackTraceBeginM();
 	const static std::string lType("GP-FitnessKoza");
 	return lType;
-	Beagle_StackTraceEndM();
+	Beagle_StackTraceEndM("const std::string& GP::FitnessKoza::getType() const")
 }
 
 

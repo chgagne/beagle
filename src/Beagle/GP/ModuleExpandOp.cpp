@@ -33,7 +33,7 @@
  *  $Date: 2007/08/17 18:09:11 $
  */
 
-#include "Beagle/GP.hpp"
+#include "beagle/GP.hpp"
 
 using namespace Beagle;
 
@@ -96,10 +96,13 @@ void GP::ModuleExpandOp::expand(unsigned int inNodeToExpand,
 	// Log tree before expansion.
 	Beagle_LogDebugM(
 	    ioContext.getSystem().getLogger(),
+	    "EMA", "GP::ModuleExpandOp",
 	    "Tree before expansion"
 	);
-	Beagle_LogDebugM(
+	Beagle_LogObjectDebugM(
 	    ioContext.getSystem().getLogger(),
+	    "EMA",
+	    "GP::ModuleExpandOp",
 	    ioTree
 	);
 
@@ -108,6 +111,7 @@ void GP::ModuleExpandOp::expand(unsigned int inNodeToExpand,
 	unsigned int lModuleIndex = lModuleInstance->getIndex();
 	Beagle_LogVerboseM(
 	    ioContext.getSystem().getLogger(),
+	    "EMA", "GP::ModuleExpandOp",
 	    std::string("Expanding ")+uint2ordinal(lModuleIndex+1)+
 	    std::string(" module (called from ")+uint2ordinal(inNodeToExpand+1)+
 	    std::string(" node of the tree)")
@@ -119,8 +123,10 @@ void GP::ModuleExpandOp::expand(unsigned int inNodeToExpand,
 		                               std::string("Consider adding a GP::ModuleVectorComponent object to the system."));
 	}
 	Beagle::GP::Tree::Handle lModule = (*lModuleVectorComponent)[lModuleIndex];
-	Beagle_LogDebugM(
+	Beagle_LogObjectDebugM(
 	    ioContext.getSystem().getLogger(),
+	    "EMA",
+	    "GP::ModuleExpandOp",
 	    *lModule
 	);
 
@@ -150,10 +156,14 @@ void GP::ModuleExpandOp::expand(unsigned int inNodeToExpand,
 	// Log results.
 	Beagle_LogDebugM(
 	    ioContext.getSystem().getLogger(),
+	    "EMA",
+	    "GP::ModuleExpandOp",
 	    "Tree after expansion"
 	);
-	Beagle_LogDebugM(
+	Beagle_LogObjectDebugM(
 	    ioContext.getSystem().getLogger(),
+	    "EMA",
+	    "GP::ModuleExpandOp",
 	    ioTree
 	);
 	
@@ -171,6 +181,7 @@ void GP::ModuleExpandOp::operate(Beagle::Deme& ioDeme, Beagle::Context& ioContex
 	Beagle_StackTraceBeginM();
 	Beagle_LogTraceM(
 	    ioContext.getSystem().getLogger(),
+	    "EMA", "GP::ModuleExpandOp",
 	    std::string("Expanding modules of the ")+
 	    uint2ordinal(ioContext.getDemeIndex()+1)+" deme"
 	);
@@ -178,6 +189,7 @@ void GP::ModuleExpandOp::operate(Beagle::Deme& ioDeme, Beagle::Context& ioContex
 
 	Beagle_LogVerboseM(
 	    ioContext.getSystem().getLogger(),
+	    "EMA", "GP::ModuleExpandOp",
 	    std::string("Expanding modules with probability ")+
 	    dbl2str(mExpandProba->getWrappedValue())
 	);
@@ -200,6 +212,7 @@ void GP::ModuleExpandOp::operate(Beagle::Deme& ioDeme, Beagle::Context& ioContex
 						lGPContext.setGenotypeIndex(j);
 						Beagle_LogVerboseM(
 						    ioContext.getSystem().getLogger(),
+						    "expand", "ExpandOp",
 						    std::string("Expanding the ") +uint2ordinal(i+1)+" individual"
 						);
 						expand(k, lTree, lGPContext);
@@ -213,8 +226,9 @@ void GP::ModuleExpandOp::operate(Beagle::Deme& ioDeme, Beagle::Context& ioContex
 	lGPContext.setIndividualHandle(lOldIndividualHandle);
 	lGPContext.setIndividualIndex(lOldIndividualIndex);
 
-	Beagle_LogDebugM(
+	Beagle_LogObjectDebugM(
 	    ioContext.getSystem().getLogger(),
+	    "EMA", "GP::ModuleExpandOp",
 	    *(ioContext.getSystem().getComponent("ModuleVector"))
 	);
 	Beagle_StackTraceEndM();
