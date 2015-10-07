@@ -33,7 +33,7 @@
  *  $Date: 2007/08/17 18:09:11 $
  */
 
-#include "beagle/GP.hpp"
+#include "Beagle/GP.hpp"
 
 using namespace Beagle;
 
@@ -108,13 +108,11 @@ void GP::PrimitiveSuperSet::registerParams(Beagle::System& ioSystem)
 	Component::registerParams(ioSystem);
 	Beagle_LogDetailedM(
 	    ioSystem.getLogger(),
-	    "initialization","Beagle::GP::PrimitiveSet",
 	    "Registering the parameters of the primitive superset"
 	);
 	for(unsigned int i=0; i<mPrimitSets.size(); i++) {
 		Beagle_LogVerboseM(
 		    ioSystem.getLogger(),
-		    "initialization","Beagle::GP::PrimitiveSet",
 		    std::string("Initializing ")+uint2ordinal(i+1)+std::string(" primitive set")
 		);
 		mPrimitSets[i]->registerParams(ioSystem);

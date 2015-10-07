@@ -36,21 +36,21 @@
 #ifndef Beagle_GP_StatsCalcFitnessKozaOp_hpp
 #define Beagle_GP_StatsCalcFitnessKozaOp_hpp
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Object.hpp"
-#include "beagle/Pointer.hpp"
-#include "beagle/PointerT.hpp"
-#include "beagle/Allocator.hpp"
-#include "beagle/AllocatorT.hpp"
-#include "beagle/Container.hpp"
-#include "beagle/ContainerT.hpp"
-#include "beagle/WrapperT.hpp"
-#include "beagle/Operator.hpp"
-#include "beagle/Stats.hpp"
-#include "beagle/Vivarium.hpp"
-#include "beagle/Context.hpp"
-#include "beagle/StatsCalculateOp.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Object.hpp"
+#include "Beagle/Core/Pointer.hpp"
+#include "Beagle/Core/PointerT.hpp"
+#include "Beagle/Core/Allocator.hpp"
+#include "Beagle/Core/AllocatorT.hpp"
+#include "Beagle/Core/Container.hpp"
+#include "Beagle/Core/ContainerT.hpp"
+#include "Beagle/Core/WrapperT.hpp"
+#include "Beagle/Core/Operator.hpp"
+#include "Beagle/Core/Stats.hpp"
+#include "Beagle/Core/Vivarium.hpp"
+#include "Beagle/Core/Context.hpp"
+#include "Beagle/EC/StatsCalculateOp.hpp"
 
 namespace Beagle
 {
@@ -64,19 +64,19 @@ namespace GP
  *  \brief Calculate statistics of a GP deme, for a generation, operator class.
  *  \ingroup GPF
  */
-class StatsCalcFitnessKozaOp : public StatsCalculateOp
+class StatsCalcFitnessKozaOp : public EC::StatsCalculateOp
 {
 
 public:
 
 	//! StatsCalcFitnessKozaOp allocator type
-	typedef AllocatorT<StatsCalcFitnessKozaOp,StatsCalculateOp::Alloc>
+	typedef AllocatorT<StatsCalcFitnessKozaOp,EC::StatsCalculateOp::Alloc>
 	Alloc;
 	//! StatsCalcFitnessKozaOp handle type.
-	typedef PointerT<StatsCalcFitnessKozaOp,StatsCalculateOp::Handle>
+	typedef PointerT<StatsCalcFitnessKozaOp,EC::StatsCalculateOp::Handle>
 	Handle;
 	//! StatsCalcFitnessKozaOp bag type.
-	typedef ContainerT<StatsCalcFitnessKozaOp,StatsCalculateOp::Bag>
+	typedef ContainerT<StatsCalcFitnessKozaOp,EC::StatsCalculateOp::Bag>
 	Bag;
 
 	explicit StatsCalcFitnessKozaOp(std::string inName="GP-StatsCalcFitnessKozaOp");

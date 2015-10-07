@@ -37,17 +37,17 @@
 
 #include <string>
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Object.hpp"
-#include "beagle/MutationOp.hpp"
-#include "beagle/UInt.hpp"
-#include "beagle/Float.hpp"
-#include "beagle/Bool.hpp"
-#include "beagle/GP/Context.hpp"
-#include "beagle/GP/Individual.hpp"
-#include "beagle/GP/Primitive.hpp"
-#include "beagle/GP/EphemeralT.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Object.hpp"
+#include "Beagle/EC/MutationOp.hpp"
+#include "Beagle/Core/UInt.hpp"
+#include "Beagle/Core/Float.hpp"
+#include "Beagle/Core/Bool.hpp"
+#include "Beagle/GP/Context.hpp"
+#include "Beagle/GP/Individual.hpp"
+#include "Beagle/GP/Primitive.hpp"
+#include "Beagle/GP/EphemeralT.hpp"
 
 namespace Beagle
 {
@@ -64,19 +64,19 @@ namespace GP
  *  \ingroup GPOp
  */
 template <class T>
-class MutationEphemeralOpT : public Beagle::MutationOp
+class MutationEphemeralOpT : public Beagle::EC::MutationOp
 {
 
 public:
 
 	//! GP::MutationEphemeralOpT allocator type.
-	typedef AllocatorT<Beagle::GP::MutationEphemeralOpT<T>,Beagle::MutationOp::Alloc>
+	typedef AllocatorT<Beagle::GP::MutationEphemeralOpT<T>,Beagle::EC::MutationOp::Alloc>
 	Alloc;
 	//! GP::MutationEphemeralOpT handle type.
-	typedef PointerT<Beagle::GP::MutationEphemeralOpT<T>,Beagle::MutationOp::Handle>
+	typedef PointerT<Beagle::GP::MutationEphemeralOpT<T>,Beagle::EC::MutationOp::Handle>
 	Handle;
 	//! GP::MutationEphemeralOpT bag type.
-	typedef ContainerT<Beagle::GP::MutationEphemeralOpT<T>,Beagle::MutationOp::Bag>
+	typedef ContainerT<Beagle::GP::MutationEphemeralOpT<T>,Beagle::EC::MutationOp::Bag>
 	Bag;
 
 	explicit MutationEphemeralOpT(std::string inMutationPbName="gp.muteph.indpb",
@@ -112,7 +112,7 @@ template <class T>
 Beagle::GP::MutationEphemeralOpT<T>::MutationEphemeralOpT(std::string inMutationPbName,
         std::string inEphemeralNameParamName,
         std::string inName) :
-		Beagle::MutationOp(inMutationPbName, inName),
+		Beagle::EC::MutationOp(inMutationPbName, inName),
 		mEphemeralNameParamName(inEphemeralNameParamName)
 { }
 
@@ -139,7 +139,7 @@ void Beagle::GP::MutationEphemeralOpT<T>::registerParams(Beagle::System& ioSyste
 		mMutationProba = castHandleT<Double>(
 		                     ioSystem.getRegister().insertEntry(mMutationPbName, new Double(0.05f), lDescription));
 	}
-	Beagle::MutationOp::registerParams(ioSystem);
+	Beagle::EC::MutationOp::registerParams(ioSystem);
 	{
 		std::ostringstream lOSS;
 		lOSS << "Name of the ephemeral primitive for which the values are modified ";
@@ -170,7 +170,6 @@ bool Beagle::GP::MutationEphemeralOpT<T>::mutate(Beagle::Individual& ioIndividua
 	Beagle_StackTraceBeginM();
 	Beagle_LogDetailedM(
 	    ioContext.getSystem().getLogger(),
-	    "mutation", "Beagle::GP::MutationEphemeralOpT",
 	    std::string("Mutating ")+uint2ordinal(ioContext.getGenotypeIndex()+1)+
 	    std::string(" individual with GP::MutationEphemeralOpT")
 	);
@@ -195,14 +194,10 @@ bool Beagle::GP::MutationEphemeralOpT<T>::mutate(Beagle::Individual& ioIndividua
 	// Mutating a primitive
 	Beagle_LogDebugM(
 	    ioContext.getSystem().getLogger(),
-	    "mutation",
-	    "Beagle::GP::MutationEphemeralOpT",
 	    "Individual before GP parameters mutation"
 	);
-	Beagle_LogObjectDebugM(
+	Beagle_LogDebugM(
 	    ioContext.getSystem().getLogger(),
-	    "mutation",
-	    "Beagle::GP::MutationEphemeralOpT",
 	    ioIndividual
 	);
 
@@ -218,7 +213,6 @@ bool Beagle::GP::MutationEphemeralOpT<T>::mutate(Beagle::Individual& ioIndividua
 	lContext.setGenotypeHandle(lSelectedTree);
 	Beagle_LogVerboseM(
 	    ioContext.getSystem().getLogger(),
-	    "mutation", "Beagle::GP::MutationEphemeralOpT",
 	    std::string("Mutating the parameter of the ")+
 	    uint2ordinal(lPotentialParam[lSelectedParam].second+1)+
 	    std::string(" node in the ")+uint2ordinal(lPotentialParam[lSelectedParam].first+1)+
@@ -236,7 +230,6 @@ bool Beagle::GP::MutationEphemeralOpT<T>::mutate(Beagle::Individual& ioIndividua
 
 	Beagle_LogVerboseM(
 	    ioContext.getSystem().getLogger(),
-	    "mutation", "Beagle::GP::MutationEphemeralOpT",
 	    std::string("Changing the ephemeral from ")+lSelectedPrimit->serialize()+
 	    std::string(" to ")+lGeneratedPrimit->serialize()
 	);
@@ -247,14 +240,10 @@ bool Beagle::GP::MutationEphemeralOpT<T>::mutate(Beagle::Individual& ioIndividua
 
 	Beagle_LogDebugM(
 	    ioContext.getSystem().getLogger(),
-	    "mutation",
-	    "Beagle::GP::MutationEphemeralOpT",
 	    "Individual after GP parameters mutation"
 	);
-	Beagle_LogObjectDebugM(
+	Beagle_LogDebugM(
 	    ioContext.getSystem().getLogger(),
-	    "mutation",
-	    "Beagle::GP::MutationEphemeralOpT",
 	    ioIndividual
 	);
 
@@ -296,7 +285,7 @@ void Beagle::GP::MutationEphemeralOpT<T>::writeContent(PACC::XML::Streamer& ioSt
         bool inIndent) const
 {
 	Beagle_StackTraceBeginM();
-	Beagle::MutationOp::writeContent(ioStreamer, inIndent);
+	Beagle::EC::MutationOp::writeContent(ioStreamer, inIndent);
 	ioStreamer.insertAttribute("primitname", mEphemeralNameParamName);
 	Beagle_StackTraceEndM();
 }

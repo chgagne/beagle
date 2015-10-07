@@ -37,13 +37,13 @@
 #ifndef Beagle_GP_PrimitiveSuperSet_hpp
 #define Beagle_GP_PrimitiveSuperSet_hpp
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Object.hpp"
-#include "beagle/Allocator.hpp"
-#include "beagle/Pointer.hpp"
-#include "beagle/ContainerT.hpp"
-#include "beagle/GP/PrimitiveSet.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Object.hpp"
+#include "Beagle/Core/Allocator.hpp"
+#include "Beagle/Core/Pointer.hpp"
+#include "Beagle/Core/ContainerT.hpp"
+#include "Beagle/GP/PrimitiveSet.hpp"
 
 
 namespace Beagle
