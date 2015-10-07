@@ -481,6 +481,7 @@ file(GLOB BEAGLE_INTVEC_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/IntVec/*.cpp
 file(GLOB BEAGLE_ES_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/ES/*.cpp")
 file(GLOB BEAGLE_SAES_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/SAES/*.cpp")
 file(GLOB BEAGLE_GP_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/GP/*.cpp")
+file(GLOB BEAGLE_STGP_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/STGP/*.cpp")
 
 # Glob headers
 file(GLOB BEAGLE_CORE_HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/Core/*.hpp")
@@ -491,6 +492,7 @@ file(GLOB BEAGLE_INTVEC_HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/IntVec/*
 file(GLOB BEAGLE_ES_HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/ES/*.hpp")
 file(GLOB BEAGLE_SAES_HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/SAES/*.hpp")
 file(GLOB BEAGLE_GP_HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/GP/*.hpp")
+file(GLOB BEAGLE_STGP_HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/STGP/*.hpp")
 
 # Remove OpenMP files if OpenMP it no used
 if(NOT BEAGLE_USE_OMP_NR AND NOT BEAGLE_USE_OMP_R)
@@ -517,6 +519,8 @@ if(CMAKE_FAST_COMPILATION)
     set(BEAGLE_SAES_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/SAES/libBeagle-SAES.cpp")
     AllFilesInOne("${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/GP/libBeagle-GP.cpp" ${BEAGLE_GP_SRC})
     set(BEAGLE_GP_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/GP/libBeagle-GP.cpp")
+    AllFilesInOne("${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/STGP/libBeagle-STGP.cpp" ${BEAGLE_STGP_SRC})
+    set(BEAGLE_STGP_SRC "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/STGP/libBeagle-STGP.cpp")
 	message(STATUS "Include files generated...")
 else(CMAKE_FAST_COMPILATION)
 	message(STATUS "Using normal compilation mode...")
@@ -528,6 +532,7 @@ else(CMAKE_FAST_COMPILATION)
     file(REMOVE "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/FltVec/libBeagle-ES.cpp")
     file(REMOVE "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/FltVec/libBeagle-SAES.cpp")
     file(REMOVE "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/GP/libBeagle-GP.cpp")
+    file(REMOVE "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/STGP/libBeagle-STGP.cpp")
 endif(CMAKE_FAST_COMPILATION)
 
 # Include headers required
@@ -686,6 +691,25 @@ MoveConfigFiles("${BEAGLE_GP_HEADERS}" "${BEAGLE_OUTPUT_DIR}/include/Beagle/GP" 
 install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/GP.hpp DESTINATION include/Beagle)
 install(FILES ${BEAGLE_GP_HEADERS} DESTINATION include/Beagle/GP)
 install(TARGETS Beagle-GP DESTINATION lib)
+
+# Create Beagle-STGP library target
+add_library(Beagle-STGP ${BEAGLE_LIBRARY_TYPE} ${BEAGLE_STGP_SRC})
+target_link_libraries(Beagle-STGP Beagle-GP Beagle-EC Beagle-Core pacc)
+if(ZLIB_FOUND)
+    target_link_libraries(Beagle-STGP ${ZLIB_LIBRARY})
+endif(ZLIB_FOUND)
+if(BUILD_STATIC_LIB)
+    set_target_properties(Beagle-STGP PROPERTIES VERSION ${BEAGLE_VERSION} ARCHIVE_OUTPUT_DIRECTORY "${BEAGLE_OUTPUT_DIR}/lib")
+else(BUILD_STATIC_LIB)
+    set_target_properties(Beagle-STGP PROPERTIES VERSION ${BEAGLE_VERSION} LIBRARY_OUTPUT_DIRECTORY "${BEAGLE_OUTPUT_DIR}/lib")
+endif(BUILD_STATIC_LIB)
+if(COMPILER_SUPPORTS_C0X AND BEAGLE_USE_C0x)
+    set_target_properties(Beagle-STGP PROPERTIES COMPILE_FLAGS "-std=c++0x")
+endif(COMPILER_SUPPORTS_C0X AND BEAGLE_USE_C0x)
+MoveConfigFiles("${BEAGLE_STGP_HEADERS}" "${BEAGLE_OUTPUT_DIR}/include/Beagle/STGP" false)
+install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/STGP.hpp DESTINATION include/Beagle)
+install(FILES ${BEAGLE_STGP_HEADERS} DESTINATION include/Beagle/STGP)
+install(TARGETS Beagle-STGP DESTINATION lib)
 
 # Create Beagle-HPC library target
 #if(NOT BEAGLE_NO_HPC)
