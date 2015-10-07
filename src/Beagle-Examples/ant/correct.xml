@@ -1,0 +1,22 @@
+      <Individual size="1">
+        <Genotype type="gptree" primitSetId="0" nbArgs="0">
+<IFA>
+  <M/>
+  <P3>
+    <L/>
+    <P2>
+      <IFA><M/><R/></IFA>
+      <P2>
+        <R/>
+        <P2><L/><R/></P2>
+      </P2>  
+    </P2>
+    <P2>
+      <IFA><M/><L/></IFA>
+      <M/>
+    </P2>
+  </P3>
+</IFA>
+        </Genotype>
+      </Individual>
+<!-- Should produce a fitness of 89 (see page 154 of GPI)-->

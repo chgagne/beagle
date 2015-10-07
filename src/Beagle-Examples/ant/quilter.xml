@@ -1,0 +1,11 @@
+      <Individual size="1">
+        <Genotype type="gptree" primitSetId="0" nbArgs="0">
+<P3>
+  <R/>
+  <P3><M/><M/><M/></P3>
+  <P2><L/><M/></P2>
+</P3>
+        </Genotype>
+      </Individual>
+<!-- Should produce a fitness of four if the maximum number of steps is limited to 60-->
+<!-- Should produce a fitness of eleven if the maximum number of steps is limited to 400-->
