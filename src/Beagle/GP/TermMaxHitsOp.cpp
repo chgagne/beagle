@@ -33,7 +33,7 @@
  *  $Date: 2007/08/08 19:26:41 $
  */
 
-#include "beagle/GP.hpp"
+#include "Beagle/GP.hpp"
 
 #include <cmath>
 
@@ -46,7 +46,7 @@ using namespace Beagle;
  *  \param inName Name of the evaluation operator.
  */
 GP::TermMaxHitsOp::TermMaxHitsOp(unsigned int inMaxHits, std::string inName) :
-		TerminationOp(inName),
+		EC::TerminationOp(inName),
 		mMaxHits(NULL),
 		mMaxHitsDefault(inMaxHits)
 { }
@@ -115,14 +115,12 @@ bool GP::TermMaxHitsOp::terminate(const Beagle::Deme& inDeme, Beagle::Context& i
 		if(mMaxHits->getWrappedValue() <= lFitness->getHits()) {
 			Beagle_LogInfoM(
 			    ioContext.getSystem().getLogger(),
-			    "termination", "Beagle::GP::TermMaxHitsOp",
 			    std::string("Maximum number of hits (") +
 			    uint2str(mMaxHits->getWrappedValue()) +
 			    std::string(") termination criterion reached")
 			);
 			Beagle_LogInfoM(
 			    ioContext.getSystem().getLogger(),
-			    "termination", "Beagle::GP::TermMaxHitsOp",
 			    std::string("The ")+uint2ordinal(i+1) +
 			    std::string(" individual of the deme has ") +
 			    uint2str(lFitness->getHits())+std::string(" hits")
@@ -133,7 +131,6 @@ bool GP::TermMaxHitsOp::terminate(const Beagle::Deme& inDeme, Beagle::Context& i
 	}
 	Beagle_LogTraceM(
 	    ioContext.getSystem().getLogger(),
-	    "termination", "Beagle::GP::TermMaxHitsOp",
 	    std::string("Maximum number of hits (") +
 	    uint2str(mMaxHits->getWrappedValue()) +
 	    std::string(") termination criterion not reached")

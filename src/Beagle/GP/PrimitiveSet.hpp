@@ -38,16 +38,16 @@
 
 #include <string>
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Object.hpp"
-#include "beagle/Allocator.hpp"
-#include "beagle/Pointer.hpp"
-#include "beagle/Container.hpp"
-#include "beagle/System.hpp"
-#include "beagle/RouletteT.hpp"
-#include "beagle/GP/Primitive.hpp"
-#include "beagle/GP/PrimitiveMap.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Object.hpp"
+#include "Beagle/Core/Allocator.hpp"
+#include "Beagle/Core/Pointer.hpp"
+#include "Beagle/Core/Container.hpp"
+#include "Beagle/Core/System.hpp"
+#include "Beagle/Core/RouletteT.hpp"
+#include "Beagle/GP/Primitive.hpp"
+#include "Beagle/GP/PrimitiveMap.hpp"
 
 #ifdef BEAGLE_HAVE_RTTI
 #include <typeinfo>

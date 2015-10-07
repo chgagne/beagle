@@ -33,7 +33,7 @@
  *  $Date: 2007/08/08 19:26:40 $
  */
 
-#include "beagle/GP.hpp"
+#include "Beagle/GP.hpp"
 
 #include <sstream>
 
@@ -151,7 +151,6 @@ unsigned int GP::InitGrowOp::initTree(GP::Tree& outTree,
 	if (mKozaGrow->getWrappedValue()) {
 		Beagle_LogVerboseM(
 		    ioContext.getSystem().getLogger(),
-		    "initialization", "Beagle::GP::InitGrowConstrainedOp",
 		    "Setting the minimum depth to 2 (as per 'gp.init.kozagrow')"
 		);
 		inMinDepth=2;
@@ -162,7 +161,6 @@ unsigned int GP::InitGrowOp::initTree(GP::Tree& outTree,
 
 	Beagle_LogVerboseM(
 	    ioContext.getSystem().getLogger(),
-	    "initialization", "Beagle::GP::InitGrowOp",
 	    std::string("Using the \'grow\' method (with maximum depth ")+uint2str(inMaxDepth)+
 	    std::string(" and minimum depth ")+uint2str(inMinDepth)+std::string(") to initialize the ")+
 	    uint2ordinal(ioContext.getGenotypeIndex()+1)+std::string(" tree")

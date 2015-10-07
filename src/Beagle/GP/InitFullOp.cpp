@@ -33,7 +33,7 @@
  *  $Date: 2007/08/08 19:26:40 $
  */
 
-#include "beagle/GP.hpp"
+#include "Beagle/GP.hpp"
 
 #include <sstream>
 
@@ -115,7 +115,6 @@ unsigned int GP::InitFullOp::initTree(GP::Tree& outTree,
 
 	Beagle_LogVerboseM(
 	    ioContext.getSystem().getLogger(),
-	    "initialization", "Beagle::GP::InitFullOp",
 	    std::string("Using the \'full\' method (with depth ")+
 	    uint2str(lDepth)+std::string(") to initialize the ")+
 	    uint2ordinal(ioContext.getGenotypeIndex()+1)+std::string(" tree.")
