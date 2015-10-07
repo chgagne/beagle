@@ -34,7 +34,7 @@
  *  $Date: 2007/08/17 18:09:11 $
  */
 
-#include "beagle/GP.hpp"
+#include "Beagle/GP.hpp"
 
 using namespace Beagle;
 
@@ -155,12 +155,10 @@ void GP::Module::invoke(GP::Datum& outResult, GP::Tree::Handle ioTree, GP::Conte
 	ioContext.pushCallStack(0);
 	Beagle_LogVerboseM(
 	    ioContext.getSystem().getLogger(),
-	    "EMA", "Beagle::GP::Module",
 	    std::string("Interpreting the ")+uint2ordinal(mIndex+1)+std::string(" module")
 	);
-	Beagle_LogObjectDebugM(
+	Beagle_LogDebugM(
 	    ioContext.getSystem().getLogger(),
-	    "EMA", "Beagle::GP::Module",
 	    *ioTree
 	);
 	(*ioTree)[0].mPrimitive->execute(outResult, ioContext);

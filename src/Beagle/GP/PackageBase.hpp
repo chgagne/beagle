@@ -38,11 +38,11 @@
 #include <map>
 #include <string>
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/System.hpp"
-#include "beagle/Evolver.hpp"
-#include "beagle/Package.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/System.hpp"
+#include "Beagle/Core/Evolver.hpp"
+#include "Beagle/Core/Package.hpp"
 
 
 namespace Beagle
@@ -56,7 +56,7 @@ namespace GP
  *  \brief Package for adding objects related to GP.
  *  \ingroup GPF
  */
-class PackageBase : public Beagle::Package
+class PackageBase : public Beagle::PackageAbstract
 {
 
 public:
@@ -73,7 +73,7 @@ public:
 	explicit PackageBase(GP::PrimitiveSet::Handle inPrimitiveSet);
 
 	virtual void                  configure(Beagle::System& ioSystem);
-	virtual Beagle::Package::Bag  listDependencies(void);
+	virtual Beagle::PackageAbstract::Bag  listDependencies(void);
 
 protected:
 

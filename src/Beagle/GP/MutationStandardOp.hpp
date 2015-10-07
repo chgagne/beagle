@@ -38,17 +38,17 @@
 
 #include <string>
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Object.hpp"
-#include "beagle/MutationOp.hpp"
-#include "beagle/UInt.hpp"
-#include "beagle/Float.hpp"
-#include "beagle/Bool.hpp"
-#include "beagle/GP/Context.hpp"
-#include "beagle/GP/Individual.hpp"
-#include "beagle/GP/InitializationOp.hpp"
-#include "beagle/GP/InitHalfOp.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Object.hpp"
+#include "Beagle/EC/MutationOp.hpp"
+#include "Beagle/Core/UInt.hpp"
+#include "Beagle/Core/Float.hpp"
+#include "Beagle/Core/Bool.hpp"
+#include "Beagle/GP/Context.hpp"
+#include "Beagle/GP/Individual.hpp"
+#include "Beagle/GP/InitializationOp.hpp"
+#include "Beagle/GP/InitHalfOp.hpp"
 
 namespace Beagle
 {
@@ -61,19 +61,19 @@ namespace GP
  *  \ingroup GPF
  *  \ingroup GPOp
  */
-class MutationStandardOp : public Beagle::MutationOp
+class MutationStandardOp : public Beagle::EC::MutationOp
 {
 
 public:
 
 	//! GP::MutationStandardOp allocator type.
-	typedef AllocatorT<MutationStandardOp,Beagle::MutationOp::Alloc>
+	typedef AllocatorT<MutationStandardOp,Beagle::EC::MutationOp::Alloc>
 	Alloc;
 	//! GP::MutationStandardOp handle type.
-	typedef PointerT<MutationStandardOp,Beagle::MutationOp::Handle>
+	typedef PointerT<MutationStandardOp,Beagle::EC::MutationOp::Handle>
 	Handle;
 	//! GP::MutationStandardOp bag type.
-	typedef ContainerT<MutationStandardOp,Beagle::MutationOp::Bag>
+	typedef ContainerT<MutationStandardOp,Beagle::EC::MutationOp::Bag>
 	Bag;
 
 	explicit MutationStandardOp(GP::InitializationOp::Handle inInitOp=new Beagle::GP::InitGrowOp,

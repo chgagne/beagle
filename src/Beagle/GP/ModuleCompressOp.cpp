@@ -33,7 +33,7 @@
  *  $Date: 2007/08/17 18:09:11 $
  */
 
-#include "beagle/GP.hpp"
+#include "Beagle/GP.hpp"
 
 using namespace Beagle;
 
@@ -204,12 +204,10 @@ bool GP::ModuleCompressOp::compress(unsigned int inModuleIndex,
 	// Log tree before compression.
 	Beagle_LogDebugM(
 	    ioContext.getSystem().getLogger(),
-	    "EMA", "ModuleCompressOp",
 	    "Tree before compression"
 	);
-	Beagle_LogObjectDebugM(
+	Beagle_LogDebugM(
 	    ioContext.getSystem().getLogger(),
-	    "EMA", "ModuleCompressOp",
 	    ioTree
 	);
 
@@ -263,7 +261,6 @@ bool GP::ModuleCompressOp::compress(unsigned int inModuleIndex,
 	}
 	Beagle_LogVerboseM(
 	    ioContext.getSystem().getLogger(),
-	    "EMA", "GP::ModuleCompressOp",
 	    std::string("Compressing the subtree of the ")+uint2ordinal(lNodeToCompress+1)+
 	    std::string(" node of tree as the  ")+uint2ordinal(inModuleIndex+1)+
 	    std::string(" module")
@@ -342,22 +339,18 @@ bool GP::ModuleCompressOp::compress(unsigned int inModuleIndex,
 	// Log the module and compressed tree generated.
 	Beagle_LogDebugM(
 	    ioContext.getSystem().getLogger(),
-	    "EMA", "GP::ModuleCompressOp",
 	    "New module generated"
 	);
-	Beagle_LogObjectDebugM(
+	Beagle_LogDebugM(
 	    ioContext.getSystem().getLogger(),
-	    "EMA", "GP::ModuleCompressOp",
 	    lModule
 	);
 	Beagle_LogDebugM(
 	    ioContext.getSystem().getLogger(),
-	    "EMA", "GP::ModuleCompressOp",
 	    "Tree after compression"
 	);
-	Beagle_LogObjectDebugM(
+	Beagle_LogDebugM(
 	    ioContext.getSystem().getLogger(),
-	    "EMA", "GP::ModuleCompressOp",
 	    ioTree
 	);
 
@@ -405,7 +398,6 @@ void GP::ModuleCompressOp::operate(Beagle::Deme& ioDeme, Beagle::Context& ioCont
 
 	Beagle_LogTraceM(
 	    ioContext.getSystem().getLogger(),
-	    "EMA", "GP::ModuleCompressOp",
 	    std::string("Creating modules of the ")+
 	    uint2ordinal(ioContext.getDemeIndex()+1)+" deme"
 	);
@@ -415,7 +407,6 @@ void GP::ModuleCompressOp::operate(Beagle::Deme& ioDeme, Beagle::Context& ioCont
 	if(ioContext.getDemeIndex()==0) {
 		Beagle_LogVerboseM(
 		    ioContext.getSystem().getLogger(),
-		    "EMA", "GP::ModuleCompressOp",
 		    std::string("Cleaning up the module vector component of unused modules before ")+
 		    std::string("apply compression")
 		);
@@ -425,7 +416,6 @@ void GP::ModuleCompressOp::operate(Beagle::Deme& ioDeme, Beagle::Context& ioCont
 	const float lCompressPb = mCompressProba->getWrappedValue();
 	Beagle_LogVerboseM(
 	    ioContext.getSystem().getLogger(),
-	    "EMA", "GP::ModuleCompressOp",
 	    std::string("Creating modules with probability ")+
 	    dbl2str(lCompressPb)
 	);
@@ -494,9 +484,8 @@ void GP::ModuleCompressOp::operate(Beagle::Deme& ioDeme, Beagle::Context& ioCont
 	lGPContext.setIndividualHandle(lOldIndividualHandle);
 	lGPContext.setIndividualIndex(lOldIndividualIndex);
 
-	Beagle_LogObjectDebugM(
+	Beagle_LogDebugM(
 	    ioContext.getSystem().getLogger(),
-	    "EMA", "GP::ModuleExpandOp",
 	    *(ioContext.getSystem().getComponent("ModuleVector"))
 	);
 	Beagle_StackTraceEndM();

@@ -38,18 +38,18 @@
 
 #include "PACC/Util.hpp"
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Object.hpp"
-#include "beagle/AllocatorT.hpp"
-#include "beagle/PointerT.hpp"
-#include "beagle/ContainerT.hpp"
-#include "beagle/AssertException.hpp"
-#include "beagle/Context.hpp"
-#include "beagle/GP/Individual.hpp"
-#include "beagle/GP/Tree.hpp"
-#include "beagle/GP/MaxNodesExecutionException.hpp"
-#include "beagle/GP/MaxTimeExecutionException.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Object.hpp"
+#include "Beagle/Core/AllocatorT.hpp"
+#include "Beagle/Core/PointerT.hpp"
+#include "Beagle/Core/ContainerT.hpp"
+#include "Beagle/Core/AssertException.hpp"
+#include "Beagle/Core/Context.hpp"
+#include "Beagle/GP/Individual.hpp"
+#include "Beagle/GP/Tree.hpp"
+#include "Beagle/GP/MaxNodesExecutionException.hpp"
+#include "Beagle/GP/MaxTimeExecutionException.hpp"
 
 
 namespace Beagle

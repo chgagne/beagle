@@ -36,8 +36,8 @@
 #ifndef Beagle_GP_PrimitiveUsageStatsOp_hpp
 #define Beagle_GP_PrimitiveUsageStatsOp_hpp
 
-#include "beagle/Operator.hpp"
-#include "beagle/GP/Primitive.hpp"
+#include "Beagle/Core/Operator.hpp"
+#include "Beagle/GP/Primitive.hpp"
 
 
 namespace Beagle
