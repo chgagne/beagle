@@ -38,22 +38,22 @@
 
 #include <string>
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Object.hpp"
-#include "beagle/AllocatorT.hpp"
-#include "beagle/PointerT.hpp"
-#include "beagle/ContainerT.hpp"
-#include "beagle/InitializationOp.hpp"
-#include "beagle/UInt.hpp"
-#include "beagle/Bool.hpp"
-#include "beagle/GP/Tree.hpp"
-#include "beagle/GP/InitFullOp.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Object.hpp"
+#include "Beagle/Core/AllocatorT.hpp"
+#include "Beagle/Core/PointerT.hpp"
+#include "Beagle/Core/ContainerT.hpp"
+#include "Beagle/EC/InitializationOp.hpp"
+#include "Beagle/Core/UInt.hpp"
+#include "Beagle/Core/Bool.hpp"
+#include "Beagle/GP/Tree.hpp"
+#include "Beagle/GP/InitFullOp.hpp"
 
 
 namespace Beagle
 {
-namespace GP
+namespace STGP
 {
 
 /*!
@@ -64,19 +64,19 @@ namespace GP
  *  \ingroup GPOp
  *  \ingroup GPPop
  */
-class InitFullConstrainedOp : public InitFullOp
+class InitFullConstrainedOp : public GP::InitFullOp
 {
 
 public:
 
 	//! GP::InitFullConstrainedOp allocator type.
-	typedef AllocatorT<InitFullConstrainedOp,InitFullOp::Alloc>
+	typedef AllocatorT<InitFullConstrainedOp,GP::InitFullOp::Alloc>
 	Alloc;
 	//! GP::InitFullConstrainedOp handle type.
-	typedef PointerT<InitFullConstrainedOp,InitFullOp::Handle>
+	typedef PointerT<InitFullConstrainedOp,GP::InitFullOp::Handle>
 	Handle;
 	//! GP::InitFullConstrainedOp bag type.
-	typedef ContainerT<InitFullConstrainedOp,InitFullOp::Bag>
+	typedef ContainerT<InitFullConstrainedOp,GP::InitFullOp::Bag>
 	Bag;
 
 	explicit InitFullConstrainedOp(std::string inReproProbaName="ec.repro.prob",

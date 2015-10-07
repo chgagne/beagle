@@ -38,21 +38,21 @@
 
 #include <string>
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Object.hpp"
-#include "beagle/MutationOp.hpp"
-#include "beagle/UInt.hpp"
-#include "beagle/Float.hpp"
-#include "beagle/Bool.hpp"
-#include "beagle/GP/Context.hpp"
-#include "beagle/GP/Individual.hpp"
-#include "beagle/GP/MutationStandardOp.hpp"
-#include "beagle/GP/InitGrowConstrainedOp.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Object.hpp"
+#include "Beagle/EC/MutationOp.hpp"
+#include "Beagle/Core/UInt.hpp"
+#include "Beagle/Core/Float.hpp"
+#include "Beagle/Core/Bool.hpp"
+#include "Beagle/GP/Context.hpp"
+#include "Beagle/GP/Individual.hpp"
+#include "Beagle/GP/MutationStandardOp.hpp"
+#include "Beagle/STGP/InitGrowConstrainedOp.hpp"
 
 namespace Beagle
 {
-namespace GP
+namespace STGP
 {
 
 /*!
@@ -62,23 +62,23 @@ namespace GP
  *  \ingroup GPF
  *  \ingroup GPOp
  */
-class MutationStandardConstrainedOp : public MutationStandardOp
+class MutationStandardConstrainedOp : public GP::MutationStandardOp
 {
 
 public:
 
 	//! GP::MutationStandardConstrainedOp allocator type.
-	typedef AllocatorT<MutationStandardConstrainedOp,MutationStandardOp::Alloc>
+	typedef AllocatorT<MutationStandardConstrainedOp,GP::MutationStandardOp::Alloc>
 	Alloc;
 	//! GP::MutationStandardConstrainedOp handle type.
-	typedef PointerT<MutationStandardConstrainedOp,MutationStandardOp::Handle>
+	typedef PointerT<MutationStandardConstrainedOp,GP::MutationStandardOp::Handle>
 	Handle;
 	//! GP::MutationStandardConstrainedOp bag type.
-	typedef ContainerT<MutationStandardConstrainedOp,MutationStandardOp::Bag>
+	typedef ContainerT<MutationStandardConstrainedOp,GP::MutationStandardOp::Bag>
 	Bag;
 
 	explicit MutationStandardConstrainedOp(GP::InitializationOp::Handle inInitOp=
-	                                           new Beagle::GP::InitGrowConstrainedOp,
+	                                           new Beagle::STGP::InitGrowConstrainedOp,
 	                                       std::string inMutationPbName="gp.mutstd.indpb",
 	                                       std::string inMaxRegenDepthName="gp.mutstd.maxdepth",
 	                                       std::string inName="GP-MutationStandardConstrainedOp");
