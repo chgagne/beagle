@@ -36,8 +36,8 @@
  *  selecting terminal primitives to complete the arguments of the inserted node.
  */
 
-#ifndef Beagle_GP_MutationInsertConstrainedOp_hpp
-#define Beagle_GP_MutationInsertConstrainedOp_hpp
+#ifndef Beagle_STGP_MutationInsertConstrainedOp_hpp
+#define Beagle_STGP_MutationInsertConstrainedOp_hpp
 
 #include <string>
 

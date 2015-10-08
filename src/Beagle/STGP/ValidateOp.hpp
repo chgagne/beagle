@@ -32,8 +32,8 @@
  *  $Date: 2007/08/08 19:26:36 $
  */
 
-#ifndef Beagle_GP_ValidateOp_hpp
-#define Beagle_GP_ValidateOp_hpp
+#ifndef Beagle_STGP_ValidateOp_hpp
+#define Beagle_STGP_ValidateOp_hpp
 
 #include "beagle/Operator.hpp"
 
