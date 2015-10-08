@@ -365,7 +365,7 @@ public:
 		mFile(inFile),
 		mFunction(inFunction),
 		mObject(NULL),
-		mSkip((inLogger.getConsoleLevel() < inLevel) && (inLogger.getFileLevel() < inLevel))
+		mSkip((inLogger.mInitialized) && (inLogger.getConsoleLevel() < inLevel) && (inLogger.getFileLevel() < inLevel))
 	{ }
 	
 	/*!
