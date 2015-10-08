@@ -123,7 +123,7 @@ void Beagle::EC::Package::configure(System& ioSystem)
 	lFactory.aliasAllocator("Beagle::EC::MuPlusLambdaOp", "MuPlusLambdaOp");
 	lFactory.aliasAllocator("Beagle::EC::OneCommaLambdaAdaptedOp", "OneCommaLambdaAdaptedOp");
 	lFactory.aliasAllocator("Beagle::EC::OversizeOp", "OversizeOp");
-	lFactory.aliasAllocator("Beagle::EC::Package", "Package");
+	lFactory.aliasAllocator("Beagle::EC::Package", "EC-Package");
 	lFactory.aliasAllocator("Beagle::EC::RandomShuffleDemeOp", "RandomShuffleDemeOp");
 	lFactory.aliasAllocator("Beagle::EC::RegisterReadOp", "RegisterReadOp");
 	lFactory.aliasAllocator("Beagle::EC::SelectBestOp", "SelectBestOp");
@@ -165,6 +165,8 @@ void Beagle::EC::Package::configure(System& ioSystem)
 PackageAbstract::Bag Beagle::EC::Package::listDependencies(void)
 {
 	Beagle_StackTraceBeginM();
-	return Beagle::PackageAbstract::Bag();
+	PackageAbstract::Bag lDependencies;
+	lDependencies.push_back(new Beagle::Package());
+	return lDependencies;
 	Beagle_StackTraceEndM();
 }
