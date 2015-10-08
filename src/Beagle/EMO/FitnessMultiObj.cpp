@@ -43,7 +43,7 @@ using namespace Beagle;
  *  \param inSize Size of the multiobjective fitness value.
  *  \param inValue Default initial value of the multiobjective fitness measures.
  */
-FitnessMultiObj::FitnessMultiObj(unsigned int inSize, double inValue) :
+EMO::FitnessMultiObj::FitnessMultiObj(unsigned int inSize, double inValue) :
 		Fitness(inSize != 0),
 		std::vector<double>(inSize, inValue)
 { }
@@ -53,7 +53,7 @@ FitnessMultiObj::FitnessMultiObj(unsigned int inSize, double inValue) :
  *  \brief Construct a valid multiobjective fitness object.
  *  \param inFitness Value of the fitness.
  */
-FitnessMultiObj::FitnessMultiObj(const std::vector<double>& inFitness) :
+EMO::FitnessMultiObj::FitnessMultiObj(const std::vector<double>& inFitness) :
 		Fitness(true),
 		std::vector<double>(inFitness)
 { }
@@ -64,7 +64,7 @@ FitnessMultiObj::FitnessMultiObj(const std::vector<double>& inFitness) :
  *  \param inOriginal Fitness to copy.
  *  \param ioSystem Evolutionary system to use for making the copy.
  */
-void FitnessMultiObj::copy(const Member& inOriginal, System& ioSystem)
+void EMO::FitnessMultiObj::copy(const Member& inOriginal, System& ioSystem)
 {
 	Beagle_StackTraceBeginM();
 	const FitnessMultiObj& lOriginal = castObjectT<const FitnessMultiObj&>(inOriginal);
@@ -78,7 +78,7 @@ void FitnessMultiObj::copy(const Member& inOriginal, System& ioSystem)
  *  \param inRightFitness Fitness used to compute distance.
  *  \return Euclidean distance between the fitnesses using all the objectives.
  */
-double FitnessMultiObj::getDistance(const Fitness& inRightFitness) const
+double EMO::FitnessMultiObj::getDistance(const Fitness& inRightFitness) const
 {
 	Beagle_StackTraceBeginM();
 	const FitnessMultiObj& lRightFitness = castObjectT<const FitnessMultiObj&>(inRightFitness);
@@ -106,7 +106,7 @@ double FitnessMultiObj::getDistance(const Fitness& inRightFitness) const
  *  \brief  Get number of objectives of the fitness measure.
  *  \return Number of objectives.
  */
-unsigned int FitnessMultiObj::getNumberOfObjectives() const
+unsigned int EMO::FitnessMultiObj::getNumberOfObjectives() const
 {
 	Beagle_StackTraceBeginM();
 	if(isValid() == false) {
@@ -122,7 +122,7 @@ unsigned int FitnessMultiObj::getNumberOfObjectives() const
  *  \param  inObjIndex Objective index to get value.
  *  \return Fitness objective value.
  */
-double FitnessMultiObj::getObjective(unsigned int inObjIndex) const
+double EMO::FitnessMultiObj::getObjective(unsigned int inObjIndex) const
 {
 	Beagle_StackTraceBeginM();
 	if(isValid() == false) {
@@ -136,7 +136,7 @@ double FitnessMultiObj::getObjective(unsigned int inObjIndex) const
 		throw Beagle_RunTimeExceptionM(lOSS.str());
 	}
 	return (*this)[inObjIndex];
-	Beagle_StackTraceEndM()
+	Beagle_StackTraceEndM();
 }
 
 
@@ -144,12 +144,12 @@ double FitnessMultiObj::getObjective(unsigned int inObjIndex) const
  *  \brief Get exact type of the fitness.
  *  \return Exact type of the fitness.
  */
-const std::string& FitnessMultiObj::getType() const
+const std::string& EMO::FitnessMultiObj::getType() const
 {
 	Beagle_StackTraceBeginM();
 	const static std::string lType("FitnessMultiObj");
 	return lType;
-	Beagle_StackTraceEndM()
+	Beagle_StackTraceEndM();
 }
 
 
@@ -158,7 +158,7 @@ const std::string& FitnessMultiObj::getType() const
  *  \param inRightFitness Second multiobjective fitness to test domination on.
  *  \return True if the actual multiobjective measure is dominated, false if not.
  */
-bool FitnessMultiObj::isDominated(const Fitness& inRightFitness) const
+bool EMO::FitnessMultiObj::isDominated(const Fitness& inRightFitness) const
 {
 	Beagle_StackTraceBeginM();
 	const FitnessMultiObj& lRightFitness = castObjectT<const FitnessMultiObj&>(inRightFitness);
@@ -180,7 +180,7 @@ bool FitnessMultiObj::isDominated(const Fitness& inRightFitness) const
  *  \param inRightObj Right measure to compare.
  *  \return True if the fitness are equal, false if not.
  */
-bool FitnessMultiObj::isEqual(const Object& inRightObj) const
+bool EMO::FitnessMultiObj::isEqual(const Object& inRightObj) const
 {
 	Beagle_StackTraceBeginM();
 	const FitnessMultiObj& lRightFitness = castObjectT<const FitnessMultiObj&>(inRightObj);
@@ -200,7 +200,7 @@ bool FitnessMultiObj::isEqual(const Object& inRightObj) const
  *  \param inRightObj Right measure to compare.
  *  \return True if the actual fitness is less from the right one, false if not.
  */
-bool FitnessMultiObj::isLess(const Object& inRightObj) const
+bool EMO::FitnessMultiObj::isLess(const Object& inRightObj) const
 {
 	Beagle_StackTraceBeginM();
 	const FitnessMultiObj& lRightFitness = castObjectT<const FitnessMultiObj&>(inRightObj);
@@ -220,7 +220,7 @@ bool FitnessMultiObj::isLess(const Object& inRightObj) const
  *  \brief Read a multiobjective fitness from a XML subtree.
  *  \param inIter XML iterator to use to read the fitness value.
  */
-void FitnessMultiObj::read(PACC::XML::ConstIterator inIter)
+void EMO::FitnessMultiObj::read(PACC::XML::ConstIterator inIter)
 {
 	Beagle_StackTraceBeginM();
 	if((inIter->getType()!=PACC::XML::eData) || (inIter->getValue()!="Fitness"))
@@ -266,7 +266,7 @@ void FitnessMultiObj::read(PACC::XML::ConstIterator inIter)
  *  \param ioStreamer XML streamer to use to write the fitness value.
  *  \param inIndent Whether XML output should be indented.
  */
-void FitnessMultiObj::writeContent(PACC::XML::Streamer& ioStreamer, bool inIndent) const
+void EMO::FitnessMultiObj::writeContent(PACC::XML::Streamer& ioStreamer, bool inIndent) const
 {
 	Beagle_StackTraceBeginM();
 	ioStreamer.insertAttribute("size", uint2str(size()));
@@ -277,7 +277,3 @@ void FitnessMultiObj::writeContent(PACC::XML::Streamer& ioStreamer, bool inInden
 	}
 	Beagle_StackTraceEndM();
 }
-
-
-
-

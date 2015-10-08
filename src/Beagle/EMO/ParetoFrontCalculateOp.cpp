@@ -43,7 +43,7 @@ using namespace Beagle;
 /*!
  *  \brief Construct a Pareto front extractor operator.
  */
-ParetoFrontCalculateOp::ParetoFrontCalculateOp(std::string inName) :
+EMO::ParetoFrontCalculateOp::ParetoFrontCalculateOp(std::string inName) :
 		Operator(inName),
 		mMilestonePrefix(NULL),
 		mWritingInterval(NULL),
@@ -56,7 +56,7 @@ ParetoFrontCalculateOp::ParetoFrontCalculateOp(std::string inName) :
  *  \brief Register the parameters of this operator.
  *  \param ioSystem System to use to initialize the operator.
  */
-void ParetoFrontCalculateOp::registerParams(System& ioSystem)
+void EMO::ParetoFrontCalculateOp::registerParams(System& ioSystem)
 {
 	Beagle_StackTraceBeginM();
 
@@ -127,7 +127,7 @@ void ParetoFrontCalculateOp::registerParams(System& ioSystem)
  *  \param ioDeme
  *  \param ioContext Context of the evolution.
  */
-void ParetoFrontCalculateOp::operate(Deme& ioDeme, Context& ioContext)
+void EMO::ParetoFrontCalculateOp::operate(Deme& ioDeme, Context& ioContext)
 {
 	Beagle_StackTraceBeginM();
 	if(mMilestonePrefix->getWrappedValue().empty()) return;

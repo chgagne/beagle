@@ -34,8 +34,8 @@
  */
 
 
-#ifndef Beagle_NSGA2Op_hpp
-#define Beagle_NSGA2Op_hpp
+#ifndef Beagle_EMO_NSGA2Op_hpp
+#define Beagle_EMO_NSGA2Op_hpp
 
 #include "Beagle/config.hpp"
 #include "Beagle/macros.hpp"
@@ -53,6 +53,8 @@
 
 
 namespace Beagle
+{
+namespace EMO
 {
 
 /*!
@@ -115,6 +117,7 @@ protected:
 
 };
 
+}
 }
 
 #endif // Beagle_NSGA2Op_hpp

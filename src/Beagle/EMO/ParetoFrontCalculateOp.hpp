@@ -33,8 +33,8 @@
  *  $Date: 2007/08/08 19:26:45 $
  */
 
-#ifndef Beagle_ParetoFrontCalculateOp_hpp
-#define Beagle_ParetoFrontCalculateOp_hpp
+#ifndef Beagle_EMO_ParetoFrontCalculateOp_hpp
+#define Beagle_EMO_ParetoFrontCalculateOp_hpp
 
 #include "Beagle/config.hpp"
 #include "Beagle/macros.hpp"
@@ -52,6 +52,8 @@
 #include "Beagle/Core/Context.hpp"
 
 namespace Beagle
+{
+namespace EMO
 {
 
 /*!
@@ -95,6 +97,7 @@ private:
 
 };
 
+}
 }
 
 #endif // Beagle_ParetoFrontCalculateOp_hpp

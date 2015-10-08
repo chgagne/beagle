@@ -65,7 +65,7 @@ int main(int argc, char** argv)
 		// Install the GA bit string and multi-objective optimization packages
 		const unsigned int lNumberOfBits = 24;
 		lSystem->addPackage(new BitStr::Package(lNumberOfBits));
-		lSystem->addPackage(new PackageMultiObj);
+		lSystem->addPackage(new EMO::PackageMultiObj);
 		// Add evaluation operator allocator
 		lSystem->setEvaluationOp("KnapsackEvalOp", new KnapsackEvalOp::Alloc);
 		// Initialize the evolver

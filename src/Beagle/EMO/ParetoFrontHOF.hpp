@@ -33,8 +33,8 @@
  *  $Date: 2007/08/17 18:09:13 $
  */
 
-#ifndef Beagle_ParetoFrontHOF_hpp
-#define Beagle_ParetoFrontHOF_hpp
+#ifndef Beagle_EMO_ParetoFrontHOF_hpp
+#define Beagle_EMO_ParetoFrontHOF_hpp
 
 #include "Beagle/config.hpp"
 #include "Beagle/macros.hpp"
@@ -51,6 +51,8 @@
 #include "Beagle/Core/Deme.hpp"
 
 namespace Beagle
+{
+namespace EMO
 {
 
 
@@ -87,7 +89,7 @@ public:
 };
 
 }
-
+}
 
 #endif // Beagle_ParetoFrontHOF_hpp
 
