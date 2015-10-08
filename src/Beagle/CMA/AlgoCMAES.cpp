@@ -41,7 +41,7 @@ using namespace Beagle;
  *  \brief Construct CMA-ES evolutionary algorithm.
  */
 CMA::AlgoCMAES::AlgoCMAES(void) :
-		Algorithm("GA-AlgoCMAES")
+		Algorithm("CMA-AlgoCMAES")
 { }
 
 

@@ -42,7 +42,7 @@ using namespace Beagle;
  *  \brief Construct package with CMA-ES objects.
  */
 CMA::PackageCMAES::PackageCMAES(unsigned int inInitSize) :
-		PackageAbstract("GA-PackageCMAES"),
+		PackageAbstract("CMA-PackageCMAES"),
 		mInitSize(inInitSize)
 { }
 
@@ -57,33 +57,33 @@ void CMA::PackageCMAES::configure(System& ioSystem)
 	Factory& lFactory = ioSystem.getFactory();
 
 	// Add available basic types to the factory
-	lFactory.insertAllocator("Beagle::GA::AlgoCMAES", new CMA::AlgoCMAES::Alloc);
-	lFactory.insertAllocator("Beagle::GA::CMAHolder", new CMA::CMAHolder::Alloc);
-	lFactory.insertAllocator("Beagle::GA::InitCMAFltVecOp", new CMA::InitCMAFltVecOp::Alloc);
-	lFactory.insertAllocator("Beagle::GA::MutationCMAFltVecOp", new CMA::MutationCMAFltVecOp::Alloc);
-	lFactory.insertAllocator("Beagle::GA::MutationQRCMAFltVecOp", new CMA::MutationQRCMAFltVecOp::Alloc);
-	lFactory.insertAllocator("Beagle::GA::MuWCommaLambdaCMAFltVecOp", new CMA::MuWCommaLambdaCMAFltVecOp::Alloc);
-	lFactory.insertAllocator("Beagle::GA::PackageCMAES", new CMA::PackageCMAES::Alloc);
-	lFactory.insertAllocator("Beagle::GA::TermCMAOp", new CMA::TermCMAOp::Alloc);
+	lFactory.insertAllocator("Beagle::CMA::AlgoCMAES", new CMA::AlgoCMAES::Alloc);
+	lFactory.insertAllocator("Beagle::CMA::CMAHolder", new CMA::CMAHolder::Alloc);
+	lFactory.insertAllocator("Beagle::CMA::InitCMAFltVecOp", new CMA::InitCMAFltVecOp::Alloc);
+	lFactory.insertAllocator("Beagle::CMA::MutationCMAFltVecOp", new CMA::MutationCMAFltVecOp::Alloc);
+	lFactory.insertAllocator("Beagle::CMA::MutationQRCMAFltVecOp", new CMA::MutationQRCMAFltVecOp::Alloc);
+	lFactory.insertAllocator("Beagle::CMA::MuWCommaLambdaCMAFltVecOp", new CMA::MuWCommaLambdaCMAFltVecOp::Alloc);
+	lFactory.insertAllocator("Beagle::CMA::PackageCMAES", new CMA::PackageCMAES::Alloc);
+	lFactory.insertAllocator("Beagle::CMA::TermCMAOp", new CMA::TermCMAOp::Alloc);
 
 	// Aliases to short name of operators
-	lFactory.aliasAllocator("Beagle::GA::AlgoCMAES", "GA-AlgoCMAES");
-	lFactory.aliasAllocator("Beagle::GA::CMAHolder", "GA-CMAHolder");
-	lFactory.aliasAllocator("Beagle::GA::InitCMAFltVecOp", "GA-InitCMAFltVecOp");
-	lFactory.aliasAllocator("Beagle::GA::MutationCMAFltVecOp", "GA-MutationCMAFltVecOp");
-	lFactory.aliasAllocator("Beagle::GA::MutationQRCMAFltVecOp", "GA-MutationQRCMAFltVecOp");
-	lFactory.aliasAllocator("Beagle::GA::MuWCommaLambdaCMAFltVecOp", "GA-MuWCommaLambdaCMAFltVecOp");
-	lFactory.aliasAllocator("Beagle::GA::PackageCMAES", "GA-PackageCMAES");
-	lFactory.aliasAllocator("Beagle::GA::TermCMAOp", "GA-TermCMAOp");
+	lFactory.aliasAllocator("Beagle::CMA::AlgoCMAES", "GA-AlgoCMAES");
+	lFactory.aliasAllocator("Beagle::CMA::CMAHolder", "GA-CMAHolder");
+	lFactory.aliasAllocator("Beagle::CMA::InitCMAFltVecOp", "GA-InitCMAFltVecOp");
+	lFactory.aliasAllocator("Beagle::CMA::MutationCMAFltVecOp", "GA-MutationCMAFltVecOp");
+	lFactory.aliasAllocator("Beagle::CMA::MutationQRCMAFltVecOp", "GA-MutationQRCMAFltVecOp");
+	lFactory.aliasAllocator("Beagle::CMA::MuWCommaLambdaCMAFltVecOp", "GA-MuWCommaLambdaCMAFltVecOp");
+	lFactory.aliasAllocator("Beagle::CMA::PackageCMAES", "GA-PackageCMAES");
+	lFactory.aliasAllocator("Beagle::CMA::TermCMAOp", "GA-TermCMAOp");
 
 	// Set some basic concept-type associations in factory
-	lFactory.setConcept("Algorithm", "GA-AlgoCMAES");
-	lFactory.setConcept("InitializationOp", "GA-InitCMAFltVecOp");
-	lFactory.setConcept("MutationOp", "GA-MutationCMAFltVecOp");
-	lFactory.setConcept("TerminationOp", "GA-TermCMAOp");
+	lFactory.setConcept("Algorithm", "CMA-AlgoCMAES");
+	lFactory.setConcept("InitializationOp", "CMA-InitCMAFltVecOp");
+	lFactory.setConcept("MutationOp", "CMA-MutationCMAFltVecOp");
+	lFactory.setConcept("TerminationOp", "CMA-TermCMAOp");
 
 	// Add components
-	if(ioSystem.haveComponent("GA-CMAHolder") == NULL) {
+	if(ioSystem.haveComponent("CMA-CMAHolder") == NULL) {
 		ioSystem.addComponent(new CMAHolder);
 	}
 

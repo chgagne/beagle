@@ -32,8 +32,8 @@
  *  $Date: 2007/08/08 14:51:33 $
  */
 
-#ifndef Beagle_GA_AlgoCMAES_hpp
-#define Beagle_GA_AlgoCMAES_hpp
+#ifndef Beagle_CMA_AlgoCMAES_hpp
+#define Beagle_CMA_AlgoCMAES_hpp
 
 #include <map>
 #include <string>

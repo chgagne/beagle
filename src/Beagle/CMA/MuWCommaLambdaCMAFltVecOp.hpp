@@ -88,7 +88,7 @@ public:
 	Bag;
 
 	explicit MuWCommaLambdaCMAFltVecOp(std::string inLMRatioName="ga.cmaes.mulambdaratio",
-	                                   std::string inName="GA-MuWCommaLambdaCMAFltVecOp");
+	                                   std::string inName="CMA-MuWCommaLambdaCMAFltVecOp");
 	virtual ~MuWCommaLambdaCMAFltVecOp()
 	{ }
 

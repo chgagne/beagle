@@ -33,8 +33,8 @@
  *  $Date: 2007/08/08 19:26:34 $
  */
 
-#ifndef Beagle_GA_MutationCMAFltVecOp_hpp
-#define Beagle_GA_MutationCMAFltVecOp_hpp
+#ifndef Beagle_CMA_MutationCMAFltVecOp_hpp
+#define Beagle_CMA_MutationCMAFltVecOp_hpp
 
 #include <string>
 
@@ -80,7 +80,7 @@ public:
 	Bag;
 
 	explicit MutationCMAFltVecOp(std::string inMutationPbName="ga.cmaes.mutpb",
-	                             std::string inName="GA-MutationCMAFltVecOp");
+	                             std::string inName="CMA-MutationCMAFltVecOp");
 	virtual ~MutationCMAFltVecOp()
 	{ }
 

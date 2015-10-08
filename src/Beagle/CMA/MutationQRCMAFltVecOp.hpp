@@ -32,8 +32,8 @@
  *  $Date: 2007/08/08 19:26:34 $
  */
 
-#ifndef Beagle_GA_MutationQRCMAFltVecOp_hpp
-#define Beagle_GA_MutationQRCMAFltVecOp_hpp
+#ifndef Beagle_CMA_MutationQRCMAFltVecOp_hpp
+#define Beagle_CMA_MutationQRCMAFltVecOp_hpp
 
 #include <string>
 
@@ -84,7 +84,7 @@ public:
 	Bag;
 
 	explicit MutationQRCMAFltVecOp(std::string inMutationPbName="ga.cmaes.mutpb",
-	                               std::string inName="GA-MutationQRCMAFltVecOp");
+	                               std::string inName="CMA-MutationQRCMAFltVecOp");
 	virtual ~MutationQRCMAFltVecOp()
 	{ }
 

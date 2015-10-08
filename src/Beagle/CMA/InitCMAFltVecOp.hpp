@@ -33,8 +33,8 @@
  *  $Date: 2007/08/08 19:26:34 $
  */
 
-#ifndef Beagle_GA_InitCMAFltVecOp_hpp
-#define Beagle_GA_InitCMAFltVecOp_hpp
+#ifndef Beagle_CMA_InitCMAFltVecOp_hpp
+#define Beagle_CMA_InitCMAFltVecOp_hpp
 
 #include <string>
 
@@ -82,7 +82,7 @@ public:
 
 	explicit InitCMAFltVecOp(unsigned int inFloatVectorSize=0,
 	                         std::string inReproProbaName="ec.repro.prob",
-	                         std::string inName="GA-InitCMAFltVecOp");
+	                         std::string inName="CMA-InitCMAFltVecOp");
 	virtual ~InitCMAFltVecOp()
 	{ }
 

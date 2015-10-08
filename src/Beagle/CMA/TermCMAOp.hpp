@@ -33,8 +33,8 @@
  *  $Date: 2007/08/08 19:26:34 $
  */
 
-#ifndef Beagle_TermCMAOp_hpp
-#define Beagle_TermCMAOp_hpp
+#ifndef Beagle_CMA_TermCMAOp_hpp
+#define Beagle_CMA_TermCMAOp_hpp
 
 #include "Beagle/config.hpp"
 #include "Beagle/macros.hpp"
@@ -68,7 +68,7 @@ public:
 	typedef ContainerT<CMA::TermCMAOp,EC::TerminationOp::Bag>
 	Bag;
 
-	explicit TermCMAOp(std::string inName="GA-TermCMAOp");
+	explicit TermCMAOp(std::string inName="CMA-TermCMAOp");
 	virtual ~TermCMAOp()
 	{ }
 
