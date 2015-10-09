@@ -25,7 +25,7 @@
  */
 
 /*!
- *  \file   beagle/ParetoFrontCalculateOp.hpp
+ *  \file   Beagle/ParetoFrontCalculateOp.hpp
  *  \brief  Definition of the class ParetoFrontCalculateOp.
  *  \author Christian Gagne
  *  \author Marc Parizeau
@@ -36,26 +36,26 @@
 #ifndef Beagle_ParetoFrontCalculateOp_hpp
 #define Beagle_ParetoFrontCalculateOp_hpp
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Object.hpp"
-#include "beagle/AllocatorT.hpp"
-#include "beagle/PointerT.hpp"
-#include "beagle/ContainerT.hpp"
-#include "beagle/WrapperT.hpp"
-#include "beagle/Operator.hpp"
-#include "beagle/UInt.hpp"
-#include "beagle/String.hpp"
-#include "beagle/Bool.hpp"
-#include "beagle/UInt.hpp"
-#include "beagle/Vivarium.hpp"
-#include "beagle/Context.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Object.hpp"
+#include "Beagle/Core/AllocatorT.hpp"
+#include "Beagle/Core/PointerT.hpp"
+#include "Beagle/Core/ContainerT.hpp"
+#include "Beagle/Core/WrapperT.hpp"
+#include "Beagle/Core/Operator.hpp"
+#include "Beagle/Core/UInt.hpp"
+#include "Beagle/Core/String.hpp"
+#include "Beagle/Core/Bool.hpp"
+#include "Beagle/Core/UInt.hpp"
+#include "Beagle/Core/Vivarium.hpp"
+#include "Beagle/Core/Context.hpp"
 
 namespace Beagle
 {
 
 /*!
- *  \class ParetoFrontCalculateOp beagle/ParetoFrontCalculateOp.hpp "beagle/ParetoFrontCalculateOp.hpp"
+ *  \class ParetoFrontCalculateOp Beagle/ParetoFrontCalculateOp.hpp "Beagle/ParetoFrontCalculateOp.hpp"
  *  \brief Evaluate Pareto front operator class.
  *  \ingroup ECF
  *  \ingroup Op
