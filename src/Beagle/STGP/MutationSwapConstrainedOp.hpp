@@ -38,20 +38,20 @@
 
 #include <string>
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Object.hpp"
-#include "beagle/MutationOp.hpp"
-#include "beagle/UInt.hpp"
-#include "beagle/Float.hpp"
-#include "beagle/Bool.hpp"
-#include "beagle/GP/Context.hpp"
-#include "beagle/GP/Individual.hpp"
-#include "beagle/GP/MutationSwapOp.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Object.hpp"
+#include "Beagle/EC/MutationOp.hpp"
+#include "Beagle/Core/UInt.hpp"
+#include "Beagle/Core/Float.hpp"
+#include "Beagle/Core/Bool.hpp"
+#include "Beagle/GP/Context.hpp"
+#include "Beagle/GP/Individual.hpp"
+#include "Beagle/GP/MutationSwapOp.hpp"
 
 namespace Beagle
 {
-namespace GP
+namespace STGP
 {
 
 /*!
@@ -61,19 +61,19 @@ namespace GP
  *  \ingroup GPF
  *  \ingroup GPOp
  */
-class MutationSwapConstrainedOp : public MutationSwapOp
+class MutationSwapConstrainedOp : public GP::MutationSwapOp
 {
 
 public:
 
 	//! GP::MutationSwapConstrainedOp allocator type.
-	typedef AllocatorT<MutationSwapConstrainedOp,MutationSwapOp::Alloc>
+	typedef AllocatorT<MutationSwapConstrainedOp,GP::MutationSwapOp::Alloc>
 	Alloc;
 	//! GP::MutationSwapConstrainedOp handle type.
-	typedef PointerT<MutationSwapConstrainedOp,MutationSwapOp::Handle>
+	typedef PointerT<MutationSwapConstrainedOp,GP::MutationSwapOp::Handle>
 	Handle;
 	//! GP::MutationSwapConstrainedOp bag type.
-	typedef ContainerT<MutationSwapConstrainedOp,MutationSwapOp::Bag>
+	typedef ContainerT<MutationSwapConstrainedOp,GP::MutationSwapOp::Bag>
 	Bag;
 
 	explicit MutationSwapConstrainedOp(std::string inMutationPbName="gp.mutswap.indpb",

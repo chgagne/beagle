@@ -32,7 +32,7 @@
  *  $Date: 2007/08/09 21:43:10 $
  */
 
-#include "beagle/GP.hpp"
+#include "Beagle/STGP.hpp"
 
 using namespace Beagle;
 
@@ -41,7 +41,7 @@ using namespace Beagle;
  *  \brief Construct a new validation operator.
  *  \param inName Name of the operator.
  */
-GP::ValidateOp::ValidateOp(std::string inName) :
+STGP::ValidateOp::ValidateOp(std::string inName) :
 		Operator(inName)
 {}
 
@@ -52,7 +52,7 @@ GP::ValidateOp::ValidateOp(std::string inName) :
  *  \param ioDeme Reference to the deme on which the operation takes place.
  *  \param ioContext Evolutionary context of the operation.
  */
-void GP::ValidateOp::operate(Beagle::Deme& ioDeme, Beagle::Context& ioContext)
+void STGP::ValidateOp::operate(Beagle::Deme& ioDeme, Beagle::Context& ioContext)
 {
 	Beagle_StackTraceBeginM();
 	GP::Context& lContext = castObjectT<GP::Context&>(ioContext);
@@ -78,7 +78,6 @@ void GP::ValidateOp::operate(Beagle::Deme& ioDeme, Beagle::Context& ioContext)
 
 	Beagle_LogDetailedM(
 	    ioContext.getSystem().getLogger(),
-	    "validate", "Beagle::GP::ValidateOp",
 	    std::string("Every individual passed validation testing.")
 	);
 

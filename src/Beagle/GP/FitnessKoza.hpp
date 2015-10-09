@@ -43,14 +43,14 @@
 #ifndef Beagle_GP_FitnessKoza_hpp
 #define Beagle_GP_FitnessKoza_hpp
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Object.hpp"
-#include "beagle/AllocatorT.hpp"
-#include "beagle/PointerT.hpp"
-#include "beagle/ContainerT.hpp"
-#include "beagle/Stats.hpp"
-#include "beagle/FitnessSimple.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Object.hpp"
+#include "Beagle/Core/AllocatorT.hpp"
+#include "Beagle/Core/PointerT.hpp"
+#include "Beagle/Core/ContainerT.hpp"
+#include "Beagle/Core/Stats.hpp"
+#include "Beagle/EC/FitnessSimple.hpp"
 
 
 namespace Beagle
@@ -67,19 +67,19 @@ namespace GP
  *    Fitness measure express by Koza in Genetic Programming I. Only Normalized fitness
  *    is used in the natural selection process, others fitness are only indications.
  */
-class FitnessKoza : public FitnessSimple
+class FitnessKoza : public EC::FitnessSimple
 {
 
 public:
 
 	//! GP::FitnessKoza allocator type.
-	typedef AllocatorT<FitnessKoza,FitnessSimple::Alloc>
+	typedef AllocatorT<FitnessKoza,EC::FitnessSimple::Alloc>
 	Alloc;
 	//! GP::FitnessKoza handle type.
-	typedef PointerT<FitnessKoza,FitnessSimple::Handle>
+	typedef PointerT<FitnessKoza,EC::FitnessSimple::Handle>
 	Handle;
 	//! GP::FitnessKoza bag type.
-	typedef ContainerT<FitnessKoza,FitnessSimple::Bag>
+	typedef ContainerT<FitnessKoza,EC::FitnessSimple::Bag>
 	Bag;
 
 	FitnessKoza();

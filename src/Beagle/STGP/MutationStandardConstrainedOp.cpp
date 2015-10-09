@@ -33,7 +33,7 @@
  *  $Date: 2007/08/17 18:09:11 $
  */
 
-#include "beagle/GP.hpp"
+#include "Beagle/STGP.hpp"
 
 #include <algorithm>
 #include <string>
@@ -48,11 +48,11 @@ using namespace Beagle;
  *  \param inMaxRegenDepthName Maximum regeneration depth in mutation parameter name.
  *  \param inName Name of the operator.
  */
-GP::MutationStandardConstrainedOp::MutationStandardConstrainedOp(GP::InitializationOp::Handle inInitOp,
+STGP::MutationStandardConstrainedOp::MutationStandardConstrainedOp(GP::InitializationOp::Handle inInitOp,
         std::string inMutationPbName,
         std::string inMaxRegenDepthName,
         std::string inName) :
-		MutationStandardOp(inInitOp, inMutationPbName, inMaxRegenDepthName, inName)
+        GP::MutationStandardOp(inInitOp, inMutationPbName, inMaxRegenDepthName, inName)
 { }
 
 
@@ -60,7 +60,7 @@ GP::MutationStandardConstrainedOp::MutationStandardConstrainedOp(GP::Initializat
  *  \brief Register the parameters of the constrained GP tree standard mutation operator.
  *  \param ioSystem System of the evolution.
  */
-void GP::MutationStandardConstrainedOp::registerParams(Beagle::System& ioSystem)
+void STGP::MutationStandardConstrainedOp::registerParams(Beagle::System& ioSystem)
 {
 	Beagle_StackTraceBeginM();
 	MutationStandardOp::registerParams(ioSystem);
@@ -81,7 +81,7 @@ void GP::MutationStandardConstrainedOp::registerParams(Beagle::System& ioSystem)
  *  \param ioContext Context of the evolution.
  *  \return True if the individual is effectively mutated, false if not.
  */
-bool GP::MutationStandardConstrainedOp::mutate(Beagle::Individual& ioIndividual, Beagle::Context& ioContext)
+bool STGP::MutationStandardConstrainedOp::mutate(Beagle::Individual& ioIndividual, Beagle::Context& ioContext)
 {
 	Beagle_StackTraceBeginM();
 	GP::Individual& lIndividual        = castObjectT<GP::Individual&>(ioIndividual);
@@ -108,14 +108,10 @@ bool GP::MutationStandardConstrainedOp::mutate(Beagle::Individual& ioIndividual,
 
 	Beagle_LogDebugM(
 	    ioContext.getSystem().getLogger(),
-	    "mutation",
-	    "Beagle::GP::MutationStandardConstrainedOp",
 	    "Individual before GP standard mutation"
 	);
-	Beagle_LogObjectDebugM(
+	Beagle_LogDebugM(
 	    ioContext.getSystem().getLogger(),
-	    "mutation",
-	    "Beagle::GP::MutationStandardConstrainedOp",
 	    ioIndividual
 	);
 
@@ -145,7 +141,6 @@ bool GP::MutationStandardConstrainedOp::mutate(Beagle::Individual& ioIndividual,
 		lContext.setGenotypeHandle(lOldGenotypeHandle);
 		Beagle_LogVerboseM(
 		    ioContext.getSystem().getLogger(),
-		    "mutation", "Beagle::GP::MutationStandardConstrainedOp",
 		    "Unable to GP standard mutate the individual"
 		);
 		return false;
@@ -153,7 +148,6 @@ bool GP::MutationStandardConstrainedOp::mutate(Beagle::Individual& ioIndividual,
 
 	Beagle_LogVerboseM(
 	    ioContext.getSystem().getLogger(),
-	    "mutation", "Beagle::GP::MutationStandardConstrainedOp",
 	    std::string("GP standard mutate the ")+uint2ordinal(lChoosenNode+1)+
 	    std::string(" node of the ")+uint2ordinal(lChoosenTree+1)+
 	    std::string(" tree with max depth ")+uint2str(lMaxSubTreeDepth)
@@ -173,22 +167,13 @@ bool GP::MutationStandardConstrainedOp::mutate(Beagle::Individual& ioIndividual,
 
 	Beagle_LogDebugM(
 	    ioContext.getSystem().getLogger(),
-	    "mutation",
-	    "Beagle::GP::MutationStandardConstrainedOp",
 	    "Individual after GP standard mutation"
 	);
-	Beagle_LogObjectDebugM(
+	Beagle_LogDebugM(
 	    ioContext.getSystem().getLogger(),
-	    "mutation",
-	    "Beagle::GP::MutationStandardConstrainedOp",
 	    ioIndividual
 	);
 
 	return true;
 	Beagle_StackTraceEndM();
 }
-
-
-
-
-
