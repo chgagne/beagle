@@ -71,6 +71,7 @@ void Package::configure(System& ioSystem)
 	lFactory.insertAllocator("Beagle::Factory", new Factory::Alloc);
 	lFactory.insertAllocator("Beagle::Float", new Float::Alloc);
 	lFactory.insertAllocator("Beagle::FloatArray", new FloatArray::Alloc);
+	lFactory.insertAllocator("Beagle::HallOfFame", new HallOfFame::Alloc);
 	lFactory.insertAllocator("Beagle::Individual", new Individual::Alloc);
 	lFactory.insertAllocator("Beagle::Int", new Int::Alloc);
 	lFactory.insertAllocator("Beagle::IntArray", new IntArray::Alloc);
@@ -130,6 +131,7 @@ void Package::configure(System& ioSystem)
 	lFactory.aliasAllocator("Beagle::ShortArray", "ShortArray");
 	lFactory.aliasAllocator("Beagle::Stats", "Stats");
 	lFactory.aliasAllocator("Beagle::String", "String");
+	lFactory.aliasAllocator("Beagle::System", "System");
 	lFactory.aliasAllocator("Beagle::UChar", "UChar");
 	lFactory.aliasAllocator("Beagle::UInt", "UInt");
 	lFactory.aliasAllocator("Beagle::UIntArray", "UIntArray");
@@ -144,7 +146,6 @@ void Package::configure(System& ioSystem)
 	lFactory.setConcept("Vivarium", "Vivarium");
 	lFactory.setConcept("Deme", "Deme");
 	lFactory.setConcept("Individual", "Individual");
-	lFactory.setConcept("Fitness", "FitnessSimple");
 	lFactory.setConcept("Stats", "Stats");
 	lFactory.setConcept("HallOfFame", "HallOfFame");
 	lFactory.setConcept("Context", "Context");

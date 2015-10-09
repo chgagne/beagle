@@ -33,7 +33,7 @@
  *  $Date: 2007/08/17 18:09:10 $
  */
 
-#include "beagle/FltVec.hpp"
+#include "Beagle/FltVec.hpp"
 
 #include <cfloat>
 #include <float.h>    // To get FLT_MAX on Borland C++ Builder

@@ -39,8 +39,8 @@
 
 #include <string>
 
-#include "beagle/Core.hpp"
-#include "beagle/EC.hpp"
+#include "Beagle/Core.hpp"
+#include "Beagle/EC.hpp"
 
 
 namespace Beagle

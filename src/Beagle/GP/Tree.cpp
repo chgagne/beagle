@@ -203,7 +203,8 @@ const std::type_info* GP::Tree::getRootType(GP::Context& ioContext) const
 	Beagle_StackTraceBeginM();
 	const std::type_info* lType = mRootType;
 #if defined(BEAGLE_USE_OMP_R) || defined(BEAGLE_USE_OMP_NR)
-#pragma omp critical {
+#pragma omp critical
+{
 #endif
 	if(mRootType == NULL) {
 		GP::PrimitiveSuperSet::Handle lSuperSet =
