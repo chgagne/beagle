@@ -1,0 +1,11 @@
+      <Individual size="1">
+        <Genotype type="gptree" primitSetId="0" nbArgs="0">
+<IFA>
+  <R/>
+  <IFA><R/>
+       <P2><M/><L/></P2>
+  </IFA>
+</IFA>
+        </Genotype>
+      </Individual>
+<!-- Should produce a fitness of zero by avoiding the food-->

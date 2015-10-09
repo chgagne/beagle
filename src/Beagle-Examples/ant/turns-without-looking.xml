@@ -1,0 +1,6 @@
+      <Individual size="1">
+        <Genotype type="gptree" primitSetId="0" nbArgs="0">
+<P2><R/><L/></P2>
+        </Genotype>
+      </Individual>
+<!-- Should produce a fitness of zero-->
