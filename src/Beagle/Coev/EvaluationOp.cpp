@@ -33,7 +33,7 @@
  *  $Date: 2007/08/17 18:09:09 $
  */
 
-#include "Beagle/Coev.hpp"
+#include "beagle/Coev.hpp"
 
 #include <string>
 

@@ -33,8 +33,8 @@
  *  $Date: 2007/08/08 19:26:35 $
  */
 
-#ifndef Beagle_STGP_MutationSwapConstrainedOp_hpp
-#define Beagle_STGP_MutationSwapConstrainedOp_hpp
+#ifndef Beagle_GP_MutationSwapConstrainedOp_hpp
+#define Beagle_GP_MutationSwapConstrainedOp_hpp
 
 #include <string>
 

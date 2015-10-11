@@ -32,21 +32,21 @@
  *  $Date: 2007/08/08 14:51:33 $
  */
 
-#ifndef Beagle_CMA_AlgoCMAES_hpp
-#define Beagle_CMA_AlgoCMAES_hpp
+#ifndef Beagle_GA_AlgoCMAES_hpp
+#define Beagle_GA_AlgoCMAES_hpp
 
 #include <map>
 #include <string>
 
-#include "Beagle/config.hpp"
-#include "Beagle/macros.hpp"
-#include "Beagle/Core/Algorithm.hpp"
+#include "beagle/config.hpp"
+#include "beagle/macros.hpp"
+#include "beagle/Algorithm.hpp"
 
 
 namespace Beagle
 {
 
-namespace CMA
+namespace GA
 {
 
 /*!
