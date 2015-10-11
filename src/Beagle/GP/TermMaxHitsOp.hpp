@@ -38,16 +38,16 @@
 
 #include <string>
 
-#include "Beagle/config.hpp"
-#include "Beagle/macros.hpp"
-#include "Beagle/Core/Object.hpp"
-#include "Beagle/Core/AllocatorT.hpp"
-#include "Beagle/Core/PointerT.hpp"
-#include "Beagle/Core/ContainerT.hpp"
-#include "Beagle/Core/WrapperT.hpp"
-#include "Beagle/Core/Operator.hpp"
-#include "Beagle/EC/TerminationOp.hpp"
-#include "Beagle/Core/UInt.hpp"
+#include "beagle/config.hpp"
+#include "beagle/macros.hpp"
+#include "beagle/Object.hpp"
+#include "beagle/AllocatorT.hpp"
+#include "beagle/PointerT.hpp"
+#include "beagle/ContainerT.hpp"
+#include "beagle/WrapperT.hpp"
+#include "beagle/Operator.hpp"
+#include "beagle/TerminationOp.hpp"
+#include "beagle/UInt.hpp"
 
 
 namespace Beagle
@@ -62,19 +62,19 @@ namespace GP
  *  \ingroup GPOp
  *  \ingroup GPFit
  */
-class TermMaxHitsOp : public EC::TerminationOp
+class TermMaxHitsOp : public TerminationOp
 {
 
 public:
 
 	//! TermMaxHitsOp allocator type.
-	typedef AllocatorT<TermMaxHitsOp,EC::TerminationOp::Alloc>
+	typedef AllocatorT<TermMaxHitsOp,TerminationOp::Alloc>
 	Alloc;
 	//!< TermMaxHitsOp handle type.
-	typedef PointerT<TermMaxHitsOp,EC::TerminationOp::Handle>
+	typedef PointerT<TermMaxHitsOp,TerminationOp::Handle>
 	Handle;
 	//!< TermMaxHitsOp bag type.
-	typedef ContainerT<TermMaxHitsOp,EC::TerminationOp::Bag>
+	typedef ContainerT<TermMaxHitsOp,TerminationOp::Bag>
 	Bag;
 
 	explicit TermMaxHitsOp(unsigned int inMaxHits=0, std::string inName="GP-TermMaxHitsOp");

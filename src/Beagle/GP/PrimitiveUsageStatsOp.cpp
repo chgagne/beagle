@@ -24,7 +24,7 @@
  *
  */
 
-#include "Beagle/GP.hpp"
+#include "beagle/GP.hpp"
 
 #include <iostream>
 #include <map>
@@ -192,9 +192,10 @@ void GP::PrimitiveUsageStatsOp::operate(Beagle::Deme& ioDeme, Beagle::Context& i
 	}
 
 	// Display usage statistics
-	Beagle_LogM(
+	Beagle_LogObjectM(
 	    ioContext.getSystem().getLogger(),
 	    Logger::eStats,
+	    "stats", "Beagle::GP::PrimitiveUsageStatsOp",
 	    lCounter
 	);
 	Beagle_StackTraceEndM();

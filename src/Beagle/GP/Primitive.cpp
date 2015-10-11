@@ -34,7 +34,7 @@
  *  $Date: 2007/08/10 20:32:21 $
  */
 
-#include "Beagle/GP.hpp"
+#include "beagle/GP.hpp"
 
 using namespace Beagle;
 
@@ -288,6 +288,7 @@ bool GP::Primitive::validate(GP::Context& ioContext) const
 			// Not valid.
 			Beagle_LogVerboseM(
 			    ioContext.getSystem().getLogger(),
+			    "primitive", "Beagle::GP::Primitive",
 			    std::string("Validation of '").append(getName()).append("' primitive failed. ").
 			    append("The primitive is at the root of the ").
 			    append(uint2ordinal(ioContext.getGenotypeIndex()+1)).append(" tree and its type ('").
@@ -322,6 +323,7 @@ bool GP::Primitive::validate(GP::Context& ioContext) const
 		// Not valid.
 		Beagle_LogVerboseM(
 		    ioContext.getSystem().getLogger(),
+		    "primitive", "Beagle::GP::Primitive",
 		    std::string("Validation of '").append(getName()).append("' primitive failed.").
 		    append(" The primitive is at the ").
 		    append(uint2ordinal(ioContext.getCallStackTop()+1)).append(" node of the ").

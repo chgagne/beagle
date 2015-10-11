@@ -45,15 +45,15 @@
 
 #include <string>
 
-#include "Beagle/config.hpp"
-#include "Beagle/macros.hpp"
-#include "Beagle/Core/NamedObject.hpp"
-#include "Beagle/Core/Allocator.hpp"
-#include "Beagle/Core/AbstractAllocT.hpp"
-#include "Beagle/Core/Pointer.hpp"
-#include "Beagle/Core/Container.hpp"
-#include "Beagle/Core/System.hpp"
-#include "Beagle/GP/Datum.hpp"
+#include "beagle/config.hpp"
+#include "beagle/macros.hpp"
+#include "beagle/NamedObject.hpp"
+#include "beagle/Allocator.hpp"
+#include "beagle/AbstractAllocT.hpp"
+#include "beagle/Pointer.hpp"
+#include "beagle/Container.hpp"
+#include "beagle/System.hpp"
+#include "beagle/GP/Datum.hpp"
 
 #ifdef BEAGLE_HAVE_RTTI
 #include <typeinfo>

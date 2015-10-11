@@ -34,7 +34,7 @@
  */
 
 
-#include "Beagle/GP.hpp"
+#include "beagle/GP.hpp"
 
 using namespace Beagle;
 

@@ -32,7 +32,7 @@
  *  $Date: 2007/09/17 17:25:49 $
  */
 
-#include "Beagle/GP.hpp"
+#include "beagle/GP.hpp"
 
 using namespace Beagle;
 
@@ -41,7 +41,7 @@ using namespace Beagle;
  *  \brief Construct package with basic GP objects.
  */
 GP::PackageBase::PackageBase() :
-		Beagle::PackageAbstract("GP-PackageBase"),
+		Beagle::Package("GP-PackageBase"),
 		mPrimitiveSuperSet(new GP::PrimitiveSuperSet)
 { }
 
@@ -51,7 +51,7 @@ GP::PackageBase::PackageBase() :
  *  \param inPrimitiveSuperSet Super set of primitives to use.
  */
 GP::PackageBase::PackageBase(GP::PrimitiveSuperSet::Handle inPrimitiveSuperSet) :
-		Beagle::PackageAbstract("GP-PackageBase"),
+		Beagle::Package("GP-PackageBase"),
 		mPrimitiveSuperSet(inPrimitiveSuperSet)
 { }
 
@@ -61,7 +61,7 @@ GP::PackageBase::PackageBase(GP::PrimitiveSuperSet::Handle inPrimitiveSuperSet) 
  *  \param inPrimitiveSet Set of primitives to use.
  */
 GP::PackageBase::PackageBase(GP::PrimitiveSet::Handle inPrimitiveSet) :
-		Beagle::PackageAbstract("GP-PackageBase"),
+		Beagle::Package("GP-PackageBase"),
 		mPrimitiveSuperSet(new GP::PrimitiveSuperSet)
 {
 	Beagle_StackTraceBeginM();
@@ -202,11 +202,11 @@ void GP::PackageBase::configure(Beagle::System& ioSystem)
  *
  *  GP::PackageBase depends on Beagle::PackageBase.
  */
-Beagle::PackageAbstract::Bag GP::PackageBase::listDependencies(void)
+Beagle::Package::Bag GP::PackageBase::listDependencies(void)
 {
 	Beagle_StackTraceBeginM();
-	PackageAbstract::Bag lDependencies;
-	lDependencies.push_back(new Beagle::EC::Package());
+	Package::Bag lDependencies;
+	lDependencies.push_back(new Beagle::PackageBase());
 	return lDependencies;
 	Beagle_StackTraceEndM();
 }

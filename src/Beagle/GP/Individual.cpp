@@ -33,8 +33,8 @@
  *  $Date: 2007/08/17 18:09:11 $
  */
 
-#include "Beagle/GP.hpp"
-#include "Beagle/Core/RouletteT.hpp"
+#include "beagle/GP.hpp"
+#include "beagle/RouletteT.hpp"
 
 using namespace Beagle;
 
@@ -223,19 +223,23 @@ void GP::Individual::run(GP::Datum& outResult, GP::Context& ioContext)
 	ioContext.setGenotypeHandle((*this)[0]);
 	Beagle_LogVerboseM(
 	    ioContext.getSystem().getLogger(),
+	    "individual", "Beagle::GP::Individual",
 	    std::string("Running the ")+uint2ordinal(ioContext.getIndividualIndex()+1)+
 	    std::string(" individual")
 	);
 	Beagle_LogDebugM(
 	    ioContext.getSystem().getLogger(),
+	    "individual", "Beagle::GP::Individual",
 	    std::string("The individual is: ")
 	);
-	Beagle_LogDebugM(
+	Beagle_LogObjectDebugM(
 	    ioContext.getSystem().getLogger(),
+	    "individual", "Beagle::GP::Individual",
 	    (*this)
 	);
 	Beagle_LogDebugM(
 	    ioContext.getSystem().getLogger(),
+	    "individual", "Beagle::GP::Individual",
 	    std::string("Executing the first tree root node '")+
 	    (*(*this)[0])[0].mPrimitive->getName()+"'"
 	);
@@ -248,6 +252,7 @@ void GP::Individual::run(GP::Datum& outResult, GP::Context& ioContext)
 	ioContext.checkExecutionTime();
 	Beagle_LogDebugM(
 	    ioContext.getSystem().getLogger(),
+	    "individual", "Beagle::GP::Individual",
 	    std::string("Result of executing the ")+uint2ordinal(ioContext.getIndividualIndex()+1)+
 	    std::string(" individual: ")+outResult.serialize()
 	);
@@ -269,6 +274,7 @@ bool GP::Individual::validate(GP::Context& ioContext)
 
 	Beagle_LogDetailedM(
 	    ioContext.getSystem().getLogger(),
+	    "individual", "Beagle::GP::Individual",
 	    std::string("Validating ")+uint2ordinal(ioContext.getIndividualIndex()+1)+
 	    std::string(" individual")
 	);
@@ -283,6 +289,7 @@ bool GP::Individual::validate(GP::Context& ioContext)
 		if (lTree == NULL) {
 			Beagle_LogVerboseM(
 			    ioContext.getSystem().getLogger(),
+			    "individual", "Beagle::GP::Individual",
 			    std::string("Skipping ")+uint2ordinal(i+1)+std::string(" tree because it's NULL-valued")
 			);
 			continue;
@@ -290,6 +297,7 @@ bool GP::Individual::validate(GP::Context& ioContext)
 
 		Beagle_LogVerboseM(
 		    ioContext.getSystem().getLogger(),
+		    "individual", "Beagle::GP::Individual",
 		    std::string("Validating ")+uint2ordinal(i+1)+std::string(" tree")
 		);
 
@@ -301,6 +309,7 @@ bool GP::Individual::validate(GP::Context& ioContext)
 		if(!lTree->validateSubTree(0, ioContext)) {
 			Beagle_LogVerboseM(
 			    ioContext.getSystem().getLogger(),
+			    "individual", "Beagle::GP::Individual",
 			    std::string("Validation of ")+uint2ordinal(i+1)+std::string(" tree failed.")
 			);
 			lResult = false;
@@ -311,6 +320,7 @@ bool GP::Individual::validate(GP::Context& ioContext)
 	if(lResult) {
 		Beagle_LogVerboseM(
 		    ioContext.getSystem().getLogger(),
+		    "individual", "Beagle::GP::Individual",
 		    std::string("Individual passed validation testing.")
 		);
 	}

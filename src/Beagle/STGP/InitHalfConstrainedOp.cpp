@@ -33,7 +33,7 @@
  *  $Date: 2007/08/08 19:26:40 $
  */
 
-#include "Beagle/STGP.hpp"
+#include "beagle/GP.hpp"
 
 #include <sstream>
 
@@ -45,7 +45,7 @@ using namespace Beagle;
  *  \param inReproProbaName Reproduction probability parameter name used in register. 
  *  \param inName Name of the operator.
  */
-STGP::InitHalfConstrainedOp::InitHalfConstrainedOp(std::string inReproProbaName,
+GP::InitHalfConstrainedOp::InitHalfConstrainedOp(std::string inReproProbaName,
         std::string inName) :
 		Beagle::GP::InitializationOp(inReproProbaName, inName),
 		mInitFullOp(inReproProbaName),
@@ -57,7 +57,7 @@ STGP::InitHalfConstrainedOp::InitHalfConstrainedOp(std::string inReproProbaName,
  *  \brief Register the parameters of the constrained GP tree "half-and-half" intialization operator.
  *  \param ioSystem System of the evolution.
  */
-void STGP::InitHalfConstrainedOp::registerParams(Beagle::System& ioSystem)
+void GP::InitHalfConstrainedOp::registerParams(Beagle::System& ioSystem)
 {
 	Beagle_StackTraceBeginM();
 	Beagle::GP::InitializationOp::registerParams(ioSystem);
@@ -74,7 +74,7 @@ void STGP::InitHalfConstrainedOp::registerParams(Beagle::System& ioSystem)
  *  \param inMaxDepth Maximum depth to make tree.
  *  \param ioContext Evolution context.
  */
-unsigned int STGP::InitHalfConstrainedOp::initTree(GP::Tree &outTree,
+unsigned int GP::InitHalfConstrainedOp::initTree(GP::Tree &outTree,
         unsigned int inMinDepth,
         unsigned int inMaxDepth,
         GP::Context &ioContext) const

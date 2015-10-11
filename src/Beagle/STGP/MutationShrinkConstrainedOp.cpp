@@ -33,7 +33,7 @@
  *  $Date: 2007/08/17 18:09:11 $
  */
 
-#include "Beagle/STGP.hpp"
+#include "beagle/GP.hpp"
 
 #include <algorithm>
 #include <string>
@@ -46,9 +46,9 @@ using namespace Beagle;
  *  \param inMutationPbName Mutation shrink probability.
  *  \param inName Name of the operator.
  */
-STGP::MutationShrinkConstrainedOp::MutationShrinkConstrainedOp(std::string inMutationPbName,
+GP::MutationShrinkConstrainedOp::MutationShrinkConstrainedOp(std::string inMutationPbName,
         std::string inName) :
-        GP::MutationShrinkOp(inMutationPbName, inName)
+		MutationShrinkOp(inMutationPbName, inName)
 { }
 
 
@@ -56,7 +56,7 @@ STGP::MutationShrinkConstrainedOp::MutationShrinkConstrainedOp(std::string inMut
  *  \brief Register the parameters of the constrained GP tree shrink mutation operator.
  *  \param ioSystem System of the evolution.
  */
-void STGP::MutationShrinkConstrainedOp::registerParams(Beagle::System& ioSystem)
+void GP::MutationShrinkConstrainedOp::registerParams(Beagle::System& ioSystem)
 {
 	Beagle_StackTraceBeginM();
 	MutationShrinkOp::registerParams(ioSystem);
@@ -77,7 +77,7 @@ void STGP::MutationShrinkConstrainedOp::registerParams(Beagle::System& ioSystem)
  *  \param ioContext Context of the evolution.
  *  \return True if the individual is effectively mutated, false if not.
  */
-bool STGP::MutationShrinkConstrainedOp::mutate(Beagle::Individual& ioIndividual, Beagle::Context& ioContext)
+bool GP::MutationShrinkConstrainedOp::mutate(Beagle::Individual& ioIndividual, Beagle::Context& ioContext)
 {
 	Beagle_StackTraceBeginM();
 	GP::Individual& lIndividual  = castObjectT<GP::Individual&>(ioIndividual);
@@ -102,10 +102,14 @@ bool STGP::MutationShrinkConstrainedOp::mutate(Beagle::Individual& ioIndividual,
 
 	Beagle_LogDebugM(
 	    ioContext.getSystem().getLogger(),
+	    "mutation",
+	    "Beagle::GP::MutationShrinkConstrainedOp",
 	    "Individual before constrained GP tree shrink mutation"
 	);
-	Beagle_LogDebugM(
+	Beagle_LogObjectDebugM(
 	    ioContext.getSystem().getLogger(),
+	    "mutation",
+	    "Beagle::GP::MutationShrinkConstrainedOp",
 	    ioIndividual
 	);
 	
@@ -149,6 +153,7 @@ bool STGP::MutationShrinkConstrainedOp::mutate(Beagle::Individual& ioIndividual,
 
 		Beagle_LogVerboseM(
 		    ioContext.getSystem().getLogger(),
+		    "mutation", "Beagle::GP::MutationShrinkConstrainedOp",
 		    std::string("Trying to replace the ")+uint2ordinal(lChoosenNode+1)+
 		    std::string(" node of the ")+uint2ordinal(lChoosenTree+1)+
 		    std::string(" tree with its ")+uint2ordinal(lChoosenArg+1)+
@@ -162,6 +167,7 @@ bool STGP::MutationShrinkConstrainedOp::mutate(Beagle::Individual& ioIndividual,
 			lMutationDone = true;
 			Beagle_LogVerboseM(
 			    ioContext.getSystem().getLogger(),
+			    "mutation", "Beagle::GP::MutationShrinkConstrainedOp",
 			    "Constrained GP tree shrink mutation valid"
 			);
 			break;
@@ -169,10 +175,12 @@ bool STGP::MutationShrinkConstrainedOp::mutate(Beagle::Individual& ioIndividual,
 			lIndividual[lChoosenTree] = lActualTree;
 			Beagle_LogVerboseM(
 			    ioContext.getSystem().getLogger(),
+			    "mutation", "Beagle::GP::MutationShrinkConstrainedOp",
 			    "Constrained GP tree shrink mutation invalid"
 			);
 			Beagle_LogVerboseM(
 			    ioContext.getSystem().getLogger(),
+			    "mutation", "Beagle::GP::MutationShrinkConstrainedOp",
 			    "Unable to shrink mutate the individual"
 			);
 			break;
@@ -180,6 +188,7 @@ bool STGP::MutationShrinkConstrainedOp::mutate(Beagle::Individual& ioIndividual,
 			lChoosenNode = lContext.getSystem().getRandomizer().rollInteger(0, lActualTree->size()-1);
 			Beagle_LogVerboseM(
 			    ioContext.getSystem().getLogger(),
+			    "mutation", "Beagle::GP::MutationShrinkConstrainedOp",
 			    "Constrained GP tree shrink mutation invalid"
 			);
 			continue;
@@ -192,15 +201,18 @@ bool STGP::MutationShrinkConstrainedOp::mutate(Beagle::Individual& ioIndividual,
 	if(lMutationDone) {
 		Beagle_LogDebugM(
 		    ioContext.getSystem().getLogger(),
+		    "mutation", "Beagle::GP::MutationShrinkConstrainedOp",
 		    "Individual after constrained GP tree shrink mutation"
 		);
-		Beagle_LogDebugM(
+		Beagle_LogObjectDebugM(
 		    ioContext.getSystem().getLogger(),
+		    "mutation", "Beagle::GP::MutationShrinkConstrainedOp",
 		    ioIndividual
 		);
 	} else {
 		Beagle_LogVerboseM(
 		    ioContext.getSystem().getLogger(),
+		    "mutation", "Beagle::GP::MutationShrinkConstrainedOp",
 		    "No constrained GP tree shrink mutation done"
 		);
 	}

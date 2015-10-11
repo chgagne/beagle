@@ -36,10 +36,10 @@
 #ifndef Beagle_GP_Individual_hpp
 #define Beagle_GP_Individual_hpp
 
-#include "Beagle/config.hpp"
-#include "Beagle/macros.hpp"
-#include "Beagle/Core/Individual.hpp"
-#include "Beagle/GP/Tree.hpp"
+#include "beagle/config.hpp"
+#include "beagle/macros.hpp"
+#include "beagle/Individual.hpp"
+#include "beagle/GP/Tree.hpp"
 
 
 namespace Beagle

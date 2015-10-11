@@ -38,20 +38,20 @@
 
 #include <string>
 
-#include "Beagle/config.hpp"
-#include "Beagle/macros.hpp"
-#include "Beagle/Core/Object.hpp"
-#include "Beagle/EC/MutationOp.hpp"
-#include "Beagle/Core/UInt.hpp"
-#include "Beagle/Core/Float.hpp"
-#include "Beagle/Core/Bool.hpp"
-#include "Beagle/GP/Context.hpp"
-#include "Beagle/GP/Individual.hpp"
-#include "Beagle/GP/MutationShrinkOp.hpp"
+#include "beagle/config.hpp"
+#include "beagle/macros.hpp"
+#include "beagle/Object.hpp"
+#include "beagle/MutationOp.hpp"
+#include "beagle/UInt.hpp"
+#include "beagle/Float.hpp"
+#include "beagle/Bool.hpp"
+#include "beagle/GP/Context.hpp"
+#include "beagle/GP/Individual.hpp"
+#include "beagle/GP/MutationShrinkOp.hpp"
 
 namespace Beagle
 {
-namespace STGP
+namespace GP
 {
 
 /*!
@@ -61,19 +61,19 @@ namespace STGP
  *  \ingroup GPF
  *  \ingroup GPOp
  */
-class MutationShrinkConstrainedOp : public GP::MutationShrinkOp
+class MutationShrinkConstrainedOp : public MutationShrinkOp
 {
 
 public:
 
 	//! GP::MutationShrinkConstrainedOp allocator type.
-	typedef AllocatorT<MutationShrinkConstrainedOp,GP::MutationShrinkOp::Alloc>
+	typedef AllocatorT<MutationShrinkConstrainedOp,MutationShrinkOp::Alloc>
 	Alloc;
 	//! GP::MutationShrinkConstrainedOp handle type.
-	typedef PointerT<MutationShrinkConstrainedOp,GP::MutationShrinkOp::Handle>
+	typedef PointerT<MutationShrinkConstrainedOp,MutationShrinkOp::Handle>
 	Handle;
 	//! GP::MutationShrinkConstrainedOp bag type.
-	typedef ContainerT<MutationShrinkConstrainedOp,GP::MutationShrinkOp::Bag>
+	typedef ContainerT<MutationShrinkConstrainedOp,MutationShrinkOp::Bag>
 	Bag;
 
 	explicit MutationShrinkConstrainedOp(std::string inMutationPbName="gp.mutshrink.indpb",

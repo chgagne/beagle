@@ -39,10 +39,10 @@
 #include <string>
 #include <map>
 
-#include "Beagle/config.hpp"
-#include "Beagle/macros.hpp"
-#include "Beagle/Core/Map.hpp"
-#include "Beagle/GP/Primitive.hpp"
+#include "beagle/config.hpp"
+#include "beagle/macros.hpp"
+#include "beagle/Map.hpp"
+#include "beagle/GP/Primitive.hpp"
 
 
 namespace Beagle

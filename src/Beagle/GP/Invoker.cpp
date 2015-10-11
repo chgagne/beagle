@@ -33,7 +33,7 @@
  *  $Date: 2007/08/17 18:09:11 $
  */
 
-#include "Beagle/GP.hpp"
+#include "beagle/GP.hpp"
 
 using namespace Beagle;
 

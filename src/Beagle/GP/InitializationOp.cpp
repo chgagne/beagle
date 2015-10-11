@@ -24,7 +24,7 @@
  *
  */
 
-#include "Beagle/GP.hpp"
+#include "beagle/GP.hpp"
 
 using namespace Beagle;
 
@@ -35,7 +35,7 @@ using namespace Beagle;
  *  \param inName Name of the initialization operator.
  */
 GP::InitializationOp::InitializationOp(std::string inReproProbaName, std::string inName) :
-		Beagle::EC::InitializationOp(inReproProbaName, inName)
+		Beagle::InitializationOp(inReproProbaName, inName)
 { }
 
 
@@ -46,7 +46,7 @@ GP::InitializationOp::InitializationOp(std::string inReproProbaName, std::string
 void GP::InitializationOp::registerParams(Beagle::System& ioSystem)
 {
 	Beagle_StackTraceBeginM();
-	Beagle::EC::InitializationOp::registerParams(ioSystem);
+	Beagle::InitializationOp::registerParams(ioSystem);
 	{
 		Register::Description lDescription(
 		    "Maximum initial tree depth",
@@ -216,10 +216,12 @@ void GP::InitializationOp::initIndividual(Beagle::Individual& outIndividual,
 
 	Beagle_LogDebugM(
 	    ioContext.getSystem().getLogger(),
+	    "initialization", "Beagle::GP::InitializationOp",
 	    std::string("Initialized individual:")
 	);
-	Beagle_LogDebugM(
+	Beagle_LogObjectDebugM(
 	    ioContext.getSystem().getLogger(),
+	    "initialization", "Beagle::GP::InitializationOp",
 	    lIndividual
 	);
 
