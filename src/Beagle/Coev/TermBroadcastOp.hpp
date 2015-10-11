@@ -38,7 +38,7 @@
 
 #include "PACC/Threading.hpp"
 
-#include "beagle/Beagle.hpp"
+#include "Beagle/Core.hpp"
 
 
 namespace Beagle

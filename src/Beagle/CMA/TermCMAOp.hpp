@@ -33,18 +33,18 @@
  *  $Date: 2007/08/08 19:26:34 $
  */
 
-#ifndef Beagle_TermCMAOp_hpp
-#define Beagle_TermCMAOp_hpp
+#ifndef Beagle_CMA_TermCMAOp_hpp
+#define Beagle_CMA_TermCMAOp_hpp
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Object.hpp"
-#include "beagle/TerminationOp.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Object.hpp"
+#include "Beagle/EC/TerminationOp.hpp"
 
 
 namespace Beagle
 {
-namespace GA
+namespace CMA
 {
 
 /*!
@@ -53,22 +53,22 @@ namespace GA
  *  \ingroup GAF
  *  \ingroup GAFV
  */
-class TermCMAOp : public Beagle::TerminationOp
+class TermCMAOp : public EC::TerminationOp
 {
 
 public:
 
 	//! TermCMAOp allocator type
-	typedef AllocatorT<GA::TermCMAOp,Beagle::TerminationOp::Alloc>
+	typedef AllocatorT<CMA::TermCMAOp,EC::TerminationOp::Alloc>
 	Alloc;
 	//! TermCMAOp handle type.
-	typedef PointerT<GA::TermCMAOp,Beagle::TerminationOp::Handle>
+	typedef PointerT<CMA::TermCMAOp,EC::TerminationOp::Handle>
 	Handle;
 	//! TermCMAOp bag type.
-	typedef ContainerT<GA::TermCMAOp,Beagle::TerminationOp::Bag>
+	typedef ContainerT<CMA::TermCMAOp,EC::TerminationOp::Bag>
 	Bag;
 
-	explicit TermCMAOp(std::string inName="GA-TermCMAOp");
+	explicit TermCMAOp(std::string inName="CMA-TermCMAOp");
 	virtual ~TermCMAOp()
 	{ }
 

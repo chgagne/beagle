@@ -33,7 +33,7 @@
  *  $Date: 2007/08/17 20:57:59 $
  */
 
-#include "beagle/GA.hpp"
+#include "Beagle/CMA.hpp"
 
 #include <cfloat>
 #include <float.h>
@@ -48,7 +48,7 @@ using namespace Beagle;
  *  \param inLMRatioName Lamda over Mu parameter name used in the register.
  *  \param inName Name of the CMA-ES (Mu_W,Lambda) operator.
  */
-GA::MuWCommaLambdaCMAFltVecOp::MuWCommaLambdaCMAFltVecOp(std::string inLMRatioName,
+CMA::MuWCommaLambdaCMAFltVecOp::MuWCommaLambdaCMAFltVecOp(std::string inLMRatioName,
         std::string inName) :
 		MuCommaLambdaOp(inLMRatioName,inName)
 { }
@@ -63,11 +63,11 @@ GA::MuWCommaLambdaCMAFltVecOp::MuWCommaLambdaCMAFltVecOp(std::string inLMRatioNa
  *  \param ioCMAValues CMA values to use to generate new individual.
  *  \param inSelectionWeights Selection weights used to generate children.
  */
-void GA::MuWCommaLambdaCMAFltVecOp::generateChildren(Deme& ioDeme,
+void CMA::MuWCommaLambdaCMAFltVecOp::generateChildren(Deme& ioDeme,
         Context& ioContext,
         unsigned int inNbChildren,
         unsigned int inN,
-        GA::CMAValues& ioCMAValues,
+        CMAValues& ioCMAValues,
         const Vector& inSelectionWeights) const
 {
 	Beagle_StackTraceBeginM();
@@ -96,20 +96,20 @@ void GA::MuWCommaLambdaCMAFltVecOp::generateChildren(Deme& ioDeme,
 	Individual::Handle lMeanInd = castHandleT<Individual>(lIndividualAlloc->allocate());
 	Genotype::Alloc::Handle lGenotypeAlloc =
 		castHandleT<Genotype::Alloc>(lFactory.getConceptAllocator("Genotype"));
-	GA::FloatVector::Handle lMeanFloatVec =
-		castHandleT<GA::FloatVector>(lGenotypeAlloc->allocate());
+	FltVec::FloatVector::Handle lMeanFloatVec =
+		castHandleT<FltVec::FloatVector>(lGenotypeAlloc->allocate());
 	lMeanFloatVec->resize(inN);
 	lMeanInd->push_back(lMeanFloatVec);
 	
 	for(unsigned int i=0; i<inN; ++i) (*lMeanFloatVec)[i] = 0.0;
 	if(ioDeme.size()==1) {
 		Beagle_AssertM(ioDeme[0]->size() == 1);
-		GA::FloatVector::Handle lInd = castHandleT<GA::FloatVector>((*ioDeme[0])[0]);
+		FltVec::FloatVector::Handle lInd = castHandleT<FltVec::FloatVector>((*ioDeme[0])[0]);
 		(*lMeanFloatVec) = *lInd;
 	} else {
 		for(unsigned int i=0; i<ioDeme.size(); ++i) {
 			Beagle_AssertM(ioDeme[i]->size()==1);
-			GA::FloatVector::Handle lVecI = castHandleT<GA::FloatVector>((*ioDeme[i])[0]);
+			FltVec::FloatVector::Handle lVecI = castHandleT<FltVec::FloatVector>((*ioDeme[i])[0]);
 			Beagle_AssertM(lVecI->size()==inN);
 			for(unsigned int j=0; j<inN; ++j) (*lMeanFloatVec)[j] += (inSelectionWeights[i] * (*lVecI)[j]);
 		}
@@ -171,7 +171,7 @@ void GA::MuWCommaLambdaCMAFltVecOp::generateChildren(Deme& ioDeme,
  *  \param outSelectionWeight Generated selection weights.
  *  \return Effective mu value.
  */
-double GA::MuWCommaLambdaCMAFltVecOp::generateSelectionWeights(unsigned int inPopSize,
+double CMA::MuWCommaLambdaCMAFltVecOp::generateSelectionWeights(unsigned int inPopSize,
         Vector& outSelectionWeights) const
 {
 	Beagle_StackTraceBeginM();
@@ -197,7 +197,7 @@ double GA::MuWCommaLambdaCMAFltVecOp::generateSelectionWeights(unsigned int inPo
  *  \param ioContext Reference to the evolutionary context.
  *  \throw Beagle::ValidationException If a parameter is invalid.
  */
-GA::CMAValues& GA::MuWCommaLambdaCMAFltVecOp::getCMAValues(unsigned int inIndex,
+CMA::CMAValues& CMA::MuWCommaLambdaCMAFltVecOp::getCMAValues(unsigned int inIndex,
         unsigned int inN,
         Context& ioContext) const
 {
@@ -206,12 +206,12 @@ GA::CMAValues& GA::MuWCommaLambdaCMAFltVecOp::getCMAValues(unsigned int inIndex,
 	Component::Handle lHolderComponent = ioContext.getSystem().getComponent("CMAHolder");
 	if(lHolderComponent==NULL)
 		throw Beagle_RunTimeExceptionM("No CMA holder component found in the system!");
-	GA::CMAHolder::Handle lCMAHolder = castHandleT<GA::CMAHolder>(lHolderComponent);
+	CMA::CMAHolder::Handle lCMAHolder = castHandleT<CMA::CMAHolder>(lHolderComponent);
 	if(lCMAHolder==NULL)
 		throw Beagle_RunTimeExceptionM("Component named 'CMAHolder' found is not of the good type!");
-	GA::CMAHolder::iterator lIterVal = lCMAHolder->find(ioContext.getDemeIndex());
+	CMA::CMAHolder::iterator lIterVal = lCMAHolder->find(ioContext.getDemeIndex());
 	if((ioContext.getGeneration()<=1) || (lIterVal==lCMAHolder->end())) {
-		GA::CMAValues& lValues = (*lCMAHolder)[inIndex];
+		CMA::CMAValues& lValues = (*lCMAHolder)[inIndex];
 		lValues.mB.setIdentity(inN);
 		lValues.mD.resize(inN);
 		for(unsigned int i=0; i<inN; ++i) lValues.mD[i] = 1.0;
@@ -230,7 +230,7 @@ GA::CMAValues& GA::MuWCommaLambdaCMAFltVecOp::getCMAValues(unsigned int inIndex,
  *  \brief Register the parameters of the operator.
  *  \param ioSystem Reference to the evolutionary system.
  */
-void GA::MuWCommaLambdaCMAFltVecOp::registerParams(System& ioSystem)
+void CMA::MuWCommaLambdaCMAFltVecOp::registerParams(System& ioSystem)
 {
 	Beagle_StackTraceBeginM();
 	MuCommaLambdaOp::registerParams(ioSystem);
@@ -289,7 +289,7 @@ void GA::MuWCommaLambdaCMAFltVecOp::registerParams(System& ioSystem)
  *  \throw Beagle::ValidationException If a parameter is missing or have a bad value.
  *  \throw Beagle::AssertException If an invalid condition appears.
  */
-void GA::MuWCommaLambdaCMAFltVecOp::operate(Deme& ioDeme, Context& ioContext)
+void CMA::MuWCommaLambdaCMAFltVecOp::operate(Deme& ioDeme, Context& ioContext)
 {
 	Beagle_StackTraceBeginM();
 
@@ -318,7 +318,7 @@ void GA::MuWCommaLambdaCMAFltVecOp::operate(Deme& ioDeme, Context& ioContext)
 	const unsigned int lN=lFloatVectorSize->getWrappedValue();
 
 	// Get the appropriate CMA values from the CMA holder component.
-	GA::CMAValues& lValues = getCMAValues(ioContext.getDemeIndex(),lN,ioContext);
+	CMA::CMAValues& lValues = getCMAValues(ioContext.getDemeIndex(),lN,ioContext);
 
 	// Compute weights and effective mu
 	Vector lWeight;
@@ -367,12 +367,12 @@ void GA::MuWCommaLambdaCMAFltVecOp::operate(Deme& ioDeme, Context& ioContext)
  *  from Nikolaus Hansen.
  *  See http://www.bionik.tu-berlin.de/user/niko/cmaes_inmatlab.html
  */
-void GA::MuWCommaLambdaCMAFltVecOp::updateValues(Deme& ioDeme,
+void CMA::MuWCommaLambdaCMAFltVecOp::updateValues(Deme& ioDeme,
         Context& ioContext,
         unsigned int inN,
         double inMuEff,
         const Vector& inSelectionWeights,
-        GA::CMAValues& ioCMAValues) const
+        CMA::CMAValues& ioCMAValues) const
 {
 	Beagle_StackTraceBeginM();
 
@@ -397,7 +397,7 @@ void GA::MuWCommaLambdaCMAFltVecOp::updateValues(Deme& ioDeme,
 	// Compute new xmean
 	Vector lXmean_new(inN, 0.0);
 	for(unsigned int i=0; i<ioDeme.size(); ++i) {
-		GA::FloatVector::Handle lVecI = castHandleT<GA::FloatVector>((*ioDeme[i])[0]);
+		FltVec::FloatVector::Handle lVecI = castHandleT<FltVec::FloatVector>((*ioDeme[i])[0]);
 		for(unsigned int j=0; j<inN; ++j) lXmean_new[j] += (inSelectionWeights[i] * (*lVecI)[j]);
 	}
 
@@ -462,7 +462,7 @@ void GA::MuWCommaLambdaCMAFltVecOp::updateValues(Deme& ioDeme,
 
 	Matrix lRMuUpd(inN,inN,0.0);    // Rank Mu update
 	for(unsigned int i=0; i<ioDeme.size(); ++i) {
-		GA::FloatVector::Handle lVecI = castHandleT<GA::FloatVector>((*ioDeme[i])[0]);
+		FltVec::FloatVector::Handle lVecI = castHandleT<FltVec::FloatVector>((*ioDeme[i])[0]);
 		Vector lX_I(lVecI->size());
 		for(unsigned int j=0; j<lVecI->size(); ++j) lX_I[j] = (*lVecI)[j];
 		lX_I -= ioCMAValues.mXmean;
