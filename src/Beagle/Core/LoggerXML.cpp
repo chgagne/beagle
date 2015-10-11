@@ -36,6 +36,7 @@
  */
 
 #include "Beagle/Core.hpp"
+#include <stdio.h>
 
 #ifdef BEAGLE_HAVE_OPENMP
 #include <omp.h>
@@ -140,37 +141,35 @@ void LoggerXML::logMessage(const std::string& inMessage,
 	Beagle_StackTraceBeginM();
 
 	if(isInitialized() == false) {
-		std::ostringstream lOSS;
-		lOSS << "Logger is not initialized, therefore logging is impossible. Logging before the initialization phase ";
-		lOSS << "should be done through the log buffer, for instance by using macro Beagle_AddToLogBufferM.";
-		throw Beagle_InternalExceptionM(lOSS.str());
-	}
-
-	// log to console
-	if(mConsoleLevel->getWrappedValue() >= inLevel) {
-#pragma omp critical (Beagle_Logger_Log_Console)
-		{
-			mStreamerConsole.openTag("Log", false);
-			if(mShowLevel->getWrappedValue()) mStreamerConsole.insertAttribute("level", uint2str(inLevel));
-			if(mShowFile->getWrappedValue())  mStreamerConsole.insertAttribute("file",  inFile);
-			if(mShowFunction->getWrappedValue()) mStreamerConsole.insertAttribute("function", inFunction);
-			if(mShowTime->getWrappedValue())  mStreamerConsole.insertAttribute("time", PACC::Date().get("%X"));
-			mStreamerConsole.insertStringContent(inMessage, false);
-			mStreamerConsole.closeTag();
+		addToBuffer(inMessage, inLevel, inFile, inFunction);
+		std::cout << inMessage << std::endl;
+	} else {
+		// log to console
+		if(mConsoleLevel->getWrappedValue() >= inLevel) {
+	#pragma omp critical (Beagle_Logger_Log_Console)
+			{
+				mStreamerConsole.openTag("Log", false);
+				if(mShowLevel->getWrappedValue()) mStreamerConsole.insertAttribute("level", uint2str(inLevel));
+				if(mShowFile->getWrappedValue())  mStreamerConsole.insertAttribute("file",  inFile);
+				if(mShowFunction->getWrappedValue()) mStreamerConsole.insertAttribute("function", inFunction);
+				if(mShowTime->getWrappedValue())  mStreamerConsole.insertAttribute("time", PACC::Date().get("%X"));
+				mStreamerConsole.insertStringContent(inMessage, false);
+				mStreamerConsole.closeTag();
+			}
 		}
-	}
 
-	// log to file
-	if(mFileLevel->getWrappedValue() >= inLevel && !mFileName->getWrappedValue().empty()) {
-#pragma omp critical (Beagle_Logger_Log_File)
-		{
-			mStreamerFile.openTag("Log", false);
-			if(mShowLevel->getWrappedValue()) mStreamerFile.insertAttribute("level", uint2str(inLevel));
-			if(mShowFile->getWrappedValue())  mStreamerFile.insertAttribute("file",  inFile);
-			if(mShowFunction->getWrappedValue()) mStreamerFile.insertAttribute("function", inFunction);
-			if(mShowTime->getWrappedValue())  mStreamerFile.insertAttribute("time", PACC::Date().get("%X"));
-			mStreamerFile.insertStringContent(inMessage, false);
-			mStreamerFile.closeTag();
+		// log to file
+		if(mFileLevel->getWrappedValue() >= inLevel && !mFileName->getWrappedValue().empty()) {
+	#pragma omp critical (Beagle_Logger_Log_File)
+			{
+				mStreamerFile.openTag("Log", false);
+				if(mShowLevel->getWrappedValue()) mStreamerFile.insertAttribute("level", uint2str(inLevel));
+				if(mShowFile->getWrappedValue())  mStreamerFile.insertAttribute("file",  inFile);
+				if(mShowFunction->getWrappedValue()) mStreamerFile.insertAttribute("function", inFunction);
+				if(mShowTime->getWrappedValue())  mStreamerFile.insertAttribute("time", PACC::Date().get("%X"));
+				mStreamerFile.insertStringContent(inMessage, false);
+				mStreamerFile.closeTag();
+			}
 		}
 	}
 
@@ -195,33 +194,33 @@ void LoggerXML::logObject(const Object& inObject, unsigned int inLevel, const st
 		lOSS << "Logger is not initialized, therefore logging is impossible. Logging before the initialization phase ";
 		lOSS << "should be done through the log buffer, for instance by using macro Beagle_AddToLogBufferM.";
 		throw Beagle_InternalExceptionM(lOSS.str());
-	}
-
-	// Log to console
-	if(mConsoleLevel->getWrappedValue() >= inLevel) {
-#pragma omp critical (Beagle_Logger_Log_Console)
-		{
-			mStreamerConsole.openTag("Log", true);
-			if(mShowLevel->getWrappedValue()) mStreamerConsole.insertAttribute("level", uint2str(inLevel));
-			if(mShowFile->getWrappedValue())  mStreamerConsole.insertAttribute("file",  inFile);
-			if(mShowFunction->getWrappedValue()) mStreamerConsole.insertAttribute("function", inFunction);
-			if(mShowTime->getWrappedValue())  mStreamerConsole.insertAttribute("time", PACC::Date().get("%X"));
-			inObject.write(mStreamerConsole, true);
-			mStreamerConsole.closeTag();
+	} else {
+		// Log to console
+		if(mConsoleLevel->getWrappedValue() >= inLevel) {
+	#pragma omp critical (Beagle_Logger_Log_Console)
+			{
+				mStreamerConsole.openTag("Log", true);
+				if(mShowLevel->getWrappedValue()) mStreamerConsole.insertAttribute("level", uint2str(inLevel));
+				if(mShowFile->getWrappedValue())  mStreamerConsole.insertAttribute("file",  inFile);
+				if(mShowFunction->getWrappedValue()) mStreamerConsole.insertAttribute("function", inFunction);
+				if(mShowTime->getWrappedValue())  mStreamerConsole.insertAttribute("time", PACC::Date().get("%X"));
+				inObject.write(mStreamerConsole, true);
+				mStreamerConsole.closeTag();
+			}
 		}
-	}
 
-	// Log to file
-	if(mFileLevel->getWrappedValue() >= inLevel && !mFileName->getWrappedValue().empty()) {
-#pragma omp critical (Beagle_Logger_Log_File)
-		{
-			mStreamerFile.openTag("Log", true);
-			if(mShowLevel->getWrappedValue()) mStreamerFile.insertAttribute("level", uint2str(inLevel));
-			if(mShowFile->getWrappedValue())  mStreamerFile.insertAttribute("file",  inFile);
-			if(mShowFunction->getWrappedValue()) mStreamerFile.insertAttribute("function", inFunction);
-			if(mShowTime->getWrappedValue())  mStreamerFile.insertAttribute("time", PACC::Date().get("%X"));
-			inObject.write(mStreamerFile, true);
-			mStreamerFile.closeTag();
+		// Log to file
+		if(mFileLevel->getWrappedValue() >= inLevel && !mFileName->getWrappedValue().empty()) {
+	#pragma omp critical (Beagle_Logger_Log_File)
+			{
+				mStreamerFile.openTag("Log", true);
+				if(mShowLevel->getWrappedValue()) mStreamerFile.insertAttribute("level", uint2str(inLevel));
+				if(mShowFile->getWrappedValue())  mStreamerFile.insertAttribute("file",  inFile);
+				if(mShowFunction->getWrappedValue()) mStreamerFile.insertAttribute("function", inFunction);
+				if(mShowTime->getWrappedValue())  mStreamerFile.insertAttribute("time", PACC::Date().get("%X"));
+				inObject.write(mStreamerFile, true);
+				mStreamerFile.closeTag();
+			}
 		}
 	}
 
