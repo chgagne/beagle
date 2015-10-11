@@ -33,7 +33,8 @@
  *  $Date: 2007/08/17 20:57:59 $
  */
 
-#include "beagle/GA.hpp"
+#include "Beagle/CMA.hpp"
+#include "Beagle/FltVec.hpp"
 
 #include <cmath>
 #include <sstream>
@@ -48,10 +49,10 @@ using namespace Beagle;
  *  \param inReproProbaName Reproduction probability parameter name used in register.
  *  \param inName Name of the operator.
  */
-GA::InitCMAFltVecOp::InitCMAFltVecOp(unsigned int inFloatVectorSize,
+CMA::InitCMAFltVecOp::InitCMAFltVecOp(unsigned int inFloatVectorSize,
                                      std::string inReproProbaName,
                                      std::string inName) :
-		GA::InitFltVecOp(inFloatVectorSize, inReproProbaName, inName)
+		FltVec::InitGaussianOp(inFloatVectorSize, inReproProbaName, inName)
 { }
 
 
@@ -60,7 +61,7 @@ GA::InitCMAFltVecOp::InitCMAFltVecOp(unsigned int inFloatVectorSize,
  *  \param ioDeme Current deme of individuals to initialize.
  *  \param ioContext Context of the evolution.
  */
-void GA::InitCMAFltVecOp::operate(Beagle::Deme& ioDeme, Beagle::Context& ioContext)
+void CMA::InitCMAFltVecOp::operate(Beagle::Deme& ioDeme, Beagle::Context& ioContext)
 {
 	Beagle_StackTraceBeginM();
 

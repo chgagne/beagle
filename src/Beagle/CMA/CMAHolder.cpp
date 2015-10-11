@@ -33,7 +33,7 @@
  *  $Date: 2007/08/10 20:32:21 $
  */
 
-#include "beagle/GA.hpp"
+#include "Beagle/CMA.hpp"
 
 
 using namespace Beagle;
@@ -42,7 +42,7 @@ using namespace Beagle;
 /*!
  *  \brief Construct CMA value holder system component, which contain global CMA values.
  */
-GA::CMAHolder::CMAHolder() :
+CMA::CMAHolder::CMAHolder() :
 		Beagle::Component("CMAHolder")
 { }
 
@@ -52,7 +52,7 @@ GA::CMAHolder::CMAHolder() :
  *  \param inIter Iterator to read CMA holder from.
  *  \param ioSystem Evolutionary system.
  */
-void GA::CMAHolder::readWithSystem(PACC::XML::ConstIterator inIter, System& ioSystem)
+void CMA::CMAHolder::readWithSystem(PACC::XML::ConstIterator inIter, System& ioSystem)
 {
 	Beagle_StackTraceBeginM();
 	if((inIter->getType()!=PACC::XML::eData) || (inIter->getValue()!="CMAHolder"))
@@ -63,7 +63,7 @@ void GA::CMAHolder::readWithSystem(PACC::XML::ConstIterator inIter, System& ioSy
 			std::string lIndexStr = lChild->getAttribute("index");
 			if(lIndexStr.empty()) throw Beagle_IOExceptionNodeM(*lChild, "attribute 'index' expected!");
 			unsigned int lIndex = str2uint(lIndexStr);
-			GA::CMAValues& lValues = (*this)[lIndex];
+			CMA::CMAValues& lValues = (*this)[lIndex];
 			for(PACC::XML::ConstIterator lChild2=lChild->getFirstChild(); lChild2; ++lChild2) {
 				if(lChild2->getType()!=PACC::XML::eData) continue;
 				if(lChild2->getFirstChild() == NULL)
@@ -86,10 +86,10 @@ void GA::CMAHolder::readWithSystem(PACC::XML::ConstIterator inIter, System& ioSy
  *  \param ioStreamer XML streamer to write CMA holder into.
  *  \param inIndent Whether output should be indented.
  */
-void GA::CMAHolder::writeContent(PACC::XML::Streamer& ioStreamer, bool inIndent) const
+void CMA::CMAHolder::writeContent(PACC::XML::Streamer& ioStreamer, bool inIndent) const
 {
 	Beagle_StackTraceBeginM();
-	for(GA::CMAHolder::const_iterator lIterMap=begin(); lIterMap!=end(); ++lIterMap) {
+	for(CMA::CMAHolder::const_iterator lIterMap=begin(); lIterMap!=end(); ++lIterMap) {
 		ioStreamer.openTag("CMAValues", inIndent);
 		ioStreamer.insertAttribute("index", uint2str(lIterMap->first));
 		ioStreamer.openTag("B", inIndent);

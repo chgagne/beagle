@@ -37,25 +37,25 @@
 #ifndef Beagle_GA_MuWCommaLambdaCMAFltVecOp_hpp
 #define Beagle_GA_MuWCommaLambdaCMAFltVecOp_hpp
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Object.hpp"
-#include "beagle/Pointer.hpp"
-#include "beagle/PointerT.hpp"
-#include "beagle/Allocator.hpp"
-#include "beagle/AllocatorT.hpp"
-#include "beagle/AbstractAllocT.hpp"
-#include "beagle/Container.hpp"
-#include "beagle/ContainerT.hpp"
-#include "beagle/Operator.hpp"
-#include "beagle/ReplacementStrategyOp.hpp"
-#include "beagle/Float.hpp"
-#include "beagle/Matrix.hpp"
-#include "beagle/Vector.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Object.hpp"
+#include "Beagle/Core/Pointer.hpp"
+#include "Beagle/Core/PointerT.hpp"
+#include "Beagle/Core/Allocator.hpp"
+#include "Beagle/Core/AllocatorT.hpp"
+#include "Beagle/Core/AbstractAllocT.hpp"
+#include "Beagle/Core/Container.hpp"
+#include "Beagle/Core/ContainerT.hpp"
+#include "Beagle/Core/Operator.hpp"
+#include "Beagle/Core/ReplacementStrategyOp.hpp"
+#include "Beagle/Core/Float.hpp"
+#include "Beagle/Core/Matrix.hpp"
+#include "Beagle/Core/Vector.hpp"
 
 namespace Beagle
 {
-namespace GA
+namespace CMA
 {
 
 /*!
@@ -72,23 +72,23 @@ namespace GA
  *  in Evolution Strategies. Evolutionary Computation, 9(2), pp. 159-195.
  *  See also: http://www.bionik.tu-berlin.de/user/niko/cmaes_inmatlab.html
  */
-class MuWCommaLambdaCMAFltVecOp : public MuCommaLambdaOp
+class MuWCommaLambdaCMAFltVecOp : public EC::MuCommaLambdaOp
 {
 
 public:
 
 	//! MuWCommaLambdaCMAFltVecOp allocator type.
-	typedef AllocatorT<MuWCommaLambdaCMAFltVecOp,MuCommaLambdaOp::Alloc>
+	typedef AllocatorT<MuWCommaLambdaCMAFltVecOp,EC::MuCommaLambdaOp::Alloc>
 	Alloc;
 	//! MuWCommaLambdaCMAFltVecOp handle type.
-	typedef PointerT<MuWCommaLambdaCMAFltVecOp,MuCommaLambdaOp::Handle>
+	typedef PointerT<MuWCommaLambdaCMAFltVecOp,EC::MuCommaLambdaOp::Handle>
 	Handle;
 	//! MuWCommaLambdaCMAFltVecOp bag type.
-	typedef ContainerT<MuWCommaLambdaCMAFltVecOp,MuCommaLambdaOp::Bag>
+	typedef ContainerT<MuWCommaLambdaCMAFltVecOp,EC::MuCommaLambdaOp::Bag>
 	Bag;
 
 	explicit MuWCommaLambdaCMAFltVecOp(std::string inLMRatioName="ga.cmaes.mulambdaratio",
-	                                   std::string inName="GA-MuWCommaLambdaCMAFltVecOp");
+	                                   std::string inName="CMA-MuWCommaLambdaCMAFltVecOp");
 	virtual ~MuWCommaLambdaCMAFltVecOp()
 	{ }
 
@@ -101,11 +101,11 @@ protected:
 	                                        Context& ioContext,
 	                                        unsigned int inNbChildren,
 	                                        unsigned int inN,
-	                                        GA::CMAValues& ioCMAValues,
+	                                        CMAValues& ioCMAValues,
 	                                        const Vector& inSelectionWeights) const;
 	virtual double         generateSelectionWeights(unsigned int inPopSize,
 	        Vector& outSelectionWeights) const;
-	virtual GA::CMAValues& getCMAValues(unsigned int inIndex,
+	virtual CMAValues& getCMAValues(unsigned int inIndex,
 	                                    unsigned int inN,
 	                                    Context& ioContext) const;
 	virtual void           updateValues(Deme& ioDeme,
@@ -113,7 +113,7 @@ protected:
 	                                    unsigned int inN,
 	                                    double inMuEff,
 	                                    const Vector& inSelectionWeights,
-	                                    GA::CMAValues& ioCMAValues) const;
+	                                    CMAValues& ioCMAValues) const;
 
 	Double::Handle       mSigma;       //!< Initial CMA-ES sigma value.
 	DoubleArray::Handle  mMaxValue;    //!< Maximum float vector values.
