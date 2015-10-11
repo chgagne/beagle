@@ -33,20 +33,20 @@
  *  $Date: 2007/08/08 19:26:34 $
  */
 
-#ifndef Beagle_CMA_MutationCMAFltVecOp_hpp
-#define Beagle_CMA_MutationCMAFltVecOp_hpp
+#ifndef Beagle_GA_MutationCMAFltVecOp_hpp
+#define Beagle_GA_MutationCMAFltVecOp_hpp
 
 #include <string>
 
-#include "Beagle/config.hpp"
-#include "Beagle/macros.hpp"
-#include "Beagle/Core/Object.hpp"
-#include "Beagle/EC/MutationOp.hpp"
+#include "beagle/config.hpp"
+#include "beagle/macros.hpp"
+#include "beagle/Object.hpp"
+#include "beagle/MutationOp.hpp"
 
 
 namespace Beagle
 {
-namespace CMA
+namespace GA
 {
 
 /*!
@@ -64,23 +64,23 @@ namespace CMA
  *  in Evolution Strategies. Evolutionary Computation, 9(2), pp. 159-195.
  *  See also: http://www.bionik.tu-berlin.de/user/niko/cmaes_inmatlab.html
  */
-class MutationCMAFltVecOp : public EC::MutationOp
+class MutationCMAFltVecOp : public Beagle::MutationOp
 {
 
 public:
 
 	//! GA::MutationCMAFltVecOp allocator type.
-	typedef AllocatorT<MutationCMAFltVecOp,EC::MutationOp::Alloc>
+	typedef AllocatorT<MutationCMAFltVecOp,Beagle::MutationOp::Alloc>
 	Alloc;
 	//! GA::MutationCMAFltVecOp handle type.
-	typedef PointerT<MutationCMAFltVecOp,EC::MutationOp::Handle>
+	typedef PointerT<MutationCMAFltVecOp,Beagle::MutationOp::Handle>
 	Handle;
 	//! GA::MutationCMAFltVecOp bag type.
-	typedef ContainerT<MutationCMAFltVecOp,EC::MutationOp::Bag>
+	typedef ContainerT<MutationCMAFltVecOp,Beagle::MutationOp::Bag>
 	Bag;
 
 	explicit MutationCMAFltVecOp(std::string inMutationPbName="ga.cmaes.mutpb",
-	                             std::string inName="CMA-MutationCMAFltVecOp");
+	                             std::string inName="GA-MutationCMAFltVecOp");
 	virtual ~MutationCMAFltVecOp()
 	{ }
 

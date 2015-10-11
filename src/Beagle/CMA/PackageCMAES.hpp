@@ -32,23 +32,23 @@
  *  $Date: 2007/08/08 19:26:34 $
  */
 
-#ifndef Beagle_CMA_PackageCMAES_hpp
-#define Beagle_CMA_PackageCMAES_hpp
+#ifndef Beagle_GA_PackageCMAES_hpp
+#define Beagle_GA_PackageCMAES_hpp
 
 #include <map>
 #include <string>
 
-#include "Beagle/config.hpp"
-#include "Beagle/macros.hpp"
-#include "Beagle/Core/System.hpp"
-#include "Beagle/Core/Evolver.hpp"
-#include "Beagle/Core/Package.hpp"
+#include "beagle/config.hpp"
+#include "beagle/macros.hpp"
+#include "beagle/System.hpp"
+#include "beagle/Evolver.hpp"
+#include "beagle/Package.hpp"
 
 
 namespace Beagle
 {
 
-namespace CMA
+namespace GA
 {
 
 /*!
@@ -57,7 +57,7 @@ namespace CMA
  *  \ingroup GAF
  *  \ingroup GAFV
  */
-class PackageCMAES : public PackageAbstract
+class PackageCMAES : public Package
 {
 
 public:
@@ -75,7 +75,7 @@ public:
 	explicit PackageCMAES(unsigned int inInitSize=0);
 
 	virtual void          configure(System& ioSystem);
-	virtual PackageAbstract::Bag  listDependencies(void);
+	virtual Package::Bag  listDependencies(void);
 
 protected:
 

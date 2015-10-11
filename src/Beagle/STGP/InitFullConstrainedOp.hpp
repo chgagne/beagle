@@ -33,8 +33,8 @@
  *  $Date: 2007/08/08 19:26:35 $
  */
 
-#ifndef Beagle_STGP_InitFullConstrainedOp_hpp
-#define Beagle_STGP_InitFullConstrainedOp_hpp
+#ifndef Beagle_GP_InitFullConstrainedOp_hpp
+#define Beagle_GP_InitFullConstrainedOp_hpp
 
 #include <string>
 

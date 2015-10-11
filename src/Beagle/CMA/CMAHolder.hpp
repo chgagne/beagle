@@ -38,15 +38,15 @@
 
 #include <string>
 
-#include "Beagle/config.hpp"
-#include "Beagle/macros.hpp"
-#include "Beagle/Core/Object.hpp"
-#include "Beagle/Core/Component.hpp"
+#include "beagle/config.hpp"
+#include "beagle/macros.hpp"
+#include "beagle/Object.hpp"
+#include "beagle/Component.hpp"
 
 
 namespace Beagle
 {
-namespace CMA
+namespace GA
 {
 
 
@@ -84,7 +84,7 @@ struct CMAValues
  *  See also: http://www.bionik.tu-berlin.de/user/niko/cmaes_inmatlab.html
  */
 class CMAHolder : public Beagle::Component,
-			public std::map< unsigned int,CMAValues,std::less<unsigned int> >
+			public std::map< unsigned int,Beagle::GA::CMAValues,std::less<unsigned int> >
 {
 
 public:

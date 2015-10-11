@@ -33,7 +33,7 @@
  *  $Date: 2007/08/17 18:09:10 $
  */
 
-#include "Beagle/CMA.hpp"
+#include "beagle/GA.hpp"
 
 #include <cfloat>
 #include <float.h>
@@ -46,9 +46,9 @@ using namespace Beagle;
  *  \param inMutationPbName CMA-ES mutation probability parameter name used in register.
  *  \param inName Name of the CMA-ES operator.
  */
-CMA::MutationCMAFltVecOp::MutationCMAFltVecOp(std::string inMutationPbName,
+GA::MutationCMAFltVecOp::MutationCMAFltVecOp(std::string inMutationPbName,
         std::string inName) :
-		EC::MutationOp(inMutationPbName, inName)
+		MutationOp(inMutationPbName, inName)
 { }
 
 
@@ -56,7 +56,7 @@ CMA::MutationCMAFltVecOp::MutationCMAFltVecOp(std::string inMutationPbName,
  *  \brief Register the parameters of the CMA-ES mutation operator.
  *  \param ioSystem System of the evolution.
  */
-void CMA::MutationCMAFltVecOp::registerParams(System& ioSystem)
+void GA::MutationCMAFltVecOp::registerParams(System& ioSystem)
 {
 	Beagle_StackTraceBeginM();
 	MutationOp::registerParams(ioSystem);
@@ -104,7 +104,7 @@ void CMA::MutationCMAFltVecOp::registerParams(System& ioSystem)
  *  \param ioContext Context of the evolution.
  *  \return True if the individual is effectively mutated, false if not.
  */
-bool CMA::MutationCMAFltVecOp::mutate(Individual& ioIndividual, Context& ioContext)
+bool GA::MutationCMAFltVecOp::mutate(Individual& ioIndividual, Context& ioContext)
 {
 	Beagle_StackTraceBeginM();
 	Beagle_LogVerboseM(
@@ -119,10 +119,10 @@ bool CMA::MutationCMAFltVecOp::mutate(Individual& ioIndividual, Context& ioConte
 	Component::Handle lHolderComponent = ioContext.getSystem().getComponent("CMAHolder");
 	if(lHolderComponent==NULL)
 		throw Beagle_RunTimeExceptionM("No CMA holder component found in the system!");
-	CMA::CMAHolder::Handle lCMAHolder = castHandleT<CMA::CMAHolder>(lHolderComponent);
+	GA::CMAHolder::Handle lCMAHolder = castHandleT<GA::CMAHolder>(lHolderComponent);
 	if(lCMAHolder==NULL)
 		throw Beagle_RunTimeExceptionM("Component named 'CMAHolder' found is not of the good type!");
-	CMA::CMAHolder::iterator lIterVal = lCMAHolder->find(ioContext.getDemeIndex());
+	GA::CMAHolder::iterator lIterVal = lCMAHolder->find(ioContext.getDemeIndex());
 	if(lIterVal == lCMAHolder->end()) {
 		std::ostringstream lOSS;
 		lOSS << "CMA values of index '" << ioContext.getDemeIndex() << "' not found in CMA holder ";
@@ -130,9 +130,9 @@ bool CMA::MutationCMAFltVecOp::mutate(Individual& ioIndividual, Context& ioConte
 		lOSS << "strategy that would correctly initialize the CMA values at the given index.";
 		throw Beagle_RunTimeExceptionM(lOSS.str());
 	}
-	CMA::CMAValues& lValues = lIterVal->second;
+	GA::CMAValues& lValues = lIterVal->second;
 
-	FltVec::FloatVector::Handle lVector=castHandleT<FltVec::FloatVector>(ioIndividual[0]);
+	GA::FloatVector::Handle lVector=castHandleT<GA::FloatVector>(ioIndividual[0]);
 	Beagle_AssertM(lVector->size()==lValues.mD.size());
 	const double lSigma=lValues.mSigma.getWrappedValue();
 	Vector lArz(lVector->size());

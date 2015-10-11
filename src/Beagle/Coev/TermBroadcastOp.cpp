@@ -33,7 +33,7 @@
  *  $Date: 2007/08/10 20:32:20 $
  */
 
-#include "Beagle/Coev.hpp"
+#include "beagle/Coev.hpp"
 
 using namespace Beagle;
 

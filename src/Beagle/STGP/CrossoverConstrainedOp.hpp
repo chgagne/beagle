@@ -33,8 +33,8 @@
  *  $Date: 2007/08/08 19:26:35 $
  */
 
-#ifndef Beagle_STGP_CrossoverConstrainedOp_hpp
-#define Beagle_STGP_CrossoverConstrainedOp_hpp
+#ifndef Beagle_GP_CrossoverConstrainedOp_hpp
+#define Beagle_GP_CrossoverConstrainedOp_hpp
 
 #include <string>
 
