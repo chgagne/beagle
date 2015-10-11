@@ -33,7 +33,7 @@
  *  $Date: 2007/08/17 18:09:11 $
  */
 
-#include "Beagle/GP.hpp"
+#include "beagle/GP.hpp"
 
 #include <algorithm>
 #include <string>
@@ -48,7 +48,7 @@ using namespace Beagle;
  */
 GP::MutationShrinkOp::MutationShrinkOp(std::string inMutationPbName,
                                        std::string inName) :
-		Beagle::EC::MutationOp(inMutationPbName, inName)
+		Beagle::MutationOp(inMutationPbName, inName)
 { }
 
 
@@ -72,7 +72,7 @@ void GP::MutationShrinkOp::registerParams(Beagle::System& ioSystem)
 	);
 	mMutationProba = castHandleT<Double>(
 	                     ioSystem.getRegister().insertEntry(mMutationPbName, new Double(0.05f), lProbaDescription));
-	Beagle::EC::MutationOp::registerParams(ioSystem);
+	Beagle::MutationOp::registerParams(ioSystem);
 	Beagle_StackTraceEndM();
 }
 
@@ -91,16 +91,21 @@ bool GP::MutationShrinkOp::mutate(Beagle::Individual& ioIndividual, Beagle::Cont
 
 	Beagle_LogDebugM(
 	    ioContext.getSystem().getLogger(),
+	    "mutation",
+	    "Beagle::GP::MutationShrinkOp",
 	    "Individual before GP shrink mutation"
 	);
-	Beagle_LogDebugM(
+	Beagle_LogObjectDebugM(
 	    ioContext.getSystem().getLogger(),
+	    "mutation",
+	    "Beagle::GP::MutationShrinkOp",
 	    lIndividual
 	);
 
 	unsigned int lChosenTree = lIndividual.chooseRandomTree(lContext);
 	Beagle_LogDetailedM(
 	    ioContext.getSystem().getLogger(),
+	    "mutation", "Beagle::GP::MutationShrinkOp",
 	    std::string("Applying shrink mutation to ")+uint2ordinal(lChosenTree+1)+std::string(" tree")
 	);
 
@@ -108,6 +113,7 @@ bool GP::MutationShrinkOp::mutate(Beagle::Individual& ioIndividual, Beagle::Cont
 	if(lActualTree->size() < 2) {
 		Beagle_LogDebugM(
 		    ioContext.getSystem().getLogger(),
+		    "mutation", "Beagle::GP::MutationShrinkOp",
 		    std::string("Shrink mutation failed because the chosen tree has a size less than two (hence it doesn't have any primitives with arguments).")
 		);
 		return false;
@@ -154,6 +160,7 @@ bool GP::MutationShrinkOp::mutate(Beagle::Individual& ioIndividual, Beagle::Cont
 
 	Beagle_LogVerboseM(
 	    ioContext.getSystem().getLogger(),
+	    "mutation", "Beagle::GP::MutationShrinkOp",
 	    std::string("Replacing the ")+uint2ordinal(lChosenNode+1)+
 	    std::string(" node of the ")+uint2ordinal(lChosenTree+1)+
 	    std::string(" tree with its ")+uint2ordinal(lChosenArg+1)+
@@ -166,10 +173,14 @@ bool GP::MutationShrinkOp::mutate(Beagle::Individual& ioIndividual, Beagle::Cont
 
 	Beagle_LogDebugM(
 	    ioContext.getSystem().getLogger(),
+	    "mutation",
+	    "Beagle::GP::MutationShrinkOp",
 	    "Individual after GP shrink mutation"
 	);
-	Beagle_LogDebugM(
+	Beagle_LogObjectDebugM(
 	    ioContext.getSystem().getLogger(),
+	    "mutation",
+	    "Beagle::GP::MutationShrinkOp",
 	    ioIndividual
 	);
 

@@ -33,7 +33,7 @@
  *  $Date: 2007/08/08 19:26:36 $
  */
 
-#include "Beagle/GP.hpp"
+#include "beagle/GP.hpp"
 
 #ifdef BEAGLE_HAVE_RTTI
 #include <typeinfo>

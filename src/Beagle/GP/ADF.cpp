@@ -34,7 +34,7 @@
  *  $Date: 2007/08/17 18:09:11 $
  */
 
-#include "Beagle/GP.hpp"
+#include "beagle/GP.hpp"
 
 using namespace Beagle;
 
@@ -162,6 +162,7 @@ bool GP::ADF::validate(GP::Context& ioContext) const
 	if(mIndex <= ioContext.getGenotypeIndex()) {
 		Beagle_LogDebugM(
 		    ioContext.getSystem().getLogger(),
+		    "validation","Beagle::GP::ADF::validate",
 		    std::string("Validation failed because the ADF's index (")+uint2str(mIndex)+
 		    ") is less than or equal to the genotype index ("+uint2str(ioContext.getGenotypeIndex())+")"
 		);

@@ -39,17 +39,17 @@
 #include <cmath>
 #include <string>
 
-#include "Beagle/config.hpp"
-#include "Beagle/macros.hpp"
-#include "Beagle/Core/Object.hpp"
-#include "Beagle/Core/AllocatorT.hpp"
-#include "Beagle/Core/PointerT.hpp"
-#include "Beagle/Core/ContainerT.hpp"
-#include "Beagle/Core/WrapperT.hpp"
-#include "Beagle/GP/Primitive.hpp"
-#include "Beagle/GP/PrimitiveInline.hpp"
-#include "Beagle/GP/Context.hpp"
-#include "Beagle/GP/Datum.hpp"
+#include "beagle/config.hpp"
+#include "beagle/macros.hpp"
+#include "beagle/Object.hpp"
+#include "beagle/AllocatorT.hpp"
+#include "beagle/PointerT.hpp"
+#include "beagle/ContainerT.hpp"
+#include "beagle/WrapperT.hpp"
+#include "beagle/GP/Primitive.hpp"
+#include "beagle/GP/PrimitiveInline.hpp"
+#include "beagle/GP/Context.hpp"
+#include "beagle/GP/Datum.hpp"
 
 #ifdef BEAGLE_HAVE_RTTI
 #include <typeinfo>

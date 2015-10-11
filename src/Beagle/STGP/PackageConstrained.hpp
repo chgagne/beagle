@@ -32,24 +32,23 @@
  *  $Date: 2007/08/10 20:32:21 $
  */
 
-#ifndef Beagle_STGP_PackageConstrained_hpp
-#define Beagle_STGP_PackageConstrained_hpp
+#ifndef Beagle_GP_PackageConstrained_hpp
+#define Beagle_GP_PackageConstrained_hpp
 
 #include <map>
 #include <string>
 
-#include "Beagle/config.hpp"
-#include "Beagle/macros.hpp"
-#include "Beagle/Core/System.hpp"
-#include "Beagle/Core/Evolver.hpp"
-#include "Beagle/Core/Package.hpp"
-#include "Beagle/GP/PrimitiveSuperSet.hpp"
+#include "beagle/config.hpp"
+#include "beagle/macros.hpp"
+#include "beagle/System.hpp"
+#include "beagle/Evolver.hpp"
+#include "beagle/Package.hpp"
 
 
 namespace Beagle
 {
 
-namespace STGP
+namespace GP
 {
 
 /*!
@@ -57,24 +56,24 @@ namespace STGP
  *  \brief Package for adding objects related to constrained GP.
  *  \ingroup GPF
  */
-class PackageConstrained : public Beagle::PackageAbstract
+class PackageConstrained : public Beagle::Package
 {
 
 public:
 
 	//! GP::PackageConstrained allocator type.
-	typedef AllocatorT< PackageConstrained, Beagle::PackageAbstract::Alloc > Alloc;
+	typedef AllocatorT< PackageConstrained, Beagle::Package::Alloc > Alloc;
 	//! GP::PackageConstrained handle type.
-	typedef PointerT< PackageConstrained, Beagle::PackageAbstract::Handle > Handle;
+	typedef PointerT< PackageConstrained, Beagle::Package::Handle > Handle;
 	//! GP::PackageConstrained bag type.
-	typedef ContainerT< PackageConstrained, Beagle::PackageAbstract::Bag > Bag;
+	typedef ContainerT< PackageConstrained, Beagle::Package::Bag > Bag;
 
 	PackageConstrained(void);
 	explicit PackageConstrained(GP::PrimitiveSuperSet::Handle inPrimitiveSuperSet);
 	explicit PackageConstrained(GP::PrimitiveSet::Handle inPrimitiveSet);
 
 	virtual void                  configure(Beagle::System& ioSystem);
-	virtual Beagle::PackageAbstract::Bag  listDependencies(void);
+	virtual Beagle::Package::Bag  listDependencies(void);
 
 protected:
 

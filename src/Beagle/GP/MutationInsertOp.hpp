@@ -37,15 +37,15 @@
 
 #include <string>
 
-#include "Beagle/config.hpp"
-#include "Beagle/macros.hpp"
-#include "Beagle/Core/Object.hpp"
-#include "Beagle/EC/MutationOp.hpp"
-#include "Beagle/Core/UInt.hpp"
-#include "Beagle/Core/Float.hpp"
-#include "Beagle/Core/Bool.hpp"
-#include "Beagle/GP/Context.hpp"
-#include "Beagle/GP/Individual.hpp"
+#include "beagle/config.hpp"
+#include "beagle/macros.hpp"
+#include "beagle/Object.hpp"
+#include "beagle/MutationOp.hpp"
+#include "beagle/UInt.hpp"
+#include "beagle/Float.hpp"
+#include "beagle/Bool.hpp"
+#include "beagle/GP/Context.hpp"
+#include "beagle/GP/Individual.hpp"
 
 
 namespace Beagle
@@ -63,19 +63,19 @@ namespace GP
  *  using the original subtree at this position as one argument, and if necessary randomly
  *  selecting terminal primitives to complete the arguments of the inserted node.
  */
-class MutationInsertOp : public Beagle::EC::MutationOp
+class MutationInsertOp : public Beagle::MutationOp
 {
 
 public:
 
 	//! GP::MutationInsertOp allocator type.
-	typedef AllocatorT<MutationInsertOp,Beagle::EC::MutationOp::Alloc>
+	typedef AllocatorT<MutationInsertOp,Beagle::MutationOp::Alloc>
 	Alloc;
 	//! GP::MutationInsertOp handle type.
-	typedef PointerT<MutationInsertOp,Beagle::EC::MutationOp::Handle>
+	typedef PointerT<MutationInsertOp,Beagle::MutationOp::Handle>
 	Handle;
 	//! GP::MutationInsertOp bag type.
-	typedef ContainerT<MutationInsertOp,Beagle::EC::MutationOp::Bag>
+	typedef ContainerT<MutationInsertOp,Beagle::MutationOp::Bag>
 	Bag;
 
 	explicit MutationInsertOp(std::string inMutationPbName="gp.mutinsert.indpb",
