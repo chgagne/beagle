@@ -38,22 +38,22 @@
 
 #include <string>
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Object.hpp"
-#include "beagle/AllocatorT.hpp"
-#include "beagle/PointerT.hpp"
-#include "beagle/ContainerT.hpp"
-#include "beagle/InitializationOp.hpp"
-#include "beagle/UInt.hpp"
-#include "beagle/Bool.hpp"
-#include "beagle/GP/Tree.hpp"
-#include "beagle/GP/InitGrowOp.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Object.hpp"
+#include "Beagle/Core/AllocatorT.hpp"
+#include "Beagle/Core/PointerT.hpp"
+#include "Beagle/Core/ContainerT.hpp"
+#include "Beagle/EC/InitializationOp.hpp"
+#include "Beagle/Core/UInt.hpp"
+#include "Beagle/Core/Bool.hpp"
+#include "Beagle/GP/Tree.hpp"
+#include "Beagle/GP/InitGrowOp.hpp"
 
 
 namespace Beagle
 {
-namespace GP
+namespace STGP
 {
 
 /*!
@@ -64,19 +64,19 @@ namespace GP
  *  \ingroup GPOp
  *  \ingroup GPPop
  */
-class InitGrowConstrainedOp : public InitGrowOp
+class InitGrowConstrainedOp : public GP::InitGrowOp
 {
 
 public:
 
 	//! GP::InitGrowConstrainedOp allocator type.
-	typedef AllocatorT<InitGrowConstrainedOp,InitGrowOp::Alloc>
+	typedef AllocatorT<InitGrowConstrainedOp,GP::InitGrowOp::Alloc>
 	Alloc;
 	//! GP::InitGrowConstrainedOp handle type.
-	typedef PointerT<InitGrowConstrainedOp,InitGrowOp::Handle>
+	typedef PointerT<InitGrowConstrainedOp,GP::InitGrowOp::Handle>
 	Handle;
 	//! GP::InitGrowConstrainedOp bag type.
-	typedef ContainerT<InitGrowConstrainedOp,InitGrowOp::Bag>
+	typedef ContainerT<InitGrowConstrainedOp,GP::InitGrowOp::Bag>
 	Bag;
 
 	explicit InitGrowConstrainedOp(std::string inReproProbaName="ec.repro.prob",

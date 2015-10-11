@@ -38,20 +38,20 @@
 
 #include <string>
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Object.hpp"
-#include "beagle/AllocatorT.hpp"
-#include "beagle/PointerT.hpp"
-#include "beagle/ContainerT.hpp"
-#include "beagle/InitializationOp.hpp"
-#include "beagle/GP/InitFullConstrainedOp.hpp"
-#include "beagle/GP/InitGrowConstrainedOp.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Object.hpp"
+#include "Beagle/Core/AllocatorT.hpp"
+#include "Beagle/Core/PointerT.hpp"
+#include "Beagle/Core/ContainerT.hpp"
+#include "Beagle/EC/InitializationOp.hpp"
+#include "Beagle/STGP/InitFullConstrainedOp.hpp"
+#include "Beagle/STGP/InitGrowConstrainedOp.hpp"
 
 
 namespace Beagle
 {
-namespace GP
+namespace STGP
 {
 
 /*!

@@ -35,11 +35,11 @@
 #ifndef Beagle_GP_ValidateOp_hpp
 #define Beagle_GP_ValidateOp_hpp
 
-#include "beagle/Operator.hpp"
+#include "Beagle/Core/Operator.hpp"
 
 namespace Beagle
 {
-namespace GP
+namespace STGP
 {
 
 

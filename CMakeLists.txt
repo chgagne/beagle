@@ -429,7 +429,6 @@ if(OPENMP_FOUND)
 			execute_process(COMMAND ${CMAKE_CXX_COMPILER} -dumpversion OUTPUT_VARIABLE CMAKE_CXX_COMPILER_VERSION)
 			
 			if(NOT CMAKE_CXX_COMPILER_VERSION VERSION_LESS 4.3)
-			if(CMAKE_CXX_COMPILER_VERSION MATCHES "4?\\.[3-9]?\\.[0-9]")
 				message(STATUS "GCC ${CMAKE_CXX_COMPILER_VERSION} found, enabling parallel STL")
 
 				set(CMAKE_REQUIRED_FLAGS "-L${PACC_LIB_FOUND_DIR} -I${PACC_INCLUDE_FOUND_DIR} -fopenmp -D_GLIBCXX_PARALLEL")
@@ -534,12 +533,30 @@ else(CMAKE_FAST_COMPILATION)
     file(REMOVE "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/EC/libBeagle-EC.cpp")
     file(REMOVE "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/BitStr/libBeagle-BitStr.cpp")
     file(REMOVE "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/FltVec/libBeagle-FltVec.cpp")
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> Refactoring of STGP
     file(REMOVE "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/IntVec/libBeagle-IntVec.cpp")
     file(REMOVE "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/ES/libBeagle-ES.cpp")
     file(REMOVE "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/SAES/libBeagle-SAES.cpp")
     file(REMOVE "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/EMO/libBeagle-EMO.cpp")
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> Refactoring of GP
+    file(REMOVE "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/FltVec/libBeagle-IntVec.cpp")
+    file(REMOVE "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/FltVec/libBeagle-ES.cpp")
+    file(REMOVE "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/FltVec/libBeagle-SAES.cpp")
+=======
+>>>>>>> Refactoring of STGP
     file(REMOVE "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/GP/libBeagle-GP.cpp")
+<<<<<<< HEAD
     file(REMOVE "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/STGP/libBeagle-STGP.cpp")
+>>>>>>> Refactoring of STGP
+=======
+>>>>>>> Refactoring of GP
 endif(CMAKE_FAST_COMPILATION)
 
 # Include headers required
@@ -679,25 +696,6 @@ MoveConfigFiles("${BEAGLE_SAES_HEADERS}" "${BEAGLE_OUTPUT_DIR}/include/Beagle/SA
 install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/SAES.hpp DESTINATION include/Beagle)
 install(FILES ${BEAGLE_SAES_HEADERS} DESTINATION include/Beagle/SAES)
 install(TARGETS Beagle-SAES DESTINATION lib)
-
-# Create Beagle-EMO library target
-add_library(Beagle-EMO ${BEAGLE_LIBRARY_TYPE} ${BEAGLE_EMO_SRC})
-target_link_libraries(Beagle-EMO Beagle-EC Beagle-Core pacc)
-if(ZLIB_FOUND)
-    target_link_libraries(Beagle-EMO ${ZLIB_LIBRARY})
-endif(ZLIB_FOUND)
-if(BUILD_STATIC_LIB)
-    set_target_properties(Beagle-EMO PROPERTIES VERSION ${BEAGLE_VERSION} ARCHIVE_OUTPUT_DIRECTORY "${BEAGLE_OUTPUT_DIR}/lib")
-else(BUILD_STATIC_LIB)
-    set_target_properties(Beagle-EMO PROPERTIES VERSION ${BEAGLE_VERSION} LIBRARY_OUTPUT_DIRECTORY "${BEAGLE_OUTPUT_DIR}/lib")
-endif(BUILD_STATIC_LIB)
-if(COMPILER_SUPPORTS_C0X AND BEAGLE_USE_C0x)
-    set_target_properties(Beagle-EMO PROPERTIES COMPILE_FLAGS "-std=c++0x")
-endif(COMPILER_SUPPORTS_C0X AND BEAGLE_USE_C0x)
-MoveConfigFiles("${BEAGLE_EMO_HEADERS}" "${BEAGLE_OUTPUT_DIR}/include/Beagle/EMO" false)
-install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/EMO.hpp DESTINATION include/Beagle)
-install(FILES ${BEAGLE_EMO_HEADERS} DESTINATION include/Beagle/EMO)
-install(TARGETS Beagle-EMO DESTINATION lib)
 
 # Create Beagle-GP library target
 add_library(Beagle-GP ${BEAGLE_LIBRARY_TYPE} ${BEAGLE_GP_SRC})
