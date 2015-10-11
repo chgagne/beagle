@@ -533,30 +533,12 @@ else(CMAKE_FAST_COMPILATION)
     file(REMOVE "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/EC/libBeagle-EC.cpp")
     file(REMOVE "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/BitStr/libBeagle-BitStr.cpp")
     file(REMOVE "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/FltVec/libBeagle-FltVec.cpp")
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> Refactoring of STGP
     file(REMOVE "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/IntVec/libBeagle-IntVec.cpp")
     file(REMOVE "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/ES/libBeagle-ES.cpp")
     file(REMOVE "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/SAES/libBeagle-SAES.cpp")
     file(REMOVE "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/EMO/libBeagle-EMO.cpp")
-<<<<<<< HEAD
-=======
-=======
->>>>>>> Refactoring of GP
-    file(REMOVE "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/FltVec/libBeagle-IntVec.cpp")
-    file(REMOVE "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/FltVec/libBeagle-ES.cpp")
-    file(REMOVE "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/FltVec/libBeagle-SAES.cpp")
-=======
->>>>>>> Refactoring of STGP
     file(REMOVE "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/GP/libBeagle-GP.cpp")
-<<<<<<< HEAD
     file(REMOVE "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/STGP/libBeagle-STGP.cpp")
->>>>>>> Refactoring of STGP
-=======
->>>>>>> Refactoring of GP
 endif(CMAKE_FAST_COMPILATION)
 
 # Include headers required
