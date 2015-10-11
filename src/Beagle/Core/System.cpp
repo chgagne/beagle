@@ -161,11 +161,12 @@ void System::addComponent(Component::Handle inComponent)
 		                              string("' is already installed in the system!"));
 
 	// add component
+	(*this)[inComponent->getName()] = inComponent;
+
 	Beagle_LogDetailedM(
 	    getLogger(),
-	    string("Adding component '")+inComponent->getName()+string("' to the system")
+	    string("Component '")+inComponent->getName()+string("' added to the system")
 	);
-	(*this)[inComponent->getName()] = inComponent;
 
 	Beagle_StackTraceEndM();
 }
