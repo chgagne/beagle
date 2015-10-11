@@ -38,11 +38,11 @@
 #include <map>
 #include <string>
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/System.hpp"
-#include "beagle/Evolver.hpp"
-#include "beagle/Package.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/System.hpp"
+#include "Beagle/Core/Evolver.hpp"
+#include "Beagle/Core/Package.hpp"
 
 
 namespace Beagle

@@ -33,7 +33,7 @@
  *  $Date: 2007/08/17 18:09:10 $
  */
 
-#include "beagle/GA.hpp"
+#include "Beagle/CMA.hpp"
 
 #include <cfloat>
 #include <float.h>
@@ -46,9 +46,9 @@ using namespace Beagle;
  *  \param inMutationPbName CMA-ES mutation probability parameter name used in register.
  *  \param inName Name of the derandomized CMA-ES mutation operator.
  */
-GA::MutationQRCMAFltVecOp::MutationQRCMAFltVecOp(std::string inMutationPbName,
+CMA::MutationQRCMAFltVecOp::MutationQRCMAFltVecOp(std::string inMutationPbName,
         std::string inName) :
-		GA::MutationCMAFltVecOp(inMutationPbName, inName)
+		MutationCMAFltVecOp(inMutationPbName, inName)
 { }
 
 
@@ -56,10 +56,10 @@ GA::MutationQRCMAFltVecOp::MutationQRCMAFltVecOp(std::string inMutationPbName,
  *  \brief Register the parameters of the derandomized CMA-ES mutation operator.
  *  \param ioSystem System of the evolution.
  */
-void GA::MutationQRCMAFltVecOp::registerParams(System& ioSystem)
+void CMA::MutationQRCMAFltVecOp::registerParams(System& ioSystem)
 {
 	Beagle_StackTraceBeginM();
-	GA::MutationCMAFltVecOp::registerParams(ioSystem);
+	CMA::MutationCMAFltVecOp::registerParams(ioSystem);
 	Component::Handle lQRComponent = ioSystem.haveComponent("QuasiRandom");
 	if(lQRComponent == NULL) ioSystem.addComponent(new QuasiRandom);
 	Beagle_StackTraceEndM();
@@ -70,10 +70,10 @@ void GA::MutationQRCMAFltVecOp::registerParams(System& ioSystem)
  *  \brief Initialize the derandomized CMA-ES mutation operator.
  *  \param ioSystem System of the evolution.
  */
-void GA::MutationQRCMAFltVecOp::init(System& ioSystem)
+void CMA::MutationQRCMAFltVecOp::init(System& ioSystem)
 {
 	Beagle_StackTraceBeginM();
-	GA::MutationCMAFltVecOp::init(ioSystem);
+	CMA::MutationCMAFltVecOp::init(ioSystem);
 	QuasiRandom::Handle lQRComponent =
 	    castHandleT<QuasiRandom>(ioSystem.getComponent("QuasiRandom"));
 	if(lQRComponent->getDimensionality() == 0) {
@@ -100,7 +100,7 @@ void GA::MutationQRCMAFltVecOp::init(System& ioSystem)
  *  \param ioContext Context of the evolution.
  *  \return True if the individual is effectively mutated, false if not.
  */
-bool GA::MutationQRCMAFltVecOp::mutate(Individual& ioIndividual, Context& ioContext)
+bool CMA::MutationQRCMAFltVecOp::mutate(Individual& ioIndividual, Context& ioContext)
 {
 	Beagle_StackTraceBeginM();
 	
@@ -111,10 +111,10 @@ bool GA::MutationQRCMAFltVecOp::mutate(Individual& ioIndividual, Context& ioCont
 	Component::Handle lHolderComponent = ioContext.getSystem().getComponent("CMAHolder");
 	if(lHolderComponent==NULL)
 		throw Beagle_RunTimeExceptionM("No CMA holder component found in the system!");
-	GA::CMAHolder::Handle lCMAHolder = castHandleT<GA::CMAHolder>(lHolderComponent);
+	CMA::CMAHolder::Handle lCMAHolder = castHandleT<CMA::CMAHolder>(lHolderComponent);
 	if(lCMAHolder==NULL)
 		throw Beagle_RunTimeExceptionM("Component named 'CMAHolder' found is not of the good type!");
-	GA::CMAHolder::iterator lIterVal = lCMAHolder->find(ioContext.getDemeIndex());
+	CMA::CMAHolder::iterator lIterVal = lCMAHolder->find(ioContext.getDemeIndex());
 	if(lIterVal == lCMAHolder->end()) {
 		std::ostringstream lOSS;
 		lOSS << "CMA values of index '" << ioContext.getDemeIndex() << "' not found in CMA holder ";
@@ -122,9 +122,9 @@ bool GA::MutationQRCMAFltVecOp::mutate(Individual& ioIndividual, Context& ioCont
 		lOSS << "strategy that would correctly initialize the CMA values at the given index.";
 		throw Beagle_RunTimeExceptionM(lOSS.str());
 	}
-	GA::CMAValues& lValues = lIterVal->second;
+	CMA::CMAValues& lValues = lIterVal->second;
 
-	GA::FloatVector::Handle lVector=castHandleT<GA::FloatVector>(ioIndividual[0]);
+	FltVec::FloatVector::Handle lVector=castHandleT<FltVec::FloatVector>(ioIndividual[0]);
 	Beagle_AssertM(lVector->size()==lValues.mD.size());
 	const double lSigma=lValues.mSigma.getWrappedValue();
 	Vector lArz(lVector->size());

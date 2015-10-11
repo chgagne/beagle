@@ -32,7 +32,8 @@
  *  $Date: 2007/08/10 20:32:20 $
  */
 
-#include "beagle/Coev.hpp"
+#include "Beagle/Coev.hpp"
+#include "Beagle/EC.hpp"
 
 using namespace Beagle;
 
@@ -76,7 +77,7 @@ Beagle::Package::Bag Coev::Package::listDependencies(void)
 {
 	Beagle_StackTraceBeginM();
 	Package::Bag lDependencies;
-	lDependencies.push_back(new PackageBase());
+	lDependencies.push_back(new EC::Package());
 	return lDependencies;
 	Beagle_StackTraceEndM();
 }
