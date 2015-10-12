@@ -46,7 +46,7 @@ using namespace Beagle;
  *  \param inN Initial number of elements in hall-of-fame.
  *  \param inModel Model of elements in the hall-of-fame.
  */
-ParetoFrontHOF::ParetoFrontHOF(unsigned int inN, const HallOfFame::Entry& inModel) :
+EMO::ParetoFrontHOF::ParetoFrontHOF(unsigned int inN, const HallOfFame::Entry& inModel) :
 		HallOfFame(inN, inModel)
 { }
 
@@ -55,7 +55,7 @@ ParetoFrontHOF::ParetoFrontHOF(unsigned int inN, const HallOfFame::Entry& inMode
  *  \brief Get exact type of the hall-of-fame.
  *  \return Exact type of the hall-of-fame.
  */
-const std::string& ParetoFrontHOF::getType() const
+const std::string& EMO::ParetoFrontHOF::getType() const
 {
 	Beagle_StackTraceBeginM();
 	const static std::string lType("ParetoFrontHOF");
@@ -71,7 +71,7 @@ const std::string& ParetoFrontHOF::getType() const
  *  \param ioContext Evolution context.
  *  \return True if the Pareto front has been modified, false if not.
  */
-bool ParetoFrontHOF::updateWithDeme(unsigned int inSizeHOF, const Deme& inDeme, Context& ioContext)
+bool EMO::ParetoFrontHOF::updateWithDeme(unsigned int inSizeHOF, const Deme& inDeme, Context& ioContext)
 {
 	Beagle_StackTraceBeginM();
 
@@ -159,7 +159,7 @@ bool ParetoFrontHOF::updateWithDeme(unsigned int inSizeHOF, const Deme& inDeme, 
  *  \param ioContext Evolution context.
  *  \return True if the Pareto front had been modified, false if not.
  */
-bool ParetoFrontHOF::updateWithIndividual(unsigned int inSizeHOF,
+bool EMO::ParetoFrontHOF::updateWithIndividual(unsigned int inSizeHOF,
         const Individual& inIndividual,
         Context& ioContext)
 {

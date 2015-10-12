@@ -33,8 +33,8 @@
  *  $Date: 2007/08/17 18:09:12 $
  */
 
-#ifndef Beagle_FitnessMultiObjMin_hpp
-#define Beagle_FitnessMultiObjMin_hpp
+#ifndef Beagle_EMO_FitnessMultiObjMin_hpp
+#define Beagle_EMO_FitnessMultiObjMin_hpp
 
 #include <vector>
 
@@ -48,6 +48,8 @@
 #include "Beagle/EMO/FitnessMultiObj.hpp"
 
 namespace Beagle
+{
+namespace EMO
 {
 
 /*!
@@ -81,6 +83,7 @@ public:
 
 };
 
+}
 }
 
 #endif // Beagle_FitnessMultiObjMin_hpp

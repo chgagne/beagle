@@ -33,8 +33,8 @@
  *  $Date: 2007/08/17 18:09:13 $
  */
 
-#ifndef Beagle_StatsCalcFitnessMultiObjOp_hpp
-#define Beagle_StatsCalcFitnessMultiObjOp_hpp
+#ifndef Beagle_EMO_StatsCalcFitnessMultiObjOp_hpp
+#define Beagle_EMO_StatsCalcFitnessMultiObjOp_hpp
 
 #include "Beagle/config.hpp"
 #include "Beagle/macros.hpp"
@@ -53,6 +53,8 @@
 #include "Beagle/EC/StatsCalculateOp.hpp"
 
 namespace Beagle
+{
+namespace EMO
 {
 
 
@@ -86,6 +88,7 @@ public:
 
 };
 
+}
 }
 
 #endif // Beagle_StatsCalcFitnessMultiObjOp.cpp_hpp

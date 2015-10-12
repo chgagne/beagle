@@ -45,7 +45,7 @@ using namespace Beagle;
  *  \brief Construct a calculate stats operator.
  *  \param inName Name of the operator.
  */
-StatsCalcFitnessMultiObjOp::StatsCalcFitnessMultiObjOp(std::string inName) :
+EMO::StatsCalcFitnessMultiObjOp::StatsCalcFitnessMultiObjOp(std::string inName) :
 		EC::StatsCalculateOp(inName)
 { }
 
@@ -56,7 +56,7 @@ StatsCalcFitnessMultiObjOp::StatsCalcFitnessMultiObjOp(std::string inName) :
  *  \param ioDeme Deme to evalute the statistics.
  *  \param ioContext Context of the evolution.
  */
-void StatsCalcFitnessMultiObjOp::calculateStatsDeme(Stats& outStats,
+void EMO::StatsCalcFitnessMultiObjOp::calculateStatsDeme(Stats& outStats,
         Deme& ioDeme,
         Context& ioContext) const
 {

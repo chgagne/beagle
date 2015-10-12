@@ -46,7 +46,7 @@ using namespace Beagle;
  *  \brief Build NPGA2 selection operator.
  *  \param inName Name of the NPGA2 operator.
  */
-NPGA2Op::NPGA2Op(std::string inName) :
+EMO::NPGA2Op::NPGA2Op(std::string inName) :
 		Operator(inName)
 { }
 
@@ -57,7 +57,7 @@ NPGA2Op::NPGA2Op(std::string inName) :
  *  \param inIndividualPool Pool of individuals to evaluate distance on.
  *  \return Niche count value.
  */
-float NPGA2Op::evalNicheCount(const Individual& inEvalIndividual,
+float EMO::NPGA2Op::evalNicheCount(const Individual& inEvalIndividual,
                               const Individual::Bag& inIndividualPool) const
 {
 	Beagle_StackTraceBeginM();
@@ -78,7 +78,7 @@ float NPGA2Op::evalNicheCount(const Individual& inEvalIndividual,
  *  \brief Register the parameters of this operator.
  *  \param ioSystem Evolutionary system.
  */
-void NPGA2Op::registerParams(System& ioSystem)
+void EMO::NPGA2Op::registerParams(System& ioSystem)
 {
 	Beagle_StackTraceBeginM();
 
@@ -113,7 +113,7 @@ void NPGA2Op::registerParams(System& ioSystem)
  *  \param ioDeme Deme on which selection operator is applied.
  *  \param ioContext Evolutionary context.
  */
-void NPGA2Op::operate(Deme& ioDeme, Context& ioContext)
+void EMO::NPGA2Op::operate(Deme& ioDeme, Context& ioContext)
 {
 	Beagle_StackTraceBeginM();
 	if(ioDeme.size() == 0) return;
@@ -200,7 +200,7 @@ void NPGA2Op::operate(Deme& ioDeme, Context& ioContext)
  *  \brief Initialize this operator.
  *  \param ioSystem Evolutionary system.
  */
-void NPGA2Op::init(System& ioSystem)
+void EMO::NPGA2Op::init(System& ioSystem)
 {
 	Beagle_StackTraceBeginM();
 

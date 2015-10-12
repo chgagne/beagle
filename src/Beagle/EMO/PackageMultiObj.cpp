@@ -40,7 +40,7 @@ using namespace Beagle;
 /*!
  *  \brief Construct package with multi-objective optimization objects.
  */
-PackageMultiObj::PackageMultiObj(void) :
+EMO::PackageMultiObj::PackageMultiObj(void) :
 		PackageAbstract("PackageMultiObj")
 { }
 
@@ -49,32 +49,32 @@ PackageMultiObj::PackageMultiObj(void) :
  *  \brief Configure system by adding necessary components into it.
  *  \param ioSystem System to configure.
  */
-void PackageMultiObj::configure(System& ioSystem)
+void EMO::PackageMultiObj::configure(System& ioSystem)
 {
 	Beagle_StackTraceBeginM();
 	Factory& lFactory = ioSystem.getFactory();
 
 	// Add available basic types to the factory
-	lFactory.insertAllocator("Beagle::AlgoNSGA2", new AlgoNSGA2::Alloc);
-	lFactory.insertAllocator("Beagle::FitnessMultiObj", new FitnessMultiObj::Alloc);
-	lFactory.insertAllocator("Beagle::FitnessMultiObjMin", new FitnessMultiObjMin::Alloc);
-	lFactory.insertAllocator("Beagle::NPGA2Op", new NPGA2Op::Alloc);
-	lFactory.insertAllocator("Beagle::NSGA2Op", new NSGA2Op::Alloc);
-	lFactory.insertAllocator("Beagle::PackageMultiObj", new PackageMultiObj::Alloc);
-	lFactory.insertAllocator("Beagle::ParetoFrontCalculateOp", new ParetoFrontCalculateOp::Alloc);
-	lFactory.insertAllocator("Beagle::ParetoFrontHOF", new ParetoFrontHOF::Alloc);
-	lFactory.insertAllocator("Beagle::StatsCalcFitnessMultiObjOp", new StatsCalcFitnessMultiObjOp::Alloc);
+	lFactory.insertAllocator("Beagle::EMO::AlgoNSGA2", new AlgoNSGA2::Alloc);
+	lFactory.insertAllocator("Beagle::EMO::FitnessMultiObj", new FitnessMultiObj::Alloc);
+	lFactory.insertAllocator("Beagle::EMO::FitnessMultiObjMin", new FitnessMultiObjMin::Alloc);
+	lFactory.insertAllocator("Beagle::EMO::NPGA2Op", new NPGA2Op::Alloc);
+	lFactory.insertAllocator("Beagle::EMO::NSGA2Op", new NSGA2Op::Alloc);
+	lFactory.insertAllocator("Beagle::EMO::PackageMultiObj", new PackageMultiObj::Alloc);
+	lFactory.insertAllocator("Beagle::EMO::ParetoFrontCalculateOp", new ParetoFrontCalculateOp::Alloc);
+	lFactory.insertAllocator("Beagle::EMO::ParetoFrontHOF", new ParetoFrontHOF::Alloc);
+	lFactory.insertAllocator("Beagle::EMO::StatsCalcFitnessMultiObjOp", new StatsCalcFitnessMultiObjOp::Alloc);
 
 	// Set aliases
-	lFactory.aliasAllocator("Beagle::AlgoNSGA2", "AlgoNSGA2");
-	lFactory.aliasAllocator("Beagle::FitnessMultiObj", "FitnessMultiObj");
-	lFactory.aliasAllocator("Beagle::FitnessMultiObjMin", "FitnessMultiObjMin");
-	lFactory.aliasAllocator("Beagle::NPGA2Op", "NPGA2Op");
-	lFactory.aliasAllocator("Beagle::NSGA2Op", "NSGA2Op");
-	lFactory.aliasAllocator("Beagle::PackageMultiObj", "PackageMultiObj");
-	lFactory.aliasAllocator("Beagle::ParetoFrontCalculateOp", "ParetoFrontCalculateOp");
-	lFactory.aliasAllocator("Beagle::ParetoFrontHOF", "ParetoFrontHOF");
-	lFactory.aliasAllocator("Beagle::StatsCalcFitnessMultiObjOp", "StatsCalcFitnessMultiObjOp");
+	lFactory.aliasAllocator("Beagle::EMO::AlgoNSGA2", "AlgoNSGA2");
+	lFactory.aliasAllocator("Beagle::EMO::FitnessMultiObj", "FitnessMultiObj");
+	lFactory.aliasAllocator("Beagle::EMO::FitnessMultiObjMin", "FitnessMultiObjMin");
+	lFactory.aliasAllocator("Beagle::EMO::NPGA2Op", "NPGA2Op");
+	lFactory.aliasAllocator("Beagle::EMO::NSGA2Op", "NSGA2Op");
+	lFactory.aliasAllocator("Beagle::EMO::PackageMultiObj", "PackageMultiObj");
+	lFactory.aliasAllocator("Beagle::EMO::ParetoFrontCalculateOp", "ParetoFrontCalculateOp");
+	lFactory.aliasAllocator("Beagle::EMO::ParetoFrontHOF", "ParetoFrontHOF");
+	lFactory.aliasAllocator("Beagle::EMO::StatsCalcFitnessMultiObjOp", "StatsCalcFitnessMultiObjOp");
 
 	// Set some basic concept-type associations in factory
 	lFactory.setConcept("Algorithm", "AlgoNSGA2");
@@ -93,7 +93,7 @@ void PackageMultiObj::configure(System& ioSystem)
  *
  *  PackageMultiObj depends on PackageBase.
  */
-PackageAbstract::Bag PackageMultiObj::listDependencies(void)
+PackageAbstract::Bag EMO::PackageMultiObj::listDependencies(void)
 {
 	Beagle_StackTraceBeginM();
 	PackageAbstract::Bag lDependencies;

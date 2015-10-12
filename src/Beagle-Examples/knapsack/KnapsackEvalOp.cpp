@@ -73,7 +73,7 @@ Fitness::Handle KnapsackEvalOp::evaluate(Individual& inIndividual, Context& ioCo
 			lWeight += (*mObjectWeights)[i];
 		}
 	}
-	FitnessMultiObj::Handle lFitness = new FitnessMultiObj(2);
+	EMO::FitnessMultiObj::Handle lFitness = new EMO::FitnessMultiObj(2);
 	(*lFitness)[0] = lValue;
 	(*lFitness)[1] = (mSumWeight - lWeight);
 	return lFitness;

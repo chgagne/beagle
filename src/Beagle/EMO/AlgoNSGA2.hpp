@@ -32,8 +32,8 @@
  *  $Date: 2007/08/17 18:09:11 $
  */
 
-#ifndef Beagle_AlgoNSGA2_hpp
-#define Beagle_AlgoNSGA2_hpp
+#ifndef Beagle_EMO_AlgoNSGA2_hpp
+#define Beagle_EMO_AlgoNSGA2_hpp
 
 #include <map>
 #include <string>
@@ -44,6 +44,8 @@
 
 
 namespace Beagle
+{
+namespace EMO
 {
 
 /*!
@@ -72,6 +74,7 @@ public:
 
 };
 
+}
 }
 
 #endif // Beagle_AlgoNSGA2_hpp

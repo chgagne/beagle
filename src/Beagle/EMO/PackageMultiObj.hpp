@@ -32,8 +32,8 @@
  *  $Date: 2007/08/17 18:09:13 $
  */
 
-#ifndef Beagle_PackageMultiObj_hpp
-#define Beagle_PackageMultiObj_hpp
+#ifndef Beagle_EMO_PackageMultiObj_hpp
+#define Beagle_EMO_PackageMultiObj_hpp
 
 #include <map>
 #include <string>
@@ -46,6 +46,8 @@
 
 
 namespace Beagle
+{
+namespace EMO
 {
 
 /*!
@@ -74,6 +76,7 @@ public:
 	virtual PackageAbstract::Bag listDependencies(void);
 };
 
+}
 }
 
 #endif // Beagle_PackageMultiObj_hpp

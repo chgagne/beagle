@@ -43,7 +43,7 @@ using namespace Beagle;
  *  \param inSize Size of the multiobjective fitness value.
  *  \param inValue Default initial value of the multiobjective fitness measures.
  */
-FitnessMultiObjMin::FitnessMultiObjMin(unsigned int inSize, double inValue) :
+EMO::FitnessMultiObjMin::FitnessMultiObjMin(unsigned int inSize, double inValue) :
 		FitnessMultiObj(inSize, inValue)
 { }
 
@@ -52,7 +52,7 @@ FitnessMultiObjMin::FitnessMultiObjMin(unsigned int inSize, double inValue) :
  *  \brief Construct a valid minimization multiobjective fitness object.
  *  \param inFitness Value of the fitness.
  */
-FitnessMultiObjMin::FitnessMultiObjMin(const std::vector<double>& inFitness) :
+EMO::FitnessMultiObjMin::FitnessMultiObjMin(const std::vector<double>& inFitness) :
 		FitnessMultiObj(inFitness)
 { }
 
@@ -62,7 +62,7 @@ FitnessMultiObjMin::FitnessMultiObjMin(const std::vector<double>& inFitness) :
  *  \param inOriginal Fitness to copy.
  *  \param ioSystem Evolutionary system to use for making the copy.
  */
-void FitnessMultiObjMin::copy(const Member& inOriginal, System& ioSystem)
+void EMO::FitnessMultiObjMin::copy(const Member& inOriginal, System& ioSystem)
 {
 	Beagle_StackTraceBeginM();
 	const FitnessMultiObjMin& lOriginal = castObjectT<const FitnessMultiObjMin&>(inOriginal);
@@ -75,7 +75,7 @@ void FitnessMultiObjMin::copy(const Member& inOriginal, System& ioSystem)
  *  \brief Get exact type of the fitness.
  *  \return Exact type of the fitness.
  */
-const std::string& FitnessMultiObjMin::getType() const
+const std::string& EMO::FitnessMultiObjMin::getType() const
 {
 	Beagle_StackTraceBeginM();
 	const static std::string lType("FitnessMultiObjMin");
@@ -89,7 +89,7 @@ const std::string& FitnessMultiObjMin::getType() const
  *  \param inRightFitness Second multiobjective fitness to test domination on.
  *  \return True if the actual multiobjective measure is dominated, false if not.
  */
-bool FitnessMultiObjMin::isDominated(const Fitness& inRightFitness) const
+bool EMO::FitnessMultiObjMin::isDominated(const Fitness& inRightFitness) const
 {
 	Beagle_StackTraceBeginM();
 	const FitnessMultiObjMin& lRightFitness = castObjectT<const FitnessMultiObjMin&>(inRightFitness);
@@ -111,7 +111,7 @@ bool FitnessMultiObjMin::isDominated(const Fitness& inRightFitness) const
  *  \param inRightObj Right measure to compare.
  *  \return True if the actual fitness is less from the right one, false if not.
  */
-bool FitnessMultiObjMin::isLess(const Object& inRightObj) const
+bool EMO::FitnessMultiObjMin::isLess(const Object& inRightObj) const
 {
 	Beagle_StackTraceBeginM();
 	const FitnessMultiObjMin& lRightFitness = castObjectT<const FitnessMultiObjMin&>(inRightObj);

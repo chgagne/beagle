@@ -73,8 +73,8 @@
  *
  */
 
-#ifndef Beagle_FitnessMultiObj_hpp
-#define Beagle_FitnessMultiObj_hpp
+#ifndef Beagle_EMO_FitnessMultiObj_hpp
+#define Beagle_EMO_FitnessMultiObj_hpp
 
 #include <vector>
 
@@ -88,6 +88,8 @@
 #include "Beagle/Core/Fitness.hpp"
 
 namespace Beagle
+{
+namespace EMO
 {
 
 /*!
@@ -127,6 +129,7 @@ public:
 
 };
 
+}
 }
 
 #endif // Beagle_FitnessMultiObj_hpp

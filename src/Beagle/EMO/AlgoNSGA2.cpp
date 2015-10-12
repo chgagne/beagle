@@ -41,7 +41,7 @@ using namespace Beagle::EC;
 /*!
  *  \brief Construct generational evolutionary algorithm.
  */
-AlgoNSGA2::AlgoNSGA2(void) :
+EMO::AlgoNSGA2::AlgoNSGA2(void) :
 		Algorithm("AlgoNSGA2")
 { }
 
@@ -52,7 +52,7 @@ AlgoNSGA2::AlgoNSGA2(void) :
  *  \param ioSystem Evolutionary system.
  *
  */
-void AlgoNSGA2::configure(Evolver& ioEvolver, System& ioSystem)
+void EMO::AlgoNSGA2::configure(Evolver& ioEvolver, System& ioSystem)
 {
 	Beagle_StackTraceBeginM();
 

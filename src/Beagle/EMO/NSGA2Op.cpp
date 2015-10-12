@@ -42,7 +42,9 @@
 using namespace Beagle;
 
 
-namespace
+namespace Beagle
+{
+namespace EMO
 {
 
 // CrowdingPair is used internally in the evalCrowdingDistance method.
@@ -68,6 +70,7 @@ private:
 };
 
 }
+}
 
 
 /*!
@@ -75,7 +78,7 @@ private:
  *  \param inLMRatioName Lamda over Mu parameter name used in the register.
  *  \param inName Name of the NSGA2 operator.
  */
-NSGA2Op::NSGA2Op(std::string inLMRatioName, std::string inName) :
+EMO::NSGA2Op::NSGA2Op(std::string inLMRatioName, std::string inName) :
 		ReplacementStrategyOp(inName),
 		mLMRatioName(inLMRatioName)
 { }
@@ -86,7 +89,7 @@ NSGA2Op::NSGA2Op(std::string inLMRatioName, std::string inName) :
  *  \param ioDeme Deme on which selection operator is applied.
  *  \param ioContext Evolutionary context.
  */
-void NSGA2Op::applyAsReplacementStrategy(Deme& ioDeme, Context& ioContext)
+void EMO::NSGA2Op::applyAsReplacementStrategy(Deme& ioDeme, Context& ioContext)
 {
 	Beagle_StackTraceBeginM();
 	Beagle_LogTraceM(
@@ -157,7 +160,7 @@ void NSGA2Op::applyAsReplacementStrategy(Deme& ioDeme, Context& ioContext)
  *  \param ioDeme Deme on which selection operator is applied.
  *  \param ioContext Evolutionary context.
  */
-void NSGA2Op::applyAsStandardOperator(Deme& ioDeme, Context& ioContext)
+void EMO::NSGA2Op::applyAsStandardOperator(Deme& ioDeme, Context& ioContext)
 {
 	Beagle_StackTraceBeginM();
 	// Fast non-dominated sorting, followed by insertion of the first Pareto fronts.
@@ -201,7 +204,7 @@ void NSGA2Op::applyAsStandardOperator(Deme& ioDeme, Context& ioContext)
  *  \param outDistances Evaluated crowding distance and associated indexes.
  *  \param inIndividualPool Pool of individuals to evaluate distance on.
  */
-void NSGA2Op::evalCrowdingDistance(NSGA2Op::Distances& outDistances,
+void EMO::NSGA2Op::evalCrowdingDistance(NSGA2Op::Distances& outDistances,
                                    const Individual::Bag& inIndividualPool) const
 {
 	Beagle_StackTraceBeginM();
@@ -237,7 +240,7 @@ void NSGA2Op::evalCrowdingDistance(NSGA2Op::Distances& outDistances,
  *  \brief Register the parameters of this operator.
  *  \param ioSystem Reference to the system to use for the initialization.
  */
-void NSGA2Op::registerParams(System& ioSystem)
+void EMO::NSGA2Op::registerParams(System& ioSystem)
 {
 	Beagle_StackTraceBeginM();
 
@@ -282,7 +285,7 @@ void NSGA2Op::registerParams(System& ioSystem)
  *  \param ioDeme Reference to the deme on which the operation takes place.
  *  \param ioContext Evolutionary context of the operation.
  */
-void NSGA2Op::operate(Deme& ioDeme, Context& ioContext)
+void EMO::NSGA2Op::operate(Deme& ioDeme, Context& ioContext)
 {
 	Beagle_StackTraceBeginM();
 	if(getRootNode()==NULL) applyAsStandardOperator(ioDeme,ioContext);
@@ -295,7 +298,7 @@ void NSGA2Op::operate(Deme& ioDeme, Context& ioContext)
  *  \brief Initialize this operator.
  *  \param ioSystem Evolutionary system.
  */
-void NSGA2Op::init(System& ioSystem)
+void EMO::NSGA2Op::init(System& ioSystem)
 {
 	Beagle_StackTraceBeginM();
 
@@ -335,7 +338,7 @@ void NSGA2Op::init(System& ioSystem)
  *  \param inIter XML iterator to use to read NSGA2Op operator.
  *  \param ioSystem Evolutionary system.
  */
-void NSGA2Op::readWithSystem(PACC::XML::ConstIterator inIter, System& ioSystem)
+void EMO::NSGA2Op::readWithSystem(PACC::XML::ConstIterator inIter, System& ioSystem)
 {
 	Beagle_StackTraceBeginM();
 	if((inIter->getType()!=PACC::XML::eData) || (inIter->getValue()!=getName())) {
@@ -358,7 +361,7 @@ void NSGA2Op::readWithSystem(PACC::XML::ConstIterator inIter, System& ioSystem)
  *  \param inIndividualPool Pool of individuals to get next Pareto front of.
  *  \param ioContext Evolutionary context.
  */
-void NSGA2Op::sortFastND(NSGA2Op::Fronts& outParetoFronts,
+void EMO::NSGA2Op::sortFastND(NSGA2Op::Fronts& outParetoFronts,
                          unsigned int inSortStop,
                          const Individual::Bag& inIndividualPool,
                          Context& ioContext) const
@@ -427,7 +430,7 @@ void NSGA2Op::sortFastND(NSGA2Op::Fronts& outParetoFronts,
  *  \param ioStreamer XML streamer to write NSGA2Op operator into.
  *  \param inIndent Whether XML output should be indented.
  */
-void NSGA2Op::write(PACC::XML::Streamer& ioStreamer, bool inIndent) const
+void EMO::NSGA2Op::write(PACC::XML::Streamer& ioStreamer, bool inIndent) const
 {
 	Beagle_StackTraceBeginM();
 	ioStreamer.openTag(getName(), inIndent);
