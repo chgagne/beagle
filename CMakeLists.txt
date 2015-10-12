@@ -587,7 +587,7 @@ endif(COMPILER_SUPPORTS_C0X AND BEAGLE_USE_C0x)
 MoveConfigFiles("${BEAGLE_EC_HEADERS}" "${BEAGLE_OUTPUT_DIR}/include/Beagle/EC" false)
 install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle/EC.hpp DESTINATION "${BEAGLE_OUTPUT_DIR}/include/Beagle")
 install(FILES ${BEAGLE_EC_HEADERS} DESTINATION "${BEAGLE_OUTPUT_DIR}/include/Beagle/EC")
-install(TARGETS Beagle-EC DESTINATION "${BEAGLE_OUTPUT_DIR}/lib")
+install(TARGETS Beagle-EC DESTINATION lib)
 
 # Create Beagle-BitStr library target
 add_library(Beagle-BitStr ${BEAGLE_LIBRARY_TYPE} ${BEAGLE_BITSTR_SRC})
