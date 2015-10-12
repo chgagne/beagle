@@ -148,7 +148,7 @@ void System::replaceComponentsByConcepts(void)
  *  \brief Add a new component to the system.
  *  \param inComponent The component to add.
  *
- *  To be initialized, components need to be add to the system.
+ *  To be initialized, components need to be added to the system.
  */
 void System::addComponent(Component::Handle inComponent)
 {
@@ -162,9 +162,9 @@ void System::addComponent(Component::Handle inComponent)
 
 	// add component
 	(*this)[inComponent->getName()] = inComponent;
-
-	Beagle_LogDetailedM(
-	    getLogger(),
+	Beagle_AddToLogBufferM(
+		getLogger(),
+		Beagle::Logger::eDetailed,
 	    string("Component '")+inComponent->getName()+string("' added to the system")
 	);
 
