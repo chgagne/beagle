@@ -74,7 +74,7 @@
  *  \ingroup Sys
  */
 #define Beagle_AddToLogBufferM(ioLogger, inLevel, inMessage) \
-{ioLogger.addToBuffer(inLevel,inMessage,__FILE__,__PRETTY_FUNCTION__);}
+{ioLogger.addToBuffer(inMessage, inLevel, __FILE__, __PRETTY_FUNCTION__);}
 
 /*!
  *  \def Beagle_LogBasicM
