@@ -116,7 +116,7 @@ unsigned int SelectTournamentOp::selectOneIndividual(Individual::Bag& ioPool, Co
 
 	Beagle_LogDebugM(
 	    ioContext.getSystem().getLogger(),
-	    "Selecting the " << uint2ordinal(lChoosenIndividual+1) << " individual"
+	    "Selecting the " << uint2ordinal(lChoosenIndividual+1) << " individual"
 	);
 	Beagle_LogDebugM(ioContext.getSystem().getLogger(), *ioPool[lChoosenIndividual]);
 

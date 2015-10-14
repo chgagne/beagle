@@ -120,7 +120,7 @@ bool Beagle::IntVec::CrossoverOrderedOp::mate(Beagle::Individual& ioIndiv1,
 	
 	Beagle_LogDebugM(
 		ioContext1.getSystem().getLogger(),
-		"Individuals mated (after IntVec ordered crossover): " << ioIndiv1 << ", " << ioIndiv2
+		"Individuals mated (after IntVec ordered crossover): " << ioIndiv1 << ", " << ioIndiv2
 	);
 	
 	return true;

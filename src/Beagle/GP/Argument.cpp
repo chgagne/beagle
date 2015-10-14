@@ -98,8 +98,9 @@ GP::Argument::Handle GP::Argument::generateArgument(unsigned int inIndex) const
 const std::type_info* GP::Argument::getReturnType(GP::Context&) const
 {
 	Beagle_StackTraceBeginM();
-	Object::Handle lObj = mSharedData->mTypeAllocator->allocate();
-	return &typeid(*lObj);
+	Object::Handle lObjPtr = mSharedData->mTypeAllocator->allocate();
+	const Object& lObj = *lObjPtr;
+	return &typeid(lObj);
 	Beagle_StackTraceEndM();
 }
 

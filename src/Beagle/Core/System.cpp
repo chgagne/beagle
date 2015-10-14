@@ -556,14 +556,14 @@ void System::readFromFile(const std::string& inFileName)
 	} else {
 		// read all system instances
 		read(lPos);
-		if(lPos = lFinder.findNext()) {
+		if((lPos = lFinder.findNext())) {
 			Beagle_LogBasicM(
 			    getLogger(),
 			    "WARNING: file contains multiple systems"
 			);
 			do {
 				read(lPos);
-			} while(lPos = lFinder.findNext());
+			} while((lPos = lFinder.findNext()));
 		}
 	}
 }

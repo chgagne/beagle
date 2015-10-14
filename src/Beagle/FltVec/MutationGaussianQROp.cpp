@@ -161,7 +161,7 @@ bool FltVec::MutationGaussianQROp::mutate(Beagle::Individual& ioIndividual, Cont
 				lMutated = true;
 				Beagle_LogDebugM(
 				    ioContext.getSystem().getLogger(),
-				    "Gaussian mutating by adding " << lMValue <<
+				    "Gaussian mutating by adding " << lMValue <<
 				    " to the value at the index " << j << " of the float vector"
 				);
 			}

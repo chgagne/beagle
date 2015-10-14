@@ -109,7 +109,7 @@ bool Beagle::IntVec::CrossoverCycleOp::mate(Beagle::Individual& ioIndiv1,
 	
 	Beagle_LogDebugM(
 		ioContext1.getSystem().getLogger(),
-		"Individuals mated (before integer vector cycle crossover): " << ioIndiv1 << ", " << ioIndiv2
+		"Individuals mated (before integer vector cycle crossover): " << ioIndiv1 << ", " << ioIndiv2
 	);
 	
 	for(unsigned int i=0; i<lNbGenotypes; ++i) {
@@ -155,7 +155,7 @@ bool Beagle::IntVec::CrossoverCycleOp::mate(Beagle::Individual& ioIndiv1,
 	
 	Beagle_LogDebugM(
 		ioContext1.getSystem().getLogger(),
-		"Individuals mated (after integer vector cycle crossover): " << ioIndiv1 << ", " << ioIndiv2;
+		"Individuals mated (after integer vector cycle crossover): " << ioIndiv1 << ", " << ioIndiv2;
 	);
 	
 	return true;

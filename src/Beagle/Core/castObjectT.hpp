@@ -196,7 +196,7 @@ inline typename CastType::Handle& castHandleT(Beagle::Object::Handle& inObject)
 		if( dynamic_cast<CastType*>(inObject.getPointer()) == NULL ) {
 			std::string lMessage("Unable to cast object handle into desired type! ");
 			lMessage += "Type of the object to cast: ";
-			lMessage += typeid(*inObject).name();
+			lMessage += typeid(inObject).name();
 			lMessage += ", \t";
 			lMessage += "Desired type cast: ";
 			lMessage += typeid(CastType).name();
@@ -233,7 +233,7 @@ inline const typename CastType::Handle& castHandleT(const Beagle::Object::Handle
 		if( dynamic_cast<const CastType*>(inObject.getPointer()) == NULL ) {
 			std::string lMessage("Unable to cast object handle into desired type! ");
 			lMessage += "Type of the object to cast: ";
-			lMessage += typeid(*inObject).name();
+			lMessage += typeid(inObject).name();
 			lMessage += ", \t";
 			lMessage += "Desired type cast: ";
 			lMessage += typeid(CastType).name();

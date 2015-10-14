@@ -242,7 +242,7 @@ void Evolver::evolve(Vivarium::Handle ioVivarium, System::Handle ioSystem)
 	ioSystem->getLogger().logCurrentTime(Logger::eBasic);
 	Beagle_LogBasicM(
 	    ioSystem->getLogger(),
-	    (lEvolContext->isTerminationSuccessful())?("End of (successful) evolution"):("End of (unsuccessful) evolution")
+	    ((lEvolContext->isTerminationSuccessful())?("End of (successful) evolution"):("End of (unsuccessful) evolution"))
 	);
 
 	Beagle_StackTraceEndM();
@@ -596,14 +596,14 @@ void Evolver::readMilestone(const std::string& inFileName, System& ioSystem)
 	} else {
 		// read all evolver instances
 		readWithSystem(lPosEvol, ioSystem);
-		if(lPosEvol = lFinderEvol.findNext()) {
+		if((lPosEvol = lFinderEvol.findNext())) {
 			Beagle_LogBasicM(
 			    ioSystem.getLogger(),
 			    "WARNING: milestone contains multiple evolvers"
 			);
 			do {
 				readWithSystem(lPosEvol,ioSystem);
-			} while(lPosEvol = lFinderEvol.findNext());
+			} while((lPosEvol = lFinderEvol.findNext()));
 		}
 	}
 
@@ -621,11 +621,11 @@ void Evolver::readMilestone(const std::string& inFileName, System& ioSystem)
 	} else {
 		// read all system instances
 		ioSystem.read(lPosSys);
-		if(lPosSys = lFinderSys.findNext()) {
+		if((lPosSys = lFinderSys.findNext())) {
 			Beagle_LogBasicM(ioSystem.getLogger(), "WARNING: milestone contains multiple systems");
 			do {
 				ioSystem.read(lPosSys);
-			} while(lPosSys = lFinderSys.findNext());
+			} while((lPosSys = lFinderSys.findNext()));
 		}
 	}
 
@@ -667,11 +667,11 @@ void Evolver::readFromFile(const std::string& inFileName, System& ioSystem)
 	} else {
 		// read all evolver instances
 		readWithSystem(lPos, ioSystem);
-		if(lPos = lFinder.findNext()) {
+		if((lPos = lFinder.findNext())) {
 			Beagle_LogBasicM(ioSystem.getLogger(), "WARNING: file contains multiple evolvers");
 			do {
 				read(lPos);
-			} while(lPos = lFinder.findNext());
+			} while((lPos = lFinder.findNext()));
 		}
 	}
 
@@ -715,14 +715,14 @@ void Evolver::readVivarium(const std::string& inFileName, Vivarium& outVivarium,
 	} else {
 		// read all evolver instances
 		outVivarium.readWithContext(lPos, ioContext);
-		if(lPos = lFinder.findNext()) {
+		if((lPos = lFinder.findNext())) {
 			Beagle_LogBasicM(
 			    ioContext.getSystem().getLogger(),
 			    "WARNING: file contains multiple vivarium"
 			);
 			do {
 				outVivarium.readWithContext(lPos, ioContext);
-			} while(lPos = lFinder.findNext());
+			} while((lPos = lFinder.findNext()));
 		}
 	}
 

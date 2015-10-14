@@ -92,7 +92,7 @@ bool IntVec::MutationShuffleSequenceOp::mutate(Beagle::Individual& ioIndividual,
 		);
 		Beagle_LogDebugM(
 			ioContext.getSystem().getLogger(),
-			"The individual's genotype before IntVec reverse sequence mutation: " << *ioIndividual[i]
+			"The individual's genotype before IntVec reverse sequence mutation: " << *ioIndividual[i]
 		);
 		
 		unsigned int a = ioContext.getSystem().getRandomizer().rollInteger(0, ioIndividual[i]->getSize()-1);
