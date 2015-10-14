@@ -32,7 +32,7 @@
  *  $Date: 2007/08/08 14:51:33 $
  */
 
-#include "beagle/Distrib/Master.hpp"
+#include "Beagle/Master.hpp"
 
 using namespace Beagle;
 
@@ -41,7 +41,7 @@ using namespace Beagle;
  *  \brief Construct package with master-slave distribution basic objects.
  */
 Distrib::Master::Package::Package() :
-		Beagle::Package("DBMS-Package")
+		PackageAbstract("DBMS-Package")
 { }
 
 
@@ -93,11 +93,11 @@ void Distrib::Master::Package::configure(System& ioSystem)
  *
  *  Distrib::Master::Package depends on Beagle::PackageBase.
  */
-Beagle::Package::Bag Distrib::Master::Package::listDependencies(void)
+PackageAbstract::Bag Distrib::Master::Package::listDependencies(void)
 {
 	Beagle_StackTraceBeginM();
-	Package::Bag lDependencies;
-	lDependencies.push_back(new PackageBase());
+	PackageAbstract::Bag lDependencies;
+	lDependencies.push_back(new EC::Package());
 	return lDependencies;
 	Beagle_StackTraceEndM();
 }

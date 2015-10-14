@@ -35,9 +35,9 @@
 #ifndef Beagle_HPC_AlgoNSGA2_hpp
 #define Beagle_HPC_AlgoNSGA2_hpp
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Algorithm.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Algorithm.hpp"
 
 
 namespace Beagle

@@ -32,7 +32,7 @@
  *  $Date: 2007/08/08 19:26:33 $
  */
 
-#include "beagle/Distrib/Island.hpp"
+#include "Beagle/Island.hpp"
 
 using namespace Beagle;
 using namespace Beagle::Distrib;
@@ -58,7 +58,6 @@ void Island::TermSendOp::registerParams(System& ioSystem)
 	Beagle_StackTraceBeginM();
 	Beagle_LogVerboseM(
 	    ioSystem.getLogger(),
-	    "transport", "Beagle::TransportSendOp",
 	    "Initializing TransportSendOp"
 	);
 	// Add "on success" flag
@@ -107,7 +106,6 @@ void Island::TermSendOp::operate(Deme& ioDeme, Context& ioContext)
 	SendOp::operate(ioDeme, ioContext);
 	Beagle_LogTraceM(
 	    ioContext.getSystem().getLogger(),
-	    "termination", "Beagle::TermSendOp",
 	    "Checking if termination has been requested"
 	);
 	if (!ioContext.getContinueFlag()) {
@@ -115,7 +113,6 @@ void Island::TermSendOp::operate(Deme& ioDeme, Context& ioContext)
 			if (mSendOnSuccess->getWrappedValue()) {
 				Beagle_LogInfoM(
 				    ioContext.getSystem().getLogger(),
-				    "termination", "Beagle::TermSendOp",
 				    "Successful termination has been detected; propagating termination request"
 				);
 				// Send termination request
@@ -123,7 +120,6 @@ void Island::TermSendOp::operate(Deme& ioDeme, Context& ioContext)
 			} else {
 				Beagle_LogInfoM(
 				    ioContext.getSystem().getLogger(),
-				    "termination", "Beagle::TermSendOp",
 				    "Successful termination has been detected; termination request not propagated (see 'ec.term.sendonsuccess')"
 				);
 			}
@@ -131,7 +127,6 @@ void Island::TermSendOp::operate(Deme& ioDeme, Context& ioContext)
 			if (mSendOnFailure->getWrappedValue()) {
 				Beagle_LogInfoM(
 				    ioContext.getSystem().getLogger(),
-				    "termination", "Beagle::TermSendOp",
 				    "Unsuccessful termination has been detected; propagating termination request"
 				);
 				// Send termination request
@@ -139,7 +134,6 @@ void Island::TermSendOp::operate(Deme& ioDeme, Context& ioContext)
 			} else {
 				Beagle_LogInfoM(
 				    ioContext.getSystem().getLogger(),
-				    "termination", "Beagle::TermSendOp",
 				    "Unsuccessful termination has been detected; termination will not be propagated (see 'ec.term.sendonfailure')"
 				);
 			}

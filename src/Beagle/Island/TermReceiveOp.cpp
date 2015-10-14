@@ -32,7 +32,7 @@
  *  $Date: 2007/08/10 20:32:20 $
  */
 
-#include "beagle/Distrib/Island.hpp"
+#include "Beagle/Island.hpp"
 
 using namespace Beagle;
 using namespace Beagle::Distrib;
@@ -60,7 +60,6 @@ bool Island::TermReceiveOp::terminate(const Deme& inDeme, Context& ioContext)
 	Beagle_StackTraceBeginM();
 	Beagle_LogTraceM(
 	    ioContext.getSystem().getLogger(),
-	    "termination", "Beagle::TermReceiveOp",
 	    "Checking messages for termination request"
 	);
 
@@ -77,7 +76,6 @@ bool Island::TermReceiveOp::terminate(const Deme& inDeme, Context& ioContext)
 		if (lMessage=="Terminate") {
 			Beagle_LogInfoM(
 			    ioContext.getSystem().getLogger(),
-			    "termination", "Beagle::TermReceiveOp",
 			    "Termination request received from Communications component"
 			);
 			return true;

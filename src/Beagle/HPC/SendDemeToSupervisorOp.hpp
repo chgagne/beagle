@@ -38,7 +38,7 @@
 #ifndef Beagle_HPC_SendDemeToSupervisorOp_hpp
 #define Beagle_HPC_SendDemeToSupervisorOp_hpp
 
-#include "beagle/HPC.hpp"
+#include "Beagle/HPC.hpp"
 
 namespace Beagle{
 

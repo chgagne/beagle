@@ -32,7 +32,7 @@
  *  $Date: 2007/10/02 15:26:46 $
  */
 
-#include "beagle/Distrib/Master.hpp"
+#include "Beagle/Master.hpp"
 
 using namespace Beagle;
 

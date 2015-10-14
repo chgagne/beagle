@@ -32,7 +32,7 @@
  *  $Date: 2007/08/17 18:09:10 $
  */
 
-#include "beagle/Distrib/Island.hpp"
+#include "Beagle/Island.hpp"
 
 using namespace Beagle;
 using namespace Beagle::Distrib;
@@ -147,7 +147,6 @@ void Island::CommunicationsTCPIP::init(System &ioSystem)
 	// List known addresses
 	Beagle_LogDebugM(
 	    ioSystem.getLogger(),
-	    "communications", "Beagle::CommunicationsTCPIP",
 	    std::string("CommunicationsTCPIP knows ")+uint2str(mAddressToTCPIPMap.size())+
 	    " address(es)"
 	);
@@ -156,7 +155,6 @@ void Island::CommunicationsTCPIP::init(System &ioSystem)
 	        lItr != mAddressToTCPIPMap.end(); ++lItr) {
 		Beagle_LogDebugM(
 		    ioSystem.getLogger(),
-		    "communications", "Beagle::CommunicationsTCPIP",
 		    uint2ordinal(lIndex+1)+" address named '"+lItr->first+"' is "+
 		    lItr->second.getIPAddress()+":"+uint2str(lItr->second.getPortNumber())
 		);
@@ -170,7 +168,6 @@ void Island::CommunicationsTCPIP::init(System &ioSystem)
 		} else {
 			Beagle_LogBasicM(
 			    ioSystem.getLogger(),
-			    "communications", "Beagle::CommunicationsTCPIP",
 			    "WARNING: TCP/IP receiver thread has not been started because PortNumber is -1"
 			);
 			mReceiver = NULL;
@@ -186,7 +183,6 @@ void Island::CommunicationsTCPIP::init(System &ioSystem)
 	Beagle_AssertM( mReceiver->isRunning() );
 	Beagle_LogTraceM(
 	    ioSystem.getLogger(),
-	    "communications", "Beagle::CommunicationsTCPIP",
 	    std::string("TCP/IP receiver thread created and listening on port ")+
 	    uint2str(mPortNumber)
 	);
@@ -217,7 +213,6 @@ void Island::CommunicationsTCPIP::readAddress(PACC::XML::ConstIterator inIter,
 	Beagle_StackTraceBeginM();
 	Beagle_LogDebugM(
 	    ioSystem.getLogger(),
-	    "communications", "Beagle::CommunicationsTCPIP",
 	    "Reading address for CommunicationsTCPIP component"
 	);
 
@@ -227,7 +222,6 @@ void Island::CommunicationsTCPIP::readAddress(PACC::XML::ConstIterator inIter,
 		lName = inIter->getAttribute("name");
 		Beagle_LogDebugM(
 		    ioSystem.getLogger(),
-		    "communications", "Beagle::CommunicationsTCPIP",
 		    std::string("Reading address named '")+lName+"'"
 		);
 	} else {
@@ -249,7 +243,6 @@ void Island::CommunicationsTCPIP::readAddress(PACC::XML::ConstIterator inIter,
 				lHost = lHostNode->getValue();
 				Beagle_LogDebugM(
 				    ioSystem.getLogger(),
-				    "communications", "Beagle::CommunicationsTCPIP",
 				    std::string("Address named '")+lName+"' has host name '"+lHost+"'"
 				);
 			} else if (lNode->getValue()=="Port") {
@@ -261,7 +254,6 @@ void Island::CommunicationsTCPIP::readAddress(PACC::XML::ConstIterator inIter,
 				lISS >> lPort->getWrappedValue();
 				Beagle_LogDebugM(
 				    ioSystem.getLogger(),
-				    "communications", "Beagle::CommunicationsTCPIP",
 				    std::string("Address named '")+lName+"' has port number "+
 				    uint2str(lPort->getWrappedValue())
 				);
@@ -319,7 +311,6 @@ void Island::CommunicationsTCPIP::readWithSystem(PACC::XML::ConstIterator inIter
 			lISS >> mPortNumber;
 			Beagle_LogDebugM(
 			    ioSystem.getLogger(),
-			    "communications", "Beagle::Communications",
 			    std::string("CommunicationsTCPIP: Port number on which to listen was read as ")+
 			    uint2str(mPortNumber)
 			);
@@ -357,7 +348,6 @@ void Island::CommunicationsTCPIP::sendMessage(const std::string& inAddress,
 		// Connect to address
 		Beagle_LogDebugM(
 		    ioContext.getSystem().getLogger(),
-		    "communications", "Beagle::CommunicationsTCPIP",
 		    std::string("Connecting to ")+lAddress.getIPAddress()+":"+uint2str(lAddress.getPortNumber())
 		);
 		PACC::Socket::Cafe lConnection;
@@ -369,21 +359,18 @@ void Island::CommunicationsTCPIP::sendMessage(const std::string& inAddress,
 		// Send message to receiver
 		Beagle_LogDebugM(
 		    ioContext.getSystem().getLogger(),
-		    "communications", "Beagle::CommunicationsTCPIP",
 		    std::string("Sending message")
 		);
 		lConnection.sendMessage(inRecipient);
 		lConnection.sendMessage(inMessage);
 		Beagle_LogDebugM(
 		    ioContext.getSystem().getLogger(),
-		    "communications", "Beagle::CommunicationsTCPIP",
 		    std::string("Message sent successfully")
 		);
 	} catch (PACC::Socket::Exception& inException) {
 		if (inException.getErrorCode() == PACC::Socket::eConnectionRefused) {
 			Beagle_LogBasicM(
 			    ioContext.getSystem().getLogger(),
-			    "communications", "Beagle::CommunicationsTCPIP",
 			    std::string("WARNING: failed to send message to '")+inAddress+
 			    "' (recipient '"+inRecipient+"'); couldn't connect to "+lAddress.getIPAddress()+":"+
 			    uint2str(lAddress.getPortNumber())
@@ -391,7 +378,6 @@ void Island::CommunicationsTCPIP::sendMessage(const std::string& inAddress,
 		} else if (inException.getErrorCode() == PACC::Socket::eConnectionClosed) {
 			Beagle_LogBasicM(
 			    ioContext.getSystem().getLogger(),
-			    "communications", "Beagle::CommunicationsTCPIP",
 			    std::string("WARNING: failed to send message to '")+inAddress+
 			    "' (recipient '"+inRecipient+"'); connection was closed by the receiving end"
 			);

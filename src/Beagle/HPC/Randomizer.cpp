@@ -34,7 +34,7 @@
  *  $Date: 2007/09/13 13:17:43 $
  */
 
-#include "beagle/HPC.hpp"
+#include "Beagle/HPC.hpp"
 
 using namespace std;
 using namespace Beagle;
@@ -89,7 +89,6 @@ void HPC::Randomizer::init(System& ioSystem)
 	
 		Beagle_LogBasicM(
 		  ioSystem.getLogger(),
-		  "randomizer", "Beagle::Randomizer",
 		  std::string("Randomizer seed used: ")+uint2str(mSeed)
 		);
 	}

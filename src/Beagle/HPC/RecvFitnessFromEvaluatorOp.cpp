@@ -35,7 +35,7 @@
  *  $Date: 2007/08/13 00:57:45 $
  */
 
-#include "beagle/HPC.hpp"
+#include "Beagle/HPC.hpp"
 
 using namespace Beagle;
 
@@ -101,7 +101,6 @@ void HPC::RecvFitnessFromEvaluatorOp::operate(Deme& ioDeme, Context& ioContext)
 
 		Beagle_LogDetailedM(
 			ioContext.getSystem().getLogger(),
-			"receive", "Beagle::HPC::RecvFitnessFromEvaluatorOp",
 			std::string("Evolver receive fitness from his ")+uint2ordinal(i+1)+
 			std::string(" evaluator") + std::string(" of ") + uint2str(lNbEvaluators)
 		);
@@ -124,7 +123,6 @@ void HPC::RecvFitnessFromEvaluatorOp::operate(Deme& ioDeme, Context& ioContext)
 	}
 	Beagle_LogDetailedM(
 		ioContext.getSystem().getLogger(),
-		"receive", "Beagle::HPC::RecvFitnessFromEvaluatorOp",
 		std::string("Evolver receive all its fitness.")
 	);
 

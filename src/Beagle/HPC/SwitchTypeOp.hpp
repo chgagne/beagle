@@ -35,7 +35,7 @@
 #ifndef Beagle_HPC_SwitchTypeOp_hpp
 #define Beagle_HPC_SwitchTypeOp_hpp
 
-#include "beagle/HPC.hpp"
+#include "Beagle/HPC.hpp"
 
 #ifdef BEAGLE_HAVE_STDTR1_UNORDEREDMAP
 #include <tr1/unordered_map>

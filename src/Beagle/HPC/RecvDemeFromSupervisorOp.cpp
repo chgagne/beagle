@@ -35,7 +35,7 @@
  *  $Date: 2007/08/13 01:04:55 $
  */
 
-#include "beagle/HPC.hpp"
+#include "Beagle/HPC.hpp"
 
 using namespace Beagle;
 
@@ -75,7 +75,6 @@ void HPC::RecvDemeFromSupervisorOp::operate(Deme& ioDeme, Context& ioContext)
 	
 	Beagle_LogDetailedM(
 		ioContext.getSystem().getLogger(),
-		"receive", "Beagle::HPC::RecvDemeFromSupervisorOp",
 		std::string("Receive ") + uint2ordinal( ioContext.getDemeIndex() ) + std::string(" deme from supervisor") //remplacer (1) par l'index du deme
 	);
 	

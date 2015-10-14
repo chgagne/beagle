@@ -32,7 +32,7 @@
  *  $Date: 2007/08/17 18:09:10 $
  */
 
-#include "beagle/Distrib/Island.hpp"
+#include "Beagle/Island.hpp"
 
 using namespace Beagle;
 using namespace Beagle::Distrib;
@@ -85,7 +85,6 @@ void Island::SendOp::init(System& ioSystem)
 	// Log addresses to send to
 	Beagle_LogDebugM(
 	    ioSystem.getLogger(),
-	    "communications", "Beagle::SendOp",
 	    getName()+" has "+uint2str(mAddresses.size())+
 	    " address/recipient pairs"
 	);
@@ -94,7 +93,6 @@ void Island::SendOp::init(System& ioSystem)
 	        lItr != mAddresses.end(); ++lItr) {
 		Beagle_LogDebugM(
 		    ioSystem.getLogger(),
-		    "communications", "Beagle::SendOp",
 		    uint2ordinal(++lIndex)+" address: '"+lItr->first+
 		    "' recipient: '"+lItr->second+"'"
 		);
@@ -102,7 +100,6 @@ void Island::SendOp::init(System& ioSystem)
 	// Log name of Communications component
 	Beagle_LogDebugM(
 	    ioSystem.getLogger(),
-	    "communications", "Beagle::SendOp",
 	    std::string("Name of Communications component is '")+mCommsName+"'"
 	);
 #endif // BEAGLE_FULL_DEBUG
@@ -125,7 +122,6 @@ void Island::SendOp::operate(Deme& ioDeme, Context& ioContext)
 	if (mAddresses.empty()) {
 		Beagle_LogBasicM(
 		    ioContext.getSystem().getLogger(),
-		    "communications", "Beagle::SendOp",
 		    std::string("WARNING: In SendOp::operate(): There are no addresses specified for operator '")+
 		    getName()+"'"
 		);
@@ -144,7 +140,6 @@ void Island::SendOp::operate(Deme& ioDeme, Context& ioContext)
 			// Address not known; warning.
 			Beagle_LogBasicM(
 			    ioContext.getSystem().getLogger(),
-			    "communications", "Beagle::SendOp",
 			    std::string("WARNING: In SendOp::operate(): Address '")+lItr->first+"' for operator '"+
 			    getName()+"' is not known by communications component named '"+mCommsName+"'"
 			);
@@ -211,7 +206,6 @@ void Island::SendOp::sendToAll(const std::string& inMessage, Context &ioContext)
 	if (mAddresses.empty()) {
 		Beagle_LogBasicM(
 		    ioContext.getSystem().getLogger(),
-		    "communications", "Beagle::SendOp",
 		    std::string("WARNING: In SendOp::sendToAll(): There are no addresses specified for operator '")+
 		    getName()+"'"
 		);
@@ -229,7 +223,6 @@ void Island::SendOp::sendToAll(const std::string& inMessage, Context &ioContext)
 	        ++lItr) {
 		Beagle_LogVerboseM(
 		    ioContext.getSystem().getLogger(),
-		    "communications", "Beagle::SendOp",
 		    std::string("Sending to '")+lItr->first+"', recipient '"+lItr->second+"'"
 		);
 		lComms->sendMessage(lItr->first,  // address

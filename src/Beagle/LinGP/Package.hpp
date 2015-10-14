@@ -38,11 +38,11 @@
 #include <map>
 #include <string>
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/System.hpp"
-#include "beagle/Evolver.hpp"
-#include "beagle/Package.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/System.hpp"
+#include "Beagle/Core/Evolver.hpp"
+#include "Beagle/Core/Package.hpp"
 
 
 namespace Beagle
@@ -56,22 +56,22 @@ namespace LinGP
  *  \brief Package for adding objects related to LinGP.
  *  \ingroup LinGPF
  */
-class Package : public Beagle::Package
+class Package : public PackageAbstract
 {
 
 public:
 
 	//! LinGP::Package allocator type.
-	typedef AllocatorT< Package, Beagle::Package::Alloc > Alloc;
+	typedef AllocatorT< Package, PackageAbstract::Alloc > Alloc;
 	//! LinGP::Package handle type.
-	typedef PointerT< Package, Beagle::Package::Handle > Handle;
+	typedef PointerT< Package, PackageAbstract::Handle > Handle;
 	//! LinGP::Package bag type.
-	typedef ContainerT< Package, Beagle::Package::Bag > Bag;
+	typedef ContainerT< Package, PackageAbstract::Bag > Bag;
 
 	Package(void);
 
 	virtual void                  configure(Beagle::System& ioSystem);
-	virtual Beagle::Package::Bag  listDependencies(void);
+	virtual PackageAbstract::Bag  listDependencies(void);
 
 };
 

@@ -38,11 +38,11 @@
 #include <map>
 #include <string>
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/System.hpp"
-#include "beagle/Evolver.hpp"
-#include "beagle/Package.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/System.hpp"
+#include "Beagle/Core/Evolver.hpp"
+#include "Beagle/Core/Package.hpp"
 
 
 namespace Beagle
@@ -60,22 +60,22 @@ namespace Island
  *  \brief Package for adding basic objects related to island-model distribution.
  *  \ingroup DBIM
  */
-class Package : public Beagle::Package
+class Package : public PackageAbstract
 {
 
 public:
 
 	//! Distrib::Island::Package allocator type.
-	typedef AllocatorT< Package, Beagle::Package::Alloc > Alloc;
+	typedef AllocatorT< Package, PackageAbstract::Alloc > Alloc;
 	//! Distrib::Island::Package handle type.
-	typedef PointerT< Package, Beagle::Package::Handle > Handle;
+	typedef PointerT< Package, PackageAbstract::Handle > Handle;
 	//! Distrib::Island::Package bag type.
-	typedef ContainerT< Package, Beagle::Package::Bag > Bag;
+	typedef ContainerT< Package, PackageAbstract::Bag > Bag;
 
 	Package(void);
 
 	virtual void                  configure(System& ioSystem);
-	virtual Beagle::Package::Bag  listDependencies(void);
+	virtual PackageAbstract::Bag  listDependencies(void);
 
 };
 

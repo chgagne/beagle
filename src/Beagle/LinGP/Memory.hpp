@@ -36,14 +36,14 @@
 #ifndef Beagle_LinGP_Memory_hpp
 #define Beagle_LinGP_Memory_hpp
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Object.hpp"
-#include "beagle/AllocatorT.hpp"
-#include "beagle/PointerT.hpp"
-#include "beagle/ContainerT.hpp"
-#include "beagle/AssertException.hpp"
-#include "beagle/Container.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Object.hpp"
+#include "Beagle/Core/AllocatorT.hpp"
+#include "Beagle/Core/PointerT.hpp"
+#include "Beagle/Core/ContainerT.hpp"
+#include "Beagle/Core/AssertException.hpp"
+#include "Beagle/Core/Container.hpp"
 
 namespace Beagle
 {

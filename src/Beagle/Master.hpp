@@ -46,7 +46,7 @@
 #ifndef Beagle_Distrib_Master_hpp
 #define Beagle_Distrib_Master_hpp
 
-#include "beagle/config.hpp"
+#include "Beagle/config.hpp"
 
 #include "PACC/Util.hpp"
 #include "PACC/XML.hpp"
@@ -58,29 +58,29 @@
 
 // DAGS
 #ifdef BEAGLE_HAVE_SYS_SOCKET_H
-#include "dags/Dags.hpp"
+#include "DAGS/Dags.hpp"
 #endif // BEAGLE_HAVE_SYS_SOCKET_H
 
 // Beagle frameworks
-#include "beagle/Beagle.hpp"
-#include "beagle/GA.hpp"
-#include "beagle/GP.hpp"
+#include "Beagle/Core.hpp"
+#include "Beagle/EC.hpp"
+// include "Beagle/GP.hpp"
 
 // Beagle::Distrib TCP-IP master-slave
 #ifdef BEAGLE_HAVE_SYS_SOCKET_H
-#include "beagle/Distrib/Master/BootStrapBeginOp.hpp"
-#include "beagle/Distrib/Master/BootStrapEndOp.hpp"
-#include "beagle/Distrib/Master/DistribEvalOp.hpp"
-#include "beagle/Distrib/Master/EnvironmentManager.hpp"
-#include "beagle/Distrib/Master/EvalClient.hpp"
-#include "beagle/Distrib/Master/EvolClient.hpp"
-#include "beagle/Distrib/Master/FetchCruncherDataOp.hpp"
-#include "beagle/Distrib/Master/MainLoopBeginOp.hpp"
-#include "beagle/Distrib/Master/MainLoopEndOp.hpp"
-#include "beagle/Distrib/Master/MilestoneWriteOp.hpp"
-#include "beagle/Distrib/Master/AlgoCruncher.hpp"
-#include "beagle/Distrib/Master/AlgoSequential.hpp"
-#include "beagle/Distrib/Master/Package.hpp"
+#include "Beagle/Master/BootStrapBeginOp.hpp"
+#include "Beagle/Master/BootStrapEndOp.hpp"
+#include "Beagle/Master/DistribEvalOp.hpp"
+#include "Beagle/Master/EnvironmentManager.hpp"
+#include "Beagle/Master/EvalClient.hpp"
+#include "Beagle/Master/EvolClient.hpp"
+#include "Beagle/Master/FetchCruncherDataOp.hpp"
+#include "Beagle/Master/MainLoopBeginOp.hpp"
+#include "Beagle/Master/MainLoopEndOp.hpp"
+#include "Beagle/Master/MilestoneWriteOp.hpp"
+#include "Beagle/Master/AlgoCruncher.hpp"
+#include "Beagle/Master/AlgoSequential.hpp"
+#include "Beagle/Master/Package.hpp"
 #endif // BEAGLE_HAVE_SYS_SOCKET_H
 
 #endif // Beagle_Distrib_Master_hpp

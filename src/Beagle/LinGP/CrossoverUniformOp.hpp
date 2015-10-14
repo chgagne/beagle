@@ -38,12 +38,12 @@
 
 #include <string>
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Object.hpp"
-#include "beagle/CrossoverOp.hpp"
-#include "beagle/GA/CrossoverUniformOpT.hpp"
-#include "beagle/LinGP/Program.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Object.hpp"
+#include "Beagle/EC/CrossoverOp.hpp"
+#include "Beagle/EC/CrossoverUniformOpT.hpp"
+#include "Beagle/LinGP/Program.hpp"
 
 namespace Beagle
 {
@@ -56,17 +56,17 @@ namespace LinGP
  *  \brief Linear GP uniform crossover operator class.
  *  \ingroup LinGPF
  */
-class CrossoverUniformOp : public GA::CrossoverUniformOpT<Program>
+class CrossoverUniformOp : public EC::CrossoverUniformOpT<Program>
 {
 
 public:
 
 	//! LinGP::CrossoverUniformOp allocator type.
-	typedef AllocatorT<CrossoverUniformOp,GA::CrossoverUniformOpT<Program>::Alloc> Alloc;
+	typedef AllocatorT<CrossoverUniformOp,EC::CrossoverUniformOpT<Program>::Alloc> Alloc;
 	//! LinGP::CrossoverUniformOp handle type.
-	typedef PointerT<CrossoverUniformOp,GA::CrossoverUniformOpT<Program>::Handle> Handle;
+	typedef PointerT<CrossoverUniformOp,EC::CrossoverUniformOpT<Program>::Handle> Handle;
 	//! LinGP::CrossoverUniformOp bag type.
-	typedef ContainerT<CrossoverUniformOp,GA::CrossoverUniformOpT<Program>::Bag> Bag;
+	typedef ContainerT<CrossoverUniformOp,EC::CrossoverUniformOpT<Program>::Bag> Bag;
 
 	/*!
 	 *  \brief Construct linear GP uniform crossover operator.
@@ -77,7 +77,7 @@ public:
 	explicit CrossoverUniformOp(std::string inMatingPbName="lingp.cxunif.prob",
 	                            std::string inDistribPbName="lingp.cxunif.distribprob",
 	                            std::string inName="LinGP-CrossoverUniformOp") :
-			GA::CrossoverUniformOpT<Program>(inMatingPbName, inDistribPbName, inName)
+			EC::CrossoverUniformOpT<Program>(inMatingPbName, inDistribPbName, inName)
 	{ }
 
 	virtual ~CrossoverUniformOp()

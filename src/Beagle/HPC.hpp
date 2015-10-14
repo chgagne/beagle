@@ -45,7 +45,7 @@
 #ifndef Beagle_HPC_hpp
 #define Beagle_HPC_hpp
 
-#include "beagle/config.hpp"
+#include "Beagle/config.hpp"
 
 #include "PACC/Util.hpp"
 #include "PACC/XML.hpp"
@@ -54,33 +54,33 @@
 
 
 // Beagle generic framework
-#include "beagle/Beagle.hpp"
+#include "Beagle/Core.hpp"
 // Generic HPC classes
-#include "beagle/HPC/PackageBase.hpp"
-#include "beagle/HPC/PackageMultiObj.hpp"
-#include "beagle/HPC/MPICommunication.hpp"
-#include "beagle/HPC/LoggerXMLD.hpp"
-#include "beagle/HPC/Randomizer.hpp"
-#include "beagle/HPC/AlgoSequential.hpp"
-#include "beagle/HPC/AlgoNSGA2.hpp"
-#include "beagle/HPC/SwitchTypeOp.hpp"
-#include "beagle/HPC/EvaluationOp.hpp"
-#include "beagle/HPC/DistributeDemeToEvaluatorsOp.hpp"
-#include "beagle/HPC/SendDemeToEvolverOp.hpp"
-#include "beagle/HPC/RecvDemeFromEvolverOp.hpp"
-#include "beagle/HPC/RecvProcessedFromEvolverOp.hpp"
-#include "beagle/HPC/RecvDemeFromSupervisorOp.hpp"
-#include "beagle/HPC/RecvFitnessFromEvaluatorOp.hpp"
-#include "beagle/HPC/RecvIndividualsFromEvolverOp.hpp"
-#include "beagle/HPC/SendDemeToSupervisorOp.hpp"
-#include "beagle/HPC/SendProcessedToSupervisorOp.hpp"
-#include "beagle/HPC/SendFitnessToEvolverOp.hpp"
-#include "beagle/HPC/ProcessingBuffer.hpp"
-#include "beagle/HPC/MPIException.hpp"
+#include "Beagle/HPC/PackageBase.hpp"
+#include "Beagle/HPC/PackageMultiObj.hpp"
+#include "Beagle/HPC/MPICommunication.hpp"
+#include "Beagle/HPC/LoggerXMLD.hpp"
+#include "Beagle/HPC/Randomizer.hpp"
+#include "Beagle/HPC/AlgoSequential.hpp"
+#include "Beagle/HPC/AlgoNSGA2.hpp"
+#include "Beagle/HPC/SwitchTypeOp.hpp"
+#include "Beagle/HPC/EvaluationOp.hpp"
+#include "Beagle/HPC/DistributeDemeToEvaluatorsOp.hpp"
+#include "Beagle/HPC/SendDemeToEvolverOp.hpp"
+#include "Beagle/HPC/RecvDemeFromEvolverOp.hpp"
+#include "Beagle/HPC/RecvProcessedFromEvolverOp.hpp"
+#include "Beagle/HPC/RecvDemeFromSupervisorOp.hpp"
+#include "Beagle/HPC/RecvFitnessFromEvaluatorOp.hpp"
+#include "Beagle/HPC/RecvIndividualsFromEvolverOp.hpp"
+#include "Beagle/HPC/SendDemeToSupervisorOp.hpp"
+#include "Beagle/HPC/SendProcessedToSupervisorOp.hpp"
+#include "Beagle/HPC/SendFitnessToEvolverOp.hpp"
+#include "Beagle/HPC/ProcessingBuffer.hpp"
+#include "Beagle/HPC/MPIException.hpp"
 
-//#include "beagle/HPC/MigrationSyncOp.hpp"
-//#include "beagle/HPC/MigrationRingMonoDemeOp.hpp"
-//#include "beagle/HPC/SendLogToParentOp.hpp"
-//#include "beagle/HPC/RecvLogFromChildOp.hpp"
+//#include "Beagle/HPC/MigrationSyncOp.hpp"
+//#include "Beagle/HPC/MigrationRingMonoDemeOp.hpp"
+//#include "Beagle/HPC/SendLogToParentOp.hpp"
+//#include "Beagle/HPC/RecvLogFromChildOp.hpp"
 #endif // Beagle_HPC_hpp
 

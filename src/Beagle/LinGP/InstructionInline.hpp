@@ -36,9 +36,9 @@
 #ifndef Beagle_LinGP_InstructionInline_hpp
 #define Beagle_LinGP_InstructionInline_hpp
 
-#include "beagle/LinGP/Program.hpp"
-#include "beagle/LinGP/Context.hpp"
-#include "beagle/LinGP/Instruction.hpp"
+#include "Beagle/LinGP/Program.hpp"
+#include "Beagle/LinGP/Context.hpp"
+#include "Beagle/LinGP/Instruction.hpp"
 
 
 /*!
@@ -51,7 +51,6 @@ inline void Beagle::LinGP::Instruction::execNextInstruction(LinGP::Context& ioCo
 	if((ioContext.getExecIndex()+1) >= ioContext.getGenotype().size()) {
 		Beagle_LogDebugM(
 		    ioContext.getSystem().getLogger(),
-		    "primitive", "Beagle::LinGP::Primitive",
 		    "End of program reached"
 		);
 		return;
@@ -60,7 +59,6 @@ inline void Beagle::LinGP::Instruction::execNextInstruction(LinGP::Context& ioCo
 	        (ioContext.getExecCount() >= ioContext.getExecLimit())) {
 		Beagle_LogDebugM(
 		    ioContext.getSystem().getLogger(),
-		    "primitive", "Beagle::LinGP::Primitive",
 		    "Maximum number of instruction executions reached"
 		);
 		return;
@@ -86,7 +84,6 @@ inline void Beagle::LinGP::Instruction::execInstruction(unsigned int inIndex,
 	if(inIndex >= ioContext.getGenotype().size()) {
 		Beagle_LogDebugM(
 		    ioContext.getSystem().getLogger(),
-		    "primitive", "Beagle::LinGP::Primitive",
 		    "End of program reached"
 		);
 		return;
@@ -95,7 +92,6 @@ inline void Beagle::LinGP::Instruction::execInstruction(unsigned int inIndex,
 	        (ioContext.getExecCount() >= ioContext.getExecLimit())) {
 		Beagle_LogDebugM(
 		    ioContext.getSystem().getLogger(),
-		    "primitive", "Beagle::LinGP::Primitive",
 		    "Maximum number of instruction executions reached"
 		);
 		return;

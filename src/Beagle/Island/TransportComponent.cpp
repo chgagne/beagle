@@ -33,7 +33,7 @@
  */
 
 
-#include "beagle/Distrib/Island.hpp"
+#include "Beagle/Island.hpp"
 #include <string>
 #include <sstream>
 

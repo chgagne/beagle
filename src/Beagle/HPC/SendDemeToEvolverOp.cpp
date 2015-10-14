@@ -35,7 +35,7 @@
  *  $Date:  $
  */
 
-#include "beagle/HPC.hpp"
+#include "Beagle/HPC.hpp"
 
 using namespace Beagle;
 
@@ -75,7 +75,6 @@ void HPC::SendDemeToEvolverOp::operate(Deme& ioDeme, Context& ioContext)
 
 	Beagle_LogDetailedM(
 		ioContext.getSystem().getLogger(),
-		"distribute", "Beagle::HPC::SendDemeToEvolverOp",
 		std::string("Send ") + uint2ordinal(ioContext.getDemeIndex()) + " deme to his " + uint2ordinal(lChild) + " evolver"
 	);
 	Beagle_StackTraceEndM();

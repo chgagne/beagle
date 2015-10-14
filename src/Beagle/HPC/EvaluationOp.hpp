@@ -37,7 +37,7 @@
 #ifndef Beagle_HPC_EvaluationOpBreederOp_hpp
 #define Beagle_HPC_EvaluationOp_hpp
 
-#include "beagle/HPC.hpp"
+#include "Beagle/HPC.hpp"
 namespace Beagle
 {
 namespace HPC

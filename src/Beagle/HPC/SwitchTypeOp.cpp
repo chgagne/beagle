@@ -32,7 +32,7 @@
  *  $Date:  $
  */
 
-#include "beagle/HPC.hpp"
+#include "Beagle/HPC.hpp"
 
 using namespace Beagle;
 
@@ -55,7 +55,6 @@ void HPC::SwitchTypeOp::init(System& ioSystem)
 			if(lOp->isInitialized()) continue;
 			Beagle_LogTraceM(
 				ioSystem.getLogger(),
-				"switch case", "Beagle::Evolver",
 				std::string("Initializing operator \"") + lOp->getName() + "\""
 			);
 			lOp->init(ioSystem);
@@ -86,14 +85,12 @@ void HPC::SwitchTypeOp::operate(Deme& ioDeme, Context& ioContext)
 	
 	Beagle_LogDetailedM(
 		ioContext.getSystem().getLogger(),
-		"switch case", "Beagle::SwitchTypeOp",
 		"Applying "+lMPI->getNodeType()+" operator set."
 	);  
 	for(Operator::Bag::iterator lIterBag = lIterMap->second.begin(); lIterBag != lIterMap->second.end(); ++lIterBag){
 		Operator::Handle lOp = castHandleT<Operator>(*lIterBag);
 		Beagle_LogDetailedM(
 			ioContext.getSystem().getLogger(),
-			"switch case", "Beagle::SwitchTypeOp",
 			std::string("Applying \"")+lOp->getName()+std::string("\"")
 		); 
 		lOp->operate(ioDeme, ioContext);
@@ -155,7 +152,6 @@ void HPC::SwitchTypeOp::registerParams(System& ioSystem)
 	for(OperatorSetMap::iterator lIterMap = mOperatorSetMap.begin(); lIterMap != mOperatorSetMap.end(); ++lIterMap){
 		Beagle_LogTraceM(
 			ioSystem.getLogger(),
-			"SwitchTypeOp", "Beagle::Evolver",
 			"Registering"+lIterMap->first+" set operator parameters"
 		);
 		for(Operator::Bag::iterator lIterBag = lIterMap->second.begin(); lIterBag != lIterMap->second.end(); ++lIterBag){
@@ -163,7 +159,6 @@ void HPC::SwitchTypeOp::registerParams(System& ioSystem)
 			if(lOp->hasRegisteredParams()) continue;
 			Beagle_LogTraceM(
 				ioSystem.getLogger(),
-				"SwitchTypeOp", "Beagle::Evolver",
 				std::string("Registering '") + lOp->getName() + "' parameters"
 			);
 			lOp->registerParams(ioSystem);

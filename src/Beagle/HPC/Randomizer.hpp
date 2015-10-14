@@ -36,17 +36,17 @@
 #ifndef Beagle_HPC_Randomizer_hpp
 #define Beagle_HPC_Randomizer_hpp
 
-#include "beagle/Beagle.hpp"
+#include "Beagle/Core.hpp"
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Object.hpp"
-#include "beagle/AllocatorT.hpp"
-#include "beagle/PointerT.hpp"
-#include "beagle/ContainerT.hpp"
-#include "beagle/Component.hpp"
-#include "beagle/WrapperT.hpp"
-#include "beagle/ULong.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Object.hpp"
+#include "Beagle/Core/AllocatorT.hpp"
+#include "Beagle/Core/PointerT.hpp"
+#include "Beagle/Core/ContainerT.hpp"
+#include "Beagle/Core/Component.hpp"
+#include "Beagle/Core/WrapperT.hpp"
+#include "Beagle/Core/ULong.hpp"
 
 
 namespace Beagle

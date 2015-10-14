@@ -32,7 +32,7 @@
  *  $Date: 2007/08/08 14:51:31 $
  */
 
-#include "beagle/Distrib/Island.hpp"
+#include "Beagle/Island.hpp"
 
 using namespace Beagle;
 
@@ -41,7 +41,7 @@ using namespace Beagle;
  *  \brief Construct package with island-model MPI distribution objects.
  */
 Distrib::Island::PackageMPI::PackageMPI() :
-		Beagle::Package("DBIM-PackageMPI")
+		PackageAbstract("DBIM-PackageMPI")
 { }
 
 
@@ -80,10 +80,10 @@ void Distrib::Island::PackageMPI::configure(System& ioSystem)
  *
  *  Distrib::Island::PackageMPI depends on Distrib::Island::Package.
  */
-Beagle::Package::Bag Distrib::Island::PackageMPI::listDependencies(void)
+PackageAbstract::Bag Distrib::Island::PackageMPI::listDependencies(void)
 {
 	Beagle_StackTraceBeginM();
-	Beagle::Package::Bag lDependencies;
+	PackageAbstract::Bag lDependencies;
 	lDependencies.push_back(new Distrib::Island::Package());
 	return lDependencies;
 	Beagle_StackTraceEndM();

@@ -36,8 +36,8 @@
 #define Beagle_Distrib_Island_CommunicationsTCPIPOp_hpp
 
 #include "PACC/Socket.hpp"
-#include "beagle/Distrib/Island/Communications.hpp"
-#include "beagle/Distrib/Island/CommunicationsTCPIPReceiver.hpp"
+#include "Beagle/Island/Communications.hpp"
+#include "Beagle/Island/CommunicationsTCPIPReceiver.hpp"
 
 
 namespace Beagle

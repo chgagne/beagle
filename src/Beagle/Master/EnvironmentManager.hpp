@@ -36,14 +36,14 @@
 #ifndef Beagle_Distrib_Master_EnvironmentManager_hpp
 #define Beagle_Distrib_Master_EnvironmentManager_hpp
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Object.hpp"
-#include "beagle/AllocatorT.hpp"
-#include "beagle/PointerT.hpp"
-#include "beagle/ContainerT.hpp"
-#include "beagle/Deme.hpp"
-#include "beagle/Context.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Object.hpp"
+#include "Beagle/Core/AllocatorT.hpp"
+#include "Beagle/Core/PointerT.hpp"
+#include "Beagle/Core/ContainerT.hpp"
+#include "Beagle/Core/Deme.hpp"
+#include "Beagle/Core/Context.hpp"
 
 
 namespace Beagle

@@ -36,14 +36,14 @@
 #ifndef Beagle_Distrib_Master_FetchCruncherDataOp_hpp
 #define Beagle_Distrib_Master_FetchCruncherDataOp_hpp
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Object.hpp"
-#include "beagle/AllocatorT.hpp"
-#include "beagle/PointerT.hpp"
-#include "beagle/ContainerT.hpp"
-#include "beagle/Operator.hpp"
-#include "beagle/Distrib/Master/EvalClient.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Object.hpp"
+#include "Beagle/Core/AllocatorT.hpp"
+#include "Beagle/Core/PointerT.hpp"
+#include "Beagle/Core/ContainerT.hpp"
+#include "Beagle/Core/Operator.hpp"
+#include "Beagle/Master/EvalClient.hpp"
 
 
 namespace Beagle

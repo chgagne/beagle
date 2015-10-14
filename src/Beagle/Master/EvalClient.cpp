@@ -33,7 +33,7 @@
  *  $Date: 2007/09/24 20:33:01 $
  */
 
-#include "beagle/Distrib/Master.hpp"
+#include "Beagle/Master.hpp"
 
 #ifdef BEAGLE_HAVE_UNISTD_H
 #include <unistd.h>

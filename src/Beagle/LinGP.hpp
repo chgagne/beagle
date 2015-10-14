@@ -50,28 +50,28 @@
 
 // Beagle generic components
 
-#include "beagle/Beagle.hpp"
+#include "Beagle/Core.hpp"
 
 // GA framework
 
-#include "beagle/GA.hpp"
+#include "Beagle/EC.hpp"
 
 // Linear GP framework
 
-#include "beagle/LinGP/Instruction.hpp"
-#include "beagle/LinGP/Context.hpp"
-#include "beagle/LinGP/Memory.hpp"
-#include "beagle/LinGP/InstructionInline.hpp"
-#include "beagle/LinGP/InstructionSet.hpp"
-#include "beagle/LinGP/InstructionSuperSet.hpp"
-#include "beagle/LinGP/Program.hpp"
-#include "beagle/LinGP/EvaluationOp.hpp"
-#include "beagle/LinGP/CrossoverOnePointOp.hpp"
-#include "beagle/LinGP/CrossoverTwoPointsOp.hpp"
-#include "beagle/LinGP/CrossoverUniformOp.hpp"
-#include "beagle/LinGP/MutationOp.hpp"
-#include "beagle/LinGP/InitializationOp.hpp"
-#include "beagle/LinGP/Package.hpp"
+#include "Beagle/LinGP/Instruction.hpp"
+#include "Beagle/LinGP/Context.hpp"
+#include "Beagle/LinGP/Memory.hpp"
+#include "Beagle/LinGP/InstructionInline.hpp"
+#include "Beagle/LinGP/InstructionSet.hpp"
+#include "Beagle/LinGP/InstructionSuperSet.hpp"
+#include "Beagle/LinGP/Program.hpp"
+#include "Beagle/LinGP/EvaluationOp.hpp"
+#include "Beagle/LinGP/CrossoverOnePointOp.hpp"
+#include "Beagle/LinGP/CrossoverTwoPointsOp.hpp"
+#include "Beagle/LinGP/CrossoverUniformOp.hpp"
+#include "Beagle/LinGP/MutationOp.hpp"
+#include "Beagle/LinGP/InitializationOp.hpp"
+#include "Beagle/LinGP/Package.hpp"
 
 #endif // Beagle_LinGP_hpp
 
