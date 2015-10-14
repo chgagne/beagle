@@ -416,8 +416,9 @@ void Evolver::parseCommandLine(System& ioSystem, int inArgc, char** inArgv)
 	// process all command-line arguments
 	std::string lCommandLine = inArgv[0];
 	for(int i = 1; i < inArgc; ++i) lCommandLine += std::string(" ")+inArgv[i];
-	Beagle_LogDetailedM(
+	Beagle_AddToLogBufferM(
 	    ioSystem.getLogger(),
+	    Beagle::Logger::eDetailed,
 	    std::string("Parsing command-line: ")+lCommandLine
 	);
 	for(int i = 1; i < inArgc; i++) {
@@ -453,8 +454,9 @@ void Evolver::parseCommandLine(System& ioSystem, int inArgc, char** inArgv)
 				}
 				if (lName == "conf" || lName == "ec.conf.file") {
 					if (lName=="ec.conf.file") {
-						Beagle_LogBasicM(
+						Beagle_AddToLogBufferM(
 						    ioSystem.getLogger(),
+						    Beagle::Logger::eBasic,
 						    "The register variable 'ec.conf.file' is DEPRECATED, please use 'conf' instead."
 						);
 					}
@@ -496,8 +498,9 @@ void Evolver::parseCommandLine(System& ioSystem, int inArgc, char** inArgv)
 					exit(0);
 				} else if((lName == "restart") || (lName == "ms.restart.file")) {
 					if (lName=="ms.restart.file") {
-						Beagle_LogBasicM(
+						Beagle_AddToLogBufferM(
 						    ioSystem.getLogger(),
+						    Beagle::Logger::eBasic,
 						    "The register variable 'ms.restart.file' is DEPRECATED, please use 'restart' instead."
 						);
 					}
@@ -654,21 +657,22 @@ void Evolver::readFromFile(const std::string& inFileName, System& ioSystem)
 	if(lStream.good() == false) {
 		throw Beagle_RunTimeExceptionM(std::string("Could not open file '")+inFileName+"'");
 	}
-	Beagle_LogBasicM(
+	Beagle_AddToLogBufferM(
 	    ioSystem.getLogger(),
-	    "Reading file '" << inFileName << "' for evolver configuration"
+	    Beagle::Logger::eBasic,
+	    std::string("Reading file '") + inFileName + "' for evolver configuration"
 	);
 	PACC::XML::Document lDocument(lStream, inFileName);
 	lStream.close();
 	PACC::XML::ConstFinder lFinder(lDocument.getFirstDataTag());
 	PACC::XML::ConstIterator lPos = lFinder.find("/Beagle/Evolver");
 	if(!lPos) {
-		Beagle_LogBasicM(ioSystem.getLogger(), "WARNING: file does not contain any valid evolver");
+		Beagle_AddToLogBufferM(ioSystem.getLogger(), Beagle::Logger::eBasic, "WARNING: file does not contain any valid evolver");
 	} else {
 		// read all evolver instances
 		readWithSystem(lPos, ioSystem);
 		if((lPos = lFinder.findNext())) {
-			Beagle_LogBasicM(ioSystem.getLogger(), "WARNING: file contains multiple evolvers");
+			Beagle_AddToLogBufferM(ioSystem.getLogger(), Beagle::Logger::eBasic, "WARNING: file contains multiple evolvers");
 			do {
 				read(lPos);
 			} while((lPos = lFinder.findNext()));

@@ -536,6 +536,8 @@ void System::read(PACC::XML::ConstIterator inIter)
  */
 void System::readFromFile(const std::string& inFileName)
 {
+	Beagle_StackTraceBeginM();
+
 #ifdef BEAGLE_HAVE_LIBZ
 	igzstream lStream(inFileName.c_str());
 #else // BEAGLE_HAVE_LIBZ
@@ -544,8 +546,9 @@ void System::readFromFile(const std::string& inFileName)
 	if(lStream.good() == false) {
 		throw Beagle_RunTimeExceptionM(std::string("Could not open file '")+inFileName+"'");
 	}
-	Beagle_LogBasicM(
+	Beagle_AddToLogBufferM(
 	    getLogger(),
+	    Beagle::Logger::eBasic,
 	    std::string("Reading file '")+inFileName+"' for system configuration"
 	);
 	PACC::XML::Document lDocument(lStream, inFileName);
@@ -553,16 +556,18 @@ void System::readFromFile(const std::string& inFileName)
 	PACC::XML::ConstFinder lFinder(lDocument.getFirstDataTag());
 	PACC::XML::ConstIterator lPos = lFinder.find("/Beagle/System");
 	if(!lPos) {
-		Beagle_LogBasicM(
+		Beagle_AddToLogBufferM(
 		    getLogger(),
+		    Beagle::Logger::eBasic,
 		    "WARNING: file does not contain any valid system"
 		);
 	} else {
 		// read all system instances
 		read(lPos);
 		if((lPos = lFinder.findNext())) {
-			Beagle_LogBasicM(
+			Beagle_AddToLogBufferM(
 			    getLogger(),
+			    Beagle::Logger::eBasic,
 			    "WARNING: file contains multiple systems"
 			);
 			do {
@@ -570,6 +575,7 @@ void System::readFromFile(const std::string& inFileName)
 			} while((lPos = lFinder.findNext()));
 		}
 	}
+	Beagle_StackTraceEndM();
 }
 
 
