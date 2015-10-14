@@ -183,8 +183,9 @@ void System::addPackage(PackageAbstract::Handle inPackage)
 	// Look if package is installed
 	StringSet::const_iterator lIterPack = mPackages.find(inPackage->getName());
 	if(lIterPack != mPackages.end()) {
-		Beagle_LogDetailedM(
-		    getLogger(),
+		Beagle_AddToLogBufferM(
+			getLogger(),
+			Beagle::Logger::eDetailed,
 		    std::string("Not installing package '")+inPackage->getName()+
 		    std::string("' as it has already been added")
 		);
@@ -195,8 +196,9 @@ void System::addPackage(PackageAbstract::Handle inPackage)
 	// Look for dependencies of the package
 	PackageAbstract::Bag lDependencies = inPackage->listDependencies();
 	for(unsigned int i=0; i<lDependencies.size(); ++i) {
-		Beagle_LogDetailedM(
-		    getLogger(),
+		Beagle_AddToLogBufferM(
+			getLogger(),
+			Beagle::Logger::eDetailed,
 		    std::string("Package '")+inPackage->getName()+
 		    std::string("' depends on package '")+lDependencies[i]->getName()+
 		    std::string("'")
@@ -205,8 +207,9 @@ void System::addPackage(PackageAbstract::Handle inPackage)
 	}
 
 	// Install package itself
-	Beagle_LogDetailedM(
-	    getLogger(),
+	Beagle_AddToLogBufferM(
+		getLogger(),
+		Beagle::Logger::eDetailed,
 	    std::string("Installing package '")+inPackage->getName()+std::string("'")
 	);
 	inPackage->configure(*this);
@@ -296,8 +299,9 @@ void System::initComponents(void)
 {
 	Beagle_StackTraceBeginM();
 
-	Beagle_LogDetailedM(
-	    getLogger(),
+	Beagle_AddToLogBufferM(
+		getLogger(),
+		Beagle::Logger::eDetailed,
 	    "Initializing system components"
 	);
 
@@ -576,16 +580,18 @@ void System::registerComponentParams(void)
 {
 	Beagle_StackTraceBeginM();
 
-	Beagle_LogDetailedM(
-	    getLogger(),
+	Beagle_AddToLogBufferM(
+		getLogger(),
+		Beagle::Logger::eDetailed,
 	    "Registering system component parameters"
 	);
 
 	for(iterator lItr = begin(); lItr != end(); ++lItr) {
 		Component::Handle lComponent = castHandleT<Component>(lItr->second);
 		if(lComponent->hasRegisteredParams() == false) {
-			Beagle_LogTraceM(
-			    getLogger(),
+			Beagle_AddToLogBufferM(
+				getLogger(),
+				Beagle::Logger::eTrace,
 			    std::string("Registering '") + lComponent->getName() + "' parameters"
 			);
 			lComponent->registerParams(*this);
