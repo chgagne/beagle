@@ -348,6 +348,8 @@ void Register::read(PACC::XML::ConstIterator inNode)
  */
 void Register::readFromFile(const std::string& inFileName, System& ioSystem)
 {
+	Beagle_StackTraceBeginM();
+
 #ifdef BEAGLE_HAVE_LIBZ
 	igzstream lStream(inFileName.c_str());
 #else // BEAGLE_HAVE_LIBZ
@@ -356,8 +358,9 @@ void Register::readFromFile(const std::string& inFileName, System& ioSystem)
 	if(lStream.good() == false) {
 		throw Beagle_RunTimeExceptionM(std::string("Could not open file '")+inFileName+"'");
 	}
-	Beagle_LogBasicM(
+	Beagle_AddToLogBufferM(
 	    ioSystem.getLogger(),
+	    Beagle::Logger::eBasic,
 	    std::string("Reading file '")+inFileName+"' for system configuration"
 	);
 	PACC::XML::Document lDocument(lStream, inFileName);
@@ -365,16 +368,18 @@ void Register::readFromFile(const std::string& inFileName, System& ioSystem)
 	PACC::XML::ConstFinder lFinder(lDocument.getFirstDataTag());
 	PACC::XML::ConstIterator lPos = lFinder.find("/Beagle//Register");
 	if(!lPos) {
-		Beagle_LogBasicM(
+		Beagle_AddToLogBufferM(
 		    ioSystem.getLogger(),
+		    Beagle::Logger::eBasic,
 		    "WARNING: file does not contain any valid system"
 		);
 	} else {
 		// read all system instances
 		readWithSystem(lPos, ioSystem);
 		if((lPos = lFinder.findNext())) {
-			Beagle_LogBasicM(
+			Beagle_AddToLogBufferM(
 			    ioSystem.getLogger(),
+			    Beagle::Logger::eBasic,
 			    "WARNING: file contains multiple systems"
 			);
 			do {
@@ -382,6 +387,8 @@ void Register::readFromFile(const std::string& inFileName, System& ioSystem)
 			} while((lPos = lFinder.findNext()));
 		}
 	}
+
+	Beagle_StackTraceEndM();
 }
 
 
@@ -403,15 +410,17 @@ void Register::readWithSystem(PACC::XML::ConstIterator inIter, System& ioSystem)
 			if(lEntryKey.empty())
 				throw Beagle_IOExceptionNodeM(*lChild, "no key given for actual entry!");
 			if(mParameters.find(lEntryKey) == mParameters.end()) {
-				Beagle_LogBasicM(
+				Beagle_AddToLogBufferM(
 				    ioSystem.getLogger(),
+				    Beagle::Logger::eBasic,
 				    std::string("WARNING: unknown parameter '")+lEntryKey+"'; not registered!"
 				);
 				continue;
 			}
 			mParameters[lEntryKey]->read(lChild->getFirstChild());
-			Beagle_LogTraceM(
+			Beagle_AddToLogBufferM(
 			    ioSystem.getLogger(),
+			    Beagle::Logger::eTrace,
 			    std::string("Register entry '")+lEntryKey+std::string("' is now ")+
 			    mParameters[lEntryKey]->serialize()
 			);
