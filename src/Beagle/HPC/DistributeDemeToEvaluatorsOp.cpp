@@ -32,7 +32,7 @@
  *  $Date: 2007/08/13 00:57:45 $
  */
 
-#include "beagle/HPC.hpp"
+#include "Beagle/HPC.hpp"
 
 using namespace Beagle;
 
@@ -133,7 +133,6 @@ void HPC::DistributeDemeToEvaluatorsOp::operate(Deme& ioDeme, Context& ioContext
 
 		Beagle_LogDetailedM(
 			ioContext.getSystem().getLogger(),
-			"distribute", "Beagle::HPC::DistributeDemeToEvaluatorsOp",
 			std::string("Evolver send fractionnal Deme to his ")+uint2ordinal(i+1)+ " evaluator"
 		);
 	}

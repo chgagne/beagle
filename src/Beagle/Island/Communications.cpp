@@ -32,7 +32,7 @@
  *  $Date: 2007/08/17 18:09:10 $
  */
 
-#include "beagle/Distrib/Island.hpp"
+#include "Beagle/Island.hpp"
 
 using namespace Beagle;
 using namespace Beagle::Distrib;
@@ -70,13 +70,11 @@ void Island::Communications::purgeMessages(Beagle::Context& ioContext,
 		PACC::Threading::Thread::sleep(3.);
 		Beagle_LogVerboseM(
 		    ioContext.getSystem().getLogger(),
-		    "communications", "Beagle::Communications",
 		    "Getting messages for complete purge"
 		);
 		getMessageQueue(mMessageQueue);
 		Beagle_LogDebugM(
 		    ioContext.getSystem().getLogger(),
-		    "communications", "Beagle::Communications",
 		    std::string("There are now ")+uint2str(mMessageQueue.size())+" messages in the queue"
 		);
 		mMessageQueueValid = true;
@@ -103,7 +101,6 @@ void Island::Communications::purgeMessages(Beagle::Context& ioContext,
 			// Purge message
 			Beagle_LogDetailedM(
 			    ioContext.getSystem().getLogger(),
-			    "communications", "Beagle::Communications",
 			    std::string("Purging uncleared message: ")+
 			    "Recipient: '"+lMsgItr->first+
 			    "' Message: '"+lMsgItr->second+"'"
@@ -117,7 +114,6 @@ void Island::Communications::purgeMessages(Beagle::Context& ioContext,
 	}
 	Beagle_LogVerboseM(
 	    ioContext.getSystem().getLogger(),
-	    "communications", "Beagle::Communications",
 	    uint2str(lNumPurged)+(" messages were purged; ")+
 	    int2str(mMessageQueue.size())+" messages remain"
 	);
@@ -135,7 +131,6 @@ void Island::Communications::getMessages(Beagle::Context& ioContext)
 	if (!mMessageQueue.empty()) {
 		Beagle_LogBasicM(
 		    ioContext.getSystem().getLogger(),
-		    "communications", "Beagle::Communications",
 		    std::string("WARNING: There are ")+uint2str(mMessageQueue.size())+
 		    " messages that have not been cleared; these may be deleted"
 		);
@@ -143,13 +138,11 @@ void Island::Communications::getMessages(Beagle::Context& ioContext)
 	}
 	Beagle_LogDebugM(
 	    ioContext.getSystem().getLogger(),
-	    "communications", "Beagle::Communications",
 	    "Getting messages"
 	);
 	getMessageQueue(mMessageQueue);
 	Beagle_LogDebugM(
 	    ioContext.getSystem().getLogger(),
-	    "communications", "Beagle::Communications",
 	    std::string("There are now ")+uint2str(mMessageQueue.size())+" messages in the queue"
 	);
 	mMessageQueueValid = true;
@@ -180,28 +173,24 @@ bool Island::Communications::getNextMessage(const std::string& inRecipient,
 	if (!mMessageQueueValid) {
 		Beagle_LogBasicM(
 		    ioContext.getSystem().getLogger(),
-		    "communications", "Beagle::Communications",
 		    "WARNING: In Communications component: Message queue is not valid.  Consider either inserting the operator 'Beagle::CommunicationsOp' or calling Communications::getMessages()"
 		);
 		return false;
 	}
 	Beagle_LogDebugM(
 	    ioContext.getSystem().getLogger(),
-	    "communications", "Beagle::Communications",
 	    std::string("Searching for message for recipient '")+inRecipient+"'"
 	);
 	if (mMessageQueue.empty()) {
 		// No messages
 		Beagle_LogDebugM(
 		    ioContext.getSystem().getLogger(),
-		    "communications", "Beagle::Communications",
 		    "There are no messages in the queue"
 		);
 	} else {
 		// Some messages
 		Beagle_LogDebugM(
 		    ioContext.getSystem().getLogger(),
-		    "communications", "Beagle::Communications",
 		    std::string("There are ")+uint2str(mMessageQueue.size())+" messages in the queue"
 		);
 	}
@@ -213,7 +202,6 @@ bool Island::Communications::getNextMessage(const std::string& inRecipient,
 			// Found message
 			Beagle_LogDebugM(
 			    ioContext.getSystem().getLogger(),
-			    "communications", "Beagle::Communications",
 			    "Message found"
 			);
 			outMessage=lItr->second;
@@ -224,7 +212,6 @@ bool Island::Communications::getNextMessage(const std::string& inRecipient,
 	// No messages for recipient were found
 	Beagle_LogDebugM(
 	    ioContext.getSystem().getLogger(),
-	    "communications", "Beagle::Communications",
 	    "No message found"
 	);
 	return false;
@@ -249,7 +236,6 @@ void Island::Communications::logAllMessages(Beagle::Context& ioContext)
 	if (!mMessageQueueValid) {
 		Beagle_LogBasicM(
 		    ioContext.getSystem().getLogger(),
-		    "communications", "Beagle::Communications",
 		    "WARNING: In Communications component: Message queue is not valid.  Consider either inserting the operator 'Beagle::CommunicationsOp' or calling Communications::getMessages()"
 		);
 		return;
@@ -257,7 +243,6 @@ void Island::Communications::logAllMessages(Beagle::Context& ioContext)
 	// State that we're logging all queued messages
 	Beagle_LogDebugM(
 	    ioContext.getSystem().getLogger(),
-	    "communications", "Beagle::Communications",
 	    std::string("Logging all queued messages.  There are ")+
 	    uint2str(mMessageQueue.size())+
 	    " messages"
@@ -269,7 +254,6 @@ void Island::Communications::logAllMessages(Beagle::Context& ioContext)
 	        ++lItr) {
 		Beagle_LogDebugM(
 		    ioContext.getSystem().getLogger(),
-		    "communications", "Beagle::Communications",
 		    std::string("Message #")+uint2str(lIndex)+": "+
 		    "Recipient: '"+lItr->first+
 		    "' Message: '"+lItr->second+"'"
@@ -291,7 +275,6 @@ void Island::Communications::readWithSystem(PACC::XML::ConstIterator inIter,
 {
 	Beagle_LogDebugM(
 	    ioSystem.getLogger(),
-	    "communications", "Beagle::Communications",
 	    "Reading configuration for Communications component"
 	);
 

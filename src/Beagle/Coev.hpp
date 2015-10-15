@@ -74,9 +74,9 @@
 
 // Beagle generic components
 
-#include "beagle/Beagle.hpp"
-#include "beagle/GA.hpp"
-#include "beagle/GP.hpp"
+#include "Beagle/Core.hpp"
+#include "Beagle/EC.hpp"
+#include "Beagle/GP.hpp"
 
 // Mutli-threading classes
 
@@ -84,10 +84,10 @@
 
 // Co-evolution classes
 
-#include "beagle/Coev/EvaluationOp.hpp"
-#include "beagle/Coev/GPEvaluationOp.hpp"
-#include "beagle/Coev/Package.hpp"
-#include "beagle/Coev/TermBroadcastOp.hpp"
+#include "Beagle/Coev/EvaluationOp.hpp"
+#include "Beagle/Coev/GPEvaluationOp.hpp"
+#include "Beagle/Coev/Package.hpp"
+#include "Beagle/Coev/TermBroadcastOp.hpp"
 
 #endif // Beagle_Coev_hpp
 

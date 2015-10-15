@@ -36,14 +36,14 @@
 #ifndef Beagle_Distrib_Master_DistribEvalOp_hpp
 #define Beagle_Distrib_Master_DistribEvalOp_hpp
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Object.hpp"
-#include "beagle/AllocatorT.hpp"
-#include "beagle/PointerT.hpp"
-#include "beagle/ContainerT.hpp"
-#include "beagle/EvaluationOp.hpp"
-#include "beagle/Distrib/Master/EvolClient.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Object.hpp"
+#include "Beagle/Core/AllocatorT.hpp"
+#include "Beagle/Core/PointerT.hpp"
+#include "Beagle/Core/ContainerT.hpp"
+#include "Beagle/Core/EvaluationOp.hpp"
+#include "Beagle/Master/EvolClient.hpp"
 
 
 namespace Beagle

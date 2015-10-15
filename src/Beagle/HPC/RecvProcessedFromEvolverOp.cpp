@@ -32,7 +32,7 @@
  *  $Date: 2007/08/13 00:57:45 $
  */
 
-#include "beagle/HPC.hpp"
+#include "Beagle/HPC.hpp"
 
 
 using namespace Beagle;
@@ -83,7 +83,6 @@ void HPC::RecvProcessedFromEvolverOp::operate(Deme& ioDeme, Context& ioContext)
 
 	Beagle_LogDetailedM(
 		ioContext.getSystem().getLogger(),
-		"receive", "Beagle::HPC::RecvProcessedFromEvolverOp",
  		std::string("Supervisor receive deme from his ")+uint2ordinal(ioContext.getDemeIndex()+1)+ std::string(" evolver")
 	);
 

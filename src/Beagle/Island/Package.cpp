@@ -32,7 +32,7 @@
  *  $Date: 2007/09/12 14:23:46 $
  */
 
-#include "beagle/Distrib/Island.hpp"
+#include "Beagle/Island.hpp"
 
 using namespace Beagle;
 
@@ -41,7 +41,7 @@ using namespace Beagle;
  *  \brief Construct package with island-model distribution basic objects.
  */
 Distrib::Island::Package::Package() :
-		Beagle::Package("DBIM-Package")
+		PackageAbstract("DBIM-Package")
 { }
 
 
@@ -85,11 +85,11 @@ void Distrib::Island::Package::configure(System& ioSystem)
  *
  *  Distrib::Island::Package depends on Beagle::PackageBase.
  */
-Beagle::Package::Bag Distrib::Island::Package::listDependencies(void)
+PackageAbstract::Bag Distrib::Island::Package::listDependencies(void)
 {
 	Beagle_StackTraceBeginM();
-	Package::Bag lDependencies;
-	lDependencies.push_back(new PackageBase());
+	PackageAbstract::Bag lDependencies;
+	lDependencies.push_back(new EC::Package());
 	return lDependencies;
 	Beagle_StackTraceEndM();
 }

@@ -38,7 +38,7 @@
 #define Beagle_HPC_MPIException_hpp
 
 #include <mpi.h>
-#include "beagle/TargetedException.hpp"
+#include "Beagle/Core/TargetedException.hpp"
 
 /*!
  *  \def   Beagle_MPIExceptionM

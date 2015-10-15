@@ -43,16 +43,16 @@
 
 #include "PACC/Util/SignalHandler.hpp"
 #include "PACC/Util/Timer.hpp"
-#include "dags/Dags.hpp"
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Object.hpp"
-#include "beagle/AllocatorT.hpp"
-#include "beagle/PointerT.hpp"
-#include "beagle/ContainerT.hpp"
-#include "beagle/Deme.hpp"
-#include "beagle/Context.hpp"
-#include "beagle/Distrib/Master/EnvironmentManager.hpp"
+#include "DAGS/Dags.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Object.hpp"
+#include "Beagle/Core/AllocatorT.hpp"
+#include "Beagle/Core/PointerT.hpp"
+#include "Beagle/Core/ContainerT.hpp"
+#include "Beagle/Core/Deme.hpp"
+#include "Beagle/Core/Context.hpp"
+#include "Beagle/Master/EnvironmentManager.hpp"
 
 
 namespace Beagle

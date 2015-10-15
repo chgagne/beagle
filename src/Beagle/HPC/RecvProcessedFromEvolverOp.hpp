@@ -35,7 +35,7 @@
 #ifndef Beagle_HPC_RecvProcessedFromEvolverOp_hpp
 #define Beagle_HPC_RecvProcessedFromEvolverOp_hpp
 
-#include "beagle/HPC.hpp"
+#include "Beagle/HPC.hpp"
 
 namespace Beagle{
 

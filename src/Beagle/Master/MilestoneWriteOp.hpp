@@ -36,13 +36,13 @@
 #ifndef Beagle_Distrib_Master_MilestoneWriteOp_hpp
 #define Beagle_Distrib_Master_MilestoneWriteOp_hpp
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Object.hpp"
-#include "beagle/AllocatorT.hpp"
-#include "beagle/PointerT.hpp"
-#include "beagle/ContainerT.hpp"
-#include "beagle/MilestoneWriteOp.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Object.hpp"
+#include "Beagle/Core/AllocatorT.hpp"
+#include "Beagle/Core/PointerT.hpp"
+#include "Beagle/Core/ContainerT.hpp"
+#include "Beagle/EC/MilestoneWriteOp.hpp"
 
 
 namespace Beagle

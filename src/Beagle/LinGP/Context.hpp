@@ -36,16 +36,16 @@
 #ifndef Beagle_LinGP_Context_hpp
 #define Beagle_LinGP_Context_hpp
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Object.hpp"
-#include "beagle/AllocatorT.hpp"
-#include "beagle/PointerT.hpp"
-#include "beagle/ContainerT.hpp"
-#include "beagle/AssertException.hpp"
-#include "beagle/Context.hpp"
-#include "beagle/LinGP/Program.hpp"
-#include "beagle/LinGP/Memory.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Object.hpp"
+#include "Beagle/Core/AllocatorT.hpp"
+#include "Beagle/Core/PointerT.hpp"
+#include "Beagle/Core/ContainerT.hpp"
+#include "Beagle/Core/AssertException.hpp"
+#include "Beagle/Core/Context.hpp"
+#include "Beagle/LinGP/Program.hpp"
+#include "Beagle/LinGP/Memory.hpp"
 
 namespace Beagle
 {

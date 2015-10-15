@@ -35,7 +35,7 @@
  *  $Date: 2007/08/13 01:04:55 $
  */
 
-#include "beagle/HPC.hpp"
+#include "Beagle/HPC.hpp"
 
 
 using namespace Beagle;
@@ -76,7 +76,6 @@ void HPC::SendFitnessToEvolverOp::operate(Deme& ioDeme, Context& ioContext)
 	mComm->send(lOutStream.str(), "Fitness", "Parent");
 	Beagle_LogDetailedM(
 		ioContext.getSystem().getLogger(),
-		"send", "Beagle::HPC::SendFitnessToEvolverOp",
 		std::string("Evaluator send fitness to his evolver")
 	);
 }

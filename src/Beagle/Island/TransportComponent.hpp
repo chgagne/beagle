@@ -38,15 +38,15 @@
 #include <vector>
 #include <deque>
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Object.hpp"
-#include "beagle/AllocatorT.hpp"
-#include "beagle/PointerT.hpp"
-#include "beagle/ContainerT.hpp"
-#include "beagle/Operator.hpp"
-#include "beagle/Float.hpp"
-#include "beagle/Distrib/Island/SendOp.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Object.hpp"
+#include "Beagle/Core/AllocatorT.hpp"
+#include "Beagle/Core/PointerT.hpp"
+#include "Beagle/Core/ContainerT.hpp"
+#include "Beagle/Core/Operator.hpp"
+#include "Beagle/Core/Float.hpp"
+#include "Beagle/Island/SendOp.hpp"
 
 
 

@@ -32,7 +32,7 @@
  *  $Date: 2007/08/17 20:57:59 $
  */
 
-#include "beagle/Distrib/Island.hpp"
+#include "Beagle/Island.hpp"
 
 using namespace Beagle;
 using namespace Beagle::Distrib;
@@ -193,7 +193,6 @@ void Island::TransportReceiveOp::operate(Deme &ioDeme, Context &ioContext)
 	        (ioContext.getGeneration() % lTransportInterval) != 0) {
 		Beagle_LogTraceM(
 		    ioContext.getSystem().getLogger(),
-		    "transport", "Beagle::TransportReceiveOp",
 		    std::string("Transport interval is set to ")+uint2str(lTransportInterval)+" generations for '"+
 		    getName()+"'.  Skipping this "+uint2ordinal(ioContext.getGeneration())+" generation"
 		);
@@ -207,7 +206,6 @@ void Island::TransportReceiveOp::operate(Deme &ioDeme, Context &ioContext)
 	Individual::Bag lBag;
 	Beagle_LogVerboseM(
 	    ioContext.getSystem().getLogger(),
-	    "transport", "Beagle::TransportReceiveOp",
 	    std::string("Receiving transported individuals")
 	);
 	receive(lBag,ioContext);
@@ -216,14 +214,12 @@ void Island::TransportReceiveOp::operate(Deme &ioDeme, Context &ioContext)
 	if (lBag.empty()) {
 		Beagle_LogTraceM(
 		    ioContext.getSystem().getLogger(),
-		    "transport", "Beagle::TransportReceiveOp",
 		    "No individuals were received"
 		);
 		return;
 	}
 	Beagle_LogTraceM(
 	    ioContext.getSystem().getLogger(),
-	    "transport", "Beagle::TransportReceiveOp",
 	    std::string("Received ")+uint2str(lBag.size())+" individuals."
 	);
 
@@ -233,7 +229,6 @@ void Island::TransportReceiveOp::operate(Deme &ioDeme, Context &ioContext)
 	if(lMaxReplace==0) lMaxReplace=1;
 	Beagle_LogTraceM(
 	    ioContext.getSystem().getLogger(),
-	    "transport", "Beagle::TransportReceiveOp",
 	    std::string("The maximum number of individuals to replace is ")+uint2str(lMaxReplace)
 	);
 
@@ -242,7 +237,6 @@ void Island::TransportReceiveOp::operate(Deme &ioDeme, Context &ioContext)
 	if (lNumberToReplace>lMaxReplace) lNumberToReplace = lMaxReplace;
 	Beagle_LogTraceM(
 	    ioContext.getSystem().getLogger(),
-	    "transport", "Beagle::Island::TransportReceiveOp",
 	    std::string("Replacing ")+uint2str(lNumberToReplace)+" individuals"
 	);
 
@@ -251,7 +245,6 @@ void Island::TransportReceiveOp::operate(Deme &ioDeme, Context &ioContext)
 	if (!(mReplaceSent->getWrappedValue() || mUseReplaceOp->getWrappedValue())) {
 		Beagle_LogBasicM(
 		    ioContext.getSystem().getLogger(),
-		    "transport", "Beagle::Island::TransportReceiveOp",
 		    std::string("Warning!  No individuals will be replaced in TransportReceiveOp because both ")+
 		    "'ec.transport.replaceop' and 'ec.transport.replacesent' are set to false"
 		);
@@ -265,7 +258,6 @@ void Island::TransportReceiveOp::operate(Deme &ioDeme, Context &ioContext)
 		lTransComp->getIndices(lNumberToReplace, lIndices, ioContext.getDemeIndex());
 		Beagle_LogTraceM(
 		    ioContext.getSystem().getLogger(),
-		    "transport", "Beagle::Island::TransportReceiveOp",
 		    std::string("Obtained ")+uint2str(lIndices.size())+" indices from transport component"
 		);
 		lNumberToReplace -= lIndices.size();
@@ -276,7 +268,6 @@ void Island::TransportReceiveOp::operate(Deme &ioDeme, Context &ioContext)
 		unsigned int lNumberToSelect = lNumberToReplace - lIndices.size();
 		Beagle_LogTraceM(
 		    ioContext.getSystem().getLogger(),
-		    "transport", "Beagle::Island::TransportReceiveOp",
 		    std::string("Selecting (with '")+mReplacementOp->getName()+"')"+
 		    uint2str(lNumberToSelect)+" individuals from the "+
 		    uint2ordinal(ioContext.getDemeIndex()+1)+" deme to be replaced by incoming individuals"
@@ -300,7 +291,6 @@ void Island::TransportReceiveOp::operate(Deme &ioDeme, Context &ioContext)
 		unsigned int lReplaceIndex = lIndices[i];
 		Beagle_LogVerboseM(
 		    ioContext.getSystem().getLogger(),
-		    "transport", "Beagle::TransportReceiveOp",
 		    std::string("Replacing ")+uint2ordinal(lReplaceIndex+1)+
 		    " individual"
 		);
@@ -317,7 +307,6 @@ void Island::TransportReceiveOp::operate(Deme &ioDeme, Context &ioContext)
 	}
 	Beagle_LogVerboseM(
 	    ioContext.getSystem().getLogger(),
-	    "transport", "Beagle::TransportReceiveOp",
 	    std::string("Transportation complete; ")+
 	    uint2str(lIndices.size())+" individuals incorporated into deme; "+
 	    uint2str(lNumberToReplace)+" individuals discarded"
@@ -350,7 +339,7 @@ void Island::TransportReceiveOp::readWithSystem(PACC::XML::ConstIterator inIter,
 		mReplacementOp = castHandleT<SelectionOp>(lReplaceOpAlloc->allocate());
 		mReplacementOp->setName(lReplaceOpName);
 	}
-	Beagle_StackTraceEndM("void TransportReceiveOp::readWithSystem(PACC::XML::ConstIterator, System&)")
+	Beagle_StackTraceEndM();
 }
 
 
@@ -396,8 +385,6 @@ void Island::TransportReceiveOp::receive(Individual::Bag& outIndividuals, Contex
 	}
 	Beagle_LogDebugM(
 	    ioContext.getSystem().getLogger(),
-	    "transport", "Beagle::TransportReceiveOp",
-
 	    std::string("Received a total of ")+
 	    uint2str(outIndividuals.size())+
 	    " individuals"

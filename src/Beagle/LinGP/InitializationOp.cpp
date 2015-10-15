@@ -35,7 +35,7 @@
 
 #include <sstream>
 
-#include "beagle/LinGP.hpp"
+#include "Beagle/LinGP.hpp"
 
 using namespace Beagle;
 
@@ -48,7 +48,7 @@ using namespace Beagle;
 LinGP::InitializationOp::InitializationOp(IntArray inMinInitSize,
         IntArray inMaxInitSize,
         std::string inName) :
-		Beagle::InitializationOp(inName),
+		EC::InitializationOp(inName),
 		mMinInitSize(new IntArray(inMinInitSize)),
 		mMaxInitSize(new IntArray(inMaxInitSize))
 { }
@@ -60,7 +60,7 @@ LinGP::InitializationOp::InitializationOp(IntArray inMinInitSize,
  */
 void LinGP::InitializationOp::registerParams(Beagle::System& ioSystem)
 {
-	Beagle::InitializationOp::registerParams(ioSystem);
+	EC::InitializationOp::registerParams(ioSystem);
 	{
 		std::string lDefaultValue;
 		for(unsigned int i=0; i<mMinInitSize->size(); i++) {
@@ -162,7 +162,6 @@ void LinGP::InitializationOp::initIndividual(Beagle::Individual& outIndividual,
 
 	Beagle_LogVerboseM(
 	    ioContext.getSystem().getLogger(),
-	    "initialization", "Beagle::LinGP::InitializationOp",
 	    std::string("Resizing the individual to ")+
 	    uint2str(mMinInitSize->size())+" programs"
 	);
@@ -187,19 +186,15 @@ void LinGP::InitializationOp::initIndividual(Beagle::Individual& outIndividual,
 		}
 		Beagle_LogVerboseM(
 		    ioContext.getSystem().getLogger(),
-		    "initialization", "Beagle::LinGP::InitializationOp",
 		    std::string("Program ")+uint2str(i+1)+
 		    std::string(" has ")+uint2str(lInitProgramSize)+" initialized instructions"
 		);
 		Beagle_LogDebugM(
 		    ioContext.getSystem().getLogger(),
-		    "initialization", "Beagle::LinGP::InitializationOp",
 		    uint2ordinal(i+1)+std::string(" program is initialized as")
 		);
-		Beagle_LogObjectDebugM(
+		Beagle_LogDebugM(
 		    ioContext.getSystem().getLogger(),
-		    "initialization",
-		    "Beagle::LinGP::InitializationOp",
 		    *lActualProgram
 		);
 	}

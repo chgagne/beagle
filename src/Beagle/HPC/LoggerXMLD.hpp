@@ -37,8 +37,8 @@
 #ifndef Beagle_HPC_LoggerXMLD_hpp
 #define Beagle_HPC_LoggerXMLD_hpp
 
-#include "beagle/HPC.hpp"
-#include "beagle/LoggerXML.hpp"
+#include "Beagle/HPC.hpp"
+#include "Beagle/Core/LoggerXML.hpp"
 #include "PACC/Threading.hpp"
 
 namespace Beagle

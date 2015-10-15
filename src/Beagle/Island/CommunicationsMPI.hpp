@@ -35,7 +35,7 @@
 #ifndef Beagle_Distrib_Island_CommunicationsMPIOp_hpp
 #define Beagle_Distrib_Island_CommunicationsMPIOp_hpp
 
-#include "beagle/Distrib/Island/Communications.hpp"
+#include "Beagle/Island/Communications.hpp"
 
 
 namespace Beagle

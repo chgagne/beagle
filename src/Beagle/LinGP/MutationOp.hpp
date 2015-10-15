@@ -38,10 +38,10 @@
 
 #include <string>
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Object.hpp"
-#include "beagle/MutationOp.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Object.hpp"
+#include "Beagle/EC/MutationOp.hpp"
 
 
 namespace Beagle
@@ -54,17 +54,17 @@ namespace LinGP
  *  \brief Linear GP mutation operator class.
  *  \ingroup LinGPF
  */
-class MutationOp : public Beagle::MutationOp
+class MutationOp : public EC::MutationOp
 {
 
 public:
 
 	//! LinGP::MutationOp allocator type.
-	typedef AllocatorT<MutationOp,Beagle::MutationOp::Alloc> Alloc;
+	typedef AllocatorT<MutationOp,EC::MutationOp::Alloc> Alloc;
 	//! LinGP::MutationOp handle type.
-	typedef PointerT<MutationOp,Beagle::MutationOp::Handle> Handle;
+	typedef PointerT<MutationOp,EC::MutationOp::Handle> Handle;
 	//! LinGP::MutationOp bag type.
-	typedef ContainerT<MutationOp,Beagle::MutationOp::Bag> Bag;
+	typedef ContainerT<MutationOp,EC::MutationOp::Bag> Bag;
 
 	explicit MutationOp(std::string inMutationPbName="lingp.mut.indpb",
 	                    std::string inInstructMutatePbName="lingp.mut.instructpb",

@@ -36,7 +36,7 @@
 #include <algorithm>
 #include <string>
 
-#include "beagle/LinGP.hpp"
+#include "Beagle/LinGP.hpp"
 
 using namespace Beagle;
 
@@ -50,7 +50,7 @@ using namespace Beagle;
 LinGP::MutationOp::MutationOp(std::string inMutationPbName,
                               std::string inInstructMutatePbName,
                               std::string inName) :
-		Beagle::MutationOp(inMutationPbName, inName),
+		EC::MutationOp(inMutationPbName, inName),
 		mInstructMutatePbName(inInstructMutatePbName)
 { }
 
@@ -68,10 +68,10 @@ void LinGP::MutationOp::registerParams(Beagle::System& ioSystem)
 		    "1.0",
 		    "Linear GP mutation probability for each individual."
 		);
-		mMutationProba = castHandleT<Float>(
-		                     ioSystem.getRegister().insertEntry(mMutationPbName, new Float(1.0f), lDescription));
+		mMutationProba = castHandleT<Double>(
+		                     ioSystem.getRegister().insertEntry(mMutationPbName, new Double(1.0f), lDescription));
 	}
-	Beagle::MutationOp::registerParams(ioSystem);
+	EC::MutationOp::registerParams(ioSystem);
 	{
 		Register::Description lDescription(
 		    "Instruction mutation probability",
@@ -98,7 +98,6 @@ bool LinGP::MutationOp::mutate(Beagle::Individual& ioIndividual, Beagle::Context
 	bool lMutated = false;
 	Beagle_LogVerboseM(
 	    ioContext.getSystem().getLogger(),
-	    "mutation", "Beagle::LinGP::MutationOp",
 	    std::string("Linear GP mutation probability is: ")+
 	    dbl2str(mInstructMutateProba->getWrappedValue())
 	);
@@ -111,12 +110,10 @@ bool LinGP::MutationOp::mutate(Beagle::Individual& ioIndividual, Beagle::Context
 		LinGP::Program::Handle lProgram = castHandleT<LinGP::Program>(ioIndividual[i]);
 		Beagle_LogVerboseM(
 		    ioContext.getSystem().getLogger(),
-		    "mutation", "Beagle::LinGP::MutationOp",
 		    std::string("Mutating the ")+uint2ordinal(i+1)+" program"
 		);
-		Beagle_LogObjectDebugM(
+		Beagle_LogDebugM(
 		    ioContext.getSystem().getLogger(),
-		    "mutation", "Beagle::LinGP::MutationOp",
 		    *lProgram
 		);
 		for(unsigned int j=0; j<lProgram->size(); j++) {
@@ -130,18 +127,15 @@ bool LinGP::MutationOp::mutate(Beagle::Individual& ioIndividual, Beagle::Context
 		if(lMutated) {
 			Beagle_LogVerboseM(
 			    ioContext.getSystem().getLogger(),
-			    "mutation", "Beagle::LinGP::MutationOp",
 			    std::string("The program has been mutated")
 			);
-			Beagle_LogObjectDebugM(
+			Beagle_LogDebugM(
 			    ioContext.getSystem().getLogger(),
-			    "mutation", "Beagle::LinGP::MutationOp",
 			    *lProgram
 			);
 		} else {
 			Beagle_LogVerboseM(
 			    ioContext.getSystem().getLogger(),
-			    "mutation", "Beagle::LinGP::MutationOp",
 			    std::string("The program has not been mutated")
 			);
 		}
@@ -176,7 +170,7 @@ void LinGP::MutationOp::readWithSystem(PACC::XML::ConstIterator inIter, System& 
  */
 void LinGP::MutationOp::writeContent(PACC::XML::Streamer& ioStreamer, bool inIndent) const
 {
-	Beagle::MutationOp::writeContent(ioStreamer, inIndent);
+	EC::MutationOp::writeContent(ioStreamer, inIndent);
 	ioStreamer.insertAttribute("mutinstructpb", mInstructMutatePbName);
 }
 

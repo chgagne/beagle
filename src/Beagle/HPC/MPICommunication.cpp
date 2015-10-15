@@ -32,7 +32,7 @@
  *  $Date: $
  */
 
-#include "beagle/HPC.hpp"
+#include "Beagle/HPC.hpp"
 #include <csignal>
 
 

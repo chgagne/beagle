@@ -38,12 +38,12 @@
 
 #include <string>
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Object.hpp"
-#include "beagle/CrossoverOp.hpp"
-#include "beagle/GA/CrossoverTwoPointsOpT.hpp"
-#include "beagle/LinGP/Program.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Object.hpp"
+#include "Beagle/EC/CrossoverOp.hpp"
+#include "Beagle/EC/CrossoverTwoPointsOpT.hpp"
+#include "Beagle/LinGP/Program.hpp"
 
 namespace Beagle
 {
@@ -56,17 +56,17 @@ namespace LinGP
  *  \brief Linear GP two points crossover operator class.
  *  \ingroup LinGPF
  */
-class CrossoverTwoPointsOp : public GA::CrossoverTwoPointsOpT<Program>
+class CrossoverTwoPointsOp : public EC::CrossoverTwoPointsOpT<Program>
 {
 
 public:
 
 	//! LinGP::CrossoverTwoPointsOp allocator type.
-	typedef AllocatorT<CrossoverTwoPointsOp,GA::CrossoverTwoPointsOpT<Program>::Alloc> Alloc;
+	typedef AllocatorT<CrossoverTwoPointsOp,EC::CrossoverTwoPointsOpT<Program>::Alloc> Alloc;
 	//! LinGP::CrossoverTwoPointsOp handle type.
-	typedef PointerT<CrossoverTwoPointsOp,GA::CrossoverTwoPointsOpT<Program>::Handle> Handle;
+	typedef PointerT<CrossoverTwoPointsOp,EC::CrossoverTwoPointsOpT<Program>::Handle> Handle;
 	//! LinGP::CrossoverTwoPointsOp bag type.
-	typedef ContainerT<CrossoverTwoPointsOp,GA::CrossoverTwoPointsOpT<Program>::Bag> Bag;
+	typedef ContainerT<CrossoverTwoPointsOp,EC::CrossoverTwoPointsOpT<Program>::Bag> Bag;
 
 	/*!
 	 *  \brief Construct linear GP two points crossover operator.
@@ -75,7 +75,7 @@ public:
 	 */
 	explicit CrossoverTwoPointsOp(std::string inMatingPbName="lingp.cx2p.prob",
 	                              std::string inName="LinGP-CrossoverTwoPointsOp") :
-			GA::CrossoverTwoPointsOpT<Program>(inMatingPbName, inName)
+			EC::CrossoverTwoPointsOpT<Program>(inMatingPbName, inName)
 	{ }
 
 	virtual ~CrossoverTwoPointsOp()

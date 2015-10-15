@@ -32,7 +32,7 @@
  *  $Date: 2007/09/12 14:23:46 $
  */
 
-#include "beagle/Distrib/Island.hpp"
+#include "Beagle/Island.hpp"
 
 using namespace Beagle;
 
@@ -41,7 +41,7 @@ using namespace Beagle;
  *  \brief Construct package with island-model TCP/IP distribution objects.
  */
 Distrib::Island::PackageTCPIP::PackageTCPIP() :
-		Beagle::Package("DBIM-PackageTCPIP")
+		PackageAbstract("DBIM-PackageTCPIP")
 { }
 
 
@@ -80,10 +80,10 @@ void Distrib::Island::PackageTCPIP::configure(System& ioSystem)
  *
  *  Distrib::Island::PackageTCPIP depends on Distrib::Island::Package.
  */
-Beagle::Package::Bag Distrib::Island::PackageTCPIP::listDependencies(void)
+PackageAbstract::Bag Distrib::Island::PackageTCPIP::listDependencies(void)
 {
 	Beagle_StackTraceBeginM();
-	Beagle::Package::Bag lDependencies;
+	PackageAbstract::Bag lDependencies;
 	lDependencies.push_back(new Distrib::Island::Package());
 	return lDependencies;
 	Beagle_StackTraceEndM();

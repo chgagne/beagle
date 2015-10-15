@@ -38,12 +38,12 @@
 
 #include <string>
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Object.hpp"
-#include "beagle/CrossoverOp.hpp"
-#include "beagle/GA/CrossoverOnePointOpT.hpp"
-#include "beagle/LinGP/Program.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Object.hpp"
+#include "Beagle/EC/CrossoverOp.hpp"
+#include "Beagle/EC/CrossoverOnePointOpT.hpp"
+#include "Beagle/LinGP/Program.hpp"
 
 namespace Beagle
 {
@@ -56,17 +56,17 @@ namespace LinGP
  *  \brief Lineat GP one point crossover operator class.
  *  \ingroup LinGPF
  */
-class CrossoverOnePointOp : public GA::CrossoverOnePointOpT<Program>
+class CrossoverOnePointOp : public EC::CrossoverOnePointOpT<Program>
 {
 
 public:
 
 	//! LinGP::CrossoverOnePointOp allocator type.
-	typedef AllocatorT<CrossoverOnePointOp,GA::CrossoverOnePointOpT<Program>::Alloc> Alloc;
+	typedef AllocatorT<CrossoverOnePointOp,EC::CrossoverOnePointOpT<Program>::Alloc> Alloc;
 	//! LinGP::CrossoverOnePointOp handle type.
-	typedef PointerT<CrossoverOnePointOp,GA::CrossoverOnePointOpT<Program>::Handle> Handle;
+	typedef PointerT<CrossoverOnePointOp,EC::CrossoverOnePointOpT<Program>::Handle> Handle;
 	//! LinGP::CrossoverOnePointOp bag type.
-	typedef ContainerT<CrossoverOnePointOp,GA::CrossoverOnePointOpT<Program>::Bag> Bag;
+	typedef ContainerT<CrossoverOnePointOp,EC::CrossoverOnePointOpT<Program>::Bag> Bag;
 
 	/*!
 	 *  \brief Construct linear GP one point crossover operator.
@@ -75,7 +75,7 @@ public:
 	 */
 	explicit CrossoverOnePointOp(std::string inMatingPbName="lingp.cx1p.prob",
 	                             std::string inName="LinGP-CrossoverOnePointOp") :
-			GA::CrossoverOnePointOpT<Program>(inMatingPbName, inName)
+			EC::CrossoverOnePointOpT<Program>(inMatingPbName, inName)
 	{ }
 
 	virtual ~CrossoverOnePointOp()

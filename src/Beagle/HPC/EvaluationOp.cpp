@@ -33,7 +33,7 @@
  *  $Date: 2007/08/17 20:58:00 $
  */
 
-#include "beagle/HPC.hpp"
+#include "Beagle/HPC.hpp"
 
 using namespace Beagle;
 
@@ -56,7 +56,6 @@ void HPC::EvaluationOp::operate(Deme& ioDeme, Context& ioContext)
 	Beagle_StackTraceBeginM();
 	Beagle_LogTraceM(
 	    ioContext.getSystem().getLogger(),
-	    "evaluation", "Beagle::EvaluationOp",
 	    std::string("Evaluating the fitness of the individuals in the ")+
 	    uint2ordinal(ioContext.getDemeIndex()+1)+" deme"
 	);
@@ -73,7 +72,6 @@ void HPC::EvaluationOp::operate(Deme& ioDeme, Context& ioContext)
 
 			Beagle_LogVerboseM(
 			    ioContext.getSystem().getLogger(),
-			    "evaluation", "Beagle::EvaluationOp",
 			    std::string("Evaluating the fitness of the ")+uint2ordinal(i+1)+
 			    " individual"
 			);
@@ -86,11 +84,9 @@ void HPC::EvaluationOp::operate(Deme& ioDeme, Context& ioContext)
 
 			lNoEvaluations = false;
 
-			Beagle_LogObjectM(
+			Beagle_LogM(
 			    ioContext.getSystem().getLogger(),
 			    Logger::eVerbose,
-			    "evaluation",
-			    "Beagle::EvaluationOp",
 			    *ioDeme[i]->getFitness()
 			);
 		}
@@ -103,7 +99,6 @@ void HPC::EvaluationOp::operate(Deme& ioDeme, Context& ioContext)
 	if (lNoEvaluations) {
 		Beagle_LogBasicM(
 		    ioContext.getSystem().getLogger(),
-		    "evaluation", "Beagle::EvaluationOp",
 		    std::string("Warning!  The '")+getName()+"' operator did not evaluate any individuals.  "+
 		    "Consider using the 'InvalidateFitnessOp' operator to force evaluation of every individual."
 		);

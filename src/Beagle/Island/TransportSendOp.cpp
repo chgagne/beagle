@@ -32,7 +32,7 @@
  *  $Date: 2007/08/17 18:09:10 $
  */
 
-#include "beagle/Distrib/Island.hpp"
+#include "Beagle/Island.hpp"
 
 using namespace Beagle;
 using namespace Beagle::Distrib;
@@ -87,7 +87,6 @@ void Island::TransportSendOp::registerParams(System& ioSystem)
 	Beagle_StackTraceBeginM();
 	Beagle_LogVerboseM(
 	    ioSystem.getLogger(),
-	    "transport", "Beagle::TransportSendOp",
 	    "Initializing TransportSendOp"
 	);
 	// Add interval parameter
@@ -140,7 +139,6 @@ void Island::TransportSendOp::operate(Deme &ioDeme, Context &ioContext)
 	if (ioDeme.empty()) {
 		Beagle_LogBasicM(
 		    ioContext.getSystem().getLogger(),
-		    "transport", "Beagle::Island::TransportSendOp",
 		    "WARNING: There are no individuals in the deme, unable to transport any individuals"
 		);
 		return;
@@ -153,7 +151,6 @@ void Island::TransportSendOp::operate(Deme &ioDeme, Context &ioContext)
 	// Get index of individuals to transport.
 	Beagle_LogTraceM(
 	    ioContext.getSystem().getLogger(),
-	    "transport", "Beagle::Island::TransportSendOp",
 	    std::string("Selecting ")+uint2str(lNumberToSend)+" individuals for transportation from "+
 	    uint2ordinal(ioContext.getDemeIndex()+1)+" deme using '"+mSelectionOp->getName()+"'"
 	);
@@ -181,14 +178,12 @@ void Island::TransportSendOp::operate(Deme &ioDeme, Context &ioContext)
 	// Send the bag of individuals
 	Beagle_LogVerboseM(
 	    ioContext.getSystem().getLogger(),
-	    "transport", "Beagle::Island::TransportSendOp",
 	    std::string("Transporting ")+uint2str(lBag.size())+
 	    std::string(" individuals")
 	);
 	send(lBag,ioContext);
 	Beagle_LogVerboseM(
 	    ioContext.getSystem().getLogger(),
-	    "transport", "Beagle::Island::TransportSendOp",
 	    std::string("Transport complete")
 	);
 	Beagle_StackTraceEndM();
@@ -219,7 +214,7 @@ void Island::TransportSendOp::readWithSystem(PACC::XML::ConstIterator inIter, Sy
 		mSelectionOp = castHandleT<SelectionOp>(lSelectOpAlloc->allocate());
 		mSelectionOp->setName(lSelectOpName);
 	}
-	Beagle_StackTraceEndM("void TransportSendOp::readWithSystem(PACC::XML::ConstIterator, System&)")
+	Beagle_StackTraceEndM();
 }
 
 
@@ -241,7 +236,6 @@ void Island::TransportSendOp::send(const Individual::Bag& inIndividuals, Context
 
 	Beagle_LogTraceM(
 	    ioContext.getSystem().getLogger(),
-	    "transport", "Beagle::Island::TransportSendOp",
 	    std::string("Transporting individuals")
 	);
 	sendToAll(lMessage, ioContext);

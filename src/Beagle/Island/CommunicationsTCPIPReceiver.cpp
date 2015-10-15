@@ -32,7 +32,7 @@
  *  $Date: 2007/08/08 19:26:33 $
  */
 
-#include "beagle/Distrib/Island.hpp"
+#include "Beagle/Island.hpp"
 
 using namespace Beagle;
 using namespace Beagle::Distrib;

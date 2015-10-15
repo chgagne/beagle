@@ -32,7 +32,7 @@
  *  $Date: 2007/08/17 18:09:10 $
  */
 
-#include "beagle/Distrib/Island.hpp"
+#include "Beagle/Island.hpp"
 
 using namespace Beagle;
 using namespace Beagle::Distrib;
@@ -152,7 +152,6 @@ void Island::CommunicationsMPI::initialize(System &ioSystem, int& ioArgc, char**
 	// Initialize MPI
 	Beagle_LogDebugM(
 	    ioSystem.getLogger(),
-	    "communications", "Beagle::CommunicationsMPI",
 	    "Initializing MPI"
 	);
 	std::cout << "Calling MPI_Init()..." << std::endl;
@@ -194,14 +193,12 @@ void Island::CommunicationsMPI::init(System &ioSystem)
 	}
 	Beagle_LogDebugM(
 	    ioSystem.getLogger(),
-	    "communications", "Beagle::CommunicationsMPI",
 	    "MPI has been initialized"
 	);
 
 	// List known addresses
 	Beagle_LogDebugM(
 	    ioSystem.getLogger(),
-	    "communications", "Beagle::CommunicationsMPI",
 	    string("CommunicationsMPI knows ")+uint2str(mAddressToMPIMap.size())+
 	    " address(es)"
 	);
@@ -210,7 +207,6 @@ void Island::CommunicationsMPI::init(System &ioSystem)
 	        lItr != mAddressToMPIMap.end(); ++lItr) {
 		Beagle_LogDebugM(
 		    ioSystem.getLogger(),
-		    "communications", "Beagle::CommunicationsMPI",
 		    uint2ordinal(lIndex+1)+" address named '"+lItr->first+"' is rank "+
 		    int2str(lItr->second)
 		);
@@ -223,7 +219,6 @@ void Island::CommunicationsMPI::init(System &ioSystem)
 	Beagle_AssertM( mReceiver->isRunning() );
 	Beagle_LogTraceM(
 	    ioSystem.getLogger(),
-	    "communications", "Beagle::CommunicationsMPI",
 	    string("MPI receiver thread is now running")
 	);
 	Beagle_StackTraceEndM();
@@ -250,7 +245,6 @@ void Island::CommunicationsMPI::readAddress(PACC::XML::ConstIterator inIter,
 	Beagle_StackTraceBeginM();
 	Beagle_LogDebugM(
 	    ioSystem.getLogger(),
-	    "communications", "Beagle::CommunicationsMPI",
 	    "Reading address for CommunicationsMPI component"
 	);
 
@@ -260,7 +254,6 @@ void Island::CommunicationsMPI::readAddress(PACC::XML::ConstIterator inIter,
 		lName = inIter->getAttribute("name");
 		Beagle_LogDebugM(
 		    ioSystem.getLogger(),
-		    "communications", "Beagle::CommunicationsMPI",
 		    string("Reading address named '")+lName+"'"
 		);
 	} else {
@@ -283,7 +276,6 @@ void Island::CommunicationsMPI::readAddress(PACC::XML::ConstIterator inIter,
 				lISS >> lRank->getWrappedValue();
 				Beagle_LogDebugM(
 				    ioSystem.getLogger(),
-				    "communications", "Beagle::CommunicationsMPI",
 				    string("Address named '")+lName+"' has rank number "+
 				    uint2str(lRank->getWrappedValue())
 				);
@@ -386,7 +378,6 @@ void Island::CommunicationsMPI::sendMessage(const std::string& inAddress,
 			// Sucessfully sent message
 			Beagle_LogVerboseM(
 			    ioContext.getSystem().getLogger(),
-			    "communications", "Beagle::CommunicationsMPI",
 			    std::string("Message sent")
 			);
 		} else {
@@ -398,12 +389,10 @@ void Island::CommunicationsMPI::sendMessage(const std::string& inAddress,
 		// Failed to send message
 		Beagle_LogBasicM(
 		    ioContext.getSystem().getLogger(),
-		    "communications", "Beagle::CommunicationsMPI",
 		    std::string("WARNING: failed to send message via MPI to '")+inAddress+"'"
 		);
 		Beagle_LogDebugM(
 		    ioContext.getSystem().getLogger(),
-		    "communications", "Beagle::CommunicationsMPI",
 		    std::string("Recipient was '")+inRecipient+
 		    "'.  Message was '"+inMessage+"'"
 		);

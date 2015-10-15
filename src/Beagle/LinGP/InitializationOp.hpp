@@ -38,15 +38,15 @@
 
 #include <string>
 
-#include "beagle/config.hpp"
-#include "beagle/macros.hpp"
-#include "beagle/Object.hpp"
-#include "beagle/AllocatorT.hpp"
-#include "beagle/PointerT.hpp"
-#include "beagle/ContainerT.hpp"
-#include "beagle/InitializationOp.hpp"
-#include "beagle/Float.hpp"
-#include "beagle/Int.hpp"
+#include "Beagle/config.hpp"
+#include "Beagle/macros.hpp"
+#include "Beagle/Core/Object.hpp"
+#include "Beagle/Core/AllocatorT.hpp"
+#include "Beagle/Core/PointerT.hpp"
+#include "Beagle/Core/ContainerT.hpp"
+#include "Beagle/EC/InitializationOp.hpp"
+#include "Beagle/Core/Float.hpp"
+#include "Beagle/Core/Int.hpp"
 
 namespace Beagle
 {
@@ -58,17 +58,17 @@ namespace LinGP
  *  \brief Linear GP initialization operator class.
  *  \ingroup LinGPF
  */
-class InitializationOp : public Beagle::InitializationOp
+class InitializationOp : public EC::InitializationOp
 {
 
 public:
 
 	//! LinGP::InitializationOp allocator type.
-	typedef AllocatorT<InitializationOp,Beagle::InitializationOp::Alloc> Alloc;
+	typedef AllocatorT<InitializationOp,EC::InitializationOp::Alloc> Alloc;
 	//! LinGP::InitializationOp handle type.
-	typedef PointerT<InitializationOp,Beagle::InitializationOp::Handle> Handle;
+	typedef PointerT<InitializationOp,EC::InitializationOp::Handle> Handle;
 	//! LinGP::InitializationOp bag type.
-	typedef ContainerT<InitializationOp,Beagle::InitializationOp::Bag> Bag;
+	typedef ContainerT<InitializationOp,EC::InitializationOp::Bag> Bag;
 
 	explicit InitializationOp(IntArray inMinInitSize=IntArray(1,2),
 	                          IntArray inMaxInitSize=IntArray(1,10),

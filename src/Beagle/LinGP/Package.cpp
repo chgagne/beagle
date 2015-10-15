@@ -33,7 +33,7 @@
  *  $Date: 2007/09/12 14:23:47 $
  */
 
-#include "beagle/LinGP.hpp"
+#include "Beagle/LinGP.hpp"
 
 using namespace Beagle;
 
@@ -42,7 +42,7 @@ using namespace Beagle;
  *  \brief Construct package with LinGP objects.
  */
 LinGP::Package::Package() :
-		Beagle::Package("LinGP-Package")
+		PackageAbstract("LinGP-Package")
 { }
 
 
@@ -103,11 +103,11 @@ void LinGP::Package::configure(Beagle::System& ioSystem)
  *
  *  LinGP::Package depends on PackageBase.
  */
-Beagle::Package::Bag LinGP::Package::listDependencies(void)
+PackageAbstract::Bag LinGP::Package::listDependencies(void)
 {
 	Beagle_StackTraceBeginM();
-	Package::Bag lDependencies;
-	lDependencies.push_back(new PackageBase());
+	PackageAbstract::Bag lDependencies;
+	lDependencies.push_back(new EC::Package());
 	return lDependencies;
 	Beagle_StackTraceEndM();
 }

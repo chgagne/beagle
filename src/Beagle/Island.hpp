@@ -46,7 +46,7 @@
 #ifndef Beagle_Distrib_Island_hpp
 #define Beagle_Distrib_Island_hpp
 
-#include "beagle/config.hpp"
+#include "Beagle/config.hpp"
 
 #include "PACC/Util.hpp"
 #include "PACC/XML.hpp"
@@ -57,32 +57,32 @@
 #endif // BEAGLE_HAVE_SYS_SOCKET_H
 
 // Beagle generic framework
-#include "beagle/Beagle.hpp"
+#include "Beagle/Core.hpp"
 
 // Generic island-model classes
-#include "beagle/Distrib/Island/Communications.hpp"
-#include "beagle/Distrib/Island/CommunicationsOp.hpp"
-#include "beagle/Distrib/Island/SendOp.hpp"
-#include "beagle/Distrib/Island/TermReceiveOp.hpp"
-#include "beagle/Distrib/Island/TermSendOp.hpp"
-#include "beagle/Distrib/Island/TransportComponent.hpp"
-#include "beagle/Distrib/Island/TransportReceiveOp.hpp"
-#include "beagle/Distrib/Island/TransportSendOp.hpp"
-#include "beagle/Distrib/Island/Package.hpp"
+#include "Beagle/Island/Communications.hpp"
+#include "Beagle/Island/CommunicationsOp.hpp"
+#include "Beagle/Island/SendOp.hpp"
+#include "Beagle/Island/TermReceiveOp.hpp"
+#include "Beagle/Island/TermSendOp.hpp"
+#include "Beagle/Island/TransportComponent.hpp"
+#include "Beagle/Island/TransportReceiveOp.hpp"
+#include "Beagle/Island/TransportSendOp.hpp"
+#include "Beagle/Island/Package.hpp"
 
 // TCP/IP island-model classes
 #ifdef BEAGLE_HAVE_SYS_SOCKET_H
-#include "beagle/Distrib/Island/CommunicationsTCPIP.hpp"
-#include "beagle/Distrib/Island/CommunicationsTCPIPReceiver.hpp"
-#include "beagle/Distrib/Island/PackageTCPIP.hpp"
+#include "Beagle/Island/CommunicationsTCPIP.hpp"
+#include "Beagle/Island/CommunicationsTCPIPReceiver.hpp"
+#include "Beagle/Island/PackageTCPIP.hpp"
 #endif // BEAGLE_HAVE_SYS_SOCKET_H
 
 // MPI island-model classes
 #ifdef BEAGLE_HAVE_MPI
 #include "mpi.h"
-#include "beagle/Distrib/Island/CommunicationsMPI.hpp"
-#include "beagle/Distrib/Island/CommunicationsMPIReceiver.hpp"
-#include "beagle/Distrib/Island/PackageMPI.hpp"
+#include "Beagle/Island/CommunicationsMPI.hpp"
+#include "Beagle/Island/CommunicationsMPIReceiver.hpp"
+#include "Beagle/Island/PackageMPI.hpp"
 #endif // BEAGLE_HAVE_MPI
 
 #endif // Beagle_Distrib_Island_hpp

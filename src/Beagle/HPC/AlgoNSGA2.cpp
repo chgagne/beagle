@@ -33,7 +33,7 @@
  *  $Date: 2007/08/17 18:09:13 $
  */
 
-#include "beagle/HPC.hpp"
+#include "Beagle/HPC.hpp"
 
 using namespace Beagle;
 

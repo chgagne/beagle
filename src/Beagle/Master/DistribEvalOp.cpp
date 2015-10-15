@@ -33,7 +33,7 @@
  *  $Date: 2007/10/03 14:27:49 $
  */
 
-#include "beagle/Distrib/Master.hpp"
+#include "Beagle/Master.hpp"
 
 using namespace Beagle;
 using namespace Beagle::Distrib;
@@ -265,7 +265,6 @@ void Master::DistribEvalOp::operate(Deme& ioDeme, Context& ioContext)
 	if(mDemeHOFSize->getWrappedValue() > 0) {
 		Beagle_LogDetailedM(
 			ioContext.getSystem().getLogger(),
-			"evaluation", "Beagle::EvaluationOp",
 			"Updating the deme's hall-of-fame"
 		);
 		HallOfFame::Handle lHoF = lActualDeme.getHallOfFame();
@@ -283,7 +282,6 @@ void Master::DistribEvalOp::operate(Deme& ioDeme, Context& ioContext)
 	if(mVivaHOFSize->getWrappedValue() > 0) {
 		Beagle_LogDetailedM(
 			ioContext.getSystem().getLogger(),
-			"evaluation", "Beagle::EvaluationOp",
 			"Updating the vivarium's hall-of-fame"
 		);
 		HallOfFame::Handle lHoF = ioContext.getVivarium().getHallOfFame();

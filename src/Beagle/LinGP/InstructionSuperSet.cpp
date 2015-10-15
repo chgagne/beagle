@@ -33,7 +33,7 @@
  *  $Date: 2007/08/08 17:03:05 $
  */
 
-#include "beagle/LinGP.hpp"
+#include "Beagle/LinGP.hpp"
 
 using namespace Beagle;
 

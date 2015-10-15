@@ -35,7 +35,7 @@
 
 #include <algorithm>
 
-#include "beagle/LinGP.hpp"
+#include "Beagle/LinGP.hpp"
 
 using namespace Beagle;
 
@@ -72,7 +72,7 @@ const std::string& LinGP::Program::getType() const
 	Beagle_StackTraceBeginM();
 	const static std::string lName("LinGP-Program");
 	return lName;
-	Beagle_StackTraceEndM("const std::string& LinGP::Program::getType() const")
+	Beagle_StackTraceEndM();
 }
 
 
@@ -100,19 +100,16 @@ void LinGP::Program::interpret(LinGP::Context& ioContext)
 	ioContext.setGenotypeHandle(Handle(this));
 	Beagle_LogVerboseM(
 	    ioContext.getSystem().getLogger(),
-	    "program", "Beagle::LinGP::Program",
 	    std::string("Interpreting the ")+uint2ordinal(lProgramIndex+1)+
 	    std::string(" linear program of the ")+uint2ordinal(ioContext.getIndividualIndex()+1)+
 	    std::string(" individual")
 	);
-	Beagle_LogObjectDebugM(
+	Beagle_LogDebugM(
 	    ioContext.getSystem().getLogger(),
-	    "program", "Beagle::LinGP::Program",
 	    ioContext.getIndividual()
 	);
 	Beagle_LogDebugM(
 	    ioContext.getSystem().getLogger(),
-	    "program", "Beagle::LinGP::Program",
 	    std::string("Executing the linear program first instruction '")+
 	    (*this)[0]->getName()+"'"
 	);
