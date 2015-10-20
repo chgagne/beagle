@@ -312,14 +312,18 @@ void Evolver::initialize(System::Handle ioSystem, const std::string& inFilename)
 	// Configure evolver with default evolutionary algorithm
 	configureDefaultAlgorithm(*ioSystem);
 
-	readFromFile(inFilename, *ioSystem);
-
+	if(inFilename.empty() == false) {
+		readFromFile(inFilename, *ioSystem);
+	}
+	
 	// register evolver parameters
 	registerParams(*ioSystem);
 
 	// Reading specified configuration file
-	ioSystem->readFromFile(inFilename);
-
+	if(inFilename.empty() == false) {
+		ioSystem->readFromFile(inFilename);
+	}
+	
 	// initialize system components
 	ioSystem->initComponents();
 
