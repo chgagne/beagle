@@ -575,7 +575,13 @@ void Evolver::readMilestone(const std::string& inFileName, System& ioSystem)
 	if(lStream.good() == false) {
 		throw Beagle_RunTimeExceptionM(std::string("Could not open file '")+inFileName+"'");
 	}
-	Beagle_LogBasicM(ioSystem.getLogger(), "Reading evolver and system configuration from milestone file'" << inFileName << "'");
+	std::ostringstream lOSS;
+	lOSS << "Reading evolver and system configuration from milestone file'" << inFileName << "'";
+	Beagle_AddToLogBufferM(
+		ioSystem.getLogger(),
+		Beagle::Logger::eBasic,
+		lOSS.str()
+	);
 	PACC::XML::Document lDocument(lStream, inFileName);
 	lStream.close();
 
@@ -596,16 +602,18 @@ void Evolver::readMilestone(const std::string& inFileName, System& ioSystem)
 	PACC::XML::ConstFinder lFinderEvol(lDocument.getFirstDataTag());
 	PACC::XML::ConstIterator lPosEvol = lFinderEvol.find("/Beagle/Evolver");
 	if(!lPosEvol) {
-		Beagle_LogBasicM(
+		Beagle_AddToLogBufferM(
 		    ioSystem.getLogger(),
+			Beagle::Logger::eBasic,
 		    "WARNING: milestone does not contain any valid evolver"
 		);
 	} else {
 		// read all evolver instances
 		readWithSystem(lPosEvol, ioSystem);
 		if((lPosEvol = lFinderEvol.findNext())) {
-			Beagle_LogBasicM(
+			Beagle_AddToLogBufferM(
 			    ioSystem.getLogger(),
+				Beagle::Logger::eBasic,
 			    "WARNING: milestone contains multiple evolvers"
 			);
 			do {
@@ -621,15 +629,20 @@ void Evolver::readMilestone(const std::string& inFileName, System& ioSystem)
 	PACC::XML::ConstFinder lFinderSys(lDocument.getFirstDataTag());
 	PACC::XML::ConstIterator lPosSys = lFinderSys.find("/Beagle/System");
 	if(!lPosSys) {
-		Beagle_LogBasicM(
+		Beagle_AddToLogBufferM(
 		    ioSystem.getLogger(),
+			Beagle::Logger::eBasic,
 		    "WARNING: milestone does not contain any valid system"
 		);
 	} else {
 		// read all system instances
 		ioSystem.read(lPosSys);
 		if((lPosSys = lFinderSys.findNext())) {
-			Beagle_LogBasicM(ioSystem.getLogger(), "WARNING: milestone contains multiple systems");
+			Beagle_AddToLogBufferM(
+				ioSystem.getLogger(),
+				Beagle::Logger::eBasic,
+				"WARNING: milestone contains multiple systems"
+			);
 			do {
 				ioSystem.read(lPosSys);
 			} while((lPosSys = lFinderSys.findNext()));
@@ -809,15 +822,19 @@ void Evolver::registerOperatorParams(System& ioSystem)
 	Beagle_StackTraceBeginM();
 
 	// registering the bootstrap operator set parameters
-	Beagle_LogDetailedM(
+	Beagle_AddToLogBufferM(
 	    ioSystem.getLogger(),
+		Beagle::Logger::eDetailed,
 	    "Registering the evolver bootstrap operator set parameters"
 	);
 	for(unsigned int i = 0; i < mBootStrapSet.size(); i++) {
 		if(mBootStrapSet[i]->hasRegisteredParams() == false) {
-			Beagle_LogTraceM(
+			std::ostringstream lOSS;
+			lOSS << "Registering '" << mBootStrapSet[i]->getName() << "' parameters";
+			Beagle_AddToLogBufferM(
 			    ioSystem.getLogger(),
-			    "Registering '" << mBootStrapSet[i]->getName() << "' parameters"
+				Beagle::Logger::eTrace,
+			    lOSS.str()
 			);
 			mBootStrapSet[i]->registerParams(ioSystem);
 			mBootStrapSet[i]->setRegisteredFlag(true);
@@ -825,15 +842,19 @@ void Evolver::registerOperatorParams(System& ioSystem)
 	}
 
 	// registering the main-loop operator set parameters
-	Beagle_LogDetailedM(
+	Beagle_AddToLogBufferM(
 	    ioSystem.getLogger(),
+		Beagle::Logger::eDetailed,
 	    "Registering the evolver main-loop operator set parameters"
 	);
 	for(unsigned int i = 0; i < mMainLoopSet.size(); i++) {
 		if(mMainLoopSet[i]->hasRegisteredParams() == false) {
-			Beagle_LogTraceM(
+			std::ostringstream lOSS;
+			lOSS << "Registering '" << mMainLoopSet[i]->getName() << "' parameters";
+			Beagle_AddToLogBufferM(
 			    ioSystem.getLogger(),
-			    "Registering '" << mMainLoopSet[i]->getName() << "' parameters"
+				Beagle::Logger::eTrace,
+			    lOSS.str()
 			);
 			mMainLoopSet[i]->registerParams(ioSystem);
 			mMainLoopSet[i]->setRegisteredFlag(true);
