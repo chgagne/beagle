@@ -271,7 +271,15 @@ void Evolver::initialize(System::Handle ioSystem, int inArgc, char** inArgv)
 	// read default configuration file
 	try {
 		readFromFile("beagle.conf", *ioSystem);
-	} catch(const Exception&) {}
+	} catch(const Exception& lExcept) {
+		std::ostringstream lOSS;
+		lOSS << "Tried to read Evolver from file 'beagle.conf', got this exception: " << lExcept.what();
+		Beagle_AddToLogBufferM(
+			ioSystem->getLogger(),
+			Beagle::Logger::eBasic,
+			lOSS.str()
+		);
+	}
 
 	// register evolver parameters
 	registerParams(*ioSystem);
@@ -279,7 +287,15 @@ void Evolver::initialize(System::Handle ioSystem, int inArgc, char** inArgv)
 	// read default configuration file
 	try {
 		ioSystem->readFromFile("beagle.conf");
-	} catch(const Exception&) {}
+	} catch(const Exception& lExcept) {
+		std::ostringstream lOSS;
+		lOSS << "Tried to read System from file 'beagle.conf', got this exception: " << lExcept.what();
+		Beagle_AddToLogBufferM(
+			ioSystem->getLogger(),
+			Beagle::Logger::eBasic,
+			lOSS.str()
+		);
+	}
 
 	// read configuration file
 	parseCommandLine(*ioSystem, inArgc, inArgv);
