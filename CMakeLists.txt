@@ -891,7 +891,7 @@ if(BEAGLE_BUILD_EXAMPLES)
 	
 	# ant example
 	file(GLOB ANT_SRC  "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle-Examples/ant/*.cpp")
-	file(GLOB ANT_DATA "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle-Examples/ant/*.conf examples/ant/*.xml" "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle-Examples/ant/*.trail" "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle-Examples/ant/ReadMe.txt")
+	file(GLOB ANT_DATA "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle-Examples/ant/*.conf" "${CMAKE_CURRENT_SOURCE_DIR}/examples/ant/*.xml" "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle-Examples/ant/*.trail" "${CMAKE_CURRENT_SOURCE_DIR}/src/Beagle-Examples/ant/ReadMe.txt")
 	add_executable(ant ${ANT_SRC})
 	add_dependencies(ant Beagle-GP Beagle-EC Beagle-Core)
 	target_link_libraries(ant Beagle-GP Beagle-EC Beagle-Core pacc)
